@@ -34,11 +34,34 @@
                     </li>
                     <li class="nav-item">
                         <a href="{{route('admin.dashboard')}}" class="nav-link ">
-                            <i class="nav-icon fas fa-shopping-cart"></i>
+                            <i class="nav-icon fa fa-shopping-cart"></i>
                             <p>
                                 Products
                             </p>
                         </a>
+                    </li>
+                    <li class="nav-item has-treeview {{(Request::is('admin/roles*') || Request::is('admin/staffs*')) ? 'menu-open' : ''}}" style="background: rgba(0, 0, 0, 0.5);">
+                        <a href="#" class="nav-link">
+                            <i class="nav-icon fas fa-users"></i>
+                            <p>
+                                Role & permission
+                                <i class="right fa fa-angle-left"></i>
+                            </p>
+                        </a>
+                        <ul class="nav nav-treeview">
+                            <li class="nav-item">
+                                <a href="{{route('admin.staffs.index')}}" class="nav-link {{Request::is('admin/staffs*') ? 'active' :''}}">
+                                    <i class="fa fa-circle nav-icon"></i>
+                                    <p>Staff Manage</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{{route('admin.roles.index')}}" class="nav-link {{Request::is('admin/role*') ? 'active' :''}}">
+                                    <i class="fa fa-circle nav-icon"></i>
+                                    <p>Role Manage</p>
+                                </a>
+                            </li>
+                        </ul>
                     </li>
                 </ul>
             </nav>

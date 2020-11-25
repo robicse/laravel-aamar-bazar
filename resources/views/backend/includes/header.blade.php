@@ -5,7 +5,7 @@
             <a class="nav-link" data-widget="pushmenu" href="#"><i class="fa fa-bars"></i></a>
         </li>
         <li class="nav-item d-none d-sm-inline-block">
-            <a href="{{url('/')}}" class="nav-link"  data-toggle="frontend" data-placement="bottom" data-original-title="Browse Frontend">
+            <a target="_blank" href="{{url('/')}}" class="nav-link"  data-toggle="frontend" data-placement="bottom" data-original-title="Browse Frontend">
                 <i class="fas fa-globe"></i>
             </a>
         </li>
@@ -112,7 +112,7 @@
         </li>--}}
         <li class="nav-item dropdown">
             <a class="nav-link" data-toggle="dropdown" href="#">
-                <i class="fa fa-user-circle-o"></i>
+                <i class="fa fa-user-circle"></i>
             </a>
             <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
                 <span class="dropdown-item dropdown-header">

@@ -2,6 +2,7 @@
 
 namespace App\Exceptions;
 
+use Brian2694\Toastr\Facades\Toastr;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Throwable;
 
@@ -50,6 +51,11 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Throwable $exception)
     {
+        if ($exception instanceof \Spatie\Permission\Exceptions\UnauthorizedException) {
+
+            Toastr::warning('User have not permission for this page access!', 'Warning');
+            return redirect()->route('admin.dashboard');
+        }
         return parent::render($request, $exception);
     }
 }

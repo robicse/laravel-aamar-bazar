@@ -15,6 +15,8 @@ Route::get('/admin/login', 'Admin\AuthController@ShowLoginForm')->name('admin.lo
 Route::post('/admin/login', 'Admin\AuthController@LoginCheck')->name('admin.login.check');
 Route::group(['as'=>'admin.','prefix' =>'admin','namespace'=>'Admin', 'middleware' => ['auth', 'admin']], function(){
     Route::get('dashboard','DashboardController@index')->name('dashboard');
+    Route::resource('roles','RoleController');
+    Route::resource('staffs','StaffController');
 	/*Route::resource('categories','CategoryController');
 	Route::get('/categories/destroy/{id}', 'CategoryController@destroy')->name('categories.destroy');
 	Route::post('/categories/featured', 'CategoryController@updateFeatured')->name('categories.featured');

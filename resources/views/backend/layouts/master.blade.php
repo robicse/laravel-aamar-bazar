@@ -20,7 +20,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css">
     <style>
         .sidebar-dark-primary .nav-sidebar>.nav-item>.nav-link.active {
-            color: #fff;
+
             background-color: #8a9cb0;
         }
     </style>
