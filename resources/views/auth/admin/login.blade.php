@@ -8,7 +8,7 @@
     <title>Admin Login</title>
     <style>
         .body{
-            background: linear-gradient(0deg, rgba(241,96,68,1) 0%, rgba(229,161,28,1) 100%);
+            background: linear-gradient(0deg, rgb(68, 160, 241) 0%, rgb(34, 63, 169) 100%);
             width: 100%;
             min-height: 100vh;
             display: -webkit-box;
@@ -66,7 +66,7 @@
     <div class="row ">
         <div class="col-md-12 text-center ">
             <a href = "#"><img src = "{{asset('/frontend/img/home/logo_large.png')}}" alt = "" width="150px" hieght="150px"></a>
-            <h3 class="font-weight-bold mb-4">Admin Login</h3>
+            <h3 class="font-weight-bold mb-4 text-white">Admin Login</h3>
         </div>
         <div class="col-md-12">
             <div class="log-form card">
@@ -86,7 +86,7 @@
                         <label class="form-check-label" for="exampleCheck1">Remember me</label>
                     </div>--}}
                     <br>
-                    <button style="background: linear-gradient(0deg, rgba(241,96,68,1) 0%, rgba(229,161,28,1) 100%);color:black;border:0px;" type="submit" class="btn btn-secondary w-100 font-weight-bold">Login</button>
+                    <button style="background: linear-gradient(0deg, rgb(68,85,241) 0%, rgb(28,108,229) 100%);color:black;border:0px;" type="submit" class="btn btn-secondary w-100 font-weight-bold text-white">Login</button>
                 </form>
             </div>
         </div>

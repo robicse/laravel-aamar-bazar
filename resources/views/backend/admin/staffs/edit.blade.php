@@ -55,7 +55,7 @@
                             <input type="number" class="form-control" name="phone" id="phone" value="{{$staff->phone}}" required>
                         </div>
                         <div class="form-group">
-                            <label for="password">Password</label>
+                            <label for="password">Password <small class="text-info">(if you don't want to change password ? leave blank it. )</small></label>
                             <input type="password" class="form-control" name="password" id="password" >
                         </div>
                         <div class="form-group">
