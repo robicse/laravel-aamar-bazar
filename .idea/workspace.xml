@@ -21,7 +21,9 @@
   <component name="ChangeListManager">
     <list default="true" id="a17e2167-d620-4213-a88e-6fc3baf87dda" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/backend/admin/roles/create.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/backend/admin/roles/create.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Admin/StaffController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Admin/StaffController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dbSQL/smart-care.sql" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/backend/admin/staffs/edit.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/backend/admin/staffs/edit.blade.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -180,7 +182,7 @@
       <workItem from="1605781971289" duration="7653000" />
       <workItem from="1606018582327" duration="14017000" />
       <workItem from="1606287857044" duration="12253000" />
-      <workItem from="1606364255571" duration="15780000" />
+      <workItem from="1606364255571" duration="17514000" />
     </task>
     <servers />
   </component>
