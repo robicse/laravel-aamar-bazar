@@ -3,7 +3,12 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\User;
+use Brian2694\Toastr\Facades\Toastr;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
+use Spatie\Permission\Models\Role;
 
 class StaffController extends Controller
 {
@@ -14,7 +19,9 @@ class StaffController extends Controller
      */
     public function index()
     {
-        return view('backend.admin.staffs.index');
+        $users = User::where('user_type','staff')->orWhere('user_type','admin')->latest()->get();
+        //dd($users);
+        return view('backend.admin.staffs.index', compact('users'));
     }
 
     /**
@@ -24,7 +31,8 @@ class StaffController extends Controller
      */
     public function create()
     {
-        return view('backend.admin.staffs.create');
+        $roles = Role::all();
+        return view('backend.admin.staffs.create', compact('roles'));
     }
 
     /**
@@ -38,9 +46,22 @@ class StaffController extends Controller
         $this->validate($request, [
             'name' => 'required',
             'email' => 'required|email|unique:users,email',
-            'password' => 'required|same:confirm-password',
+            'phone' => 'required|regex:/(01)[0-9]{9}/|unique:users,phone',
+            'password' => 'required|min:6',
             'roles' => 'required'
         ]);
+
+
+        $input = $request->all();
+        $input['user_type'] = 'staff';
+        $input['password'] = Hash::make($input['password']);
+
+
+        $user = User::create($input);
+        $user->assignRole($request->input('roles'));
+
+        Toastr::success('User Role Created Successfully ');
+        return back();
 
     }
 
@@ -63,6 +84,11 @@ class StaffController extends Controller
      */
     public function edit($id)
     {
+        $staff = User::find($id);
+        $roles = $roles = Role::all();
+        $userRole = $staff->roles->pluck('name','name')->all();
+        //dd($userRole);
+        return view('backend.admin.staffs.edit', compact('roles','staff','userRole'));
 
     }
 
@@ -75,7 +101,30 @@ class StaffController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $this->validate($request, [
+            'name' => 'required',
+            'email' => 'required|email|unique:users,email,'.$id,
+            'password' => '',
+            'phone' => 'required|regex:/(01)[0-9]{9}/|unique:users,phone,'.$id,
+            'roles' => 'required'
+        ]);
+
+
+        $input = $request->all();
+        if(!empty($input['password'])){
+            $input['password'] = Hash::make($input['password']);
+        }
+
+
+        $user = User::find($id);
+        $user->update($input);
+        DB::table('model_has_roles')->where('model_id',$id)->delete();
+
+        $user->assignRole($request->input('roles'));
+
+        Toastr::success('User Role Updated Successfully ');
+        return back();
+
     }
 
     /**
@@ -86,6 +135,14 @@ class StaffController extends Controller
      */
     public function destroy($id)
     {
-        //
+       $user = User::find($id);
+        if ($user->user_type != 'admin') {
+            $user->delete();
+            Toastr::success('User Role Deleted Successfully ');
+        }else{
+            Toastr::warning('You can not delete Super admin');
+        }
+
+        return back();
     }
 }

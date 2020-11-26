@@ -20,25 +20,18 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a17e2167-d620-4213-a88e-6fc3baf87dda" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/database/seeds/PermissionTableSeeder.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/backend/admin/roles/create.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/backend/admin/roles/edit.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/backend/admin/roles/index.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/backend/admin/staffs/create.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/backend/admin/staffs/edit.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/backend/admin/staffs/index.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/aamarbazar.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/aamarbazar.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/backend/admin/roles/show.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Exceptions/Handler.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Exceptions/Handler.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Kernel.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Kernel.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Role.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/app.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/app.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/backend/includes/admin_sidebar.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/backend/includes/admin_sidebar.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/backend/includes/header.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/backend/includes/header.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/backend/layouts/master.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/backend/layouts/master.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Admin/AuthController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Admin/AuthController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Admin/RoleController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Admin/RoleController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Admin/StaffController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Admin/StaffController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/User.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/backend/admin/roles/create.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/backend/admin/roles/create.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/backend/admin/roles/edit.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/backend/admin/roles/edit.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/backend/admin/roles/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/backend/admin/roles/index.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/backend/admin/staffs/create.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/backend/admin/staffs/create.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/backend/admin/staffs/edit.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/backend/admin/staffs/edit.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/backend/admin/staffs/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/backend/admin/staffs/index.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/admin.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/admin.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -168,15 +161,15 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/database/seeds" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/resources/views/backend/admin/roles" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\laragon\www\aamarbazar\resources\views\backend\admin\roles" />
       <recent name="D:\laragon\www\aamarbazar\database\seeds" />
       <recent name="D:\laragon\www\aamarbazar\resources\views\backend\admin" />
-      <recent name="D:\laragon\www\aamarbazar\resources\views\backend\admin\roles" />
       <recent name="D:\laragon\www\aamarbazar\resources\views\backend\includes" />
       <recent name="D:\laragon\www\aamarbazar\routes" />
     </key>
@@ -198,6 +191,7 @@
       <workItem from="1605781971289" duration="7653000" />
       <workItem from="1606018582327" duration="14017000" />
       <workItem from="1606287857044" duration="12253000" />
+      <workItem from="1606364255571" duration="14773000" />
     </task>
     <servers />
   </component>
@@ -214,16 +208,17 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="WindowStateProjectService">
     <state x="370" y="119" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1606306364364">
       <screen x="0" y="0" width="1280" height="728" />
     </state>
     <state x="370" y="119" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1280.728@0.0.1280.728" timestamp="1606306364364" />
-    <state x="420" y="119" key="FileChooserDialogImpl" timestamp="1606019730714">
+    <state x="420" y="119" key="FileChooserDialogImpl" timestamp="1606370395534">
       <screen x="0" y="0" width="1280" height="728" />
     </state>
-    <state x="420" y="119" key="FileChooserDialogImpl/0.0.1280.728@0.0.1280.728" timestamp="1606019730714" />
+    <state x="420" y="119" key="FileChooserDialogImpl/0.0.1280.728@0.0.1280.728" timestamp="1606370395534" />
     <state x="303" y="49" width="672" height="678" key="search.everywhere.popup" timestamp="1606027080495">
       <screen x="0" y="0" width="1280" height="728" />
     </state>

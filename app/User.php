@@ -5,13 +5,14 @@ namespace App;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Spatie\Permission\Traits\HasRoles;
 
 class User extends Authenticatable
 {
-    use Notifiable;
+    use Notifiable, HasRoles;
 
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 'email','phone','user_type', 'password',
     ];
 
     protected $hidden = [
@@ -28,10 +29,10 @@ class User extends Authenticatable
 //            ->belongsToMany('App\Role')
 //            ->withTimestamps();
 //    }
-    public function role()
+    /*public function role()
     {
         return $this->belongsTo('App\Role');
-    }
+    }*/
 
 //    public function users()
 //    {
@@ -40,15 +41,15 @@ class User extends Authenticatable
 //            ->withTimestamps();
 //    }
 
-    public function authorizeRoles($roles)
+    /*public function authorizeRoles($roles)
     {
         if ($this->hasAnyRole($roles)) {
             return true;
         }
         abort(401, 'This action is unauthorized.');
-    }
+    }*/
 
-    public function hasAnyRole($roles)
+    /*public function hasAnyRole($roles)
     {
         if (is_array($roles)) {
             foreach ($roles as $role) {
@@ -62,14 +63,14 @@ class User extends Authenticatable
             }
         }
         return false;
-    }
+    }*/
 
-    public function hasRole($role)
+    /*public function hasRole($role)
     {
         //dd($role);
         if ($this->roles()->where('name', $role)->first()) {
             return true;
         }
         return false;
-    }
+    }*/
 }

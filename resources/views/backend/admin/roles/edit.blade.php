@@ -22,7 +22,7 @@
     <!-- Main content -->
     <section class="content">
         <div class="row">
-            <div class="col-12">
+            <div class="col-8 offset-2">
             <!-- general form elements -->
                 <div class="card card-info card-outline">
                 <div class="card-header">
@@ -38,15 +38,28 @@
                 </div>
                 <!-- /.card-header -->
                 <!-- form start -->
-                <form role="form" action="{{route('admin.roles.update',$brand->id)}}" method="post">
+                <form role="form" action="{{route('admin.roles.update',$role->id)}}" method="post">
                     @csrf
                     @method('PUT')
                     <div class="card-body">
                         <div class="form-group">
                             <label for="name">Role Name</label>
-                            <input type="text" class="form-control" name="name" id="name" value="{{$brand->name}}">
+                            <input type="text" class="form-control" name="name" id="name" value="{{$role->name}}" required>
+                        </div>
+                        <div class="form-group">
+                            <h3>Permissions</h3><br>
+                            <ul>
+                                @foreach($permission as $per)
+                                    <li>
+                                        <label for="permission">
+                                            <input type="checkbox"  class="checkbox" name="permission[]" id="permission" value="{{$per->id}}" {{ in_array($per->id, $rolePermissions) ? 'checked' : '' }} > {{$per->name}}
+                                        </label>
+                                    </li>
+                                @endforeach
+                            </ul>
                         </div>
                     </div>
+
                     <!-- /.card-body -->
                     <div class="card-footer">
                         <button type="submit" class="btn btn-primary">Submit</button>

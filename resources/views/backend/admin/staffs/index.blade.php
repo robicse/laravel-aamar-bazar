@@ -49,31 +49,42 @@
                             </tr>
                             </thead>
                             <tbody>
-                            {{--@foreach($brands as $key => $brand)
+                            @foreach($users as $key => $user)
                             <tr>
                                 <td>{{$key + 1}}</td>
-                                <td>{{$brand->name}}</td>
-                                <td>{{$brand->slug}}</td>
+                                <td>{{$user->name}}</td>
+                                <td>{{$user->email}}</td>
+                                <td>{{$user->phone}}</td>
                                 <td>
-                                    <a class="btn btn-info waves-effect" href="{{route('admin.brands.edit',$brand->id)}}">
+                                    @if(!empty($user->getRoleNames()))
+                                        @foreach($user->getRoleNames() as $v)
+                                            <label class="badge badge-success">{{ $v }}</label>
+                                        @endforeach
+                                    @endif
+                                </td>
+                                <td>
+                                    <a class="btn btn-info waves-effect" href="{{route('admin.staffs.edit',$user->id)}}">
                                         <i class="fa fa-edit"></i>
                                     </a>
                                     <button class="btn btn-danger waves-effect" type="button"
-                                            onclick="deleteBrand({{$brand->id}})">
+                                            onclick="deleteUser({{$user->id}})">
                                         <i class="fa fa-trash"></i>
                                     </button>
-                                    <form id="delete-form-{{$brand->id}}" action="{{route('admin.brands.destroy',$brand->id)}}" method="POST" style="display: none;">
+                                    <form id="delete-form-{{$user->id}}" action="{{route('admin.staffs.destroy',$user->id)}}" method="POST" style="display: none;">
                                         @csrf
                                         @method('DELETE')
                                     </form>
                                 </td>
                             </tr>
-                            @endforeach--}}
+                            @endforeach
                             </tbody>
                             <tfoot>
                             <tr>
                                 <th>#Id</th>
-                                <th>Role Name</th>
+                                <th>Name</th>
+                                <th>Email</th>
+                                <th>Phone</th>
+                                <th>Role</th>
                                 <th>Action</th>
                             </tr>
                             </tfoot>
@@ -104,7 +115,7 @@
         });
 
         //sweet alert
-        function deleteBrand(id) {
+        function deleteUser(id) {
             swal({
                 title: 'Are you sure?',
                 text: "You won't be able to revert this!",

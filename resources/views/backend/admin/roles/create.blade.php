@@ -7,10 +7,17 @@
     <section class="content-header">
         <div class="container-fluid">
             <div class="row mb-2">
-                <div class="col-sm-6">
+                <div class="col-sm-5">
                     <h1>Roles</h1>
                 </div>
-                <div class="col-sm-6">
+                <div class="col-sm-4">
+                    <div class="float-left">
+                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+                            Add Permission
+                        </button>
+                    </div>
+                </div>
+                <div class="col-sm-3">
                     <ol class="breadcrumb float-sm-right">
                         <li class="breadcrumb-item"><a href="{{route('admin.dashboard')}}">Home</a></li>
                         <li class="breadcrumb-item active">Roles</li>
@@ -22,11 +29,12 @@
     <!-- Main content -->
     <section class="content">
         <div class="row">
-            <div class="col-12">
+            <div class="col-8 offset-2">
             <!-- general form elements -->
                 <div class="card card-info card-outline">
                 <div class="card-header">
                     <h3 class="card-title float-left">Add Roles</h3>
+
                     <div class="float-right">
                         <a href="{{route('admin.roles.index')}}">
                             <button class="btn btn-success">
@@ -43,7 +51,7 @@
                     <div class="card-body">
                         <div class="form-group">
                             <label for="name">Role Name</label>
-                            <input type="text" class="form-control" name="name" id="name" placeholder="Enter Role Name">
+                            <input type="text" class="form-control" name="name" id="name" placeholder="Enter Role Name" required>
                         </div>
                         <div class="form-group">
                             <h3>Permissions</h3><br>
@@ -67,6 +75,36 @@
             </div>
         </div>
     </section>
+
+    <!-- Modal permission add-->
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Create Permission List</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form action="{{URL('admin/roles/permission')}}" method="post">
+                        @csrf
+                        {{--<div class="form-group">
+                            <label for="due">Enter Controller <span style="color: red">*</span></label>
+                            <input type="text" class="form-control" id="controller_permission" aria-describedby="emailHelp" name="controller_name" placeholder="ProductController">
+                        </div>--}}
+                        <div class="form-group">
+                            <label for="due">Enter Controller Action <span style="color: red">*</span></label>
+                            <input type="text" class="form-control" id="permission" aria-describedby="emailHelp" name="name" placeholder="product-list">
+                        </div>
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-primary">Submit</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
 
 @stop
 @push('js')

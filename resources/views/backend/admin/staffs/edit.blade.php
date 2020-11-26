@@ -38,13 +38,33 @@
                 </div>
                 <!-- /.card-header -->
                 <!-- form start -->
-                <form role="form" action="{{route('admin.staffs.update',$brand->id)}}" method="post">
+                <form role="form" action="{{route('admin.staffs.update',$staff->id)}}" method="post">
                     @csrf
                     @method('PUT')
                     <div class="card-body">
                         <div class="form-group">
-                            <label for="name">Role Name</label>
-                            <input type="text" class="form-control" name="name" id="name" value="{{$brand->name}}">
+                            <label for="name">Name</label>
+                            <input type="text" class="form-control" name="name" id="name" value="{{$staff->name}}" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email Name</label>
+                            <input type="email" class="form-control" name="email" id="email" value="{{$staff->email}}" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">Phone</label>
+                            <input type="number" class="form-control" name="phone" id="phone" value="{{$staff->phone}}" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="password">Password</label>
+                            <input type="password" class="form-control" name="password" id="password" >
+                        </div>
+                        <div class="form-group">
+                            <label for="roles">Role</label>
+                            <select name="roles" id="roles" class="form-control">
+                                @foreach($roles as $role)
+                                    <Option value="{{$role->id}}">{{$role->name}}</Option>
+                                @endforeach
+                            </select>
                         </div>
                     </div>
                     <!-- /.card-body -->

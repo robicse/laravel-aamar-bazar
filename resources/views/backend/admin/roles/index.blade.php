@@ -51,17 +51,19 @@
                                 <td>{{$key + 1}}</td>
                                 <td>{{$role->name}}</td>
                                 <td>
-                                    <a class="btn btn-info waves-effect" href="{{route('admin.roles.edit',$role->id)}}">
+                                    <a class="btn btn-warning waves-effect" href="{{route('admin.roles.show',$role->id)}}">
+                                        <i class="fa fa-eye"></i>
+                                    </a> <a class="btn btn-info waves-effect" href="{{route('admin.roles.edit',$role->id)}}">
                                         <i class="fa fa-edit"></i>
                                     </a>
-                                   {{-- <button class="btn btn-danger waves-effect" type="button"
-                                            onclick="deleteBrand({{$brand->id}})">
+                                    <button class="btn btn-danger waves-effect" type="button"
+                                            onclick="deleteRole({{$role->id}})">
                                         <i class="fa fa-trash"></i>
                                     </button>
-                                    <form id="delete-form-{{$brand->id}}" action="{{route('admin.brands.destroy',$brand->id)}}" method="POST" style="display: none;">
+                                    <form id="delete-form-{{$role->id}}" action="{{route('admin.roles.destroy',$role->id)}}" method="POST" style="display: none;">
                                         @csrf
                                         @method('DELETE')
-                                    </form>--}}
+                                    </form>
                                 </td>
                             </tr>
                             @endforeach
@@ -100,7 +102,7 @@
         });
 
         //sweet alert
-        function deleteBrand(id) {
+        function deleteRole(id) {
             swal({
                 title: 'Are you sure?',
                 text: "You won't be able to revert this!",

@@ -16,6 +16,7 @@ Route::post('/admin/login', 'Admin\AuthController@LoginCheck')->name('admin.logi
 Route::group(['as'=>'admin.','prefix' =>'admin','namespace'=>'Admin', 'middleware' => ['auth', 'admin']], function(){
     Route::get('dashboard','DashboardController@index')->name('dashboard');
     Route::resource('roles','RoleController');
+    Route::post('/roles/permission','RoleController@create_permission');
     Route::resource('staffs','StaffController');
 	/*Route::resource('categories','CategoryController');
 	Route::get('/categories/destroy/{id}', 'CategoryController@destroy')->name('categories.destroy');
