@@ -32,15 +32,45 @@
                             </p>
                         </a>
                     </li>
-                    <li class="nav-item">
-                        <a href="{{route('admin.dashboard')}}" class="nav-link ">
-                            <i class="nav-icon fa fa-shopping-cart"></i>
+                    <li class="nav-item has-treeview {{(Request::is('admin/brands*')
+                        || Request::is('admin/categories*')
+                        || Request::is('admin/attributes*'))
+                    ? 'menu-open' : ''}}">
+                        <a href="#" class="nav-link">
+                            <i class="nav-icon fas fa-shopping-cart"></i>
                             <p>
-                                Products
+                                Product Management
+                                <i class="right fa fa-angle-left"></i>
                             </p>
                         </a>
+                        <ul class="nav nav-treeview">
+                            <li class="nav-item">
+                                <a href="{{route('admin.attributes.index')}}" class="nav-link {{Request::is('admin/attributes*') ? 'active' :''}}">
+                                    <i class="fa fa-{{Request::is('admin/attributes*') ? 'folder-open':'folder'}} nav-icon"></i>
+                                    <p>Attributes</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{{route('admin.brands.index')}}" class="nav-link {{Request::is('admin/brands*') ? 'active' :''}}">
+                                    <i class="fa fa-{{Request::is('admin/brands*') ? 'folder-open':'folder'}} nav-icon"></i>
+                                    <p>Brands</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{{route('admin.categories.index')}}" class="nav-link {{Request::is('admin/categories*') ? 'active' :''}}">
+                                    <i class="fa fa-{{Request::is('admin/categories*') ? 'folder-open':'folder'}} nav-icon"></i>
+                                    <p>Categories</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{{route('admin.subcategories.index')}}" class="nav-link {{Request::is('admin/subcategories*') ? 'active' :''}}">
+                                    <i class="fa fa-{{Request::is('admin/subcategories*') ? 'folder-open':'folder'}} nav-icon"></i>
+                                    <p>Subcategories</p>
+                                </a>
+                            </li>
+                        </ul>
                     </li>
-                    <li class="nav-item has-treeview {{(Request::is('admin/roles*') || Request::is('admin/staffs*')) ? 'menu-open' : ''}}" style="background: rgba(0, 0, 0, 0.5);">
+                    <li class="nav-item has-treeview {{(Request::is('admin/roles*') || Request::is('admin/staffs*')) ? 'menu-open' : ''}}">
                         <a href="#" class="nav-link">
                             <i class="nav-icon fas fa-users"></i>
                             <p>
@@ -51,13 +81,13 @@
                         <ul class="nav nav-treeview">
                             <li class="nav-item">
                                 <a href="{{route('admin.staffs.index')}}" class="nav-link {{Request::is('admin/staffs*') ? 'active' :''}}">
-                                    <i class="fa fa-circle nav-icon"></i>
+                                    <i class="fa fa-{{Request::is('admin/staffs*') ? 'folder-open':'folder'}} nav-icon"></i>
                                     <p>Staff Manage</p>
                                 </a>
                             </li>
                             <li class="nav-item">
                                 <a href="{{route('admin.roles.index')}}" class="nav-link {{Request::is('admin/role*') ? 'active' :''}}">
-                                    <i class="fa fa-circle nav-icon"></i>
+                                    <i class="fa fa-{{Request::is('admin/roles*') ? 'folder-open':'folder'}} nav-icon"></i>
                                     <p>Role Manage</p>
                                 </a>
                             </li>

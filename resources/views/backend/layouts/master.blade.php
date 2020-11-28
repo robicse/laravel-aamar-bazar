@@ -23,6 +23,12 @@
 
             background-color: #8a9cb0;
         }
+        .select2-container--default .select2-selection--single {
+            background-color: #fff;
+            border: 1px solid #aaa;
+            border-radius: 4px;
+            height: 36px!important;
+        }
     </style>
     @stack('css')
 </head>

@@ -18,7 +18,11 @@ Route::group(['as'=>'admin.','prefix' =>'admin','namespace'=>'Admin', 'middlewar
     Route::resource('roles','RoleController');
     Route::post('/roles/permission','RoleController@create_permission');
     Route::resource('staffs','StaffController');
-	/*Route::resource('categories','CategoryController');
+    Route::resource('brands','BrandController');
+    Route::resource('categories','CategoryController');
+    Route::resource('attributes','AttributeController');
+    Route::resource('subcategories','SubcategoryController');
+	/*
 	Route::get('/categories/destroy/{id}', 'CategoryController@destroy')->name('categories.destroy');
 	Route::post('/categories/featured', 'CategoryController@updateFeatured')->name('categories.featured');
 
@@ -28,6 +32,6 @@ Route::group(['as'=>'admin.','prefix' =>'admin','namespace'=>'Admin', 'middlewar
 	Route::resource('subsubcategories','SubSubCategoryController');
 	Route::get('/subsubcategories/destroy/{id}', 'SubSubCategoryController@destroy')->name('subsubcategories.destroy');
 
-	Route::resource('brands','BrandController');
+
 	Route::get('/brands/destroy/{id}', 'BrandController@destroy')->name('brands.destroy');*/
 });
