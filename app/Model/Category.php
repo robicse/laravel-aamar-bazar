@@ -10,6 +10,6 @@ class Category extends Model
 
     public function subcategories()
     {
-        return $this->hasMany('App\Models\SubCategory','category_id');
+        return $this->hasMany('App\Model\SubCategory','category_id');
     }
 }

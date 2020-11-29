@@ -34,6 +34,9 @@
                     </li>
                     <li class="nav-item has-treeview {{(Request::is('admin/brands*')
                         || Request::is('admin/categories*')
+                        || Request::is('admin/subcategories*')
+                        || Request::is('admin/sub-subcategories*')
+                        || Request::is('admin/products*')
                         || Request::is('admin/attributes*'))
                     ? 'menu-open' : ''}}">
                         <a href="#" class="nav-link">
@@ -66,6 +69,18 @@
                                 <a href="{{route('admin.subcategories.index')}}" class="nav-link {{Request::is('admin/subcategories*') ? 'active' :''}}">
                                     <i class="fa fa-{{Request::is('admin/subcategories*') ? 'folder-open':'folder'}} nav-icon"></i>
                                     <p>Subcategories</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{{route('admin.sub-subcategories.index')}}" class="nav-link {{Request::is('admin/sub-subcategories*') ? 'active' :''}}">
+                                    <i class="fa fa-{{Request::is('admin/sub-subcategories*') ? 'folder-open':'folder'}} nav-icon"></i>
+                                    <p>Sub Subcategories</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{{route('admin.products.index')}}" class="nav-link {{Request::is('admin/products*') ? 'active' :''}}">
+                                    <i class="fa fa-{{Request::is('admin/products*') ? 'folder-open':'folder'}} nav-icon"></i>
+                                    <p>Products</p>
                                 </a>
                             </li>
                         </ul>

@@ -1,5 +1,5 @@
 @extends('backend.layouts.master')
-@section("title","Edit Subcategory")
+@section("title","Edit Sub Subcategory")
 @push('css')
 
 @endpush
@@ -8,12 +8,12 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>Edit Subcategory</h1>
+                    <h1>Edit Sub Subcategory</h1>
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
                         <li class="breadcrumb-item"><a href="{{route('admin.dashboard')}}">Home</a></li>
-                        <li class="breadcrumb-item active">Edit Subcategory</li>
+                        <li class="breadcrumb-item active">Edit Sub Subcategory</li>
                     </ol>
                 </div>
             </div>
@@ -26,9 +26,9 @@
                 <!-- general form elements -->
                 <div class="card card-info card-outline">
                     <div class="card-header">
-                        <h3 class="card-title float-left">Edit Subcategory</h3>
+                        <h3 class="card-title float-left">Edit Sub Subcategory</h3>
                         <div class="float-right">
-                            <a href="{{route('admin.subcategories.index')}}">
+                            <a href="{{route('admin.sub-subcategories.index')}}">
                                 <button class="btn btn-success">
                                     <i class="fa fa-backward"> </i>
                                     Back
@@ -38,29 +38,29 @@
                     </div>
                     <!-- /.card-header -->
                     <!-- form start -->
-                    <form role="form" action="{{route('admin.subcategories.update',$subcategory->id)}}" method="post" enctype="multipart/form-data">
+                    <form role="form" action="{{route('admin.sub-subcategories.update',$subsubcategory->id)}}" method="post" enctype="multipart/form-data">
                         @csrf
                         @method('PUT')
                         <div class="card-body">
                             <div class="form-group">
                                 <label for="name">Name</label>
-                                <input type="text" class="form-control" name="name" id="name" value="{{$subcategory->name}}" required>
+                                <input type="text" class="form-control" name="name" id="name" value="{{$subsubcategory->name}}" required>
                             </div>
                             <div class="form-group">
-                                <label for="name">Category Name</label>
-                                <select name="category_id" id="category_id" class="form-control">
-                                    @foreach($categories as $category)
-                                        <option value="{{$category->id}}" {{$category->id == $subcategory->category_id ? 'selected' : ''}}>{{$category->name}}</option>
+                                <label for="sub_category_id">Sub Category Name</label>
+                                <select name="sub_category_id" id="sub_category_id" class="form-control">
+                                    @foreach($subcategories as $subcategory)
+                                        <option value="{{$subcategory->id}}" {{$subcategory->id == $subsubcategory->sub_category_id ? 'selected' : ''}}>{{$subcategory->name}}</option>
                                     @endforeach
                                 </select>
                             </div>
                             <div class="form-group">
                                 <label for="phone">Meta Title</label>
-                                <input type="text" class="form-control" name="meta_title" id="meta_title" value="{{$subcategory->meta_title}}">
+                                <input type="text" class="form-control" name="meta_title" id="meta_title" value="{{$subsubcategory->meta_title}}">
                             </div>
                             <div class="form-group">
                                 <label for="meta_desc">Meta Description</label>
-                                <textarea name="meta_description" id="meta_desc" class="form-control"  rows="3">{{$subcategory->meta_description}}</textarea>
+                                <textarea name="meta_description" id="meta_desc" class="form-control"  rows="3">{{$subsubcategory->meta_description}}</textarea>
                             </div>
                         </div>
                         <!-- /.card-body -->

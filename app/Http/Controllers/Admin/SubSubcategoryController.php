@@ -3,16 +3,13 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Model\Category;
 use App\Model\Subcategory;
+use App\Model\SubSubcategory;
 use Brian2694\Toastr\Facades\Toastr;
 use Illuminate\Http\Request;
-use Illuminate\Support\Carbon;
-use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
-use Intervention\Image\Facades\Image;
 
-class SubcategoryController extends Controller
+class SubSubcategoryController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -21,8 +18,8 @@ class SubcategoryController extends Controller
      */
     public function index()
     {
-        $subcategories = Subcategory::all();
-        return view('backend.admin.subcategories.index', compact('subcategories'));
+        $subsubcategories = SubSubcategory::all();
+        return view('backend.admin.subsubcategories.index', compact('subsubcategories'));
     }
 
     /**
@@ -32,8 +29,8 @@ class SubcategoryController extends Controller
      */
     public function create()
     {
-        $categories = Category::all();
-        return view('backend.admin.subcategories.create', compact('categories'));
+        $subcategories = Subcategory::all();
+        return view('backend.admin.subsubcategories.create',compact('subcategories'));
     }
 
     /**
@@ -45,17 +42,17 @@ class SubcategoryController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            'name'=> 'required|unique:subcategories,name',
+            'name'=> 'required|unique:sub_subcategories,name',
         ]);
 
-        $subcategory = new Subcategory();
+        $subcategory = new SubSubcategory();
         $subcategory->name = $request->name;
-        $subcategory->category_id = $request->category_id;
+        $subcategory->sub_category_id = $request->sub_category_id;
         $subcategory->slug = Str::slug($request->name);
         $subcategory->meta_title = $request->meta_title;
         $subcategory->meta_description = $request->meta_description;
         $subcategory->save();
-        Toastr::success('SubCategories Created Successfully');
+        Toastr::success('Sub SubCategories Created Successfully');
         return back();
     }
 
@@ -78,9 +75,9 @@ class SubcategoryController extends Controller
      */
     public function edit($id)
     {
-        $categories = Category::all();
-        $subcategory = Subcategory::find($id);
-        return view('backend.admin.subcategories.edit',compact('categories','subcategory'));
+        $subcategories = Subcategory::all();
+        $subsubcategory = SubSubcategory::find($id);
+        return view('backend.admin.subsubcategories.edit',compact('subcategories','subsubcategory'));
     }
 
     /**
@@ -93,17 +90,17 @@ class SubcategoryController extends Controller
     public function update(Request $request, $id)
     {
         $this->validate($request, [
-            'name'=> 'required|unique:subcategories,name,'.$id,
+            'name'=> 'required|unique:sub_subcategories,name,'.$id,
         ]);
 
-        $subcategory = Subcategory::find($id);
+        $subcategory = SubSubcategory::find($id);
         $subcategory->name = $request->name;
-        $subcategory->category_id = $request->category_id;
+        $subcategory->sub_category_id = $request->sub_category_id;
         $subcategory->slug = Str::slug($request->name);
         $subcategory->meta_title = $request->meta_title;
         $subcategory->meta_description = $request->meta_description;
         $subcategory->save();
-        Toastr::success('SubCategories Updated Successfully');
+        Toastr::success('Sub SubCategories Updated Successfully');
         return back();
     }
 
@@ -115,8 +112,8 @@ class SubcategoryController extends Controller
      */
     public function destroy($id)
     {
-        Subcategory::find($id)->delete();
-        Toastr::success('SubCategories Deleted Successfully');
+        SubSubcategory::find($id)->delete();
+        Toastr::success('Sub SubCategories Deleted Successfully');
         return back();
     }
 }

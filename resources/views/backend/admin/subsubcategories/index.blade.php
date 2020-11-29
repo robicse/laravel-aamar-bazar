@@ -1,5 +1,5 @@
 @extends('backend.layouts.master')
-@section("title","Subcategories List")
+@section("title","Sub Subcategories List")
 @push('css')
     <link rel="stylesheet" href="{{asset('backend/plugins/datatables/dataTables.bootstrap4.css')}}">
 @endpush
@@ -8,12 +8,12 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>Subcategories List</h1>
+                    <h1>Sub Subcategories List</h1>
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
                         <li class="breadcrumb-item"><a href="{{route('admin.dashboard')}}">Home</a></li>
-                        <li class="breadcrumb-item active">Subcategories List</li>
+                        <li class="breadcrumb-item active">Sub Subcategories List</li>
                     </ol>
                 </div>
             </div>
@@ -27,7 +27,7 @@
                     <div class="card-header">
                         <h3 class="card-title float-left">Subcategories Lists</h3>
                         <div class="float-right">
-                            <a href="{{route('admin.subcategories.create')}}">
+                            <a href="{{route('admin.sub-subcategories.create')}}">
                                 <button class="btn btn-success">
                                     <i class="fa fa-plus-circle"></i>
                                     Add
@@ -47,20 +47,20 @@
                             </tr>
                             </thead>
                             <tbody>
-                            @foreach($subcategories as $key => $subcategory)
+                            @foreach($subsubcategories as $key => $subsubcategory)
                             <tr>
                                 <td>{{$key + 1}}</td>
-                                <td>{{$subcategory->name}}</td>
-                                <td>{{$subcategory->category->name}}</td>
+                                <td>{{$subsubcategory->name}}</td>
+                                <td>{{$subsubcategory->subcategory->name}}</td>
                                 <td>
-                                    <a class="btn btn-info waves-effect" href="{{route('admin.subcategories.edit',$subcategory->id)}}">
+                                    <a class="btn btn-info waves-effect" href="{{route('admin.sub-subcategories.edit',$subsubcategory->id)}}">
                                         <i class="fa fa-edit"></i>
                                     </a>
                                     <button class="btn btn-danger waves-effect" type="button"
-                                            onclick="deleteSubCategory({{$subcategory->id}})">
+                                            onclick="deleteSubCategory({{$subsubcategory->id}})">
                                         <i class="fa fa-trash"></i>
                                     </button>
-                                    <form id="delete-form-{{$subcategory->id}}" action="{{route('admin.subcategories.destroy',$subcategory->id)}}" method="POST" style="display: none;">
+                                    <form id="delete-form-{{$subsubcategory->id}}" action="{{route('admin.sub-subcategories.destroy',$subsubcategory->id)}}" method="POST" style="display: none;">
                                         @csrf
                                         @method('DELETE')
                                     </form>
