@@ -20,14 +20,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a17e2167-d620-4213-a88e-6fc3baf87dda" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/resources/views/backend/admin/products/create.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/backend/dist/js/spartan-multi-image-picker-min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/backend/dist/js/spectrum.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Admin/SubcategoryController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Admin/SubcategoryController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Model/Category.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Model/Category.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Model/Subcategory.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Model/Subcategory.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/backend/admin/subcategories/edit.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/backend/admin/subcategories/edit.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/backend/admin/subcategories/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/backend/admin/subcategories/index.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/backend/includes/admin_sidebar.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/backend/includes/admin_sidebar.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Admin/DashboardController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Admin/DashboardController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Admin/ProductController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Admin/ProductController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/backend/admin/dashboard.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/backend/admin/dashboard.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/backend/admin/products/create.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/backend/admin/products/create.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/admin.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/admin.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -158,17 +157,17 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/resources/views/backend/admin/products" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/public/backend/dist/css" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\laragon\www\aamarbazar\public\backend\dist\css" />
+      <recent name="D:\laragon\www\aamarbazar\public\backend\dist\js" />
       <recent name="D:\laragon\www\aamarbazar\resources\views\backend\admin\products" />
       <recent name="D:\laragon\www\aamarbazar\resources\views\backend\admin" />
       <recent name="D:\laragon\www\aamarbazar\resources\views\backend\admin\roles" />
-      <recent name="D:\laragon\www\aamarbazar\database\seeds" />
-      <recent name="D:\laragon\www\aamarbazar\resources\views\backend\includes" />
     </key>
   </component>
   <component name="RunManager">
@@ -190,7 +189,8 @@
       <workItem from="1606287857044" duration="12253000" />
       <workItem from="1606364255571" duration="20007000" />
       <workItem from="1606394782328" duration="19925000" />
-      <workItem from="1606628531130" duration="14406000" />
+      <workItem from="1606628531130" duration="15338000" />
+      <workItem from="1606710197718" duration="15538000" />
     </task>
     <servers />
   </component>
@@ -214,14 +214,14 @@
       <screen x="0" y="0" width="1280" height="728" />
     </state>
     <state x="384" y="101" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.0.1280.728@0.0.1280.728" timestamp="1606555332655" />
-    <state x="370" y="119" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1606635187313">
+    <state x="370" y="119" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1606728706493">
       <screen x="0" y="0" width="1280" height="728" />
     </state>
-    <state x="370" y="119" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1280.728@0.0.1280.728" timestamp="1606635187313" />
-    <state x="420" y="119" key="FileChooserDialogImpl" timestamp="1606536942546">
+    <state x="370" y="119" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1280.728@0.0.1280.728" timestamp="1606728706493" />
+    <state x="420" y="119" key="FileChooserDialogImpl" timestamp="1606710311828">
       <screen x="0" y="0" width="1280" height="728" />
     </state>
-    <state x="420" y="119" key="FileChooserDialogImpl/0.0.1280.728@0.0.1280.728" timestamp="1606536942546" />
+    <state x="420" y="119" key="FileChooserDialogImpl/0.0.1280.728@0.0.1280.728" timestamp="1606710311828" />
     <state x="116" y="0" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser" timestamp="1606555461665">
       <screen x="0" y="0" width="1280" height="728" />
     </state>

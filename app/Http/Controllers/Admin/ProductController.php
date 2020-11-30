@@ -3,7 +3,12 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Model\Brand;
+use App\Model\Category;
+use App\Model\Subcategory;
+use App\Model\SubSubcategory;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class ProductController extends Controller
 {
@@ -11,7 +16,9 @@ class ProductController extends Controller
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
+     *
      */
+
     public function index()
     {
         //
@@ -22,10 +29,28 @@ class ProductController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+    public function ajaxSlugMake($name)
+    {
+        $data = Str::slug($name);
+        return response()->json(['success'=> true, 'response'=>$data]);
+    }
+    public function ajaxSubCat (Request $request)
+    {
+        $subcategories = Subcategory::where('category_id', $request->category_id)->get();
+        return $subcategories;
+    }
+    public function ajaxSubSubCat(Request $request)
+    {
+        $subsubcategories = SubSubcategory::where('sub_category_id', $request->subcategory_id)->get();
+        return $subsubcategories;
+    }
+
     public function create()
     {
-        //dd('sadfasd');
-        return view('backend.admin.products.create');
+        $categories = Category::all();
+        $brands = Brand::all();
+        return view('backend.admin.products.create',compact('categories','brands'));
     }
 
     /**
