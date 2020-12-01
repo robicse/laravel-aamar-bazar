@@ -76,20 +76,12 @@
                     <!-- general form elements -->
                     <div class="card card-info card-outline">
                         <div class="form-group">
-                            <label class="col-lg-3 control-label">Gallery Images</label>
-                            <div class="col-lg-12">
-                                <div class="row">
-                                    <div class="col-md-4">
-                                        <div id="photos">
-
-                                        </div>
-                                    </div>
-
-                                </div>
-
-
+                            <label class="control-label ml-3">Gallery Images</label>
+                            <div class="ml-3 mr-3">
+                                <div class="row" id="photos"></div>
                             </div>
                         </div>
+
                     </div>
                 </div>
             </div>
@@ -131,6 +123,7 @@
                     alert('File size too big');
                 }
             });
+
 
         });
 
