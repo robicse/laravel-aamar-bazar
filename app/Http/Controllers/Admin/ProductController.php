@@ -3,12 +3,16 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+
+
+use App\Http\Helpers;
 use App\Model\Brand;
 use App\Model\Category;
 use App\Model\Subcategory;
 use App\Model\SubSubcategory;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
+
 
 class ProductController extends Controller
 {
@@ -18,6 +22,8 @@ class ProductController extends Controller
      * @return \Illuminate\Http\Response
      *
      */
+
+
 
     public function index()
     {
@@ -51,6 +57,31 @@ class ProductController extends Controller
         $categories = Category::all();
         $brands = Brand::all();
         return view('backend.admin.products.create',compact('categories','brands'));
+    }
+    public function sku_combination(Request $request)
+    {
+        $options = array();
+        if($request->has('colors_active') && $request->has('colors') && count($request->colors) > 0){
+            $colors_active = 1;
+            array_push($options, $request->colors);
+        }
+        else {
+            $colors_active = 0;
+        }
+
+        $unit_price = $request->unit_price;
+        $product_name = $request->name;
+
+        if($request->has('choice_no')){
+            foreach ($request->choice_no as $key => $no) {
+                $name = 'choice_options_'.$no;
+                $my_str = implode('', $request[$name]);
+                array_push($options, explode(',', $my_str));
+            }
+        }
+
+        $combinations = Helpers::combinations($options);
+        return view('backend.partials.sku_combinations', compact('combinations', 'unit_price', 'colors_active', 'product_name'));
     }
 
     /**
