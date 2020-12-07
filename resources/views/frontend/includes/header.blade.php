@@ -328,7 +328,7 @@
                     </div>
                     <div class="ps-block--user-header">
                         <div class="ps-block__left"><i class="icon-user"></i></div>
-                        <div class="ps-block__right"><a href="{{ route('my-account') }}">Login</a><a href="{{ route('my-account') }}">Register</a></div>
+                        <div class="ps-block__right"><a href="{{ route('login') }}">Login</a><a href="{{ route('register') }}">Register</a></div>
                     </div>
                 </div>
             </div>
@@ -672,7 +672,7 @@
                 </div>
                 <div class="ps-block--user-header">
                     <div class="ps-block__left"><i class="icon-user"></i></div>
-                    <div class="ps-block__right"><a href="{{ route('my-account') }}">Login</a><a href="{{ route('my-account') }}">Register</a></div>
+                    <div class="ps-block__right"><a href="{{ route('login') }}">Login</a><a href="{{ route('register') }}">Register</a></div>
                 </div>
             </div>
         </div>

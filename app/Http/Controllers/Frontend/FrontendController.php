@@ -10,7 +10,4 @@ class FrontendController extends Controller
     public function index() {
         return view('frontend.pages.index');
     }
-    public function my_account() {
-        return view('frontend.auth.my_account');
-    }
 }

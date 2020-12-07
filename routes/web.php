@@ -18,7 +18,6 @@ use Illuminate\Support\Facades\Route;
 //});
 
 Route::get('/', 'Frontend\FrontendController@index')->name('index');
-Route::get('/my-account', 'Frontend\FrontendController@my_account')->name('my-account');
 Route::get('/shopping-cart', 'Frontend\CartController@viewCart')->name('shopping-cart');
 Route::get('/checkout', 'Frontend\CartController@checkout')->name('checkout');
 Route::get('/shop', 'Frontend\ShopController@shop')->name('shop');
