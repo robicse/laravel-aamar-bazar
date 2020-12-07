@@ -26,6 +26,7 @@ Route::get('/become-a-vendor', 'Frontend\VendorController@index')->name('become-
 Route::get('/vendor-store', 'Frontend\VendorController@store')->name('vendor-store');
 Route::get('/about-us', 'Frontend\AboutController@About')->name('about-us');
 Route::get('/contact', 'Frontend\AboutController@contact')->name('contact');
+Route::get('/blog-list', 'Frontend\BlogController@index')->name('blog-list');
 
 Auth::routes();
 

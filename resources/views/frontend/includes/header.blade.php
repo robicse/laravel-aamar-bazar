@@ -579,37 +579,7 @@
                             </div>
                         </div>
                     </li>
-                    <li class="menu-item-has-children has-mega-menu"><a href="#">Blogs</a><span class="sub-toggle"></span>
-                        <div class="mega-menu">
-                            <div class="mega-menu__column">
-                                <h4>Blog Layout<span class="sub-toggle"></span></h4>
-                                <ul class="mega-menu__list">
-                                    <li class="current-menu-item "><a href="blog-grid.html">Grid</a>
-                                    </li>
-                                    <li class="current-menu-item "><a href="blog-list.html">Listing</a>
-                                    </li>
-                                    <li class="current-menu-item "><a href="blog-small-thumb.html">Small Thumb</a>
-                                    </li>
-                                    <li class="current-menu-item "><a href="blog-left-sidebar.html">Left Sidebar</a>
-                                    </li>
-                                    <li class="current-menu-item "><a href="blog-right-sidebar.html">Right Sidebar</a>
-                                    </li>
-                                </ul>
-                            </div>
-                            <div class="mega-menu__column">
-                                <h4>Single Blog<span class="sub-toggle"></span></h4>
-                                <ul class="mega-menu__list">
-                                    <li class="current-menu-item "><a href="blog-detail.html">Single 1</a>
-                                    </li>
-                                    <li class="current-menu-item "><a href="blog-detail-2.html">Single 2</a>
-                                    </li>
-                                    <li class="current-menu-item "><a href="blog-detail-3.html">Single 3</a>
-                                    </li>
-                                    <li class="current-menu-item "><a href="blog-detail-4.html">Single 4</a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
+                    <li class="menu-item has-mega-menu"><a href="{{route('blog-list')}}">Blogs</a>
                     </li>
                 </ul>
             </div>
