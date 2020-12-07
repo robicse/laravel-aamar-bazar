@@ -303,7 +303,7 @@
                 </form>
             </div>
             <div class="header__right">
-                <div class="header__actions"><a class="header__extra" href="#"><i class="icon-chart-bars"></i><span><i>0</i></span></a><a class="header__extra" href="#"><i class="icon-heart"></i><span><i>0</i></span></a>
+                <div class="header__actions"><a class="header__extra" href="#">
                     <div class="ps-cart--mini"><a class="header__extra" href="#"><i class="icon-bag2"></i><span><i>0</i></span></a>
                         <div class="ps-cart__content">
                             <div class="ps-cart__items">
@@ -434,35 +434,7 @@
             </div>
             <div class="navigation__right">
                 <ul class="menu">
-                    <li class="menu-item-has-children"><a href="index.html">Home</a><span class="sub-toggle"></span>
-                        <ul class="sub-menu">
-                            <li class="current-menu-item "><a href="index.html">Marketplace Full Width</a>
-                            </li>
-                            <li class="current-menu-item "><a href="homepage-2.html">Home Auto Parts</a>
-                            </li>
-                            <li class="current-menu-item "><a href="homepage-10.html">Home Technology</a>
-                            </li>
-                            <li class="current-menu-item "><a href="homepage-9.html">Home Organic</a>
-                            </li>
-                            <li class="current-menu-item "><a href="homepage-3.html">Home Marketplace V1</a>
-                            </li>
-                            <li class="current-menu-item "><a href="homepage-4.html">Home Marketplace V2</a>
-                            </li>
-                            <li class="current-menu-item "><a href="homepage-5.html">Home Marketplace V3</a>
-                            </li>
-                            <li class="current-menu-item "><a href="homepage-6.html">Home Marketplace V4</a>
-                            </li>
-                            <li class="current-menu-item "><a href="homepage-7.html">Home Electronic</a>
-                            </li>
-                            <li class="current-menu-item "><a href="homepage-8.html">Home Furniture</a>
-                            </li>
-                            <li class="current-menu-item "><a href="homepage-kids.html">Home Kids</a>
-                            </li>
-                            <li class="current-menu-item "><a href="homepage-photo-and-video.html">Home photo and picture</a>
-                            </li>
-                            <li class="current-menu-item "><a href="home-medical.html">Home Medical</a>
-                            </li>
-                        </ul>
+                    <li class="menu-item"><a href="{{url('/')}}">Home</a>
                     </li>
                     <li class="menu-item-has-children has-mega-menu"><a href="{{route('shop')}}">Shop</a><span class="sub-toggle"></span>
                         <div class="mega-menu">
@@ -559,9 +531,9 @@
                             <div class="mega-menu__column">
                                 <h4>Basic Page<span class="sub-toggle"></span></h4>
                                 <ul class="mega-menu__list">
-                                    <li class="current-menu-item "><a href="about-us.html">About Us</a>
+                                    <li class="current-menu-item "><a href="{{route('about-us')}}">About Us</a>
                                     </li>
-                                    <li class="current-menu-item "><a href="contact-us.html">Contact</a>
+                                    <li class="current-menu-item "><a href="{{route('contact')}}">Contact</a>
                                     </li>
                                     <li class="current-menu-item "><a href="faqs.html">Faqs</a>
                                     </li>
@@ -637,26 +609,6 @@
                                     </li>
                                 </ul>
                             </div>
-                        </div>
-                    </li>
-                </ul>
-                <ul class="navigation__extra">
-                    <li><a href="#">Sell on Martfury</a></li>
-                    <li><a href="#">Tract your order</a></li>
-                    <li>
-                        <div class="ps-dropdown"><a href="#">US Dollar</a>
-                            <ul class="ps-dropdown-menu">
-                                <li><a href="#">Us Dollar</a></li>
-                                <li><a href="#">Euro</a></li>
-                            </ul>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="ps-dropdown language"><a href="#"><img src="{{asset('frontend/img/flag/en.png')}}" alt="">English</a>
-                            <ul class="ps-dropdown-menu">
-                                <li><a href="#"><img src="{{asset('frontend/img/flag/germany.png')}}" alt=""> Germany</a></li>
-                                <li><a href="#"><img src="{{asset('frontend/img/flag/fr.png')}}" alt=""> France</a></li>
-                            </ul>
                         </div>
                     </li>
                 </ul>

@@ -25,6 +25,8 @@ Route::get('/shop', 'Frontend\ShopController@shop')->name('shop');
 Route::get('/product-details', 'Frontend\ProductController@ProductDetails')->name('product-details');
 Route::get('/become-a-vendor', 'Frontend\VendorController@index')->name('become-vendor');
 Route::get('/vendor-store', 'Frontend\VendorController@store')->name('vendor-store');
+Route::get('/about-us', 'Frontend\AboutController@About')->name('about-us');
+Route::get('/contact', 'Frontend\AboutController@contact')->name('contact');
 
 Auth::routes();
 
