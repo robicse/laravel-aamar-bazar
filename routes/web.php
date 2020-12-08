@@ -13,9 +13,20 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+//Route::get('/', function () {
+//    return view('welcome');
+//});
+
+Route::get('/', 'Frontend\FrontendController@index')->name('index');
+Route::get('/shopping-cart', 'Frontend\CartController@viewCart')->name('shopping-cart');
+Route::get('/checkout', 'Frontend\CartController@checkout')->name('checkout');
+Route::get('/shop', 'Frontend\ShopController@shop')->name('shop');
+Route::get('/product-details', 'Frontend\ProductController@ProductDetails')->name('product-details');
+Route::get('/become-a-vendor', 'Frontend\VendorController@index')->name('become-vendor');
+Route::get('/vendor-store', 'Frontend\VendorController@store')->name('vendor-store');
+Route::get('/about-us', 'Frontend\AboutController@About')->name('about-us');
+Route::get('/contact', 'Frontend\AboutController@contact')->name('contact');
+Route::get('/blog-list', 'Frontend\BlogController@index')->name('blog-list');
 
 Auth::routes();
 
