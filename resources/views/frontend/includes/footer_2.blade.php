@@ -39,7 +39,7 @@
                         <div class="ps-product__images" data-arrow="true">
                             <div class="item"><img src="{{asset('frontend/img/products/detail/fullwidth/1.jpg')}}" alt=""></div>
                             <div class="item"><img src="{{asset('frontend/img/products/detail/fullwidth/2.jpg')}}" alt=""></div>
-                            <div class="item"><img src="{{asset('frontend/img/products/detail/fullwidth/3su.jpg')}}" alt=""></div>
+                            <div class="item"><img src="{{asset('frontend/img/products/detail/fullwidth/3.jpg')}}" alt=""></div>
                         </div>
                     </div>
                     <div class="ps-product__info">

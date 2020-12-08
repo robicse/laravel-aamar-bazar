@@ -34,15 +34,15 @@ class LoginController extends Controller
     protected $redirectTo;
 
     protected function redirectTo() {
-        if (Auth::check() && Auth::user()->role_id == 1) {
+        if (Auth::check() && Auth::user()->user_type == 'customer') {
             //dd('okk');
-            //Toastr::success('Successfully Logged In',"Success");
-            return $this->redirectTo = route('admin.dashboard');
-        }
-        elseif (Auth::check() && Auth::user()->role_id == 2) {
             //Toastr::success('Successfully Logged In',"Success");
             return $this->redirectTo = route('user.dashboard');
         }
+//        elseif (Auth::check() && Auth::user()->role_id == 2) {
+//            //Toastr::success('Successfully Logged In',"Success");
+//            return $this->redirectTo = route('user.dashboard');
+//        }
         else {
             //return('/login');
             return('/');

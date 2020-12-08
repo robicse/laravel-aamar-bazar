@@ -13,6 +13,7 @@
         <div class="ps-my-account">
             <div class="container">
                 <form class="ps-form--account ps-tab-root" action="{{ route('login') }}" method="POST">
+                    @csrf
                     <ul class="ps-tab-list">
                         <li class="active"><a href="#sign-in">Login</a></li>
 {{--                        <li><a href="#register">Register</a></li>--}}
