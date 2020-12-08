@@ -50,10 +50,12 @@ Route::group(['middleware' => ['auth', 'admin']], function () {
 Route::group(['middleware' => ['auth', 'user']], function () {
     //this route only for with out resource controller
     Route::get('/user/dashboard', 'User\DashboardController@index')->name('user.dashboard');
+    Route::post('/user/dashboard/update', 'User\DashboardController@update')->name('user.profile-update');
     Route::get('/user/invoices', 'User\DashboardController@invoices')->name('user.invoices');
     Route::get('/user/notifications', 'User\DashboardController@notification')->name('user.notification');
     Route::get('/user/address', 'User\DashboardController@address')->name('user.address');
     Route::get('/user/wishlist', 'User\DashboardController@wishlist')->name('user.wishlist');
+
 
     //this route only for resource controller
     Route::group(['as' => 'user.', 'prefix' => 'user', 'namespace' => 'User',], function () {

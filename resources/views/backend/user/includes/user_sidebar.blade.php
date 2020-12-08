@@ -13,7 +13,7 @@
                     <li><a href="{{route('user.notification')}}"><i class="icon-alarm-ringing"></i> Notifications</a></li>
                     <li><a href="{{route('user.invoices')}}"><i class="icon-papers"></i> Invoices</a></li>
                     <li><a href="{{route('user.address')}}"><i class="icon-map-marker"></i> Address</a></li>
-                    <li><a href="#"><i class="icon-store"></i> Recent Viewed Product</a></li>
+{{--                    <li><a href="#"><i class="icon-store"></i> Recent Viewed Product</a></li>--}}
                     <li><a href="{{route('user.wishlist')}}"><i class="icon-heart"></i> Wishlist</a></li>
                     <li><a href=""><i class="icon-power-switch"></i>Logout</a></li>
                 </ul>

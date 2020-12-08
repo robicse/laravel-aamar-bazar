@@ -579,7 +579,9 @@
                             </div>
                         </div>
                     </li>
+                    <li class="menu-item has-mega-menu"><a href="{{route('about-us')}}">About Us</a>
                     <li class="menu-item has-mega-menu"><a href="{{route('blog-list')}}">Blogs</a>
+                    <li class="menu-item has-mega-menu"><a href="{{route('contact')}}">Contact Us</a>
                     </li>
                 </ul>
             </div>
