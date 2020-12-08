@@ -60,6 +60,7 @@ class ProductController extends Controller
     }
     public function sku_combination(Request $request)
     {
+        //dd($request->all());
         $options = array();
         if($request->has('colors_active') && $request->has('colors') && count($request->colors) > 0){
             $colors_active = 1;
@@ -92,7 +93,7 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        dd($request->all());
     }
 
     /**
