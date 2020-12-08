@@ -21,7 +21,7 @@
                         <div class="ps-post__content">
                             <div class="ps-post__top">
                                 <div class="ps-post__meta"><a href="#">Entertaiment</a><a href="#">Technology</a>
-                                </div><a class="ps-post__title" href="#">Experience Great Sound With Beats’s Headphone</a>
+                                </div><a class="ps-post__title" href="{{route('blog-details')}}">Experience Great Sound With Beats’s Headphone</a>
                                 <p>Lorem ipsum dolor sit amet, dolor siterim consectetur adipiscing elit. Phasellus duio faucibus est sed…</p>
                             </div>
                             <div class="ps-post__bottom">

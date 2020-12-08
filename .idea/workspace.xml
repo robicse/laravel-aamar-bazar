@@ -20,9 +20,21 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a17e2167-d620-4213-a88e-6fc3baf87dda" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/resources/views/frontend/pages/blog_list.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/frontend/pages/blog_details.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Auth/LoginController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Auth/LoginController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Frontend/BlogController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Frontend/BlogController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Frontend/FrontendController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Frontend/FrontendController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/auth/login.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/auth/login.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/auth/register.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/auth/register.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/backend/user/home.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/backend/user/home.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/frontend/auth/my_account.blade.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/frontend/includes/footer_2.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/frontend/includes/footer_2.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/frontend/includes/header.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/frontend/includes/header.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/frontend/layouts/master.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/frontend/layouts/master.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/frontend/pages/blog_list.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/frontend/pages/blog_list.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/frontend/pages/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/frontend/pages/index.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -203,7 +215,9 @@
       <workItem from="1607244368079" duration="7582000" />
       <workItem from="1607313494146" duration="3754000" />
       <workItem from="1607317570003" duration="11871000" />
-      <workItem from="1607333072112" duration="10670000" />
+      <workItem from="1607333072112" duration="11367000" />
+      <workItem from="1607402208157" duration="25000" />
+      <workItem from="1607402362024" duration="9731000" />
     </task>
     <servers />
   </component>
@@ -231,11 +245,11 @@
       <screen x="0" y="0" width="1280" height="728" />
     </state>
     <state x="370" y="119" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1280.728@0.0.1280.728" timestamp="1606728706493" />
-    <state x="448" y="121" key="FileChooserDialogImpl" timestamp="1607337162028">
+    <state x="448" y="121" key="FileChooserDialogImpl" timestamp="1607410865174">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
     <state x="420" y="119" key="FileChooserDialogImpl/0.0.1280.728@0.0.1280.728" timestamp="1607168011080" />
-    <state x="448" y="121" key="FileChooserDialogImpl/0.0.1366.738@0.0.1366.738" timestamp="1607337162028" />
+    <state x="448" y="121" key="FileChooserDialogImpl/0.0.1366.738@0.0.1366.738" timestamp="1607410865174" />
     <state x="396" y="71" key="NewPhpClassDialog" timestamp="1607165824796">
       <screen x="0" y="0" width="1280" height="728" />
     </state>
@@ -244,14 +258,14 @@
       <screen x="0" y="0" width="1280" height="728" />
     </state>
     <state x="116" y="0" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser/0.0.1280.728@0.0.1280.728" timestamp="1606555461665" />
-    <state x="390" y="102" width="585" height="534" key="find.popup" timestamp="1607318411704">
+    <state x="390" y="102" width="585" height="534" key="find.popup" timestamp="1607407281850">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
-    <state x="390" y="102" width="585" height="534" key="find.popup/0.0.1366.738@0.0.1366.738" timestamp="1607318411704" />
-    <state x="323" y="50" width="718" height="688" key="search.everywhere.popup" timestamp="1607328893723">
+    <state x="390" y="102" width="585" height="534" key="find.popup/0.0.1366.738@0.0.1366.738" timestamp="1607407281850" />
+    <state x="323" y="50" width="672" height="160" key="search.everywhere.popup" timestamp="1607409159992">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
     <state x="303" y="49" width="672" height="678" key="search.everywhere.popup/0.0.1280.728@0.0.1280.728" timestamp="1606641179695" />
-    <state x="323" y="50" width="718" height="688" key="search.everywhere.popup/0.0.1366.738@0.0.1366.738" timestamp="1607328893723" />
+    <state x="323" y="50" width="672" height="160" key="search.everywhere.popup/0.0.1366.738@0.0.1366.738" timestamp="1607409159992" />
   </component>
 </project>

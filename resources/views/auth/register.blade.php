@@ -92,6 +92,7 @@
         <div class="ps-my-account">
             <div class="container">
                 <form class="ps-form--account ps-tab-root" action="{{ route('register') }}" method="POST">
+                    @csrf
                     <ul class="ps-tab-list">
                         <li class="active"><a href="#register">Register</a></li>
 {{--                        <li><a href="#register">Register</a></li>--}}
@@ -101,7 +102,13 @@
                             <div class="ps-form__content">
                                 <h5>Register An Account</h5>
                                 <div class="form-group">
-                                    <input class="form-control" type="text" placeholder="Username or email address">
+                                    <input class="form-control" type="text" placeholder="Username">
+                                </div>
+                                <div class="form-group">
+                                    <input class="form-control" type="email" placeholder="Email address">
+                                </div>
+                                <div class="form-group">
+                                    <input class="form-control" type="phone" placeholder="Phone Number">
                                 </div>
                                 <div class="form-group">
                                     <input class="form-control" type="text" placeholder="Password">

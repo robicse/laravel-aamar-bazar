@@ -32,9 +32,13 @@
 @include('frontend.includes.footer')
 @include('frontend.includes.footer_2')
 
-<script src="{{asset('frontend/plugins/jquery.min.js')}}"></script>
+<script
+    src="https://code.jquery.com/jquery-3.5.1.min.js"
+    integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0="
+    crossorigin="anonymous"></script>
+{{--<script src="{{asset('frontend/plugins/jquery.min.js')}}"></script>--}}
 <script src="{{asset('frontend/js/main.js')}}"></script>
-<script data-cfasync="false" src="{{asset('frontend/../../cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js')}}"></script>
+{{--<script data-cfasync="false" src="../../cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>--}}
 <script src="{{asset('frontend/plugins/nouislider/nouislider.min.js')}}"></script>
 <script src="{{asset('frontend/plugins/popper.min.js')}}"></script>
 <script src="{{asset('frontend/plugins/owl-carousel/owl.carousel.min.js')}}"></script>
@@ -43,7 +47,8 @@
 <script src="{{asset('frontend/plugins/masonry.pkgd.min.js')}}"></script>
 <script src="{{asset('frontend/plugins/isotope.pkgd.min.js')}}"></script>
 <script src="{{asset('frontend/plugins/jquery.matchHeight-min.js')}}"></script>
-<script src="{{asset('frotend/plugins/slick/slick/slick.min.js')}}"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js" integrity="sha512-XtmMtDEcNz2j7ekrtHvOVR4iwwaD6o/FUJe6+Zq+HgcCsk3kj4uSQQR8weQ2QVj1o0Pk6PwYLohm206ZzNfubg==" crossorigin="anonymous"></script>
+{{--<script src="{{asset('frotend/plugins/slick/slick/slick.min.js')}}"></script>--}}
 <script src="{{asset('frontend/plugins/jquery-bar-rating/dist/jquery.barrating.min.js')}}"></script>
 <script src="{{asset('frontend/plugins/slick-animation.min.js')}}"></script>
 <script src="{{asset('frontend/plugins/lightGallery-master/dist/js/lightgallery-all.min.js')}}"></script>

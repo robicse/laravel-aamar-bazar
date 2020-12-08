@@ -27,6 +27,9 @@ Route::get('/vendor-store', 'Frontend\VendorController@store')->name('vendor-sto
 Route::get('/about-us', 'Frontend\AboutController@About')->name('about-us');
 Route::get('/contact', 'Frontend\AboutController@contact')->name('contact');
 Route::get('/blog-list', 'Frontend\BlogController@index')->name('blog-list');
+Route::get('/blog-details', 'Frontend\BlogController@details')->name('blog-details');
+
+Route::post('/registration','Frontend\FrontendController@register')->name('register');
 
 Auth::routes();
 
