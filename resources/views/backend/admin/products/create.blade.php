@@ -22,7 +22,7 @@
         </div><!-- /.container-fluid -->
     </section>
     <!-- Main content -->
-    <form role="form" action="{{route('admin.products.store')}}" method="post" enctype="multipart/form-data">
+    <form role="form" id="choice_form" action="{{route('admin.products.store')}}" method="post" enctype="multipart/form-data">
         @csrf
         <section class="content">
             <div class="row m-2">
@@ -76,6 +76,7 @@
                 <div class="col-md-6">
                     <!-- general form elements -->
                     <div class="card card-info card-outline">
+                        <p class="pl-2 pb-0 mb-0 bg-info">Product Inventory And Variation</p>
                         <div class="form-group">
                             <label class="control-label ml-3">Gallery Images</label>
                             <div class="ml-3 mr-3">
@@ -87,6 +88,10 @@
                             <div class="ml-3 mr-3">
                                 <div class="row" id="thumbnail_img"></div>
                             </div>
+                        </div>
+                        <div class="form-group ml-3 mr-3">
+                            <label for="video_link">Video Url</label>
+                            <input type="url" class="form-control " name="video_link" id="video_link" placeholder="Enter youtube video link">
                         </div>
                     </div>
                 </div>
@@ -125,7 +130,7 @@
 
                             <div class="col-md-6">
                                 <div class="row">
-                                    <div class="form-group col-md-9">
+                                    <div class="form-group col-md-10">
                                         <label for="discount">Colors</label>
                                         <select class="form-control color-var-select" name="colors[]" id="colors" multiple disabled>
                                             @foreach (\App\Model\Color::orderBy('name', 'asc')->get() as $key => $color)
@@ -133,7 +138,7 @@
                                             @endforeach
                                         </select>
                                     </div>
-                                    <div class="form-group col-md-3">
+                                    <div class="form-group col-md-2">
                                         <label class="switch" style="margin-top:40px;">
                                             <input value="1" type="checkbox" name="colors_active">
                                             <span class="slider round"></span>
@@ -141,7 +146,7 @@
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <div class="form-group col-md-9">
+                                    <div class="form-group col-md-12">
                                         <label for="attribute">Attribute</label>
                                         <select name="choice_attributes[]" id="choice_attributes" class="form-control demo-select2" multiple data-placeholder="Choose Attributes">
                                             @foreach (\App\Model\Attribute::all() as $key => $attribute)
@@ -151,23 +156,27 @@
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <div class="col-md-6">
+                                    <div class="col-md-12">
                                         <div class="customer_choice_options" id="customer_choice_options">
 
                                         </div>
                                     </div>
                                 </div>
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <div class="sku_combination" id="sku_combination">
 
-                                        </div>
-                                    </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="sku_combination" id="sku_combination">
+
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
+                    <div class="float-right col-md-4">
+                        <button class="btn btn-success" type="submit">Save</button>
+                    </div>
                 </div>
             </div>
         </section>
@@ -178,9 +187,9 @@
     <script src="{{asset('backend/plugins/select2/select2.full.min.js')}}"></script>
     <script>
         function add_more_customer_choice_option(i, name){
-            $('#customer_choice_options').append('<div class="form-group"><div class="col-lg-2"><input type="hidden" name="choice_no[]" value="'+i+'"><input type="text" class="form-control" name="choice[]" value="'+name+'" placeholder="Choice Title" readonly></div><div class="col-lg-7"><input type="text" class="form-control" name="choice_options_'+i+'[]" placeholder="Enter choice values" data-role="tagsinput" onchange="update_sku()"></div></div>');
+            $('#customer_choice_options').append('<div class="form-group row"><div class="col-lg-2 "><input type="hidden" name="choice_no[]" value="'+i+'"><input type="text" class="form-control" name="choice[]" value="'+name+'" placeholder="{{ 'Choice Title' }}" readonly></div><div class="col-lg-7"><input type="text" class="form-control" name="choice_options_'+i+'[]" placeholder="{{'Enter choice values' }}" data-role="tagsinput" onchange="update_sku()"></div></div>');
 
-            $("input[data-role=tagsinput], select[multiple][data-role=tagsinput]").tagsinput();
+           /* $("input[data-role=tagsinput], select[multiple][data-role=tagsinput]").tagsinput();*/
         }
 
         $(document).ready(function(){
@@ -307,8 +316,9 @@
             else{
                 $('#colors').prop('disabled', false);
             }
-            //update_sku();
+            update_sku();
         });
+
         $('#colors').on('change', function() {
             update_sku();
         });
@@ -347,6 +357,16 @@
                 }
             });
         }
+
+        //attribute choose
+        $('#choice_attributes').on('change', function() {
+            $('#customer_choice_options').html(null);
+            $.each($("#choice_attributes option:selected"), function(){
+                //console.log($(this).val());
+                add_more_customer_choice_option($(this).val(), $(this).text());
+            });
+            update_sku();
+        });
 
 
     </script>
