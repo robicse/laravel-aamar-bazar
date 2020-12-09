@@ -95,7 +95,9 @@
                             </li>
                         </ul>
                     </div>
-                </div><a class="ps-logo" href="{{url('/')}}"><img src="{{asset('frontend/img/logo_light.png')}}" alt=""></a>
+                </div>
+{{--                <a class="ps-logo" href="{{url('/')}}"><img src="{{asset('frontend/img/logo_light.png')}}" alt=""></a>--}}
+                <a class="ps-logo" href="{{url('/')}}"><h2 class="font-weight-light">Mudi <span class="text-capitalize text-secondary">Hat</span></h2></a>
             </div>
             <div class="header__center">
                 <form class="ps-form--quick-search" action="http://nouthemes.net/html/martfury/index.html" method="get">
