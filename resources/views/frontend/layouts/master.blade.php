@@ -11,7 +11,7 @@
     <meta name="author" content="">
     <meta name="keywords" content="">
     <meta name="description" content="">
-    <title>@yield('title') | Aamar Bazar</title>
+    <title>@yield('title') | MudiHat</title>
     <link href="https://fonts.googleapis.com/css?family=Work+Sans:300,400,500,600,700&amp;amp;subset=latin-ext" rel="stylesheet">
     <link rel="stylesheet" href="{{asset('frontend/plugins/font-awesome/css/font-awesome.min.css')}}">
     <link rel="stylesheet" href="{{asset('frontend/fonts/Linearicons/Linearicons/Font/demo-files/demo.css')}}">
@@ -28,7 +28,6 @@
 <body>
 @include('frontend.includes.header')
 @yield('content')
-
 @include('frontend.includes.footer')
 @include('frontend.includes.footer_2')
 

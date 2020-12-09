@@ -204,7 +204,7 @@
                                 <div class="col-md-6" style="border-right: 1px solid #ddd;">
                                     <div class="form-group">
                                         <label for="description">Product Description</label>
-                                        <textarea name="description" id="description"  class="form-control editor"></textarea>
+                                        <textarea name="description" id="description"  class="form-control"></textarea>
                                     </div>
                                 </div>
 
@@ -215,7 +215,7 @@
                                     </div>
                                     <div class="form-group">
                                         <label for="meta_description">Meta Description</label>
-                                        <textarea name="meta_description" id="meta_description"  class="form-control"></textarea>
+                                        <textarea name="meta_description" id="meta_description" rows="5"  class="form-control"></textarea>
                                     </div>
                                 </div>
                             </div>
@@ -316,7 +316,11 @@
                     state.text
                 );
             }
-
+            //CKEDITOR.replace( 'description' );
+            CKEDITOR.replace( 'description', {
+                filebrowserUploadUrl: "{{route('admin.ckeditor.upload', ['_token' => csrf_token() ])}}",
+                filebrowserUploadMethod: 'form'
+            });
 
         });
 
