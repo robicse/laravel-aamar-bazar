@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\User;
 
 use App\User;
+use Brian2694\Toastr\Facades\Toastr;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
@@ -36,11 +37,11 @@ class DashboardController extends Controller
             'phone'=> 'required',
         ]);
         $user = User::findOrFail(Auth::id());
-//        $user = User::findOrFail(Auth::id());
         $user->name = $request->name;
         $user->email = $request->email;
         $user->phone = $request->phone;
         $user->save();
+        Toastr::success('Profile Updated Successfully');
         return redirect()->back();
 
     }
