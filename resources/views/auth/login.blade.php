@@ -23,15 +23,19 @@
                             <div class="ps-form__content">
                                 <h5>Log In Your Account</h5>
                                 <div class="form-group">
-                                    <input id="email" type="email" placeholder="E-mail Address"  class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
+                                    <input id="phone" type="number" placeholder="Enter your Phone Number"  class="form-control @error('phone') is-invalid @enderror" name="phone" value="{{ old('phone') }}" required autocomplete="email" autofocus>
 
-                                    @error('email')
+                                    @error('phone')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
                                     @enderror
 {{--                                    <input class="form-control" id="email" type="email" placeholder="Email address">--}}
                                 </div>
+{{--                                <div class="form-group">--}}
+{{--                                    <input type="number" name="phone" id="phone" class="form-control floating" placeholder="Enter your Phone Number" required>--}}
+{{--                                    --}}{{--                                    <input class="form-control" id="email" type="email" placeholder="Email address">--}}
+{{--                                </div>--}}
                                 <div class="form-group form-forgot">
                                     <input id="password" type="password" placeholder="Password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
 
@@ -88,28 +92,6 @@
                     </div>
                 </form>
             </div>
-        </div>
-    </div>
-    <div class="ps-newsletter">
-        <div class="container">
-            <form class="ps-form--newsletter" action="http://nouthemes.net/html/martfury/do_action" method="post">
-                <div class="row">
-                    <div class="col-xl-5 col-lg-12 col-md-12 col-sm-12 col-12 ">
-                        <div class="ps-form__left">
-                            <h3>Newsletter</h3>
-                            <p>Subcribe to get information about products and coupons</p>
-                        </div>
-                    </div>
-                    <div class="col-xl-7 col-lg-12 col-md-12 col-sm-12 col-12 ">
-                        <div class="ps-form__right">
-                            <div class="form-group--nest">
-                                <input class="form-control" type="email" placeholder="Email address">
-                                <button class="ps-btn">Subscribe</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </form>
         </div>
     </div>
 @endsection

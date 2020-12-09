@@ -25,19 +25,19 @@
                                 <div class="ps-form__content">
                                     <div class="form-group">
                                         <label>Name</label>
-                                        <input class="form-control" type="text" value="{{ Auth::User()->name }}" placeholder="Please enter your name...">
+                                        <input class="form-control" type="text" name="name" value="{{ Auth::User()->name }}" placeholder="Please enter your name...">
                                     </div>
                                     <div class="row">
                                         <div class="col-sm-6">
                                             <div class="form-group">
                                                 <label>Phone Number</label>
-                                                <input class="form-control" type="number" value="{{ Auth::User()->phone }}" placeholder="Please enter phone number...">
+                                                <input class="form-control" type="number" name="phone" value="{{ Auth::User()->phone }}" placeholder="Please enter phone number...">
                                             </div>
                                         </div>
                                         <div class="col-sm-6">
                                             <div class="form-group">
                                                 <label>Email</label>
-                                                <input class="form-control" type="email" value="{{ Auth::User()->email }}" placeholder="Please enter your email...">
+                                                <input class="form-control" type="email" name="email" value="{{ Auth::User()->email }}" placeholder="Please enter your email...">
                                             </div>
                                         </div>
 {{--                                        <div class="col-sm-6">--}}

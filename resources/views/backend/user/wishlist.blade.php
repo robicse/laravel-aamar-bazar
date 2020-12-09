@@ -44,7 +44,7 @@
                                                 </td>
                                                 <td class="price">$205.00</td>
                                                 <td><span class="ps-tag ps-tag--in-stock">In-stock</span></td>
-                                                <td><a class="ps-btn" href="#">Add to cart</a></td>
+                                                <td><a class="ps-btn text-center" style="padding: 7px 12px 7px 12px; font-size: 14px;" href="#">Add to cart</a></td>
                                             </tr>
                                             <tr>
                                                 <td><a href="#"><i class="icon-cross"></i></a></td>
@@ -56,7 +56,7 @@
                                                 </td>
                                                 <td class="price">$108.00</td>
                                                 <td><span class="ps-tag ps-tag--in-stock">In-stock</span></td>
-                                                <td><a class="ps-btn" href="#">Add to cart</a></td>
+                                                <td><a class="ps-btn text-center" style="padding: 7px 12px 7px 12px; font-size: 14px;"  href="#">Add to cart</a></td>
                                             </tr>
                                             <tr>
                                                 <td><a href="#"><i class="icon-cross"></i></a></td>
@@ -68,7 +68,7 @@
                                                 </td>
                                                 <td class="price">$508.00</td>
                                                 <td><span class="ps-tag ps-tag--in-stock">In-stock</span></td>
-                                                <td><a class="ps-btn" href="#">Add to cart</a></td>
+                                                <td><a class="ps-btn text-center" style="padding: 7px 12px 7px 12px; font-size: 14px;" href="#">Add to cart</a></td>
                                             </tr>
                                             </tbody>
                                         </table>

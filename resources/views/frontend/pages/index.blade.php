@@ -81,7 +81,7 @@
                 <div class="ps-section__content">
                     <div class="ps-carousel--nav owl-slider" data-owl-auto="false" data-owl-loop="false" data-owl-speed="10000" data-owl-gap="30" data-owl-nav="true" data-owl-dots="true" data-owl-item="7" data-owl-item-xs="2" data-owl-item-sm="3" data-owl-item-md="4" data-owl-item-lg="5" data-owl-item-xl="6" data-owl-duration="1000" data-owl-mousedrag="on">
                         <div class="ps-product ps-product--inner">
-                            <div class="ps-product__thumbnail"><a href="product-default.html"><img src="{{asset('frontend/img/products/home/1.jpg')}}" alt=""></a>
+                            <div class="ps-product__thumbnail"><a href="{{route('product-details')}}"><img src="{{asset('frontend/img/products/home/1.jpg')}}" alt=""></a>
                                 <div class="ps-product__badge">-16%</div>
                                 <ul class="ps-product__actions">
                                     <li><a href="#" data-toggle="tooltip" data-placement="top" title="Read More"><i class="icon-bag2"></i></a></li>
@@ -92,7 +92,7 @@
                             </div>
                             <div class="ps-product__container">
                                 <p class="ps-product__price sale">$567.99 <del>$670.00 </del><small>18% off</small></p>
-                                <div class="ps-product__content"><a class="ps-product__title" href="product-default.html">Korea Long Sofa Fabric In Blue Navy Color</a>
+                                <div class="ps-product__content"><a class="ps-product__title" href="{{route('product-details')}}">Korea Long Sofa Fabric In Blue Navy Color</a>
                                     <div class="ps-product__rating">
                                         <select class="ps-rating" data-read-only="true">
                                             <option value="1">1</option>
@@ -110,7 +110,7 @@
                             </div>
                         </div>
                         <div class="ps-product ps-product--inner">
-                            <div class="ps-product__thumbnail"><a href="product-default.html"><img src="{{asset('frontend/img/products/home/2.jpg')}}" alt=""></a>
+                            <div class="ps-product__thumbnail"><a href="{{route('product-details')}}"><img src="{{asset('frontend/img/products/home/2.jpg')}}" alt=""></a>
                                 <div class="ps-product__badge out-stock">Out Of Stock</div>
                                 <ul class="ps-product__actions">
                                     <li><a href="#" data-toggle="tooltip" data-placement="top" title="Read More"><i class="icon-bag2"></i></a></li>
@@ -121,7 +121,7 @@
                             </div>
                             <div class="ps-product__container">
                                 <p class="ps-product__price">$101.99<small>18% off</small></p>
-                                <div class="ps-product__content"><a class="ps-product__title" href="product-default.html">Aroma Rice Cooker</a>
+                                <div class="ps-product__content"><a class="ps-product__title" href="{{route('product-details')}}">Aroma Rice Cooker</a>
                                     <div class="ps-product__rating">
                                         <select class="ps-rating" data-read-only="true">
                                             <option value="1">1</option>
@@ -139,7 +139,7 @@
                             </div>
                         </div>
                         <div class="ps-product ps-product--inner">
-                            <div class="ps-product__thumbnail"><a href="product-default.html"><img src="{{asset('frontend/img/products/home/3.jpg')}}" alt=""></a>
+                            <div class="ps-product__thumbnail"><a href="{{route('product-details')}}"><img src="{{asset('frontend/img/products/home/3.jpg')}}" alt=""></a>
                                 <div class="ps-product__badge">-25%</div>
                                 <ul class="ps-product__actions">
                                     <li><a href="#" data-toggle="tooltip" data-placement="top" title="Read More"><i class="icon-bag2"></i></a></li>
@@ -150,7 +150,7 @@
                             </div>
                             <div class="ps-product__container">
                                 <p class="ps-product__price sale">$42.00 <del>$60.00 </del><small>18% off</small></p>
-                                <div class="ps-product__content"><a class="ps-product__title" href="product-default.html">Simple Plastice Chair In White Color</a>
+                                <div class="ps-product__content"><a class="ps-product__title" href="{{route('product-details')}}">Simple Plastice Chair In White Color</a>
                                     <div class="ps-product__rating">
                                         <select class="ps-rating" data-read-only="true">
                                             <option value="1">1</option>
@@ -168,7 +168,7 @@
                             </div>
                         </div>
                         <div class="ps-product ps-product--inner">
-                            <div class="ps-product__thumbnail"><a href="product-default.html"><img src="{{asset('frontend/img/products/home/4.jpg')}}" alt=""></a>
+                            <div class="ps-product__thumbnail"><a href="{{route('product-details')}}"><img src="{{asset('frontend/img/products/home/4.jpg')}}" alt=""></a>
                                 <div class="ps-product__badge out-stock">Out Of Stock</div>
                                 <ul class="ps-product__actions">
                                     <li><a href="#" data-toggle="tooltip" data-placement="top" title="Read More"><i class="icon-bag2"></i></a></li>
@@ -179,7 +179,7 @@
                             </div>
                             <div class="ps-product__container">
                                 <p class="ps-product__price">$320.00<small>18% off</small></p>
-                                <div class="ps-product__content"><a class="ps-product__title" href="product-default.html">Korea Fabric Chair In Brown Colorr</a>
+                                <div class="ps-product__content"><a class="ps-product__title" href="{{route('product-details')}}">Korea Fabric Chair In Brown Colorr</a>
                                     <div class="ps-product__rating">
                                         <select class="ps-rating" data-read-only="true">
                                             <option value="1">1</option>
@@ -197,7 +197,7 @@
                             </div>
                         </div>
                         <div class="ps-product ps-product--inner">
-                            <div class="ps-product__thumbnail"><a href="product-default.html"><img src="{{asset('frontend/img/products/home/5.jpg')}}" alt=""></a>
+                            <div class="ps-product__thumbnail"><a href="{{route('product-details')}}"><img src="{{asset('frontend/img/products/home/5.jpg')}}" alt=""></a>
                                 <div class="ps-product__badge out-stock">Out Of Stock</div>
                                 <ul class="ps-product__actions">
                                     <li><a href="#" data-toggle="tooltip" data-placement="top" title="Read More"><i class="icon-bag2"></i></a></li>
@@ -208,7 +208,7 @@
                             </div>
                             <div class="ps-product__container">
                                 <p class="ps-product__price">$85.00<small>18% off</small></p>
-                                <div class="ps-product__content"><a class="ps-product__title" href="product-default.html">Set 14-Piece Knife From KichiKit</a>
+                                <div class="ps-product__content"><a class="ps-product__title" href="{{route('product-details')}}">Set 14-Piece Knife From KichiKit</a>
                                     <div class="ps-product__rating">
                                         <select class="ps-rating" data-read-only="true">
                                             <option value="1">1</option>
@@ -226,7 +226,7 @@
                             </div>
                         </div>
                         <div class="ps-product ps-product--inner">
-                            <div class="ps-product__thumbnail"><a href="product-default.html"><img src="{{asset('frontend/img/products/home/6.jpg')}}" alt=""></a>
+                            <div class="ps-product__thumbnail"><a href="{{route('product-details')}}"><img src="{{asset('frontend/img/products/home/6.jpg')}}" alt=""></a>
                                 <div class="ps-product__badge out-stock">Out Of Stock</div>
                                 <ul class="ps-product__actions">
                                     <li><a href="#" data-toggle="tooltip" data-placement="top" title="Read More"><i class="icon-bag2"></i></a></li>
@@ -237,7 +237,7 @@
                             </div>
                             <div class="ps-product__container">
                                 <p class="ps-product__price">$92.00<small>18% off</small></p>
-                                <div class="ps-product__content"><a class="ps-product__title" href="product-default.html">Magic Bullet NutriBullet Pro 900 Series Blender</a>
+                                <div class="ps-product__content"><a class="ps-product__title" href="{{route('product-details')}}">Magic Bullet NutriBullet Pro 900 Series Blender</a>
                                     <div class="ps-product__rating">
                                         <select class="ps-rating" data-read-only="true">
                                             <option value="1">1</option>
@@ -255,7 +255,7 @@
                             </div>
                         </div>
                         <div class="ps-product ps-product--inner">
-                            <div class="ps-product__thumbnail"><a href="product-default.html"><img src="{{asset('frontend/img/products/home/7.jpg')}}" alt=""></a>
+                            <div class="ps-product__thumbnail"><a href="{{route('product-details')}}"><img src="{{asset('frontend/img/products/home/7.jpg')}}" alt=""></a>
                                 <div class="ps-product__badge">-46%</div>
                                 <ul class="ps-product__actions">
                                     <li><a href="#" data-toggle="tooltip" data-placement="top" title="Read More"><i class="icon-bag2"></i></a></li>
@@ -266,7 +266,7 @@
                             </div>
                             <div class="ps-product__container">
                                 <p class="ps-product__price sale">$42.00 <del>$60.00 </del><small>18% off</small></p>
-                                <div class="ps-product__content"><a class="ps-product__title" href="product-default.html">Letter Printed Cushion Cover Cotton</a>
+                                <div class="ps-product__content"><a class="ps-product__title" href="{{route('product-details')}}">Letter Printed Cushion Cover Cotton</a>
                                     <div class="ps-product__rating">
                                         <select class="ps-rating" data-read-only="true">
                                             <option value="1">1</option>
@@ -284,7 +284,7 @@
                             </div>
                         </div>
                         <div class="ps-product ps-product--inner">
-                            <div class="ps-product__thumbnail"><a href="product-default.html"><img src="{{asset('frontend/img/products/home/7.jpg')}}" alt=""></a>
+                            <div class="ps-product__thumbnail"><a href="{{route('product-details')}}"><img src="{{asset('frontend/img/products/home/7.jpg')}}" alt=""></a>
                                 <div class="ps-product__badge">-46%</div>
                                 <ul class="ps-product__actions">
                                     <li><a href="#" data-toggle="tooltip" data-placement="top" title="Read More"><i class="icon-bag2"></i></a></li>
@@ -295,7 +295,7 @@
                             </div>
                             <div class="ps-product__container">
                                 <p class="ps-product__price sale">$42.00 <del>$60.00 </del><small>18% off</small></p>
-                                <div class="ps-product__content"><a class="ps-product__title" href="product-default.html">Letter Printed Cushion Cover Cotton</a>
+                                <div class="ps-product__content"><a class="ps-product__title" href="{{route('product-details')}}">Letter Printed Cushion Cover Cotton</a>
                                     <div class="ps-product__rating">
                                         <select class="ps-rating" data-read-only="true">
                                             <option value="1">1</option>
@@ -1284,27 +1284,27 @@
                 </div>
             </div>
         </div>
-        <div class="ps-newsletter">
-            <div class="ps-container">
-                <form class="ps-form--newsletter" action="http://nouthemes.net/html/martfury/do_action" method="post">
-                    <div class="row">
-                        <div class="col-xl-5 col-lg-12 col-md-12 col-sm-12 col-12 ">
-                            <div class="ps-form__left">
-                                <h3>Newsletter</h3>
-                                <p>Subcribe to get information about products and coupons</p>
-                            </div>
-                        </div>
-                        <div class="col-xl-7 col-lg-12 col-md-12 col-sm-12 col-12 ">
-                            <div class="ps-form__right">
-                                <div class="form-group--nest">
-                                    <input class="form-control" type="email" placeholder="Email address">
-                                    <button class="ps-btn">Subscribe</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </form>
-            </div>
-        </div>
+{{--        <div class="ps-newsletter">--}}
+{{--            <div class="ps-container">--}}
+{{--                <form class="ps-form--newsletter" action="http://nouthemes.net/html/martfury/do_action" method="post">--}}
+{{--                    <div class="row">--}}
+{{--                        <div class="col-xl-5 col-lg-12 col-md-12 col-sm-12 col-12 ">--}}
+{{--                            <div class="ps-form__left">--}}
+{{--                                <h3>Newsletter</h3>--}}
+{{--                                <p>Subcribe to get information about products and coupons</p>--}}
+{{--                            </div>--}}
+{{--                        </div>--}}
+{{--                        <div class="col-xl-7 col-lg-12 col-md-12 col-sm-12 col-12 ">--}}
+{{--                            <div class="ps-form__right">--}}
+{{--                                <div class="form-group--nest">--}}
+{{--                                    <input class="form-control" type="email" placeholder="Email address">--}}
+{{--                                    <button class="ps-btn">Subscribe</button>--}}
+{{--                                </div>--}}
+{{--                            </div>--}}
+{{--                        </div>--}}
+{{--                    </div>--}}
+{{--                </form>--}}
+{{--            </div>--}}
+{{--        </div>--}}
     </div>
 @endsection

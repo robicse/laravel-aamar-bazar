@@ -31,6 +31,7 @@ class DashboardController extends Controller
         return view('backend.user.wishlist');
     }
     public function update(Request $request) {
+//        dd('saf');
         $this->validate($request, [
             'name' => 'required',
             'email' => 'required',
@@ -40,7 +41,7 @@ class DashboardController extends Controller
         $user->name = $request->name;
         $user->email = $request->email;
         $user->phone = $request->phone;
-        $user->save();
+        $user->update();
         Toastr::success('Profile Updated Successfully');
         return redirect()->back();
 
