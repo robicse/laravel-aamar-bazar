@@ -1742,18 +1742,18 @@ button {
 }
 
 .ps-btn, button.ps-btn {
-  display: inline-block;
-  padding: 2px 12px 2px 12px;
-  font-size: 14px;
-  font-weight: 600;
-  line-height: 20px;
-  color: #000;
-  border: none;
-  font-weight: 600;
-  border-radius: 4px;
-  background-color: #fcb800;
-  transition: all .4s ease;
-  cursor: pointer;
+    display: inline-block;
+    padding: 15px 45px;
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 20px;
+    color: #000;
+    border: none;
+    font-weight: 600;
+    border-radius: 4px;
+    background-color: #fcb800;
+    transition: all .4s ease;
+    cursor: pointer;
 }
 
 .ps-btn--rounded, button.ps-btn--rounded {

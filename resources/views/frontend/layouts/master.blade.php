@@ -54,6 +54,21 @@
 <script src="{{asset('frontend/plugins/sticky-sidebar/dist/sticky-sidebar.min.js')}}"></script>
 <script src="{{asset('frontend/plugins/select2/dist/js/select2.full.min.js')}}"></script>
 <script src="{{asset('frontend/plugins/gmap3.min.js')}}"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+{!! Toastr::message() !!}
+<script>
+    @if($errors->any())
+    @foreach($errors->all() as $error )
+    toastr.error('{{$error}}','Error',{
+        closeButton:true,
+        progressBar:true
+    });
+    @endforeach
+    @endif
+    $(function () {
+        $('[data-toggle="frontend"]').tooltip()
+    })
+</script>
 <!-- custom scripts-->
 
 </body>

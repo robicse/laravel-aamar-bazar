@@ -91,7 +91,7 @@
         </div>
         <div class="ps-my-account">
             <div class="container">
-                <form class="ps-form--account ps-tab-root" action="{{ route('register') }}" method="POST">
+                <form class="ps-form--account ps-tab-root" action="{{ route('user.register') }}" method="POST">
                     @csrf
                     <ul class="ps-tab-list">
                         <li class="active"><a href="#register">Register</a></li>
@@ -102,16 +102,16 @@
                             <div class="ps-form__content">
                                 <h5>Register An Account</h5>
                                 <div class="form-group">
-                                    <input class="form-control" type="text" placeholder="Username">
+                                    <input class="form-control" type="text" name="name" placeholder="Username">
                                 </div>
                                 <div class="form-group">
-                                    <input class="form-control" type="email" placeholder="Email address">
+                                    <input class="form-control" type="email" name="email" placeholder="Email address">
                                 </div>
                                 <div class="form-group">
-                                    <input class="form-control" type="phone" placeholder="Phone Number">
+                                    <input class="form-control" type="number" name="phone" placeholder="Phone Number">
                                 </div>
                                 <div class="form-group">
-                                    <input class="form-control" type="text" placeholder="Password">
+                                    <input class="form-control" type="password" name="password" placeholder="Password">
                                 </div>
                                 <div class="form-group submtit">
                                     <button class="ps-btn ps-btn--fullwidth">Login</button>
@@ -130,28 +130,6 @@
                     </div>
                 </form>
             </div>
-        </div>
-    </div>
-    <div class="ps-newsletter">
-        <div class="container">
-            <form class="ps-form--newsletter" action="http://nouthemes.net/html/martfury/do_action" method="post">
-                <div class="row">
-                    <div class="col-xl-5 col-lg-12 col-md-12 col-sm-12 col-12 ">
-                        <div class="ps-form__left">
-                            <h3>Newsletter</h3>
-                            <p>Subcribe to get information about products and coupons</p>
-                        </div>
-                    </div>
-                    <div class="col-xl-7 col-lg-12 col-md-12 col-sm-12 col-12 ">
-                        <div class="ps-form__right">
-                            <div class="form-group--nest">
-                                <input class="form-control" type="email" placeholder="Email address">
-                                <button class="ps-btn">Subscribe</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </form>
         </div>
     </div>
 @endsection

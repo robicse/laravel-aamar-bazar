@@ -29,7 +29,8 @@ Route::get('/contact', 'Frontend\AboutController@contact')->name('contact');
 Route::get('/blog-list', 'Frontend\BlogController@index')->name('blog-list');
 Route::get('/blog-details', 'Frontend\BlogController@details')->name('blog-details');
 
-Route::post('/registration','Frontend\FrontendController@register')->name('register');
+Route::post('/registration','Frontend\FrontendController@register')->name('user.register');
+Route::get('/get-verification-code/{id}', 'Frontend\VerificationController@getVerificationCode')->name('get-verification-code');
 
 Auth::routes();
 
