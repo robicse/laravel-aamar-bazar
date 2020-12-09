@@ -21,11 +21,9 @@
   <component name="ChangeListManager">
     <list default="true" id="a17e2167-d620-4213-a88e-6fc3baf87dda" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/User/DashboardController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/User/DashboardController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/backend/user/home.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/backend/user/home.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/backend/user/includes/user_sidebar.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/backend/user/includes/user_sidebar.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/frontend/includes/header.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/frontend/includes/header.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Middleware/RedirectIfAuthenticated.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Middleware/RedirectIfAuthenticated.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/backend/admin/products/create.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/backend/admin/products/create.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/admin.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/admin.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -163,7 +161,7 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="C:/laragon/www/cleaning-service" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../farazi home care main" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="vue.rearranger.settings.migration" value="true" />
@@ -213,6 +211,7 @@
       <workItem from="1607427363210" duration="10000" />
       <workItem from="1607427396180" duration="69000" />
       <workItem from="1607427780733" duration="2513000" />
+      <workItem from="1607487380271" duration="4561000" />
     </task>
     <servers />
   </component>
@@ -230,42 +229,5 @@
       </map>
     </option>
     <option name="oldMeFiltersMigrated" value="true" />
-  </component>
-  <component name="WindowStateProjectService">
-    <state x="446" y="171" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1607416138053">
-      <screen x="0" y="0" width="1366" height="738" />
-    </state>
-    <state x="446" y="171" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1366.738@0.0.1366.738" timestamp="1607416138053" />
-    <state x="384" y="101" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1606555332655">
-      <screen x="0" y="0" width="1280" height="728" />
-    </state>
-    <state x="384" y="101" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.0.1280.728@0.0.1280.728" timestamp="1606555332655" />
-    <state x="395" y="121" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1607429201275">
-      <screen x="0" y="0" width="1366" height="738" />
-    </state>
-    <state x="370" y="119" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1280.728@0.0.1280.728" timestamp="1606728706493" />
-    <state x="395" y="121" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1366.738@0.0.1366.738" timestamp="1607429201275" />
-    <state x="448" y="121" key="FileChooserDialogImpl" timestamp="1607429118931">
-      <screen x="0" y="0" width="1366" height="738" />
-    </state>
-    <state x="420" y="119" key="FileChooserDialogImpl/0.0.1280.728@0.0.1280.728" timestamp="1607168011080" />
-    <state x="448" y="121" key="FileChooserDialogImpl/0.0.1366.738@0.0.1366.738" timestamp="1607429118931" />
-    <state x="396" y="71" key="NewPhpClassDialog" timestamp="1607165824796">
-      <screen x="0" y="0" width="1280" height="728" />
-    </state>
-    <state x="396" y="71" key="NewPhpClassDialog/0.0.1280.728@0.0.1280.728" timestamp="1607165824796" />
-    <state x="116" y="0" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser" timestamp="1606555461665">
-      <screen x="0" y="0" width="1280" height="728" />
-    </state>
-    <state x="116" y="0" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser/0.0.1280.728@0.0.1280.728" timestamp="1606555461665" />
-    <state x="390" y="102" width="585" height="534" key="find.popup" timestamp="1607422104438">
-      <screen x="0" y="0" width="1366" height="738" />
-    </state>
-    <state x="390" y="102" width="585" height="534" key="find.popup/0.0.1366.738@0.0.1366.738" timestamp="1607422104438" />
-    <state x="323" y="50" width="672" height="160" key="search.everywhere.popup" timestamp="1607422134571">
-      <screen x="0" y="0" width="1366" height="738" />
-    </state>
-    <state x="303" y="49" width="672" height="678" key="search.everywhere.popup/0.0.1280.728@0.0.1280.728" timestamp="1606641179695" />
-    <state x="323" y="50" width="672" height="160" key="search.everywhere.popup/0.0.1366.738@0.0.1366.738" timestamp="1607422134571" />
   </component>
 </project>
