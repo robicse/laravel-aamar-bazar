@@ -4,7 +4,7 @@
     <link rel="stylesheet" href="{{asset('backend/plugins/select2/select2.min.css')}}">
     <link rel="stylesheet" href="{{asset('backend/plugins/bootstrap-tagsinput/bootstrap-tagsinput.css')}}">
     <link rel="stylesheet" href="{{asset('backend/dist/css/spectrum.css')}}">
-    <link rel="stylesheet" href="{{asset('backend/dist/css/custome-style.css')}}">
+
 @endpush
 @section('content')
     <section class="content-header">
@@ -26,6 +26,7 @@
     <form role="form" id="choice_form" action="{{route('admin.products.store')}}" method="post"
           enctype="multipart/form-data">
         @csrf
+        <input type="hidden" name="added_by" value="admin">
         <section class="content">
             <div class="row m-2">
                 <div class="col-md-6">
@@ -54,21 +55,21 @@
                             </div>
                             <div class="form-group">
                                 <label for="sub_category_id">Subcategory</label>
-                                <select name="sub_category_id" id="subcategory_id" class="form-control demo-select2"
+                                <select name="subcategory_id" id="subcategory_id" class="form-control demo-select2"
                                         required>
 
                                 </select>
                             </div>
                             <div class="form-group">
                                 <label for="">Sub Subcategory</label>
-                                <select name="sub_sub_category_id" id="subsubcategory_id"
+                                <select name="subsubcategory_id" id="subsubcategory_id"
                                         class="form-control demo-select2" required>
 
                                 </select>
                             </div>
                             <div class="form-group">
                                 <label for="brand">Brand</label>
-                                <select name="brand" id="brand" class="form-control demo-select2" required>
+                                <select name="brand_id" id="brand" class="form-control demo-select2" required>
                                     @foreach($brands as $brand)
                                         <option value="{{$brand->id}}">{{$brand->name}}</option>
                                     @endforeach
@@ -85,11 +86,12 @@
                 <div class="col-md-6">
                     <!-- general form elements -->
                     <div class="card card-info card-outline">
-                        <p class="pl-2 pb-0 mb-0 bg-info">Product Inventory And Variation</p>
+                        <p class="pl-2 pb-0 mb-0 bg-info">Product Image Gallery</p>
                         <div class="form-group">
                             <label class="control-label ml-3">Gallery Images</label>
                             <div class="ml-3 mr-3">
                                 <div class="row" id="photos"></div>
+                                <div class="row" id="photos_alt"></div>
                             </div>
                         </div>
                         <div class="form-group">
@@ -97,6 +99,7 @@
                                     300px)</small></label>
                             <div class="ml-3 mr-3">
                                 <div class="row" id="thumbnail_img"></div>
+                                <div class="row" id="thumbnail_img_alt"></div>
                             </div>
                         </div>
                         <div class="form-group ml-3 mr-3">
@@ -117,8 +120,7 @@
                                     <div class="row">
                                         <div class="form-group col-md-6">
                                             <label for="unit_price">Unit price</label>
-                                            <input type="number" class="form-control " name="unit_price" id="unit_price"
-                                                   placeholder="Enter Unit price" required>
+                                            <input type="number" min="0" value="0" step="0.01" placeholder="Unit price" name="unit_price" class="form-control" required="">
                                         </div>
                                         <div class="form-group col-md-6">
                                             <label for="purchase_price">Purchase price</label>
@@ -128,7 +130,11 @@
                                         </div>
                                     </div>
                                     <div class="row">
-                                        <div class="form-group col-md-9">
+                                        <div class="form-group col-md-4">
+                                            <label for="unit_price">Quantity</label>
+                                            <input type="number" min="0" value="0" step="1" placeholder="Quantity" name="current_stock" class="form-control" required="">
+                                        </div>
+                                        <div class="form-group col-md-5">
                                             <label for="discount">Discount</label>
                                             <input type="number" min="0" value="0" step="0.01" placeholder="Discount"
                                                    name="discount" class="form-control" required="">
@@ -211,7 +217,7 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="meta_description">Meta Title</label>
-                                        <input type="text" class="form-control" placeholder="Enter meta title">
+                                        <input type="text" class="form-control" name="meta_title" placeholder="Meta Title">
                                     </div>
                                     <div class="form-group">
                                         <label for="meta_description">Meta Description</label>
@@ -259,7 +265,7 @@
                     url: "{{URL('/admin/products/slug')}}/" + name,
                     method: "get",
                     success: function (data) {
-                        console.log(data.response)
+                        //console.log(data.response)
                         $('#slug').val(data.response);
                     }
                 });
@@ -278,7 +284,17 @@
                 onSizeErr: function (index, file) {
                     console.log(index, file, 'file size too big');
                     alert('File size too big');
-                }
+                },
+                onAddRow:function(index){
+                     var altData = '<input type="text" placeholder="Image Alt" name="photos_alt[]" class="form-control" required=""></div>'
+                    //var index = index + 1;
+                    //$('#photos_alt').append('<h4 id="abc_'+index+'">'+index+'</h4>')
+                    //$('#photos_alt').append('<div class="col-md-4 col-sm-4 col-xs-6" id="abc_'+index+'">'+altData+'</div>')
+                },
+                onRemoveRow : function(index){
+                    var index = index + 1;
+                    $(`#abc_${index}`).remove()
+                },
             });
 
             $("#thumbnail_img").spartanMultiImagePicker({
@@ -295,7 +311,17 @@
                 onSizeErr: function (index, file) {
                     console.log(index, file, 'file size too big');
                     alert('File size too big');
-                }
+                },
+                onAddRow:function(index){
+                    var altData = '<input type="text" placeholder="Thumbnails Alt" name="thumbnail_img_alt[]" class="form-control" required=""></div>'
+                    //var index = index + 1;
+                    //$('#photos_alt').append('<h4 id="abc_'+index+'">'+index+'</h4>')
+                    //$('#thumbnail_img_alt').append('<div class="col-md-4 col-sm-4 col-xs-6" id="abc_'+index+'">'+altData+'</div>')
+                },
+                onRemoveRow : function(index){
+                    var index = index + 1;
+                    $(`#abc_${index}`).remove()
+                },
             });
 
             $(".color-var-select").select2({
@@ -351,7 +377,7 @@
                 _token: '{{ csrf_token() }}',
                 subcategory_id: subcategory_id
             }, function (data) {
-                console.log(data)
+                //console.log(data)
                 $('#subsubcategory_id').html(null);
                 $('#subsubcategory_id').append($('<option>', {
                     value: null,

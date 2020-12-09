@@ -20,10 +20,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a17e2167-d620-4213-a88e-6fc3baf87dda" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/resources/views/backend/admin/products/index.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Middleware/RedirectIfAuthenticated.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Middleware/RedirectIfAuthenticated.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Admin/ProductController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Admin/ProductController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/backend/admin/products/create.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/backend/admin/products/create.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/admin.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/admin.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/backend/layouts/master.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/backend/layouts/master.blade.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -161,18 +162,18 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../farazi home care main" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/resources/views/backend/admin/products" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\laragon\www\aamarbazar\resources\views\backend\admin\products" />
       <recent name="D:\laragon\www\aamarbazar\app\Http" />
       <recent name="D:\laragon\www\aamarbazar\resources\views\backend\partials" />
       <recent name="D:\laragon\www\aamarbazar\public\backend\dist\js" />
       <recent name="D:\laragon\www\aamarbazar\public\backend\dist\css" />
-      <recent name="D:\laragon\www\aamarbazar\resources\views\backend\admin\products" />
     </key>
   </component>
   <component name="RunManager">
@@ -211,7 +212,7 @@
       <workItem from="1607427363210" duration="10000" />
       <workItem from="1607427396180" duration="69000" />
       <workItem from="1607427780733" duration="2513000" />
-      <workItem from="1607487380271" duration="4561000" />
+      <workItem from="1607487380271" duration="24049000" />
     </task>
     <servers />
   </component>
