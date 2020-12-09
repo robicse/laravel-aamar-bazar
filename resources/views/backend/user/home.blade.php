@@ -14,69 +14,48 @@
         <section class="ps-section--account">
             <div class="container">
                 <div class="row">
-                    <div class="col-lg-4">
-                        <div class="ps-section__left">
-                            <aside class="ps-widget--account-dashboard">
-                                <div class="ps-widget__header"><img src="{{asset('frontend/img/users/3.jpg')}}" alt="">
-                                    <figure>
-                                        <figcaption>{{Auth::user()->name}}</figcaption>
-                                        <p><a href="#"><span class="__cf_email__" data-cfemail="12676177607c737f7752757f737b7e3c717d7f">{{Auth::user()->email}}</span></a></p>
-                                    </figure>
-                                </div>
-                                <div class="ps-widget__content">
-                                    <ul>
-                                        <li class="active"><a href="#"><i class="icon-user"></i> Account Information</a></li>
-                                        <li><a href="#"><i class="icon-alarm-ringing"></i> Notifications</a></li>
-                                        <li><a href="#"><i class="icon-papers"></i> Invoices</a></li>
-                                        <li><a href="#"><i class="icon-map-marker"></i> Address</a></li>
-                                        <li><a href="#"><i class="icon-store"></i> Recent Viewed Product</a></li>
-                                        <li><a href="#"><i class="icon-heart"></i> Wishlist</a></li>
-                                        <li><a href="#"><i class="icon-power-switch"></i>Logout</a></li>
-                                    </ul>
-                                </div>
-                            </aside>
-                        </div>
-                    </div>
+                    @include('backend.user.includes.user_sidebar')
                     <div class="col-lg-8">
                         <div class="ps-section__right">
-                            <form class="ps-form--account-setting" action="http://nouthemes.net/html/martfury/index.html" method="get">
+                            <form class="ps-form--account-setting" action="{{route('user.profile-update')}}" method="POST">
+                                @csrf
                                 <div class="ps-form__header">
                                     <h3> User Information</h3>
                                 </div>
                                 <div class="ps-form__content">
                                     <div class="form-group">
                                         <label>Name</label>
-                                        <input class="form-control" type="text" placeholder="Please enter your name...">
+                                        <input class="form-control" type="text" value="{{ Auth::User()->name }}" placeholder="Please enter your name...">
                                     </div>
                                     <div class="row">
                                         <div class="col-sm-6">
                                             <div class="form-group">
                                                 <label>Phone Number</label>
-                                                <input class="form-control" type="text" placeholder="Please enter phone number...">
+                                                <input class="form-control" type="number" value="{{ Auth::User()->phone }}" placeholder="Please enter phone number...">
                                             </div>
                                         </div>
                                         <div class="col-sm-6">
                                             <div class="form-group">
                                                 <label>Email</label>
-                                                <input class="form-control" type="text" placeholder="Please enter your email...">
+                                                <input class="form-control" type="email" value="{{ Auth::User()->email }}" placeholder="Please enter your email...">
                                             </div>
                                         </div>
-                                        <div class="col-sm-6">
-                                            <div class="form-group">
-                                                <label>Birthday</label>
-                                                <input class="form-control" type="text" placeholder="Please enter your birthday...">
-                                            </div>
-                                        </div>
-                                        <div class="col-sm-6">
-                                            <div class="form-group">
-                                                <label>Gender</label>
-                                                <select class="form-control">
-                                                    <option value="1">Male</option>
-                                                    <option value="2">Female</option>
-                                                    <option value="3">Other</option>
-                                                </select>
-                                            </div>
-                                        </div>
+{{--                                        <div class="col-sm-6">--}}
+{{--                                            <div class="form-group">--}}
+{{--                                                <label>Birthday</label>--}}
+{{--                                                <input class="form-control" type="text" placeholder="Please enter your birthday...">--}}
+{{--                                            </div>--}}
+{{--                                        </div>--}}
+{{--                                        <div class="col-sm-6">--}}
+{{--                                            <div class="form-group">--}}
+{{--                                                <label>Gender</label>--}}
+{{--                                                <select class="form-control">--}}
+{{--                                                    <option value="1">Male</option>--}}
+{{--                                                    <option value="2">Female</option>--}}
+{{--                                                    <option value="3">Other</option>--}}
+{{--                                                </select>--}}
+{{--                                            </div>--}}
+{{--                                        </div>--}}
                                     </div>
                                 </div>
                                 <div class="form-group submit">
