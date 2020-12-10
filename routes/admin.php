@@ -28,8 +28,10 @@ Route::group(['as'=>'admin.','prefix' =>'admin','namespace'=>'Admin', 'middlewar
     Route::post('products/get-subcategories-by-category','ProductController@ajaxSubCat')->name('products.get_subcategories_by_category');
     Route::post('products/get-subsubcategories-by-subcategory','ProductController@ajaxSubSubCat')->name('products.get_subsubcategories_by_subcategory');
     Route::post('products/sku_combination','ProductController@sku_combination')->name('products.sku_combination');
+    Route::post('products/todays_deal', 'ProductController@updateTodaysDeal')->name('products.todays_deal');
+    Route::post('products/published', 'ProductController@updateTodaysDeal')->name('products.published');
     Route::post('ckeditor/upload', 'CkeditorController@upload')->name('ckeditor.upload');
-
+    
 	/*
 	Route::get('/categories/destroy/{id}', 'CategoryController@destroy')->name('categories.destroy');
 	Route::post('/categories/featured', 'CategoryController@updateFeatured')->name('categories.featured');
