@@ -64,7 +64,7 @@
                                 <td>
                                     <div class="form-group col-md-2">
                                         <label class="switch" style="margin-top:40px;">
-                                            <input value="1" type="checkbox" name="colors_active">
+                                            <input onchange="update_todays_deal(this)" value="{{ $product->id }}" {{$product->todays_deal == 1? 'checked':''}} type="checkbox" >
                                             <span class="slider round"></span>
                                         </label>
                                     </div>
@@ -72,7 +72,7 @@
                                 <td>
                                     <div class="form-group col-md-2">
                                         <label class="switch" style="margin-top:40px;">
-                                            <input value="1" type="checkbox" name="colors_active">
+                                            <input onchange="update_published(this)" value="{{ $product->id }}" {{$product->published == 1? 'checked':''}} type="checkbox" >
                                             <span class="slider round"></span>
                                         </label>
                                     </div>
@@ -80,7 +80,7 @@
                                 <td>
                                     <div class="form-group col-md-2">
                                         <label class="switch" style="margin-top:40px;">
-                                            <input value="1"  type="checkbox" name="colors_active">
+                                            <input   type="checkbox" >
                                             <span class="slider round"></span>
                                         </label>
                                     </div>
@@ -176,6 +176,40 @@
                     )
                 }
             })
+        }
+        //today's deals
+        function update_todays_deal(el){
+            if(el.checked){
+                var status = 1;
+            }
+            else{
+                var status = 0;
+            }
+            $.post('{{ route('admin.products.todays_deal') }}', {_token:'{{ csrf_token() }}', id:el.value, status:status}, function(data){
+                if(data == 1){
+                    toastr.success('success', 'Todays Deal updated successfully');
+                }
+                else{
+                    toastr.danger('danger', 'Something went wrong');
+                }
+            });
+        }
+        //product published
+        function update_published(el){
+            if(el.checked){
+                var status = 1;
+            }
+            else{
+                var status = 0;
+            }
+            $.post('{{ route('admin.products.published') }}', {_token:'{{ csrf_token() }}', id:el.value, status:status}, function(data){
+                if(data == 1){
+                    toastr.success('success', 'Published products updated successfully');
+                }
+                else{
+                    toastr.danger('danger', 'Something went wrong');
+                }
+            });
         }
     </script>
 @endpush

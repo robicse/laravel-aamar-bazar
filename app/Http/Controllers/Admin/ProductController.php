@@ -279,4 +279,25 @@ class ProductController extends Controller
     {
         //
     }
+
+    //today's deals update
+    public function updateTodaysDeal(Request $request)
+    {
+        $product = Product::findOrFail($request->id);
+        $product->todays_deal = $request->status;
+        if($product->save()){
+            return 1;
+        }
+        return 0;
+    }
+    //product published
+    public function updateTodaysDeal(Request $request)
+    {
+        $product = Product::findOrFail($request->id);
+        $product->published = $request->status;
+        if($product->save()){
+            return 1;
+        }
+        return 0;
+    }
 }
