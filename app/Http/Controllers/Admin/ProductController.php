@@ -291,7 +291,7 @@ class ProductController extends Controller
         return 0;
     }
     //product published
-    public function updateTodaysDeal(Request $request)
+    public function updatePublished(Request $request)
     {
         $product = Product::findOrFail($request->id);
         $product->published = $request->status;
