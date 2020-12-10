@@ -37,13 +37,13 @@
 <body class="hold-transition sidebar-mini">
 <div class="wrapper">
     <!-- Navbar -->
-@include('backend.vendor.includes.header')
+@include('backend.seller.includes.header')
 <!-- /.navbar -->
 
     <!-- Main Sidebar Container -->
 
 {{--@if(Auth::check() && Auth::user()->role_id == '')--}}
-@include('backend.vendor.includes.admin_sidebar')
+@include('backend.seller.includes.seller_sidebar')
 {{--@endif--}}
 
 <!-- Content Wrapper. Contains page content -->
@@ -59,7 +59,7 @@
     <!-- /.control-sidebar -->
 
     <!-- Main Footer -->
-    @include('backend.vendor.includes.footer')
+    @include('backend.seller.includes.footer')
 </div>
 <!-- ./wrapper -->
 
