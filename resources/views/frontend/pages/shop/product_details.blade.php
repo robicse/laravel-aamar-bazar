@@ -7,7 +7,7 @@
                 <li><a href="{{url('/')}}">Home</a></li>
                 <li><a href="shop-default.html">Consumer Electrics</a></li>
                 <li><a href="shop-default.html">Refrigerators</a></li>
-                <li>Marshall Kilburn Portable Wireless Speaker</li>
+                <li>{{$productDetails->name}}</li>
             </ul>
         </div>
     </div>
@@ -21,20 +21,20 @@
                                 <figure>
                                     <div class="ps-wrapper">
                                         <div class="ps-product__gallery" data-arrow="true">
-                                            <div class="item"><a href="{{asset('frontend/img/products/detail/fullwidth/1.jpg')}}"><img src="{{asset('frontend/img/products/detail/fullwidth/1.jpg')}}" alt=""></a></div>
+                                            <div class="item"><a href="{{url($productDetails->thumbnail_img)}}"><img src="{{url($productDetails->thumbnail_img)}}" alt=""></a></div>
                                             <div class="item"><a href="{{asset('frontend/img/products/detail/fullwidth/2.jpg')}}"><img src="{{asset('frontend/img/products/detail/fullwidth/2.jpg')}}" alt=""></a></div>
                                             <div class="item"><a href="{{asset('frontend/img/products/detail/fullwidth/3.jpg')}}"><img src="{{asset('frontend/img/products/detail/fullwidth/3.jpg')}}" alt=""></a></div>
                                         </div>
                                     </div>
                                 </figure>
                                 <div class="ps-product__variants" data-item="4" data-md="4" data-sm="4" data-arrow="false">
-                                    <div class="item"><img src="{{asset('frontend/img/products/detail/fullwidth/1.jpg')}}" alt=""></div>
+                                    <div class="item"><img src="{{url($productDetails->thumbnail_img)}}" alt=""></div>
                                     <div class="item"><img src="{{asset('frontend/img/products/detail/fullwidth/2.jpg')}}" alt=""></div>
                                     <div class="item"><img src="{{asset('frontend/img/products/detail/fullwidth/3.jpg')}}" alt=""></div>
                                 </div>
                             </div>
                             <div class="ps-product__info">
-                                <h1>Marshall Kilburn Portable Wireless Speaker</h1>
+                                <h1>{{ $productDetails->name }}</h1>
                                 <div class="ps-product__meta">
                                     <p>Brand:<a href="shop-default.html">Sony</a></p>
                                     <div class="ps-product__rating">
@@ -755,26 +755,4 @@
             </div>
         </div>
     </div>
-{{--    <div class="ps-newsletter">--}}
-{{--        <div class="container">--}}
-{{--            <form class="ps-form--newsletter" action="http://nouthemes.net/html/martfury/do_action" method="post">--}}
-{{--                <div class="row">--}}
-{{--                    <div class="col-xl-5 col-lg-12 col-md-12 col-sm-12 col-12 ">--}}
-{{--                        <div class="ps-form__left">--}}
-{{--                            <h3>Newsletter</h3>--}}
-{{--                            <p>Subcribe to get information about products and coupons</p>--}}
-{{--                        </div>--}}
-{{--                    </div>--}}
-{{--                    <div class="col-xl-7 col-lg-12 col-md-12 col-sm-12 col-12 ">--}}
-{{--                        <div class="ps-form__right">--}}
-{{--                            <div class="form-group--nest">--}}
-{{--                                <input class="form-control" type="email" placeholder="Email address">--}}
-{{--                                <button class="ps-btn">Subscribe</button>--}}
-{{--                            </div>--}}
-{{--                        </div>--}}
-{{--                    </div>--}}
-{{--                </div>--}}
-{{--            </form>--}}
-{{--        </div>--}}
-{{--    </div>--}}
 @endsection

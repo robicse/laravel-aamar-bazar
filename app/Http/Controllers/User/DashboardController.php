@@ -26,6 +26,10 @@ class DashboardController extends Controller
     {
         return view('backend.user.address');
     }
+    public function orderHistory()
+    {
+        return view('backend.user.order_history');
+    }
     public function wishlist()
     {
         return view('backend.user.wishlist');

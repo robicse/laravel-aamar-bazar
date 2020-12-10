@@ -20,6 +20,7 @@ class CreateCategoriesTable extends Migration
             $table->integer('featured');
             $table->integer('top');
             $table->string('slug')->nullable();
+            $table->integer('is_home');
             $table->string('meta_title')->nullable();
             $table->text('meta_description')->nullable();
             $table->timestamps();

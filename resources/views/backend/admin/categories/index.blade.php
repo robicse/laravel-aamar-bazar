@@ -43,6 +43,7 @@
                                 <th>#Id</th>
                                 <th>Name</th>
                                 <th>Icon</th>
+                                <th>Is_home</th>
                                 <th>Action</th>
                             </tr>
                             </thead>
@@ -53,6 +54,14 @@
                                 <td>{{$category->name}}</td>
                                 <td>
                                     <img src="{{asset('uploads/categories/'.$category->icon)}}" width="32" height="32" alt="">
+                                </td>
+                                <td>
+                                    <div class="form-group col-md-2">
+                                        <label class="switch" style="margin-top:40px;">
+                                            <input onchange="update_is_home(this)" value="{{ $category->id }}" {{$category->is_home == 1? 'checked':''}} type="checkbox" >
+                                            <span class="slider round"></span>
+                                        </label>
+                                    </div>
                                 </td>
                                 <td>
                                     <a class="btn btn-info waves-effect" href="{{route('admin.categories.edit',$category->id)}}">
@@ -75,6 +84,7 @@
                                 <th>#Id</th>
                                 <th>Name</th>
                                 <th>Icon</th>
+                                <th>Is_home</th>
                                 <th>Action</th>
                             </tr>
                             </tfoot>
@@ -133,6 +143,23 @@
                     )
                 }
             })
+        }
+        //today's deals
+        function update_is_home(el){
+            if(el.checked){
+                var status = 1;
+            }
+            else{
+                var status = 0;
+            }
+            $.post('{{ route('admin.categories.is_home') }}', {_token:'{{ csrf_token() }}', id:el.value, status:status}, function(data){
+                if(data == 1){
+                    toastr.success('success', 'Is Home updated successfully');
+                }
+                else{
+                    toastr.danger('danger', 'Something went wrong');
+                }
+            });
         }
     </script>
 @endpush

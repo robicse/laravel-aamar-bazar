@@ -8,7 +8,7 @@
                     <li><a href="{{url('/')}}">Home</a></li>
                     <li>User Information</li>
                 </ul>
-                <div class="text-right">Logout</div>
+{{--                <div class="text-right">Logout</div>--}}
             </div>
         </div>
         <section class="ps-section--account">

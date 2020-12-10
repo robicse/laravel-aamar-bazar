@@ -20,6 +20,7 @@ Route::group(['as'=>'admin.','prefix' =>'admin','namespace'=>'Admin', 'middlewar
     Route::resource('staffs','StaffController');
     Route::resource('brands','BrandController');
     Route::resource('categories','CategoryController');
+    Route::post('categories/is_home', 'CategoryController@updateIsHome')->name('categories.is_home');
     Route::resource('attributes','AttributeController');
     Route::resource('subcategories','SubcategoryController');
     Route::resource('sub-subcategories','SubSubcategoryController');
@@ -32,7 +33,7 @@ Route::group(['as'=>'admin.','prefix' =>'admin','namespace'=>'Admin', 'middlewar
     Route::post('products/published/update', 'ProductController@updatePublished')->name('products.published');
     Route::post('products/featured/update', 'ProductController@updateFeatured')->name('products.featured');
     Route::post('ckeditor/upload', 'CkeditorController@upload')->name('ckeditor.upload');
-    
+
 	/*
 	Route::get('/categories/destroy/{id}', 'CategoryController@destroy')->name('categories.destroy');
 	Route::post('/categories/featured', 'CategoryController@updateFeatured')->name('categories.featured');
