@@ -15,16 +15,16 @@ class CreateSellersTable extends Migration
     {
         Schema::create('sellers', function (Blueprint $table) {
             $table->id();
-            $table->integer('user_id');
-            $table->integer('verification_status');
+            $table->bigInteger('user_id');
+            $table->integer('verification_status')->default(0);
             $table->longText('verification_info')->nullable();
-            $table->integer('cash_on_delivery_status');
-            $table->double('admin_to_pay');
+            $table->integer('cash_on_delivery_status')->nullable();
+            $table->double('admin_to_pay')->nullable();
             $table->string('bank_name')->nullable();
             $table->string('bank_acc_name')->nullable();
             $table->string('bank_acc_no')->nullable();
             $table->integer('bank_routing_no')->nullable();
-            $table->integer('bank_payment_status');
+            $table->integer('bank_payment_status')->nullable();
             $table->timestamps();
         });
     }

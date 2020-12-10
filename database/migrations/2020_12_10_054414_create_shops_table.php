@@ -25,6 +25,8 @@ class CreateShopsTable extends Migration
             $table->string('city')->nullable();
             $table->string('district')->nullable();
             $table->string('sub_district')->nullable();
+            $table->string('latitude')->nullable();
+            $table->string('longitude')->nullable();
             $table->string('facebook')->nullable();
             $table->string('google')->nullable();
             $table->string('twitter')->nullable();
