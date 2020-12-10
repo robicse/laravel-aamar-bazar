@@ -24,9 +24,35 @@
             -ms-transition: background-color 0.2s linear;
             transition: background-color 0.2s linear;
         }
+        .bk-autocomplete-items {
+            position: absolute;
+            border: 1px solid #d4d4d4;
+            border-bottom: none;
+            border-top: none;
+            z-index: 99;
+            left: 0;
+            right: 0;
+            z-index: 10001;
+            padding: 1px!important; ;
+            margin-top: 51px;
+            border-radius: 0 0 5px 5px;
+        }
+        .form-group {
+            margin-bottom: 2.5rem;
+        }
+        .ps-form--account .ps-tab-list {
+            text-align: center;
+            margin-bottom: 0px;
+        }
     </style>
     <link rel="stylesheet"
           href="https://cdn.jsdelivr.net/gh/barikoi/barikoi-js@b6f6295467c19177a7d8b73ad4db136905e7cad6/dist/barikoi.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.4.0/dist/leaflet.css"
+          integrity="sha512-puBpdR0798OZvTTbP4A8Ix/l+A4dHDD0DGqYW6RQ+9jxkRFclaxxQb/SJAWZfWAkuyeQUytO7+7N4QKrDh+drA=="
+          crossorigin=""/>
+    <script src="https://unpkg.com/leaflet@1.4.0/dist/leaflet.js"
+            integrity="sha512-QVftwZFqvtRNi0ZyCtsznlKSWOStnDORoefr1enyq5mVL4tmKB3S/EnC3rRJcxCPavG10IcrVGSmPh6Qw5lwrg=="
+            crossorigin=""></script>
 @endpush
 @section('content')
     <div class="ps-page--my-account">
@@ -40,7 +66,7 @@
         </div>
         <div class="ps-my-account">
             <div class="container">
-                <form class="ps-form--account ps-tab-root" action="{{ route('user.register') }}" method="POST">
+                <form class="ps-form--account ps-tab-root" action="{{ route('seller.registration.store') }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     <ul class="ps-tab-list">
                         <li class="active"><a href="#register">Be A Seller</a></li>
@@ -50,7 +76,7 @@
                         <div class="ps-tab active" id="register">
                             <div class="ps-form__content">
                                 <div class="">
-                                    <h5>Register An Account</h5>
+                                    <h4 class="text-info">Basic Info..................</h4>
                                     <div class="row">
                                         <div class="col-12">
                                             <div class="form-group">
@@ -113,7 +139,7 @@
                                     </div>
                                 </div>
                                 <div class="">
-                                    <h5>Store Info</h5>
+                                    <h4 class="text-info">Store Info..................</h4>
                                     <div class="row">
                                         <div class="col-12">
                                             <div class="form-group">
@@ -126,28 +152,23 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="form-group col-md-6">
-                                        <label for="name">Area </label>
-                                        <input type="text" class="bksearch form-control" name="bksearch"
-                                               value="">
-                                        <div class="bklist">
-                                        </div>
-                                        <input type="text" name="city">
-                                        <input type="text" name="area">
-                                        <input type="text" name="latitude">
-                                        <input type="text" name="longitude">
-                                    </div>
                                     <div class="row">
                                         <div class="col-12">
-                                            <div class="form-group">
+                                            <div class="form-input-group input-group--style-1">
+                                                <label for="bksearch">Shop Address</label>
                                                 <div class="input-group input-group--style-1">
-                                                    <input type="text" class="form-control{{ $errors->has('address') ? ' is-invalid' : '' }}" value="{{ old('address') }}" placeholder="Enter Your Shop Address" name="address">
-                                                    <span class="input-group-addon">
-                                                    <i class="fa fa-map" aria-hidden="true"></i>
-                                                </span>
+                                                    <input type="text" class="form-control bksearch {{ $errors->has('bksearch') ? ' is-invalid' : '' }}" value="{{ old('bksearch') }}" placeholder="Enter Your Shop Address" name="bksearch">
                                                 </div>
+                                                <div class="bklist"></div>
                                             </div>
                                         </div>
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <input type="hidden" name="address">
+                                        <input type="hidden" name="city">
+                                        <input type="hidden" name="area">
+                                        <input type="hidden" name="latitude">
+                                        <input type="hidden" name="longitude">
                                     </div>
                                     <div class="row">
                                         <div class="col-12">
@@ -162,8 +183,8 @@
 
                                 </div>
 
-                                <div class="form-group submtit">
-                                    <button class="ps-btn ps-btn--fullwidth">Save</button>
+                                <div class="form-group submtit ">
+                                    <button class="ps-btn ps-btn--fullwidth mb-5">Save</button>
                                 </div>
 
                             </div>

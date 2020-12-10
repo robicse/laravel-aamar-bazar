@@ -24,6 +24,8 @@
     <link rel="stylesheet" href="{{asset('frontend/plugins/jquery-bar-rating/dist/themes/fontawesome-stars.css')}}">
     <link rel="stylesheet" href="{{asset('frontend/plugins/select2/dist/css/select2.min.css')}}">
     <link rel="stylesheet" href="{{asset('frontend/css/style.css')}}">
+
+    {{--toastr js--}}
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css">
     @stack('css')
 </head>
@@ -68,9 +70,7 @@
     });
     @endforeach
     @endif
-    $(function () {
-        $('[data-toggle="frontend"]').tooltip()
-    })
+
 </script>
 <!-- custom scripts-->
 
