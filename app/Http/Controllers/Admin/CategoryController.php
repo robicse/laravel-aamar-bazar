@@ -155,4 +155,13 @@ class CategoryController extends Controller
         return back();
 
     }
+    public function updateIsHome(Request $request)
+    {
+        $category = Category::findOrFail($request->id);
+        $category->is_home = $request->status;
+        if($category->save()){
+            return 1;
+        }
+        return 0;
+    }
 }

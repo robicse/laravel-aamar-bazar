@@ -21,7 +21,7 @@ Route::get('/', 'Frontend\FrontendController@index')->name('index');
 Route::get('/shopping-cart', 'Frontend\CartController@viewCart')->name('shopping-cart');
 Route::get('/checkout', 'Frontend\CartController@checkout')->name('checkout');
 Route::get('/shop', 'Frontend\ShopController@shop')->name('shop');
-Route::get('/product-details', 'Frontend\ProductController@ProductDetails')->name('product-details');
+Route::get('/products/details/{slug}', 'Frontend\ProductController@ProductDetails')->name('product-details');
 Route::get('/become-a-vendor', 'Frontend\VendorController@index')->name('become-vendor');
 Route::get('/vendor-store', 'Frontend\VendorController@store')->name('vendor-store');
 Route::get('/about-us', 'Frontend\AboutController@About')->name('about-us');
@@ -37,17 +37,6 @@ Auth::routes();
 //Route::get('/home', 'HomeController@index')->name('home');
 
 
-Route::group(['middleware' => ['auth', 'admin']], function () {
-    //this route only for with out resource controller
-    Route::get('/admin/dashboard', 'Admin\DashboardController@index')->name('admin.dashboard');
-
-    //this route only for resource controller
-    Route::group(['as' => 'admin.', 'prefix' => 'admin', 'namespace' => 'Admin',], function () {
-        //Route::resource('products', 'ProductController');
-    });
-
-});
-
 Route::group(['middleware' => ['auth', 'user']], function () {
     //this route only for with out resource controller
     Route::get('/user/dashboard', 'User\DashboardController@index')->name('user.dashboard');
@@ -55,6 +44,7 @@ Route::group(['middleware' => ['auth', 'user']], function () {
     Route::get('/user/invoices', 'User\DashboardController@invoices')->name('user.invoices');
     Route::get('/user/notifications', 'User\DashboardController@notification')->name('user.notification');
     Route::get('/user/address', 'User\DashboardController@address')->name('user.address');
+    Route::get('/user/order/history', 'User\DashboardController@orderHistory')->name('user.order.history');
     Route::get('/user/wishlist', 'User\DashboardController@wishlist')->name('user.wishlist');
 
 
