@@ -293,8 +293,19 @@ class ProductController extends Controller
     //product published
     public function updatePublished(Request $request)
     {
-        $product = Product::findOrFail($request->id);
+        //return 'ok';
+        $product = Product::find($request->id);
         $product->published = $request->status;
+        if($product->save()){
+            return 1;
+        }
+        return 0;
+    }
+    //featured product status updated 
+    public function updateFeatured(Request $request)
+    {
+        $product = Product::find($request->id);
+        $product->featured = $request->status;
         if($product->save()){
             return 1;
         }
