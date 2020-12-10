@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers\Frontend;
+use App\Model\Category;
 use App\User;
 use Brian2694\Toastr\Facades\Toastr;
 use App\Http\Controllers\Controller;
@@ -11,7 +12,8 @@ use Illuminate\Support\Facades\Hash;
 class FrontendController extends Controller
 {
     public function index() {
-        return view('frontend.pages.index');
+        $categories = Category::all();
+        return view('frontend.pages.index', compact('categories'));
     }
     public function register(Request $request) {
 //        dd('sjf');
