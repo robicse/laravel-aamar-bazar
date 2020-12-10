@@ -54,3 +54,14 @@ Route::group(['middleware' => ['auth', 'user']], function () {
     });
 
 });
+
+Route::group(['middleware' => ['auth', 'vendor']], function () {
+    //this route only for with out resource controller
+    Route::get('/vendor/dashboard', 'Vendor\DashboardController@index')->name('vendor.dashboard');
+
+    //this route only for resource controller
+    Route::group(['as' => 'vendor.', 'prefix' => 'vendor', 'namespace' => 'Vendor',], function () {
+        //Route::resource('products', 'ProductController');
+    });
+
+});
