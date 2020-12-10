@@ -24,6 +24,7 @@
     <link rel="stylesheet" href="{{asset('frontend/plugins/jquery-bar-rating/dist/themes/fontawesome-stars.css')}}">
     <link rel="stylesheet" href="{{asset('frontend/plugins/select2/dist/css/select2.min.css')}}">
     <link rel="stylesheet" href="{{asset('frontend/css/style.css')}}">
+    @stack('css')
 </head>
 <body>
 @include('frontend.includes.header')
@@ -55,6 +56,7 @@
 <script src="{{asset('frontend/plugins/select2/dist/js/select2.full.min.js')}}"></script>
 <script src="{{asset('frontend/plugins/gmap3.min.js')}}"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+@stack('js')
 {!! Toastr::message() !!}
 <script>
     @if($errors->any())

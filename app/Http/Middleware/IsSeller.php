@@ -16,7 +16,8 @@ class IsSeller
      */
     public function handle($request, Closure $next)
     {
-        if (Auth::check() && Auth::user()->user_type == 'seller'  && !Auth::user()->banned) {
+        //if (Auth::check() && Auth::user()->user_type == 'seller'  && !Auth::user()->banned) {
+        if (Auth::check() && Auth::user()->user_type == 'seller' ) {
             return $next($request);
         }
         else{
