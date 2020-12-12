@@ -32,6 +32,8 @@ Route::get('/blog-details', 'Frontend\BlogController@details')->name('blog-detai
 Route::post('/registration','Frontend\FrontendController@register')->name('user.register');
 Route::get('/get-verification-code/{id}', 'Frontend\VerificationController@getVerificationCode')->name('get-verification-code');
 
+//product
+Route::post('/products/get/variant/price', 'Frontend\ProductController@ProductVariantPrice')->name('product.variant.price');
 Auth::routes();
 
 //Route::get('/home', 'HomeController@index')->name('home');
@@ -46,7 +48,6 @@ Route::group(['middleware' => ['auth', 'user']], function () {
     Route::get('/user/address', 'User\DashboardController@address')->name('user.address');
     Route::get('/user/order/history', 'User\DashboardController@orderHistory')->name('user.order.history');
     Route::get('/user/wishlist', 'User\DashboardController@wishlist')->name('user.wishlist');
-
 
     //this route only for resource controller
     Route::group(['as' => 'user.', 'prefix' => 'user', 'namespace' => 'User',], function () {

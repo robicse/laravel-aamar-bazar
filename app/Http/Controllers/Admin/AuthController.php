@@ -17,6 +17,7 @@ class AuthController extends Controller
     }
     public function LoginCheck(Request $request)
     {
+
        $user = User::where('email', $request->email)->first();
        if (!empty($user) && $user->user_type == 'admin') {
            $credential = [
