@@ -49,7 +49,7 @@
                                 <input type="text" class="form-control" name="address" value="{{ $shop_set->address }}" id="address" placeholder="Enter Address" required>
                             </div>
                             <div class="form-group">
-                                <label for="meta_description">Meta Title <small style="color: red">*</small> </label>
+                                <label for="meta_title">Meta Title <small style="color: red">*</small> </label>
                                 <input type="text" class="form-control" name="meta_title" id="meta_title" value="{{ $shop_set->meta_title }}" placeholder="Meta Title">
                             </div>
                             <div class="form-group">

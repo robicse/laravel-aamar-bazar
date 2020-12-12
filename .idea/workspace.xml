@@ -20,11 +20,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a17e2167-d620-4213-a88e-6fc3baf87dda" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/resources/views/backend/seller/settings/shop/create.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Seller/ProductController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Seller/ProductController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/backend/seller/includes/seller_sidebar.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/backend/seller/includes/seller_sidebar.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/seller.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/seller.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Seller/ShopController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Seller/ShopController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/backend/seller/settings/shop/create.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/backend/seller/settings/shop/create.blade.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -216,7 +214,7 @@
       <workItem from="1607487510922" duration="21877000" />
       <workItem from="1607574356609" duration="766000" />
       <workItem from="1607575173789" duration="25841000" />
-      <workItem from="1607745392648" duration="13284000" />
+      <workItem from="1607745392648" duration="14108000" />
     </task>
     <servers />
   </component>

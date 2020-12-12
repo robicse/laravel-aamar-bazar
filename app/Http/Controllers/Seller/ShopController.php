@@ -25,13 +25,15 @@ class ShopController extends Controller
 
     public function store(Request $request)
     {
-        $new_shop = \App\Model\Shop::where('seller_id',Auth::id())->where('name',$request->name)->latest()->get();
+        $new_shop = Shop::where('seller_id',Auth::id())->where('name',$request->name)->latest()->first();
         if(empty($new_shop)){
             $shop = new Shop;
             $shop->name = $request->name;
             $shop->address = $request->address;
             $shop->user_id = Auth::id();
             $shop->seller_id = Auth::id();
+            $shop->meta_title = $request->meta_title;
+            $shop->meta_description = $request->meta_description;
 //        $sliders = array();
 
             if($request->has('previous_sliders')){
@@ -62,6 +64,8 @@ class ShopController extends Controller
             $new_shop->address = $request->address;
             $new_shop->user_id = Auth::id();
             $new_shop->seller_id = Auth::id();
+            $new_shop->meta_title = $request->meta_title;
+            $new_shop->meta_description = $request->meta_description;
 //        $sliders = array();
 
             if($request->has('previous_sliders')){
@@ -85,7 +89,7 @@ class ShopController extends Controller
             }
             $new_shop->update();
 
-            Toastr::success("Shop Inserted Successfully","Success");
+            Toastr::success("Shop Updated Successfully","Success");
             return redirect()->route('seller.shop.create');
         }
 
