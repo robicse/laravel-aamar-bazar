@@ -57,8 +57,15 @@
                                 <td>{{$sellerUserInfo->name}}</td>
                                 <td>{{$sellerUserInfo->phone}}</td>
                                 <td>{{$sellerUserInfo->email}}</td>
-                                <td>0</td>
-                                <td>0</td>
+                                <td>
+                                    <div class="form-group col-md-2">
+                                        <label class="switch" style="margin-top:40px;">
+                                            <input onchange="verification_status(this)" value="{{$sellerUserInfo->seller->id }}" {{$sellerUserInfo->seller->verification_status == 1? 'checked':''}} type="checkbox" >
+                                            <span class="slider round"></span>
+                                        </label>
+                                    </div>
+                                </td>
+                                <td>{{$sellerUserInfo->products->count()}}</td>
                                 <td>{{$sellerUserInfo->balance}}</td>
                                 <td>
                                     <div class="dropdown">
@@ -72,7 +79,7 @@
                                             <a class="bg-success dropdown-item" href="{{route('admin.sellers.edit',$sellerUserInfo->id)}}">
                                                 <i class="fa fa-money"></i> Pay Now
                                             </a>
-                                            <a class="bg-success dropdown-item" href="{{route('admin.sellers.edit',$sellerUserInfo->id)}}">
+                                            <a class="bg-secondary dropdown-item" href="{{route('admin.sellers.edit',$sellerUserInfo->id)}}">
                                                 <i class="fa fa-history"></i> Payment History
                                             </a>
                                             <a class="bg-info dropdown-item" href="{{route('admin.sellers.edit',$sellerUserInfo->id)}}">
@@ -80,7 +87,7 @@
                                             </a>
                                             <button class="bg-danger dropdown-item" type="button"
                                                     onclick="deleteProduct({{$sellerUserInfo->id}})">
-                                                <i class="fa fa-trash"></i> Delete
+                                                <i class="fa fa-ban"></i> Ban this seller
                                             </button>
                                             <form id="delete-form-{{$sellerUserInfo->id}}" action="{{route('admin.sellers.destroy',$sellerUserInfo->id)}}" method="POST" style="display: none;">
                                                 @csrf
@@ -160,5 +167,23 @@
                 }
             })
         }
+
+        function verification_status(el){
+            if(el.checked){
+                var status = 1;
+            }
+            else{
+                var status = 0;
+            }
+            $.post('{{ route('admin.seller.verification') }}', {_token:'{{ csrf_token() }}', id:el.value, status:status}, function(data){
+                if(data == 1){
+                    //toastr.success('success', 'Todays Deal updated successfully');
+                }
+                else{
+                    //toastr.danger('danger', 'Something went wrong');
+                }
+            });
+        }
+
     </script>
 @endpush

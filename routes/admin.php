@@ -34,6 +34,7 @@ Route::group(['as'=>'admin.','prefix' =>'admin','namespace'=>'Admin', 'middlewar
     Route::post('products/featured/update', 'ProductController@updateFeatured')->name('products.featured');
     Route::post('ckeditor/upload', 'CkeditorController@upload')->name('ckeditor.upload');
     Route::resource('sellers','SellerController');
+    Route::post('sellers/verification','SellerController@verification')->name('seller.verification');
 
 	/*
 	Route::get('/categories/destroy/{id}', 'CategoryController@destroy')->name('categories.destroy');
