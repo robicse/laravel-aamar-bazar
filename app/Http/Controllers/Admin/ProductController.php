@@ -8,6 +8,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Helpers;
 use App\Model\Brand;
 use App\Model\Category;
+use App\Model\Color;
 use App\Model\Subcategory;
 use App\Model\SubSubcategory;
 use App\Model\Product;
@@ -140,7 +141,17 @@ class ProductController extends Controller
         $product->meta_description = $request->meta_description;
         $product->slug = $request->slug;
         if($request->has('colors_active') && $request->has('colors') && count($request->colors) > 0){
-            $product->colors = json_encode($request->colors);
+
+            $data = Array();
+            foreach ($request->colors as $color){
+                $colorName = Color::where('code',$color)->first();
+                $item['name'] = $colorName->name;
+                $item['code'] = $color;
+                array_push($data, $item);
+                //$data = array_push($colorName,$color);
+            }
+            //dd($data);
+            $product->colors = json_encode($data);
         }
         else {
             $colors = array();
