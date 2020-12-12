@@ -31,6 +31,9 @@
             border-radius: 4px;
             height: 36px!important;
         }
+        .dropdown-menu {
+            padding: 0!important;
+        }
     </style>
     @stack('css')
 </head>

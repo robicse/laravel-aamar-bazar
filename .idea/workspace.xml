@@ -20,35 +20,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a17e2167-d620-4213-a88e-6fc3baf87dda" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/app/Http/Controllers/Seller/CkeditorController.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Http/Controllers/Seller/ProductController.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/uploads/products/photos/4vx4C85iGPvgP0SnNM4PcJ1CtQa1pxrXT6Scx3iX.jpeg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/uploads/products/photos/QQDqmTbNl1JL8nQ1zs54fbh6xofN0KqLXNOGPgtb.jpeg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/uploads/products/photos/SA8kQbU8bMV9lQmWveRwa9i6GnSlFvL7pXB7iZ8t.jpeg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/uploads/products/photos/cOPf8eZjCYwoNOznFQPfqKtXRDxvozq2m9EVqrGq.jpeg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/uploads/products/photos/qVBJBlLtaWNtqXpdZNLxcWm4c46SvZonraiX9DK4.jpeg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/uploads/products/thumbnail/blx2Y5F3RyMs7arw93EWNGXYLO05XJ5N2wVnhT5R.jpeg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/uploads/products/thumbnail/ezxjrQO0dtVZKWmNyJvuJ0vnBnBwEIsOAHeRLnn4.jpeg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/uploads/products/thumbnail/qQWhiGphSTY1oXazPjlCLRrDhwzc7idnjpPysM9T.jpeg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/uploads/products/thumbnail/yqAZSSOdk7DWhEQjCHlX2ankS0hhV538eNH2mFaS.jpeg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/backend/seller/home.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/backend/seller/includes/seller_sidebar.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/backend/seller/products/create.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/backend/seller/products/index.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/backend/admin/seller/index.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Admin/ProductController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Admin/ProductController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Auth/LoginController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Auth/LoginController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Vendor/DashboardController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Seller/DashboardController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/auth/register.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/auth/register.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/backend/vendor/home.blade.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/backend/vendor/includes/footer.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/backend/seller/includes/footer.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/backend/vendor/includes/header.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/backend/seller/includes/header.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/backend/vendor/includes/vendor_sidebar.blade.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/backend/vendor/layouts/master.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/backend/seller/layouts/master.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/frontend/layouts/master.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/frontend/layouts/master.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/seller.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/seller.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/backend/dist/css/adminlte.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/backend/dist/css/adminlte.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/backend/includes/header.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/backend/includes/header.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/backend/seller/includes/header.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/backend/seller/includes/header.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/admin.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/admin.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -186,18 +164,18 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/resources/views/backend/admin/seller" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\laragon\www\aamarbazar\resources\views\backend\admin\seller" />
       <recent name="D:\laragon\www\aamarbazar\resources\views\auth\seller" />
       <recent name="D:\laragon\www\aamarbazar\routes" />
       <recent name="D:\laragon\www\aamarbazar\resources\views\backend\admin\products" />
       <recent name="D:\laragon\www\aamarbazar\app\Http" />
-      <recent name="D:\laragon\www\aamarbazar\resources\views\backend\partials" />
     </key>
   </component>
   <component name="RunManager">
@@ -239,7 +217,7 @@
       <workItem from="1607487380271" duration="25455000" />
       <workItem from="1607573140842" duration="4907000" />
       <workItem from="1607579210432" duration="20359000" />
-      <workItem from="1607747396810" duration="1984000" />
+      <workItem from="1607747396810" duration="12265000" />
     </task>
     <servers />
   </component>

@@ -131,7 +131,7 @@
                 <div class="float-right">
                     <a href="#" class="dropdown-item" href="{{ route('logout') }}"
                        onclick="event.preventDefault();
-                   document.getElementById('logout-form').submit();">
+                        document.getElementById('logout-form').submit();">
                         <i class="fa fa-sign-out mr-2"></i> Logout
                     </a>
                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
