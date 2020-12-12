@@ -12,6 +12,7 @@ use App\Model\Subcategory;
 use App\Model\SubSubcategory;
 use Brian2694\Toastr\Facades\Toastr;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
 
 class ProductController extends Controller
@@ -73,7 +74,7 @@ class ProductController extends Controller
         $product = new Product;
         $product->name = $request->name;
         $product->added_by = $request->added_by;
-        $product->user_id = \App\User::where('user_type', 'seller')->first()->id;
+        $product->user_id = Auth::id();
         $product->category_id = $request->category_id;
         $product->subcategory_id = $request->subcategory_id;
         $product->subsubcategory_id = $request->subsubcategory_id;

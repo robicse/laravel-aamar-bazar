@@ -20,15 +20,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a17e2167-d620-4213-a88e-6fc3baf87dda" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/public/uploads/shop/logo/22er0Gz0ED2iXEx4wTYoTYBdQje5Ryyp3RYAXpwl.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/uploads/shop/logo/PrzQsJgWFj1QQu0f0mAgN6BPqGWQ74lNevawtP3Q.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/backend/seller/settings/shop/create.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Seller/AuthController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Seller/AuthController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2020_12_10_054326_create_sellers_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2020_12_10_054326_create_sellers_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2020_12_10_054414_create_shops_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2020_12_10_054414_create_shops_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/auth/seller/register.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/auth/seller/register.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/frontend/layouts/master.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/frontend/layouts/master.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Seller/ProductController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Seller/ProductController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/backend/seller/includes/seller_sidebar.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/backend/seller/includes/seller_sidebar.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/seller.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/seller.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -219,7 +215,8 @@
       <workItem from="1607430461486" duration="4000" />
       <workItem from="1607487510922" duration="21877000" />
       <workItem from="1607574356609" duration="766000" />
-      <workItem from="1607575173789" duration="25726000" />
+      <workItem from="1607575173789" duration="25841000" />
+      <workItem from="1607745392648" duration="13284000" />
     </task>
     <servers />
   </component>
@@ -247,16 +244,16 @@
       <screen x="0" y="0" width="1280" height="728" />
     </state>
     <state x="384" y="101" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.0.1280.728@0.0.1280.728" timestamp="1606555332655" />
-    <state x="395" y="121" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1607600713272">
+    <state x="395" y="121" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1607768043441">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
     <state x="370" y="119" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1280.728@0.0.1280.728" timestamp="1606728706493" />
-    <state x="395" y="121" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1366.738@0.0.1366.738" timestamp="1607600713272" />
-    <state x="448" y="121" key="FileChooserDialogImpl" timestamp="1607577763800">
+    <state x="395" y="121" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1366.738@0.0.1366.738" timestamp="1607768043441" />
+    <state x="448" y="121" key="FileChooserDialogImpl" timestamp="1607766610861">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
     <state x="420" y="119" key="FileChooserDialogImpl/0.0.1280.728@0.0.1280.728" timestamp="1607168011080" />
-    <state x="448" y="121" key="FileChooserDialogImpl/0.0.1366.738@0.0.1366.738" timestamp="1607577763800" />
+    <state x="448" y="121" key="FileChooserDialogImpl/0.0.1366.738@0.0.1366.738" timestamp="1607766610861" />
     <state x="396" y="71" key="NewPhpClassDialog" timestamp="1607165824796">
       <screen x="0" y="0" width="1280" height="728" />
     </state>
