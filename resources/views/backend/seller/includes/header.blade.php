@@ -112,22 +112,32 @@
          </li>--}}
         <li class="nav-item dropdown">
             <a class="nav-link" data-toggle="dropdown" href="#">
-                <i class="fa fa-user-circle"></i>
+                <i class="fa fa-user-circle"></i> <strong>{{Auth::user()->name}}</strong>
             </a>
             <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
+                <div class="image text-center">
+                    <img src="{{asset('backend/images/logo.png')}}" width="60px" height="60px" class="img-circle elevation-2 mt-2" alt="User Image">
+                </div>
                 <span class="dropdown-item dropdown-header">
                     <strong>{{Auth::user()->name}}</strong><br>
-                    {{--<small>10,August,2019</small>--}}
+                    <small>{{Auth::user()->created_at->diffForHumans()}}</small>
                 </span>
                 <div class="dropdown-divider"></div>
-                <a href="#" class="dropdown-item" href="{{ route('logout') }}"
-                   onclick="event.preventDefault();
+                <div class="float-left">
+                    <a href="" class="dropdown-item">
+                        <i class="fa fa-user-circle-o mr-2"></i> Profile
+                    </a>
+                </div>
+                <div class="float-right">
+                    <a href="#" class="dropdown-item" href="{{ route('logout') }}"
+                       onclick="event.preventDefault();
                    document.getElementById('logout-form').submit();">
-                    <i class="fa fa-sign-out mr-2"></i> Logout
-                </a>
-                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                    @csrf
-                </form>
+                        <i class="fa fa-sign-out mr-2"></i> Logout
+                    </a>
+                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                        @csrf
+                    </form>
+                </div>
                 <div class="dropdown-divider"></div>
             </div>
         </li>

@@ -39,10 +39,10 @@ class LoginController extends Controller
             //Toastr::success('Successfully Logged In',"Success");
             return $this->redirectTo = route('user.dashboard');
         }
-//        elseif (Auth::check() && Auth::user()->role_id == 2) {
-//            //Toastr::success('Successfully Logged In',"Success");
-//            return $this->redirectTo = route('user.dashboard');
-//        }
+        elseif (Auth::check() && Auth::user()->user_type == 'seller') {
+            Toastr::success('Successfully Logged In',"Success");
+            return $this->redirectTo = route('seller.dashboard');
+        }
         else {
             //return('/login');
             return('/');
