@@ -108,6 +108,41 @@
                             </li>
                         </ul>
                     </li>
+                    <li class="nav-item has-treeview {{(Request::is('admin/sellers*') ) ? 'menu-open' : ''}}">
+                        <a href="#" class="nav-link">
+                            <i class="nav-icon fas fa-user-plus"></i>
+                            <p>
+                                Sellers
+                                <i class="right fa fa-angle-left"></i>
+                            </p>
+                        </a>
+                        <ul class="nav nav-treeview">
+                            <li class="nav-item">
+                                <a href="{{route('admin.sellers.index')}}" class="nav-link {{Request::is('admin/sellers') ? 'active' :''}}">
+                                    <i class="fa fa-{{Request::is('admin/sellers') ? 'folder-open':'folder'}} nav-icon"></i>
+                                    <p>Seller List</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{{route('admin.seller.withdraw.request')}}" class="nav-link {{Request::is('admin/sellers/withdraw/request*') ? 'active' :''}}">
+                                    <i class="fa fa-{{Request::is('admin/sellers/withdraw/request*') ? 'folder-open':'folder'}} nav-icon"></i>
+                                    <p>Seller Withdraw Requests</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{{route('admin.seller.payment.history')}}" class="nav-link {{Request::is('admin/sellers/payment/history*') ? 'active' :''}}">
+                                    <i class="fa fa-{{Request::is('admin/sellers/payment/history*') ? 'folder-open':'folder'}} nav-icon"></i>
+                                    <p>Payments History</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{{route('admin.seller.commission.form')}}" class="nav-link {{Request::is('admin/sellers/commission/form*') ? 'active' :''}}">
+                                    <i class="fa fa-{{Request::is('admin/sellers/commission/form*') ? 'folder-open':'folder'}} nav-icon"></i>
+                                    <p>Seller Commission</p>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
                 </ul>
             </nav>
             <!-- /.sidebar-menu -->

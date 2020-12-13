@@ -1,25 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="BranchesTreeState">
-    <expand>
-      <path>
-        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
-        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
-      </path>
-      <path>
-        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
-        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
-      </path>
-      <path>
-        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
-        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
-        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
-      </path>
-    </expand>
-    <select />
-  </component>
   <component name="ChangeListManager">
     <list default="true" id="a17e2167-d620-4213-a88e-6fc3baf87dda" name="Default Changelist" comment="">
+<<<<<<< HEAD
       <change afterPath="$PROJECT_DIR$/resources/views/backend/seller/profile/edit_password.blade.php" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/resources/views/backend/seller/profile/edit_profile.blade.php" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/resources/views/backend/seller/profile/payment.blade.php" afterDir="false" />
@@ -36,22 +19,25 @@
       <change beforePath="$PROJECT_DIR$/resources/views/frontend/pages/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/frontend/pages/index.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/frontend/pages/shop/shop.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/frontend/pages/shop/shop.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/seller.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/seller.php" afterDir="false" />
+=======
+      <change afterPath="$PROJECT_DIR$/resources/views/backend/admin/seller/commission.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/backend/admin/seller/payment_history.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/backend/admin/seller/withdraw_request.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Admin/SellerController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Admin/SellerController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/backend/admin/seller/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/backend/admin/seller/index.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/backend/includes/admin_sidebar.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/backend/includes/admin_sidebar.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/admin.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/admin.php" afterDir="false" />
+>>>>>>> 2bfef2999d933b5927f7fb7299ffd0405af19118
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="ComposerSettings" doNotAsk="true" synchronizationState="SYNCHRONIZE">
+  <component name="ComposerSettings">
     <pharConfigPath>$PROJECT_DIR$/composer.json</pharConfigPath>
     <execution />
-  </component>
-  <component name="FileTemplateManagerImpl">
-    <option name="RECENT_TEMPLATES">
-      <list>
-        <option value="CSS File" />
-      </list>
-    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -164,7 +150,7 @@
       <path value="$PROJECT_DIR$/vendor/intervention/image" />
     </include_path>
   </component>
-  <component name="ProjectId" id="1kVNnWt4rFA1OJb8t4IdcPG4OHo" />
+  <component name="ProjectId" id="1laQzV0Ai5ZH5y7vWifSnuWYEqC" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -172,34 +158,28 @@
   </component>
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="C:/laragon/www/smart-care" />
-    <property name="list.type.of.created.stylesheet" value="CSS" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/resources/views/backend/admin/seller" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="D:\laragon\www\aamarbazar\app\Http" />
-      <recent name="D:\laragon\www\aamarbazar\resources\views\backend\partials" />
-      <recent name="D:\laragon\www\aamarbazar\public\backend\dist\js" />
-      <recent name="D:\laragon\www\aamarbazar\public\backend\dist\css" />
-      <recent name="D:\laragon\www\aamarbazar\resources\views\backend\admin\products" />
+      <recent name="D:\laragon\www\aamarbazar\resources\views\backend\admin\seller" />
     </key>
-  </component>
-  <component name="RunManager">
-    <configuration name="phpunit.xml" type="PHPUnitRunConfigurationType" factoryName="PHPUnit">
-      <TestRunner scope="XML" />
-      <method v="2" />
-    </configuration>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\laragon\www\aamarbazar\app\Model" />
+    </key>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
       <changelist id="a17e2167-d620-4213-a88e-6fc3baf87dda" name="Default Changelist" comment="" />
-      <created>1605781969814</created>
+      <created>1607832991603</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
+<<<<<<< HEAD
       <updated>1605781969814</updated>
       <workItem from="1605781971289" duration="7653000" />
       <workItem from="1606018582327" duration="14017000" />
@@ -230,6 +210,10 @@
       <workItem from="1607745392648" duration="20628000" />
       <workItem from="1607831036923" duration="1094000" />
       <workItem from="1607832478256" duration="20836000" />
+=======
+      <updated>1607832991603</updated>
+      <workItem from="1607832998988" duration="11885000" />
+>>>>>>> 2bfef2999d933b5927f7fb7299ffd0405af19118
     </task>
     <servers />
   </component>
@@ -248,6 +232,7 @@
     </option>
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
+<<<<<<< HEAD
   <component name="WindowStateProjectService">
     <state x="446" y="171" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1607416138053">
       <screen x="0" y="0" width="1366" height="738" />
@@ -285,4 +270,6 @@
     <state x="303" y="49" width="672" height="678" key="search.everywhere.popup/0.0.1280.728@0.0.1280.728" timestamp="1606641179695" />
     <state x="323" y="50" width="672" height="160" key="search.everywhere.popup/0.0.1366.738@0.0.1366.738" timestamp="1607856883771" />
   </component>
+=======
+>>>>>>> 2bfef2999d933b5927f7fb7299ffd0405af19118
 </project>

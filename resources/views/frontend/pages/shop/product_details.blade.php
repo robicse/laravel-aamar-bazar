@@ -1,5 +1,37 @@
 @extends('frontend.layouts.master')
 @section('title', 'Product Details')
+@push('css')
+    <style>
+        [type=radio] {
+            position: absolute;
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+        /* IMAGE STYLES */
+        /*[type=radio] + img {*/
+        /*    cursor: pointer;*/
+        /*}*/
+        [type=radio] + label {
+            cursor: pointer;
+            padding: 10px 10px;
+            background-color: #fcb800;
+            color: #000000;
+            border-radius: 6px;
+        }
+
+        /* CHECKED STYLES */
+        /*[type=radio]:checked + img {*/
+        /*    background-color: #f00;*/
+        /*    outline: 2px solid #f00;*/
+        /*    border-radius: 10px;*/
+        /*}*/
+        [type=radio]:checked + label {
+             border: 2px solid #282727;
+            color: #212121;
+        }
+    </style>
+@endpush
 @section('content')
     <div class="ps-breadcrumb">
         <div class="ps-container">
@@ -36,7 +68,7 @@
                             <div class="ps-product__info">
                                 <h1>{{ $productDetails->name }}</h1>
                                 <div class="ps-product__meta">
-                                    <p>Brand:<a href="shop-default.html">Sony</a></p>
+                                    <p>Brand:<a href="shop-default.html">{{ $productDetails->brand->name }}</a></p>
                                     <div class="ps-product__rating">
                                         <select class="ps-rating" data-read-only="true">
                                             <option value="1">1</option>
@@ -44,12 +76,12 @@
                                             <option value="1">3</option>
                                             <option value="1">4</option>
                                             <option value="2">5</option>
-                                        </select><span>(1 review)</span>
+                                        </select><span>(7 review)</span>
                                     </div>
                                 </div>
-                                <h4 class="ps-product__price">$36.78 – $56.99</h4>
+                                <h4 class="ps-product__price">৳<span class="price ps-product__price">{{ $price }}</span>/{{ $productDetails->unit }}</h4>
                                 <div class="ps-product__desc">
-                                    <p>Sold By:<a href="shop-default.html"><strong> Go Pro</strong></a></p>
+                                    <p>Sold By:<a href="shop-default.html"><strong> {{ $productDetails->brand->name }}</strong></a></p>
                                     <ul class="ps-list--dot">
                                         <li> Unrestrained and portable active stereo speaker</li>
                                         <li> Free from the confines of wires and chords</li>
@@ -58,24 +90,59 @@
                                         <li> 3/4″ Dome Tweeters: 2X and 4″ Woofer: 1X</li>
                                     </ul>
                                 </div>
-                                <div class="ps-product__variations">
-                                    <figure>
-                                        <figcaption>Color</figcaption>
-                                        <div class="ps-variant ps-variant--color color--1"><span class="ps-variant__tooltip">Black</span></div>
-                                        <div class="ps-variant ps-variant--color color--2"><span class="ps-variant__tooltip"> Gray</span></div>
-                                    </figure>
-                                </div>
-                                <div class="ps-product__shopping">
-                                    <figure>
-                                        <figcaption>Quantity</figcaption>
-                                        <div class="form-group--number">
-                                            <button class="up"><i class="fa fa-plus"></i></button>
-                                            <button class="down"><i class="fa fa-minus"></i></button>
-                                            <input class="form-control" type="text" placeholder="1">
-                                        </div>
-                                    </figure><a class="ps-btn ps-btn--black" href="#">Add to cart</a><a class="ps-btn" href="#">Buy Now</a>
-                                    <div class="ps-product__actions"><a href="#"><i class="icon-heart"></i></a><a href="#"><i class="icon-chart-bars"></i></a></div>
-                                </div>
+                                <form id="option-choice-form">
+                                    @csrf
+                                    <div class="ps-product__variations">
+                                        @if(count($colors)!=0)
+                                            <figure>
+                                                <figcaption>Color</figcaption>
+                                                @foreach($colors as $index=>$col)
+                                                    <div class="form-check form-check-inline mr-0">
+                                                        <input class="form-check-input" type="radio" name="color" id="{{$col->code}}" value="{{$col->name}}" @if($index == 0) checked @endif>
+                                                        <label class="form-check-label" for="{{$col->code}}" style="background-color: {{$col->code}};">
+                                                            {{$col->name}}
+                                                        </label>
+                                                    </div>
+                                                @endforeach
+                                                {{--                                            <div class="ps-variant ps-variant--color color--1"><span class="ps-variant__tooltip">Black</span></div>--}}
+                                                {{--                                            <div class="ps-variant ps-variant--color color--2"><span class="ps-variant__tooltip"> Gray</span></div>--}}
+                                            </figure>
+                                        @endif
+                                        @if(count($attributes)!=0)
+                                            @foreach($attributes as $key=>$attr)
+                                                @php
+                                                    $att=\App\Model\Attribute::find($attr);
+                                                @endphp
+                                                <figure>
+                                                    <figcaption>{{$att->name}}</figcaption>
+                                                    @foreach($options[$key]->values as $index=>$val)
+                                                        <div class="form-check form-check-inline mr-0">
+                                                            <input class="form-check-input" type="radio" name="{{$att->name}}" id="{{$val}}" value="{{$val}}" @if($index == 0) checked @endif>
+                                                            <label class="form-check-label" for="{{$val}}">
+                                                                {{$val}}
+                                                            </label>
+                                                        </div>
+                                                    @endforeach
+                                                </figure>
+                                            @endforeach
+                                        @endif
+                                    </div>
+
+                                    <div class="ps-product__shopping">
+                                        <figure>
+                                            <figcaption>Quantity</figcaption>
+                                            <div class="form-group--number">
+                                                <button class="up"><i class="fa fa-plus"></i></button>
+                                                <button class="down"><i class="fa fa-minus"></i></button>
+                                                <input class="form-control qtty" name="quantity" type="text" placeholder="1" value="1">
+                                            </div>
+                                        </figure>
+                                        <p class="aval">{{$avilability}} available</p>
+                                        <a class="ps-btn ps-btn--black" href="#">Add to cart</a>
+{{--                                        <a class="ps-btn" href="#">Buy Now</a>--}}
+{{--                                        <div class="ps-product__actions"><a href="#"><i class="icon-heart"></i></a><a href="#"><i class="icon-chart-bars"></i></a></div>--}}
+                                    </div>
+                                </form>
                                 <div class="ps-product__specification"><a class="report" href="#">Report Abuse</a>
                                     <p><strong>SKU:</strong> SF1133569600-1</p>
                                     <p class="categories"><strong> Categories:</strong><a href="#">Consumer Electronics</a>,<a href="#"> Refrigerator</a>,<a href="#">Babies & Moms</a></p>
@@ -756,3 +823,47 @@
         </div>
     </div>
 @endsection
+@push('js')
+    <script>
+        $('#option-choice-form input').on('change', function(){
+            getVariantPrice($('#option-choice-form').serializeArray());
+            //console.log($('#option-choice-form').serializeArray());
+        });
+
+        $('.up').on('click', function(event){
+            event.preventDefault();
+            var val=$('.qtty').val();
+            $('.qtty').val(parseInt(val)+1);
+        });
+        $('.down').on('click', function(event){
+            event.preventDefault();
+            var val=$('.qtty').val();
+            if(parseInt(val)>1){
+                $('.qtty').val(parseInt(val)-1);
+            }
+        });
+
+        function getVariantPrice(array){
+            console.log(array);
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+            $.ajax({
+                url: "{{route('product.variant.price')}}",
+                method: "post",
+                data:{
+                    variant:array,
+                },
+                success: function(data){
+                    console.log(data.response.price)
+                    $('.price').html(data.response.price);
+                    $('.aval').html(data.response.qty+" available");
+                    //toastr.success('Lab Test added in your cart <span style="font-size: 25px;">&#10084;&#65039;</span>');
+                }
+            });
+        }
+
+    </script>
+@endpush
