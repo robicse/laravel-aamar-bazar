@@ -115,7 +115,6 @@ class ProductController extends Controller
             foreach ($request->photos as $key => $photo) {
                 $path = $photo->store('uploads/products/photos');
                 array_push($photos, $path);
-                //ImageOptimizer::optimize(base_path('public/').$path);
             }
             $product->photos = json_encode($photos);
         }
@@ -145,9 +144,9 @@ class ProductController extends Controller
             $data = Array();
             foreach ($request->colors as $color){
                 $colorName = Color::where('code',$color)->first();
-                $item['name'] = $colorName->name;
-                $item['code'] = $color;
-                array_push($data, $item);
+                $color_item['name'] = $colorName->name;
+                $color_item['code'] = $color;
+                array_push($data, $color_item);
                 //$data = array_push($colorName,$color);
             }
             //dd($data);
