@@ -35,16 +35,10 @@ Route::group(['as'=>'admin.','prefix' =>'admin','namespace'=>'Admin', 'middlewar
     Route::post('ckeditor/upload', 'CkeditorController@upload')->name('ckeditor.upload');
     Route::resource('sellers','SellerController');
     Route::post('sellers/verification','SellerController@verification')->name('seller.verification');
+    Route::get('sellers/commission/form','SellerController@commissionForm')->name('seller.commission.form');
+    Route::get('sellers/commission/store','SellerController@commissionStore')->name('seller.commission.store');
+    Route::get('sellers/payment/history','SellerController@paymentHistory')->name('seller.payment.history');
+    Route::get('sellers/withdraw/request','SellerController@withdrawRequest')->name('seller.withdraw.request');
 
-	/*
-	Route::get('/categories/destroy/{id}', 'CategoryController@destroy')->name('categories.destroy');
-	Route::post('/categories/featured', 'CategoryController@updateFeatured')->name('categories.featured');
 
-	Route::resource('subcategories','SubCategoryController');
-	Route::get('/subcategories/destroy/{id}', 'SubCategoryController@destroy')->name('subcategories.destroy');
-
-	Route::resource('subsubcategories','SubSubCategoryController');
-	Route::get('/subsubcategories/destroy/{id}', 'SubSubCategoryController@destroy')->name('subsubcategories.destroy');
-
-	Route::get('/brands/destroy/{id}', 'BrandController@destroy')->name('brands.destroy');*/
 });

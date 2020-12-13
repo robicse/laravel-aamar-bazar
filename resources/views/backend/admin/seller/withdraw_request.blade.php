@@ -1,5 +1,5 @@
 @extends('backend.layouts.master')
-@section("title","Seller List")
+@section("title","Seller Withdraw Request List")
 @push('css')
     <link rel="stylesheet" href="{{asset('backend/plugins/datatables/dataTables.bootstrap4.css')}}">
 @endpush
@@ -8,12 +8,12 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>Seller List</h1>
+                    <h1>Seller Withdraw Request List</h1>
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
                         <li class="breadcrumb-item"><a href="{{route('admin.dashboard')}}">Home</a></li>
-                        <li class="breadcrumb-item active">Seller List</li>
+                        <li class="breadcrumb-item active">Seller Withdraw Request List</li>
                     </ol>
                 </div>
             </div>
@@ -25,9 +25,9 @@
             <div class="col-12">
                 <div class="card card-info card-outline">
                     <div class="card-header">
-                        <h3 class="card-title float-left">Seller Lists</h3>
+                        <h3 class="card-title float-left">Seller Withdraw Request List</h3>
                         <div class="float-right">
-                            {{--<a href="{{route('admin.sellers.index.create')}}">
+                            {{--<a href="{{route('admin.p.create')}}">
                                 <button class="btn btn-success">
                                     <i class="fa fa-plus-circle"></i>
                                     Add
@@ -41,73 +41,59 @@
                             <thead>
                             <tr>
                                 <th>#Id</th>
-                                <th>Name</th>
-                                <th>Phone</th>
-                                <th>Email</th>
-                                <th>Approval</th>
-                                <th>Num. of Products</th>
-                                <th>Due to seller</th>
+                                <th>Date</th>
+                                <th>Seller Name</th>
+                                <th>Total Amount to Pay</th>
+                                <th>Requested Amount</th>
+                                <th>Message</th>
+                                <th>Status</th>
                                 <th>Action</th>
                             </tr>
                             </thead>
                             <tbody>
-                            @foreach($sellerUserInfos as $key => $sellerUserInfo)
+                           {{-- @foreach($sellerUserInfos as $key => $sellerUserInfo)--}}
                             <tr>
-                                <td>{{$key + 1}}</td>
-                                <td>{{$sellerUserInfo->name}}</td>
-                                <td>{{$sellerUserInfo->phone}}</td>
-                                <td>{{$sellerUserInfo->email}}</td>
-                                <td>
-                                    <div class="form-group col-md-2">
-                                        <label class="switch" style="margin-top:40px;">
-                                            <input onchange="verification_status(this)" value="{{$sellerUserInfo->seller->id }}" {{$sellerUserInfo->seller->verification_status == 1? 'checked':''}} type="checkbox" >
-                                            <span class="slider round"></span>
-                                        </label>
-                                    </div>
-                                </td>
-                                <td>{{$sellerUserInfo->products->count()}}</td>
-                                <td>{{$sellerUserInfo->balance}}</td>
+                                {{--<td>{{$key + 1}}</td>--}}
+                                <td>1</td>
+                                <td>2020-11-30 05:42:00</td>
+                                <td>Mr. Seller (Demo Seller Shop)</td>
+                                <td>৳78.400</td>
+                                <td>৳78.400</td>
+                                <td>Do something</td>
+                                <td>Pending</td>
                                 <td>
                                     <div class="dropdown">
                                         <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                             Actions
                                         </button>
                                         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                            <a class="bg-dark dropdown-item" href="{{route('admin.sellers.edit',$sellerUserInfo->id)}}">
-                                                <i class="fa fa-user"></i> Profile
-                                            </a>
-                                            <a class="bg-success dropdown-item" href="{{route('admin.sellers.edit',$sellerUserInfo->id)}}">
-                                                <i class="fa fa-money"></i> Pay Now
-                                            </a>
-                                            <a class="bg-secondary dropdown-item" href="{{route('admin.sellers.edit',$sellerUserInfo->id)}}">
-                                                <i class="fa fa-history"></i> Payment History
-                                            </a>
-                                            <a class="bg-info dropdown-item" href="{{route('admin.sellers.edit',$sellerUserInfo->id)}}">
-                                                <i class="fa fa-edit"></i> Edit
-                                            </a>
+
                                             <button class="bg-danger dropdown-item" type="button"
-                                                    onclick="deleteProduct({{$sellerUserInfo->id}})">
-                                                <i class="fa fa-ban"></i> Ban this seller
+                                                    onclick="payNow({{'1'}})">
+                                                <i class="fa fa-money"></i> Pay Now
                                             </button>
-                                            <form id="delete-form-{{$sellerUserInfo->id}}" action="{{route('admin.sellers.destroy',$sellerUserInfo->id)}}" method="POST" style="display: none;">
+                                            <form id="delete-form-{{'1'}}" action="#" method="POST" style="display: none;">
                                                 @csrf
                                                 @method('DELETE')
                                             </form>
+                                            <a class="bg-info dropdown-item" href="{{route('admin.seller.payment.history')}}">
+                                                <i class="fa fa-history"></i> Payment History
+                                            </a>
                                         </div>
                                     </div>
                                 </td>
                             </tr>
-                            @endforeach
+                            {{--@endforeach--}}
                             </tbody>
                             <tfoot>
                             <tr>
                                 <th>#Id</th>
-                                <th>Name</th>
-                                <th>Phone</th>
-                                <th>Email</th>
-                                <th>Approval</th>
-                                <th>Num. of Products</th>
-                                <th>Due to seller</th>
+                                <th>Date</th>
+                                <th>Seller Name</th>
+                                <th>Total Amount to Pay</th>
+                                <th>Requested Amount</th>
+                                <th>Message</th>
+                                <th>Status</th>
                                 <th>Action</th>
                             </tr>
                             </tfoot>
@@ -136,17 +122,16 @@
                 "autoWidth": false
             });
         });
-
         //sweet alert
-        function deleteBrand(id) {
+        function payNow(id) {
             swal({
-                title: 'Are you sure?',
+                title: 'Are you sure to Pay?',
                 text: "You won't be able to revert this!",
                 type: 'warning',
                 showCancelButton: true,
-                confirmButtonColor: '#3085d6',
+                confirmButtonColor: '#30a90c',
                 cancelButtonColor: '#d33',
-                confirmButtonText: 'Yes, delete it!',
+                confirmButtonText: 'Yes,Pay Now!',
                 cancelButtonText: 'No, cancel!',
                 confirmButtonClass: 'btn btn-success',
                 cancelButtonClass: 'btn btn-danger',
@@ -167,23 +152,5 @@
                 }
             })
         }
-
-        function verification_status(el){
-            if(el.checked){
-                var status = 1;
-            }
-            else{
-                var status = 0;
-            }
-            $.post('{{ route('admin.seller.verification') }}', {_token:'{{ csrf_token() }}', id:el.value, status:status}, function(data){
-                if(data == 1){
-                    //toastr.success('success', 'Todays Deal updated successfully');
-                }
-                else{
-                    //toastr.danger('danger', 'Something went wrong');
-                }
-            });
-        }
-
     </script>
 @endpush

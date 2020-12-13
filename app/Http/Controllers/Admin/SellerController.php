@@ -15,6 +15,7 @@ class SellerController extends Controller
        $sellerUserInfos = User::where('user_type','seller')->get();
        return view('backend.admin.seller.index', compact('sellerUserInfos'));
    }
+
    public function verification(Request $request)
    {
        //return $request->id;
@@ -24,6 +25,24 @@ class SellerController extends Controller
            return 1;
        }
        return 0;
+   }
+   public function commissionForm()
+   {
+       return view('backend.admin.seller.commission');
+   }
+
+   public function commissionStore(Request $request)
+   {
+
+   }
+
+   public function paymentHistory()
+   {
+    return view('backend.admin.seller.payment_history');
+   }
+   public function withdrawRequest()
+   {
+       return view('backend.admin.seller.withdraw_request');
    }
 
 }
