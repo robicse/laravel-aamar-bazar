@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Frontend;
 use App\Model\Category;
 use App\Model\Product;
+use App\Model\Shop;
 use App\User;
 use Brian2694\Toastr\Facades\Toastr;
 use App\Http\Controllers\Controller;
@@ -16,7 +17,8 @@ class FrontendController extends Controller
         $categories = Category::where('is_home',1)->latest()->get();
         $products = Product::where('todays_deal',1)->latest()->limit(7)->get();
         $new_products = Product::where('published',1)->latest()->limit(7)->get();
-        return view('frontend.pages.index', compact('categories','products','new_products'));
+        $shops = Shop::all();
+        return view('frontend.pages.index', compact('categories','products','new_products','shops'));
     }
     public function register(Request $request) {
 //        dd('sjf');

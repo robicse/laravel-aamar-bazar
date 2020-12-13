@@ -1,5 +1,5 @@
 @extends('frontend.layouts.master')
-@section('title', 'Blog List')
+@section('title', 'Blog Details')
 @section('content')
     <div class="ps-page--blog">
         <div class="ps-post--detail ps-post--parallax">

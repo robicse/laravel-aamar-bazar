@@ -19,6 +19,17 @@ Route::group(['as'=>'seller.','prefix' =>'seller', 'middleware' => ['auth', 'sel
 
     Route::resource('products','Seller\ProductController');
     Route::resource('shop','Seller\ShopController');
+
+    Route::get('profile','Seller\ProfileController@profile')->name('profile.index');
+    Route::post('profile/update','Seller\ProfileController@profile_update')->name('profile.update');
+    Route::get('password','Seller\ProfileController@password')->name('password.edit');
+    Route::post('password/update','Seller\ProfileController@password_update')->name('password.update');
+    Route::get('payment/settings','Seller\ProfileController@payment')->name('payment.settings');
+    Route::post('payment/update','Seller\ProfileController@payment_update')->name('payment.update');
+    Route::post('payment/cash_on_delivery_status', 'Seller\ProfileController@cashOnDelivery')->name('payment.cash_on_delivery_status');
+    Route::post('payment/bank_payment_status', 'Seller\ProfileController@bankPayment')->name('payment.bank_payment_status');
+
+
     Route::get('products/slug/{name}','Seller\ProductController@ajaxSlugMake')->name('products.slug');
     Route::post('products/get-subcategories-by-category','Seller\ProductController@ajaxSubCat')->name('products.get_subcategories_by_category');
     Route::post('products/get-subsubcategories-by-subcategory','Seller\ProductController@ajaxSubSubCat')->name('products.get_subsubcategories_by_subcategory');

@@ -7,6 +7,7 @@ use App\Model\Shop;
 use Brian2694\Toastr\Facades\Toastr;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Str;
 
 class ShopController extends Controller
 {
@@ -14,6 +15,11 @@ class ShopController extends Controller
     public function index()
     {
         //
+    }
+    public function ajaxSlugMake($name)
+    {
+        $data = Str::slug($name);
+        return response()->json(['success'=> true, 'response'=>$data]);
     }
 
     public function create()
@@ -29,7 +35,12 @@ class ShopController extends Controller
         if(empty($new_shop)){
             $shop = new Shop;
             $shop->name = $request->name;
+            $shop->slug = Str::slug($request->name).'-'.Auth::id();
             $shop->address = $request->address;
+            $shop->city = $request->city;
+            $shop->area = $request->area;
+            $shop->latitude = $request->latitude;
+            $shop->longitude = $request->longitude;
             $shop->user_id = Auth::id();
             $shop->seller_id = Auth::id();
             $shop->meta_title = $request->meta_title;
@@ -61,7 +72,12 @@ class ShopController extends Controller
             return redirect()->route('seller.shop.create');
         }else {
             $new_shop->name = $request->name;
+            $new_shop->slug = Str::slug($request->name).'-'.Auth::id();
             $new_shop->address = $request->address;
+            $new_shop->city = $request->city;
+            $new_shop->area = $request->area;
+            $new_shop->latitude = $request->latitude;
+            $new_shop->longitude = $request->longitude;
             $new_shop->user_id = Auth::id();
             $new_shop->seller_id = Auth::id();
             $new_shop->meta_title = $request->meta_title;

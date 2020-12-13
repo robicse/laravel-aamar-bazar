@@ -19,7 +19,7 @@ class ProductController extends Controller
 {
     public function index()
     {
-        $products = Product::where('added_by','seller')->latest()->get();
+        $products = Product::where('user_id',Auth::id())->latest()->get();
         return view('backend.seller.products.index',compact('products'));
     }
     public function ajaxSlugMake($name)

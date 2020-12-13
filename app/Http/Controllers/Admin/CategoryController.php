@@ -54,6 +54,7 @@ class CategoryController extends Controller
         $category->meta_description = $request->meta_description;
         $category->featured = 0;
         $category->top = 0;
+        $category->is_home = 0;
         $image = $request->file('icon');
         if (isset($image)) {
             //make unique name for image
@@ -115,6 +116,7 @@ class CategoryController extends Controller
         $category->meta_description = $request->meta_description;
         $category->featured = 0;
         $category->top = 0;
+        $category->is_home = 0;
         $image = $request->file('icon');
         if (isset($image)) {
             //make unique name for image

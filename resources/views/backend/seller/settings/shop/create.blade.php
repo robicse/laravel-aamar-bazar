@@ -1,9 +1,26 @@
 @extends('backend.seller.layouts.master')
 @section("title","Shop Settings")
 @push('css')
+    <style>
+        .bk-autocomplete-items {
+            position: absolute;
+            border: 1px solid #d4d4d4;
+            border-bottom: none;
+            border-top: none;
+            z-index: 99;
+            left: 0;
+            right: 0;
+            z-index: 10001;
+            padding: 1px!important; ;
+            margin-top: 51px;
+            border-radius: 0 0 5px 5px;
+        }
+    </style>
     <link rel="stylesheet" href="{{asset('backend/plugins/select2/select2.min.css')}}">
     <link rel="stylesheet" href="{{asset('backend/plugins/bootstrap-tagsinput/bootstrap-tagsinput.css')}}">
     <link rel="stylesheet" href="{{asset('backend/dist/css/spectrum.css')}}">
+    <link rel="stylesheet"
+          href="https://cdn.jsdelivr.net/gh/barikoi/barikoi-js@b6f6295467c19177a7d8b73ad4db136905e7cad6/dist/barikoi.min.css">
 
 @endpush
 @section('content')
@@ -45,9 +62,22 @@
 {{--                                <input type="file" class="form-control" name="logo" id="logo" >--}}
 {{--                            </div>--}}
                             <div class="form-group">
-                                <label for="name">Address <small style="color: red">*</small></label>
-                                <input type="text" class="form-control" name="address" value="{{ $shop_set->address }}" id="address" placeholder="Enter Address" required>
+{{--                                <label for="name">Address <small style="color: red">*</small></label>--}}
+{{--                                <input type="text" class="form-control" name="address" value="{{ $shop_set->address }}" id="address" placeholder="Enter Address" required>--}}
+                                <label for="bksearch">Shop Address</label>
+                                <div class="form-group form-group--style-1">
+                                    <input type="text" class="form-control bksearch {{ $errors->has('bksearch') ? ' is-invalid' : '' }}" value="{{ old('bksearch') }}" placeholder="Enter Your Shop Address" name="bksearch">
+                                </div>
+                                <div class="bklist"></div>
                             </div>
+                            <div class="form-group">
+                                <input type="hidden" name="address">
+                                <input type="hidden" name="city">
+                                <input type="hidden" name="area">
+                                <input type="hidden" name="latitude">
+                                <input type="hidden" name="longitude">
+                            </div>
+
                             <div class="form-group">
                                 <label for="meta_title">Meta Title <small style="color: red">*</small> </label>
                                 <input type="text" class="form-control" name="meta_title" id="meta_title" value="{{ $shop_set->meta_title }}" placeholder="Meta Title">
@@ -95,6 +125,7 @@
     <script src="{{asset('backend/plugins/bootstrap-tagsinput/bootstrap-tagsinput.js')}}"></script>
     <script src="//cdn.ckeditor.com/4.15.1/standard/ckeditor.js"></script>
     <script src="{{asset('backend/plugins/ckeditor/ckeditor.js')}}"></script>
+    <script src="https://cdn.jsdelivr.net/gh/barikoi/barikoi-js@b6f6295467c19177a7d8b73ad4db136905e7cad6/dist/barikoi.min.js?key:MTg3NzpCRE5DQ01JSkgw"></script>
     <script>
         function add_more_customer_choice_option(i, name) {
             $('#customer_choice_options').append('<div class="form-group row"><div class="col-lg-2 "><input type="hidden" name="choice_no[]" value="' + i + '"><input type="text" class="form-control" name="choice[]" value="' + name + '" placeholder="{{ 'Choice Title' }}" readonly></div><div class="col-lg-7"><input type="text" class="form-control" name="choice_options_' + i + '[]" placeholder="{{'Enter choice values' }}" data-role="tagsinput" onchange="update_sku()"></div></div>');
@@ -155,5 +186,20 @@
                 $(`#abc_${index}`).remove()
             },
         });
+    </script>
+    <script>
+        Bkoi.onSelect(function () {
+            // get selected data from dropdown list
+            let selectedPlace = Bkoi.getSelectedData()
+            console.log(selectedPlace)
+            // center of the map
+            document.getElementsByName("address")[0].value = selectedPlace.address;
+            document.getElementsByName("city")[0].value = selectedPlace.city;
+            document.getElementsByName("area")[0].value = selectedPlace.area;
+            document.getElementsByName("latitude")[0].value = selectedPlace.latitude;
+            document.getElementsByName("longitude")[0].value = selectedPlace.longitude;
+
+        })
+
     </script>
 @endpush

@@ -431,7 +431,7 @@
                         <div class="ps-block__content">
                             <div class="owl-slider" id="recommended1" data-owl-auto="true" data-owl-loop="true" data-owl-speed="10000" data-owl-gap="30" data-owl-nav="false" data-owl-dots="false" data-owl-item="6" data-owl-item-xs="2" data-owl-item-sm="2" data-owl-item-md="3" data-owl-item-lg="4" data-owl-item-xl="5" data-owl-duration="1000" data-owl-mousedrag="on">
                                 <div class="ps-product">
-                                    <div class="ps-product__thumbnail"><a href="{{route('product-details')}}"><img src="{{asset('frontend/img/products/shop/best/1.jpg')}}" alt=""></a>
+                                    <div class="ps-product__thumbnail"><a href=""><img src="{{asset('frontend/img/products/shop/best/1.jpg')}}" alt=""></a>
                                         <ul class="ps-product__actions">
                                             <li><a href="#" data-toggle="tooltip" data-placement="top" title="Add To Cart"><i class="icon-bag2"></i></a></li>
                                             <li><a href="#" data-placement="top" title="Quick View" data-toggle="modal" data-target="#product-quickview"><i class="icon-eye"></i></a></li>
@@ -440,7 +440,7 @@
                                         </ul>
                                     </div>
                                     <div class="ps-product__container"><a class="ps-product__vendor" href="#">Young Shop</a>
-                                        <div class="ps-product__content"><a class="ps-product__title" href="{{route('product-details')}}">Sleeve Linen Blend Caro Pane Shirt</a>
+                                        <div class="ps-product__content"><a class="ps-product__title" href="">Sleeve Linen Blend Caro Pane Shirt</a>
                                             <div class="ps-product__rating">
                                                 <select class="ps-rating" data-read-only="true">
                                                     <option value="1">1</option>
@@ -452,13 +452,13 @@
                                             </div>
                                             <p class="ps-product__price">$22.99 - $32.99</p>
                                         </div>
-                                        <div class="ps-product__content hover"><a class="ps-product__title" href="{{route('product-details')}}">Sleeve Linen Blend Caro Pane Shirt</a>
+                                        <div class="ps-product__content hover"><a class="ps-product__title" href="">Sleeve Linen Blend Caro Pane Shirt</a>
                                             <p class="ps-product__price">$22.99 - $32.99</p>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="ps-product">
-                                    <div class="ps-product__thumbnail"><a href="{{route('product-details')}}"><img src="{{asset('frontend/img/products/shop/best/2.jpg')}}" alt=""></a>
+                                    <div class="ps-product__thumbnail"><a href=""><img src="{{asset('frontend/img/products/shop/best/2.jpg')}}" alt=""></a>
                                         <div class="ps-product__badge">-7%</div>
                                         <ul class="ps-product__actions">
                                             <li><a href="#" data-toggle="tooltip" data-placement="top" title="Add To Cart"><i class="icon-bag2"></i></a></li>
@@ -468,7 +468,7 @@
                                         </ul>
                                     </div>
                                     <div class="ps-product__container"><a class="ps-product__vendor" href="#">Young Shop</a>
-                                        <div class="ps-product__content"><a class="ps-product__title" href="{{route('product-details')}}">MVMTH Classical Leather Watch In Black</a>
+                                        <div class="ps-product__content"><a class="ps-product__title" href="">MVMTH Classical Leather Watch In Black</a>
                                             <div class="ps-product__rating">
                                                 <select class="ps-rating" data-read-only="true">
                                                     <option value="1">1</option>
@@ -480,7 +480,7 @@
                                             </div>
                                             <p class="ps-product__price sale">$57.99 <del>$62.99 </del></p>
                                         </div>
-                                        <div class="ps-product__content hover"><a class="ps-product__title" href="{{route('product-details')}}">MVMTH Classical Leather Watch In Black</a>
+                                        <div class="ps-product__content hover"><a class="ps-product__title" href="">MVMTH Classical Leather Watch In Black</a>
                                             <p class="ps-product__price sale">$57.99 <del>$62.99 </del></p>
                                         </div>
                                     </div>
