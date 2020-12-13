@@ -28,7 +28,7 @@
         /*    border-radius: 10px;*/
         /*}*/
         [type=radio]:checked + label {
-             border: 2px solid #000000;
+             border: 2px solid #282727;
             color: #212121;
         }
     </style>
