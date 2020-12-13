@@ -73,7 +73,7 @@
                                             Actions
                                         </button>
                                         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                            <a class="bg-dark dropdown-item" href="{{route('admin.sellers.edit',$sellerUserInfo->id)}}">
+                                            <a class="bg-dark dropdown-item" href="{{route('admin.seller.profile.show',$sellerUserInfo->id)}}">
                                                 <i class="fa fa-user"></i> Profile
                                             </a>
                                             <a class="bg-success dropdown-item" href="{{route('admin.sellers.edit',$sellerUserInfo->id)}}">

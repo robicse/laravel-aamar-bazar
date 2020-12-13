@@ -45,4 +45,11 @@ class SellerController extends Controller
        return view('backend.admin.seller.withdraw_request');
    }
 
+   public function profileShow($id)
+   {
+       $userInfo = User::find($id);
+       $sellerInfo = Seller::where('user_id',$id)->first();
+       return view('backend.admin.seller.profile', compact('userInfo','sellerInfo'));
+   }
+
 }
