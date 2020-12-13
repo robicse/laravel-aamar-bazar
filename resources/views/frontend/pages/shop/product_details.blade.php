@@ -8,7 +8,6 @@
             width: 0;
             height: 0;
         }
-
         /* IMAGE STYLES */
         /*[type=radio] + img {*/
         /*    cursor: pointer;*/
@@ -80,7 +79,7 @@
                                         </select><span>(7 review)</span>
                                     </div>
                                 </div>
-                                <h4 class="ps-product__price">৳{{ $price }}/{{ $productDetails->unit }}</h4>
+                                <h4 class="ps-product__price">৳<span class="price ps-product__price">{{ $price }}</span>/{{ $productDetails->unit }}</h4>
                                 <div class="ps-product__desc">
                                     <p>Sold By:<a href="shop-default.html"><strong> {{ $productDetails->brand->name }}</strong></a></p>
                                     <ul class="ps-list--dot">
@@ -99,9 +98,9 @@
                                                 <figcaption>Color</figcaption>
                                                 @foreach($colors as $index=>$col)
                                                     <div class="form-check form-check-inline mr-0">
-                                                        <input class="form-check-input" type="radio" name="color" id="{{$col}}" value="{{$col}}" @if($index == 0) checked @endif>
-                                                        <label class="form-check-label" for="{{$col}}" style="background-color: {{$col}};">
-                                                            {{$col}}
+                                                        <input class="form-check-input" type="radio" name="color" id="{{$col->code}}" value="{{$col->name}}" @if($index == 0) checked @endif>
+                                                        <label class="form-check-label" for="{{$col->code}}" style="background-color: {{$col->code}};">
+                                                            {{$col->name}}
                                                         </label>
                                                     </div>
                                                 @endforeach
@@ -138,7 +137,7 @@
                                                 <input class="form-control qtty" name="quantity" type="text" placeholder="1" value="1">
                                             </div>
                                         </figure>
-                                        <p>({{$avilability}} available)</p>
+                                        <p class="aval">{{$avilability}} available</p>
                                         <a class="ps-btn ps-btn--black" href="#">Add to cart</a>
 {{--                                        <a class="ps-btn" href="#">Buy Now</a>--}}
 {{--                                        <div class="ps-product__actions"><a href="#"><i class="icon-heart"></i></a><a href="#"><i class="icon-chart-bars"></i></a></div>--}}
@@ -858,7 +857,9 @@
                     variant:array,
                 },
                 success: function(data){
-                    console.log(data.response)
+                    console.log(data.response.price)
+                    $('.price').html(data.response.price);
+                    $('.aval').html(data.response.qty+" available");
                     //toastr.success('Lab Test added in your cart <span style="font-size: 25px;">&#10084;&#65039;</span>');
                 }
             });
