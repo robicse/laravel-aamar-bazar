@@ -553,6 +553,42 @@
                 </div>
             </div>
         </div>
+        <div class="ps-product-list ps-new-arrivals">
+            <div class="ps-container">
+                <div class="ps-section__header">
+                    <h3>Best Sellers</h3>
+                    <ul class="ps-section__links">
+                        <li><a href="shop-grid.html">View All</a></li>
+                    </ul>
+                </div>
+                <div class="ps-section__content">
+                    <div class="row">
+                        @foreach($shops as $shop)
+                        <div class="col-xl-3 col-lg-4 col-md-4 col-sm-6 col-12 ">
+                            <div class="ps-product--horizontal">
+                                <div class="ps-product__thumbnail"><a href="product-default.html"><img src="{{url($shop->logo)}}" alt=""></a></div>
+                                <div class="ps-product__content"><a class="ps-product__title" href="product-default.html">{{ $shop->name }}</a>
+                                    <div class="ps-product__rating">
+                                        <select class="ps-rating" data-read-only="true">
+                                            <option value="1">1</option>
+                                            <option value="1">2</option>
+                                            <option value="1">3</option>
+                                            <option value="1">4</option>
+                                            <option value="2">5</option>
+                                        </select>
+                                    </div>
+                                    <div class="">
+                                        <p class="ps-product__price"> <a href="{{route('shop')}}">Visit Store</a>
+                                    <i class="right fa fa-angle-left"></i> </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        @endforeach
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 @endsection
 @push('js')

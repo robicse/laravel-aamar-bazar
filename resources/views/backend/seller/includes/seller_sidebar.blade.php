@@ -78,6 +78,35 @@
 {{--                            </li>--}}
                         </ul>
                     </li>
+                    <li class="nav-item has-treeview">
+                        <a href="" class="nav-link {{Request::is('seller/manage-profile') ? 'active' : ''}}">
+                            <i class="nav-icon fas fa-user-circle"></i>
+                            <p>
+                                Manage Profile
+                                <i class="right fa fa-angle-left"></i>
+                            </p>
+                        </a>
+                        <ul class="nav nav-treeview">
+                            <li class="nav-item">
+                                <a href="{{route('seller.profile.index')}}" class="nav-link {{Request::is('seller/profile*') ? 'active' :''}}">
+                                    <i class="fa fa-{{Request::is('seller/profile*') ? 'folder-open':'folder'}} nav-icon"></i>
+                                    <p>Edit Profile</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{{route('seller.password.edit')}}" class="nav-link {{Request::is('seller/password*') ? 'active' :''}}">
+                                    <i class="fa fa-{{Request::is('seller/password*') ? 'folder-open':'folder'}} nav-icon"></i>
+                                    <p>Edit Password</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{{route('seller.payment.settings')}}" class="nav-link {{Request::is('seller/payment*') ? 'active' :''}}">
+                                    <i class="fa fa-{{Request::is('seller/payment*') ? 'folder-open':'folder'}} nav-icon"></i>
+                                    <p>Payment Settings</p>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
                 </ul>
             </nav>
             <!-- /.sidebar-menu -->

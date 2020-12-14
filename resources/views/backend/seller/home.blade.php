@@ -26,40 +26,40 @@
                 <div class="col-lg-3 col-6">
                     <!-- small box -->
                     <div class="small-box bg-info">
-                        <div class="inner">
-                            <h3></h3>
+                        <div class="inner text-center">
+                            <h4>0</h4>
 
-                            <p>Total Staffs</p>
+                            <p>Products</p>
                         </div>
                         <div class="icon">
                             <i class="ion ion-person"></i>
                         </div>
-                        <a href="{{route('admin.staffs.index')}}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                        <a href="" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
                     </div>
                 </div>
                 <!-- ./col -->
                 <div class="col-lg-3 col-6">
                     <!-- small box -->
                     <div class="small-box bg-success">
-                        <div class="inner">
-                            <h3></h3>
+                        <div class="inner text-center">
+                            <h4>0</h4>
 
-                            <p>Brands</p>
+                            <p>Total Sale</p>
                         </div>
                         <div class="icon">
                             <i class="ion ion-stats-bars"></i>
                         </div>
-                        <a href="{{route('admin.brands.index')}}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                        <a href="" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
                     </div>
                 </div>
                 <!-- ./col -->
                 <div class="col-lg-3 col-6">
                     <!-- small box -->
                     <div class="small-box bg-warning">
-                        <div class="inner">
-                            <h3></h3>
+                        <div class="inner text-center">
+                            <h4>0</h4>
 
-                            <p>User Registrations</p>
+                            <p>Total Earnings</p>
                         </div>
                         <div class="icon">
                             <i class="ion ion-person-add"></i>
@@ -71,81 +71,161 @@
                 <div class="col-lg-3 col-6">
                     <!-- small box -->
                     <div class="small-box bg-danger">
-                        <div class="inner">
-                            <h3></h3>
+                        <div class="inner text-center">
+                            <h4>0</h4>
+                            <p>Successful Orders</p>
 
-                            <p>Categories</p>
                         </div>
                         <div class="icon">
                             <i class="ion ion-pie-graph"></i>
                         </div>
-                        <a href="{{route('admin.categories.index')}}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                        <a href="" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
                     </div>
                 </div>
                 <!-- ./col -->
             </div>
+
             <div class="row">
-                <div class="col-lg-3 col-6">
-                    <!-- small box -->
-                    <div class="small-box bg-dark">
-                        <div class="inner">
-                            <h3></h3>
+                <!-- Left col -->
+                <section class="col-lg-6 connectedSortable">
+                    <!-- Custom tabs (Charts with tabs)-->
+                    <div class="card">
+                        <div class="card-header">
+                            <h3 class="card-title">
+                                <i class="fas fa-chart-pie mr-1"></i>
+                                Orders
+                            </h3>
+                        </div><!-- /.card-header -->
+                        <div class="card-body">
+                            <table class="table">
+                                <tbody>
+                                <tr>
+                                    <th>Total Orders:</th>
+                                    <td>1</td>
 
-                            <p>Subcategories</p>
+                                </tr>
+                                <tr>
+                                    <th>Pending Orders:</th>
+                                    <td>0</td>
+
+                                </tr>
+                                <tr>
+                                    <th>Cancelled Orders:</th>
+                                    <td>0</td>
+
+                                </tr>
+                                <tr>
+                                    <th>Successful Orders:</th>
+                                    <td>0</td>
+
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div><!-- /.card-body -->
+                    </div>
+                </section>
+
+            <section class="col-lg-5 connectedSortable">
+
+                <!-- Map card -->
+                <div class="card " style="width: 25rem;">
+                    <div class="card-header border-0">
+                       <a class="card-img" href="">
+{{--                        <img src="{{asset('uploads/shop/logo/new.png')}}" class="card-img-top" alt="...">--}}
+                       </a>
+
+                    </div>
+                    <div class="card-body text-center">
+                        <a href="#" class="btn btn-primary ">Verify Now</a>
+                    </div>
+                    <!-- /.card-body-->
+                    <div class="card-footer bg-transparent">
+                        <div class="row">
+                            <div class="col-4 text-center">
+                                <div id="sparkline-1"></div>
+                                <div class="text-white">Visitors</div>
+                            </div>
+                            <!-- ./col -->
+                            <div class="col-4 text-center">
+                                <div id="sparkline-2"></div>
+                                <div class="text-white">Online</div>
+                            </div>
+                            <!-- ./col -->
+                            <div class="col-4 text-center">
+                                <div id="sparkline-3"></div>
+                                <div class="text-white">Sales</div>
+                            </div>
+                            <!-- ./col -->
                         </div>
-                        <div class="icon">
-                            <i class="fa fa-server"></i>
-                        </div>
-                        <a href="{{route('admin.subcategories.index')}}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                        <!-- /.row -->
                     </div>
                 </div>
-                <!-- ./col -->
-                <div class="col-lg-3 col-6">
-                    <!-- small box -->
-                    <div class="small-box bg-warning">
-                        <div class="inner">
-                            <h3></h3>
+            </section>
+        </div>
 
-                            <p>Sub Child Categories</p>
-                        </div>
-                        <div class="icon">
-                            <i class="ion ion-stats-bars"></i>
-                        </div>
-                        <a href="{{route('admin.sub-subcategories.index')}}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
-                    </div>
-                </div>
-                <!-- ./col -->
-                <div class="col-lg-3 col-6">
-                    <!-- small box -->
-                    <div class="small-box bg-success">
-                        <div class="inner">
-                            <h3></h3>
 
-                            <p>Attributes</p>
-                        </div>
-                        <div class="icon">
-                            <i class="fa fa-battery"></i>
-                        </div>
-                        <a href="{{route('admin.attributes.index')}}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
-                    </div>
-                </div>
-                <!-- ./col -->
-                <div class="col-lg-3 col-6">
-                    <!-- small box -->
-                    <div class="small-box bg-primary">
-                        <div class="inner">
-                            <h3></h3>
+                {{--            <div class="row">--}}
+{{--                <div class="col-lg-3 col-6">--}}
+{{--                    <!-- small box -->--}}
+{{--                    <div class="small-box bg-dark">--}}
+{{--                        <div class="inner">--}}
+{{--                            <h3></h3>--}}
 
-                            <p>Products</p>
-                        </div>
-                        <div class="icon">
-                            <i class="fa fa-parking"></i>
-                        </div>
-                        <a href="{{route('admin.products.index')}}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
-                    </div>
-                </div>
-                <!-- ./col -->
-            </div>
+{{--                            <p>Subcategories</p>--}}
+{{--                        </div>--}}
+{{--                        <div class="icon">--}}
+{{--                            <i class="fa fa-server"></i>--}}
+{{--                        </div>--}}
+{{--                        <a href="{{route('admin.subcategories.index')}}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>--}}
+{{--                    </div>--}}
+{{--                </div>--}}
+{{--                <!-- ./col -->--}}
+{{--                <div class="col-lg-3 col-6">--}}
+{{--                    <!-- small box -->--}}
+{{--                    <div class="small-box bg-warning">--}}
+{{--                        <div class="inner">--}}
+{{--                            <h3></h3>--}}
+
+{{--                            <p>Sub Child Categories</p>--}}
+{{--                        </div>--}}
+{{--                        <div class="icon">--}}
+{{--                            <i class="ion ion-stats-bars"></i>--}}
+{{--                        </div>--}}
+{{--                        <a href="{{route('admin.sub-subcategories.index')}}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>--}}
+{{--                    </div>--}}
+{{--                </div>--}}
+{{--                <!-- ./col -->--}}
+{{--                <div class="col-lg-3 col-6">--}}
+{{--                    <!-- small box -->--}}
+{{--                    <div class="small-box bg-success">--}}
+{{--                        <div class="inner">--}}
+{{--                            <h3></h3>--}}
+
+{{--                            <p>Attributes</p>--}}
+{{--                        </div>--}}
+{{--                        <div class="icon">--}}
+{{--                            <i class="fa fa-battery"></i>--}}
+{{--                        </div>--}}
+{{--                        <a href="{{route('admin.attributes.index')}}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>--}}
+{{--                    </div>--}}
+{{--                </div>--}}
+{{--                <!-- ./col -->--}}
+{{--                <div class="col-lg-3 col-6">--}}
+{{--                    <!-- small box -->--}}
+{{--                    <div class="small-box bg-primary">--}}
+{{--                        <div class="inner">--}}
+{{--                            <h3></h3>--}}
+
+{{--                            <p>Products</p>--}}
+{{--                        </div>--}}
+{{--                        <div class="icon">--}}
+{{--                            <i class="fa fa-parking"></i>--}}
+{{--                        </div>--}}
+{{--                        <a href="{{route('admin.products.index')}}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>--}}
+{{--                    </div>--}}
+{{--                </div>--}}
+{{--                <!-- ./col -->--}}
+{{--            </div>--}}
             <!-- /.row -->
             <!-- Main row -->
         {{--                <div class="row">--}}
