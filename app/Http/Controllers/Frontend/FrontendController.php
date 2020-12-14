@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Frontend;
 use App\Model\Category;
 use App\Model\Product;
 use App\Model\Shop;
+use App\Model\Subcategory;
 use App\User;
 use Brian2694\Toastr\Facades\Toastr;
 use App\Http\Controllers\Controller;

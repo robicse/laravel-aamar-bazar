@@ -11,6 +11,7 @@
                         <ul class="menu--dropdown">
                             {{--                            <li class="current-menu-item "><a href="#"><i class="icon-star"></i> Hot Promotions</a>--}}
                             {{--                            </li>--}}
+
                             @foreach($categories as $cat)
                                 <li class="current-menu-item menu-item-has-children has-mega-menu"><a href="#"><i class="icon">
                                             <img src="{{ asset('uploads/categories/'.$cat->icon) }}">
@@ -19,7 +20,7 @@
                                         <div class="mega-menu__column">
                                             <h4>{{ $cat->name }}<span class="sub-toggle"></span></h4>
                                             @php
-                                                $subcategories = \App\Model\Subcategory::all();
+                                                $subcategories = \App\Model\Subcategory::where('category_id',$cat->id)->latest()->get();
                                             @endphp
                                             <ul class="mega-menu__list">
                                                 @foreach($subcategories as $subCat)
@@ -44,7 +45,7 @@
                         @endforeach
                     </div>
                 </div>
-{{--                <a class="ps-logo" href="{{url('/')}}"><img src="{{asset('frontend/img/logo_light.png')}}" alt=""></a>--}}
+                {{--                <a class="ps-logo" href="{{url('/')}}"><img src="{{asset('frontend/img/logo_light.png')}}" alt=""></a>--}}
                 <a class="ps-logo" href="{{url('/')}}"><h2 class="font-weight-light">Mudi <span class="text-capitalize text-secondary">Hat</span></h2></a>
             </div>
             <div class="header__center">
@@ -254,32 +255,32 @@
             </div>
             <div class="header__right">
                 <div class="header__actions"><a class="header__extra" href="#">
-                    <div class="ps-cart--mini"><a class="header__extra" href="#"><i class="icon-bag2"></i><span><i>0</i></span></a>
-                        <div class="ps-cart__content">
-{{--                            <div class="ps-cart__items">--}}
-{{--                                <div class="ps-product--cart-mobile">--}}
-{{--                                    <div class="ps-product__thumbnail"><a href="#"><img src="{{asset('frontend/img/products/clothing/7.jpg')}}" alt=""></a></div>--}}
-{{--                                    <div class="ps-product__content"><a class="ps-product__remove" href="#"><i class="icon-cross"></i></a><a href="product-default.html">MVMTH Classical Leather Watch In Black</a>--}}
-{{--                                        <p><strong>Sold by:</strong>  YOUNG SHOP</p><small>1 x $59.99</small>--}}
-{{--                                    </div>--}}
-{{--                                </div>--}}
-{{--                                <div class="ps-product--cart-mobile">--}}
-{{--                                    <div class="ps-product__thumbnail"><a href="#"><img src="{{asset('frontend/img/products/clothing/5.jpg')}}" alt=""></a></div>--}}
-{{--                                    <div class="ps-product__content"><a class="ps-product__remove" href="#"><i class="icon-cross"></i></a><a href="product-default.html">Sleeve Linen Blend Caro Pane Shirt</a>--}}
-{{--                                        <p><strong>Sold by:</strong>  YOUNG SHOP</p><small>1 x $59.99</small>--}}
-{{--                                    </div>--}}
-{{--                                </div>--}}
-{{--                            </div>--}}
-                            <div class="ps-cart__footer">
-                                <h3>Sub Total:<strong></strong></h3>
-                                <figure><a class="ps-btn" href="{{route('shopping-cart')}}">View Cart</a><a class="ps-btn" href="{{route('checkout')}}">Checkout</a></figure>
+                        <div class="ps-cart--mini"><a class="header__extra" href="#"><i class="icon-bag2"></i><span><i>0</i></span></a>
+                            <div class="ps-cart__content">
+                                {{--                            <div class="ps-cart__items">--}}
+                                {{--                                <div class="ps-product--cart-mobile">--}}
+                                {{--                                    <div class="ps-product__thumbnail"><a href="#"><img src="{{asset('frontend/img/products/clothing/7.jpg')}}" alt=""></a></div>--}}
+                                {{--                                    <div class="ps-product__content"><a class="ps-product__remove" href="#"><i class="icon-cross"></i></a><a href="product-default.html">MVMTH Classical Leather Watch In Black</a>--}}
+                                {{--                                        <p><strong>Sold by:</strong>  YOUNG SHOP</p><small>1 x $59.99</small>--}}
+                                {{--                                    </div>--}}
+                                {{--                                </div>--}}
+                                {{--                                <div class="ps-product--cart-mobile">--}}
+                                {{--                                    <div class="ps-product__thumbnail"><a href="#"><img src="{{asset('frontend/img/products/clothing/5.jpg')}}" alt=""></a></div>--}}
+                                {{--                                    <div class="ps-product__content"><a class="ps-product__remove" href="#"><i class="icon-cross"></i></a><a href="product-default.html">Sleeve Linen Blend Caro Pane Shirt</a>--}}
+                                {{--                                        <p><strong>Sold by:</strong>  YOUNG SHOP</p><small>1 x $59.99</small>--}}
+                                {{--                                    </div>--}}
+                                {{--                                </div>--}}
+                                {{--                            </div>--}}
+                                <div class="ps-cart__footer">
+                                    <h3>Sub Total:<strong></strong></h3>
+                                    <figure><a class="ps-btn" href="{{route('shopping-cart')}}">View Cart</a><a class="ps-btn" href="{{route('checkout')}}">Checkout</a></figure>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="ps-block--user-header">
-                        <div class="ps-block__left"><i class="icon-user"></i></div>
-                        <div class="ps-block__right"><a href="{{ route('login') }}">Login</a><a href="{{ route('register') }}">Register</a></div>
-                    </div>
+                        <div class="ps-block--user-header">
+                            <div class="ps-block__left"><i class="icon-user"></i></div>
+                            <div class="ps-block__right"><a href="{{ route('login') }}">Login</a><a href="{{ route('register') }}">Register</a></div>
+                        </div>
                 </div>
             </div>
         </div>
@@ -291,91 +292,91 @@
                     <div class="menu__toggle"><i class="icon-menu"></i><span> Shop by Department</span></div>
                     <div class="menu__content">
                         @php
-                        $categories = \App\Model\Category::where('is_home',1)->latest()->get();
+                            $categories = \App\Model\Category::where('is_home',1)->latest()->get();
                         @endphp
                         <ul class="menu--dropdown">
-{{--                            <li class="current-menu-item "><a href="#"><i class="icon-star"></i> Hot Promotions</a>--}}
-{{--                            </li>--}}
+                            {{--                            <li class="current-menu-item "><a href="#"><i class="icon-star"></i> Hot Promotions</a>--}}
+                            {{--                            </li>--}}
                             @foreach($categories as $cat)
-                            <li class="current-menu-item menu-item-has-children has-mega-menu"><a href="#"><i class="icon">
-                                        <img src="{{ asset('uploads/categories/'.$cat->icon) }}">
-                                    </i>{{ $cat->name }}</a>
-                                <div class="mega-menu">
-                                    <div class="mega-menu__column">
-                                        <h4>{{ $cat->name }}<span class="sub-toggle"></span></h4>
-                                        @php
-                                        $subcategories = \App\Model\Subcategory::all();
-                                        @endphp
-                                        <ul class="mega-menu__list">
-                                            @foreach($subcategories as $subCat)
-                                            <li class="current-menu-item "><a href="#">{{$subCat->name}}</a>
-                                            </li>
-                                            @endforeach
-                                        </ul>
+                                <li class="current-menu-item menu-item-has-children has-mega-menu"><a href="#"><i class="icon">
+                                            <img src="{{ asset('uploads/categories/'.$cat->icon) }}">
+                                        </i>{{ $cat->name }}</a>
+                                    <div class="mega-menu">
+                                        <div class="mega-menu__column">
+                                            <h4>{{ $cat->name }}<span class="sub-toggle"></span></h4>
+                                            @php
+                                                $subcategories = \App\Model\Subcategory::where('category_id',$cat->id)->latest()->get();
+                                            @endphp
+                                            <ul class="mega-menu__list">
+                                                @foreach($subcategories as $subCat)
+                                                    <li class="current-menu-item "><a href="#">{{$subCat->name}}</a>
+                                                    </li>
+                                                @endforeach
+                                            </ul>
+                                        </div>
+                                        {{--                                    <div class="mega-menu__column">--}}
+                                        {{--                                        <h4>Accessories &amp; Parts<span class="sub-toggle"></span></h4>--}}
+                                        {{--                                        <ul class="mega-menu__list">--}}
+                                        {{--                                            <li class="current-menu-item "><a href="#">Digital Cables</a>--}}
+                                        {{--                                            </li>--}}
+                                        {{--                                            <li class="current-menu-item "><a href="#">Audio &amp; Video Cables</a>--}}
+                                        {{--                                            </li>--}}
+                                        {{--                                            <li class="current-menu-item "><a href="#">Batteries</a>--}}
+                                        {{--                                            </li>--}}
+                                        {{--                                        </ul>--}}
+                                        {{--                                    </div>--}}
                                     </div>
-{{--                                    <div class="mega-menu__column">--}}
-{{--                                        <h4>Accessories &amp; Parts<span class="sub-toggle"></span></h4>--}}
-{{--                                        <ul class="mega-menu__list">--}}
-{{--                                            <li class="current-menu-item "><a href="#">Digital Cables</a>--}}
-{{--                                            </li>--}}
-{{--                                            <li class="current-menu-item "><a href="#">Audio &amp; Video Cables</a>--}}
-{{--                                            </li>--}}
-{{--                                            <li class="current-menu-item "><a href="#">Batteries</a>--}}
-{{--                                            </li>--}}
-{{--                                        </ul>--}}
-{{--                                    </div>--}}
-                                </div>
-                            </li>
+                                </li>
                             @endforeach
-{{--                            <li class="current-menu-item "><a href="#"><i class="icon-shirt"></i> Clothing &amp; Apparel</a>--}}
-{{--                            </li>--}}
-{{--                            <li class="current-menu-item "><a href="#"><i class="icon-lampshade"></i> Home, Garden &amp; Kitchen</a>--}}
-{{--                            </li>--}}
-{{--                            <li class="current-menu-item "><a href="#"><i class="icon-heart-pulse"></i> Health &amp; Beauty</a>--}}
-{{--                            </li>--}}
-{{--                            <li class="current-menu-item "><a href="#"><i class="icon-diamond2"></i> Yewelry &amp; Watches</a>--}}
-{{--                            </li>--}}
-{{--                            <li class="current-menu-item menu-item-has-children has-mega-menu"><a href="#"><i class="icon-desktop"></i> Computer &amp; Technology</a>--}}
-{{--                                <div class="mega-menu">--}}
-{{--                                    <div class="mega-menu__column">--}}
-{{--                                        <h4>Computer &amp; Technologies<span class="sub-toggle"></span></h4>--}}
-{{--                                        <ul class="mega-menu__list">--}}
-{{--                                            <li class="current-menu-item "><a href="#">Computer &amp; Tablets</a>--}}
-{{--                                            </li>--}}
-{{--                                            <li class="current-menu-item "><a href="#">Laptop</a>--}}
-{{--                                            </li>--}}
-{{--                                            <li class="current-menu-item "><a href="#">Monitors</a>--}}
-{{--                                            </li>--}}
-{{--                                            <li class="current-menu-item "><a href="#">Networking</a>--}}
-{{--                                            </li>--}}
-{{--                                            <li class="current-menu-item "><a href="#">Drive &amp; Storages</a>--}}
-{{--                                            </li>--}}
-{{--                                            <li class="current-menu-item "><a href="#">Computer Components</a>--}}
-{{--                                            </li>--}}
-{{--                                            <li class="current-menu-item "><a href="#">Security &amp; Protection</a>--}}
-{{--                                            </li>--}}
-{{--                                            <li class="current-menu-item "><a href="#">Gaming Laptop</a>--}}
-{{--                                            </li>--}}
-{{--                                            <li class="current-menu-item "><a href="#">Accessories</a>--}}
-{{--                                            </li>--}}
-{{--                                        </ul>--}}
-{{--                                    </div>--}}
-{{--                                </div>--}}
-{{--                            </li>--}}
-{{--                            <li class="current-menu-item "><a href="#"><i class="icon-baby-bottle"></i> Babies &amp; Moms</a>--}}
-{{--                            </li>--}}
-{{--                            <li class="current-menu-item "><a href="#"><i class="icon-baseball"></i> Sport &amp; Outdoor</a>--}}
-{{--                            </li>--}}
-{{--                            <li class="current-menu-item "><a href="#"><i class="icon-smartphone"></i> Phones &amp; Accessories</a>--}}
-{{--                            </li>--}}
-{{--                            <li class="current-menu-item "><a href="#"><i class="icon-book2"></i> Books &amp; Office</a>--}}
-{{--                            </li>--}}
-{{--                            <li class="current-menu-item "><a href="#"><i class="icon-car-siren"></i> Cars &amp; Motocycles</a>--}}
-{{--                            </li>--}}
-{{--                            <li class="current-menu-item "><a href="#"><i class="icon-wrench"></i> Home Improments</a>--}}
-{{--                            </li>--}}
-{{--                            <li class="current-menu-item "><a href="#"><i class="icon-tag"></i> Vouchers &amp; Services</a>--}}
-{{--                            </li>--}}
+                            {{--                            <li class="current-menu-item "><a href="#"><i class="icon-shirt"></i> Clothing &amp; Apparel</a>--}}
+                            {{--                            </li>--}}
+                            {{--                            <li class="current-menu-item "><a href="#"><i class="icon-lampshade"></i> Home, Garden &amp; Kitchen</a>--}}
+                            {{--                            </li>--}}
+                            {{--                            <li class="current-menu-item "><a href="#"><i class="icon-heart-pulse"></i> Health &amp; Beauty</a>--}}
+                            {{--                            </li>--}}
+                            {{--                            <li class="current-menu-item "><a href="#"><i class="icon-diamond2"></i> Yewelry &amp; Watches</a>--}}
+                            {{--                            </li>--}}
+                            {{--                            <li class="current-menu-item menu-item-has-children has-mega-menu"><a href="#"><i class="icon-desktop"></i> Computer &amp; Technology</a>--}}
+                            {{--                                <div class="mega-menu">--}}
+                            {{--                                    <div class="mega-menu__column">--}}
+                            {{--                                        <h4>Computer &amp; Technologies<span class="sub-toggle"></span></h4>--}}
+                            {{--                                        <ul class="mega-menu__list">--}}
+                            {{--                                            <li class="current-menu-item "><a href="#">Computer &amp; Tablets</a>--}}
+                            {{--                                            </li>--}}
+                            {{--                                            <li class="current-menu-item "><a href="#">Laptop</a>--}}
+                            {{--                                            </li>--}}
+                            {{--                                            <li class="current-menu-item "><a href="#">Monitors</a>--}}
+                            {{--                                            </li>--}}
+                            {{--                                            <li class="current-menu-item "><a href="#">Networking</a>--}}
+                            {{--                                            </li>--}}
+                            {{--                                            <li class="current-menu-item "><a href="#">Drive &amp; Storages</a>--}}
+                            {{--                                            </li>--}}
+                            {{--                                            <li class="current-menu-item "><a href="#">Computer Components</a>--}}
+                            {{--                                            </li>--}}
+                            {{--                                            <li class="current-menu-item "><a href="#">Security &amp; Protection</a>--}}
+                            {{--                                            </li>--}}
+                            {{--                                            <li class="current-menu-item "><a href="#">Gaming Laptop</a>--}}
+                            {{--                                            </li>--}}
+                            {{--                                            <li class="current-menu-item "><a href="#">Accessories</a>--}}
+                            {{--                                            </li>--}}
+                            {{--                                        </ul>--}}
+                            {{--                                    </div>--}}
+                            {{--                                </div>--}}
+                            {{--                            </li>--}}
+                            {{--                            <li class="current-menu-item "><a href="#"><i class="icon-baby-bottle"></i> Babies &amp; Moms</a>--}}
+                            {{--                            </li>--}}
+                            {{--                            <li class="current-menu-item "><a href="#"><i class="icon-baseball"></i> Sport &amp; Outdoor</a>--}}
+                            {{--                            </li>--}}
+                            {{--                            <li class="current-menu-item "><a href="#"><i class="icon-smartphone"></i> Phones &amp; Accessories</a>--}}
+                            {{--                            </li>--}}
+                            {{--                            <li class="current-menu-item "><a href="#"><i class="icon-book2"></i> Books &amp; Office</a>--}}
+                            {{--                            </li>--}}
+                            {{--                            <li class="current-menu-item "><a href="#"><i class="icon-car-siren"></i> Cars &amp; Motocycles</a>--}}
+                            {{--                            </li>--}}
+                            {{--                            <li class="current-menu-item "><a href="#"><i class="icon-wrench"></i> Home Improments</a>--}}
+                            {{--                            </li>--}}
+                            {{--                            <li class="current-menu-item "><a href="#"><i class="icon-tag"></i> Vouchers &amp; Services</a>--}}
+                            {{--                            </li>--}}
                         </ul>
                     </div>
                 </div>
@@ -385,148 +386,148 @@
                     <li class="menu-item"><a href="{{url('/')}}">Home</a>
                     </li>
                     <li class="menu-item has-mega-menu"><a href="{{route('shop')}}">Shop</a><span class="sub-toggle"></span>
-{{--                        <div class="mega-menu">--}}
-{{--                            <div class="mega-menu__column">--}}
-{{--                                <h4>Catalog Pages<span class="sub-toggle"></span></h4>--}}
-{{--                                <ul class="mega-menu__list">--}}
-{{--                                    <li class="current-menu-item "><a href="shop-default.html">Shop Default</a>--}}
-{{--                                    </li>--}}
-{{--                                    <li class="current-menu-item "><a href="shop-default.html">Shop Fullwidth</a>--}}
-{{--                                    </li>--}}
-{{--                                    <li class="current-menu-item "><a href="shop-categories.html">Shop Categories</a>--}}
-{{--                                    </li>--}}
-{{--                                    <li class="current-menu-item "><a href="shop-sidebar.html">Shop Sidebar</a>--}}
-{{--                                    </li>--}}
-{{--                                    <li class="current-menu-item "><a href="shop-sidebar-without-banner.html">Shop Without Banner</a>--}}
-{{--                                    </li>--}}
-{{--                                    <li class="current-menu-item "><a href="shop-carousel.html">Shop Carousel</a>--}}
-{{--                                    </li>--}}
-{{--                                </ul>--}}
-{{--                            </div>--}}
-{{--                            <div class="mega-menu__column">--}}
-{{--                                <h4>Product Layout<span class="sub-toggle"></span></h4>--}}
-{{--                                <ul class="mega-menu__list">--}}
-{{--                                    <li class="current-menu-item "><a href="product-default.html">Default</a>--}}
-{{--                                    </li>--}}
-{{--                                    <li class="current-menu-item "><a href="product-extend.html">Extended</a>--}}
-{{--                                    </li>--}}
-{{--                                    <li class="current-menu-item "><a href="product-full-content.html">Full Content</a>--}}
-{{--                                    </li>--}}
-{{--                                    <li class="current-menu-item "><a href="product-box.html">Boxed</a>--}}
-{{--                                    </li>--}}
-{{--                                    <li class="current-menu-item "><a href="product-sidebar.html">Sidebar</a>--}}
-{{--                                    </li>--}}
-{{--                                    <li class="current-menu-item "><a href="product-default.html">Fullwidth</a>--}}
-{{--                                    </li>--}}
-{{--                                </ul>--}}
-{{--                            </div>--}}
-{{--                            <div class="mega-menu__column">--}}
-{{--                                <h4>Product Types<span class="sub-toggle"></span></h4>--}}
-{{--                                <ul class="mega-menu__list">--}}
-{{--                                    <li class="current-menu-item "><a href="product-default.html">Simple</a>--}}
-{{--                                    </li>--}}
-{{--                                    <li class="current-menu-item "><a href="product-default.html">Color Swatches</a>--}}
-{{--                                    </li>--}}
-{{--                                    <li class="current-menu-item "><a href="product-image-swatches.html">Images Swatches</a>--}}
-{{--                                    </li>--}}
-{{--                                    <li class="current-menu-item "><a href="product-countdown.html">Countdown</a>--}}
-{{--                                    </li>--}}
-{{--                                    <li class="current-menu-item "><a href="product-multi-vendor.html">Multi-Vendor</a>--}}
-{{--                                    </li>--}}
-{{--                                    <li class="current-menu-item "><a href="product-instagram.html">Instagram</a>--}}
-{{--                                    </li>--}}
-{{--                                    <li class="current-menu-item "><a href="product-affiliate.html">Affiliate</a>--}}
-{{--                                    </li>--}}
-{{--                                    <li class="current-menu-item "><a href="product-on-sale.html">On sale</a>--}}
-{{--                                    </li>--}}
-{{--                                    <li class="current-menu-item "><a href="product-video.html">Video Featured</a>--}}
-{{--                                    </li>--}}
-{{--                                    <li class="current-menu-item "><a href="product-groupped.html">Grouped</a>--}}
-{{--                                    </li>--}}
-{{--                                    <li class="current-menu-item "><a href="product-out-stock.html">Out Of Stock</a>--}}
-{{--                                    </li>--}}
-{{--                                </ul>--}}
-{{--                            </div>--}}
-{{--                            <div class="mega-menu__column">--}}
-{{--                                <h4>Woo Pages<span class="sub-toggle"></span></h4>--}}
-{{--                                <ul class="mega-menu__list">--}}
-{{--                                    <li class="current-menu-item "><a href="shopping-cart.html">Shopping Cart</a>--}}
-{{--                                    </li>--}}
-{{--                                    <li class="current-menu-item "><a href="checkout.html">Checkout</a>--}}
-{{--                                    </li>--}}
-{{--                                    <li class="current-menu-item "><a href="whishlist.html">Whishlist</a>--}}
-{{--                                    </li>--}}
-{{--                                    <li class="current-menu-item "><a href="compare.html">Compare</a>--}}
-{{--                                    </li>--}}
-{{--                                    <li class="current-menu-item "><a href="order-tracking.html">Order Tracking</a>--}}
-{{--                                    </li>--}}
-{{--                                    <li class="current-menu-item "><a href="my-account.html">My Account</a>--}}
-{{--                                    </li>--}}
-{{--                                    <li class="current-menu-item "><a href="checkout-2.html">Checkout 2</a>--}}
-{{--                                    </li>--}}
-{{--                                    <li class="current-menu-item "><a href="shipping.html">Shipping</a>--}}
-{{--                                    </li>--}}
-{{--                                    <li class="current-menu-item "><a href="payment.html">Payment</a>--}}
-{{--                                    </li>--}}
-{{--                                    <li class="current-menu-item "><a href="payment-success.html">Payment Success</a>--}}
-{{--                                    </li>--}}
-{{--                                </ul>--}}
-{{--                            </div>--}}
-{{--                        </div>--}}
+                        {{--                        <div class="mega-menu">--}}
+                        {{--                            <div class="mega-menu__column">--}}
+                        {{--                                <h4>Catalog Pages<span class="sub-toggle"></span></h4>--}}
+                        {{--                                <ul class="mega-menu__list">--}}
+                        {{--                                    <li class="current-menu-item "><a href="shop-default.html">Shop Default</a>--}}
+                        {{--                                    </li>--}}
+                        {{--                                    <li class="current-menu-item "><a href="shop-default.html">Shop Fullwidth</a>--}}
+                        {{--                                    </li>--}}
+                        {{--                                    <li class="current-menu-item "><a href="shop-categories.html">Shop Categories</a>--}}
+                        {{--                                    </li>--}}
+                        {{--                                    <li class="current-menu-item "><a href="shop-sidebar.html">Shop Sidebar</a>--}}
+                        {{--                                    </li>--}}
+                        {{--                                    <li class="current-menu-item "><a href="shop-sidebar-without-banner.html">Shop Without Banner</a>--}}
+                        {{--                                    </li>--}}
+                        {{--                                    <li class="current-menu-item "><a href="shop-carousel.html">Shop Carousel</a>--}}
+                        {{--                                    </li>--}}
+                        {{--                                </ul>--}}
+                        {{--                            </div>--}}
+                        {{--                            <div class="mega-menu__column">--}}
+                        {{--                                <h4>Product Layout<span class="sub-toggle"></span></h4>--}}
+                        {{--                                <ul class="mega-menu__list">--}}
+                        {{--                                    <li class="current-menu-item "><a href="product-default.html">Default</a>--}}
+                        {{--                                    </li>--}}
+                        {{--                                    <li class="current-menu-item "><a href="product-extend.html">Extended</a>--}}
+                        {{--                                    </li>--}}
+                        {{--                                    <li class="current-menu-item "><a href="product-full-content.html">Full Content</a>--}}
+                        {{--                                    </li>--}}
+                        {{--                                    <li class="current-menu-item "><a href="product-box.html">Boxed</a>--}}
+                        {{--                                    </li>--}}
+                        {{--                                    <li class="current-menu-item "><a href="product-sidebar.html">Sidebar</a>--}}
+                        {{--                                    </li>--}}
+                        {{--                                    <li class="current-menu-item "><a href="product-default.html">Fullwidth</a>--}}
+                        {{--                                    </li>--}}
+                        {{--                                </ul>--}}
+                        {{--                            </div>--}}
+                        {{--                            <div class="mega-menu__column">--}}
+                        {{--                                <h4>Product Types<span class="sub-toggle"></span></h4>--}}
+                        {{--                                <ul class="mega-menu__list">--}}
+                        {{--                                    <li class="current-menu-item "><a href="product-default.html">Simple</a>--}}
+                        {{--                                    </li>--}}
+                        {{--                                    <li class="current-menu-item "><a href="product-default.html">Color Swatches</a>--}}
+                        {{--                                    </li>--}}
+                        {{--                                    <li class="current-menu-item "><a href="product-image-swatches.html">Images Swatches</a>--}}
+                        {{--                                    </li>--}}
+                        {{--                                    <li class="current-menu-item "><a href="product-countdown.html">Countdown</a>--}}
+                        {{--                                    </li>--}}
+                        {{--                                    <li class="current-menu-item "><a href="product-multi-vendor.html">Multi-Vendor</a>--}}
+                        {{--                                    </li>--}}
+                        {{--                                    <li class="current-menu-item "><a href="product-instagram.html">Instagram</a>--}}
+                        {{--                                    </li>--}}
+                        {{--                                    <li class="current-menu-item "><a href="product-affiliate.html">Affiliate</a>--}}
+                        {{--                                    </li>--}}
+                        {{--                                    <li class="current-menu-item "><a href="product-on-sale.html">On sale</a>--}}
+                        {{--                                    </li>--}}
+                        {{--                                    <li class="current-menu-item "><a href="product-video.html">Video Featured</a>--}}
+                        {{--                                    </li>--}}
+                        {{--                                    <li class="current-menu-item "><a href="product-groupped.html">Grouped</a>--}}
+                        {{--                                    </li>--}}
+                        {{--                                    <li class="current-menu-item "><a href="product-out-stock.html">Out Of Stock</a>--}}
+                        {{--                                    </li>--}}
+                        {{--                                </ul>--}}
+                        {{--                            </div>--}}
+                        {{--                            <div class="mega-menu__column">--}}
+                        {{--                                <h4>Woo Pages<span class="sub-toggle"></span></h4>--}}
+                        {{--                                <ul class="mega-menu__list">--}}
+                        {{--                                    <li class="current-menu-item "><a href="shopping-cart.html">Shopping Cart</a>--}}
+                        {{--                                    </li>--}}
+                        {{--                                    <li class="current-menu-item "><a href="checkout.html">Checkout</a>--}}
+                        {{--                                    </li>--}}
+                        {{--                                    <li class="current-menu-item "><a href="whishlist.html">Whishlist</a>--}}
+                        {{--                                    </li>--}}
+                        {{--                                    <li class="current-menu-item "><a href="compare.html">Compare</a>--}}
+                        {{--                                    </li>--}}
+                        {{--                                    <li class="current-menu-item "><a href="order-tracking.html">Order Tracking</a>--}}
+                        {{--                                    </li>--}}
+                        {{--                                    <li class="current-menu-item "><a href="my-account.html">My Account</a>--}}
+                        {{--                                    </li>--}}
+                        {{--                                    <li class="current-menu-item "><a href="checkout-2.html">Checkout 2</a>--}}
+                        {{--                                    </li>--}}
+                        {{--                                    <li class="current-menu-item "><a href="shipping.html">Shipping</a>--}}
+                        {{--                                    </li>--}}
+                        {{--                                    <li class="current-menu-item "><a href="payment.html">Payment</a>--}}
+                        {{--                                    </li>--}}
+                        {{--                                    <li class="current-menu-item "><a href="payment-success.html">Payment Success</a>--}}
+                        {{--                                    </li>--}}
+                        {{--                                </ul>--}}
+                        {{--                            </div>--}}
+                        {{--                        </div>--}}
                     </li>
-{{--                    <li class="menu-item-has-children has-mega-menu"><a href="#">Pages</a><span class="sub-toggle"></span>--}}
-{{--                        <div class="mega-menu">--}}
-{{--                            <div class="mega-menu__column">--}}
-{{--                                <h4>Basic Page<span class="sub-toggle"></span></h4>--}}
-{{--                                <ul class="mega-menu__list">--}}
-{{--                                    <li class="current-menu-item "><a href="{{route('about-us')}}">About Us</a>--}}
-{{--                                    </li>--}}
-{{--                                    <li class="current-menu-item "><a href="{{route('contact')}}">Contact</a>--}}
-{{--                                    </li>--}}
-{{--                                    <li class="current-menu-item "><a href="faqs.html">Faqs</a>--}}
-{{--                                    </li>--}}
-{{--                                    <li class="current-menu-item "><a href="comming-soon.html">Comming Soon</a>--}}
-{{--                                    </li>--}}
-{{--                                    <li class="current-menu-item "><a href="404-page.html">404 Page</a>--}}
-{{--                                    </li>--}}
-{{--                                </ul>--}}
-{{--                            </div>--}}
-{{--                            <div class="mega-menu__column">--}}
-{{--                                <h4>Vendor Pages<span class="sub-toggle"></span></h4>--}}
-{{--                                <ul class="mega-menu__list">--}}
-{{--                                    <li class="current-menu-item "><a href="{{route('become-vendor')}}">Become a Vendor</a>--}}
-{{--                                    </li>--}}
-{{--                                    <li class="current-menu-item "><a href="{{route('vendor-store')}}">Vendor Store</a>--}}
-{{--                                    </li>--}}
-{{--                                    <li class="current-menu-item "><a href="vendor-dashboard-free.html">Vendor Dashboard Free</a>--}}
-{{--                                    </li>--}}
-{{--                                    <li class="current-menu-item "><a href="vendor-dashboard-pro.html">Vendor Dashboard Pro</a>--}}
-{{--                                    </li>--}}
-{{--                                    <li class="current-menu-item "><a href="store-list.html">Store List</a>--}}
-{{--                                    </li>--}}
-{{--                                    <li class="current-menu-item "><a href="store-list.html">Store List 2</a>--}}
-{{--                                    </li>--}}
-{{--                                    <li class="current-menu-item "><a href="store-detail.html">Store Detail</a>--}}
-{{--                                    </li>--}}
-{{--                                </ul>--}}
-{{--                            </div>--}}
-{{--                            <div class="mega-menu__column">--}}
-{{--                                <h4>Account Pages<span class="sub-toggle"></span></h4>--}}
-{{--                                <ul class="mega-menu__list">--}}
-{{--                                    <li class="current-menu-item "><a href="user-information.html">User Information</a>--}}
-{{--                                    </li>--}}
-{{--                                    <li class="current-menu-item "><a href="addresses.html">Addresses</a>--}}
-{{--                                    </li>--}}
-{{--                                    <li class="current-menu-item "><a href="invoices.html">Invoices</a>--}}
-{{--                                    </li>--}}
-{{--                                    <li class="current-menu-item "><a href="invoice-detail.html">Invoice Detail</a>--}}
-{{--                                    </li>--}}
-{{--                                    <li class="current-menu-item "><a href="notifications.html">Notifications</a>--}}
-{{--                                    </li>--}}
-{{--                                </ul>--}}
-{{--                            </div>--}}
-{{--                        </div>--}}
-{{--                    </li>--}}
+                    {{--                    <li class="menu-item-has-children has-mega-menu"><a href="#">Pages</a><span class="sub-toggle"></span>--}}
+                    {{--                        <div class="mega-menu">--}}
+                    {{--                            <div class="mega-menu__column">--}}
+                    {{--                                <h4>Basic Page<span class="sub-toggle"></span></h4>--}}
+                    {{--                                <ul class="mega-menu__list">--}}
+                    {{--                                    <li class="current-menu-item "><a href="{{route('about-us')}}">About Us</a>--}}
+                    {{--                                    </li>--}}
+                    {{--                                    <li class="current-menu-item "><a href="{{route('contact')}}">Contact</a>--}}
+                    {{--                                    </li>--}}
+                    {{--                                    <li class="current-menu-item "><a href="faqs.html">Faqs</a>--}}
+                    {{--                                    </li>--}}
+                    {{--                                    <li class="current-menu-item "><a href="comming-soon.html">Comming Soon</a>--}}
+                    {{--                                    </li>--}}
+                    {{--                                    <li class="current-menu-item "><a href="404-page.html">404 Page</a>--}}
+                    {{--                                    </li>--}}
+                    {{--                                </ul>--}}
+                    {{--                            </div>--}}
+                    {{--                            <div class="mega-menu__column">--}}
+                    {{--                                <h4>Vendor Pages<span class="sub-toggle"></span></h4>--}}
+                    {{--                                <ul class="mega-menu__list">--}}
+                    {{--                                    <li class="current-menu-item "><a href="{{route('become-vendor')}}">Become a Vendor</a>--}}
+                    {{--                                    </li>--}}
+                    {{--                                    <li class="current-menu-item "><a href="{{route('vendor-store')}}">Vendor Store</a>--}}
+                    {{--                                    </li>--}}
+                    {{--                                    <li class="current-menu-item "><a href="vendor-dashboard-free.html">Vendor Dashboard Free</a>--}}
+                    {{--                                    </li>--}}
+                    {{--                                    <li class="current-menu-item "><a href="vendor-dashboard-pro.html">Vendor Dashboard Pro</a>--}}
+                    {{--                                    </li>--}}
+                    {{--                                    <li class="current-menu-item "><a href="store-list.html">Store List</a>--}}
+                    {{--                                    </li>--}}
+                    {{--                                    <li class="current-menu-item "><a href="store-list.html">Store List 2</a>--}}
+                    {{--                                    </li>--}}
+                    {{--                                    <li class="current-menu-item "><a href="store-detail.html">Store Detail</a>--}}
+                    {{--                                    </li>--}}
+                    {{--                                </ul>--}}
+                    {{--                            </div>--}}
+                    {{--                            <div class="mega-menu__column">--}}
+                    {{--                                <h4>Account Pages<span class="sub-toggle"></span></h4>--}}
+                    {{--                                <ul class="mega-menu__list">--}}
+                    {{--                                    <li class="current-menu-item "><a href="user-information.html">User Information</a>--}}
+                    {{--                                    </li>--}}
+                    {{--                                    <li class="current-menu-item "><a href="addresses.html">Addresses</a>--}}
+                    {{--                                    </li>--}}
+                    {{--                                    <li class="current-menu-item "><a href="invoices.html">Invoices</a>--}}
+                    {{--                                    </li>--}}
+                    {{--                                    <li class="current-menu-item "><a href="invoice-detail.html">Invoice Detail</a>--}}
+                    {{--                                    </li>--}}
+                    {{--                                    <li class="current-menu-item "><a href="notifications.html">Notifications</a>--}}
+                    {{--                                    </li>--}}
+                    {{--                                </ul>--}}
+                    {{--                            </div>--}}
+                    {{--                        </div>--}}
+                    {{--                    </li>--}}
                     <li class="menu-item has-mega-menu"><a href="{{route('about-us')}}">About Us</a>
                     <li class="menu-item has-mega-menu"><a href="{{route('blog-list')}}">Blogs</a>
                     <li class="menu-item has-mega-menu"><a href="{{route('contact')}}">Contact Us</a>
