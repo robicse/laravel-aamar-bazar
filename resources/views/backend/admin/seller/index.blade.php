@@ -28,7 +28,7 @@
                         <h3 class="card-title float-left">Seller Lists</h3>
                         <div class="float-right">
                             {{--<a href="{{route('admin.sellers.index.create')}}">
-                                <button class="btn btn-success">
+                                <button class="btn btn-success" >
                                     <i class="fa fa-plus-circle"></i>
                                     Add
                                 </button>

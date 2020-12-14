@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Model\Seller;
 use App\Model\Product;
+use App\Model\Shop;
 use App\User;
 use Illuminate\Http\Request;
 
@@ -49,7 +50,8 @@ class SellerController extends Controller
    {
        $userInfo = User::find($id);
        $sellerInfo = Seller::where('user_id',$id)->first();
-       return view('backend.admin.seller.profile', compact('userInfo','sellerInfo'));
+       $shopInfo = Shop::where('user_id',$id)->first();
+       return view('backend.admin.seller.profile', compact('userInfo','sellerInfo','shopInfo'));
    }
 
 }
