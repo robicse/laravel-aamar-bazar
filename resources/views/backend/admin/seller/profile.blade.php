@@ -1,5 +1,5 @@
 @extends('backend.layouts.master')
-@section("title","Seller Payment History")
+@section("title","Seller Profile")
 @push('css')
     <link rel="stylesheet" href="{{asset('backend/plugins/datatables/dataTables.bootstrap4.css')}}">
 @endpush
@@ -8,12 +8,12 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>Seller Payment History</h1>
+                    <h1>Seller Profile</h1>
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
                         <li class="breadcrumb-item"><a href="{{route('admin.dashboard')}}">Home</a></li>
-                        <li class="breadcrumb-item active">Seller Payment History</li>
+                        <li class="breadcrumb-item active">Seller Profile</li>
                     </ol>
                 </div>
             </div>
@@ -24,7 +24,6 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-md-3">
-
                     <!-- Profile Image -->
                     <div class="card card-primary card-outline">
                         <div class="card-body box-profile">
@@ -48,7 +47,7 @@
                                     <b>Total Sold Amount</b> <a class="float-right">13,287</a>
                                 </li>
                                 <li class="list-group-item">
-                                    <b>Wallet Balance</b> <a class="float-right">13,287</a>
+                                    <b>Wallet Balance</b> <a class="float-right">{{$userInfo->balance}}tk</a>
                                 </li>
                             </ul>
 
@@ -125,7 +124,9 @@
                                 </div>
                                 <!-- /.tab-pane -->
                                 <div class="tab-pane" id="edit">
-                                    <form class="form-horizontal">
+                                    <form class="form-horizontal" action="{{route('admin.seller.profile.update',$userInfo->id)}}" method="POST">
+                                        @csrf
+                                        @method('PUT')
                                         <div class="form-group row">
                                             <label for="inputName" class="col-sm-2 col-form-label">Name</label>
                                             <div class="col-sm-10">
@@ -135,19 +136,13 @@
                                         <div class="form-group row">
                                             <label for="inputEmail" class="col-sm-2 col-form-label">Phone</label>
                                             <div class="col-sm-10">
-                                                <input type="email" value="{{$userInfo->phone}}" name="phone" class="form-control" id="inputEmail" >
+                                                <input type="number" value="{{$userInfo->phone}}" name="phone" class="form-control" id="inputEmail" >
                                             </div>
                                         </div>
                                         <div class="form-group row">
                                             <label for="inputEmail" class="col-sm-2 col-form-label">Email</label>
                                             <div class="col-sm-10">
                                                 <input type="email" value="{{$userInfo->email}}" name="email" class="form-control" id="inputEmail" >
-                                            </div>
-                                        </div>
-                                        <div class="form-group row">
-                                            <label for="shop_name" class="col-sm-2 col-form-label">Shop Name</label>
-                                            <div class="col-sm-10">
-                                                <input type="email" value="{{$shopInfo->name}}" name="shop_name" class="form-control" id="shop_name" >
                                             </div>
                                         </div>
                                         <div class="form-group row">
@@ -160,17 +155,19 @@
                                 <!-- /.tab-pane -->
 
                                 <div class="tab-pane" id="change_pass">
-                                    <form class="form-horizontal">
+                                    <form class="form-horizontal" action="{{route('admin.seller.password.update',$userInfo->id)}}" method="POST">
+                                        @csrf
+                                        @method('PUT')
                                         <div class="form-group row">
                                             <label for="inputName" class="col-sm-2 col-form-label">New Password</label>
                                             <div class="col-sm-10">
-                                                <input type="email" name="new_password" class="form-control" id="inputName">
+                                                <input type="password" name="password" class="form-control" id="inputName">
                                             </div>
                                         </div>
                                         <div class="form-group row">
                                             <label for="inputEmail" class="col-sm-2 col-form-label">Confirm Password</label>
                                             <div class="col-sm-10">
-                                                <input type="email" name="password_confirmation" class="form-control" id="inputEmail">
+                                                <input type="password" name="password_confirmation" class="form-control" id="inputEmail">
                                             </div>
                                         </div>
                                         <div class="form-group row">
@@ -190,29 +187,31 @@
                             <strong>Bank Details</strong>
                         </div>
                         <div class="card-body">
-                            <form class="form-horizontal">
+                            <form class="form-horizontal" action="{{route('admin.seller.bankinfo.update',$sellerInfo->id)}}" method="POST">
+                                @csrf
+                                @method('PUT')
                                 <div class="form-group row">
                                     <label for="inputName" class="col-sm-2 col-form-label">Bank Name</label>
                                     <div class="col-sm-10">
-                                        <input type="email" name="{{$sellerInfo->bank_name}}" class="form-control" id="inputName">
+                                        <input type="test" name="bank_name" value="{{$sellerInfo->bank_name}}" class="form-control" id="inputName">
                                     </div>
                                 </div>
                                 <div class="form-group row">
                                     <label for="inputEmail" class="col-sm-2 col-form-label">Bank Acc Name</label>
                                     <div class="col-sm-10">
-                                        <input type="email" name="{{$sellerInfo->bank_acc_name}}" class="form-control" id="inputEmail">
+                                        <input type="text" name="bank_acc_name"  value="{{$sellerInfo->bank_acc_name}}" class="form-control" id="inputEmail">
                                     </div>
                                 </div>
                                 <div class="form-group row">
                                     <label for="bank_acc_no" class="col-sm-2 col-form-label">Bank Acc Number</label>
                                     <div class="col-sm-10">
-                                        <input type="number" name="{{$sellerInfo->bank_acc_no}}" class="form-control" id="bank_acc_no">
+                                        <input type="text" name="bank_acc_no" value="{{$sellerInfo->bank_acc_no}}" class="form-control" id="bank_acc_no">
                                     </div>
                                 </div>
                                 <div class="form-group row">
                                     <label for="inputName2" class="col-sm-2 col-form-label">Bank Routing Number</label>
                                     <div class="col-sm-10">
-                                        <input type="number" name="{{$sellerInfo->bank_routing_no}}" class="form-control" id="inputName2" >
+                                        <input type="number" name="bank_routing_no" value="{{$sellerInfo->bank_routing_no}}" class="form-control" id="inputName2" >
                                     </div>
                                 </div>
                                 <div class="form-group row">
@@ -230,7 +229,6 @@
             <!-- /.row -->
         </div><!-- /.container-fluid -->
     </section>
-
 @stop
 @push('js')
     <script src="{{asset('backend/plugins/datatables/jquery.dataTables.js')}}"></script>
@@ -247,5 +245,8 @@
                 "autoWidth": false
             });
         });
+
+
+
     </script>
 @endpush

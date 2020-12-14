@@ -2,10 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a17e2167-d620-4213-a88e-6fc3baf87dda" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/resources/views/backend/admin/seller/payment_modal.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Admin/SellerController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Admin/SellerController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/backend/admin/seller/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/backend/admin/seller/index.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/backend/admin/seller/profile.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/backend/admin/seller/profile.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/admin.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/admin.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -137,14 +139,14 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../mstore" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/resources/views/backend/admin/seller" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="D:\laragon\www\aamarbazar\public\uploads\profile" />
       <recent name="D:\laragon\www\aamarbazar\resources\views\backend\admin\seller" />
+      <recent name="D:\laragon\www\aamarbazar\public\uploads\profile" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="D:\laragon\www\aamarbazar\app\Model" />
@@ -188,7 +190,7 @@
       <workItem from="1607831036923" duration="1094000" />
       <workItem from="1607832478256" duration="20836000" />
       <workItem from="1607832998988" duration="11885000" />
-      <workItem from="1607919685771" duration="7546000" />
+      <workItem from="1607919685771" duration="18585000" />
     </task>
     <servers />
   </component>
