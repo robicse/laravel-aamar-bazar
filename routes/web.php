@@ -33,6 +33,7 @@ Route::post('/registration','Frontend\FrontendController@register')->name('user.
 Route::get('/get-verification-code/{id}', 'Frontend\VerificationController@getVerificationCode')->name('get-verification-code');
 
 //product
+Route::post('/shop/nearest', 'Frontend\ShopController@nearestshop')->name('shop.nearest');
 Route::post('/products/get/variant/price', 'Frontend\ProductController@ProductVariantPrice')->name('product.variant.price');
 Auth::routes();
 
