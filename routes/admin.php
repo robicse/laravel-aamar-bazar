@@ -39,6 +39,7 @@ Route::group(['as'=>'admin.','prefix' =>'admin','namespace'=>'Admin', 'middlewar
     Route::get('sellers/commission/store','SellerController@commissionStore')->name('seller.commission.store');
     Route::get('sellers/payment/history','SellerController@paymentHistory')->name('seller.payment.history');
     Route::get('sellers/withdraw/request','SellerController@withdrawRequest')->name('seller.withdraw.request');
+    Route::get('sellers/profile/show/{id}','SellerController@profileShow')->name('seller.profile.show');
 
 
 });
