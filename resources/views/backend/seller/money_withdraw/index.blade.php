@@ -48,39 +48,6 @@
                         <i class="ion ion-stats-bars"></i>
                     </div>
                     <a href="" class="small-box-footer" data-toggle="modal" data-target="#exampleModal">More info <i class="fas fa-plus-circle"></i></a>
-                    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                        <div class="modal-dialog" role="document">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h5 class="modal-title" id="exampleModalLabel">Send a Withdraw Request</h5>
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
-                                </div>
-                                <div class="modal-body">
-                                    <form action="{{route('seller.withdraw-request.store')}}" method="post">
-                                        @csrf
-                                        <div class="form-group">
-                                            <p for="exampleFormControlInput1">Amount</p>
-                                            <input type="number" name="amount" class="form-control" id="exampleFormControlInput1">
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="exampleFormControlTextarea1">Message</label>
-                                            <textarea class="form-control" name="message" id="exampleFormControlTextarea1" rows="4"></textarea>
-                                        </div>
-                                        <div class="modal-footer">
-                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                            <button type="submit" class="btn btn-primary">Save changes</button>
-                                        </div>
-                                    </form>
-                                </div>
-
-                            </div>
-                        </div>
-                    </div>
-{{--                    <button type="button" class="btn btn-primary text-center" data-toggle="modal" data-target="#exampleModal">--}}
-{{--                        More--}}
-{{--                    </button>--}}
                 </div>
             </div>
             <!-- ./col -->
@@ -119,6 +86,36 @@
             </div><!-- /.card-body -->
         </div>
     </section>
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <form action="{{route('seller.withdraw-request.store')}}" method="post">
+                <div class="modal-body">
+                    @csrf
+                    <div class="form-group">
+                        <label for="exampleFormControlInput1">Amount</label>
+                        <input type="number" name="amount" class="form-control" id="exampleFormControlInput1">
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleFormControlTextarea1">Message</label>
+                        <textarea class="form-control" name="message" id="exampleFormControlTextarea1" rows="4"></textarea>
+                    </div>
+                </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-success">Send</button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
 @stop
 @push('js')
 {{--    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>--}}
