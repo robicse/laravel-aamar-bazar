@@ -25,7 +25,11 @@
                 <!-- small box -->
                 <div class="small-box bg-info">
                     <div class="inner text-center">
+                        @if($seller->admin_to_pay>0)
                         <h4>{{$seller->admin_to_pay}}</h4>
+                        @else
+                        <h4>Insufficient Amount</h4>
+                        @endif
 
                         <p>Pending Balance</p>
                     </div>
