@@ -10,50 +10,50 @@
     <div class="header__top">
         <div class="ps-container">
             <div class="header__left">
-{{--                <div class="menu--product-categories">--}}
-{{--                    <div class="menu__toggle"><i class="icon-menu"></i><span> Shop by Department</span></div>--}}
-{{--                    <div class="menu__content">--}}
-{{--                        @php--}}
-{{--                            $categories = \App\Model\Category::where('is_home',1)->latest()->get();--}}
-{{--                        @endphp--}}
-{{--                        <ul class="menu--dropdown">--}}
-{{--                            --}}{{--                            <li class="current-menu-item "><a href="#"><i class="icon-star"></i> Hot Promotions</a>--}}
-{{--                            --}}{{--                            </li>--}}
-{{--                            @foreach($categories as $cat)--}}
-{{--                                <li class="current-menu-item menu-item-has-children has-mega-menu"><a href="#"><i class="icon">--}}
-{{--                                            <img src="{{ asset('uploads/categories/'.$cat->icon) }}">--}}
-{{--                                        </i>{{ $cat->name }}</a>--}}
-{{--                                    <div class="mega-menu">--}}
-{{--                                        <div class="mega-menu__column">--}}
-{{--                                            <h4>{{ $cat->name }}<span class="sub-toggle"></span></h4>--}}
-{{--                                            @php--}}
-{{--                                                $subcategories = \App\Model\Subcategory::all();--}}
-{{--                                            @endphp--}}
-{{--                                            <ul class="mega-menu__list">--}}
-{{--                                                @foreach($subcategories as $subCat)--}}
-{{--                                                    <li class="current-menu-item "><a href="#">{{$subCat->name}}</a>--}}
-{{--                                                    </li>--}}
-{{--                                                @endforeach--}}
-{{--                                            </ul>--}}
-{{--                                        </div>--}}
-{{--                                        --}}{{--                                    <div class="mega-menu__column">--}}
-{{--                                        --}}{{--                                        <h4>Accessories &amp; Parts<span class="sub-toggle"></span></h4>--}}
-{{--                                        --}}{{--                                        <ul class="mega-menu__list">--}}
-{{--                                        --}}{{--                                            <li class="current-menu-item "><a href="#">Digital Cables</a>--}}
-{{--                                        --}}{{--                                            </li>--}}
-{{--                                        --}}{{--                                            <li class="current-menu-item "><a href="#">Audio &amp; Video Cables</a>--}}
-{{--                                        --}}{{--                                            </li>--}}
-{{--                                        --}}{{--                                            <li class="current-menu-item "><a href="#">Batteries</a>--}}
-{{--                                        --}}{{--                                            </li>--}}
-{{--                                        --}}{{--                                        </ul>--}}
-{{--                                        --}}{{--                                    </div>--}}
-{{--                                    </div>--}}
-{{--                                </li>--}}
-{{--                        @endforeach--}}
-{{--                    </div>--}}
-{{--                </div>--}}
+                {{--                <div class="menu--product-categories">--}}
+                {{--                    <div class="menu__toggle"><i class="icon-menu"></i><span> Shop by Department</span></div>--}}
+                {{--                    <div class="menu__content">--}}
+                {{--                        @php--}}
+                {{--                            $categories = \App\Model\Category::where('is_home',1)->latest()->get();--}}
+                {{--                        @endphp--}}
+                {{--                        <ul class="menu--dropdown">--}}
+                {{--                            --}}{{--                            <li class="current-menu-item "><a href="#"><i class="icon-star"></i> Hot Promotions</a>--}}
+                {{--                            --}}{{--                            </li>--}}
+                {{--                            @foreach($categories as $cat)--}}
+                {{--                                <li class="current-menu-item menu-item-has-children has-mega-menu"><a href="#"><i class="icon">--}}
+                {{--                                            <img src="{{ asset('uploads/categories/'.$cat->icon) }}">--}}
+                {{--                                        </i>{{ $cat->name }}</a>--}}
+                {{--                                    <div class="mega-menu">--}}
+                {{--                                        <div class="mega-menu__column">--}}
+                {{--                                            <h4>{{ $cat->name }}<span class="sub-toggle"></span></h4>--}}
+                {{--                                            @php--}}
+                {{--                                                $subcategories = \App\Model\Subcategory::all();--}}
+                {{--                                            @endphp--}}
+                {{--                                            <ul class="mega-menu__list">--}}
+                {{--                                                @foreach($subcategories as $subCat)--}}
+                {{--                                                    <li class="current-menu-item "><a href="#">{{$subCat->name}}</a>--}}
+                {{--                                                    </li>--}}
+                {{--                                                @endforeach--}}
+                {{--                                            </ul>--}}
+                {{--                                        </div>--}}
+                {{--                                        --}}{{--                                    <div class="mega-menu__column">--}}
+                {{--                                        --}}{{--                                        <h4>Accessories &amp; Parts<span class="sub-toggle"></span></h4>--}}
+                {{--                                        --}}{{--                                        <ul class="mega-menu__list">--}}
+                {{--                                        --}}{{--                                            <li class="current-menu-item "><a href="#">Digital Cables</a>--}}
+                {{--                                        --}}{{--                                            </li>--}}
+                {{--                                        --}}{{--                                            <li class="current-menu-item "><a href="#">Audio &amp; Video Cables</a>--}}
+                {{--                                        --}}{{--                                            </li>--}}
+                {{--                                        --}}{{--                                            <li class="current-menu-item "><a href="#">Batteries</a>--}}
+                {{--                                        --}}{{--                                            </li>--}}
+                {{--                                        --}}{{--                                        </ul>--}}
+                {{--                                        --}}{{--                                    </div>--}}
+                {{--                                    </div>--}}
+                {{--                                </li>--}}
+                {{--                        @endforeach--}}
+                {{--                    </div>--}}
+                {{--                </div>--}}
                 {{--                <a class="ps-logo" href="{{url('/')}}"><img src="{{asset('frontend/img/logo_light.png')}}" alt=""></a>--}}
-{{--                <a class="ps-logo" href="{{url('/')}}"><h2 class="font-weight-light">Mudi <span class="text-capitalize text-secondary">Hat</span></h2></a>--}}
+                {{--                <a class="ps-logo" href="{{url('/')}}"><h2 class="font-weight-light">Mudi <span class="text-capitalize text-secondary">Hat</span></h2></a>--}}
                 <a class="" href="{{url('/')}}"><h2 class="font-weight-light">Mudi <span class="text-capitalize text-secondary">Hat</span></h2></a>
             </div>
             <div class="header__center">
@@ -183,26 +183,47 @@
             </div>
             <div class="header__right">
                 <div class="header__actions"><a class="header__extra" href="#">
-                        <div class="ps-cart--mini"><a class="header__extra" href="#"><i class="icon-bag2"></i><span><i>0</i></span></a>
+                        <div class="ps-cart--mini"><a class="header__extra" href="#"><i class="icon-bag2"></i><span><i class="cart_count">{{Cart::count()}}</i></span></a>
                             <div class="ps-cart__content">
-                                {{--                            <div class="ps-cart__items">--}}
-                                {{--                                <div class="ps-product--cart-mobile">--}}
-                                {{--                                    <div class="ps-product__thumbnail"><a href="#"><img src="{{asset('frontend/img/products/clothing/7.jpg')}}" alt=""></a></div>--}}
-                                {{--                                    <div class="ps-product__content"><a class="ps-product__remove" href="#"><i class="icon-cross"></i></a><a href="product-default.html">MVMTH Classical Leather Watch In Black</a>--}}
-                                {{--                                        <p><strong>Sold by:</strong>  YOUNG SHOP</p><small>1 x $59.99</small>--}}
-                                {{--                                    </div>--}}
-                                {{--                                </div>--}}
-                                {{--                                <div class="ps-product--cart-mobile">--}}
-                                {{--                                    <div class="ps-product__thumbnail"><a href="#"><img src="{{asset('frontend/img/products/clothing/5.jpg')}}" alt=""></a></div>--}}
-                                {{--                                    <div class="ps-product__content"><a class="ps-product__remove" href="#"><i class="icon-cross"></i></a><a href="product-default.html">Sleeve Linen Blend Caro Pane Shirt</a>--}}
-                                {{--                                        <p><strong>Sold by:</strong>  YOUNG SHOP</p><small>1 x $59.99</small>--}}
-                                {{--                                    </div>--}}
-                                {{--                                </div>--}}
-                                {{--                            </div>--}}
-                                <div class="ps-cart__footer">
-                                    <h3>Sub Total:<strong></strong></h3>
-                                    <figure><a class="ps-btn" href="{{route('shopping-cart')}}">View Cart</a><a class="ps-btn" href="{{route('checkout')}}">Checkout</a></figure>
+                                <div class="ps-cart__items cart_item">
+                                    {{--                                    @forelse(Cart::content() as $product)--}}
+                                    {{--                                        <div class="ps-product--cart-mobile">--}}
+                                    {{--                                            <div class="ps-product__thumbnail"><a href="#"><img src="{{asset($product->options->image)}}" alt=""></a></div>--}}
+                                    {{--                                            <div class="ps-product__content"><a class="ps-product__remove" href="{{route('product.cart.remove',$product->rowId)}}"><i class="icon-cross"></i></a><a href="#">{{$product->name}}</a>--}}
+                                    {{--                                                <p><small>{{$product->qty}} x {{$product->price}}</small>--}}
+                                    {{--                                            </div>--}}
+                                    {{--                                        </div>--}}
+                                    {{--                                    @empty--}}
+                                    {{--                                        <div class="ps-product--cart-mobile text-center text-danger">--}}
+                                    {{--                                            <div class="row">--}}
+                                    {{--                                                <div class="col-md-12">--}}
+                                    {{--                                                    <i class="fa fa-shopping-basket fa-4x mb-2" aria-hidden="true"></i>--}}
+                                    {{--                                                    <h3>Empty Cart</h3>--}}
+                                    {{--                                                </div>--}}
+                                    {{--                                            </div>--}}
+                                    {{--                                        </div>--}}
+                                    {{--                                    @endforelse--}}
+                                    @foreach(Cart::content() as $product)
+                                        <div class="ps-product--cart-mobile">
+                                            <div class="ps-product__thumbnail"><a href="#"><img src="{{asset($product->options->image)}}" alt=""></a></div>
+                                            <div class="ps-product__content"><a class="ps-product__remove" href="{{route('product.cart.remove',$product->rowId)}}"><i class="icon-cross"></i></a><a href="#">{{$product->name}}</a>
+                                                <p><small>{{$product->qty}} x {{$product->price}}</small>
+                                            </div>
+                                        </div>
+                                    @endforeach
+                                    {{--                                        <div class="ps-product--cart-mobile">--}}
+                                    {{--                                            <div class="ps-product__thumbnail"><a href="#"><img src="{{asset('frontend/img/products/clothing/5.jpg')}}" alt=""></a></div>--}}
+                                    {{--                                            <div class="ps-product__content"><a class="ps-product__remove" href="#"><i class="icon-cross"></i></a><a href="product-default.html">Sleeve Linen Blend Caro Pane Shirt</a>--}}
+                                    {{--                                                <p><strong>Sold by:</strong>  YOUNG SHOP</p><small>1 x $59.99</small>--}}
+                                    {{--                                            </div>--}}
+                                    {{--                                        </div>--}}
                                 </div>
+
+                                <div class="ps-cart__footer">
+                                    <h3>Sub Total:<strong class="subTotal">{{Cart::subtotal()}}</strong></h3>
+                                    <figure><a class="ps-btn" href="{{route('shopping-cart')}}">Cart</a><a class="ps-btn" href="{{route('checkout')}}">Checkout</a><a class="ps-btn" href="{{route('product.clear.cart')}}">Clear</a></figure>
+                                </div>
+
                             </div>
                         </div>
                         <div class="ps-block--user-header">
@@ -497,7 +518,7 @@
         <div class="navigation__left"><a class="ps-logo" href="{{url('/')}}"><img src="{{asset('frontend/img/logo_light.png')}}" alt=""></a></div>
         <div class="navigation__right">
             <div class="header__actions">
-                <div class="ps-cart--mini"><a class="header__extra" href="#"><i class="icon-bag2"></i><span><i>0</i></span></a>
+                <div class="ps-cart--mini"><a class="header__extra" href="#"><i class="icon-bag2"></i><span><i class="cart_count">0</i></span></a>
                     <div class="ps-cart__content">
                         <div class="ps-cart__items">
                             <div class="ps-product--cart-mobile">

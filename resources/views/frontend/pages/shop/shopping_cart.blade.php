@@ -6,8 +6,7 @@
             <div class="container">
                 <ul class="breadcrumb">
                     <li><a href="{{url('/')}}l">Home</a></li>
-                    <li><a href="shop-default.html">Shop</a></li>
-                    <li>Whishlist</li>
+                    <li>Shoping Cart</li>
                 </ul>
             </div>
         </div>
@@ -29,16 +28,17 @@
                             </tr>
                             </thead>
                             <tbody>
+                            @foreach(Cart::content() as $product)
                             <tr>
                                 <td>
                                     <div class="ps-product--cart">
-                                        <div class="ps-product__thumbnail"><a href="product-default.html"><img src="{{asset('frontend/img/products/electronic/1.jpg')}}" alt=""></a></div>
-                                        <div class="ps-product__content"><a href="product-default.html">Marshall Kilburn Wireless Bluetooth Speaker, Black (A4819189)</a>
+                                        <div class="ps-product__thumbnail"><a href="product-default.html"><img src="/{{$product->image}}" alt=""></a></div>
+                                        <div class="ps-product__content"><a href="product-default.html">{{$product->name}}</a>
                                             <p>Sold By:<strong> YOUNG SHOP</strong></p>
                                         </div>
                                     </div>
                                 </td>
-                                <td class="price">$205.00</td>
+                                <td class="price">{{$product->price}}</td>
                                 <td>
                                     <div class="form-group--number">
                                         <button class="up">+</button>
@@ -46,9 +46,10 @@
                                         <input class="form-control" type="text" placeholder="1" value="1">
                                     </div>
                                 </td>
-                                <td>$205.00</td>
+                                <td>{{$product->price}}</td>
                                 <td><a href="#"><i class="icon-cross"></i></a></td>
                             </tr>
+                            @endforeach
                             <tr>
                                 <td>
                                     <div class="ps-product--cart">
@@ -72,41 +73,41 @@
                             </tbody>
                         </table>
                     </div>
-                    <div class="ps-section__cart-actions"><a class="ps-btn" href="shop-default.html"><i class="icon-arrow-left"></i> Back to Shop</a><a class="ps-btn ps-btn--outline" href="shop-default.html"><i class="icon-sync"></i> Update cart</a></div>
+                    <div class="ps-section__cart-actions"><a class="ps-btn" href="shop-default.html"><i class="icon-arrow-left"></i> Back to Shop</a></div>
                 </div>
                 <div class="ps-section__footer">
                     <div class="row">
                         <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12 ">
-                            <figure>
-                                <figcaption>Coupon Discount</figcaption>
-                                <div class="form-group">
-                                    <input class="form-control" type="text" placeholder="">
-                                </div>
-                                <div class="form-group">
-                                    <button class="ps-btn ps-btn--outline">Apply</button>
-                                </div>
-                            </figure>
+{{--                            <figure>--}}
+{{--                                <figcaption>Coupon Discount</figcaption>--}}
+{{--                                <div class="form-group">--}}
+{{--                                    <input class="form-control" type="text" placeholder="">--}}
+{{--                                </div>--}}
+{{--                                <div class="form-group">--}}
+{{--                                    <button class="ps-btn ps-btn--outline">Apply</button>--}}
+{{--                                </div>--}}
+{{--                            </figure>--}}
                         </div>
                         <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12 ">
-                            <figure>
-                                <figcaption>Calculate shipping</figcaption>
-                                <div class="form-group">
-                                    <select class="ps-select">
-                                        <option value="1">America</option>
-                                        <option value="2">Italia</option>
-                                        <option value="3">Vietnam</option>
-                                    </select>
-                                </div>
-                                <div class="form-group">
-                                    <input class="form-control" type="text" placeholder="Town/City">
-                                </div>
-                                <div class="form-group">
-                                    <input class="form-control" type="text" placeholder="Postcode/Zip">
-                                </div>
-                                <div class="form-group">
-                                    <button class="ps-btn ps-btn--outline">Update</button>
-                                </div>
-                            </figure>
+{{--                            <figure>--}}
+{{--                                <figcaption>Calculate shipping</figcaption>--}}
+{{--                                <div class="form-group">--}}
+{{--                                    <select class="ps-select">--}}
+{{--                                        <option value="1">America</option>--}}
+{{--                                        <option value="2">Italia</option>--}}
+{{--                                        <option value="3">Vietnam</option>--}}
+{{--                                    </select>--}}
+{{--                                </div>--}}
+{{--                                <div class="form-group">--}}
+{{--                                    <input class="form-control" type="text" placeholder="Town/City">--}}
+{{--                                </div>--}}
+{{--                                <div class="form-group">--}}
+{{--                                    <input class="form-control" type="text" placeholder="Postcode/Zip">--}}
+{{--                                </div>--}}
+{{--                                <div class="form-group">--}}
+{{--                                    <button class="ps-btn ps-btn--outline">Update</button>--}}
+{{--                                </div>--}}
+{{--                            </figure>--}}
                         </div>
                         <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12 ">
                             <div class="ps-block--shopping-total">
