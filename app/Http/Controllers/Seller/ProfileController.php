@@ -16,15 +16,19 @@ use Illuminate\Support\Str;
 class ProfileController extends Controller
 {
     public function profile() {
-        $shops = Shop::where('user_id',Auth::id())->first();
-        return view('backend.seller.profile.edit_profile',compact('shops'));
+//        $shops = Shop::where('user_id',Auth::id())->first();
+        $userInfo = User::where('id',Auth::id())->first();
+        $sellerInfo = Seller::where('user_id',Auth::id())->first();
+        $shopInfo = Shop::where('user_id',Auth::id())->first();
+        return view('backend.seller.profile.profile',compact('userInfo','sellerInfo','shopInfo'));
     }
     public function profile_update(Request $request) {
 
         $user = User::findOrFail(Auth::id());
         $user->name = $request->name;
+        $user->phone = $request->phone;
         $user->email = $request->email;
-        $user->address = $request->address;
+//        $user->address = $request->address;
         $user->update();
 
 //        $seller = Seller::where('user_id',Auth::id())->first();
@@ -33,14 +37,15 @@ class ProfileController extends Controller
 
             $shop = Shop::where('user_id',Auth::id())->first();
 //            dd($shop->user_id);
-            $shop->address = $request->address;
-            $shop->city = $request->city;
-            $shop->area = $request->area;
-            $shop->latitude = $request->latitude;
-            $shop->longitude = $request->longitude;
-            if($request->hasFile('logo')){
-                $shop->logo = $request->logo->store('uploads/shop/logo');
-            }
+            $shop->name = $request->shop_name;
+//            $shop->address = $request->address;
+//            $shop->city = $request->city;
+//            $shop->area = $request->area;
+//            $shop->latitude = $request->latitude;
+//            $shop->longitude = $request->longitude;
+//            if($request->hasFile('logo')){
+//                $shop->logo = $request->logo->store('uploads/shop/logo');
+//            }
             $shop->update();
         Toastr::success('Successfully Updated!');
         return redirect()->back();
@@ -79,18 +84,19 @@ class ProfileController extends Controller
             $new_pay->bank_name = $request->bank_name;
             $new_pay->bank_acc_name = $request->bank_acc_name;
             $new_pay->bank_acc_no = $request->bank_acc_no;
+            $new_pay->bank_routing_no = $request->bank_routing_no;
             $new_pay->cash_on_delivery_status = 0;
             $new_pay->bank_payment_status = 0;
             $new_pay->save();
             Toastr::success("Seller Inserted Successfully","Success");
-            return redirect()->route('seller.payment.settings');
+            return redirect()->back();
         }else {
             $payment->bank_name = $request->bank_name;
             $payment->bank_acc_name = $request->bank_acc_name;
             $payment->bank_acc_no = $request->bank_acc_no;
             $payment->update();
             Toastr::success("Seller Updated Successfully","Success");
-            return redirect()->route('seller.payment.settings');
+            return redirect()->back();
 
         }
     }

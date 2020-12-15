@@ -20,7 +20,7 @@ Route::group(['as'=>'seller.','prefix' =>'seller', 'middleware' => ['auth', 'sel
     Route::resource('products','Seller\ProductController');
     Route::resource('shop','Seller\ShopController');
 
-    Route::get('profile','Seller\ProfileController@profile')->name('profile.index');
+    Route::get('profile','Seller\ProfileController@profile')->name('profile.show');
     Route::post('profile/update','Seller\ProfileController@profile_update')->name('profile.update');
     Route::get('password','Seller\ProfileController@password')->name('password.edit');
     Route::post('password/update','Seller\ProfileController@password_update')->name('password.update');
@@ -31,6 +31,7 @@ Route::group(['as'=>'seller.','prefix' =>'seller', 'middleware' => ['auth', 'sel
 
     Route::get('payment/request','Seller\PaymentController@index')->name('payment.history');
     Route::get('money/withdraw','Seller\PaymentController@money')->name('money.withdraw');
+    Route::post('money/withdraw/store','Seller\PaymentController@store')->name('withdraw-request.store');
 
 
     Route::get('products/slug/{name}','Seller\ProductController@ajaxSlugMake')->name('products.slug');
