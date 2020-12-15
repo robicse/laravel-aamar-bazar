@@ -76,7 +76,7 @@
                                             <a class="bg-dark dropdown-item" href="{{route('admin.seller.profile.show',$sellerUserInfo->id)}}">
                                                 <i class="fa fa-user"></i> Profile
                                             </a>
-                                            <a class="bg-success dropdown-item" href="{{route('admin.sellers.edit',$sellerUserInfo->id)}}">
+                                            <a class="bg-success dropdown-item" onclick="show_seller_payment_modal('{{$sellerUserInfo->seller->id}}');" href="#">
                                                 <i class="fa fa-money"></i> Pay Now
                                             </a>
                                             <a class="bg-secondary dropdown-item" href="{{route('admin.sellers.edit',$sellerUserInfo->id)}}">
@@ -114,6 +114,15 @@
                         </table>
                     </div>
                     <!-- /.card-body -->
+                </div>
+            </div>
+        </div>
+
+{{-- payment method--}}
+        <div class="modal fade" id="payment_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content" id="modal-content">
+
                 </div>
             </div>
         </div>
@@ -182,6 +191,13 @@
                 else{
                     //toastr.danger('danger', 'Something went wrong');
                 }
+            });
+        }
+        function show_seller_payment_modal(id){
+            $.post('{{ route('admin.sellers.payment_modal') }}',{_token:'{{ @csrf_token() }}', id:id}, function(data){
+                $('#payment_modal #modal-content').html(data);
+                $('#payment_modal').modal('show', {backdrop: 'static'});
+
             });
         }
 
