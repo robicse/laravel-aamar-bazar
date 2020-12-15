@@ -1,5 +1,8 @@
 @extends('backend.seller.layouts.master')
 @section("title","Money Withdraw")
+@push('css')
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+@endpush
 @section('content')
     <section class="content-header">
         <div class="container-fluid">
@@ -37,30 +40,41 @@
                 <!-- small box -->
                 <div class="small-box bg-success">
                     <div class="inner text-center">
-                        <h4>0</h4>
+                        <h4>Send Withdraw Request</h4>
 
-                        <p>Total Sale</p>
+                        <p></p>
                     </div>
                     <div class="icon">
                         <i class="ion ion-stats-bars"></i>
                     </div>
-                    <a href="" class="small-box-footer" data-toggle="modal" data-target="#exampleModal">More info <i class="fas fa-arrow-circle-right"></i></a>
+                    <a href="" class="small-box-footer" data-toggle="modal" data-target="#exampleModal">More info <i class="fas fa-plus-circle"></i></a>
                     <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                         <div class="modal-dialog" role="document">
                             <div class="modal-content">
                                 <div class="modal-header">
-                                    <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                                    <h5 class="modal-title" id="exampleModalLabel">Send a Withdraw Request</h5>
                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                         <span aria-hidden="true">&times;</span>
                                     </button>
                                 </div>
                                 <div class="modal-body">
-                                    ...
+                                    <form action="{{route('seller.withdraw-request.store')}}" method="post">
+                                        @csrf
+                                        <div class="form-group">
+                                            <label for="exampleFormControlInput1">Amount</label>
+                                            <input type="number" name="amount" class="form-control" id="exampleFormControlInput1">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="exampleFormControlTextarea1">Message</label>
+                                            <textarea class="form-control" name="message" id="exampleFormControlTextarea1" rows="4"></textarea>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                            <button type="submit" class="btn btn-primary">Save changes</button>
+                                        </div>
+                                    </form>
                                 </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                    <button type="button" class="btn btn-primary">Save changes</button>
-                                </div>
+
                             </div>
                         </div>
                     </div>
@@ -91,16 +105,23 @@
                         <th>Message</th>
                     </tr>
                     <tbody>
+                    @foreach($payment as $pay)
                     <tr>
-                        <td>1</td>
-                        <td>14-12-2020</td>
-                        <td>500</td>
-                        <td>Pending</td>
-                        <td>I'd like to withdraw my money</td>
+                        <td>{{$pay->id}}</td>
+                        <td>{{date('j-m-Y',strtotime($pay->created_at))}}</td>
+                        <td>{{$pay->amount}}</td>
+                        <td>{{$pay->status}}</td>
+                        <td>{{$pay->message}}</td>
                     </tr>
+                    @endforeach
                     </tbody>
                 </table>
             </div><!-- /.card-body -->
         </div>
     </section>
 @endsection
+@push('js')
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+@endpush
