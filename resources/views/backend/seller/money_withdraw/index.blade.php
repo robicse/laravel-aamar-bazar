@@ -1,7 +1,7 @@
 @extends('backend.seller.layouts.master')
 @section("title","Money Withdraw")
 @push('css')
-{{--    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">--}}
+    <link rel="stylesheet" href="{{asset('backend/plugins/datatables/dataTables.bootstrap4.css')}}">
 @endpush
 @section('content')
     <section class="content-header">
@@ -38,55 +38,21 @@
             <!-- ./col -->
             <div class="col-lg-3 col-6">
                 <!-- small box -->
-                <div class="small-box bg-success">
+                <a href="" class="small-box-footer" data-toggle="modal" data-target="#exampleModal">
+                <div class="small-box bg-success" style="min-height: 125px; ">
                     <div class="inner text-center">
                         <h4>Send Withdraw Request</h4>
-
-                        <p></p>
+                        <h1>
+                            <i class="fa fa-plus-circle"></i>
+                        </h1>
                     </div>
-                    <div class="icon">
-                        <i class="ion ion-stats-bars"></i>
-                    </div>
-                    <a href="" class="small-box-footer" data-toggle="modal" data-target="#exampleModal">More info <i class="fas fa-plus-circle"></i></a>
-                    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                        <div class="modal-dialog" role="document">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h5 class="modal-title" id="exampleModalLabel">Send a Withdraw Request</h5>
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
-                                </div>
-                                <div class="modal-body">
-                                    <form action="{{route('seller.withdraw-request.store')}}" method="post">
-                                        @csrf
-                                        <div class="form-group">
-                                            <p for="exampleFormControlInput1">Amount</p>
-                                            <input type="number" name="amount" class="form-control" id="exampleFormControlInput1">
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="exampleFormControlTextarea1">Message</label>
-                                            <textarea class="form-control" name="message" id="exampleFormControlTextarea1" rows="4"></textarea>
-                                        </div>
-                                        <div class="modal-footer">
-                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                            <button type="submit" class="btn btn-primary">Save changes</button>
-                                        </div>
-                                    </form>
-                                </div>
-
-                            </div>
-                        </div>
-                    </div>
-{{--                    <button type="button" class="btn btn-primary text-center" data-toggle="modal" data-target="#exampleModal">--}}
-{{--                        More--}}
-{{--                    </button>--}}
                 </div>
+                </a>
             </div>
             <!-- ./col -->
         </div>
     </section>
-    <section class="col-lg-10" >
+    <section class="col-lg-12 col-md-12" >
         <!-- Custom tabs (Charts with tabs)-->
         <div class="card">
             <div class="card-header">
@@ -96,32 +62,75 @@
                 </h3>
             </div><!-- /.card-header -->
             <div class="card-body">
-                <table class="table">
-                    <tr>
-                        <th>#</th>
-                        <th>Date</th>
-                        <th>Amount</th>
-                        <th>Status</th>
-                        <th>Message</th>
-                    </tr>
+                <table class="table table-bordered table-striped" id="example1">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Date</th>
+                            <th>Amount</th>
+                            <th>Status</th>
+                            <th>Message</th>
+                        </tr>
+                    </thead>
                     <tbody>
-
-                    <tr>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                    </tr>
-
+                        <tr>
+                            <td>sdfsa</td>
+                            <td>fghfg</td>
+                            <td>hdfgfd</td>
+                            <td>dbe</td>
+                            <td>utrd</td>
+                        </tr>
                     </tbody>
                 </table>
             </div><!-- /.card-body -->
         </div>
     </section>
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <form action="{{route('seller.withdraw-request.store')}}" method="post">
+                <div class="modal-body">
+                    @csrf
+                    <div class="form-group">
+                        <label for="exampleFormControlInput1">Amount</label>
+                        <input type="number" name="amount" class="form-control" id="exampleFormControlInput1">
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleFormControlTextarea1">Message</label>
+                        <textarea class="form-control" name="message" id="exampleFormControlTextarea1" rows="4"></textarea>
+                    </div>
+                </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-success">Send</button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
 @stop
 @push('js')
-{{--    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>--}}
-{{--    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>--}}
-{{--    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>--}}
+    <script src="{{asset('backend/plugins/datatables/jquery.dataTables.js')}}"></script>
+    <script src="{{asset('backend/plugins/datatables/dataTables.bootstrap4.js')}}"></script>
+    <script src="https://unpkg.com/sweetalert2@7.19.1/dist/sweetalert2.all.js"></script>
+    <script>
+        $(function () {
+            $("#example1").DataTable();
+            $('#example2').DataTable({
+                "paging": true,
+                "lengthChange": false,
+                "searching": false,
+                "ordering": true,
+                "info": true,
+                "autoWidth": false
+            });
+        });
+    </script>
 @endpush

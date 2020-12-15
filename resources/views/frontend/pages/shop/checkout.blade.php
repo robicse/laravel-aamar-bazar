@@ -13,9 +13,9 @@
         </div>
         <div class="ps-checkout ps-section--shopping">
             <div class="container">
-                <div class="ps-section__header">
-                    <h1>Compare Product</h1>
-                </div>
+{{--                <div class="ps-section__header">--}}
+{{--                    <h1>Checkout</h1>--}}
+{{--                </div>--}}
                 <div class="ps-section__content">
                     <form class="ps-form--checkout" action="http://nouthemes.net/html/martfury/do_action" method="post">
                         <div class="row">

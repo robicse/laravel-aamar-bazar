@@ -8,6 +8,7 @@ use App\Model\Product;
 use App\Model\Shop;
 use App\User;
 use Brian2694\Toastr\Facades\Toastr;
+use http\Exception\RuntimeException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 
@@ -106,6 +107,10 @@ class SellerController extends Controller
     {
         $seller = Seller::find($request->id);
         return view('backend.admin.seller.payment_modal', compact('seller'));
+    }
+    public function pay_to_seller_commission(Request $request)
+    {
+
     }
 
 
