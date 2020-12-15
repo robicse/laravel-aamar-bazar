@@ -25,7 +25,11 @@
                 <!-- small box -->
                 <div class="small-box bg-info">
                     <div class="inner text-center">
-                        <h4>500.00</h4>
+                        @if($seller->admin_to_pay>0)
+                        <h4>{{$seller->admin_to_pay}}</h4>
+                        @else
+                        <h4>Insufficient Amount</h4>
+                        @endif
 
                         <p>Pending Balance</p>
                     </div>
@@ -39,14 +43,14 @@
             <div class="col-lg-3 col-6">
                 <!-- small box -->
                 <a href="" class="small-box-footer" data-toggle="modal" data-target="#exampleModal">
-                <div class="small-box bg-success" style="min-height: 125px; ">
-                    <div class="inner text-center">
-                        <h4>Send Withdraw Request</h4>
-                        <h1>
-                            <i class="fa fa-plus-circle"></i>
-                        </h1>
+                    <div class="small-box bg-success" style="min-height: 125px; ">
+                        <div class="inner text-center">
+                            <h4>Send Withdraw Request</h4>
+                            <h1>
+                                <i class="fa fa-plus-circle"></i>
+                            </h1>
+                        </div>
                     </div>
-                </div>
                 </a>
             </div>
             <!-- ./col -->
@@ -57,29 +61,31 @@
         <div class="card">
             <div class="card-header">
                 <h3 class="card-title">
-{{--                    <i class="fas fa-chart-pie mr-1"></i>--}}
+                    {{--                    <i class="fas fa-chart-pie mr-1"></i>--}}
                     Withdraw Request History
                 </h3>
             </div><!-- /.card-header -->
             <div class="card-body">
                 <table class="table table-bordered table-striped" id="example1">
                     <thead>
-                        <tr>
-                            <th>#</th>
-                            <th>Date</th>
-                            <th>Amount</th>
-                            <th>Status</th>
-                            <th>Message</th>
-                        </tr>
+                    <tr>
+                        <th>#</th>
+                        <th>Date</th>
+                        <th>Amount</th>
+                        <th>Status</th>
+                        <th>Message</th>
+                    </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>sdfsa</td>
-                            <td>fghfg</td>
-                            <td>hdfgfd</td>
-                            <td>dbe</td>
-                            <td>utrd</td>
-                        </tr>
+                    @foreach($payment as $pay)
+                    <tr>
+                        <td>{{$pay->id}}</td>
+                        <td>{{date('j-m-Y',strtotime($pay->created_at))}}</td>
+                        <td>{{$pay->amount}}</td>
+                        <td>{{$pay->status}}</td>
+                        <td>{{$pay->message}}</td>
+                    </tr>
+                    @endforeach
                     </tbody>
                 </table>
             </div><!-- /.card-body -->
@@ -90,23 +96,37 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Send A Withdraw Request</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
                 <form action="{{route('seller.withdraw-request.store')}}" method="post">
-                <div class="modal-body">
-                    @csrf
-                    <div class="form-group">
-                        <label for="exampleFormControlInput1">Amount</label>
-                        <input type="number" name="amount" class="form-control" id="exampleFormControlInput1">
+                    <div class="row" style="padding: 10px 0px 0px 150px;">
+                        <div class="col-lg-8 col-6">
+                        <div class="small-box bg-info">
+                            <div class="inner text-center">
+                                @if($seller->admin_to_pay>0)
+                                    <h4>{{$seller->admin_to_pay}}</h4>
+                                @else
+                                    <h4>Insufficient Amount</h4>
+                                @endif
+                                <p>Pending Balance</p>
+                            </div>
+                        </div>
+                        </div>
                     </div>
-                    <div class="form-group">
-                        <label for="exampleFormControlTextarea1">Message</label>
-                        <textarea class="form-control" name="message" id="exampleFormControlTextarea1" rows="4"></textarea>
+                    <div class="modal-body">
+                        @csrf
+                        <div class="form-group">
+                            <label for="exampleFormControlInput1">Amount</label>
+                            <input type="number" name="amount" class="form-control" max="{{$seller->admin_to_pay}}" id="exampleFormControlInput1">
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleFormControlTextarea1">Message</label>
+                            <textarea class="form-control" name="message" id="exampleFormControlTextarea1" rows="4"></textarea>
+                        </div>
                     </div>
-                </div>
                     <div class="modal-footer">
                         <button type="submit" class="btn btn-success">Send</button>
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
