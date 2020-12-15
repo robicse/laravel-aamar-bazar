@@ -1,4 +1,4 @@
-<form class="form-horizontal" action="{{}}" method="POST" enctype="multipart/form-data">
+<form class="form-horizontal" action="{{route('admin.seller.commissions.pay_to_seller')}}" method="POST" enctype="multipart/form-data">
     @csrf
     <div class="modal-header">
         <h5 class="modal-title">Pay to seller</h5>
@@ -62,7 +62,7 @@
                 </div>
             </div>
 
-            <div class="form-group" id="txn_div">
+            <div class="form-group row" id="txn_div">
                 <label class="col-sm-4 control-label" for="txn_code">Txn Code</label>
                 <div class="col-sm-8">
                     <input type="text" name="txn_code" id="txn_code" class="form-control">
