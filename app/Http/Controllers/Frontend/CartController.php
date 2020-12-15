@@ -105,6 +105,10 @@ class CartController extends Controller
 
 
     public function checkout() {
+        if(Cart::count()==0){
+            Toastr::error('Nothing fount in cart');
+            return back();
+        }
         return view('frontend.pages.shop.checkout');
     }
 }
