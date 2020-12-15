@@ -46,12 +46,14 @@
                                 <th>Payment Method</th>
                             </tr>
                             </thead>
+                            @foreach($all_payment as $allPay)
                             <tr>
-                                <td>1</td>
-                                <td>14-12-2020</td>
-                                <td>500</td>
-                                <td>Cash</td>
+                                <td>{{$allPay->id}}</td>
+                                <td>{{date('j-m-Y',strtotime($allPay->created_at))}}</td>
+                                <td>{{$allPay->amount}}</td>
+                                <td>{{$allPay->payment_method}}</td>
                             </tr>
+                            @endforeach
 {{--                            <tbody>--}}
 {{--                            @foreach($categories as $key => $category)--}}
 {{--                                <tr>--}}

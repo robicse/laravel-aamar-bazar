@@ -25,7 +25,7 @@ class ShopController extends Controller
     public function create()
     {
         $shop_set = Shop::where('seller_id',Auth::id())->latest()->first();
-//        dd($shop_set);
+//        dd(Auth::id());
         return view('backend.seller.settings.shop.create',compact('shop_set'));
     }
 

@@ -44,5 +44,5 @@ Route::group(['as'=>'admin.','prefix' =>'admin','namespace'=>'Admin', 'middlewar
     Route::put('sellers/password/update/{id}','SellerController@updatePassword')->name('seller.password.update');
     Route::put('sellers/bankinfo/update/{id}','SellerController@bankInfoUpdate')->name('seller.bankinfo.update');
     Route::post('/sellers/payment_modal', 'SellerController@payment_modal')->name('sellers.payment_modal');
-
+    Route::post('/sellers/pay_to_seller_commission', 'SellerController@pay_to_seller_commission')->name('seller.commissions.pay_to_seller');
 });
