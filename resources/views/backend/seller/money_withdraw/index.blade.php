@@ -103,10 +103,14 @@
                 </div>
                 <form action="{{route('seller.withdraw-request.store')}}" method="post">
                     <div class="row" style="padding: 10px 0px 0px 150px;">
-                        <div class="col-lg-6 col-6">
+                        <div class="col-lg-8 col-6">
                         <div class="small-box bg-info">
                             <div class="inner text-center">
-                                <h4>{{$seller->admin_to_pay}}</h4>
+                                @if($seller->admin_to_pay>0)
+                                    <h4>{{$seller->admin_to_pay}}</h4>
+                                @else
+                                    <h4>Insufficient Amount</h4>
+                                @endif
                                 <p>Pending Balance</p>
                             </div>
                         </div>
