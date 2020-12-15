@@ -14,7 +14,7 @@
         </div>
         <div class="ps-my-account">
             <div class="container">
-                <form class="ps-form--account ps-tab-root" action="{{ route('user.register') }}" method="POST">
+                <form class="ps-form--account ps-tab-root" action="{{ route('user.register') }}" method="POST" style="padding: 0px;">
                     @csrf
                     <ul class="ps-tab-list">
                         <li class="active"><a href="#register">Register</a></li>

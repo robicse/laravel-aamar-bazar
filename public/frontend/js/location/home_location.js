@@ -4,12 +4,17 @@ Bkoi.onSelect(function () {
 })
 
 $(document).ready(function(){
-    geoLocationInit();
+    var latval = sessionStorage.getItem("latitude");
+    var lngval = sessionStorage.getItem("longitude");
+    if(latval==null){
+        geoLocationInit();
+    }else{
+        searchShops(latval,lngval);
+    }
 });
 
 function geoLocationInit() {
     var check_session = sessionStorage.getItem("latitude");
-    //console.log(session);
     if(check_session==null){
         if (navigator.geolocation) {
             navigator.geolocation.getCurrentPosition(success, fail);
@@ -28,7 +33,7 @@ function geoLocationInit() {
 }
 
 function success(position) {
-    console.log("in succ");
+    //console.log("in succ");
     sessionStorage.setItem("latitude", position.coords.latitude);
     sessionStorage.setItem("longitude", position.coords.longitude);
 
@@ -62,7 +67,7 @@ function searchShops(lat,lng){
         }
     });
     $.ajax({
-        url: '/shop/nearest',
+        url: '/shop/nearest/list',
         method: 'post',
         data: {
             lat:lat,
@@ -86,13 +91,14 @@ function searchShops(lat,lng){
                 // $('.shop_list').empty();
                 for(i=0;i<data.response.length;i++){
                     var gname=data.response[i].name;
+                    var slug=data.response[i].slug;
                     // fetch('https://barikoi.xyz/v1/api/distance/API_KEY/90.39534587,23.86448886/90.3673,23.8340')
                     //     .then(response => response.json())
                     //     .catch(error => console.error('Error:', error))
                     //     .then(response => console.log('Success:', response))
                     $('.shop_list').append(`<div class="col-md-3 p-2">
                     <figure>
-                        <a class="city-tile" data-gtm-cta="findRestaurant_dhaka" href="/city/dhaka"><picture>
+                        <a class="city-tile" data-gtm-cta="findRestaurant_dhaka" href="/shop/${slug}"><picture>
                                 <div class="city-picture b-lazy b-loaded" data-src="https://images.deliveryhero.io/image/fd-bd/city-title/city-title-Dhaka.jpg?width=720" style="background-image: url(&quot;https://images.deliveryhero.io/image/fd-bd/city-title/city-title-Dhaka.jpg?width=720&quot;);">
                                     &nbsp;</div>
                             </picture> <figcaption class="city-info"> <span class="city-name"> ${gname} </span> <span class="city-letter">30 meter away</span> <span class="city-cta button city__called-action js-ripple"> <svg class="svg-stroke-container mr-4" height="18" viewBox="0 0 20 18" width="20" xmlns="http://www.w3.org/2000/svg"> <g fill="none" fill-rule="evenodd" stroke="#FFFFFF" stroke-linecap="round" stroke-width="2" transform="translate(1 1)"> <path d="M0,8 L17.5,8"></path> <polyline points="4.338 13.628 15.628 13.628 15.628 2.338" stroke-linejoin="round" transform="rotate(-45 9.983 7.983)"></polyline> </g> </svg> </span> </figcaption> </a></figure>

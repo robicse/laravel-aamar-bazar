@@ -1,5 +1,5 @@
 @extends('frontend.layouts.master')
-@section('title', 'Product Details')
+@section('title', $productDetails->name)
 @push('css')
     <style>
         [type=radio] {
@@ -27,7 +27,7 @@
         /*    border-radius: 10px;*/
         /*}*/
         [type=radio]:checked + label {
-             border: 2px solid #282727;
+            border: 2px solid #282727;
             color: #212121;
         }
     </style>
@@ -37,8 +37,8 @@
         <div class="ps-container">
             <ul class="breadcrumb">
                 <li><a href="{{url('/')}}">Home</a></li>
-                <li><a href="shop-default.html">Consumer Electrics</a></li>
-                <li><a href="shop-default.html">Refrigerators</a></li>
+                {{--                <li><a href="shop-default.html">Consumer Electrics</a></li>--}}
+                {{--                <li><a href="shop-default.html">Refrigerators</a></li>--}}
                 <li>{{$productDetails->name}}</li>
             </ul>
         </div>
@@ -81,13 +81,16 @@
                                 </div>
                                 <h4 class="ps-product__price">৳<span class="price ps-product__price">{{ $price }}</span>/{{ $productDetails->unit }}</h4>
                                 <div class="ps-product__desc">
-                                    <p>Sold By:<a href="shop-default.html"><strong> {{ $productDetails->brand->name }}</strong></a></p>
+                                    @php
+                                    $shop=\App\Model\Shop::where('user_id',$productDetails->user_id)->first();
+                                    @endphp
+                                    <p>Sold By:<a href="{{route('shop.details',$shop->slug)}}"><strong> {{ $shop->name }}</strong></a></p>
                                     <ul class="ps-list--dot">
                                         <li> Unrestrained and portable active stereo speaker</li>
                                         <li> Free from the confines of wires and chords</li>
-                                        <li> 20 hours of portable capabilities</li>
-                                        <li> Double-ended Coil Cord with 3.5mm Stereo Plugs Included</li>
-                                        <li> 3/4″ Dome Tweeters: 2X and 4″ Woofer: 1X</li>
+                                        {{--                                        <li> 20 hours of portable capabilities</li>--}}
+                                        {{--                                        <li> Double-ended Coil Cord with 3.5mm Stereo Plugs Included</li>--}}
+                                        {{--                                        <li> 3/4″ Dome Tweeters: 2X and 4″ Woofer: 1X</li>--}}
                                     </ul>
                                 </div>
                                 <form id="option-choice-form">
@@ -98,7 +101,7 @@
                                                 <figcaption>Color</figcaption>
                                                 @foreach($colors as $index=>$col)
                                                     <div class="form-check form-check-inline mr-0">
-                                                        <input class="form-check-input" type="radio" name="color" id="{{$col->code}}" value="{{$col->name}}" @if($index == 0) checked @endif>
+                                                        <input class="form-check-input" type="radio" name="color" id="{{$col->code}}" value="{{$col->name}}" @if($index == 0) checked @endif autocomplete="off">
                                                         <label class="form-check-label" for="{{$col->code}}" style="background-color: {{$col->code}};">
                                                             {{$col->name}}
                                                         </label>
@@ -117,7 +120,7 @@
                                                     <figcaption>{{$att->name}}</figcaption>
                                                     @foreach($options[$key]->values as $index=>$val)
                                                         <div class="form-check form-check-inline mr-0">
-                                                            <input class="form-check-input" type="radio" name="{{$att->name}}" id="{{$val}}" value="{{$val}}" @if($index == 0) checked @endif>
+                                                            <input class="form-check-input" type="radio" name="{{$att->name}}" id="{{$val}}" value="{{$val}}" @if($index == 0) checked @endif autocomplete="off">
                                                             <label class="form-check-label" for="{{$val}}">
                                                                 {{$val}}
                                                             </label>
@@ -134,13 +137,13 @@
                                             <div class="form-group--number">
                                                 <button class="up"><i class="fa fa-plus"></i></button>
                                                 <button class="down"><i class="fa fa-minus"></i></button>
-                                                <input class="form-control qtty" name="quantity" type="text" placeholder="1" value="1">
+                                                <input class="form-control qtty" name="quantity" type="text" placeholder="1" value="1" autocomplete="off">
                                             </div>
                                         </figure>
                                         <p class="aval">{{$avilability}} available</p>
-                                        <a class="ps-btn ps-btn--black" href="#">Add to cart</a>
-{{--                                        <a class="ps-btn" href="#">Buy Now</a>--}}
-{{--                                        <div class="ps-product__actions"><a href="#"><i class="icon-heart"></i></a><a href="#"><i class="icon-chart-bars"></i></a></div>--}}
+                                        <a class="ps-btn ps-btn--black" href="#" id="add_to_cart">Add to cart</a>
+                                        {{--                                        <a class="ps-btn" href="#">Buy Now</a>--}}
+                                        {{--                                        <div class="ps-product__actions"><a href="#"><i class="icon-heart"></i></a><a href="#"><i class="icon-chart-bars"></i></a></div>--}}
                                     </div>
                                 </form>
                                 <div class="ps-product__specification"><a class="report" href="#">Report Abuse</a>
@@ -310,9 +313,9 @@
                         <p><i class="icon-receipt"></i> Supplier give bills for this product.</p>
                         <p><i class="icon-credit-card"></i> Pay online or when receiving goods</p>
                     </aside>
-                    <aside class="widget widget_sell-on-site">
-                        <p><i class="icon-store"></i> Sell on Martfury?<a href="#"> Register Now !</a></p>
-                    </aside>
+                    {{--                    <aside class="widget widget_sell-on-site">--}}
+                    {{--                        <p><i class="icon-store"></i> Sell on Martfury?<a href="#"> Register Now !</a></p>--}}
+                    {{--                    </aside>--}}
                     <aside class="widget widget_ads"><a href="#"><img src="{{asset('frontend/img/ads/product-ads.png')}}" alt=""></a></aside>
                     <aside class="widget widget_same-brand">
                         <h3>Same Brand</h3>
@@ -821,25 +824,45 @@
                 </div>
             </div>
         </div>
+        <input type = "hidden" class="base_price" value="{{$price}}" autocomplete="off">
+        <input type = "hidden" class="base_qty" value="{{$avilability}}" autocomplete="off">
     </div>
 @endsection
 @push('js')
     <script>
+        $('.qtty').val(1);
         $('#option-choice-form input').on('change', function(){
             getVariantPrice($('#option-choice-form').serializeArray());
-            //console.log($('#option-choice-form').serializeArray());
+            console.log($('#option-choice-form').serializeArray());
+        });
+        $('#add_to_cart').on('click', function(e){
+            e.preventDefault();
+            //getVariantPrice($('#option-choice-form').serializeArray());
+            addtocart($('#option-choice-form').serializeArray());
         });
 
         $('.up').on('click', function(event){
             event.preventDefault();
             var val=$('.qtty').val();
-            $('.qtty').val(parseInt(val)+1);
+            var price=$('.price').html();
+            var base_price=$('.base_price').val();
+            var base_qty=$('.base_qty').val();
+            // console.log(typeof base_qty);
+            // console.log(typeof val);
+            if(parseInt(val)<parseInt(base_qty)){
+                $('.qtty').val(parseInt(val)+1);
+                $('.price').html(parseInt(base_price)*(parseInt(val)+1));
+            }
+
         });
         $('.down').on('click', function(event){
             event.preventDefault();
             var val=$('.qtty').val();
+            var price=$('.price').html();
+            var base_price=$('.base_price').val();
             if(parseInt(val)>1){
                 $('.qtty').val(parseInt(val)-1);
+                $('.price').html(parseInt(price)-parseInt(base_price));
             }
         });
 
@@ -859,7 +882,44 @@
                 success: function(data){
                     console.log(data.response.price)
                     $('.price').html(data.response.price);
+                    $('.base_price').val(data.response.price);
                     $('.aval').html(data.response.qty+" available");
+                    $('.qtty').val(1);
+                    $('.base_qty').val(data.response.qty);
+                    //toastr.success('Lab Test added in your cart <span style="font-size: 25px;">&#10084;&#65039;</span>');
+                }
+            });
+        }
+        function addtocart(array){
+            //console.log(array);
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+            $.ajax({
+                url: "{{route('product.add.cart')}}",
+                method: "post",
+                data:{
+                    variant:array,
+                    product_id: "{{$productDetails->id}}",
+                    product_name:"{{$productDetails->name}}",
+                    product_price:"{{$productDetails->unit_price}}",
+                },
+                success: function(data){
+                    console.log(data.response)
+                    $('.cart_count').html(data.response.countCart);
+                    $('.cart_item').append(`<div class="ps-product--cart-mobile">
+                                            <div class="ps-product__thumbnail"><a href="#"><img src="/${data.response['options'].image}" alt=""></a></div>
+                                            <div class="ps-product__content"><a class="ps-product__remove" href=""><i class="icon-cross"></i></a><a href="#">${data.response.name}</a>
+                                                <p><small>${data.response.qty} x ${data.response.price}</small>
+                                            </div>
+                                        </div>`);
+                    $('.subTotal').html(data.response.subtotal);
+                    // $('.base_price').val(data.response.price);
+                    // $('.aval').html(data.response.qty+" available");
+                    // $('.qtty').val(1);
+                    // $('.base_qty').val(data.response.qty);
                     //toastr.success('Lab Test added in your cart <span style="font-size: 25px;">&#10084;&#65039;</span>');
                 }
             });
