@@ -42,15 +42,15 @@ class SellerController extends Controller
    {
 
    }
-
    public function paymentHistory()
    {
-       $paymentHistories = Payment::where('seller_id',Auth::id())->latest()->get();
+       $paymentHistories = Payment::latest()->get();
     return view('backend.admin.seller.payment_history',compact('paymentHistories'));
    }
    public function withdrawRequest()
    {
-       return view('backend.admin.seller.withdraw_request');
+       $withdrawRequests = SellerWithdrawRequest::latest()->get();
+       return view('backend.admin.seller.withdraw_request', compact('withdrawRequests'));
    }
 
    public function profileShow($id)
@@ -112,13 +112,24 @@ class SellerController extends Controller
         $seller = Seller::find($request->id);
         return view('backend.admin.seller.payment_modal', compact('seller'));
     }
+    public function withdraw_payment_modal(Request $request)
+    {
+        //$seller = Seller::find($request->id);
+        $withdrawData = SellerWithdrawRequest::find($request->id);
+        $seller = Seller::where('user_id',$withdrawData->user_id)->first();
+        //return $seller;
+        return view('backend.admin.seller.withdraw_payment_modal', compact('seller','withdrawData'));
+    }
     public function pay_to_seller_commission(Request $request)
     {
         $data['seller_id'] = $request->seller_id;
         $data['amount'] = $request->amount;
+        $data['type'] = $request->type;
         $data['payment_method'] = $request->payment_option;
-        $data['payment_withdraw'] = $request->payment_withdraw;
-        $data['withdraw_request_id'] = $request->withdraw_request_id;
+        //$data['payment_withdraw'] = $request->payment_withdraw;
+        if ($data['type'] == 'withdraw'){
+            $data['withdraw_request_id'] = $request->withdraw_request_id;
+        }
         if ($request->txn_code != null) {
             $data['txn_code'] = $request->txn_code;
         }
@@ -139,8 +150,10 @@ class SellerController extends Controller
 
     public function seller_payment_done($payment_data, $payment_details){
         $seller = Seller::findOrFail($payment_data['seller_id']);
-        $seller->admin_to_pay = $seller->admin_to_pay - $payment_data['amount'];
-        $seller->save();
+        if($payment_data['type'] == 'payment'){
+            $seller->admin_to_pay = $seller->admin_to_pay - $payment_data['amount'];
+            $seller->save();
+        }
 
         $payment = new Payment;
         $payment->seller_id = $seller->id;
@@ -150,7 +163,7 @@ class SellerController extends Controller
         $payment->payment_details = $payment_details;
         $payment->save();
 
-        if ($payment_data['payment_withdraw'] == 'withdraw_request') {
+        if ($payment_data['type'] == 'withdraw') {
             $seller_withdraw_request = SellerWithdrawRequest::find($payment_data['withdraw_request_id']);
             $seller_withdraw_request->status = '1';
             $seller_withdraw_request->viewed = '1';
@@ -160,9 +173,12 @@ class SellerController extends Controller
         Session::forget('payment_data');
         Session::forget('payment_type');
 
-        if ($payment_data['payment_withdraw'] == 'withdraw_request') {
+        if ($payment_data['type'] == 'payment') {
             Toastr::success('Payment completed', 'Success');
             return redirect()->route('admin.seller.payment.history');
+        }else{
+            Toastr::success('Payment completed', 'Success');
+            return redirect()->route('admin.seller.withdraw.request');
         }
 
     }

@@ -48,16 +48,15 @@
                             </tr>
                             </thead>
                             <tbody>
-                           {{-- @foreach($sellerUserInfos as $key => $sellerUserInfo)--}}
+                            @foreach($paymentHistories as $key => $payHis)
                             <tr>
-                                {{--<td>{{$key + 1}}</td>--}}
-                                <td>1</td>
-                                <td>2020-11-30 05:42:00</td>
-                                <td>Mr. Seller (Demo Seller Shop)</td>
-                                <td>৳78.400</td>
-                                <td>Cash</td>
+                                <td>{{$key + 1}}</td>
+                                <td>{{date('jS F Y H:i A',strtotime($payHis->created_at))}}</td>
+                                <td>Mr. Seller ({{$payHis->seller->user->name}})</td>
+                                <td>৳{{$payHis->amount}}</td>
+                                <td>{{$payHis->payment_method}}</td>
                             </tr>
-                            {{--@endforeach--}}
+                            @endforeach
                             </tbody>
                             <tfoot>
                             <tr>

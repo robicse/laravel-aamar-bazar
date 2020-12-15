@@ -47,7 +47,7 @@
                                     <b>Total Sold Amount</b> <a class="float-right">13,287</a>
                                 </li>
                                 <li class="list-group-item">
-                                    <b>Wallet Balance</b> <a class="float-right">{{$userInfo->balance}}tk</a>
+                                    <b>Wallet Balance</b> <a class="float-right">{{$userInfo->seller->admin_to_pay}}tk</a>
                                 </li>
                             </ul>
 
