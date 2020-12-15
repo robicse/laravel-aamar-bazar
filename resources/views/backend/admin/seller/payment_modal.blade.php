@@ -46,7 +46,6 @@
                     <input type="number" min="0" step="0.01" name="amount" id="amount" value="{{ $seller->admin_to_pay }}" class="form-control" required>
                 </div>
             </div>
-
             <div class="form-group row">
                 <label class="col-sm-4 control-label" for="payment_option">Payment Method</label>
                 <div class="col-sm-8">

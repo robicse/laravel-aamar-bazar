@@ -3,14 +3,17 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Model\Payment;
 use App\Model\Seller;
 use App\Model\Product;
+use App\Model\SellerWithdrawRequest;
 use App\Model\Shop;
 use App\User;
 use Brian2694\Toastr\Facades\Toastr;
 use http\Exception\RuntimeException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Session;
 
 class SellerController extends Controller
 {
@@ -110,6 +113,56 @@ class SellerController extends Controller
     }
     public function pay_to_seller_commission(Request $request)
     {
+        $data['seller_id'] = $request->seller_id;
+        $data['amount'] = $request->amount;
+        $data['payment_method'] = $request->payment_option;
+        $data['payment_withdraw'] = $request->payment_withdraw;
+        $data['withdraw_request_id'] = $request->withdraw_request_id;
+        if ($request->txn_code != null) {
+            $data['txn_code'] = $request->txn_code;
+        }
+        else {
+            $data['txn_code'] = null;
+        }
+        $request->session()->put('payment_type', 'seller_payment');
+        $request->session()->put('payment_data', $data);
+        if ($request->payment_option == 'cash') {
+            return $this->seller_payment_done($request->session()->get('payment_data'), null);
+        }
+        /*elseif ($request->payment_option == 'sslcommerz') {
+            $sslcommerz = new PublicSslCommerzPaymentController;
+            return $sslcommerz->index($request);
+        }*/
+
+    }
+
+    public function seller_payment_done($payment_data, $payment_details){
+        $seller = Seller::findOrFail($payment_data['seller_id']);
+        $seller->admin_to_pay = $seller->admin_to_pay - $payment_data['amount'];
+        $seller->save();
+
+        $payment = new Payment;
+        $payment->seller_id = $seller->id;
+        $payment->amount = $payment_data['amount'];
+        $payment->payment_method = $payment_data['payment_method'];
+        $payment->txn_code = $payment_data['txn_code'];
+        $payment->payment_details = $payment_details;
+        $payment->save();
+
+        if ($payment_data['payment_withdraw'] == 'withdraw_request') {
+            $seller_withdraw_request = SellerWithdrawRequest::find($payment_data['withdraw_request_id']);
+            $seller_withdraw_request->status = '1';
+            $seller_withdraw_request->viewed = '1';
+            $seller_withdraw_request->save();
+        }
+
+        Session::forget('payment_data');
+        Session::forget('payment_type');
+
+        if ($payment_data['payment_withdraw'] == 'withdraw_request') {
+            Toastr::success('Payment completed', 'Success');
+            return redirect()->route('admin.seller.payment.history');
+        }
 
     }
 

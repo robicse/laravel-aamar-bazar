@@ -66,7 +66,7 @@
                                     </div>
                                 </td>
                                 <td>{{$sellerUserInfo->products->count()}}</td>
-                                <td>{{$sellerUserInfo->balance}}</td>
+                                <td>{{$sellerUserInfo->seller->admin_to_pay}}</td>
                                 <td>
                                     <div class="dropdown">
                                         <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -113,7 +113,6 @@
                             </tfoot>
                         </table>
                     </div>
-                    <!-- /.card-body -->
                 </div>
             </div>
         </div>
