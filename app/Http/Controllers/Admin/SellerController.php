@@ -45,6 +45,7 @@ class SellerController extends Controller
 
    public function paymentHistory()
    {
+       $paymentHistories = Payment::where('seller_id',Auth::id())->latest()->get();
     return view('backend.admin.seller.payment_history');
    }
    public function withdrawRequest()
