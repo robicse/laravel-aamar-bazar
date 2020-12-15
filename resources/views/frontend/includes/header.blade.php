@@ -207,8 +207,9 @@
                                         <div class="ps-product--cart-mobile">
                                             <div class="ps-product__thumbnail"><a href="#"><img src="{{asset($product->options->image)}}" alt=""></a></div>
                                             <div class="ps-product__content"><a class="ps-product__remove" href="{{route('product.cart.remove',$product->rowId)}}"><i class="icon-cross"></i></a><a href="#">{{$product->name}}</a>
-                                                <p><small>{{$product->qty}} x {{$product->price}}</small>
+                                                <p><small>{{$product->qty}} x ৳{{$product->price}}</small>
                                             </div>
+                                            <p>Sold By:<strong> {{$product->options->shop_name}}</strong></p>
                                         </div>
                                     @endforeach
                                     {{--                                        <div class="ps-product--cart-mobile">--}}
@@ -545,7 +546,8 @@
                     <div class="ps-block__right"><a href="{{ route('login') }}">Login</a><a href="{{ route('register') }}">Register</a></div>
                 </div>
             </div>
-        </div>
+        </div>     </div>
+    </div>
     </div>
     <div class="ps-search--mobile">
         <form class="ps-form--search-mobile" action="http://nouthemes.net/html/martfury/index.html" method="get">

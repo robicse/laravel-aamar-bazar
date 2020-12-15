@@ -29,6 +29,9 @@ Route::group(['as'=>'seller.','prefix' =>'seller', 'middleware' => ['auth', 'sel
     Route::post('payment/cash_on_delivery_status', 'Seller\ProfileController@cashOnDelivery')->name('payment.cash_on_delivery_status');
     Route::post('payment/bank_payment_status', 'Seller\ProfileController@bankPayment')->name('payment.bank_payment_status');
 
+    Route::get('payment/request','Seller\PaymentController@index')->name('payment.history');
+    Route::get('money/withdraw','Seller\PaymentController@money')->name('money.withdraw');
+
 
     Route::get('products/slug/{name}','Seller\ProductController@ajaxSlugMake')->name('products.slug');
     Route::post('products/get-subcategories-by-category','Seller\ProductController@ajaxSubCat')->name('products.get_subcategories_by_category');

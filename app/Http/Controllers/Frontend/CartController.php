@@ -18,6 +18,7 @@ class CartController extends Controller
 //        dd($request->all());
         $var=$request->variant;
         $product=Product::find($request->product_id);
+        $shop=\App\Model\Shop::where('user_id',$product->user_id)->first();
         if($product->variant_product==null){
             //dd("no");
             $qty=$var[count($var)-1]['value'];
@@ -30,6 +31,8 @@ class CartController extends Controller
             $data['options']['shipping_cost'] = 60;
             $data['options']['variant_id'] = null;
             $data['options']['variant'] = null;
+            $data['options']['shop_name'] =  $shop->name;
+            $data['options']['shop_slug'] =  $shop->slug;
             $data['options']['cart_type'] = "product";
 //            if (!empty($flashSale) && $product->flash_sale == 1 && $flDateTime >= $currDateTime){
 //                $data['price'] = $product->flash_sale_price;
@@ -59,6 +62,8 @@ class CartController extends Controller
             $data['options']['shipping_cost'] = 60;
             $data['options']['variant_id'] = $variant->id;
             $data['options']['variant'] = $variant->variant;
+            $data['options']['shop_name'] =  $shop->name;
+            $data['options']['shop_slug'] =  $shop->slug;
             $data['options']['cart_type'] = "product";
 //            if (!empty($flashSale) && $product->flash_sale == 1 && $flDateTime >= $currDateTime){
 //                $data['price'] = $product->flash_sale_price;
@@ -97,6 +102,8 @@ class CartController extends Controller
         Cart::destroy();
         return back();
     }
+
+
     public function checkout() {
         return view('frontend.pages.shop.checkout');
     }

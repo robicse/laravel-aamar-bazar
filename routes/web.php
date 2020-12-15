@@ -35,6 +35,7 @@ Route::post('/products/get/variant/price', 'Frontend\ProductController@ProductVa
 Route::post('/products/ajax/addtocart', 'Frontend\CartController@ProductAddCart')->name('product.add.cart');
 Route::get('/product/clear/cart', 'Frontend\CartController@clearCart')->name('product.clear.cart');
 Route::get('/product/remove/cart/{id}', 'Frontend\CartController@cartRemove')->name('product.cart.remove');
+Route::post('/cart/quantity_update', 'Frontend\CartController@quantityUpdate')->name('qty.update');
 //Shop/Vendor
 Route::post('/shop/nearest/list', 'Frontend\ShopController@nearestshop')->name('shop.nearest');
 Route::get('/become-a-vendor', 'Frontend\VendorController@index')->name('become-vendor');
