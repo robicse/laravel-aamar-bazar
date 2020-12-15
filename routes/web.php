@@ -19,7 +19,6 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', 'Frontend\FrontendController@index')->name('index');
 Route::get('/shopping-cart', 'Frontend\CartController@viewCart')->name('shopping-cart');
-Route::get('/checkout', 'Frontend\CartController@checkout')->name('checkout');
 Route::get('/shop', 'Frontend\ShopController@shop')->name('shop');
 Route::get('/about-us', 'Frontend\AboutController@About')->name('about-us');
 Route::get('/contact', 'Frontend\AboutController@contact')->name('contact');
@@ -55,7 +54,7 @@ Route::group(['middleware' => ['auth', 'user']], function () {
     Route::get('/user/address', 'User\DashboardController@address')->name('user.address');
     Route::get('/user/order/history', 'User\DashboardController@orderHistory')->name('user.order.history');
     Route::get('/user/wishlist', 'User\DashboardController@wishlist')->name('user.wishlist');
-
+    Route::get('/checkout', 'Frontend\CartController@checkout')->name('checkout');
     //this route only for resource controller
     Route::group(['as' => 'user.', 'prefix' => 'user', 'namespace' => 'User',], function () {
         //Route::resource('products', 'ProductController');

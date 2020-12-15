@@ -6,16 +6,12 @@
             <div class="container">
                 <ul class="breadcrumb">
                     <li><a href="{{url('/')}}">Home</a></li>
-                    <li><a href="shop-default.html">Shop</a></li>
                     <li>Checkout</li>
                 </ul>
             </div>
         </div>
         <div class="ps-checkout ps-section--shopping">
             <div class="container">
-{{--                <div class="ps-section__header">--}}
-{{--                    <h1>Checkout</h1>--}}
-{{--                </div>--}}
                 <div class="ps-section__content">
                     <form class="ps-form--checkout" action="http://nouthemes.net/html/martfury/do_action" method="post">
                         <div class="row">
@@ -23,21 +19,7 @@
                                 <div class="ps-form__billing-info">
                                     <h3 class="ps-form__heading">Billing Details</h3>
                                     <div class="form-group">
-                                        <label>First Name<sup>*</sup>
-                                        </label>
-                                        <div class="form-group__content">
-                                            <input class="form-control" type="text">
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label>Last Name<sup>*</sup>
-                                        </label>
-                                        <div class="form-group__content">
-                                            <input class="form-control" type="text">
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label>Company Name<sup>*</sup>
+                                        <label>Name<sup>*</sup>
                                         </label>
                                         <div class="form-group__content">
                                             <input class="form-control" type="text">
@@ -48,13 +30,6 @@
                                         </label>
                                         <div class="form-group__content">
                                             <input class="form-control" type="email">
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label>Country<sup>*</sup>
-                                        </label>
-                                        <div class="form-group__content">
-                                            <input class="form-control" type="text">
                                         </div>
                                     </div>
                                     <div class="form-group">
@@ -71,18 +46,18 @@
                                             <input class="form-control" type="text">
                                         </div>
                                     </div>
-                                    <div class="form-group">
-                                        <div class="ps-checkbox">
-                                            <input class="form-control" type="checkbox" id="create-account">
-                                            <label for="create-account">Create an account?</label>
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <div class="ps-checkbox">
-                                            <input class="form-control" type="checkbox" id="cb01">
-                                            <label for="cb01">Ship to a different address?</label>
-                                        </div>
-                                    </div>
+                                    {{--                                    <div class="form-group">--}}
+                                    {{--                                        <div class="ps-checkbox">--}}
+                                    {{--                                            <input class="form-control" type="checkbox" id="create-account">--}}
+                                    {{--                                            <label for="create-account">Create an account?</label>--}}
+                                    {{--                                        </div>--}}
+                                    {{--                                    </div>--}}
+                                    {{--                                    <div class="form-group">--}}
+                                    {{--                                        <div class="ps-checkbox">--}}
+                                    {{--                                            <input class="form-control" type="checkbox" id="cb01">--}}
+                                    {{--                                            <label for="cb01">Ship to a different address?</label>--}}
+                                    {{--                                        </div>--}}
+                                    {{--                                    </div>--}}
                                     <h3 class="mt-40"> Addition information</h3>
                                     <div class="form-group">
                                         <label>Order Notes</label>
@@ -104,32 +79,18 @@
                                             <div class="ps-block__content">
                                                 <table class="table ps-block__products">
                                                     <tbody>
-                                                    <tr>
-                                                        <td><a href="#"> MVMTH Classical Leather Watch In Black ×1</a>
-                                                            <p>Sold By:<strong>YOUNG SHOP</strong></p>
-                                                        </td>
-                                                        <td>$57.99</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td><a href="#"> Apple Macbook Retina Display 12” 	× 1</a>
-                                                            <p>Sold By:<strong>ROBERT’S STORE</strong></p>
-                                                        </td>
-                                                        <td>$625.50</td>
-                                                    </tr>
+                                                    @foreach(Cart::content() as $product)
+                                                        <tr>
+                                                            <td><a href="#"> {{$product->name}} ×{{$product->qty}}</a>
+                                                                <p>Sold By:<strong>{{$product->shop_name}}</strong></p>
+                                                            </td>
+                                                            <td>৳{{$product->subtotal()}}</td>
+                                                        </tr>
+                                                    @endforeach
                                                     </tbody>
                                                 </table>
-                                                <h4 class="ps-block__title">Subtotal <span>$863.49</span></h4>
-                                                <div class="ps-block__shippings">
-                                                    <figure>
-                                                        <h4>YOUNG SHOP Shipping</h4>
-                                                        <p>Free shipping</p><a href="#"> MVMTH Classical Leather Watch In Black ×1</a>
-                                                    </figure>
-                                                    <figure>
-                                                        <h4>ROBERT’S STORE Shipping</h4>
-                                                        <p>Free shipping</p><a href="#">Apple Macbook Retina Display 12” ×1</a>
-                                                    </figure>
-                                                </div>
-                                                <h3>Total <span>$683.49</span></h3>
+                                                <h4 class="ps-block__title">Subtotal <span>৳{{Cart::subtotal()}}</span></h4>
+                                                <h3>Total <span>৳{{Cart::total()}}</span></h3>
                                             </div>
                                         </div><a class="ps-btn ps-btn--fullwidth" href="{{route('checkout')}}">Proceed to checkout</a>
                                     </div>
