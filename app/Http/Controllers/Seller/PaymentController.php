@@ -20,19 +20,28 @@ class PaymentController extends Controller
 
     public function money()
     {
-        $payment = SellerWithdrawRequest::where('user_id', Auth::id())->first();
-        return view('backend.seller.money_withdraw.index',compact('payment'));
+        $seller = Seller::where('user_id',Auth::id())->first();
+        $payment = SellerWithdrawRequest::where('user_id', Auth::id())->get();
+//        dd($payment);
+        return view('backend.seller.money_withdraw.index',compact('seller','payment'));
     }
 
     public function store(Request $request)
     {
-            $new_pay = new SellerWithdrawRequest();
-            $new_pay->amount = $request->amount;
-            $new_pay->message = $request->message;
-            $new_pay->status = 1;
-            $new_pay->save();
-            Toastr::success("Request Inserted Successfully", "Success");
+        $seller = Seller::where('user_id',Auth::id())->first();
+        if($seller->admin_to_pay >= $request->amount ) {
+        $new_pay = new SellerWithdrawRequest();
+        $new_pay->user_id= Auth::id();
+        $new_pay->amount = $request->amount;
+        $new_pay->message = $request->message;
+        $new_pay->status = 1;
+        $new_pay->save();
+        Toastr::success("Request Inserted Successfully", "Success");
+        return redirect()->back();
+        } else {
+            Toastr::error("You do not have enough balance to send withdraw request");
             return redirect()->back();
+        }
 
     }
 }
