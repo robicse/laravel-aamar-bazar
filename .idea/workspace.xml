@@ -2,36 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a17e2167-d620-4213-a88e-6fc3baf87dda" name="Default Changelist" comment="">
-
-      <change afterPath="$PROJECT_DIR$/public/uploads/profile/default.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/backend/admin/seller/profile.blade.php" afterDir="false" />
-
-      <change afterPath="$PROJECT_DIR$/resources/views/backend/seller/profile/edit_password.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/backend/seller/profile/edit_profile.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/backend/seller/profile/payment.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Admin/CategoryController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Admin/CategoryController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Frontend/FrontendController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Frontend/FrontendController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Seller/ProductController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Seller/ProductController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Seller/ShopController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Seller/ShopController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/png" beforeDir="false" afterPath="$PROJECT_DIR$/public/png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/backend/seller/home.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/backend/seller/home.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/backend/seller/includes/seller_sidebar.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/backend/seller/includes/seller_sidebar.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/backend/seller/settings/shop/create.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/backend/seller/settings/shop/create.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/frontend/pages/blog_details.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/frontend/pages/blog_details.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/frontend/pages/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/frontend/pages/index.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/frontend/pages/shop/shop.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/frontend/pages/shop/shop.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/seller.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/seller.php" afterDir="false" />
-
-      <change afterPath="$PROJECT_DIR$/resources/views/backend/admin/seller/commission.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/backend/admin/seller/payment_history.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/backend/admin/seller/withdraw_request.blade.php" afterDir="false" />
-
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Admin/SellerController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Admin/SellerController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/backend/admin/seller/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/backend/admin/seller/index.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/admin.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/admin.php" afterDir="false" />
-
+      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -151,6 +124,7 @@
       <path value="$PROJECT_DIR$/vendor/symfony/http-client-contracts" />
       <path value="$PROJECT_DIR$/vendor/spatie/laravel-permission" />
       <path value="$PROJECT_DIR$/vendor/intervention/image" />
+      <path value="$PROJECT_DIR$/vendor/olimortimer/laravelshoppingcart" />
     </include_path>
   </component>
   <component name="ProjectId" id="1laQzV0Ai5ZH5y7vWifSnuWYEqC" />
@@ -183,7 +157,6 @@
       <created>1607832991603</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-
       <updated>1605781969814</updated>
       <workItem from="1605781971289" duration="7653000" />
       <workItem from="1606018582327" duration="14017000" />
@@ -214,9 +187,7 @@
       <workItem from="1607745392648" duration="20628000" />
       <workItem from="1607831036923" duration="1094000" />
       <workItem from="1607832478256" duration="20836000" />
-
       <workItem from="1607832998988" duration="11885000" />
-
     </task>
     <servers />
   </component>
@@ -235,7 +206,6 @@
     </option>
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
-
   <component name="WindowStateProjectService">
     <state x="446" y="171" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1607416138053">
       <screen x="0" y="0" width="1366" height="738" />
@@ -273,5 +243,4 @@
     <state x="303" y="49" width="672" height="678" key="search.everywhere.popup/0.0.1280.728@0.0.1280.728" timestamp="1606641179695" />
     <state x="323" y="50" width="672" height="160" key="search.everywhere.popup/0.0.1366.738@0.0.1366.738" timestamp="1607856883771" />
   </component>
-
 </project>
