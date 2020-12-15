@@ -4,12 +4,17 @@ Bkoi.onSelect(function () {
 })
 
 $(document).ready(function(){
-    geoLocationInit();
+    var latval = sessionStorage.getItem("latitude");
+    var lngval = sessionStorage.getItem("longitude");
+    if(latval==null){
+        geoLocationInit();
+    }else{
+        searchShops(latval,lngval);
+    }
 });
 
 function geoLocationInit() {
     var check_session = sessionStorage.getItem("latitude");
-    //console.log(session);
     if(check_session==null){
         if (navigator.geolocation) {
             navigator.geolocation.getCurrentPosition(success, fail);
@@ -28,7 +33,7 @@ function geoLocationInit() {
 }
 
 function success(position) {
-    console.log("in succ");
+    //console.log("in succ");
     sessionStorage.setItem("latitude", position.coords.latitude);
     sessionStorage.setItem("longitude", position.coords.longitude);
 
