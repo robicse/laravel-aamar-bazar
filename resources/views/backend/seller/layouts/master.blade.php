@@ -35,6 +35,7 @@
             width: 5px;
             background: #0e0e0e;
         }
+
         .sidebar {
             padding-bottom: 0;
             padding-top: 0;

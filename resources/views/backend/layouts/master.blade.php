@@ -36,7 +36,7 @@
         }
         ::-webkit-scrollbar {
             width: 5px;
-            background: #0e0e0e;
+            background: #46528a;
         }
         .sidebar {
             padding-bottom: 0;
