@@ -23,7 +23,7 @@
                 <div class="row">
                     <div class="col-12">
                         <div class="callout callout-info">
-                            <div class="card card-info">
+                            <div class="card card-info" style="padding: 20px 40px 40px 40px;">
                                 <form role="form" action="" method="">
                                     @csrf
                                     <div class="row">
