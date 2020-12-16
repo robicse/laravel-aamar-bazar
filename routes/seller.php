@@ -26,6 +26,7 @@ Route::group(['as'=>'seller.','prefix' =>'seller', 'middleware' => ['auth', 'sel
     Route::get('on-delivery-order','Seller\OrderManagementController@onDeliveryOrder')->name('on.delivery.order');
     Route::get('delivered-order','Seller\OrderManagementController@deliveredOrder')->name('delivered.order');
     Route::get('canceled-order','Seller\OrderManagementController@canceledOrder')->name('canceled.order');
+    Route::get('order-details/{id}','Seller\OrderManagementController@orderDetails')->name('order-details');
 
     Route::get('profile','Seller\ProfileController@profile')->name('profile.show');
     Route::post('profile/update','Seller\ProfileController@profile_update')->name('profile.update');
