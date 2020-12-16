@@ -27,41 +27,25 @@
                                             <thead>
                                             <tr>
                                                 <th>Id</th>
-                                                <th>Title</th>
+                                                <th>Name</th>
                                                 <th>Date</th>
                                                 <th>Amount</th>
                                                 <th>Status</th>
                                             </tr>
                                             </thead>
                                             <tbody>
+                                            @foreach($order_history as $order)
                                             <tr>
-                                                <td><a href="invoice-detail.html">500884010</a></td>
+                                                <td>{{ $order->id }}</td>
+                                                <td>{{ $order->name }}</td>
+                                                <td>{{date('j-m-Y',strtotime($order->created_at))}}</td>
+                                                <td>{{ $order->name }}</td>
                                                 <td><a href="product-default.html">Marshall Kilburn Portable Wireless Speaker</a></td>
                                                 <td>20-1-2020</td>
                                                 <td>42.99</td>
                                                 <td>Successful delivery</td>
                                             </tr>
-                                            <tr>
-                                                <td><a href="invoice-detail.html">593347935</a></td>
-                                                <td><a href="product-default.html">Herschel Leather Duffle Bag In Brown Color</a></td>
-                                                <td>20-1-2020</td>
-                                                <td>199.99</td>
-                                                <td>Cancel</td>
-                                            </tr>
-                                            <tr>
-                                                <td><a href="invoice-detail.html">593347935</a></td>
-                                                <td><a href="product-default.html">Xbox One Wireless Controller Black Color</a></td>
-                                                <td>20-1-2020</td>
-                                                <td>199.99</td>
-                                                <td>Cancel</td>
-                                            </tr>
-                                            <tr>
-                                                <td><a href="invoice-detail.html">615397400</a></td>
-                                                <td><a href="product-default.html">Grand Slam Indoor Of Show Jumping Novel</a></td>
-                                                <td>20-1-2020</td>
-                                                <td>41.00</td>
-                                                <td>Cancel</td>
-                                            </tr>
+                                            @endforeach
                                             </tbody>
                                         </table>
                                     </div>

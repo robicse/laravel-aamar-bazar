@@ -1,5 +1,5 @@
-@extends('backend.layouts.master')
-@section("title","Seller Payment History")
+@extends('backend.seller.layouts.master')
+@section("title","On Review Order")
 @push('css')
     <link rel="stylesheet" href="{{asset('backend/plugins/datatables/dataTables.bootstrap4.css')}}">
 @endpush
@@ -8,12 +8,13 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>Seller Payment History</h1>
+                    <h1>Order Management</h1>
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item"><a href="{{route('admin.dashboard')}}">Home</a></li>
-                        <li class="breadcrumb-item active">Seller Payment History</li>
+                        <li class="breadcrumb-item"><a href="{{route('seller.dashboard')}}">Home</a></li>
+                        <li class="breadcrumb-item active">Order Management</li>
+                        <li class="breadcrumb-item active">On Review Order</li>
                     </ol>
                 </div>
             </div>
@@ -25,7 +26,7 @@
             <div class="col-12">
                 <div class="card card-info card-outline">
                     <div class="card-header">
-                        <h3 class="card-title float-left">Seller Payment History</h3>
+                        <h3 class="card-title float-left">On Review Order</h3>
                         <div class="float-right">
                             {{--<a href="{{route('admin.p.create')}}">
                                 <button class="btn btn-success">
@@ -42,19 +43,25 @@
                             <tr>
                                 <th>#Id</th>
                                 <th>Date</th>
-                                <th>Seller Name</th>
-                                <th>Amount</th>
+                                <th>Name</th>
+                                <th>Delivery Status</th>
                                 <th>Payment Method</th>
+                                <th>Action</th>
                             </tr>
                             </thead>
                             <tbody>
-                            @foreach($paymentHistories as $key => $payHis)
+                             @foreach($review_product as $key => $review)
                             <tr>
                                 <td>{{$key + 1}}</td>
-                                <td>{{date('jS F Y H:i A',strtotime($payHis->created_at))}}</td>
-                                <td>Mr. Seller ({{$payHis->seller->user->name}})</td>
-                                <td>৳{{$payHis->amount}}</td>
-                                <td>{{$payHis->payment_method}}</td>
+                                <td>{{date('j-m-Y',strtotime($review->created_at))}}</td>
+                                <td>{{$review->name}}</td>
+                                <td>{{$review->delivery_status}}</td>
+                                <td>{{$review->payment_status}}</td>
+                                <td>
+                                    <a class="btn btn-info waves-effect" href="{{route('seller.order-details',$review->id)}}">
+                                        <i class="fa fa-eye"></i> View
+                                    </a>
+                                </td>
                             </tr>
                             @endforeach
                             </tbody>
@@ -62,9 +69,10 @@
                             <tr>
                                 <th>#Id</th>
                                 <th>Date</th>
-                                <th>Seller Name</th>
-                                <th>Amount</th>
+                                <th>Name</th>
+                                <th>Delivery Status</th>
                                 <th>Payment Method</th>
+                                <th>Action</th>
                             </tr>
                             </tfoot>
                         </table>
