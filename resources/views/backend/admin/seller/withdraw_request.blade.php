@@ -51,16 +51,17 @@
                             </tr>
                             </thead>
                             <tbody>
-                           {{-- @foreach($sellerUserInfos as $key => $sellerUserInfo)--}}
+                            @foreach($withdrawRequests as $key => $withdraReq)
                             <tr>
-                                {{--<td>{{$key + 1}}</td>--}}
-                                <td>1</td>
+                                <td>{{$key + 1}}</td>
                                 <td>2020-11-30 05:42:00</td>
-                                <td>Mr. Seller (Demo Seller Shop)</td>
-                                <td>৳78.400</td>
-                                <td>৳78.400</td>
-                                <td>Do something</td>
-                                <td>Pending</td>
+                                <td>Mr. Seller ({{$withdraReq->user->name}})</td>
+                                <td>৳{{$withdraReq->amount}}</td>
+                                <td>৳{{$withdraReq->amount}}</td>
+                                <td>{{$withdraReq->message}}</td>
+                                <td>
+                                    <span class="badge badge-{{$withdraReq->status == 1 ? 'success' : 'danger'}}">{{$withdraReq->status == 1 ? 'Paid' : 'Not paid'}}</span>
+                                </td>
                                 <td>
                                     <div class="dropdown">
                                         <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -69,13 +70,9 @@
                                         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
 
                                             <button class="bg-danger dropdown-item" type="button"
-                                                    onclick="payNow({{'1'}})">
+                                                    onclick="show_seller_withdraw_payment_modal('{{$withdraReq->id}}');">
                                                 <i class="fa fa-money"></i> Pay Now
                                             </button>
-                                            <form id="delete-form-{{'1'}}" action="#" method="POST" style="display: none;">
-                                                @csrf
-                                                @method('DELETE')
-                                            </form>
                                             <a class="bg-info dropdown-item" href="{{route('admin.seller.payment.history')}}">
                                                 <i class="fa fa-history"></i> Payment History
                                             </a>
@@ -83,7 +80,7 @@
                                     </div>
                                 </td>
                             </tr>
-                            {{--@endforeach--}}
+                            @endforeach
                             </tbody>
                             <tfoot>
                             <tr>
@@ -104,6 +101,14 @@
             </div>
         </div>
     </section>
+    {{-- payment method--}}
+    <div class="modal fade" id="payment_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content" id="modal-content">
+
+            </div>
+        </div>
+    </div>
 
 @stop
 @push('js')
@@ -151,6 +156,13 @@
                     )
                 }
             })
+        }
+        function show_seller_withdraw_payment_modal(id){
+            $.post('{{ route('admin.sellers.withdraw_payment_modal') }}',{_token:'{{ @csrf_token() }}', id:id}, function(data){
+                $('#payment_modal #modal-content').html(data);
+                $('#payment_modal').modal('show', {backdrop: 'static'});
+
+            });
         }
     </script>
 @endpush

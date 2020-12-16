@@ -512,12 +512,12 @@
             <div class="ps-container">
                 <div class="ps-section__header">
                     <h3>Trending Product</h3>
-                    <ul class="ps-section__links">
-                        @foreach($categories as $cat)
-                            <li><a href="shop-grid.html">{{$cat->name}}</a></li>
-                        @endforeach
-                        <li><a href="shop-grid.html">View All</a></li>
-                    </ul>
+{{--                    <ul class="ps-section__links">--}}
+{{--                        @foreach($categories as $cat)--}}
+{{--                            <li><a href="shop-grid.html">{{$cat->name}}</a></li>--}}
+{{--                        @endforeach--}}
+{{--                        <li><a href="shop-grid.html">View All</a></li>--}}
+{{--                    </ul>--}}
                 </div>
                 <div class="ps-section__content">
                     <div class="row">

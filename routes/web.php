@@ -55,6 +55,7 @@ Route::group(['middleware' => ['auth', 'user']], function () {
     Route::get('/user/order/history', 'User\DashboardController@orderHistory')->name('user.order.history');
     Route::get('/user/wishlist', 'User\DashboardController@wishlist')->name('user.wishlist');
     Route::get('/checkout', 'Frontend\CartController@checkout')->name('checkout');
+    Route::post('/checkout/order/submit', 'Frontend\CartController@orderSubmit')->name('checkout.order.submit');
     //this route only for resource controller
     Route::group(['as' => 'user.', 'prefix' => 'user', 'namespace' => 'User',], function () {
         //Route::resource('products', 'ProductController');
