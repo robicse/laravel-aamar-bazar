@@ -45,6 +45,7 @@
                                 <th>Phone</th>
                                 <th>Email</th>
                                 <th>Approval</th>
+                                <th>Commission</th>
                                 <th>Num. of Products</th>
                                 <th>Due to seller</th>
                                 <th>Action</th>
@@ -65,6 +66,7 @@
                                         </label>
                                     </div>
                                 </td>
+                                <td ><strong class="badge badge-danger w-100">{{$sellerUserInfo->seller->commission}}%</strong></td>
                                 <td>{{$sellerUserInfo->products->count()}}</td>
                                 <td>{{$sellerUserInfo->seller->admin_to_pay}}</td>
                                 <td>
@@ -78,6 +80,9 @@
                                             </a>
                                             <a class="bg-success dropdown-item" onclick="show_seller_payment_modal('{{$sellerUserInfo->seller->id}}');" href="#">
                                                 <i class="fa fa-money"></i> Pay Now
+                                            </a>
+                                            <a class="bg-danger dropdown-item" onclick="show_seller_commission_modal('{{$sellerUserInfo->seller->id}}');" href="#">
+                                                <i class="fa fa-money-bill-wave"></i> Set Commission
                                             </a>
                                             <a class="bg-secondary dropdown-item" href="{{route('admin.sellers.edit',$sellerUserInfo->id)}}">
                                                 <i class="fa fa-history"></i> Payment History
@@ -106,6 +111,7 @@
                                 <th>Phone</th>
                                 <th>Email</th>
                                 <th>Approval</th>
+                                <th>Commission</th>
                                 <th>Num. of Products</th>
                                 <th>Due to seller</th>
                                 <th>Action</th>
@@ -117,7 +123,7 @@
             </div>
         </div>
 
-{{-- payment method--}}
+{{-- Modal html start--}}
         <div class="modal fade" id="payment_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content" id="modal-content">
@@ -194,6 +200,13 @@
         }
         function show_seller_payment_modal(id){
             $.post('{{ route('admin.sellers.payment_modal') }}',{_token:'{{ @csrf_token() }}', id:id}, function(data){
+                $('#payment_modal #modal-content').html(data);
+                $('#payment_modal').modal('show', {backdrop: 'static'});
+
+            });
+        }
+        function show_seller_commission_modal(id){
+            $.post('{{ route('admin.sellers.commission_modal') }}',{_token:'{{ @csrf_token() }}', id:id}, function(data){
                 $('#payment_modal #modal-content').html(data);
                 $('#payment_modal').modal('show', {backdrop: 'static'});
 

@@ -138,7 +138,7 @@
                             <li class="nav-item">
                                 <a href="{{route('admin.seller.commission.form')}}" class="nav-link {{Request::is('admin/sellers/commission/form*') ? 'active' :''}}">
                                     <i class="fa fa-{{Request::is('admin/sellers/commission/form*') ? 'folder-open':'folder'}} nav-icon"></i>
-                                    <p>Seller Commission</p>
+                                    <p>Commission Settings</p>
                                 </a>
                             </li>
                         </ul>

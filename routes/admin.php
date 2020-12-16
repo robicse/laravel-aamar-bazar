@@ -36,7 +36,7 @@ Route::group(['as'=>'admin.','prefix' =>'admin','namespace'=>'Admin', 'middlewar
     Route::resource('sellers','SellerController');
     Route::post('sellers/verification','SellerController@verification')->name('seller.verification');
     Route::get('sellers/commission/form','SellerController@commissionForm')->name('seller.commission.form');
-    Route::get('sellers/commission/store','SellerController@commissionStore')->name('seller.commission.store');
+    Route::put('sellers/commission/update/{id}','SellerController@commissionStore')->name('seller.commission.update');
     Route::get('sellers/payment/history','SellerController@paymentHistory')->name('seller.payment.history');
     Route::get('sellers/withdraw/request','SellerController@withdrawRequest')->name('seller.withdraw.request');
     Route::get('sellers/profile/show/{id}','SellerController@profileShow')->name('seller.profile.show');
@@ -45,5 +45,7 @@ Route::group(['as'=>'admin.','prefix' =>'admin','namespace'=>'Admin', 'middlewar
     Route::put('sellers/bankinfo/update/{id}','SellerController@bankInfoUpdate')->name('seller.bankinfo.update');
     Route::post('/sellers/payment_modal', 'SellerController@payment_modal')->name('sellers.payment_modal');
     Route::post('/sellers/withdraw_payment_modal', 'SellerController@withdraw_payment_modal')->name('sellers.withdraw_payment_modal');
+    Route::post('/sellers/commission_modal', 'SellerController@commission_modal')->name('sellers.commission_modal');
+    Route::put('/sellers/individual/commission/set/{id}', 'SellerController@individulCommissionSet')->name('seller.individual.commission.set');
     Route::post('/sellers/pay_to_seller_commission', 'SellerController@pay_to_seller_commission')->name('seller.commissions.pay_to_seller');
 });

@@ -26,7 +26,7 @@
             <!-- general form elements -->
                 <div class="card card-info card-outline">
                 <div class="card-header">
-                    <h3 class="card-title float-left">Set Commission</h3>
+                    <h3 class="card-title float-left">Set Commission For all Sellers</h3>
                     <div class="float-right">
                         <a href="{{route('admin.sellers.index')}}">
                             <button class="btn btn-success">
@@ -38,12 +38,13 @@
                 </div>
                 <!-- /.card-header -->
                 <!-- form start -->
-                <form role="form" action="#" method="post" enctype="multipart/form-data">
+                <form role="form" action="{{route('admin.seller.commission.update',$commission->id)}}" method="post" enctype="multipart/form-data">
                     @csrf
+                    @method('PUT')
                     <div class="card-body">
                         <div class="form-group">
-                            <label for="commission">Commission <small>(Commission will be percentage %)</small></label>
-                            <input type="number" class="form-control" name="commission" id="commission" placeholder="Set Commission for this seller" required>
+                            <label for="commission">Commission <small class="text-info" >(Commission will be {{$commission->value}} percent (%) for all seller.)</small></label>
+                            <input type="number" class="form-control" name="value" value="{{$commission->value}}" id="commission" placeholder="Set Commission for this seller" required>
                         </div>
                     </div>
                     <!-- /.card-body -->

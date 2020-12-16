@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Model\BusinessSetting;
 use App\Model\Payment;
 use App\Model\Seller;
 use App\Model\Product;
@@ -35,12 +36,21 @@ class SellerController extends Controller
    }
    public function commissionForm()
    {
-       return view('backend.admin.seller.commission');
+       $commission = BusinessSetting::where('type','seller_commission')->first();
+
+       return view('backend.admin.seller.commission',compact('commission'));
    }
 
-   public function commissionStore(Request $request)
+   public function commissionStore(Request $request, $id)
    {
-
+        $this->validate($request,[
+            'value' => 'required',
+        ]);
+        $data = BusinessSetting::find($id);
+        $data->value = $request->value;
+        $data->save();
+        Toastr::success($request->value.' % Seller Commission successfully added for all sellers');
+        return redirect()->back();
    }
    public function paymentHistory()
    {
@@ -105,6 +115,22 @@ class SellerController extends Controller
         $serller->bank_routing_no =  $request->bank_routing_no;
         $serller->save();
         Toastr::success('Seller Bank Info Updated Successfully','Success');
+        return redirect()->back();
+    }
+    public function commission_modal(Request $request)
+    {
+        $seller = Seller::find($request->id);
+        return view('backend.admin.seller.individual_seller_commission', compact('seller'));
+    }
+    public function individulCommissionSet(Request $request, $id)
+    {
+        $this->validate($request,[
+            'commission' => 'required',
+        ]);
+        $data = Seller::find($id);
+        $data->commission = $request->commission;
+        $data->save();
+        Toastr::success($request->commission.' % Seller Commission successfully added for all sellers');
         return redirect()->back();
     }
     public function payment_modal(Request $request)
