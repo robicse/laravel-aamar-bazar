@@ -31,6 +31,21 @@
             border-radius: 4px;
             height: 36px!important;
         }
+        ::-webkit-scrollbar {
+            width: 5px;
+            background: #0e0e0e;
+        }
+        .sidebar {
+            padding-bottom: 0;
+            padding-top: 0;
+            padding-left: 0!important;
+            padding-right: 0!important;
+            overflow-y: auto;
+            height: calc(100% - 4rem);
+        }
+        .nav-pills .nav-link {
+            border-radius: 0!important;
+        }
     </style>
     @stack('css')
 </head>
