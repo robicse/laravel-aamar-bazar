@@ -44,29 +44,35 @@
                                 <th>#Id</th>
                                 <th>Date</th>
                                 <th>Name</th>
-                                <th>Amount</th>
+                                <th>Delivery Status</th>
                                 <th>Payment Method</th>
+                                <th>Action</th>
                             </tr>
                             </thead>
                             <tbody>
-                            {{-- @foreach($sellerUserInfos as $key => $sellerUserInfo)--}}
+                             @foreach($review_product as $key => $review)
                             <tr>
-                                {{--<td>{{$key + 1}}</td>--}}
-                                <td>1</td>
-                                <td>2020-11-30 05:42:00</td>
-                                <td>Mr. Seller (Demo Seller Shop)</td>
-                                <td>৳78.400</td>
-                                <td>Cash</td>
+                                <td>{{$key + 1}}</td>
+                                <td>{{date('j-m-Y',strtotime($review->created_at))}}</td>
+                                <td>{{$review->name}}</td>
+                                <td>{{$review->delivery_status}}</td>
+                                <td>{{$review->payment_status}}</td>
+                                <td>
+                                    <a class="btn btn-info waves-effect" href="{{route('seller.order-details',$review->id)}}">
+                                        <i class="fa fa-eye"></i> View
+                                    </a>
+                                </td>
                             </tr>
-                            {{--@endforeach--}}
+                            @endforeach
                             </tbody>
                             <tfoot>
                             <tr>
                                 <th>#Id</th>
                                 <th>Date</th>
                                 <th>Name</th>
-                                <th>Amount</th>
+                                <th>Delivery Status</th>
                                 <th>Payment Method</th>
+                                <th>Action</th>
                             </tr>
                             </tfoot>
                         </table>

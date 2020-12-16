@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\User;
 
+use App\Model\Order;
 use App\User;
 use Brian2694\Toastr\Facades\Toastr;
 use Illuminate\Http\Request;
@@ -28,7 +29,8 @@ class DashboardController extends Controller
     }
     public function orderHistory()
     {
-        return view('backend.user.order_history');
+        $order_history = Order::where('user_id',Auth::id())->get();
+        return view('backend.user.order_history',compact('order_history'));
     }
     public function wishlist()
     {
