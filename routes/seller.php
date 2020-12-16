@@ -21,11 +21,8 @@ Route::group(['as'=>'seller.','prefix' =>'seller', 'middleware' => ['auth', 'sel
     Route::resource('shop','Seller\ShopController');
 
     //Seller Order Management
-    Route::get('pending-order','Seller\OrderManagementController@pendingOrder')->name('pending.order');
-    Route::get('review-order','Seller\OrderManagementController@reviewOrder')->name('review.order');
-    Route::get('on-delivery-order','Seller\OrderManagementController@onDeliveryOrder')->name('on.delivery.order');
-    Route::get('delivered-order','Seller\OrderManagementController@deliveredOrder')->name('delivered.order');
-    Route::get('canceled-order','Seller\OrderManagementController@canceledOrder')->name('canceled.order');
+    Route::get('order/management','Seller\OrderManagementController@pendingOrder')->name('pending.order');
+    Route::get('order-product/status-change/{id}','Seller\OrderManagementController@OrderProductChangeStatus')->name('order-product.status');
     Route::get('order-details/{id}','Seller\OrderManagementController@orderDetails')->name('order-details');
 
     Route::get('profile','Seller\ProfileController@profile')->name('profile.show');
