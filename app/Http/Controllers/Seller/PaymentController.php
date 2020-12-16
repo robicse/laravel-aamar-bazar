@@ -34,7 +34,7 @@ class PaymentController extends Controller
         $new_pay->user_id= Auth::id();
         $new_pay->amount = $request->amount;
         $new_pay->message = $request->message;
-        $new_pay->status = 1;
+        $new_pay->status = 0;
         $new_pay->save();
         $seller->admin_to_pay -= $request->amount;
         $seller->save();
