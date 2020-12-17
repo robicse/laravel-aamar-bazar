@@ -14,7 +14,7 @@ class OrderManagementController extends Controller
 {
     public function pendingOrder() {
         $shop = Shop::where('user_id',Auth::id())->select('id')->first();
-        dd($shop);
+        //dd($shop);
         $pending_order = Order::where('shop_id',$shop->id)->get();
         return view('backend.seller.order_management.pending_order',compact('pending_order'));
     }
