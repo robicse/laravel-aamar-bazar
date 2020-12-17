@@ -14,4 +14,8 @@ class Seller extends Model
     {
         return $this->hasMany('App\Model\Product','user_id');
     }
+    public function shop()
+    {
+        return $this->hasOne('App\Model\Shop','user_id');
+    }
 }

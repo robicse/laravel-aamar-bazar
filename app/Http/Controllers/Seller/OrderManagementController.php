@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Seller;
 use App\Http\Controllers\Controller;
 use App\Model\Order;
 use App\Model\OrderDetails;
+use App\Model\Shop;
 use Brian2694\Toastr\Facades\Toastr;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -12,7 +13,9 @@ use Illuminate\Support\Facades\Auth;
 class OrderManagementController extends Controller
 {
     public function pendingOrder() {
-        $pending_order = Order::where('user_id',Auth::id())->get();
+        $shop = Shop::where('user_id',Auth::id())->select('id')->first();
+        dd($shop);
+        $pending_order = Order::where('shop_id',$shop->id)->get();
         return view('backend.seller.order_management.pending_order',compact('pending_order'));
     }
     public function orderDetails($id) {
