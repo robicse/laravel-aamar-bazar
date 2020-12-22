@@ -1,5 +1,5 @@
-@extends('backend.seller.layouts.master')
-@section("title","On Delivered Order")
+@extends('backend.layouts.master')
+@section("title","Completed Order")
 @push('css')
     <link rel="stylesheet" href="{{asset('backend/plugins/datatables/dataTables.bootstrap4.css')}}">
 @endpush
@@ -8,12 +8,12 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>On Delivered Order</h1>
+                    <h1>Completed Order</h1>
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item"><a href="{{route('seller.dashboard')}}">Home</a></li>
-                        <li class="breadcrumb-item active">On Delivered Order</li>
+                        <li class="breadcrumb-item"><a href="{{route('admin.dashboard')}}">Home</a></li>
+                        <li class="breadcrumb-item active">Completed Order</li>
                     </ol>
                 </div>
             </div>
@@ -25,7 +25,7 @@
             <div class="col-12">
                 <div class="card card-info card-outline">
                     <div class="card-header">
-                        <h3 class="card-title float-left">On Delivered Order</h3>
+                        <h3 class="card-title float-left">Completed Orders</h3>
                         <div class="float-right">
                             {{--<a href="{{route('admin.p.create')}}">
                                 <button class="btn btn-success">
@@ -49,27 +49,27 @@
                             </tr>
                             </thead>
                             <tbody>
-                            @foreach($onDeliver as $key => $ondel)
+                            @foreach($Completed as $key => $Complete)
                                 <tr>
                                     <td>{{$key + 1}}</td>
-                                    <td>{{date('j-m-Y',strtotime($ondel->created_at))}}</td>
-                                    <td>{{$ondel->name}}</td>
-                                    <td>{{$ondel->payment_type}}</td>
+                                    <td>{{date('j-m-Y',strtotime($Complete->created_at))}}</td>
+                                    <td>{{$Complete->name}}</td>
+                                    <td>{{$Complete->payment_type}}</td>
                                     <td>
-                                        <form action="{{route('seller.order-product.status',$ondel->id)}}">
+                                        <form action="{{route('admin.order-product.status',$Complete->id)}}">
                                             <select name="delivery_status" id="" onchange="this.form.submit()">
-                                                <option value="Pending" {{$ondel->delivery_status == 'Pending'? 'selected' : ''}}>Pending</option>
-                                                <option value="On review" {{$ondel->delivery_status == 'On review'? 'selected' : ''}}>On review</option>
-                                                <option value="On delivered" {{$ondel->delivery_status == 'On delivered'? 'selected' : ''}}>On delivered</option>
-                                                <option value="Delivered" {{$ondel->delivery_status == 'Delivered'? 'selected' : ''}}>Delivered</option>
-                                                <option value="Delivered" {{$ondel->delivery_status == 'Completed'? 'selected' : ''}}>Completed</option>
-                                                <option value="Cancel" {{$ondel->delivery_status == 'Cancel'? 'selected' : ''}}>Cancel</option>
+                                                {{--                                                <option value="Pending" {{$Deliver->delivery_status == 'Pending'? 'selected' : ''}}>Pending</option>--}}
+                                                {{--                                                <option value="On review" {{$Deliver->delivery_status == 'On review'? 'selected' : ''}}>On review</option>--}}
+                                                {{--                                                <option value="On delivered" {{$Deliver->delivery_status == 'On delivered'? 'selected' : ''}}>On delivered</option>--}}
+                                                {{--                                                <option value="Delivered" {{$Deliver->delivery_status == 'Delivered'? 'selected' : ''}}>Delivered</option>--}}
+                                                <option value="Delivered" {{$Complete->delivery_status == 'Completed'? 'selected' : ''}}>Completed</option>
+                                                {{--                                                <option value="Cancel" {{$Complete->delivery_status == 'Cancel'? 'selected' : ''}}>Cancel</option>--}}
                                             </select>
                                         </form>
 
                                     </td>
                                     <td>
-                                        <a class="btn btn-info waves-effect" href="{{route('seller.order-details',$ondel->id)}}">
+                                        <a class="btn btn-info waves-effect" href="{{route('admin.order-details',$Complete->id)}}">
                                             <i class="fa fa-eye"></i> View
                                         </a>
                                     </td>

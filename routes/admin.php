@@ -49,4 +49,13 @@ Route::group(['as'=>'admin.','prefix' =>'admin','namespace'=>'Admin', 'middlewar
     Route::put('/sellers/individual/commission/set/{id}', 'SellerController@individulCommissionSet')->name('seller.individual.commission.set');
     Route::post('/sellers/pay_to_seller_commission', 'SellerController@pay_to_seller_commission')->name('seller.commissions.pay_to_seller');
 //    Route::get('/sellers/order_management', 'SellerController@order_management')->name('sellers.order_management');
+
+    Route::get('pending/order','OrderManagementController@pendingOrder')->name('pending.order');
+    Route::get('on-reviewed/order','OrderManagementController@onReviewedOrder')->name('on-reviewed.order');
+    Route::get('on-delivered/order','OrderManagementController@onDeliveredOrder')->name('on-delivered.order');
+    Route::get('delivered/order','OrderManagementController@deliveredOrder')->name('delivered.order');
+    Route::get('completed/order','OrderManagementController@completedOrder')->name('completed.order');
+    Route::get('canceled/order','OrderManagementController@canceledOrder')->name('canceled.order');
+    Route::get('order-product/status-change/{id}','OrderManagementController@OrderProductChangeStatus')->name('order-product.status');
+    Route::get('order-details/{id}','OrderManagementController@orderDetails')->name('order-details');
 });

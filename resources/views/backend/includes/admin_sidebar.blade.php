@@ -85,6 +85,54 @@
                             </li>
                         </ul>
                     </li>
+                    <li class="nav-item has-treeview">
+                        <a href="" class="nav-link {{Request::is('seller/order') ? 'active' : ''}}">
+                            <i class="nav-icon fas fa-box"></i>
+                            <p>
+                                Order Management
+                                <i class="right fa fa-angle-left"></i>
+                            </p>
+                        </a>
+                        <ul class="nav nav-treeview">
+                            <li class="nav-item">
+                                <a href="{{route('admin.pending.order')}}" class="nav-link {{Request::is('admin/pending-order*') ? 'active' :''}}">
+                                    <i class="fa fa-{{Request::is('admin/pending-order*') ? 'folder-open':'folder'}} nav-icon"></i>
+                                    <p>Pending Order</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{{route('admin.on-reviewed.order')}}" class="nav-link {{Request::is('admin/on-reviewed-order*') ? 'active' :''}}">
+                                    <i class="fa fa-{{Request::is('admin/on-reviewed-order*') ? 'folder-open':'folder'}} nav-icon"></i>
+                                    <p>On Reviewed Order</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{{route('admin.on-delivered.order')}}" class="nav-link {{Request::is('admin/on-delivered-order*') ? 'active' :''}}">
+                                    <i class="fa fa-{{Request::is('admin/on-delivered-order*') ? 'folder-open':'folder'}} nav-icon"></i>
+                                    <p>On Delivered Order</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{{route('admin.delivered.order')}}" class="nav-link {{Request::is('admin/delivered-order*') ? 'active' :''}}">
+                                    <i class="fa fa-{{Request::is('admin/delivered-order*') ? 'folder-open':'folder'}} nav-icon"></i>
+                                    <p>Delivered Order</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{{route('admin.completed.order')}}" class="nav-link {{Request::is('admin/completed-order*') ? 'active' :''}}">
+                                    <i class="fa fa-{{Request::is('admin/completed-order*') ? 'folder-open':'folder'}} nav-icon"></i>
+                                    <p>Completed Order</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{{route('admin.canceled.order')}}" class="nav-link {{Request::is('admin/canceled-order*') ? 'active' :''}}">
+                                    <i class="fa fa-{{Request::is('admin/canceled-order*') ? 'folder-open':'folder'}} nav-icon"></i>
+                                    <p>Cancel Order</p>
+                                </a>
+                            </li>
+                        </ul>
+
+                    </li>
                     <li class="nav-item has-treeview {{(Request::is('admin/roles*') || Request::is('admin/staffs*')) ? 'menu-open' : ''}}">
                         <a href="#" class="nav-link">
                             <i class="nav-icon fas fa-users"></i>

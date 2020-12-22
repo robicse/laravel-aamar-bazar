@@ -1,4 +1,4 @@
-@extends('backend.seller.layouts.master')
+@extends('backend.layouts.master')
 @section("title","On Delivered Order")
 @push('css')
     <link rel="stylesheet" href="{{asset('backend/plugins/datatables/dataTables.bootstrap4.css')}}">
@@ -12,7 +12,7 @@
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item"><a href="{{route('seller.dashboard')}}">Home</a></li>
+                        <li class="breadcrumb-item"><a href="{{route('admin.dashboard')}}">Home</a></li>
                         <li class="breadcrumb-item active">On Delivered Order</li>
                     </ol>
                 </div>
@@ -56,7 +56,7 @@
                                     <td>{{$ondel->name}}</td>
                                     <td>{{$ondel->payment_type}}</td>
                                     <td>
-                                        <form action="{{route('seller.order-product.status',$ondel->id)}}">
+                                        <form action="{{route('admin.order-product.status',$ondel->id)}}">
                                             <select name="delivery_status" id="" onchange="this.form.submit()">
                                                 <option value="Pending" {{$ondel->delivery_status == 'Pending'? 'selected' : ''}}>Pending</option>
                                                 <option value="On review" {{$ondel->delivery_status == 'On review'? 'selected' : ''}}>On review</option>
@@ -69,7 +69,7 @@
 
                                     </td>
                                     <td>
-                                        <a class="btn btn-info waves-effect" href="{{route('seller.order-details',$ondel->id)}}">
+                                        <a class="btn btn-info waves-effect" href="{{route('admin.order-details',$ondel->id)}}">
                                             <i class="fa fa-eye"></i> View
                                         </a>
                                     </td>

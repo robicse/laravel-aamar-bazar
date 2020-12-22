@@ -210,12 +210,4 @@ class SellerController extends Controller
 
     }
 
-    public function order_management() {
-        $pending_order = Order::where('delivery_status','Pending')->get();
-//        $shop = Shop::where('user_id',Auth::id())->select('id')->first();
-//        //dd($shop);
-//        $pending_order = Order::where('shop_id',$shop->id)->get();
-        return view('backend.admin.seller.order_management',compact('pending_order'));
-    }
-
 }

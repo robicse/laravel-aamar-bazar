@@ -1,5 +1,5 @@
-@extends('backend.layouts.master')
-@section("title","Order management")
+@extends('backend.seller.layouts.master')
+@section("title","Cancel Order")
 @push('css')
     <link rel="stylesheet" href="{{asset('backend/plugins/datatables/dataTables.bootstrap4.css')}}">
 @endpush
@@ -8,12 +8,12 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>Order management</h1>
+                    <h1>Cancel Order</h1>
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
                         <li class="breadcrumb-item"><a href="{{route('admin.dashboard')}}">Home</a></li>
-                        <li class="breadcrumb-item active">Order management</li>
+                        <li class="breadcrumb-item active">Cancel Order</li>
                     </ol>
                 </div>
             </div>
@@ -25,7 +25,7 @@
             <div class="col-12">
                 <div class="card card-info card-outline">
                     <div class="card-header">
-                        <h3 class="card-title float-left">Order managements</h3>
+                        <h3 class="card-title float-left">Cancel Orders</h3>
                         <div class="float-right">
                             {{--<a href="{{route('admin.p.create')}}">
                                 <button class="btn btn-success">
@@ -49,27 +49,27 @@
                             </tr>
                             </thead>
                             <tbody>
-                            @foreach($pending_order as $key => $pending)
+                            @foreach($Canceled as $key => $Cancel)
                                 <tr>
                                     <td>{{$key + 1}}</td>
-                                    <td>{{date('j-m-Y',strtotime($pending->created_at))}}</td>
-                                    <td>{{$pending->name}}</td>
-                                    <td>{{$pending->payment_type}}</td>
+                                    <td>{{date('j-m-Y',strtotime($Cancel->created_at))}}</td>
+                                    <td>{{$Cancel->name}}</td>
+                                    <td>{{$Cancel->payment_type}}</td>
                                     <td>
-                                        <form action="{{route('seller.order-product.status',$pending->id)}}">
+                                        <form action="{{route('admin.order-product.status',$Cancel->id)}}">
                                             <select name="delivery_status" id="" onchange="this.form.submit()">
-                                                <option value="Pending" {{$pending->delivery_status == 'Pending'? 'selected' : ''}}>Pending</option>
-                                                <option value="On review" {{$pending->delivery_status == 'On review'? 'selected' : ''}}>On review</option>
-                                                <option value="On delivered" {{$pending->delivery_status == 'On delivered'? 'selected' : ''}}>On delivered</option>
-                                                <option value="Delivered" {{$pending->delivery_status == 'Delivered'? 'selected' : ''}}>Delivered</option>
-                                                <option value="Delivered" {{$pending->delivery_status == 'Completed'? 'selected' : ''}}>Completed</option>
-                                                <option value="Cancel" {{$pending->delivery_status == 'Cancel'? 'selected' : ''}}>Cancel</option>
+                                                {{--                                                <option value="Pending" {{$Deliver->delivery_status == 'Pending'? 'selected' : ''}}>Pending</option>--}}
+                                                {{--                                                <option value="On review" {{$Deliver->delivery_status == 'On review'? 'selected' : ''}}>On review</option>--}}
+                                                {{--                                                <option value="On delivered" {{$Deliver->delivery_status == 'On delivered'? 'selected' : ''}}>On delivered</option>--}}
+                                                {{--                                                <option value="Delivered" {{$Deliver->delivery_status == 'Delivered'? 'selected' : ''}}>Delivered</option>--}}
+                                                {{--                                                <option value="Delivered" {{$Complete->delivery_status == 'Completed'? 'selected' : ''}}>Completed</option>--}}
+                                                <option value="Cancel" {{$Cancel->delivery_status == 'Cancel'? 'selected' : ''}}>Cancel</option>
                                             </select>
                                         </form>
 
                                     </td>
                                     <td>
-                                        <a class="btn btn-info waves-effect" href="{{route('admin.order-details',$pending->id)}}">
+                                        <a class="btn btn-info waves-effect" href="{{route('admin.order-details',$Cancel->id)}}">
                                             <i class="fa fa-eye"></i> View
                                         </a>
                                     </td>
