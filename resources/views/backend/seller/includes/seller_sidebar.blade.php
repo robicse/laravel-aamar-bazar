@@ -67,7 +67,37 @@
                             <li class="nav-item">
                                 <a href="{{route('seller.pending.order')}}" class="nav-link {{Request::is('seller/pending-order*') ? 'active' :''}}">
                                     <i class="fa fa-{{Request::is('seller/pending-order*') ? 'folder-open':'folder'}} nav-icon"></i>
-                                    <p>Order Product</p>
+                                    <p>Pending Order</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{{route('seller.on-reviewed.order')}}" class="nav-link {{Request::is('seller/on-reviewed-order*') ? 'active' :''}}">
+                                    <i class="fa fa-{{Request::is('seller/on-reviewed-order*') ? 'folder-open':'folder'}} nav-icon"></i>
+                                    <p>On Reviewed Order</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{{route('seller.on-delivered.order')}}" class="nav-link {{Request::is('seller/on-delivered-order*') ? 'active' :''}}">
+                                    <i class="fa fa-{{Request::is('seller/on-delivered-order*') ? 'folder-open':'folder'}} nav-icon"></i>
+                                    <p>On Delivered Order</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{{route('seller.delivered.order')}}" class="nav-link {{Request::is('seller/delivered-order*') ? 'active' :''}}">
+                                    <i class="fa fa-{{Request::is('seller/delivered-order*') ? 'folder-open':'folder'}} nav-icon"></i>
+                                    <p>Delivered Order</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{{route('seller.completed.order')}}" class="nav-link {{Request::is('seller/completed-order*') ? 'active' :''}}">
+                                    <i class="fa fa-{{Request::is('seller/completed-order*') ? 'folder-open':'folder'}} nav-icon"></i>
+                                    <p>Completed Order</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{{route('seller.canceled.order')}}" class="nav-link {{Request::is('seller/canceled-order*') ? 'active' :''}}">
+                                    <i class="fa fa-{{Request::is('seller/canceled-order*') ? 'folder-open':'folder'}} nav-icon"></i>
+                                    <p>Cancel Order</p>
                                 </a>
                             </li>
                         </ul>

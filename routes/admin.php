@@ -48,4 +48,5 @@ Route::group(['as'=>'admin.','prefix' =>'admin','namespace'=>'Admin', 'middlewar
     Route::post('/sellers/commission_modal', 'SellerController@commission_modal')->name('sellers.commission_modal');
     Route::put('/sellers/individual/commission/set/{id}', 'SellerController@individulCommissionSet')->name('seller.individual.commission.set');
     Route::post('/sellers/pay_to_seller_commission', 'SellerController@pay_to_seller_commission')->name('seller.commissions.pay_to_seller');
+//    Route::get('/sellers/order_management', 'SellerController@order_management')->name('sellers.order_management');
 });

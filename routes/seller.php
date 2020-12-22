@@ -22,6 +22,11 @@ Route::group(['as'=>'seller.','prefix' =>'seller', 'middleware' => ['auth', 'sel
 
     //Seller Order Management
     Route::get('order/management','Seller\OrderManagementController@pendingOrder')->name('pending.order');
+    Route::get('on-reviewed/order','Seller\OrderManagementController@onReviewedOrder')->name('on-reviewed.order');
+    Route::get('on-delivered/order','Seller\OrderManagementController@onDeliveredOrder')->name('on-delivered.order');
+    Route::get('delivered/order','Seller\OrderManagementController@deliveredOrder')->name('delivered.order');
+    Route::get('completed/order','Seller\OrderManagementController@completedOrder')->name('completed.order');
+    Route::get('canceled/order','Seller\OrderManagementController@canceledOrder')->name('canceled.order');
     Route::get('order-product/status-change/{id}','Seller\OrderManagementController@OrderProductChangeStatus')->name('order-product.status');
     Route::get('order-details/{id}','Seller\OrderManagementController@orderDetails')->name('order-details');
 

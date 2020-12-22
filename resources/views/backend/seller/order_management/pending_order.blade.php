@@ -8,12 +8,12 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>Order Management</h1>
+                    <h1>Pending Order</h1>
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
                         <li class="breadcrumb-item"><a href="{{route('seller.dashboard')}}">Home</a></li>
-                        <li class="breadcrumb-item active">Order Management</li>
+                        <li class="breadcrumb-item active">Pending Order</li>
                     </ol>
                 </div>
             </div>
@@ -25,7 +25,7 @@
             <div class="col-12">
                 <div class="card card-info card-outline">
                     <div class="card-header">
-                        <h3 class="card-title float-left">Orders</h3>
+                        <h3 class="card-title float-left">Pending Orders</h3>
                         <div class="float-right">
                             {{--<a href="{{route('admin.p.create')}}">
                                 <button class="btn btn-success">
@@ -62,6 +62,7 @@
                                             <option value="On review" {{$pending->delivery_status == 'On review'? 'selected' : ''}}>On review</option>
                                             <option value="On delivered" {{$pending->delivery_status == 'On delivered'? 'selected' : ''}}>On delivered</option>
                                             <option value="Delivered" {{$pending->delivery_status == 'Delivered'? 'selected' : ''}}>Delivered</option>
+                                            <option value="Delivered" {{$pending->delivery_status == 'Completed'? 'selected' : ''}}>Completed</option>
                                             <option value="Cancel" {{$pending->delivery_status == 'Cancel'? 'selected' : ''}}>Cancel</option>
                                         </select>
                                     </form>
