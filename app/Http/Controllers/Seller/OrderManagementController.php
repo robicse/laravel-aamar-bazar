@@ -55,8 +55,8 @@ class OrderManagementController extends Controller
         return view('backend.seller.order_management.cancel',compact('Canceled'));
     }
     public function orderDetails($id) {
-        $order_details = Order::find($id);
-        return view('backend.seller.order_management.order_details',compact('order_details'));
+        $orders = Order::find($id);
+        return view('backend.seller.order_management.order_details',compact('orders'));
     }
     public function OrderProductChangeStatus(Request $request, $id)
     {
@@ -65,5 +65,9 @@ class OrderManagementController extends Controller
         $order->save();
         Toastr::success('Delivery status successfully changed');
         return redirect()->back();
+    }
+    public function printInvoice($id) {
+        $orders = Order::find($id);
+        return view('backend.seller.order_management.invoice_print',compact('orders'));
     }
 }

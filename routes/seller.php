@@ -29,6 +29,7 @@ Route::group(['as'=>'seller.','prefix' =>'seller', 'middleware' => ['auth', 'sel
     Route::get('canceled/order','Seller\OrderManagementController@canceledOrder')->name('canceled.order');
     Route::get('order-product/status-change/{id}','Seller\OrderManagementController@OrderProductChangeStatus')->name('order-product.status');
     Route::get('order-details/{id}','Seller\OrderManagementController@orderDetails')->name('order-details');
+    Route::get('order-details/invoice/print/{id}','Seller\OrderManagementController@printInvoice')->name('invoice.print');
 
     Route::get('profile','Seller\ProfileController@profile')->name('profile.show');
     Route::post('profile/update','Seller\ProfileController@profile_update')->name('profile.update');

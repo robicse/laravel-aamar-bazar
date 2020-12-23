@@ -42,7 +42,7 @@
                             <tr>
                                 <th>#Id</th>
                                 <th>Date</th>
-                                <th>Name</th>
+                                <th>Product Name</th>
                                 <th>Payment Method</th>
                                 <th>Action</th>
                                 <th>Details</th>
@@ -53,7 +53,7 @@
                                 <tr>
                                     <td>{{$key + 1}}</td>
                                     <td>{{date('j-m-Y',strtotime($review->created_at))}}</td>
-                                    <td>{{$review->name}}</td>
+                                    <td>{{$review->order_details->name}}</td>
                                     <td>{{$review->payment_type}}</td>
                                     <td>
                                         <form action="{{route('seller.order-product.status',$review->id)}}">
@@ -80,7 +80,7 @@
                             <tr>
                                 <th>#Id</th>
                                 <th>Date</th>
-                                <th>Name</th>
+                                <th>Product Name</th>
                                 <th>Payment Method</th>
                                 <th>Action</th>
                                 <th>Details</th>
