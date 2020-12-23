@@ -23,7 +23,7 @@ class DashboardController extends Controller
         $totalSubSubCategories = SubSubcategory::count();
         $totalBrands = Brand::count();
         $totalAttributes = Attribute::count();
-        $totalProducts = 1 /*Product::count()*/;
+        $totalProducts =  Product::count();
         //dd($totalBrands);
         return view('backend.admin.dashboard',
             compact('totalStaffs','totalBrands','totalUsers','totalCategories',
