@@ -14,7 +14,7 @@
         <section class="ps-section--account">
             <div class="container">
                 <div class="row">
-                    @include('backend.user.includes.user_sidebar')
+                    @include('frontend.user.includes.user_sidebar')
                     <div class="col-lg-8">
                         <div class="ps-section__right">
                             <div class="ps-section--account-setting">

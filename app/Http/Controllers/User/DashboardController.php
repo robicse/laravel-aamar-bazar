@@ -14,28 +14,28 @@ class DashboardController extends Controller
 {
     public function index()
     {
-        return view('backend.user.home');
+        return view('frontend.user.home');
     }
     public function invoices()
     {
-        return view('backend.user.invoices');
+        return view('frontend.user.invoices');
     }
     public function notification()
     {
-        return view('backend.user.notification');
+        return view('frontend.user.notification');
     }
     public function address()
     {
-        return view('backend.user.address');
+        return view('frontend.user.address');
     }
     public function orderHistory()
     {
         $orders = Order::where('user_id',Auth::id())->latest()->get();
-        return view('backend.user.order_history',compact('orders'));
+        return view('frontend.user.order_history',compact('orders'));
     }
     public function wishlist()
     {
-        return view('backend.user.wishlist');
+        return view('frontend.user.wishlist');
     }
     public function update(Request $request) {
 //        dd('saf');
