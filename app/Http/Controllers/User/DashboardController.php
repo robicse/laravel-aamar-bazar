@@ -30,9 +30,8 @@ class DashboardController extends Controller
     }
     public function orderHistory()
     {
-        $order = Order::where('user_id',Auth::id())->first();
-        $order_history = OrderDetails::where('order_id',$order->id)->get();
-        return view('backend.user.order_history',compact('order_history'));
+        $orders = Order::where('user_id',Auth::id())->latest()->get();
+        return view('backend.user.order_history',compact('orders'));
     }
     public function wishlist()
     {

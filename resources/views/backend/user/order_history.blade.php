@@ -27,21 +27,25 @@
                                             <thead>
                                             <tr>
                                                 <th>Id</th>
-                                                <th>Name</th>
+                                                <th>Invoice</th>
                                                 <th>Date</th>
-                                                <th>Quantity</th>
-                                                <th>Amount</th>
+                                                <th>Product Name</th>
+                                                <th>Grand Total</th>
+                                                <th>Payment Status</th>
+                                                <th>Delivery Status</th>
 
                                             </tr>
                                             </thead>
                                             <tbody>
-                                            @foreach($order_history as $key => $order_details)
+                                            @foreach($orders as $key => $order)
                                             <tr>
                                                 <td>{{$key + 1}}</td>
-                                                <td>{{ $order_details->name }}</td>
-                                                <td>{{date('j-m-Y',strtotime($order_details->created_at))}}</td>
-                                                <td>{{ $order_details->quantity }}</td>
-                                                <td>{{ $order_details->price }}</td>
+                                                <td>{{ $order->invoice_code }}</td>
+                                                <td>{{date('j-m-Y',strtotime($order->created_at))}}</td>
+                                                <td>{{ $order->order_details->name }}</td>
+                                                <td>{{ $order->grand_total }}</td>
+                                                <td>{{ $order->payment_status }}</td>
+                                                <td>{{ $order->delivery_status }}</td>
 {{--                                                <td><a href="product-default.html">Marshall Kilburn Portable Wireless Speaker</a></td>--}}
 {{--                                                <td>20-1-2020</td>--}}
 {{--                                                <td>42.99</td>--}}

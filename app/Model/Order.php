@@ -10,7 +10,7 @@ class Order extends Model
 
     public function order_details()
     {
-        return $this->hasMany('App\Model\OrderDetails', 'order_id');
+        return $this->hasOne('App\Model\OrderDetails', 'order_id');
 
     }
 }
