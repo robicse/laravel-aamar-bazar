@@ -102,174 +102,174 @@
                                             </div>
                                         </div>
                                     @endforeach
-                                    <div class="ps-product">
-                                        <div class="ps-product__thumbnail"><a href=""><img src="{{asset('frontend/img/products/technology/2.jpg')}}" alt=""></a>
-                                            <div class="ps-product__badge">11%</div>
-                                            <ul class="ps-product__actions">
-                                                <li><a href="#" data-toggle="tooltip" data-placement="top" title="Add To Cart"><i class="icon-bag2"></i></a></li>
-                                                <li><a href="#" data-placement="top" title="Quick View" data-toggle="modal" data-target="#product-quickview"><i class="icon-eye"></i></a></li>
-                                                <li><a href="#" data-toggle="tooltip" data-placement="top" title="Add to Whishlist"><i class="icon-heart"></i></a></li>
-                                                <li><a href="#" data-toggle="tooltip" data-placement="top" title="Compare"><i class="icon-chart-bars"></i></a></li>
-                                            </ul>
-                                        </div>
-                                        <div class="ps-product__container"><a class="ps-product__vendor" href="#">Global Office</a>
-                                            <div class="ps-product__content"><a class="ps-product__title" href="">Apple iPhone 7 Plus 128 GB – Red Color</a>
-                                                <div class="ps-product__rating">
-                                                    <select class="ps-rating" data-read-only="true">
-                                                        <option value="1">1</option>
-                                                        <option value="1">2</option>
-                                                        <option value="1">3</option>
-                                                        <option value="1">4</option>
-                                                        <option value="2">5</option>
-                                                    </select><span>01</span>
-                                                </div>
-                                                <p class="ps-product__price sale">$820.99 <del>$893.00</del></p>
-                                            </div>
-                                            <div class="ps-product__content hover"><a class="ps-product__title" href="">Apple iPhone 7 Plus 128 GB – Red Color</a>
-                                                <p class="ps-product__price sale">$820.99 <del>$893.00</del></p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="ps-product">
-                                        <div class="ps-product__thumbnail"><a href=""><img src="{{asset('frontend/img/products/technology/3.jpg')}}" alt=""></a>
-                                            <div class="ps-product__badge">21%</div>
-                                            <ul class="ps-product__actions">
-                                                <li><a href="#" data-toggle="tooltip" data-placement="top" title="Add To Cart"><i class="icon-bag2"></i></a></li>
-                                                <li><a href="#" data-placement="top" title="Quick View" data-toggle="modal" data-target="#product-quickview"><i class="icon-eye"></i></a></li>
-                                                <li><a href="#" data-toggle="tooltip" data-placement="top" title="Add to Whishlist"><i class="icon-heart"></i></a></li>
-                                                <li><a href="#" data-toggle="tooltip" data-placement="top" title="Compare"><i class="icon-chart-bars"></i></a></li>
-                                            </ul>
-                                        </div>
-                                        <div class="ps-product__container"><a class="ps-product__vendor" href="#">Global Office</a>
-                                            <div class="ps-product__content"><a class="ps-product__title" href="">Apple MacBook Air Retina 13.3-Inch Laptop</a>
-                                                <div class="ps-product__rating">
-                                                    <select class="ps-rating" data-read-only="true">
-                                                        <option value="1">1</option>
-                                                        <option value="1">2</option>
-                                                        <option value="1">3</option>
-                                                        <option value="1">4</option>
-                                                        <option value="2">5</option>
-                                                    </select><span>01</span>
-                                                </div>
-                                                <p class="ps-product__price sale">$1020.99 <del>$1120.00</del></p>
-                                            </div>
-                                            <div class="ps-product__content hover"><a class="ps-product__title" href="">Apple MacBook Air Retina 13.3-Inch Laptop</a>
-                                                <p class="ps-product__price sale">$1020.99 <del>$1120.00</del></p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="ps-product">
-                                        <div class="ps-product__thumbnail"><a href=""><img src="{{asset('frontend/img/products/technology/4.jpg')}}" alt=""></a>
-                                            <div class="ps-product__badge">18%</div>
-                                            <ul class="ps-product__actions">
-                                                <li><a href="#" data-toggle="tooltip" data-placement="top" title="Add To Cart"><i class="icon-bag2"></i></a></li>
-                                                <li><a href="#" data-placement="top" title="Quick View" data-toggle="modal" data-target="#product-quickview"><i class="icon-eye"></i></a></li>
-                                                <li><a href="#" data-toggle="tooltip" data-placement="top" title="Add to Whishlist"><i class="icon-heart"></i></a></li>
-                                                <li><a href="#" data-toggle="tooltip" data-placement="top" title="Compare"><i class="icon-chart-bars"></i></a></li>
-                                            </ul>
-                                        </div>
-                                        <div class="ps-product__container"><a class="ps-product__vendor" href="#">Global Office</a>
-                                            <div class="ps-product__content"><a class="ps-product__title" href="">Samsung Gear VR Virtual Reality Headset</a>
-                                                <div class="ps-product__rating">
-                                                    <select class="ps-rating" data-read-only="true">
-                                                        <option value="1">1</option>
-                                                        <option value="1">2</option>
-                                                        <option value="1">3</option>
-                                                        <option value="1">4</option>
-                                                        <option value="2">5</option>
-                                                    </select><span>01</span>
-                                                </div>
-                                                <p class="ps-product__price sale">$64.99 <del>$80.00</del></p>
-                                            </div>
-                                            <div class="ps-product__content hover"><a class="ps-product__title" href="">Samsung Gear VR Virtual Reality Headset</a>
-                                                <p class="ps-product__price sale">$64.99 <del>$80.00</del></p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="ps-product">
-                                        <div class="ps-product__thumbnail"><a href="product-default.html"><img src="{{asset('frontend/img/products/technology/5.jpg')}}" alt=""></a>
-                                            <div class="ps-product__badge">18%</div>
-                                            <ul class="ps-product__actions">
-                                                <li><a href="#" data-toggle="tooltip" data-placement="top" title="Add To Cart"><i class="icon-bag2"></i></a></li>
-                                                <li><a href="#" data-placement="top" title="Quick View" data-toggle="modal" data-target="#product-quickview"><i class="icon-eye"></i></a></li>
-                                                <li><a href="#" data-toggle="tooltip" data-placement="top" title="Add to Whishlist"><i class="icon-heart"></i></a></li>
-                                                <li><a href="#" data-toggle="tooltip" data-placement="top" title="Compare"><i class="icon-chart-bars"></i></a></li>
-                                            </ul>
-                                        </div>
-                                        <div class="ps-product__container"><a class="ps-product__vendor" href="#">Global Office</a>
-                                            <div class="ps-product__content"><a class="ps-product__title" href="product-default.html">Bose Bluetooth &amp; Wireless Speaker 2.0 – Blue</a>
-                                                <div class="ps-product__rating">
-                                                    <select class="ps-rating" data-read-only="true">
-                                                        <option value="1">1</option>
-                                                        <option value="1">2</option>
-                                                        <option value="1">3</option>
-                                                        <option value="1">4</option>
-                                                        <option value="2">5</option>
-                                                    </select><span>01</span>
-                                                </div>
-                                                <p class="ps-product__price sale">$42.99 <del>$52.00</del></p>
-                                            </div>
-                                            <div class="ps-product__content hover"><a class="ps-product__title" href="product-default.html">Bose Bluetooth &amp; Wireless Speaker 2.0 – Blue</a>
-                                                <p class="ps-product__price sale">$42.99 <del>$52.00</del></p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="ps-product">
-                                        <div class="ps-product__thumbnail"><a href="product-default.html"><img src="{{asset('frontend/img/products/technology/6.jpg')}}" alt=""></a>
-                                            <div class="ps-product__badge">17%</div>
-                                            <ul class="ps-product__actions">
-                                                <li><a href="#" data-toggle="tooltip" data-placement="top" title="Add To Cart"><i class="icon-bag2"></i></a></li>
-                                                <li><a href="#" data-placement="top" title="Quick View" data-toggle="modal" data-target="#product-quickview"><i class="icon-eye"></i></a></li>
-                                                <li><a href="#" data-toggle="tooltip" data-placement="top" title="Add to Whishlist"><i class="icon-heart"></i></a></li>
-                                                <li><a href="#" data-toggle="tooltip" data-placement="top" title="Compare"><i class="icon-chart-bars"></i></a></li>
-                                            </ul>
-                                        </div>
-                                        <div class="ps-product__container"><a class="ps-product__vendor" href="#">Global Office</a>
-                                            <div class="ps-product__content"><a class="ps-product__title" href="product-default.html">Samsung Gallaxy A8 8GB Ram – Sliver Version</a>
-                                                <div class="ps-product__rating">
-                                                    <select class="ps-rating" data-read-only="true">
-                                                        <option value="1">1</option>
-                                                        <option value="1">2</option>
-                                                        <option value="1">3</option>
-                                                        <option value="1">4</option>
-                                                        <option value="2">5</option>
-                                                    </select><span>01</span>
-                                                </div>
-                                                <p class="ps-product__price sale">$542.99 <del>$592.00</del></p>
-                                            </div>
-                                            <div class="ps-product__content hover"><a class="ps-product__title" href="product-default.html">Samsung Gallaxy A8 8GB Ram – Sliver Version</a>
-                                                <p class="ps-product__price sale">$542.99 <del>$592.00</del></p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="ps-product">
-                                        <div class="ps-product__thumbnail"><a href="product-default.html"><img src="{{asset('frontend/img/products/technology/7.jpg')}}" alt=""></a>
-                                            <div class="ps-product__badge">17%</div>
-                                            <ul class="ps-product__actions">
-                                                <li><a href="#" data-toggle="tooltip" data-placement="top" title="Add To Cart"><i class="icon-bag2"></i></a></li>
-                                                <li><a href="#" data-placement="top" title="Quick View" data-toggle="modal" data-target="#product-quickview"><i class="icon-eye"></i></a></li>
-                                                <li><a href="#" data-toggle="tooltip" data-placement="top" title="Add to Whishlist"><i class="icon-heart"></i></a></li>
-                                                <li><a href="#" data-toggle="tooltip" data-placement="top" title="Compare"><i class="icon-chart-bars"></i></a></li>
-                                            </ul>
-                                        </div>
-                                        <div class="ps-product__container"><a class="ps-product__vendor" href="#">Global Office</a>
-                                            <div class="ps-product__content"><a class="ps-product__title" href="product-default.html">Samsung Gallaxy A8 8GB Ram – Sliver Version</a>
-                                                <div class="ps-product__rating">
-                                                    <select class="ps-rating" data-read-only="true">
-                                                        <option value="1">1</option>
-                                                        <option value="1">2</option>
-                                                        <option value="1">3</option>
-                                                        <option value="1">4</option>
-                                                        <option value="2">5</option>
-                                                    </select><span>01</span>
-                                                </div>
-                                                <p class="ps-product__price sale">$542.99 <del>$592.00</del></p>
-                                            </div>
-                                            <div class="ps-product__content hover"><a class="ps-product__title" href="product-default.html">Samsung Gallaxy A8 8GB Ram – Sliver Version</a>
-                                                <p class="ps-product__price sale">$542.99 <del>$592.00</del></p>
-                                            </div>
-                                        </div>
-                                    </div>
+{{--                                    <div class="ps-product">--}}
+{{--                                        <div class="ps-product__thumbnail"><a href=""><img src="{{asset('frontend/img/products/technology/2.jpg')}}" alt=""></a>--}}
+{{--                                            <div class="ps-product__badge">11%</div>--}}
+{{--                                            <ul class="ps-product__actions">--}}
+{{--                                                <li><a href="#" data-toggle="tooltip" data-placement="top" title="Add To Cart"><i class="icon-bag2"></i></a></li>--}}
+{{--                                                <li><a href="#" data-placement="top" title="Quick View" data-toggle="modal" data-target="#product-quickview"><i class="icon-eye"></i></a></li>--}}
+{{--                                                <li><a href="#" data-toggle="tooltip" data-placement="top" title="Add to Whishlist"><i class="icon-heart"></i></a></li>--}}
+{{--                                                <li><a href="#" data-toggle="tooltip" data-placement="top" title="Compare"><i class="icon-chart-bars"></i></a></li>--}}
+{{--                                            </ul>--}}
+{{--                                        </div>--}}
+{{--                                        <div class="ps-product__container"><a class="ps-product__vendor" href="#">Global Office</a>--}}
+{{--                                            <div class="ps-product__content"><a class="ps-product__title" href="">Apple iPhone 7 Plus 128 GB – Red Color</a>--}}
+{{--                                                <div class="ps-product__rating">--}}
+{{--                                                    <select class="ps-rating" data-read-only="true">--}}
+{{--                                                        <option value="1">1</option>--}}
+{{--                                                        <option value="1">2</option>--}}
+{{--                                                        <option value="1">3</option>--}}
+{{--                                                        <option value="1">4</option>--}}
+{{--                                                        <option value="2">5</option>--}}
+{{--                                                    </select><span>01</span>--}}
+{{--                                                </div>--}}
+{{--                                                <p class="ps-product__price sale">$820.99 <del>$893.00</del></p>--}}
+{{--                                            </div>--}}
+{{--                                            <div class="ps-product__content hover"><a class="ps-product__title" href="">Apple iPhone 7 Plus 128 GB – Red Color</a>--}}
+{{--                                                <p class="ps-product__price sale">$820.99 <del>$893.00</del></p>--}}
+{{--                                            </div>--}}
+{{--                                        </div>--}}
+{{--                                    </div>--}}
+{{--                                    <div class="ps-product">--}}
+{{--                                        <div class="ps-product__thumbnail"><a href=""><img src="{{asset('frontend/img/products/technology/3.jpg')}}" alt=""></a>--}}
+{{--                                            <div class="ps-product__badge">21%</div>--}}
+{{--                                            <ul class="ps-product__actions">--}}
+{{--                                                <li><a href="#" data-toggle="tooltip" data-placement="top" title="Add To Cart"><i class="icon-bag2"></i></a></li>--}}
+{{--                                                <li><a href="#" data-placement="top" title="Quick View" data-toggle="modal" data-target="#product-quickview"><i class="icon-eye"></i></a></li>--}}
+{{--                                                <li><a href="#" data-toggle="tooltip" data-placement="top" title="Add to Whishlist"><i class="icon-heart"></i></a></li>--}}
+{{--                                                <li><a href="#" data-toggle="tooltip" data-placement="top" title="Compare"><i class="icon-chart-bars"></i></a></li>--}}
+{{--                                            </ul>--}}
+{{--                                        </div>--}}
+{{--                                        <div class="ps-product__container"><a class="ps-product__vendor" href="#">Global Office</a>--}}
+{{--                                            <div class="ps-product__content"><a class="ps-product__title" href="">Apple MacBook Air Retina 13.3-Inch Laptop</a>--}}
+{{--                                                <div class="ps-product__rating">--}}
+{{--                                                    <select class="ps-rating" data-read-only="true">--}}
+{{--                                                        <option value="1">1</option>--}}
+{{--                                                        <option value="1">2</option>--}}
+{{--                                                        <option value="1">3</option>--}}
+{{--                                                        <option value="1">4</option>--}}
+{{--                                                        <option value="2">5</option>--}}
+{{--                                                    </select><span>01</span>--}}
+{{--                                                </div>--}}
+{{--                                                <p class="ps-product__price sale">$1020.99 <del>$1120.00</del></p>--}}
+{{--                                            </div>--}}
+{{--                                            <div class="ps-product__content hover"><a class="ps-product__title" href="">Apple MacBook Air Retina 13.3-Inch Laptop</a>--}}
+{{--                                                <p class="ps-product__price sale">$1020.99 <del>$1120.00</del></p>--}}
+{{--                                            </div>--}}
+{{--                                        </div>--}}
+{{--                                    </div>--}}
+{{--                                    <div class="ps-product">--}}
+{{--                                        <div class="ps-product__thumbnail"><a href=""><img src="{{asset('frontend/img/products/technology/4.jpg')}}" alt=""></a>--}}
+{{--                                            <div class="ps-product__badge">18%</div>--}}
+{{--                                            <ul class="ps-product__actions">--}}
+{{--                                                <li><a href="#" data-toggle="tooltip" data-placement="top" title="Add To Cart"><i class="icon-bag2"></i></a></li>--}}
+{{--                                                <li><a href="#" data-placement="top" title="Quick View" data-toggle="modal" data-target="#product-quickview"><i class="icon-eye"></i></a></li>--}}
+{{--                                                <li><a href="#" data-toggle="tooltip" data-placement="top" title="Add to Whishlist"><i class="icon-heart"></i></a></li>--}}
+{{--                                                <li><a href="#" data-toggle="tooltip" data-placement="top" title="Compare"><i class="icon-chart-bars"></i></a></li>--}}
+{{--                                            </ul>--}}
+{{--                                        </div>--}}
+{{--                                        <div class="ps-product__container"><a class="ps-product__vendor" href="#">Global Office</a>--}}
+{{--                                            <div class="ps-product__content"><a class="ps-product__title" href="">Samsung Gear VR Virtual Reality Headset</a>--}}
+{{--                                                <div class="ps-product__rating">--}}
+{{--                                                    <select class="ps-rating" data-read-only="true">--}}
+{{--                                                        <option value="1">1</option>--}}
+{{--                                                        <option value="1">2</option>--}}
+{{--                                                        <option value="1">3</option>--}}
+{{--                                                        <option value="1">4</option>--}}
+{{--                                                        <option value="2">5</option>--}}
+{{--                                                    </select><span>01</span>--}}
+{{--                                                </div>--}}
+{{--                                                <p class="ps-product__price sale">$64.99 <del>$80.00</del></p>--}}
+{{--                                            </div>--}}
+{{--                                            <div class="ps-product__content hover"><a class="ps-product__title" href="">Samsung Gear VR Virtual Reality Headset</a>--}}
+{{--                                                <p class="ps-product__price sale">$64.99 <del>$80.00</del></p>--}}
+{{--                                            </div>--}}
+{{--                                        </div>--}}
+{{--                                    </div>--}}
+{{--                                    <div class="ps-product">--}}
+{{--                                        <div class="ps-product__thumbnail"><a href="product-default.html"><img src="{{asset('frontend/img/products/technology/5.jpg')}}" alt=""></a>--}}
+{{--                                            <div class="ps-product__badge">18%</div>--}}
+{{--                                            <ul class="ps-product__actions">--}}
+{{--                                                <li><a href="#" data-toggle="tooltip" data-placement="top" title="Add To Cart"><i class="icon-bag2"></i></a></li>--}}
+{{--                                                <li><a href="#" data-placement="top" title="Quick View" data-toggle="modal" data-target="#product-quickview"><i class="icon-eye"></i></a></li>--}}
+{{--                                                <li><a href="#" data-toggle="tooltip" data-placement="top" title="Add to Whishlist"><i class="icon-heart"></i></a></li>--}}
+{{--                                                <li><a href="#" data-toggle="tooltip" data-placement="top" title="Compare"><i class="icon-chart-bars"></i></a></li>--}}
+{{--                                            </ul>--}}
+{{--                                        </div>--}}
+{{--                                        <div class="ps-product__container"><a class="ps-product__vendor" href="#">Global Office</a>--}}
+{{--                                            <div class="ps-product__content"><a class="ps-product__title" href="product-default.html">Bose Bluetooth &amp; Wireless Speaker 2.0 – Blue</a>--}}
+{{--                                                <div class="ps-product__rating">--}}
+{{--                                                    <select class="ps-rating" data-read-only="true">--}}
+{{--                                                        <option value="1">1</option>--}}
+{{--                                                        <option value="1">2</option>--}}
+{{--                                                        <option value="1">3</option>--}}
+{{--                                                        <option value="1">4</option>--}}
+{{--                                                        <option value="2">5</option>--}}
+{{--                                                    </select><span>01</span>--}}
+{{--                                                </div>--}}
+{{--                                                <p class="ps-product__price sale">$42.99 <del>$52.00</del></p>--}}
+{{--                                            </div>--}}
+{{--                                            <div class="ps-product__content hover"><a class="ps-product__title" href="product-default.html">Bose Bluetooth &amp; Wireless Speaker 2.0 – Blue</a>--}}
+{{--                                                <p class="ps-product__price sale">$42.99 <del>$52.00</del></p>--}}
+{{--                                            </div>--}}
+{{--                                        </div>--}}
+{{--                                    </div>--}}
+{{--                                    <div class="ps-product">--}}
+{{--                                        <div class="ps-product__thumbnail"><a href="product-default.html"><img src="{{asset('frontend/img/products/technology/6.jpg')}}" alt=""></a>--}}
+{{--                                            <div class="ps-product__badge">17%</div>--}}
+{{--                                            <ul class="ps-product__actions">--}}
+{{--                                                <li><a href="#" data-toggle="tooltip" data-placement="top" title="Add To Cart"><i class="icon-bag2"></i></a></li>--}}
+{{--                                                <li><a href="#" data-placement="top" title="Quick View" data-toggle="modal" data-target="#product-quickview"><i class="icon-eye"></i></a></li>--}}
+{{--                                                <li><a href="#" data-toggle="tooltip" data-placement="top" title="Add to Whishlist"><i class="icon-heart"></i></a></li>--}}
+{{--                                                <li><a href="#" data-toggle="tooltip" data-placement="top" title="Compare"><i class="icon-chart-bars"></i></a></li>--}}
+{{--                                            </ul>--}}
+{{--                                        </div>--}}
+{{--                                        <div class="ps-product__container"><a class="ps-product__vendor" href="#">Global Office</a>--}}
+{{--                                            <div class="ps-product__content"><a class="ps-product__title" href="product-default.html">Samsung Gallaxy A8 8GB Ram – Sliver Version</a>--}}
+{{--                                                <div class="ps-product__rating">--}}
+{{--                                                    <select class="ps-rating" data-read-only="true">--}}
+{{--                                                        <option value="1">1</option>--}}
+{{--                                                        <option value="1">2</option>--}}
+{{--                                                        <option value="1">3</option>--}}
+{{--                                                        <option value="1">4</option>--}}
+{{--                                                        <option value="2">5</option>--}}
+{{--                                                    </select><span>01</span>--}}
+{{--                                                </div>--}}
+{{--                                                <p class="ps-product__price sale">$542.99 <del>$592.00</del></p>--}}
+{{--                                            </div>--}}
+{{--                                            <div class="ps-product__content hover"><a class="ps-product__title" href="product-default.html">Samsung Gallaxy A8 8GB Ram – Sliver Version</a>--}}
+{{--                                                <p class="ps-product__price sale">$542.99 <del>$592.00</del></p>--}}
+{{--                                            </div>--}}
+{{--                                        </div>--}}
+{{--                                    </div>--}}
+{{--                                    <div class="ps-product">--}}
+{{--                                        <div class="ps-product__thumbnail"><a href="product-default.html"><img src="{{asset('frontend/img/products/technology/7.jpg')}}" alt=""></a>--}}
+{{--                                            <div class="ps-product__badge">17%</div>--}}
+{{--                                            <ul class="ps-product__actions">--}}
+{{--                                                <li><a href="#" data-toggle="tooltip" data-placement="top" title="Add To Cart"><i class="icon-bag2"></i></a></li>--}}
+{{--                                                <li><a href="#" data-placement="top" title="Quick View" data-toggle="modal" data-target="#product-quickview"><i class="icon-eye"></i></a></li>--}}
+{{--                                                <li><a href="#" data-toggle="tooltip" data-placement="top" title="Add to Whishlist"><i class="icon-heart"></i></a></li>--}}
+{{--                                                <li><a href="#" data-toggle="tooltip" data-placement="top" title="Compare"><i class="icon-chart-bars"></i></a></li>--}}
+{{--                                            </ul>--}}
+{{--                                        </div>--}}
+{{--                                        <div class="ps-product__container"><a class="ps-product__vendor" href="#">Global Office</a>--}}
+{{--                                            <div class="ps-product__content"><a class="ps-product__title" href="product-default.html">Samsung Gallaxy A8 8GB Ram – Sliver Version</a>--}}
+{{--                                                <div class="ps-product__rating">--}}
+{{--                                                    <select class="ps-rating" data-read-only="true">--}}
+{{--                                                        <option value="1">1</option>--}}
+{{--                                                        <option value="1">2</option>--}}
+{{--                                                        <option value="1">3</option>--}}
+{{--                                                        <option value="1">4</option>--}}
+{{--                                                        <option value="2">5</option>--}}
+{{--                                                    </select><span>01</span>--}}
+{{--                                                </div>--}}
+{{--                                                <p class="ps-product__price sale">$542.99 <del>$592.00</del></p>--}}
+{{--                                            </div>--}}
+{{--                                            <div class="ps-product__content hover"><a class="ps-product__title" href="product-default.html">Samsung Gallaxy A8 8GB Ram – Sliver Version</a>--}}
+{{--                                                <p class="ps-product__price sale">$542.99 <del>$592.00</del></p>--}}
+{{--                                            </div>--}}
+{{--                                        </div>--}}
+{{--                                    </div>--}}
                                 </div>
                             </div>
                         </div>
