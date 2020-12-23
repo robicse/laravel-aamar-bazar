@@ -9,6 +9,8 @@ use App\Model\Category;
 use App\Model\Color;
 use App\Model\Product;
 use App\Model\ProductStock;
+use App\Model\Shop;
+use App\Model\ShopCategory;
 use App\Model\Subcategory;
 use App\Model\SubSubcategory;
 use Brian2694\Toastr\Facades\Toastr;
@@ -72,6 +74,7 @@ class ProductController extends Controller
     }
     public function store(Request $request)
     {
+        //dd($request->all());
         $product = new Product;
         $product->name = $request->name;
         $product->added_by = $request->added_by;
@@ -83,7 +86,6 @@ class ProductController extends Controller
         $product->current_stock = $request->current_stock;
         $product->current_stock = $request->current_stock;
         $photos = array();
-
         if($request->hasFile('photos')){
             foreach ($request->photos as $key => $photo) {
                 $path = $photo->store('uploads/products/photos');
@@ -112,7 +114,8 @@ class ProductController extends Controller
         $product->discount_type = $request->discount_type;
         $product->meta_title = $request->meta_title;
         $product->meta_description = $request->meta_description;
-        $product->slug = $request->slug;
+        $product->slug = $request->slug.'-'.Str::random(5);
+
         if($request->has('colors_active') && $request->has('colors') && count($request->colors) > 0){
             $data = Array();
             foreach ($request->colors as $color){
@@ -168,6 +171,7 @@ class ProductController extends Controller
         //Generates the combinations of customer choice options
         $combinations = Helpers::combinations($options);
         if(count($combinations[0]) > 0){
+            dd('inside seller controller after');
             $product->variant_product = 1;
             foreach ($combinations as $key => $combination){
                 $str = '';
@@ -205,12 +209,23 @@ class ProductController extends Controller
             }
             //combinations end
             $product->save();
-
             Toastr::success("Product Inserted Successfully","Success");
             return redirect()->route('seller.products.index');
-
-
         }
+        //check shop categories
+        $shopId = Shop::where('user_id',Auth::id())->first();
+        //dd($shopId);
+        $shopCategory = ShopCategory::where('shop_id',$shopId->id)->where('category_id',$request->category_id)->first();
+        if(empty($shopCategory)){
+            $shopCategoryData = new ShopCategory();
+            $shopCategoryData->shop_id = $shopId->id;
+            $shopCategoryData->category_id = $request->category_id;
+            Toastr::success("Shop Category Inserted Successfully","Success");
+            $shopCategoryData->save();
+        }
+        $product->save();
+        Toastr::success("Product Inserted Successfully","Success");
+        return redirect()->route('seller.products.index');
     }
 
     public function show($id)

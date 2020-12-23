@@ -138,7 +138,7 @@ class ProductController extends Controller
         $product->discount_type = $request->discount_type;
         $product->meta_title = $request->meta_title;
         $product->meta_description = $request->meta_description;
-        $product->slug = $request->slug;
+        $product->slug = $request->slug.'-'.Str::random(5);
         if($request->has('colors_active') && $request->has('colors') && count($request->colors) > 0){
 
             $data = Array();
@@ -241,6 +241,9 @@ class ProductController extends Controller
 
         }
 
+        $product->save();
+        Toastr::success("Product Inserted Successfully","Success");
+        return redirect()->route('admin.products.index');
 
 
     }
