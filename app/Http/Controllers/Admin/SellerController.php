@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Model\BusinessSetting;
+use App\Model\Order;
 use App\Model\Payment;
 use App\Model\Seller;
 use App\Model\Product;
@@ -208,6 +209,5 @@ class SellerController extends Controller
         }
 
     }
-
 
 }

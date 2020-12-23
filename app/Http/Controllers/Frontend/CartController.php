@@ -120,9 +120,9 @@ class CartController extends Controller
         }
         return view('frontend.pages.shop.checkout');
     }
+
     public function orderSubmit(Request $request) {
         //dd($request->all());
-
         $this->validate($request,[
             'name' => 'required',
             'address' => 'required',
@@ -136,16 +136,22 @@ class CartController extends Controller
             $payment_status = 'Paid';
         }
 //dd($request->all());
-        $data['name'] = $request->first_name.' '.$request->last_name;
+        $data['name'] = $request->name;
         $data['phone'] = $request->phone;
         $data['email'] = $request->email;
         $data['address'] = $request->address;
         $data['note'] = $request->note;
         $shipping_info = json_encode($data);
 
+        foreach (Cart::content() as $content) {
+           $shop_id = $content->options->shop_id;
+           break;
+        }
+//        dd($shop_id);
         $order = new Order();
         $order->invoice_code = date('Ymd-his');
         $order->user_id = Auth::user()->id;
+        $order->shop_id = $shop_id;
         $order->shipping_address = $shipping_info;
         $order->payment_type = $request->pay;
         $order->payment_status = $payment_status;
@@ -155,6 +161,7 @@ class CartController extends Controller
         $order->view = 0;
         $order->type = "product";
         $order->save();
+
 
         foreach (Cart::content() as $content) {
             $orderDetails = new OrderDetails();

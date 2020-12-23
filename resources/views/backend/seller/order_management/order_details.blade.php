@@ -1,5 +1,9 @@
 @extends('backend.seller.layouts.master')
 @section("title","Order Details")
+@push('css')
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+@endpush
+
 @section('content')
         <!-- Content Header (Page header) -->
         <section class="content-header">
@@ -30,16 +34,14 @@
                                         <div class="col-4">
                                             <label>Payment Status</label>
                                             <select name="payment_status" id="" class="form-control select2">
-                                                <option value="">Active</option>
-                                                <option value="">Inactive</option>
+                                                <option value="">{{$order_details->payment_status}}</option>
                                             </select>
 {{--                                            <input type="text" class="form-control" placeholder="First name">--}}
                                         </div>
                                         <div class="col-4">
                                             <label>Delivery Status</label>
-                                            <select name="payment_status" id="" class="form-control select2">
-                                                <option value="">Active</option>
-                                                <option value="">Inactive</option>
+                                            <select name="delivery_status" id="" class="form-control select2">
+                                                <option value="">{{$order_details->delivery_status}}</option>
                                             </select>
                                             {{--  <input type="text" class="form-control" placeholder="First name">--}}
                                         </div>
@@ -59,6 +61,7 @@
                             <!-- info row -->
                             <div class="row invoice-info">
                                 <div class="col-sm-4 invoice-col">
+                                    <strong>Company Info</strong>
                                     <address>
                                         <strong>{{ $order_details->name}}</strong><br>
                                         795 Folsom Ave, Suite 600<br>
@@ -68,23 +71,25 @@
                                     </address>
                                 </div>
                                 <!-- /.col -->
-{{--                                <div class="col-sm-4 invoice-col">--}}
-{{--                                    To--}}
-{{--                                    <address>--}}
-{{--                                        <strong>John Doe</strong><br>--}}
-{{--                                        795 Folsom Ave, Suite 600<br>--}}
-{{--                                        San Francisco, CA 94107<br>--}}
-{{--                                        Phone: (555) 539-1037<br>--}}
-{{--                                        Email: john.doe@example.com--}}
-{{--                                    </address>--}}
-{{--                                </div>--}}
+                                @php
+                                    $shippingInfo = json_decode($order_details->shipping_address)
+                                @endphp
+                                <div class="col-sm-4 invoice-col">
+                                    <strong>Shipping Info</strong>
+                                    <address>
+                                        <div class="name">Name: {{$shippingInfo->name}} </div>
+                                        <div class="phone">Phone: <a href="">{{$shippingInfo->phone}}</a></div>
+                                        <div class="email">Email: <a href="">{{$shippingInfo->email}}</a></div>
+                                        <div class="address">Address: {{$shippingInfo->address}}</div>
+                                    </address>
+                                </div>
                                 <!-- /.col -->
                                 <div class="col-sm-4 invoice-col">
-                                    <b>Invoice #007612</b><br>
+                                    <b>Invoice {{$order_details->invoice_code}}</b><br>
                                     <br>
-                                    <b>Order ID:</b> 4F3S8J<br>
-                                    <b>Payment Due:</b> 2/22/2014<br>
-                                    <b>Account:</b> 968-34567
+                                    <b>Order ID:</b> {{$order_details->id}}<br>
+                                    <b>Payment Due:</b> {{date('j-m-Y',strtotime($order_details->created_at))}}<br>
+                                    <b>Transaction ID:</b> {{$order_details->transaction_id}}
                                 </div>
                                 <!-- /.col -->
                             </div>
@@ -169,3 +174,17 @@
         </section>
         <!-- /.content -->
 @endsection
+@push('js')
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script>
+        $('#printInvoice').click(function(){
+            Popup($('.invoice')[0].outerHTML);
+            function Popup(data)
+            {
+                window.print();
+                return true;
+            }
+        });
+    </script>
+@endpush
