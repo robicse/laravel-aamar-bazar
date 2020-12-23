@@ -6,7 +6,7 @@
             <div class="container">
                 <ul class="breadcrumb">
                     <li><a href="{{url('/')}}">Home</a></li>
-                    <li><a href="user-information.html">Account</a></li>
+                    <li><a href="">Account</a></li>
                     <li>Order History</li>
                 </ul>
             </div>
@@ -29,21 +29,23 @@
                                                 <th>Id</th>
                                                 <th>Name</th>
                                                 <th>Date</th>
+                                                <th>Quantity</th>
                                                 <th>Amount</th>
-                                                <th>Status</th>
+
                                             </tr>
                                             </thead>
                                             <tbody>
-                                            @foreach($order_history as $order)
+                                            @foreach($order_history as $key => $order_details)
                                             <tr>
-                                                <td>{{ $order->id }}</td>
-                                                <td>{{ $order->name }}</td>
-                                                <td>{{date('j-m-Y',strtotime($order->created_at))}}</td>
-                                                <td>{{ $order->name }}</td>
-                                                <td><a href="product-default.html">Marshall Kilburn Portable Wireless Speaker</a></td>
-                                                <td>20-1-2020</td>
-                                                <td>42.99</td>
-                                                <td>Successful delivery</td>
+                                                <td>{{$key + 1}}</td>
+                                                <td>{{ $order_details->name }}</td>
+                                                <td>{{date('j-m-Y',strtotime($order_details->created_at))}}</td>
+                                                <td>{{ $order_details->quantity }}</td>
+                                                <td>{{ $order_details->price }}</td>
+{{--                                                <td><a href="product-default.html">Marshall Kilburn Portable Wireless Speaker</a></td>--}}
+{{--                                                <td>20-1-2020</td>--}}
+{{--                                                <td>42.99</td>--}}
+{{--                                                <td>{{ $order_details->order->delivery_status }}</td>--}}
                                             </tr>
                                             @endforeach
                                             </tbody>
