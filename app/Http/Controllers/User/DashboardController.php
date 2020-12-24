@@ -28,11 +28,7 @@ class DashboardController extends Controller
     {
         return view('frontend.user.address');
     }
-    public function orderHistory()
-    {
-        $orders = Order::where('user_id',Auth::id())->latest()->get();
-        return view('frontend.user.order_history',compact('orders'));
-    }
+
     public function wishlist()
     {
         return view('frontend.user.wishlist');

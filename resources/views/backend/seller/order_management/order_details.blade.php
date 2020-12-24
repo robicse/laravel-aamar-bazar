@@ -34,14 +34,14 @@
                                         <div class="col-4">
                                             <label>Payment Status</label>
                                             <select name="payment_status" id="" class="form-control select2">
-                                                <option value="">{{$order_details->payment_status}}</option>
+                                                <option value="">{{$orders->payment_status}}</option>
                                             </select>
 {{--                                            <input type="text" class="form-control" placeholder="First name">--}}
                                         </div>
                                         <div class="col-4">
                                             <label>Delivery Status</label>
                                             <select name="delivery_status" id="" class="form-control select2">
-                                                <option value="">{{$order_details->delivery_status}}</option>
+                                                <option value="">{{$orders->delivery_status}}</option>
                                             </select>
                                             {{--  <input type="text" class="form-control" placeholder="First name">--}}
                                         </div>
@@ -55,41 +55,41 @@
                         <!-- Main content -->
                         <div class="invoice p-3 mb-3">
                             <!-- title row -->
-                            <div class="row">
-                                <!-- /.col -->
-                            </div>
+{{--                            <div class="row">--}}
+{{--                                <!-- /.col -->--}}
+{{--                            </div>--}}
                             <!-- info row -->
                             <div class="row invoice-info">
                                 <div class="col-sm-4 invoice-col">
                                     <strong>Company Info</strong>
                                     <address>
-                                        <strong>{{ $order_details->name}}</strong><br>
-                                        795 Folsom Ave, Suite 600<br>
-                                        San Francisco, CA 94107<br>
-                                        Phone: (804) 123-5432<br>
-                                        Email: info@almasaeedstudio.com
+                                        <strong>Mudi Hat</strong><br>
+                                        <b>Address :</b> 5th Floor (Lift Button-4), BBTOA Building, 9 No South, Mirpur Rd, Dhaka 1207<br>
+                                        <b>Phone :</b> (804) 123-5432<br>
+                                        <b>Email :</b> info@mudihat.com<br>
                                     </address>
                                 </div>
                                 <!-- /.col -->
                                 @php
-                                    $shippingInfo = json_decode($order_details->shipping_address)
+                                    $shippingInfo = json_decode($orders->shipping_address)
                                 @endphp
                                 <div class="col-sm-4 invoice-col">
                                     <strong>Shipping Info</strong>
                                     <address>
-                                        <div class="name">Name: {{$shippingInfo->name}} </div>
-                                        <div class="phone">Phone: <a href="">{{$shippingInfo->phone}}</a></div>
-                                        <div class="email">Email: <a href="">{{$shippingInfo->email}}</a></div>
-                                        <div class="address">Address: {{$shippingInfo->address}}</div>
+                                        <b>Name:</b> {{$shippingInfo->name}} <br>
+                                        <b>Phone: </b> {{$shippingInfo->phone}} <br>
+                                        <b>Email: </b> {{$shippingInfo->email}}<br>
+                                        <b>Address: </b> {{$shippingInfo->address}}<br>
                                     </address>
                                 </div>
                                 <!-- /.col -->
                                 <div class="col-sm-4 invoice-col">
-                                    <b>Invoice {{$order_details->invoice_code}}</b><br>
-                                    <br>
-                                    <b>Order ID:</b> {{$order_details->id}}<br>
-                                    <b>Payment Due:</b> {{date('j-m-Y',strtotime($order_details->created_at))}}<br>
-                                    <b>Transaction ID:</b> {{$order_details->transaction_id}}
+                                    <b>Invoice Info</b><br>
+{{--                                    <div class="code">Invoice Code: {{$orders->invoice_code}}</div><br>--}}
+                                    <b>Invoice Code:</b> {{$orders->invoice_code}}<br>
+                                    <b>Order ID:</b> {{$orders->id}}<br>
+                                    <b>Payment Due:</b> {{date('j-m-Y',strtotime($orders->created_at))}}<br>
+                                    <b>Transaction ID:</b> {{$orders->transaction_id}}
                                 </div>
                                 <!-- /.col -->
                             </div>
@@ -102,23 +102,22 @@
                                         <thead>
                                         <tr>
                                             <th>#</th>
-                                            <th>Photo</th>
-                                            <th>Description</th>
-                                            <th>Delivery Type</th>
+                                            <th>Product Name</th>
+                                            <th>Payment Type</th>
                                             <th>QTY</th>
                                             <th>Price</th>
                                             <th>Total</th>
+                                            <th>Print</th>
                                         </tr>
                                         </thead>
                                         <tbody>
                                         <tr>
-                                            <td>1</td>
-                                            <td></td>
-                                            <td>Gucci Shoes</td>
-                                            <td>Cash</td>
-                                            <td>2</td>
-                                            <td>$60.50</td>
-                                            <td>$121.00</td>
+                                            <td>{{$orders->id}}</td>
+                                            <td>{{$orders->order_details->name}}</td>
+                                            <td>{{$orders->payment_status}}</td>
+                                            <td>{{$orders->order_details->quantity}}</td>
+                                            <td>{{$orders->order_details->price}}</td>
+                                            <td>{{$orders->order_details->price * $orders->order_details->quantity }}</td>
                                         </tr>
                                         </tbody>
                                     </table>
@@ -155,17 +154,17 @@
                             <!-- /.row -->
 
                             <!-- this row will not appear when printing -->
-{{--                            <div class="row no-print">--}}
-{{--                                <div class="col-12">--}}
-{{--                                    <a href="invoice-print.html" target="_blank" class="btn btn-default"><i class="fas fa-print"></i> Print</a>--}}
-{{--                                    <button type="button" class="btn btn-success float-right"><i class="far fa-credit-card"></i> Submit--}}
-{{--                                        Payment--}}
-{{--                                    </button>--}}
-{{--                                    <button type="button" class="btn btn-primary float-right" style="margin-right: 5px;">--}}
-{{--                                        <i class="fas fa-download"></i> Generate PDF--}}
-{{--                                    </button>--}}
-{{--                                </div>--}}
-{{--                            </div>--}}
+                            <div class="row no-print">
+                                <div class="col-12">
+                                    <a href="{{ route('seller.invoice.print',$orders->id) }}" target="_blank" class="btn btn-default"><i class="fas fa-print"></i> Print</a>
+                                    <button type="button" class="btn btn-success float-right"><i class="far fa-credit-card"></i> Submit
+                                        Payment
+                                    </button>
+                                    <button type="button" class="btn btn-primary float-right" style="margin-right: 5px;">
+                                        <i class="fas fa-download"></i> Generate PDF
+                                    </button>
+                                </div>
+                            </div>
                         </div>
                         <!-- /.invoice -->
                     </div><!-- /.col -->

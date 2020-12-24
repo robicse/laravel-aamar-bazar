@@ -86,8 +86,8 @@
                                     @endphp
                                     <p>Sold By:<a href="{{route('shop.details',$shop->slug)}}"><strong> {{ $shop->name }}</strong></a></p>
                                     <ul class="ps-list--dot">
-                                        <li> Unrestrained and portable active stereo speaker</li>
-                                        <li> Free from the confines of wires and chords</li>
+                                        <li>  {!!  Str::limit($productDetails->description, 40)!!}</li>
+{{--                                        <li> Free from the confines of wires and chords</li>--}}
                                         {{--                                        <li> 20 hours of portable capabilities</li>--}}
                                         {{--                                        <li> Double-ended Coil Cord with 3.5mm Stereo Plugs Included</li>--}}
                                         {{--                                        <li> 3/4″ Dome Tweeters: 2X and 4″ Woofer: 1X</li>--}}
@@ -157,11 +157,11 @@
                         <div class="ps-product__content ps-tab-root">
                             <ul class="ps-tab-list">
                                 <li class="active"><a href="#tab-1">Description</a></li>
-                                <li><a href="#tab-2">Specification</a></li>
+{{--                                <li><a href="#tab-2">Specification</a></li>--}}
                                 <li><a href="#tab-3">Vendor</a></li>
                                 <li><a href="#tab-4">Reviews (1)</a></li>
-                                <li><a href="#tab-5">Questions and Answers</a></li>
-                                <li><a href="#tab-6">More Offers</a></li>
+{{--                                <li><a href="#tab-5">Questions and Answers</a></li>--}}
+{{--                                <li><a href="#tab-6">More Offers</a></li>--}}
                             </ul>
                             <div class="ps-tabs">
                                 <div class="ps-tab active" id="tab-1">
@@ -183,42 +183,42 @@
                                         <p>If you’ve taken the phone for a plunge in the bath, you’ll need to dry the charging port before plugging in. Samsung hasn’t reinvented the wheel with the design of the Galaxy S7, but it didn’t need to. The Gala S6 was an excellently styled device, and the S7 has managed to improve on that.</p>
                                     </div>
                                 </div>
-                                <div class="ps-tab" id="tab-2">
-                                    <div class="table-responsive">
-                                        <table class="table table-bordered ps-table ps-table--specification">
-                                            <tbody>
-                                            <tr>
-                                                <td>Color</td>
-                                                <td>Black, Gray</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Style</td>
-                                                <td>Ear Hook</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Wireless</td>
-                                                <td>Yes</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Dimensions</td>
-                                                <td>5.5 x 5.5 x 9.5 inches</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Weight</td>
-                                                <td>6.61 pounds</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Battery Life</td>
-                                                <td>20 hours</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Bluetooth</td>
-                                                <td>Yes</td>
-                                            </tr>
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                </div>
+{{--                                <div class="ps-tab" id="tab-2">--}}
+{{--                                    <div class="table-responsive">--}}
+{{--                                        <table class="table table-bordered ps-table ps-table--specification">--}}
+{{--                                            <tbody>--}}
+{{--                                            <tr>--}}
+{{--                                                <td>Color</td>--}}
+{{--                                                <td>Black, Gray</td>--}}
+{{--                                            </tr>--}}
+{{--                                            <tr>--}}
+{{--                                                <td>Style</td>--}}
+{{--                                                <td>Ear Hook</td>--}}
+{{--                                            </tr>--}}
+{{--                                            <tr>--}}
+{{--                                                <td>Wireless</td>--}}
+{{--                                                <td>Yes</td>--}}
+{{--                                            </tr>--}}
+{{--                                            <tr>--}}
+{{--                                                <td>Dimensions</td>--}}
+{{--                                                <td>5.5 x 5.5 x 9.5 inches</td>--}}
+{{--                                            </tr>--}}
+{{--                                            <tr>--}}
+{{--                                                <td>Weight</td>--}}
+{{--                                                <td>6.61 pounds</td>--}}
+{{--                                            </tr>--}}
+{{--                                            <tr>--}}
+{{--                                                <td>Battery Life</td>--}}
+{{--                                                <td>20 hours</td>--}}
+{{--                                            </tr>--}}
+{{--                                            <tr>--}}
+{{--                                                <td>Bluetooth</td>--}}
+{{--                                                <td>Yes</td>--}}
+{{--                                            </tr>--}}
+{{--                                            </tbody>--}}
+{{--                                        </table>--}}
+{{--                                    </div>--}}
+{{--                                </div>--}}
                                 <div class="ps-tab" id="tab-3">
                                     <h4>GoPro</h4>
                                     <p>Digiworld US, New York’s no.1 online retailer was established in May 2012 with the aim and vision to become the one-stop shop for retail in New York with implementation of best practices both online</p><a href="#">More Products from gopro</a>
@@ -291,17 +291,17 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="ps-tab" id="tab-5">
-                                    <div class="ps-block--questions-answers">
-                                        <h3>Questions and Answers</h3>
-                                        <div class="form-group">
-                                            <input class="form-control" type="text" placeholder="Have a question? Search for answer?">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="ps-tab active" id="tab-6">
-                                    <p>Sorry no more offers available</p>
-                                </div>
+{{--                                <div class="ps-tab" id="tab-5">--}}
+{{--                                    <div class="ps-block--questions-answers">--}}
+{{--                                        <h3>Questions and Answers</h3>--}}
+{{--                                        <div class="form-group">--}}
+{{--                                            <input class="form-control" type="text" placeholder="Have a question? Search for answer?">--}}
+{{--                                        </div>--}}
+{{--                                    </div>--}}
+{{--                                </div>--}}
+{{--                                <div class="ps-tab active" id="tab-6">--}}
+{{--                                    <p>Sorry no more offers available</p>--}}
+{{--                                </div>--}}
                             </div>
                         </div>
                     </div>

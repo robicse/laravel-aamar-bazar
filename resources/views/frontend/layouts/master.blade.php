@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<!-- Mirrored from nouthemes.net/html/martfury/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 05 Dec 2020 06:08:54 GMT -->
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -82,6 +81,4 @@
 <!-- custom scripts-->
 
 </body>
-
-<!-- Mirrored from nouthemes.net/html/martfury/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 05 Dec 2020 06:10:45 GMT -->
 </html>

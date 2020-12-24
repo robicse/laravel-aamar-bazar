@@ -25,6 +25,7 @@ Route::get('/contact', 'Frontend\AboutController@contact')->name('contact');
 Route::get('/blog-list', 'Frontend\BlogController@index')->name('blog-list');
 Route::get('/blog-details', 'Frontend\BlogController@details')->name('blog-details');
 
+
 Route::post('/registration','Frontend\FrontendController@register')->name('user.register');
 Route::get('/get-verification-code/{id}', 'Frontend\VerificationController@getVerificationCode')->name('get-verification-code');
 
@@ -52,7 +53,8 @@ Route::group(['middleware' => ['auth', 'user']], function () {
     Route::get('/user/invoices', 'User\DashboardController@invoices')->name('user.invoices');
     Route::get('/user/notifications', 'User\DashboardController@notification')->name('user.notification');
     Route::get('/user/address', 'User\DashboardController@address')->name('user.address');
-    Route::get('/user/order/history', 'User\DashboardController@orderHistory')->name('user.order.history');
+    Route::get('/user/order/history', 'User\OrderManagementController@orderHistory')->name('user.order.history');
+    Route::get('order-details/invoice/print/{id}','User\OrderManagementController@printInvoice')->name('invoice.print');
     Route::get('/user/wishlist', 'User\DashboardController@wishlist')->name('user.wishlist');
     Route::get('/checkout', 'Frontend\CartController@checkout')->name('checkout');
     Route::post('/checkout/order/submit', 'Frontend\CartController@orderSubmit')->name('checkout.order.submit');

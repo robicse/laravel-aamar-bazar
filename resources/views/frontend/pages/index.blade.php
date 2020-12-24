@@ -578,7 +578,7 @@
                                         </select>
                                     </div>
                                     <div class="">
-                                        <p class="ps-product__price"> <a href="{{route('shop')}}">Visit Store</a>
+                                        <p class="ps-product__price"> <a href="{{route('shop.details',$shop->slug)}}">Visit Store</a>
                                     <i class="right fa fa-angle-left"></i> </p>
                                     </div>
                                 </div>

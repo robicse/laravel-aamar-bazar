@@ -33,6 +33,7 @@
                                                 <th>Grand Total</th>
                                                 <th>Payment Status</th>
                                                 <th>Delivery Status</th>
+                                                <th>Print</th>
 
                                             </tr>
                                             </thead>
@@ -46,10 +47,9 @@
                                                 <td>{{ $order->grand_total }}</td>
                                                 <td>{{ $order->payment_status }}</td>
                                                 <td>{{ $order->delivery_status }}</td>
-{{--                                                <td><a href="product-default.html">Marshall Kilburn Portable Wireless Speaker</a></td>--}}
-{{--                                                <td>20-1-2020</td>--}}
-{{--                                                <td>42.99</td>--}}
-{{--                                                <td>{{ $order_details->order->delivery_status }}</td>--}}
+                                                <td>
+                                                    <a href="{{ route('invoice.print',$order->id) }}" target="_blank" class="btn btn-default"><i class="fa fa-print"></i></a>
+                                                </td>
                                             </tr>
                                             @endforeach
                                             </tbody>
