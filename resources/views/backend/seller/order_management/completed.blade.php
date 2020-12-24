@@ -42,9 +42,10 @@
                             <tr>
                                 <th>#Id</th>
                                 <th>Date</th>
+                                <th>Invoice ID</th>
                                 <th>Product Name</th>
                                 <th>Payment Method</th>
-                                <th>Action</th>
+                                <th title="Delivery Status">D.Status</th>
                                 <th>Details</th>
                             </tr>
                             </thead>
@@ -53,20 +54,11 @@
                                 <tr>
                                     <td>{{$key + 1}}</td>
                                     <td>{{date('j-m-Y',strtotime($Complete->created_at))}}</td>
+                                    <td>{{$Complete->invoice_code}}</td>
                                     <td>{{$Complete->order_details->name}}</td>
                                     <td>{{$Complete->payment_type}}</td>
                                     <td>
-                                        <form action="{{route('seller.order-product.status',$Complete->id)}}">
-                                            <select name="delivery_status" id="" onchange="this.form.submit()">
-{{--                                                <option value="Pending" {{$Deliver->delivery_status == 'Pending'? 'selected' : ''}}>Pending</option>--}}
-{{--                                                <option value="On review" {{$Deliver->delivery_status == 'On review'? 'selected' : ''}}>On review</option>--}}
-{{--                                                <option value="On delivered" {{$Deliver->delivery_status == 'On delivered'? 'selected' : ''}}>On delivered</option>--}}
-{{--                                                <option value="Delivered" {{$Deliver->delivery_status == 'Delivered'? 'selected' : ''}}>Delivered</option>--}}
-                                                <option value="Delivered" {{$Complete->delivery_status == 'Completed'? 'selected' : ''}}>Completed</option>
-{{--                                                <option value="Cancel" {{$Complete->delivery_status == 'Cancel'? 'selected' : ''}}>Cancel</option>--}}
-                                            </select>
-                                        </form>
-
+                                        <span class="badge badge-success">{{$Complete->delivery_status}}</span>
                                     </td>
                                     <td>
                                         <a class="btn btn-info waves-effect" href="{{route('seller.order-details',$Complete->id)}}">
@@ -80,9 +72,10 @@
                             <tr>
                                 <th>#Id</th>
                                 <th>Date</th>
+                                <th>Invoice ID</th>
                                 <th>Product Name</th>
                                 <th>Payment Method</th>
-                                <th>Action</th>
+                                <th title="Delivery Status">D.Status</th>
                                 <th>Details</th>
                             </tr>
                             </tfoot>

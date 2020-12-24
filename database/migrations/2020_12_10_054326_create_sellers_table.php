@@ -20,6 +20,7 @@ class CreateSellersTable extends Migration
             $table->longText('verification_info')->nullable();
             $table->integer('cash_on_delivery_status')->nullable();
             $table->double('admin_to_pay')->nullable();
+            $table->double('seller_will_pay_admin')->nullable();
             $table->string('bank_name')->nullable();
             $table->string('bank_acc_name')->nullable();
             $table->string('bank_acc_no')->nullable();
