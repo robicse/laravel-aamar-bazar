@@ -42,9 +42,10 @@
                             <tr>
                                 <th>#Id</th>
                                 <th>Date</th>
+                                <th>Invoice ID</th>
                                 <th>Product Name</th>
                                 <th>Payment Method</th>
-                                <th>Action</th>
+                                <th title="Delivery Status">D.Status</th>
                                 <th>Details</th>
                             </tr>
                             </thead>
@@ -54,15 +55,15 @@
                                     <td>{{$key + 1}}</td>
                                     <td>{{date('j-m-Y',strtotime($review->created_at))}}</td>
                                     <td>{{$review->order_details->name}}</td>
+                                    <td>{{$review->invoice_code}}</td>
                                     <td>{{$review->payment_type}}</td>
                                     <td>
-                                        <form action="{{route('seller.order-product.status',$review->id)}}">
-                                            <select name="delivery_status" id="" onchange="this.form.submit()">
-                                                <option value="Pending" {{$review->delivery_status == 'Pending'? 'selected' : ''}}>Pending</option>
+                                        <form id="status-form-{{$review->id}}" action="{{route('seller.order-product.status',$review->id)}}">
+                                            <select name="delivery_status" id="" onchange="deliveryStatusChange({{$review->id}})">
                                                 <option value="On review" {{$review->delivery_status == 'On review'? 'selected' : ''}}>On review</option>
                                                 <option value="On delivered" {{$review->delivery_status == 'On delivered'? 'selected' : ''}}>On delivered</option>
                                                 <option value="Delivered" {{$review->delivery_status == 'Delivered'? 'selected' : ''}}>Delivered</option>
-                                                <option value="Delivered" {{$review->delivery_status == 'Completed'? 'selected' : ''}}>Completed</option>
+                                                <option value="Completed" {{$review->delivery_status == 'Completed'? 'selected' : ''}}>Completed</option>
                                                 <option value="Cancel" {{$review->delivery_status == 'Cancel'? 'selected' : ''}}>Cancel</option>
                                             </select>
                                         </form>
@@ -80,9 +81,10 @@
                             <tr>
                                 <th>#Id</th>
                                 <th>Date</th>
+                                <th>Invoice ID</th>
                                 <th>Product Name</th>
                                 <th>Payment Method</th>
-                                <th>Action</th>
+                                <th title="Delivery Status">D.Status</th>
                                 <th>Details</th>
                             </tr>
                             </tfoot>
@@ -98,6 +100,7 @@
 @push('js')
     <script src="{{asset('backend/plugins/datatables/jquery.dataTables.js')}}"></script>
     <script src="{{asset('backend/plugins/datatables/dataTables.bootstrap4.js')}}"></script>
+    <script src="https://unpkg.com/sweetalert2@7.19.1/dist/sweetalert2.all.js"></script>
     <script>
         $(function () {
             $("#example1").DataTable();
@@ -110,5 +113,35 @@
                 "autoWidth": false
             });
         });
+        //sweet alert
+        function deliveryStatusChange(id) {
+            swal({
+                title: 'Are you sure to change Delivery Status?',
+                text: "You won't be able to revert this!",
+                type: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, Change it!',
+                cancelButtonText: 'No, cancel!',
+                confirmButtonClass: 'btn btn-success',
+                cancelButtonClass: 'btn btn-danger',
+                buttonsStyling: true,
+                reverseButtons: true
+            }).then((result) => {
+                if (result.value) {
+                    document.getElementById('status-form-'+id).submit();
+                } else if (
+                    // Read more about handling dismissals
+                    result.dismiss === swal.DismissReason.cancel
+                ) {
+                    swal(
+                        'Cancelled',
+                        'Your Data is save :)',
+                        'error'
+                    )
+                }
+            })
+        }
     </script>
 @endpush
