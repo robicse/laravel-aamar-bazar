@@ -58,7 +58,7 @@
                                     <td>{{$Cancel->order_details->name}}</td>
                                     <td>{{$Cancel->payment_type}}</td>
                                     <td>
-                                        <span class="badge badge-danger">{{$Cancel->delivery_status}}</span>
+                                        <span class="badge badge-danger">{{$Cancel->delivery_status.'ed'}}</span>
                                         {{--<form id="status-form-{{$pending->id}}" action="{{route('seller.order-product.status',$pending->id)}}">
                                             <select name="delivery_status" id="" onchange="deliveryStatusChange({{$pending->id}})">
                                                 <option value="Completed" {{$pending->delivery_status == 'Completed'? 'selected' : ''}}>Completed</option>

@@ -27,7 +27,7 @@
                     <!-- small box -->
                     <div class="small-box bg-info">
                         <div class="inner text-center">
-                            <h4>0</h4>
+                            <h4>{{$totalProducts}}</h4>
 
                             <p>Products</p>
                         </div>
@@ -42,7 +42,7 @@
                     <!-- small box -->
                     <div class="small-box bg-success">
                         <div class="inner text-center">
-                            <h4>0</h4>
+                            <h4>{{$totalSales}}</h4>
 
                             <p>Total Sale</p>
                         </div>
@@ -72,14 +72,14 @@
                     <!-- small box -->
                     <div class="small-box bg-danger">
                         <div class="inner text-center">
-                            <h4>0</h4>
+                            <h4>{{$totalCompletedOrders}}</h4>
                             <p>Successful Orders</p>
 
                         </div>
                         <div class="icon">
                             <i class="ion ion-pie-graph"></i>
                         </div>
-                        <a href="" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                        <a href="{{route('seller.completed.order')}}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
                     </div>
                 </div>
                 <!-- ./col -->
@@ -101,22 +101,22 @@
                                 <tbody>
                                 <tr>
                                     <th>Total Orders:</th>
-                                    <td>1</td>
+                                    <td>{{$totalOrders}}</td>
 
                                 </tr>
                                 <tr>
                                     <th>Pending Orders:</th>
-                                    <td>0</td>
+                                    <td>{{$totalPendingOrders}}</td>
 
                                 </tr>
                                 <tr>
                                     <th>Cancelled Orders:</th>
-                                    <td>0</td>
+                                    <td>{{$totalCancelOrders}}</td>
 
                                 </tr>
                                 <tr>
                                     <th>Successful Orders:</th>
-                                    <td>0</td>
+                                    <td>{{$totalCompletedOrders}}</td>
 
                                 </tr>
                                 </tbody>
