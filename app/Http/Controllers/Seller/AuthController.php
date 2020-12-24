@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Seller;
 
 use App\Http\Controllers\Controller;
+use App\Model\BusinessSetting;
 use App\Model\Seller;
 use App\Model\Shop;
 use App\User;
@@ -36,9 +37,10 @@ class AuthController extends Controller
         $user->user_type = "seller";
         $user->password = Hash::make($request->password);
         $user->save();
-
+        $defaultCommissionPercent = BusinessSetting::where('type', 'seller_commission')->first();
         $seller = new Seller;
         $seller->user_id = $user->id;
+        $seller->commission = $defaultCommissionPercent->value;
         $seller->save();
         if(Shop::where('user_id', $user->id)->first() == null){
             $shop = new Shop;
@@ -56,7 +58,6 @@ class AuthController extends Controller
             }
             $shop->save();
         }
-
         Toastr::success('Successfully Registered!');
         return redirect()->back();
 

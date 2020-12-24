@@ -3,10 +3,14 @@
 namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
+use App\Model\BusinessSetting;
 use App\Model\Order;
 use App\Model\OrderDetails;
+use App\Model\OrderTempCommission;
 use App\Model\Product;
 use App\Model\ProductStock;
+use App\Model\Seller;
+use App\Model\Shop;
 use Brian2694\Toastr\Facades\Toastr;
 use Gloudemans\Shoppingcart\Facades\Cart;
 use Illuminate\Http\Request;
@@ -175,15 +179,26 @@ class CartController extends Controller
         }
 
         if ($request->pay == 'cod') {
-//            Toastr::success('Order Successfully done! <span class="display-1">&#10084;&#65039;</span>');
+            $getSellerId = Shop::find($shop_id);
+            $getSellerData = Seller::find($getSellerId->seller_id);
+            $grandTotal = Cart::total();
+            //dd($grandTotal);
+            $adminCommission = new OrderTempCommission();
+            $adminCommission->order_id = $order->id;
+            $adminCommission->shop_id = $shop_id;
+            $adminCommission->temp_commission_to_seller = 0;
+            $adminCommission->temp_commission_to_admin = $grandTotal*$getSellerData->commission / 100;
+            $adminCommission->save();
+
             Toastr::success('Order Successfully done! ');
             Cart::destroy();
             return redirect()->route('index');
         }else {
 //            Session::put('order_id',$order->id);
 //            return redirect()->route('pay');
-            Toastr::success('Order Successfully done! ');
-            Cart::destroy();
+            /*Toastr::success('Order Successfully done! ');
+            Cart::destroy();*/
+            Toastr::warning('Online Payment Method not yet done. Please try COD');
             return redirect()->route('index');
         }
         return view('frontend.pages.shop.checkout');
