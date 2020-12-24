@@ -57,6 +57,12 @@
                                 <label for="name">Shop Name <small style="color: red">*</small></label>
                                 <input type="text" class="form-control" name="name" value="{{ $shop_set->name }}" id="name" required>
                             </div>
+                            <div class="form-group">
+                                <label for="slug">Slug (SEO Url) <small class="text-danger">(requried* and
+                                        unique)</small></label>
+                                <input type="text" id="slug" name="slug" class="form-control"
+                                       placeholder="Slug (e.g. this-is-test-shop-title)">
+                            </div>
 {{--                            <div class="form-group">--}}
 {{--                                <label for="email">Logo <small>(size: 120 * 120 pixel)</small></label>--}}
 {{--                                <input type="file" class="form-control" name="logo" id="logo" >--}}
@@ -132,6 +138,19 @@
 
             $("input[data-role=tagsinput], select[multiple][data-role=tagsinput]").tagsinput();
         }
+
+        $("#name").keyup(function () {
+            var name = $("#name").val();
+            console.log(name);
+            $.ajax({
+                url: "{{URL('/seller/products/slug')}}/" + name,
+                method: "get",
+                success: function (data) {
+                    //console.log(data.response)
+                    $('#slug').val(data.response);
+                }
+            });
+        })
 
         $("#sliders").spartanMultiImagePicker({
                 fieldName: 'sliders[]',

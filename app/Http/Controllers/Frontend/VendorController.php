@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Model\Category;
 use App\Model\Product;
 use App\Model\Shop;
+use App\Model\ShopCategory;
 use Illuminate\Http\Request;
 
 class VendorController extends Controller
@@ -25,8 +26,15 @@ class VendorController extends Controller
         //dd($slug);
         $shop=Shop::where('slug',$slug)->first();
 
-        $categories=Category::where('id',$shop->category_id)->get();
+        $shopCat=ShopCategory::where('shop_id',$shop->id)->latest()->get();
+        //dd($shopCat->category->icon);
+        $categories = Category::all();
+//       dd($categories);
 
-        return view('frontend.pages.vendor.vendor_categories',compact('shop','categories'));
+        return view('frontend.pages.vendor.vendor_categories',compact('shop','shopCat','categories'));
+    }
+    public function vendorList() {
+        $shops = Shop::all();
+        return view('frontend.pages.vendor.vendor_list',compact('shops'));
     }
 }

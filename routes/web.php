@@ -41,6 +41,7 @@ Route::post('/shop/nearest/list', 'Frontend\ShopController@nearestshop')->name('
 Route::get('/become-a-vendor', 'Frontend\VendorController@index')->name('become-vendor');
 Route::get('/shop/categories/{slug}', 'Frontend\VendorController@shopCategories')->name('shop.categories');
 Route::get('/shop/{slug}', 'Frontend\VendorController@singleshop')->name('shop.details');
+Route::get('/vendor/list', 'Frontend\VendorController@vendorList')->name('vendor.list');
 
 Auth::routes();
 
