@@ -39,6 +39,7 @@ Route::post('/cart/quantity_update', 'Frontend\CartController@quantityUpdate')->
 //Shop/Vendor
 Route::post('/shop/nearest/list', 'Frontend\ShopController@nearestshop')->name('shop.nearest');
 Route::get('/become-a-vendor', 'Frontend\VendorController@index')->name('become-vendor');
+Route::get('/shop/categories/{slug}', 'Frontend\VendorController@shopCategories')->name('shop.categories');
 Route::get('/shop/{slug}', 'Frontend\VendorController@singleshop')->name('shop.details');
 
 Auth::routes();

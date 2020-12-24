@@ -9,7 +9,8 @@ use Illuminate\Http\Request;
 class ShopController extends Controller
 {
     public function shop() {
-        return view('frontend.pages.shop.shop');
+        $shops = Shop::all();
+        return view('frontend.pages.shop.shop', compact('shops'));
     }
     public function nearestshop(Request $request) {
         //dd($request->all());
@@ -18,4 +19,5 @@ class ShopController extends Controller
         $shops=Shop::whereBetween('latitude',[$lat-0.1,$lat+0.1])->whereBetween('longitude',[$lng-0.1,$lng+0.1])->get();
         return response()->json(['success'=> true, 'response'=>$shops]);
     }
+
 }
