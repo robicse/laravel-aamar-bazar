@@ -19,9 +19,7 @@
         {{--                <div class="ps-section__full"><a class="ps-collection" href="#"><img src="{{asset('frontend/img/slider/home-1/promotion-1.jpg')}}" alt=""></a><a class="ps-collection" href="#"><img src="{{asset('frontend/img/slider/home-1/promotion-2.jpg')}}" alt=""></a></div>--}}
         {{--            </div>--}}
         {{--        </div>--}}
-        <div class="ps-shop-banner jump" style="padding: 10px;">
-            <div class="ps-carousel--nav-inside owl-slider" data-owl-auto="true" data-owl-loop="true" data-owl-speed="5000" data-owl-gap="0" data-owl-nav="true" data-owl-dots="true" data-owl-item="1" data-owl-item-xs="1" data-owl-item-sm="1" data-owl-item-md="1" data-owl-item-lg="1" data-owl-duration="1000" data-owl-mousedrag="on"><a href="#"><img src="{{asset('frontend/img/slider/shop-default/1.jpg')}}" alt=""></a><a href="#"><img src="{{asset('frontend/img/slider/shop-default/2.jpg')}}" alt=""></a></div>
-        </div>
+@include('frontend.includes.sliders')
         <div class="container ">
             <div class="city-list row shop_list">
                 <div class="col-md-12 text-center my-5" id="loader">
@@ -558,7 +556,7 @@
                 <div class="ps-section__header">
                     <h3>Best Sellers</h3>
                     <ul class="ps-section__links">
-                        <li><a href="shop-grid.html">View All</a></li>
+                        <li><a href="{{route('shop')}}">View All</a></li>
                     </ul>
                 </div>
                 <div class="ps-section__content">
