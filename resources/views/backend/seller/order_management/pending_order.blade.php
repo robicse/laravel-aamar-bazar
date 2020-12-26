@@ -2,6 +2,16 @@
 @section("title","Pending Order")
 @push('css')
     <link rel="stylesheet" href="{{asset('backend/plugins/datatables/dataTables.bootstrap4.css')}}">
+    <link rel="stylesheet" href="https://cdn.datatables.net/select/1.3.1/css/select.dataTables.min.css">
+    <style>
+       /* table.dataTable tr th.select-checkbox.selected::after {
+            content: "✔";
+            margin-top: -11px;
+            margin-left: -4px;
+            text-align: center;
+            text-shadow: rgb(176, 190, 217) 1px 1px, rgb(176, 190, 217) -1px -1px, rgb(176, 190, 217) 1px -1px, rgb(176, 190, 217) -1px 1px;
+        }*/
+    </style>
 @endpush
 @section('content')
     <section class="content-header">
@@ -40,7 +50,7 @@
                         <table id="example1" class="table table-bordered table-striped">
                             <thead>
                             <tr>
-                                <th>#Id</th>
+                                <th>#ID</th>
                                 <th>Date</th>
                                 <th>Invoice ID</th>
                                 <th>Product Name</th>
@@ -80,7 +90,7 @@
                                 </tbody>
                                 <tfoot>
                                 <tr>
-                                    <th>#Id</th>
+                                    <th>#ID</th>
                                     <th>Date</th>
                                     <th>Invoice ID</th>
                                     <th>Product Name</th>
@@ -102,6 +112,8 @@
         <script src="{{asset('backend/plugins/datatables/jquery.dataTables.js')}}"></script>
         <script src="{{asset('backend/plugins/datatables/dataTables.bootstrap4.js')}}"></script>
         <script src="https://unpkg.com/sweetalert2@7.19.1/dist/sweetalert2.all.js"></script>
+        <script src="https://cdn.datatables.net/select/1.3.1/js/dataTables.select.min.js"></script>
+
         <script>
             $(function () {
                 $("#example1").DataTable();

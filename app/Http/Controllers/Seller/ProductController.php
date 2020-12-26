@@ -16,6 +16,7 @@ use App\Model\SubSubcategory;
 use Brian2694\Toastr\Facades\Toastr;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Response;
 use Illuminate\Support\Str;
 
 class ProductController extends Controller
@@ -277,5 +278,37 @@ class ProductController extends Controller
             return 1;
         }
         return 0;
+    }
+    public function getAdminProductAjax()
+    {
+        $products = Product::latest()->select('id','name','unit_price')->get()->toArray();;
+        $alldata = array();
+        foreach($products as $single){
+            $alldata[] = array(
+                (string)$single['id'],
+                $single['name'],
+                (string)$single['unit_price']
+            );
+        }
+        $Response = array('data' => $alldata );
+        return response()->json($Response);
+    }
+    public function getAdminProduct()
+    {
+        return view('backend.seller.products.product_list_form_admin');
+    }
+    public function getAdminProductStore(Request $request)
+    {
+        foreach ($request->id as $data){
+            $product = Product::find($data);
+            $product_new = $product->replicate();
+            $product_new->added_by = 'seller';
+            $product_new->user_id = Auth::id();
+            $product_new->slug = substr($product_new->slug, 0, -5).Str::random(5);
+            $product_new->save();
+
+        }
+        Toastr::success('Product Successfully Copied!');
+        return redirect()->back();
     }
 }
