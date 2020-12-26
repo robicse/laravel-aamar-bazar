@@ -21,12 +21,12 @@ Route::group(['as'=>'seller.','prefix' =>'seller', 'middleware' => ['auth', 'sel
     Route::resource('shop','Seller\ShopController');
 
     //Seller Order Management
-    Route::get('order/management','Seller\OrderManagementController@pendingOrder')->name('pending.order');
-    Route::get('on-reviewed/order','Seller\OrderManagementController@onReviewedOrder')->name('on-reviewed.order');
-    Route::get('on-delivered/order','Seller\OrderManagementController@onDeliveredOrder')->name('on-delivered.order');
-    Route::get('delivered/order','Seller\OrderManagementController@deliveredOrder')->name('delivered.order');
-    Route::get('completed/order','Seller\OrderManagementController@completedOrder')->name('completed.order');
-    Route::get('canceled/order','Seller\OrderManagementController@canceledOrder')->name('canceled.order');
+    Route::get('order/pending','Seller\OrderManagementController@pendingOrder')->name('order.pending');
+    Route::get('order/on-reviewed','Seller\OrderManagementController@onReviewedOrder')->name('order.on-reviewed');
+    Route::get('order/on-delivered','Seller\OrderManagementController@onDeliveredOrder')->name('order.on-delivered');
+    Route::get('order/delivered','Seller\OrderManagementController@deliveredOrder')->name('order.delivered');
+    Route::get('order/completed','Seller\OrderManagementController@completedOrder')->name('order.completed');
+    Route::get('order/canceled','Seller\OrderManagementController@canceledOrder')->name('order.canceled');
     Route::get('order-product/status-change/{id}','Seller\OrderManagementController@OrderProductChangeStatus')->name('order-product.status');
     Route::get('order-details/{id}','Seller\OrderManagementController@orderDetails')->name('order-details');
     Route::get('order-details/invoice/print/{id}','Seller\OrderManagementController@printInvoice')->name('invoice.print');

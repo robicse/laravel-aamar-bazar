@@ -31,7 +31,7 @@ class ShopController extends Controller
 
     public function store(Request $request)
     {
-        $new_shop = Shop::where('seller_id',Auth::id())->where('name',$request->name)->latest()->first();
+        $new_shop = Shop::where('seller_id',Auth::id())->first();
         if(empty($new_shop)){
             $shop = new Shop;
             $shop->name = $request->name;
