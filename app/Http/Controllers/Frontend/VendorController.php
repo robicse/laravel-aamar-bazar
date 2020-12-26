@@ -31,7 +31,7 @@ class VendorController extends Controller
         $categories = Category::all();
 //       dd($categories);
 
-        return view('frontend.pages.vendor.vendor_categories',compact('shop','shopCat','categories'));
+        return view('frontend.pages.vendor.shop_categories',compact('shop','shopCat','categories'));
     }
     public function vendorList() {
         $shops = Shop::all();

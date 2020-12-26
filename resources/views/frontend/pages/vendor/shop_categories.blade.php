@@ -71,36 +71,44 @@
                             </div>
                             <div class="ps-section__content">
                                 <div class="owl-slider" id="vendor-bestseller" data-owl-auto="true" data-owl-loop="true" data-owl-speed="5000" data-owl-gap="0" data-owl-nav="false" data-owl-dots="false" data-owl-item="4" data-owl-item-xs="2" data-owl-item-sm="3" data-owl-item-md="3" data-owl-item-lg="4" data-owl-duration="1000" data-owl-mousedrag="on">
+                                    <div class="row">
                                     @foreach($shopCat as $cat)
-                                    <div class="ps-product">
-                                        <div class="ps-product__thumbnail"><a href=""><img src="{{url($cat->category->icon)}}" alt=""></a>
-                                            <div class="ps-product__badge">{{$cat->category->name}}</div>
-                                            <ul class="ps-product__actions">
-                                                <li><a href="#" data-toggle="tooltip" data-placement="top" title="Add To Cart"><i class="icon-bag2"></i></a></li>
-                                                <li><a href="#" data-placement="top" title="Quick View" data-toggle="modal" data-target="#product-quickview"><i class="icon-eye"></i></a></li>
-                                                <li><a href="#" data-toggle="tooltip" data-placement="top" title="Add to Whishlist"><i class="icon-heart"></i></a></li>
-                                                <li><a href="#" data-toggle="tooltip" data-placement="top" title="Compare"><i class="icon-chart-bars"></i></a></li>
-                                            </ul>
-                                        </div>
-                                        <div class="ps-product__container"><a class="ps-product__vendor" href="#">Global Office</a>
-                                            <div class="ps-product__content"><a class="ps-product__title" href="">Apple iPhone 7 Plus 128 GB – Red Color</a>
-                                                <div class="ps-product__rating">
-                                                    <select class="ps-rating" data-read-only="true">
-                                                        <option value="1">1</option>
-                                                        <option value="1">2</option>
-                                                        <option value="1">3</option>
-                                                        <option value="1">4</option>
-                                                        <option value="2">5</option>
-                                                    </select><span>01</span>
-                                                </div>
-                                                <p class="ps-product__price sale">$820.99 <del>$893.00</del></p>
-                                            </div>
-                                            <div class="ps-product__content hover"><a class="ps-product__title" href="">Apple iPhone 7 Plus 128 GB – Red Color</a>
-                                                <p class="ps-product__price sale">$820.99 <del>$893.00</del></p>
+                                        <div class="col-xl-3 col-lg-3 col-md-4 col-sm-4 col-6 ">
+                                            <div class="ps-block--category"><a class="ps-block__overlay" href=""></a><i class="icon"><img src="{{asset('uploads/categories/',$cat->category->icon)}}" alt=""></i>
+                                                <p>{{$cat->category->name}}</p>
                                             </div>
                                         </div>
+                                        @endforeach
                                     </div>
-                                    @endforeach
+{{--                                    <div class="ps-product">--}}
+{{--                                        <div class="ps-product__thumbnail"><a href=""><img src="{{asset('uploads/categories/',$cat->category->icon)}}" alt=""></a>--}}
+{{--                                            <div class="ps-product__badge">{{$cat->category->name}}</div>--}}
+{{--                                            <ul class="ps-product__actions">--}}
+{{--                                                <li><a href="#" data-toggle="tooltip" data-placement="top" title="Add To Cart"><i class="icon-bag2"></i></a></li>--}}
+{{--                                                <li><a href="#" data-placement="top" title="Quick View" data-toggle="modal" data-target="#product-quickview"><i class="icon-eye"></i></a></li>--}}
+{{--                                                <li><a href="#" data-toggle="tooltip" data-placement="top" title="Add to Whishlist"><i class="icon-heart"></i></a></li>--}}
+{{--                                                <li><a href="#" data-toggle="tooltip" data-placement="top" title="Compare"><i class="icon-chart-bars"></i></a></li>--}}
+{{--                                            </ul>--}}
+{{--                                        </div>--}}
+{{--                                        <div class="ps-product__container"><a class="ps-product__vendor" href="#">Global Office</a>--}}
+{{--                                            <div class="ps-product__content"><a class="ps-product__title" href="">Apple iPhone 7 Plus 128 GB – Red Color</a>--}}
+{{--                                                <div class="ps-product__rating">--}}
+{{--                                                    <select class="ps-rating" data-read-only="true">--}}
+{{--                                                        <option value="1">1</option>--}}
+{{--                                                        <option value="1">2</option>--}}
+{{--                                                        <option value="1">3</option>--}}
+{{--                                                        <option value="1">4</option>--}}
+{{--                                                        <option value="2">5</option>--}}
+{{--                                                    </select><span>01</span>--}}
+{{--                                                </div>--}}
+{{--                                                <p class="ps-product__price sale">$820.99 <del>$893.00</del></p>--}}
+{{--                                            </div>--}}
+{{--                                            <div class="ps-product__content hover"><a class="ps-product__title" href="">Apple iPhone 7 Plus 128 GB – Red Color</a>--}}
+{{--                                                <p class="ps-product__price sale">$820.99 <del>$893.00</del></p>--}}
+{{--                                            </div>--}}
+{{--                                        </div>--}}
+{{--                                    </div>--}}
+{{--                                    @endforeach--}}
                                     {{--                                    <div class="ps-product">--}}
                                     {{--                                        <div class="ps-product__thumbnail"><a href=""><img src="{{asset('frontend/img/products/technology/3.jpg')}}" alt=""></a>--}}
                                     {{--                                            <div class="ps-product__badge">21%</div>--}}
