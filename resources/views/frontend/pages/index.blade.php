@@ -564,8 +564,8 @@
                         @foreach($shops as $shop)
                         <div class="col-xl-3 col-lg-4 col-md-4 col-sm-6 col-12 ">
                             <div class="ps-product--horizontal">
-                                <div class="ps-product__thumbnail"><a href="product-default.html"><img src="{{url($shop->logo)}}" alt=""></a></div>
-                                <div class="ps-product__content"><a class="ps-product__title" href="product-default.html">{{ $shop->name }}</a>
+                                <div class="ps-product__thumbnail"><a href="{{route('shop.details',$shop->slug)}}"><img src="{{url($shop->logo)}}" alt=""></a></div>
+                                <div class="ps-product__content"><a class="ps-product__title" href="{{route('shop.details',$shop->slug)}}">{{ $shop->name }}</a>
                                     <div class="ps-product__rating">
                                         <select class="ps-rating" data-read-only="true">
                                             <option value="1">1</option>

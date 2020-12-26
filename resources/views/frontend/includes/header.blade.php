@@ -451,7 +451,7 @@
                 <ul class="menu">
                     <li class="menu-item"><a href="{{url('/')}}">Home</a>
                     </li>
-                    <li class="menu-item has-mega-menu"><a href="{{route('shop')}}">Shop</a><span class="sub-toggle"></span>
+                    <li class="menu-item has-mega-menu"><a href="{{route('vendor.list')}}">Shop</a><span class="sub-toggle"></span>
                         {{--                        <div class="mega-menu">--}}
                         {{--                            <div class="mega-menu__column">--}}
                         {{--                                <h4>Catalog Pages<span class="sub-toggle"></span></h4>--}}

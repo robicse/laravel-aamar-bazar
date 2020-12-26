@@ -66,42 +66,55 @@
                         </div>
                         <div class="ps-vendor-best-seller">
                             <div class="ps-section__header">
-                                <h3>Fetured Product</h3>
+                                <h3>Featured Categories</h3>
                                 <div class="ps-section__nav"><a class="ps-carousel__prev" href="#vendor-bestseller"><i class="icon-chevron-left"></i></a><a class="ps-carousel__next" href="#vendor-bestseller"><i class="icon-chevron-right"></i></a></div>
                             </div>
                             <div class="ps-section__content">
                                 <div class="owl-slider" id="vendor-bestseller" data-owl-auto="true" data-owl-loop="true" data-owl-speed="5000" data-owl-gap="0" data-owl-nav="false" data-owl-dots="false" data-owl-item="4" data-owl-item-xs="2" data-owl-item-sm="3" data-owl-item-md="3" data-owl-item-lg="4" data-owl-duration="1000" data-owl-mousedrag="on">
-                                    @foreach($products as $product)
-                                        <div class="ps-product">
-                                            <div class="ps-product__thumbnail"><a href="{{route('product-details',$product->slug)}}"><img src="{{asset($product->thumbnail_img)}}" alt=""></a>
-                                                <div class="ps-product__badge">11%</div>
-                                                <ul class="ps-product__actions">
-                                                    <li><a href="{{route('product-details',$product->slug)}}" data-toggle="tooltip" data-placement="top" title="Add To Cart"><i class="icon-bag2"></i></a></li>
-                                                    <li><a href="{{route('product-details',$product->slug)}}" data-placement="top" title="Quick View" ><i class="icon-eye"></i></a></li>
+                                    <div class="row">
+
+                                        @foreach($shopCat as $cat)
+                                            <div class="col-lg-3 col-md-6 ">
+                                                <div class="container">
+                                                    <a href="/shop/{{$shop->slug}}/{{$cat->category->slug}}"> <img src="{{asset('uploads/categories/'.$cat->category->icon)}}" class="rounded-circle" alt="" width="70" height="70"></a>
+                                                    <div class="item-content">
+                                                        <h4 class="item-title"><a href="/shop/{{$shop->slug}}/{{$cat->category->slug}}">{{$cat->category->name}}</h4></a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        @endforeach
+                                    </div>
+{{--                                    @foreach($products as $product)--}}
+{{--                                        <div class="ps-product">--}}
+{{--                                            <div class="ps-product__thumbnail"><a href="{{route('product-details',$product->slug)}}"><img src="{{asset($product->thumbnail_img)}}" alt=""></a>--}}
+{{--                                                <div class="ps-product__badge">11%</div>--}}
+{{--                                                <ul class="ps-product__actions">--}}
+{{--                                                    <li><a href="{{route('product-details',$product->slug)}}" data-toggle="tooltip" data-placement="top" title="Add To Cart"><i class="icon-bag2"></i></a></li>--}}
+{{--                                                    <li><a href="{{route('product-details',$product->slug)}}" data-placement="top" title="Quick View" ><i class="icon-eye"></i></a></li>--}}
 {{--                                                    <li><a href="{{route('product-details',$product->slug)}}" data-placement="top" title="Quick View" data-toggle="modal" data-target="#product-quickview"><i class="icon-eye"></i></a></li>--}}
 {{--                                                    <li><a href="#" data-toggle="tooltip" data-placement="top" title="Add to Whishlist"><i class="icon-heart"></i></a></li>--}}
 {{--                                                    <li><a href="#" data-toggle="tooltip" data-placement="top" title="Compare"><i class="icon-chart-bars"></i></a></li>--}}
-                                                </ul>
-                                            </div>
-                                            <div class="ps-product__container"><a class="ps-product__vendor" href="{{route('product-details',$product->slug)}}"></a>
-                                                <div class="ps-product__content"><a class="ps-product__title" href="{{route('product-details',$product->slug)}}">{{$product->name}}</a>
-                                                    <div class="ps-product__rating">
-                                                        <select class="ps-rating" data-read-only="true">
-                                                            <option value="1">1</option>
-                                                            <option value="1">2</option>
-                                                            <option value="1">3</option>
-                                                            <option value="1">4</option>
-                                                            <option value="2">5</option>
-                                                        </select><span>01</span>
-                                                    </div>
-                                                    <p class="ps-product__price sale">৳{{$product->unit_price}} <del>৳{{$product->purchase_price}}</del></p>
-                                                </div>
-                                                <div class="ps-product__content hover"><a class="ps-product__title" href="{{route('product-details',$product->slug)}}">{{$product->name}}</a>
-                                                    <p class="ps-product__price sale">৳{{$product->unit_price}} <del>৳{{$product->purchase_price}}</del></p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    @endforeach
+{{--                                                </ul>--}}
+{{--                                            </div>--}}
+{{--                                            <div class="ps-product__container"><a class="ps-product__vendor" href="{{route('product-details',$product->slug)}}"></a>--}}
+{{--                                                <div class="ps-product__content"><a class="ps-product__title" href="{{route('product-details',$product->slug)}}">{{$product->name}}</a>--}}
+{{--                                                    <div class="ps-product__rating">--}}
+{{--                                                        <select class="ps-rating" data-read-only="true">--}}
+{{--                                                            <option value="1">1</option>--}}
+{{--                                                            <option value="1">2</option>--}}
+{{--                                                            <option value="1">3</option>--}}
+{{--                                                            <option value="1">4</option>--}}
+{{--                                                            <option value="2">5</option>--}}
+{{--                                                        </select><span>01</span>--}}
+{{--                                                    </div>--}}
+{{--                                                    <p class="ps-product__price sale">৳{{$product->unit_price}} <del>৳{{$product->purchase_price}}</del></p>--}}
+{{--                                                </div>--}}
+{{--                                                <div class="ps-product__content hover"><a class="ps-product__title" href="{{route('product-details',$product->slug)}}">{{$product->name}}</a>--}}
+{{--                                                    <p class="ps-product__price sale">৳{{$product->unit_price}} <del>৳{{$product->purchase_price}}</del></p>--}}
+{{--                                                </div>--}}
+{{--                                            </div>--}}
+{{--                                        </div>--}}
+{{--                                    @endforeach--}}
 {{--                                    <div class="ps-product">--}}
 {{--                                        <div class="ps-product__thumbnail"><a href=""><img src="{{asset('frontend/img/products/technology/2.jpg')}}" alt=""></a>--}}
 {{--                                            <div class="ps-product__badge">11%</div>--}}

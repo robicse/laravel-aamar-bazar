@@ -33,33 +33,33 @@
                                 </select>
                             </div>
                         </aside>
-                        <aside class="widget widget--vendor">
-                            <h3 class="widget-title">Filter by Location</h3>
-                            <div class="form-group">
-                                <select class="ps-select">
-                                    <option>Chooose Location</option>
-                                    <option>Exterior</option>
-                                    <option>Custom Grilles</option>
-                                    <option>Wheels & Tires</option>
-                                    <option>Performance</option>
-                                </select>
-                            </div>
-                            <div class="form-group">
-                                <select class="ps-select">
-                                    <option>Chooose State</option>
-                                    <option>Exterior</option>
-                                    <option>Custom Grilles</option>
-                                    <option>Wheels & Tires</option>
-                                    <option>Performance</option>
-                                </select>
-                            </div>
-                            <div class="form-group">
-                                <input class="form-control" type="text" placeholder="Search by City">
-                            </div>
-                            <div class="form-group">
-                                <input class="form-control" type="text" placeholder="Search by ZIP">
-                            </div>
-                        </aside>
+{{--                        <aside class="widget widget--vendor">--}}
+{{--                            <h3 class="widget-title">Filter by Location</h3>--}}
+{{--                            <div class="form-group">--}}
+{{--                                <select class="ps-select">--}}
+{{--                                    <option>Chooose Location</option>--}}
+{{--                                    <option>Exterior</option>--}}
+{{--                                    <option>Custom Grilles</option>--}}
+{{--                                    <option>Wheels & Tires</option>--}}
+{{--                                    <option>Performance</option>--}}
+{{--                                </select>--}}
+{{--                            </div>--}}
+{{--                            <div class="form-group">--}}
+{{--                                <select class="ps-select">--}}
+{{--                                    <option>Chooose State</option>--}}
+{{--                                    <option>Exterior</option>--}}
+{{--                                    <option>Custom Grilles</option>--}}
+{{--                                    <option>Wheels & Tires</option>--}}
+{{--                                    <option>Performance</option>--}}
+{{--                                </select>--}}
+{{--                            </div>--}}
+{{--                            <div class="form-group">--}}
+{{--                                <input class="form-control" type="text" placeholder="Search by City">--}}
+{{--                            </div>--}}
+{{--                            <div class="form-group">--}}
+{{--                                <input class="form-control" type="text" placeholder="Search by ZIP">--}}
+{{--                            </div>--}}
+{{--                        </aside>--}}
                     </div>
                     <div class="ps-section__right">
                         <section class="ps-store-box">
@@ -78,7 +78,7 @@
                                         <article class="ps-block--store">
                                             <div class="ps-block__thumbnail bg--cover" data-background="{{url($shop->logo)}}"></div>
                                             <div class="ps-block__content">
-                                                <div class="ps-block__author"><a class="ps-block__user" href="#"><img src="{{url($shop->logo)}}" alt=""></a><a class="ps-btn" href="{{route('shop.categories',$shop->slug)}}">Visit Store</a></div>
+                                                <div class="ps-block__author"><a class="ps-block__user" href="#"><img src="{{url($shop->logo)}}" alt=""></a><a class="ps-btn" href="{{route('shop.details',$shop->slug)}}">Visit Store</a></div>
                                                 <h4>{{$shop->name}}</h4>
                                                 <select class="ps-rating" data-read-only="true">
                                                     <option value="1">1</option>
