@@ -16,6 +16,6 @@ class Seller extends Model
     }
     public function shop()
     {
-        return $this->hasOne('App\Model\Shop','user_id');
+        return $this->hasOne('App\Model\Shop','seller_id');
     }
 }
