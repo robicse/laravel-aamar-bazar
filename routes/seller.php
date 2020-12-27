@@ -52,6 +52,9 @@ Route::group(['as'=>'seller.','prefix' =>'seller', 'middleware' => ['auth', 'sel
     Route::post('products/todays_deal', 'Seller\ProductController@updateTodaysDeal')->name('products.todays_deal');
     Route::post('products/published/update', 'Seller\ProductController@updatePublished')->name('products.published');
     Route::post('products/featured/update', 'Seller\ProductController@updateFeatured')->name('products.featured');
+    Route::get('get/admin/products', 'Seller\ProductController@getAdminProduct')->name('get.admin.products');
+    Route::get('get/admin/products/ajax', 'Seller\ProductController@getAdminProductAjax')->name('get.admin.products.ajax');
+    Route::post('admin/products/store', 'Seller\ProductController@getAdminProductStore')->name('admin.products.store');
     Route::post('ckeditor/upload', 'Seller\CkeditorController@upload')->name('ckeditor.upload');
 
     /*Route::resource('roles','RoleController');
