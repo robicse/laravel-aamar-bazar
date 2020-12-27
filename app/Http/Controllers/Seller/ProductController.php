@@ -307,6 +307,7 @@ class ProductController extends Controller
             $product_new->slug = substr($product_new->slug, 0, -5).Str::random(5);
             $product_new->save();
 
+
         }
         Toastr::success('Product Successfully Copied!');
         return redirect()->back();
