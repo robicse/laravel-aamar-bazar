@@ -69,16 +69,16 @@
                                 <h3>Featured Categories</h3>
                                 <div class="ps-section__nav"><a class="ps-carousel__prev" href="#vendor-bestseller"><i class="icon-chevron-left"></i></a><a class="ps-carousel__next" href="#vendor-bestseller"><i class="icon-chevron-right"></i></a></div>
                             </div>
-                            <div class="ps-section__content">
+                            <div class="ps-section__content" style="padding-bottom: 20px;">
                                 <div class="owl-slider" id="vendor-bestseller" data-owl-auto="true" data-owl-loop="true" data-owl-speed="5000" data-owl-gap="0" data-owl-nav="false" data-owl-dots="false" data-owl-item="4" data-owl-item-xs="2" data-owl-item-sm="3" data-owl-item-md="3" data-owl-item-lg="4" data-owl-duration="1000" data-owl-mousedrag="on">
                                     <div class="row">
 
                                         @foreach($shopCat as $cat)
                                             <div class="col-lg-3 col-md-6 ">
                                                 <div class="container">
-                                                    <a href="/shop/{{$shop->slug}}/{{$cat->category->slug}}"> <img src="{{asset('uploads/categories/'.$cat->category->icon)}}" class="rounded-circle" alt="" width="70" height="70"></a>
+                                                    <a href="{{url('/shop/'.$shop->slug.'/'.$cat->category->slug)}}"> <img src="{{asset('uploads/categories/'.$cat->category->icon)}}" class="rounded-circle" alt="" width="70" height="70"></a>
                                                     <div class="item-content">
-                                                        <h4 class="item-title"><a href="/shop/{{$shop->slug}}/{{$cat->category->slug}}">{{$cat->category->name}}</h4></a>
+                                                        <h4 class="item-title"><a href="{{url('/shop/'.$shop->slug.'/'.$cat->category->slug)}}" style="color: #06c;">{{$cat->category->name}}</h4></a>
                                                     </div>
                                                 </div>
                                             </div>
