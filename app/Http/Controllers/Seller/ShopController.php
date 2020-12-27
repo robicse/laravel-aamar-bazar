@@ -31,7 +31,7 @@ class ShopController extends Controller
 
     public function store(Request $request)
     {
-        $new_shop = Shop::where('seller_id',Auth::id())->first();
+        $new_shop = Shop::where('user_id',Auth::id())->first();
         if(empty($new_shop)){
             $shop = new Shop;
             $shop->name = $request->name;
@@ -42,7 +42,7 @@ class ShopController extends Controller
             $shop->latitude = $request->latitude;
             $shop->longitude = $request->longitude;
             $shop->user_id = Auth::id();
-            $shop->seller_id = Auth::id();
+            $shop->seller_id = $request->seller->id;
             $shop->meta_title = $request->meta_title;
             $shop->meta_description = $request->meta_description;
 //        $sliders = array();
@@ -79,7 +79,7 @@ class ShopController extends Controller
             $new_shop->latitude = $request->latitude;
             $new_shop->longitude = $request->longitude;
             $new_shop->user_id = Auth::id();
-            $new_shop->seller_id = Auth::id();
+            $new_shop->seller_id = $request->seller->id;
             $new_shop->meta_title = $request->meta_title;
             $new_shop->meta_description = $request->meta_description;
 //        $sliders = array();

@@ -12,4 +12,8 @@ class Shop extends Model
     {
         return $this->hasMany('App\Model\ShopCategory','shop_id');
     }
+    public function seller()
+    {
+        return $this->belongsTo('App\Model\Seller','seller_id');
+    }
 }

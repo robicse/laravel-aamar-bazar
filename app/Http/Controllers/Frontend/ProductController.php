@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
+use App\Model\Brand;
+use App\Model\Category;
 use App\Model\Product;
 use App\Model\ProductStock;
 use Illuminate\Http\Request;
@@ -14,6 +16,9 @@ class ProductController extends Controller
         $attributes=json_decode($productDetails->attributes);
         $options=json_decode($productDetails->choice_options);
         $colors=json_decode($productDetails->colors);
+        $photos=json_decode($productDetails->photos);
+        $brands = Brand::where('id',$productDetails->brand_id)->latest()->get();
+        $categories = Category::where('id',$productDetails->category_id)->latest()->get();
 //dd($colors);
         $variant=ProductStock::where('product_id',$productDetails->id)->first();
         if(!empty($variant)){
@@ -23,7 +28,7 @@ class ProductController extends Controller
             $price=$productDetails->unit_price;
             $avilability=$productDetails->current_stock;
         }
-        return view('frontend.pages.shop.product_details', compact('productDetails','attributes','options','colors','price','avilability'));
+        return view('frontend.pages.shop.product_details', compact('productDetails','attributes','options','colors','price','avilability','photos','brands','categories'));
     }
 
     public function ProductVariantPrice(Request  $request) {
