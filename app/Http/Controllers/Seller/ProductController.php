@@ -281,9 +281,22 @@ class ProductController extends Controller
     }
     public function getAdminProductAjax()
     {
-        $products = Product::latest()->select('id','name','unit_price')->get()->toArray();;
+        $sellerP = Product::where('added_by','seller')->where('user_id',Auth::id())->select('aPId_to_seller')->get();
+        $products = Product::where('added_by','admin')->latest()->select('id','name','unit_price')->get();
+        $arr = array();
+        $check2 = array();
+        foreach ($products as $product){
+            $data = $sellerP->contains('aPId_to_seller', $product->id);
+           if (!$data){
+                $check2['id'] = $product->id;
+                $check2['name'] = $product->name;
+                $check2['unit_price'] = $product->unit_price;
+                array_push($arr, $check2);
+           }
+        }
+        //return $arr;
         $alldata = array();
-        foreach($products as $single){
+        foreach($arr as $single){
             $alldata[] = array(
                 (string)$single['id'],
                 $single['name'],
@@ -304,9 +317,9 @@ class ProductController extends Controller
             $product_new = $product->replicate();
             $product_new->added_by = 'seller';
             $product_new->user_id = Auth::id();
+            $product_new->aPId_to_seller = $product->id;
             $product_new->slug = substr($product_new->slug, 0, -5).Str::random(5);
             $product_new->save();
-
 
         }
         Toastr::success('Product Successfully Copied!');
