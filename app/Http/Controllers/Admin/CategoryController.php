@@ -61,7 +61,7 @@ class CategoryController extends Controller
             $currentDate = Carbon::now()->toDateString();
             $imagename = $currentDate . '-' . uniqid() . '.' . $image->getClientOriginalExtension();
 //            resize image for hospital and upload
-            $proImage = Image::make($image)->resize(32, 32)->save($image->getClientOriginalExtension());
+            $proImage = Image::make($image)->resize(300, 300)->save($image->getClientOriginalExtension());
             Storage::disk('public')->put('uploads/categories/' . $imagename, $proImage);
 
         }else {
@@ -127,7 +127,7 @@ class CategoryController extends Controller
             $currentDate = Carbon::now()->toDateString();
             $imagename = $currentDate . '-' . uniqid() . '.' . $image->getClientOriginalExtension();
 //            resize image for hospital and upload
-            $proImage = Image::make($image)->resize(32, 32)->save($image->getClientOriginalExtension());
+            $proImage = Image::make($image)->resize(300, 300)->save($image->getClientOriginalExtension());
             Storage::disk('public')->put('uploads/categories/' . $imagename, $proImage);
 
         }else {

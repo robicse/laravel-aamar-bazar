@@ -332,18 +332,26 @@
                                 <div class="ps-widget__header">
                                     <div class="ps-block__left">
                                         @if(is_null(Auth::user()->avatar))
-                                            <img src="{{asset('uploads/default.png')}}" alt="" class="ps-widget-img rounded-circle">
+                                          <a href="{{route('login')}}">  <img src="{{asset('uploads/profile/default.png')}}" alt="" class="ps-widget-img rounded-circle" width="50" height="50"></a>
                                         @else
-                                            <img src="{{url(Auth::user()->avatar)}}" alt="" class="ps-widget-img rounded-circle">
+                                           <a href="{{route('login')}}"> <img src="{{url(Auth::user()->avatar)}}" alt="" class="ps-widget-img rounded-circle" width="50" height="50"></a>
                                         @endif
+                                            <div class="ps-block__right"><a href="{{route('login')}}">{{Auth::user()->name}}</a>
+{{--                                                <a href="{{ route('logout') }}">Logout</a>--}}
+                                                <form action = "{{route('logout')}}" method="post">
+                                                    @csrf
+                                                    <button type="submit" class="btn btn-lg btn-bold">Logout</button>
+                                                </form>
+                                            </div>
+
                                     </div>
                                     {{--                                    <img src="{{url(Auth::user()->avatar)}}" alt="User Image" class="ps-avatar-img ps-rounded-circle">--}}
-                                    <div class="ps-block__right">
-                                        <a href="{{ route('login') }}">{{Auth::user()->name}}</a>
-                                    </div>
-                                    <div class="ps-block__right">
-                                        <a href="">Logout</a>
-                                    </div>
+{{--                                    <div class="ps-block__right">--}}
+{{--                                        <a href="{{ route('login') }}">{{Auth::user()->name}}</a>--}}
+{{--                                    </div>--}}
+{{--                                    <div class="ps-block__right">--}}
+{{--                                        <a href="">Logout</a>--}}
+{{--                                    </div>--}}
                                 </div>
                             </div>
                     @endif
@@ -365,7 +373,7 @@
                             {{--                            </li>--}}
                             @foreach($categories as $cat)
                                 <li class="current-menu-item menu-item-has-children has-mega-menu"><a href="#"><i class="icon">
-                                            <img src="{{ asset('uploads/categories/'.$cat->icon) }}">
+{{--                                            <img src="{{ asset('uploads/categories/'.$cat->icon) }}">--}}
                                         </i>{{ $cat->name }}</a>
                                     <div class="mega-menu">
                                         <div class="mega-menu__column">
@@ -905,10 +913,31 @@
                         </div>
                     </div>
                 </div>
+                @if(Auth::guest())
                 <div class="ps-block--user-header">
                     <div class="ps-block__left"><i class="icon-user"></i></div>
                     <div class="ps-block__right"><a href="{{ route('login') }}">Login</a><a href="{{ route('register') }}">Register</a></div>
                 </div>
+                @else
+                    <div class="ps-block--user-header">
+                        <div class="ps-widget__header">
+                            <div class="ps-block__left">
+                                @if(is_null(Auth::user()->avatar))
+                                    <a href="{{route('login')}}">  <img src="{{asset('uploads/profile/default.png')}}" alt="" class="ps-widget-img rounded-circle" width="30" height="30"></a>
+                                @else
+                                    <a href="{{route('login')}}"> <img src="{{url(Auth::user()->avatar)}}" alt="" class="ps-widget-img rounded-circle" width="30" height="30"></a>
+                                @endif
+                                <div class="ps-block__right"><a href="{{route('login')}}">{{Auth::user()->name}}</a>
+                                    {{--                                                <a href="{{ route('logout') }}">Logout</a>--}}
+                                    <form action = "{{route('logout')}}" method="post">
+                                        @csrf
+                                        <button type="submit" class="btn btn-lg btn-bold">Logout</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                @endif
             </div>
         </div>     </div>
     </div>
@@ -960,18 +989,18 @@
                             </li>
                             <li class="current-menu-item "><a href="#">TV &amp; Videos</a>
                             </li>
-                            <li class="current-menu-item "><a href="#">Camera, Photos &amp; Videos</a>
-                            </li>
-                            <li class="current-menu-item "><a href="#">Cellphones &amp; Accessories</a>
-                            </li>
-                            <li class="current-menu-item "><a href="#">Headphones</a>
-                            </li>
-                            <li class="current-menu-item "><a href="#">Videosgames</a>
-                            </li>
-                            <li class="current-menu-item "><a href="#">Wireless Speakers</a>
-                            </li>
-                            <li class="current-menu-item "><a href="#">Office Electronic</a>
-                            </li>
+{{--                            <li class="current-menu-item "><a href="#">Camera, Photos &amp; Videos</a>--}}
+{{--                            </li>--}}
+{{--                            <li class="current-menu-item "><a href="#">Cellphones &amp; Accessories</a>--}}
+{{--                            </li>--}}
+{{--                            <li class="current-menu-item "><a href="#">Headphones</a>--}}
+{{--                            </li>--}}
+{{--                            <li class="current-menu-item "><a href="#">Videosgames</a>--}}
+{{--                            </li>--}}
+{{--                            <li class="current-menu-item "><a href="#">Wireless Speakers</a>--}}
+{{--                            </li>--}}
+{{--                            <li class="current-menu-item "><a href="#">Office Electronic</a>--}}
+{{--                            </li>--}}
                         </ul>
                     </div>
                     <div class="mega-menu__column">

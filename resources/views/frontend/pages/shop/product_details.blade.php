@@ -54,20 +54,22 @@
                                 <figure>
                                     <div class="ps-wrapper">
                                         <div class="ps-product__gallery" data-arrow="true">
-                                            <div class="item"><a href="{{url($productDetails->thumbnail_img)}}"><img src="{{url($productDetails->thumbnail_img)}}" alt=""></a></div>
-                                            <div class="item"><a href="{{asset('frontend/img/products/detail/fullwidth/2.jpg')}}"><img src="{{asset('frontend/img/products/detail/fullwidth/2.jpg')}}" alt=""></a></div>
-                                            <div class="item"><a href="{{asset('frontend/img/products/detail/fullwidth/3.jpg')}}"><img src="{{asset('frontend/img/products/detail/fullwidth/3.jpg')}}" alt=""></a></div>
+                                            @foreach($photos as $key => $photo)
+                                            <div class="item"><a href="{{url($photo)}}"><img src="{{url($photo)}}" alt=""></a></div>
+                                            @endforeach
+{{--                                            <div class="item"><a href="{{asset('frontend/img/products/detail/fullwidth/2.jpg')}}"><img src="{{asset('frontend/img/products/detail/fullwidth/2.jpg')}}" alt=""></a></div>--}}
+{{--                                            <div class="item"><a href="{{asset('frontend/img/products/detail/fullwidth/3.jpg')}}"><img src="{{asset('frontend/img/products/detail/fullwidth/3.jpg')}}" alt=""></a></div>--}}
                                         </div>
                                     </div>
                                 </figure>
                                 @endif
 
                                 <div class="ps-product__variants" data-item="4" data-md="4" data-sm="4" data-arrow="false">
-                                    @foreach($photos as $index=>$col)
-                                    <div class="item"><img src="{{url($productDetails->thumbnail_img)}}" alt=""></div>
+                                    @foreach($photos as $pht)
+                                    <div class="item"><img src="{{url($pht)}}" alt=""></div>
                                     @endforeach
-                                    <div class="item"><img src="{{asset('frontend/img/products/detail/fullwidth/2.jpg')}}" alt=""></div>
-                                    <div class="item"><img src="{{asset('frontend/img/products/detail/fullwidth/3.jpg')}}" alt=""></div>
+{{--                                    <div class="item"><img src="{{asset('frontend/img/products/detail/fullwidth/2.jpg')}}" alt=""></div>--}}
+{{--                                    <div class="item"><img src="{{asset('frontend/img/products/detail/fullwidth/3.jpg')}}" alt=""></div>--}}
                                 </div>
 
                             </div>
@@ -331,7 +333,7 @@
 {{--                        @endphp--}}
                         <div class="widget__content">
                             @foreach($brands as $brand)
-                            @foreach($brand->product->random(2) as $product)
+                            @foreach($brand->product as $product)
                             <div class="ps-product">
                                 <div class="ps-product__thumbnail"><a href="{{route('product-details',$product->slug)}}"><img src="{{url($product->thumbnail_img)}}" alt=""></a>
 {{--                                    <div class="ps-product__badge">-37%</div>--}}
