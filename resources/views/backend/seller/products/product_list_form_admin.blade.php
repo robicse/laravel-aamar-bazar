@@ -39,7 +39,7 @@
                     </div>
                     <!-- /.card-header -->
 
-                        <form id="frm-example" action="{{route('seller.admin.products.store')}}" method="POST">
+                        <form class="m-3" id="frm-example" action="{{route('seller.admin.products.store')}}" method="POST">
                             @csrf
                             <table id="example" class="display" cellspacing="0" width="100%">
                                 <thead>

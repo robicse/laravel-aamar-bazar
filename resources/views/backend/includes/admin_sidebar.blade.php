@@ -8,12 +8,9 @@
         <!-- Sidebar -->
         <div class="sidebar" >
             <!-- Sidebar user panel (optional) -->
-            <div class="user-panel mt-3 pb-2 mb-2 d-flex">
-                <div class="image">
-                    <img src="{{asset('backend/images/logo.png')}}" class="img-circle elevation-2" alt="User Image">
-                </div>
-                <div class="info">
-                    <a href="" class="d-block"><strong>Aamar Bazar</strong></a>
+            <div class="user-panel mt-3 pb-2 pl-2 mb-2 d-flex">
+                <div class="">
+                    <img src="{{asset('frontend/img/logo-mudi-hat.png')}}" class="" alt="User Image" width="100%">
                 </div>
             </div>
 
