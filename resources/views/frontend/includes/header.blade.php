@@ -152,7 +152,11 @@
                     {{--                    <input type="text" class=" bksearch">--}}
                     {{--                    <div class="bklist">--}}
                     {{--                    </div>--}}
-                    <input class="form-control bksearch m-0" type="text" placeholder="Enter your full address" id="input-search" style="border-radius: 4px;" autocomplete="off" value="">
+                    @if(Request::is('be-a-seller'))
+                        <input class="form-control m-0" type="text" placeholder="Enter your full address" id="input-search" style="border-radius: 4px;" autocomplete="off" value="">
+                    @else
+                        <input class="form-control bksearch m-0" type="text" placeholder="Enter your full address" id="input-search" style="border-radius: 4px;" autocomplete="off" value="">
+                    @endif
                     <button class="ml-2 mr-1" style="border-radius: 4px;" onclick="geoLocationInit()"><i class="fa fa-map-marker" aria-hidden="true"></i></button>
                     <button class="mx-1" style="border-radius: 4px;" id="find">Find</button>
                     <div class="ps-panel--search-result bklist ">

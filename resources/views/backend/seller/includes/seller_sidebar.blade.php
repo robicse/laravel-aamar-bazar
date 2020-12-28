@@ -50,13 +50,7 @@
                             </li>
                         </ul>
                     </li>
-                    <li class="nav-item has-treeview" {{(Request::is('seller/order/pending*')
-                        || Request::is('seller/order/on-reviewed*')
-                        || Request::is('seller/order/on-delivered*')
-                        || Request::is('seller/order/delivered*')
-                        || Request::is('seller/order/completed*')
-                        || Request::is('seller/order/canceled*'))
-                    ? 'menu-open' : ''}}>
+                    <li class="nav-item has-treeview {{(Request::is('seller/order*')) ? 'menu-open' : ''}}">
                         <a href="" class="nav-link">
                             <i class="nav-icon fas fa-box"></i>
                             <p>

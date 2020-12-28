@@ -38,7 +38,7 @@
                         </div>
                     </div>
                     <!-- /.card-header -->
-                    <div class="card-body table-responsive">
+
                         <form id="frm-example" action="{{route('seller.admin.products.store')}}" method="POST">
                             @csrf
                             <table id="example" class="display" cellspacing="0" width="100%">
@@ -59,16 +59,18 @@
                             </table>
 
                             <hr>
+                            <div class="card-body table-responsive">
+                                <p>You can add product form this to your shop.</p>
 
-                            <p>Press <b>Submit</b> and check console for URL-encoded form data that would be submitted.</p>
+                                <p><button class="btn btn-success">Add To My Shop</button></p>
+                            </div>
 
-                            <p><button class="btn btn-success">Add My Shop</button></p>
 
-                            <p><b>Selected rows data:</b></p>
+                           {{-- <p><b>Selected rows data:</b></p>
                             <pre id="example-console-rows"></pre>
 
                             <p><b>Form data as submitted to the server:</b></p>
-                            <pre id="example-console-form"></pre>
+                            <pre id="example-console-form"></pre>--}}
 
                         </form>
                     </div>
