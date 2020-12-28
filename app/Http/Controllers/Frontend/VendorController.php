@@ -46,4 +46,10 @@ class VendorController extends Controller
 //        dd($products);
         return view('frontend.pages.vendor.category_by_product',compact('shops','products'));
     }
+    public function search_product(Request $request){
+        $name = $request->get('q');
+        $product = Product::where('name', 'LIKE', '%'. $name. '%')->limit(5)->get();
+        //dd($product);
+        return $product;
+    }
 }
