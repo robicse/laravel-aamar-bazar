@@ -189,7 +189,7 @@
             else{
                 var status = 0;
             }
-            $.post('{{ route('admin.products.todays_deal') }}', {_token:'{{ csrf_token() }}', id:el.value, status:status}, function(data){
+            $.post('{{ route('seller.products.todays_deal') }}', {_token:'{{ csrf_token() }}', id:el.value, status:status}, function(data){
                 if(data == 1){
                     toastr.success('success', 'Todays Deal updated successfully');
                 }
@@ -208,7 +208,7 @@
                 //alert('else')
                 var status = 0;
             }
-            $.post('{{ route('admin.products.published') }}', {_token:'{{ csrf_token() }}', id:el.value, status:status}, function(data){
+            $.post('{{ route('seller.products.published') }}', {_token:'{{ csrf_token() }}', id:el.value, status:status}, function(data){
                 if(data == 1){
                     toastr.success('success', 'Published products updated successfully');
                 }
@@ -225,7 +225,7 @@
             else{
                 var status = 0;
             }
-            $.post('{{ route('admin.products.featured') }}', {_token:'{{ csrf_token() }}', id:el.value, status:status}, function(data){
+            $.post('{{ route('seller.products.featured') }}', {_token:'{{ csrf_token() }}', id:el.value, status:status}, function(data){
                 if(data == 1){
                     toastr.success('success', 'Featured products updated successfully');
                 }

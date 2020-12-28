@@ -145,6 +145,21 @@
                     </div>
                 </div>
                 <!-- ./col -->
+                <div class="col-lg-3 col-6">
+                    <!-- small box -->
+                    <div class="small-box bg-primary">
+                        <div class="inner">
+                            <h3>{{$totalReqProducts}}</h3>
+
+                            <p>Seller Req Products</p>
+                        </div>
+                        <div class="icon">
+                            <i class="fa fa-parking"></i>
+                        </div>
+                        <a href="{{route('admin.products.request.form.seller')}}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                    </div>
+                </div>
+                <!-- ./col -->
             </div>
             <!-- /.row -->
             <!-- Main row -->
