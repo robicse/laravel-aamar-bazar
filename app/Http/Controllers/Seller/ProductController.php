@@ -221,7 +221,7 @@ class ProductController extends Controller
             $shopCategoryData = new ShopCategory();
             $shopCategoryData->shop_id = $shopId->id;
             $shopCategoryData->category_id = $request->category_id;
-            Toastr::success("Shop Category Inserted Successfully","Success");
+            //Toastr::success("Shop Category Inserted Successfully","Success");
             $shopCategoryData->save();
         }
         $product->save();
@@ -327,6 +327,18 @@ class ProductController extends Controller
                     $new_stockProduct->product_id = $product_new->id;
                     $new_stockProduct->save();
                 }
+            }
+
+            //check shop categories
+            $shopId = Shop::where('user_id',Auth::id())->first();
+            //dd($shopId);
+            $shopCategory = ShopCategory::where('shop_id',$shopId->id)->where('category_id',$product_new->category_id)->first();
+            if(empty($shopCategory)){
+                $shopCategoryData = new ShopCategory();
+                $shopCategoryData->shop_id = $shopId->id;
+                $shopCategoryData->category_id = $product_new->category_id;
+                //Toastr::success("Shop Category Inserted Successfully","Success");
+                $shopCategoryData->save();
             }
         }
         Toastr::success('Product Successfully Copied!');

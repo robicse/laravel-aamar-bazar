@@ -47,6 +47,10 @@
         .nav-pills .nav-link {
             border-radius: 0!important;
         }
+        .user-panel img {
+            width: 100%;
+            height: auto;
+        }
     </style>
     @stack('css')
 </head>
