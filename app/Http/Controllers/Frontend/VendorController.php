@@ -42,7 +42,7 @@ class VendorController extends Controller
         $shops = Shop::where('slug',$name)->first();
         $categories = Category::where('slug',$slug)->first();
 //        $shopCat = ShopCategory::where('shop_id',$shop->id)->first();
-        $products = Product::where('category_id',$categories->id)->get();
+        $products = Product::where('category_id',$categories->id)->where('user_id',$shops->user_id)->get();
 //        dd($products);
         return view('frontend.pages.vendor.category_by_product',compact('shops','products'));
     }

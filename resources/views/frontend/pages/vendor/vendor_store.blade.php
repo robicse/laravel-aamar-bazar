@@ -20,7 +20,7 @@
                             <div class="ps-block__thumbnail"><img src="{{asset($shop->logo)}}" alt=""></div>
                             <div class="ps-block__container">
                                 <div class="ps-block__header">
-                                    <h4>{{$shop->name}}</h4>
+                                    <h4><a href="{{route('shop.details',$shop->slug)}}">{{$shop->name}} </a></h4>
                                     <select class="ps-rating" data-read-only="true">
                                         <option value="1">1</option>
                                         <option value="1">2</option>
@@ -31,7 +31,7 @@
                                     <p><strong>85% Positive</strong>  (62 rating)</p>
                                 </div><span class="ps-block__divider"></span>
                                 <div class="ps-block__content">
-                                    <p><strong>{{$shop->name}}</strong>, Bangladesh’s no.1 online retailer was established in May 2019 with the aim and vision to become the one-stop shop for retail in New York with implementation of best practices both online</p><span class="ps-block__divider"></span>
+                                    <p><strong>{{$shop->name}}</strong>, {{$shop->about}}</p><span class="ps-block__divider"></span>
                                     <p><strong>Address</strong> {{$shop->address}}</p>
                                     <figure>
                                         <figcaption>Foloow us on social</figcaption>
@@ -44,7 +44,7 @@
                                     </figure>
                                 </div>
                                 <div class="ps-block__footer">
-                                    <p>Call us directly<strong>(+880) 1771123456</strong></p>
+                                    <p>Call us directly<strong><a href="tel:+8801771123456">(+880) 1771123456</a></strong></p>
                                     <p>or Or if you have any question</p><a class="ps-btn ps-btn--fullwidth" href="#">Contact Seller</a>
                                 </div>
                             </div>
@@ -60,11 +60,11 @@
                                 </ul>
                             </div>
                             <div class="ps-block__right">
-                                <form class="ps-form--search" action="http://nouthemes.net/html/martfury/index.html" method="get">
-                                    <input  class="form-control" id="searchMain" name="searchName" type="text" placeholder="Search in this shop" autocomplete="off">
+                                <form class="ps-form--search" action="" method="get">
+                                    <input  class="form-control" id="searchMain" name="searchName" type="search" placeholder="Search in this shop" autocomplete="off">
 {{--                                    <input id="searchMain" name="serviceName" class="form-control" type="search" placeholder="Search in this shop">--}}
 {{--                                    <input id="searchMain" class="form-control" name="serviceName" type="search" placeholder="Search Doctors, Product, Test..." autocomplete="off">--}}
-                                    <button><i class="fa fa-search"></i></button>
+{{--                                    <button><i class="fa fa-search"></i></button>--}}
                                 </form>
                             </div>
                         </div>
@@ -78,14 +78,10 @@
                                     <div class="row">
                                         @foreach($shopCat as $cat)
                                             <div class="col-lg-2 col-md-6">
-                                                <div class="container">
-                                                    <a href="{{url('/shop/'.$shop->slug.'/'.$cat->category->slug)}}"> <img src="{{asset('uploads/categories/'.$cat->category->icon)}}" class="rounded-circle" alt="" width="100" height="100"></a>
-                                                    <div class="item-content">
-{{--                                                        @php--}}
-{{--                                                            $str = "An example of a long word is: Supercalifragulistic";--}}
-{{--    echo wordwrap($str,15,"<br>\n");--}}
-{{--                                                        @endphp--}}
-                                                        <h4 class="item-title"><a href="{{url('/shop/'.$shop->slug.'/'.$cat->category->slug)}}" style="color: #06c;">{!! wordwrap($cat->category->name,7,"<br>\n") !!}</h4></a>
+                                                <div class="text-center">
+                                                    <a href="{{url('/shop/'.$shop->slug.'/'.$cat->category->slug)}}"> <img src="{{asset('uploads/categories/'.$cat->category->icon)}}" class="rounded-circle" alt="" width="80" height="80"></a>
+                                                    <div class="item-content text-center">
+                                                        <h4 class="item-title"><a href="{{url('/shop/'.$shop->slug.'/'.$cat->category->slug)}}" style="color: #06c;" data-toggle="tooltip" title="{{$cat->category->name}}">{!! Str::limit($cat->category->name,7) !!}</h4></a>
                                                     </div>
                                                 </div>
                                             </div>
@@ -818,7 +814,7 @@
                         '<div class="list-group search-results-dropdown"><div class="list-group-item custom-header">Product</div>'
                     ],
                     suggestion: function (data) {
-                        return '<a href="product/'+data.slug+'" class="list-group-item custom-list-group-item">'+data.name+'</a>'
+                        return '<a href="/products/details/'+data.slug+'" class="list-group-item custom-list-group-item">'+data.name+'</a>'
                     }
                 }
             },

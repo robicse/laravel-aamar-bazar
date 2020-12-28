@@ -553,59 +553,6 @@
                         {{--                            </div>--}}
                         {{--                        </div>--}}
                     </li>
-                    {{--                    <li class="menu-item-has-children has-mega-menu"><a href="#">Pages</a><span class="sub-toggle"></span>--}}
-                    {{--                        <div class="mega-menu">--}}
-                    {{--                            <div class="mega-menu__column">--}}
-                    {{--                                <h4>Basic Page<span class="sub-toggle"></span></h4>--}}
-                    {{--                                <ul class="mega-menu__list">--}}
-                    {{--                                    <li class="current-menu-item "><a href="{{route('about-us')}}">About Us</a>--}}
-                    {{--                                    </li>--}}
-                    {{--                                    <li class="current-menu-item "><a href="{{route('contact')}}">Contact</a>--}}
-                    {{--                                    </li>--}}
-                    {{--                                    <li class="current-menu-item "><a href="faqs.html">Faqs</a>--}}
-                    {{--                                    </li>--}}
-                    {{--                                    <li class="current-menu-item "><a href="comming-soon.html">Comming Soon</a>--}}
-                    {{--                                    </li>--}}
-                    {{--                                    <li class="current-menu-item "><a href="404-page.html">404 Page</a>--}}
-                    {{--                                    </li>--}}
-                    {{--                                </ul>--}}
-                    {{--                            </div>--}}
-                    {{--                            <div class="mega-menu__column">--}}
-                    {{--                                <h4>Vendor Pages<span class="sub-toggle"></span></h4>--}}
-                    {{--                                <ul class="mega-menu__list">--}}
-                    {{--                                    <li class="current-menu-item "><a href="{{route('become-vendor')}}">Become a Vendor</a>--}}
-                    {{--                                    </li>--}}
-                    {{--                                    <li class="current-menu-item "><a href="{{route('vendor-store')}}">Vendor Store</a>--}}
-                    {{--                                    </li>--}}
-                    {{--                                    <li class="current-menu-item "><a href="vendor-dashboard-free.html">Vendor Dashboard Free</a>--}}
-                    {{--                                    </li>--}}
-                    {{--                                    <li class="current-menu-item "><a href="vendor-dashboard-pro.html">Vendor Dashboard Pro</a>--}}
-                    {{--                                    </li>--}}
-                    {{--                                    <li class="current-menu-item "><a href="store-list.html">Store List</a>--}}
-                    {{--                                    </li>--}}
-                    {{--                                    <li class="current-menu-item "><a href="store-list.html">Store List 2</a>--}}
-                    {{--                                    </li>--}}
-                    {{--                                    <li class="current-menu-item "><a href="store-detail.html">Store Detail</a>--}}
-                    {{--                                    </li>--}}
-                    {{--                                </ul>--}}
-                    {{--                            </div>--}}
-                    {{--                            <div class="mega-menu__column">--}}
-                    {{--                                <h4>Account Pages<span class="sub-toggle"></span></h4>--}}
-                    {{--                                <ul class="mega-menu__list">--}}
-                    {{--                                    <li class="current-menu-item "><a href="user-information.html">User Information</a>--}}
-                    {{--                                    </li>--}}
-                    {{--                                    <li class="current-menu-item "><a href="addresses.html">Addresses</a>--}}
-                    {{--                                    </li>--}}
-                    {{--                                    <li class="current-menu-item "><a href="invoices.html">Invoices</a>--}}
-                    {{--                                    </li>--}}
-                    {{--                                    <li class="current-menu-item "><a href="invoice-detail.html">Invoice Detail</a>--}}
-                    {{--                                    </li>--}}
-                    {{--                                    <li class="current-menu-item "><a href="notifications.html">Notifications</a>--}}
-                    {{--                                    </li>--}}
-                    {{--                                </ul>--}}
-                    {{--                            </div>--}}
-                    {{--                        </div>--}}
-                    {{--                    </li>--}}
                     <li class="menu-item has-mega-menu"><a href="{{route('about-us')}}">About Us</a>
                     <li class="menu-item has-mega-menu"><a href="{{route('blog-list')}}">Blogs</a>
                     <li class="menu-item has-mega-menu"><a href="{{route('contact')}}">Contact Us</a>
@@ -868,28 +815,6 @@
         <div class="header__left">
             <p></p>
         </div>
-        {{--        <div class="header__right">--}}
-        {{--            <ul class="navigation__extra">--}}
-        {{--                <li><a href="#">Sell on Martfury</a></li>--}}
-        {{--                <li><a href="#">Tract your order</a></li>--}}
-        {{--                <li>--}}
-        {{--                    <div class="ps-dropdown"><a href="#">US Dollar</a>--}}
-        {{--                        <ul class="ps-dropdown-menu">--}}
-        {{--                            <li><a href="#">Us Dollar</a></li>--}}
-        {{--                            <li><a href="#">Euro</a></li>--}}
-        {{--                        </ul>--}}
-        {{--                    </div>--}}
-        {{--                </li>--}}
-        {{--                <li>--}}
-        {{--                    <div class="ps-dropdown language"><a href="#"><img src="{{asset('img/flag/en.png')}}" alt="">English</a>--}}
-        {{--                        <ul class="ps-dropdown-menu">--}}
-        {{--                            <li><a href="#"><img src="{{asset('frontend/img/flag/germany.png')}}" alt=""> Germany</a></li>--}}
-        {{--                            <li><a href="#"><img src="{{asset('frontend/img/flag/fr.png')}}" alt=""> France</a></li>--}}
-        {{--                        </ul>--}}
-        {{--                    </div>--}}
-        {{--                </li>--}}
-        {{--            </ul>--}}
-        {{--        </div>--}}
     </div>
     <div class="navigation--mobile">
         <div class="navigation__left"><a class="ps-logo" href="{{url('/')}}"><img src="{{asset('frontend/img/logo-mudi-hat.png')}}" alt=""></a></div>
