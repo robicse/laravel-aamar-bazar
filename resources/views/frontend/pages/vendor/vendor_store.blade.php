@@ -77,7 +77,11 @@
                                                 <div class="container">
                                                     <a href="{{url('/shop/'.$shop->slug.'/'.$cat->category->slug)}}"> <img src="{{asset('uploads/categories/'.$cat->category->icon)}}" class="rounded-circle" alt="" width="100" height="100"></a>
                                                     <div class="item-content">
-                                                        <h4 class="item-title"><a href="{{url('/shop/'.$shop->slug.'/'.$cat->category->slug)}}" style="color: #06c;">{{$cat->category->name}}</h4></a>
+{{--                                                        @php--}}
+{{--                                                            $str = "An example of a long word is: Supercalifragulistic";--}}
+{{--    echo wordwrap($str,15,"<br>\n");--}}
+{{--                                                        @endphp--}}
+                                                        <h4 class="item-title"><a href="{{url('/shop/'.$shop->slug.'/'.$cat->category->slug)}}" style="color: #06c;">{!! wordwrap($cat->category->name,7,"<br>\n") !!}</h4></a>
                                                     </div>
                                                 </div>
                                             </div>
