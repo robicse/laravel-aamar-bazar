@@ -282,7 +282,7 @@ class ProductController extends Controller
     public function getAdminProductAjax()
     {
         $sellerP = Product::where('added_by','seller')->where('user_id',Auth::id())->select('aPId_to_seller')->get();
-        $products = Product::where('added_by','admin')->latest()->select('id','name','unit_price')->get();
+        $products = Product::where('added_by','admin')->latest()->select('id','name','unit_price')->latest()->get();
         $arr = array();
         $check2 = array();
         foreach ($products as $product){
@@ -320,7 +320,14 @@ class ProductController extends Controller
             $product_new->aPId_to_seller = $product->id;
             $product_new->slug = substr($product_new->slug, 0, -5).Str::random(5);
             $product_new->save();
-
+            if($product->variant_product == 1){
+                $stockProducts = ProductStock::where('product_id', $product->id)->get();
+                foreach ($stockProducts as $stockProduct){
+                    $new_stockProduct = $stockProduct->replicate();
+                    $new_stockProduct->product_id = $product_new->id;
+                    $new_stockProduct->save();
+                }
+            }
         }
         Toastr::success('Product Successfully Copied!');
         return redirect()->back();
