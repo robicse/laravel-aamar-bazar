@@ -32,6 +32,7 @@ Route::group(['as'=>'admin.','prefix' =>'admin','namespace'=>'Admin', 'middlewar
     Route::post('products/todays_deal', 'ProductController@updateTodaysDeal')->name('products.todays_deal');
     Route::post('products/published/update', 'ProductController@updatePublished')->name('products.published');
     Route::post('products/featured/update', 'ProductController@updateFeatured')->name('products.featured');
+    Route::get('products/request/from/seller', 'ProductController@sellerReqList')->name('products.request.form.seller');
     Route::post('ckeditor/upload', 'CkeditorController@upload')->name('ckeditor.upload');
     Route::resource('sellers','SellerController');
     Route::post('sellers/verification','SellerController@verification')->name('seller.verification');

@@ -309,6 +309,9 @@ class ProductController extends Controller
         //return 'ok';
         $product = Product::find($request->id);
         $product->published = $request->status;
+        if (url('/admin/products/request/from/seller')){
+            $product->admin_permission = 1;
+        }
         if($product->save()){
             return 1;
         }
@@ -323,5 +326,10 @@ class ProductController extends Controller
             return 1;
         }
         return 0;
+    }
+    public function sellerReqList()
+    {
+        $products = Product::where('added_by','seller')->where('admin_permission',0)->latest()->get();
+        return view('backend.admin.products.seller_request_product_list', compact('products'));
     }
 }

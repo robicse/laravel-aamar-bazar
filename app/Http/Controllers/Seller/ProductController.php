@@ -84,7 +84,8 @@ class ProductController extends Controller
         $product->subcategory_id = $request->subcategory_id;
         $product->subsubcategory_id = $request->subsubcategory_id;
         $product->brand_id = $request->brand_id;
-        $product->current_stock = $request->current_stock;
+        $product->published = 0;
+        $product->admin_permission = 0;
         $product->current_stock = $request->current_stock;
         $photos = array();
         if($request->hasFile('photos')){
