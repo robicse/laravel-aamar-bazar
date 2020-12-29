@@ -31,7 +31,7 @@ class ProductController extends Controller
 
     public function index()
     {
-        $products = Product::latest()->get();
+        $products = Product::where('added_by','admin')->latest()->get();
         return view('backend.admin.products.index', compact('products'));
     }
 

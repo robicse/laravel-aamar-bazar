@@ -7,12 +7,13 @@
             border: 1px solid #d4d4d4;
             border-bottom: none;
             border-top: none;
-            z-index: 99;
             left: 0;
             right: 0;
             z-index: 10001;
             padding: 1px!important; ;
-            margin-top: 51px;
+            margin-top: -8px;
+            margin-left: 20px;
+            margin-right: 20px;
             border-radius: 0 0 5px 5px;
         }
     </style>
@@ -60,8 +61,8 @@
                             <div class="form-group">
                                 <label for="slug">Slug (SEO Url) <small class="text-danger">(requried* and
                                         unique)</small></label>
-                                <input type="text" id="slug" name="slug" class="form-control"
-                                       placeholder="Slug (e.g. this-is-test-shop-title)">
+                                <input type="text" id="slug" name="slug" class="form-control" value="{{$shop_set->slug}}"
+                                       placeholder="Slug (e.g. this-is-test-shop-title)" readonly>
                             </div>
 {{--                            <div class="form-group">--}}
 {{--                                <label for="email">Logo <small>(size: 120 * 120 pixel)</small></label>--}}
@@ -70,28 +71,25 @@
                             <div class="form-group">
 {{--                                <label for="name">Address <small style="color: red">*</small></label>--}}
 {{--                                <input type="text" class="form-control" name="address" value="{{ $shop_set->address }}" id="address" placeholder="Enter Address" required>--}}
-                                <label for="bksearch">Shop Address</label>
+                                <label for="bksearch">Shop Address <small style="color: red">*</small></label>
                                 <div class="form-group form-group--style-1">
-                                    <input type="text" class="form-control bksearch {{ $errors->has('bksearch') ? ' is-invalid' : '' }}" value="{{ old('bksearch') }}" placeholder="Enter Your Shop Address" name="bksearch">
+                                    <input type="text" class="form-control bksearch {{ $errors->has('bksearch') ? ' is-invalid' : '' }}" value="{{ $shop_set->address }}" placeholder="Enter Your Shop Address" name="bksearch" required>
                                 </div>
                                 <div class="bklist"></div>
                             </div>
                             <div class="form-group">
-                                <input type="hidden" name="address">
-                                <input type="hidden" name="city">
-                                <input type="hidden" name="area">
-                                <input type="hidden" name="latitude">
-                                <input type="hidden" name="longitude">
+                                <input type="hidden" name="address" value="{{$shop_set->address}}">
+                                <input type="hidden" name="city" value="{{$shop_set->city}}">
+                                <input type="hidden" name="area" value="{{$shop_set->area}}">
+                                <input type="hidden" name="latitude" value="{{$shop_set->latitude}}">
+                                <input type="hidden" name="longitude" value="{{$shop_set->longitude}}">
+                            </div>
+                            <div class="form-group">
+                                <label for="about">About Shop <small style="color: red">*(Write in 300 words.)</small> </label>
+                                <textarea name="about" id="about" rows="5"  class="form-control" required>{{ $shop_set->about }}</textarea>
                             </div>
 
-                            <div class="form-group">
-                                <label for="meta_title">Meta Title <small style="color: red">*</small> </label>
-                                <input type="text" class="form-control" name="meta_title" id="meta_title" value="{{ $shop_set->meta_title }}" placeholder="Meta Title">
-                            </div>
-                            <div class="form-group">
-                                <label for="meta_description">Meta Description <small style="color: red">*</small> </label>
-                                <textarea name="meta_description" id="meta_description" rows="5" value="{{ $shop_set->meta_description }}"  class="form-control"></textarea>
-                            </div>
+
 
                         </div>
                     </div>
@@ -99,19 +97,37 @@
                 <div class="col-md-6">
                     <!-- general form elements -->
                     <div class="card card-info card-outline">
-                        <p class="pl-2 pb-0 mb-0 bg-info">Slider Gallery</p>
+                        <div class="form-group pl-3 pr-3">
+                            <label for="meta_title">Meta Title <small style="color: red">*</small> </label>
+                            <input type="text" class="form-control" name="meta_title" id="meta_title" value="{{ $shop_set->meta_title }}" placeholder="Meta Title" required>
+                        </div>
+                        <div class="form-group pl-3 pr-3">
+                            <label for="meta_description">Meta Description <small style="color: red">*</small> </label>
+                            <textarea name="meta_description" id="meta_description" rows="4"  class="form-control" required>{{ $shop_set->meta_description }}</textarea>
+                        </div>
+                        {{--<p class="pl-2 pb-0 mb-0 bg-info">Slider Gallery</p>
                         <div class="form-group">
                             <label class="control-label ml-3">Slider Images</label>
                             <div class="ml-3 mr-3">
                                 <div class="row" id="sliders"></div>
-{{--                                <div class="row" id="photos_alt"></div>--}}
+--}}{{--                                <div class="row" id="photos_alt"></div>--}}{{--
                             </div>
-                        </div>
+                        </div>--}}
                         <div class="form-group">
                             <label class="control-label ml-3">Logo <small class="text-danger">(Size: 120 *
                                     120px)</small></label>
                             <div class="ml-3 mr-3">
-                                <div class="row" id="logo"></div>
+                                <div class="row" id="logo">
+                                    @if ($shop_set->logo != null)
+                                        <div class="col-md-4 col-sm-4 col-xs-6">
+                                            <div class="img-upload-preview" style="width: 160px; height: 200px">
+                                                <img loading="lazy"  src="{{ url($shop_set->logo) }}" alt="" class="img-responsive" width="150">
+                                                <input type="hidden" name="previous_logo" value="{{ $shop_set->logo }}">
+                                                <button type="button" class="btn btn-danger close-btn remove-files"><i class="fa fa-times"></i></button>
+                                            </div>
+                                        </div>
+                                    @endif
+                                </div>
 
                             </div>
                         </div>
@@ -157,7 +173,7 @@
                 maxCount: 10,
                 rowHeight: '200px',
                 groupClassName: 'col-md-4 col-sm-4 col-xs-6',
-                maxFileSize: '',
+                maxFileSize: '150000',
                 dropFileLabel: "Drop Here",
                 onExtensionErr: function (index, file) {
                     console.log(index, file, 'extension err');
@@ -184,7 +200,7 @@
             maxCount: 1,
             rowHeight: '200px',
             groupClassName: 'col-md-4 col-sm-4 col-xs-6',
-            maxFileSize: '',
+            maxFileSize: '150000',
             dropFileLabel: "Drop Here",
             onExtensionErr: function (index, file) {
                 console.log(index, file, 'extension err');
@@ -205,8 +221,7 @@
                 $(`#abc_${index}`).remove()
             },
         });
-    </script>
-    <script>
+
         Bkoi.onSelect(function () {
             // get selected data from dropdown list
             let selectedPlace = Bkoi.getSelectedData()
@@ -219,6 +234,8 @@
             document.getElementsByName("longitude")[0].value = selectedPlace.longitude;
 
         })
-
+        $('.remove-files').on('click', function(){
+            $(this).parents(".col-md-4").remove();
+        });
     </script>
 @endpush

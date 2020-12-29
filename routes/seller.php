@@ -19,6 +19,7 @@ Route::group(['as'=>'seller.','prefix' =>'seller', 'middleware' => ['auth', 'sel
 
     Route::resource('products','Seller\ProductController');
     Route::resource('shop','Seller\ShopController');
+    Route::get('shop/manage/{slug}','Seller\ShopController@dataUpdate')->name('shop.manage');
 
     //Seller Order Management
     Route::get('order/pending','Seller\OrderManagementController@pendingOrder')->name('order.pending');
@@ -32,7 +33,7 @@ Route::group(['as'=>'seller.','prefix' =>'seller', 'middleware' => ['auth', 'sel
     Route::get('order-details/invoice/print/{id}','Seller\OrderManagementController@printInvoice')->name('invoice.print');
 
     Route::get('profile','Seller\ProfileController@profile')->name('profile.show');
-    Route::post('profile/update','Seller\ProfileController@profile_update')->name('profile.update');
+    Route::put('profile/update/{id}','Seller\ProfileController@profile_update')->name('profile.update');
     Route::get('password','Seller\ProfileController@password')->name('password.edit');
     Route::post('password/update','Seller\ProfileController@password_update')->name('password.update');
     Route::get('payment/settings','Seller\ProfileController@payment')->name('payment.settings');

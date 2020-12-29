@@ -22,12 +22,20 @@ class ProfileController extends Controller
         $shopInfo = Shop::where('user_id',Auth::id())->first();
         return view('backend.seller.profile.profile',compact('userInfo','sellerInfo','shopInfo'));
     }
-    public function profile_update(Request $request) {
-
+    public function profile_update(Request $request,$id) {
+        $this->validate($request, [
+            'name' =>  'required',
+            'phone' => 'required|regex:/(01)[0-9]{9}/|unique:users,phone,'.$id,
+            'email' =>  'required|email|unique:users,email,'.$id,
+            'avatar_original' =>  'mimes:jpeg,jpg,png,gif|max:100',
+        ]);
         $user = User::findOrFail(Auth::id());
         $user->name = $request->name;
         $user->phone = $request->phone;
         $user->email = $request->email;
+        if($request->hasFile('avatar_original')){
+            $user->avatar_original = $request->avatar_original->store('uploads/profile');
+        }
 //        $user->address = $request->address;
         $user->update();
 

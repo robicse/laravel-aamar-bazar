@@ -51,7 +51,7 @@
                                 </li>
                             </ul>
 
-                            <a href="#" class="btn btn-primary btn-block"><b>Go To Shop</b></a>
+                            <a href="{{route('shop.details',$shopInfo->slug)}}" class="btn btn-primary btn-block"><b>Go To Shop</b></a>
                         </div>
                         <!-- /.card-body -->
                     </div>
@@ -67,7 +67,7 @@
                             <strong><i class="fas fa-book mr-1"></i> Description</strong>
 
                             <p class="text-muted">
-                                B.S. in Computer Science from the University of Tennessee at Knoxville
+                                {{$shopInfo->about}}
                             </p>
                         </div>
                         <!-- /.card-body -->
