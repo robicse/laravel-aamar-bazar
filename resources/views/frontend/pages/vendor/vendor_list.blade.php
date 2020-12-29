@@ -1,38 +1,42 @@
 @extends('frontend.layouts.master')
-@section('title', 'Vendor List')
+@section('title', 'Shop List')
+@push('css')
+@endpush
 @section('content')
     <div class="ps-page--single ps-page--vendor">
         <div class="ps-breadcrumb">
             <div class="container">
                 <ul class="breadcrumb">
                     <li><a href="{{url('/')}}">Home</a></li>
-                    <li>Store List</li>
+                    <li>Shop List</li>
                 </ul>
             </div>
         </div>
         <section class="ps-store-list">
             <div class="container">
                 <div class="ps-section__header">
-                    <h3>Store list</h3>
+                    @include('frontend.includes.sliders')
+{{--                    <h3>Store list</h3>--}}
                 </div>
                 <div class="ps-section__wrapper">
                     <div class="ps-section__left">
                         <aside class="widget widget--vendor">
                             <h3 class="widget-title">Search</h3>
-                            <input class="form-control" type="text" placeholder="Search...">
+{{--                            <input class="form-control" type="text" placeholder="Search...">--}}
+                            <input  class="form-control" id="searchMain" name="searchName" type="search" placeholder="Search..." autocomplete="off">
                         </aside>
-                        <aside class="widget widget--vendor">
-                            <h3 class="widget-title">Filter by Category</h3>
-                            <div class="form-group">
-                                <select class="ps-select">
-                                    <option>Lighting</option>
-                                    <option>Exterior</option>
-                                    <option>Custom Grilles</option>
-                                    <option>Wheels & Tires</option>
-                                    <option>Performance</option>
-                                </select>
-                            </div>
-                        </aside>
+{{--                        <aside class="widget widget--vendor">--}}
+{{--                            <h3 class="widget-title">Filter by Category</h3>--}}
+{{--                            <div class="form-group">--}}
+{{--                                <select class="ps-select">--}}
+{{--                                    <option>Lighting</option>--}}
+{{--                                    <option>Exterior</option>--}}
+{{--                                    <option>Custom Grilles</option>--}}
+{{--                                    <option>Wheels & Tires</option>--}}
+{{--                                    <option>Performance</option>--}}
+{{--                                </select>--}}
+{{--                            </div>--}}
+{{--                        </aside>--}}
 {{--                        <aside class="widget widget--vendor">--}}
 {{--                            <h3 class="widget-title">Filter by Location</h3>--}}
 {{--                            <div class="form-group">--}}
@@ -65,7 +69,7 @@
                         <section class="ps-store-box">
                             <div class="ps-section__header">
                                 <p>Showing 1 -8 of 22 results</p>
-                                <select class="ps-select">
+                                <select class="ps-select" name="sortby">
                                     <option value="1">Sort by Newest: old to news</option>
                                     <option value="2">Sort by Newest: New to old</option>
                                     <option value="3">Sort by average rating: low to hight</option>
@@ -114,3 +118,42 @@
         </section>
     </div>
 @endsection
+@push('js')
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/typeahead.js/0.11.1/typeahead.bundle.min.js"></script>
+    <script !src = "">
+        jQuery(document).ready(function($) {
+            var shop = new Bloodhound({
+                remote: {
+                    url: '/search/shop?q=%QUERY%',
+                    wildcard: '%QUERY%'
+                },
+                datumTokenizer: Bloodhound.tokenizers.whitespace('searchName'),
+                queryTokenizer: Bloodhound.tokenizers.whitespace
+            });
+
+            $("#searchMain").typeahead({
+                    hint: true,
+                    highlight: true,
+                    minLength: 3
+                }, {
+                    source: shop.ttAdapter(),
+                    // This will be appended to "tt-dataset-" to form the class name of the suggestion menu.
+                    name: 'serviceList',
+                    display: 'name',
+                    // the key from the array we want to display (name,id,email,etc...)
+                    templates: {
+                        empty: [
+                            '<div class="list-group search-results-dropdown"><div class="list-group-item">Sorry,We could not find any Shop.</div></div>'
+                        ],
+                        header: [
+                            // '<div class="list-group search-results-dropdown"><div class="list-group-item custom-header">Shop</div>'
+                        ],
+                        suggestion: function (data) {
+                            return '<a href="/shop/'+data.slug+'" class="list-group-item custom-list-group-item">'+data.name+'</a>'
+                        }
+                    }
+                },
+            );
+        });
+    </script>
+@endpush

@@ -166,70 +166,25 @@
                             <ul class="ps-tab-list">
                                 <li class="active"><a href="#tab-1">Description</a></li>
 {{--                                <li><a href="#tab-2">Specification</a></li>--}}
-                                <li><a href="#tab-3">Vendor</a></li>
-                                <li><a href="#tab-4">Reviews (1)</a></li>
-{{--                                <li><a href="#tab-5">Questions and Answers</a></li>--}}
-{{--                                <li><a href="#tab-6">More Offers</a></li>--}}
+                                <li><a href="#tab-3">Shop</a></li>
+                                <li><a href="#tab-4">Reviews</a></li>
                             </ul>
                             <div class="ps-tabs">
                                 <div class="ps-tab active" id="tab-1">
                                     <div class="ps-document">
-                                        <h5>Embodying the Raw, Wayward Spirit of Rock 'N' Roll</h5>
-                                        <p>Embodying the raw, wayward spirit of rock ‘n’ roll, the Kilburn portable active stereo speaker takes the unmistakable look and sound of Marshall, unplugs the chords, and takes the show on the road.</p>
-                                        <p>Weighing in under 7 pounds, the Kilburn is a lightweight piece of vintage styled engineering. Setting the bar as one of the loudest speakers in its class, the Kilburn is a compact, stout-hearted hero with a well-balanced audio which boasts a clear midrange and extended highs for a sound that is both articulate and pronounced. The analogue knobs allow you to fine tune the controls to your personal preferences while the guitar-influenced leather strap enables easy and stylish travel.</p><img class="mb-30" src="img/products/detail/content/description.jpg" alt="">
-                                        <h5>What do you get</h5>
-                                        <p>Sound of Marshall, unplugs the chords, and takes the show on the road.</p>
-                                        <p>Weighing in under 7 pounds, the Kilburn is a lightweight piece of vintage styled engineering. Setting the bar as one of the loudest speakers in its class, the Kilburn is a compact, stout-hearted hero with a well-balanced audio which boasts a clear midrange and extended highs for a sound that is both articulate and pronounced. The analogue knobs allow you to fine tune the controls to your personal preferences while the guitar-influenced leather strap enables easy and stylish travel.</p>
-                                        <p>The FM radio is perhaps gone for good, the assumption apparently being that the jury has ruled in favor of streaming over the internet. The IR blaster is another feature due for retirement – the S6 had it, then the Note5 didn’t, and now with the S7 the trend is clear.</p>
-                                        <h5>Perfectly Done</h5>
-                                        <p>Meanwhile, the IP68 water resistance has improved from the S5, allowing submersion of up to five feet for 30 minutes, plus there’s no annoying flap covering the charging port</p>
-                                        <ul class="pl-0">
-                                            <li>No FM radio (except for T-Mobile units in the US, so far)</li>
-                                            <li>No IR blaster</li>
-                                            <li>No stereo speakers</li>
-                                        </ul>
-                                        <p>If you’ve taken the phone for a plunge in the bath, you’ll need to dry the charging port before plugging in. Samsung hasn’t reinvented the wheel with the design of the Galaxy S7, but it didn’t need to. The Gala S6 was an excellently styled device, and the S7 has managed to improve on that.</p>
+                                        <p>{{ $productDetails->description }} </p>
                                     </div>
                                 </div>
-{{--                                <div class="ps-tab" id="tab-2">--}}
-{{--                                    <div class="table-responsive">--}}
-{{--                                        <table class="table table-bordered ps-table ps-table--specification">--}}
-{{--                                            <tbody>--}}
-{{--                                            <tr>--}}
-{{--                                                <td>Color</td>--}}
-{{--                                                <td>Black, Gray</td>--}}
-{{--                                            </tr>--}}
-{{--                                            <tr>--}}
-{{--                                                <td>Style</td>--}}
-{{--                                                <td>Ear Hook</td>--}}
-{{--                                            </tr>--}}
-{{--                                            <tr>--}}
-{{--                                                <td>Wireless</td>--}}
-{{--                                                <td>Yes</td>--}}
-{{--                                            </tr>--}}
-{{--                                            <tr>--}}
-{{--                                                <td>Dimensions</td>--}}
-{{--                                                <td>5.5 x 5.5 x 9.5 inches</td>--}}
-{{--                                            </tr>--}}
-{{--                                            <tr>--}}
-{{--                                                <td>Weight</td>--}}
-{{--                                                <td>6.61 pounds</td>--}}
-{{--                                            </tr>--}}
-{{--                                            <tr>--}}
-{{--                                                <td>Battery Life</td>--}}
-{{--                                                <td>20 hours</td>--}}
-{{--                                            </tr>--}}
-{{--                                            <tr>--}}
-{{--                                                <td>Bluetooth</td>--}}
-{{--                                                <td>Yes</td>--}}
-{{--                                            </tr>--}}
-{{--                                            </tbody>--}}
-{{--                                        </table>--}}
-{{--                                    </div>--}}
-{{--                                </div>--}}
                                 <div class="ps-tab" id="tab-3">
                                     <h4>{{ $shop->name }}</h4>
-                                    <p>Digiworld US, New York’s no.1 online retailer was established in May 2012 with the aim and vision to become the one-stop shop for retail in New York with implementation of best practices both online</p><a href="#">More Products from gopro</a>
+                                    <div class="address">Address: {{ $shop->address }}</div>
+                                    <div>Email: {{ $shop->email }}</div>
+                                    <div>Phone: {{ $shop->phone }}</div>
+                                    <form action="{{route('shop.details',$shop->slug)}}" method="POST" style="padding-top: 10px">
+                                        @csrf
+                                        <a href="{{route('shop.details',$shop->slug)}}"> <button type="button" class="btn btn-lg btn-info">Go To Shop</button></a>
+                                    </form>
+                                    {{--                                    <a href="#">More Products from gopro</a>--}}
                                 </div>
                                 <div class="ps-tab" id="tab-4">
                                     <div class="row">
@@ -327,13 +282,9 @@
 {{--                    <aside class="widget widget_ads"><a href="#"><img src="{{asset('frontend/img/ads/product-ads.png')}}" alt=""></a></aside>--}}
                     <aside class="widget widget_same-brand">
                         <h3>Same Brand</h3>
-{{--                        @php--}}
-{{--                            //$brands = \App\Model\Brand::where('id',$productDetails->brand_id)->latest()->get();--}}
-{{--//@dd($brands->product->id)--}}
-{{--                        @endphp--}}
                         <div class="widget__content">
                             @foreach($brands as $brand)
-                            @foreach($brand->product as $product)
+                            @foreach($brand->product->where('published',1)  as $product)
                             <div class="ps-product">
                                 <div class="ps-product__thumbnail"><a href="{{route('product-details',$product->slug)}}"><img src="{{url($product->thumbnail_img)}}" alt=""></a>
 {{--                                    <div class="ps-product__badge">-37%</div>--}}
@@ -341,7 +292,6 @@
                                         <li><a href="#" data-toggle="tooltip" data-placement="top" title="Add To Cart"><i class="icon-bag2"></i></a></li>
                                         <li><a href="#" data-placement="top" title="Quick View" data-toggle="modal" data-target="#product-quickview"><i class="icon-eye"></i></a></li>
                                         <li><a href="#" data-toggle="tooltip" data-placement="top" title="Add to Whishlist"><i class="icon-heart"></i></a></li>
-                                        <li><a href="#" data-toggle="tooltip" data-placement="top" title="Compare"><i class="icon-chart-bars"></i></a></li>
                                     </ul>
                                 </div>
                                 <div class="ps-product__container"><a class="ps-product__vendor" href="{{route('shop.details',$shop->slug)}}">{{$shop->name}}</a>
@@ -396,194 +346,6 @@
                     </aside>
                 </div>
             </div>
-{{--            <div class="ps-section--default ps-customer-bought">--}}
-{{--                <div class="ps-section__header">--}}
-{{--                    <h3>Customers who bought this item also bought</h3>--}}
-{{--                </div>--}}
-{{--                <div class="ps-section__content">--}}
-{{--                    <div class="row">--}}
-{{--                        <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6 col-6 ">--}}
-{{--                            <div class="ps-product">--}}
-{{--                                <div class="ps-product__thumbnail"><a href="product-default.html"><img src="{{asset('frontend/img/products/shop/4.jpg')}}" alt=""></a>--}}
-{{--                                    <div class="ps-product__badge hot">hot</div>--}}
-{{--                                    <ul class="ps-product__actions">--}}
-{{--                                        <li><a href="#" data-toggle="tooltip" data-placement="top" title="Add To Cart"><i class="icon-bag2"></i></a></li>--}}
-{{--                                        <li><a href="#" data-placement="top" title="Quick View" data-toggle="modal" data-target="#product-quickview"><i class="icon-eye"></i></a></li>--}}
-{{--                                        <li><a href="#" data-toggle="tooltip" data-placement="top" title="Add to Whishlist"><i class="icon-heart"></i></a></li>--}}
-{{--                                        <li><a href="#" data-toggle="tooltip" data-placement="top" title="Compare"><i class="icon-chart-bars"></i></a></li>--}}
-{{--                                    </ul>--}}
-{{--                                </div>--}}
-{{--                                <div class="ps-product__container"><a class="ps-product__vendor" href="#">Global Office</a>--}}
-{{--                                    <div class="ps-product__content"><a class="ps-product__title" href="product-default.html">Xbox One Wireless Controller Black Color</a>--}}
-{{--                                        <div class="ps-product__rating">--}}
-{{--                                            <select class="ps-rating" data-read-only="true">--}}
-{{--                                                <option value="1">1</option>--}}
-{{--                                                <option value="1">2</option>--}}
-{{--                                                <option value="1">3</option>--}}
-{{--                                                <option value="1">4</option>--}}
-{{--                                                <option value="2">5</option>--}}
-{{--                                            </select><span>01</span>--}}
-{{--                                        </div>--}}
-{{--                                        <p class="ps-product__price">$55.99</p>--}}
-{{--                                    </div>--}}
-{{--                                    <div class="ps-product__content hover"><a class="ps-product__title" href="product-default.html">Xbox One Wireless Controller Black Color</a>--}}
-{{--                                        <p class="ps-product__price">$55.99</p>--}}
-{{--                                    </div>--}}
-{{--                                </div>--}}
-{{--                            </div>--}}
-{{--                        </div>--}}
-{{--                        <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6 col-6 ">--}}
-{{--                            <div class="ps-product">--}}
-{{--                                <div class="ps-product__thumbnail"><a href="product-default.html"><img src="{{asset('frontend/img/products/shop/5.jpg')}}" alt=""></a>--}}
-{{--                                    <div class="ps-product__badge">-37%</div>--}}
-{{--                                    <ul class="ps-product__actions">--}}
-{{--                                        <li><a href="#" data-toggle="tooltip" data-placement="top" title="Add To Cart"><i class="icon-bag2"></i></a></li>--}}
-{{--                                        <li><a href="#" data-placement="top" title="Quick View" data-toggle="modal" data-target="#product-quickview"><i class="icon-eye"></i></a></li>--}}
-{{--                                        <li><a href="#" data-toggle="tooltip" data-placement="top" title="Add to Whishlist"><i class="icon-heart"></i></a></li>--}}
-{{--                                        <li><a href="#" data-toggle="tooltip" data-placement="top" title="Compare"><i class="icon-chart-bars"></i></a></li>--}}
-{{--                                    </ul>--}}
-{{--                                </div>--}}
-{{--                                <div class="ps-product__container"><a class="ps-product__vendor" href="#">Robert's Store</a>--}}
-{{--                                    <div class="ps-product__content"><a class="ps-product__title" href="product-default.html">Grand Slam Indoor Of Show Jumping Novel</a>--}}
-{{--                                        <div class="ps-product__rating">--}}
-{{--                                            <select class="ps-rating" data-read-only="true">--}}
-{{--                                                <option value="1">1</option>--}}
-{{--                                                <option value="1">2</option>--}}
-{{--                                                <option value="1">3</option>--}}
-{{--                                                <option value="1">4</option>--}}
-{{--                                                <option value="2">5</option>--}}
-{{--                                            </select><span>01</span>--}}
-{{--                                        </div>--}}
-{{--                                        <p class="ps-product__price sale">$32.99 <del>$41.00 </del></p>--}}
-{{--                                    </div>--}}
-{{--                                    <div class="ps-product__content hover"><a class="ps-product__title" href="product-default.html">Grand Slam Indoor Of Show Jumping Novel</a>--}}
-{{--                                        <p class="ps-product__price sale">$32.99 <del>$41.00 </del></p>--}}
-{{--                                    </div>--}}
-{{--                                </div>--}}
-{{--                            </div>--}}
-{{--                        </div>--}}
-{{--                        <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6 col-6 ">--}}
-{{--                            <div class="ps-product">--}}
-{{--                                <div class="ps-product__thumbnail"><a href="product-default.html"><img src="{{asset('frontend/img/products/shop/6.jpg')}}" alt=""></a>--}}
-{{--                                    <div class="ps-product__badge">-5%</div>--}}
-{{--                                    <ul class="ps-product__actions">--}}
-{{--                                        <li><a href="#" data-toggle="tooltip" data-placement="top" title="Add To Cart"><i class="icon-bag2"></i></a></li>--}}
-{{--                                        <li><a href="#" data-placement="top" title="Quick View" data-toggle="modal" data-target="#product-quickview"><i class="icon-eye"></i></a></li>--}}
-{{--                                        <li><a href="#" data-toggle="tooltip" data-placement="top" title="Add to Whishlist"><i class="icon-heart"></i></a></li>--}}
-{{--                                        <li><a href="#" data-toggle="tooltip" data-placement="top" title="Compare"><i class="icon-chart-bars"></i></a></li>--}}
-{{--                                    </ul>--}}
-{{--                                </div>--}}
-{{--                                <div class="ps-product__container"><a class="ps-product__vendor" href="#">Youngshop</a>--}}
-{{--                                    <div class="ps-product__content"><a class="ps-product__title" href="product-default.html">Sound Intone I65 Earphone White Version</a>--}}
-{{--                                        <div class="ps-product__rating">--}}
-{{--                                            <select class="ps-rating" data-read-only="true">--}}
-{{--                                                <option value="1">1</option>--}}
-{{--                                                <option value="1">2</option>--}}
-{{--                                                <option value="1">3</option>--}}
-{{--                                                <option value="1">4</option>--}}
-{{--                                                <option value="2">5</option>--}}
-{{--                                            </select><span>01</span>--}}
-{{--                                        </div>--}}
-{{--                                        <p class="ps-product__price sale">$100.99 <del>$106.00 </del></p>--}}
-{{--                                    </div>--}}
-{{--                                    <div class="ps-product__content hover"><a class="ps-product__title" href="product-default.html">Sound Intone I65 Earphone White Version</a>--}}
-{{--                                        <p class="ps-product__price sale">$100.99 <del>$106.00 </del></p>--}}
-{{--                                    </div>--}}
-{{--                                </div>--}}
-{{--                            </div>--}}
-{{--                        </div>--}}
-{{--                        <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6 col-6 ">--}}
-{{--                            <div class="ps-product">--}}
-{{--                                <div class="ps-product__thumbnail"><a href="product-default.html"><img src="{{asset('frontend/img/products/shop/7.jpg')}}" alt=""></a>--}}
-{{--                                    <div class="ps-product__badge">-16%</div>--}}
-{{--                                    <ul class="ps-product__actions">--}}
-{{--                                        <li><a href="#" data-toggle="tooltip" data-placement="top" title="Add To Cart"><i class="icon-bag2"></i></a></li>--}}
-{{--                                        <li><a href="#" data-placement="top" title="Quick View" data-toggle="modal" data-target="#product-quickview"><i class="icon-eye"></i></a></li>--}}
-{{--                                        <li><a href="#" data-toggle="tooltip" data-placement="top" title="Add to Whishlist"><i class="icon-heart"></i></a></li>--}}
-{{--                                        <li><a href="#" data-toggle="tooltip" data-placement="top" title="Compare"><i class="icon-chart-bars"></i></a></li>--}}
-{{--                                    </ul>--}}
-{{--                                </div>--}}
-{{--                                <div class="ps-product__container"><a class="ps-product__vendor" href="#">Youngshop</a>--}}
-{{--                                    <div class="ps-product__content"><a class="ps-product__title" href="product-default.html">Korea Long Sofa Fabric In Blue Navy Color</a>--}}
-{{--                                        <div class="ps-product__rating">--}}
-{{--                                            <select class="ps-rating" data-read-only="true">--}}
-{{--                                                <option value="1">1</option>--}}
-{{--                                                <option value="1">2</option>--}}
-{{--                                                <option value="1">3</option>--}}
-{{--                                                <option value="1">4</option>--}}
-{{--                                                <option value="2">5</option>--}}
-{{--                                            </select><span>01</span>--}}
-{{--                                        </div>--}}
-{{--                                        <p class="ps-product__price sale">$567.89 <del>$670.20 </del></p>--}}
-{{--                                    </div>--}}
-{{--                                    <div class="ps-product__content hover"><a class="ps-product__title" href="product-default.html">Korea Long Sofa Fabric In Blue Navy Color</a>--}}
-{{--                                        <p class="ps-product__price sale">$567.89 <del>$670.20 </del></p>--}}
-{{--                                    </div>--}}
-{{--                                </div>--}}
-{{--                            </div>--}}
-{{--                        </div>--}}
-{{--                        <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6 col-6 ">--}}
-{{--                            <div class="ps-product">--}}
-{{--                                <div class="ps-product__thumbnail"><a href="product-default.html"><img src="{{asset('frontend/img/products/shop/8.jpg')}}" alt=""></a>--}}
-{{--                                    <div class="ps-product__badge">-16%</div>--}}
-{{--                                    <ul class="ps-product__actions">--}}
-{{--                                        <li><a href="#" data-toggle="tooltip" data-placement="top" title="Add To Cart"><i class="icon-bag2"></i></a></li>--}}
-{{--                                        <li><a href="#" data-placement="top" title="Quick View" data-toggle="modal" data-target="#product-quickview"><i class="icon-eye"></i></a></li>--}}
-{{--                                        <li><a href="#" data-toggle="tooltip" data-placement="top" title="Add to Whishlist"><i class="icon-heart"></i></a></li>--}}
-{{--                                        <li><a href="#" data-toggle="tooltip" data-placement="top" title="Compare"><i class="icon-chart-bars"></i></a></li>--}}
-{{--                                    </ul>--}}
-{{--                                </div>--}}
-{{--                                <div class="ps-product__container"><a class="ps-product__vendor" href="#">Young shop</a>--}}
-{{--                                    <div class="ps-product__content"><a class="ps-product__title" href="product-default.html">Unero Military Classical Backpack</a>--}}
-{{--                                        <div class="ps-product__rating">--}}
-{{--                                            <select class="ps-rating" data-read-only="true">--}}
-{{--                                                <option value="1">1</option>--}}
-{{--                                                <option value="1">2</option>--}}
-{{--                                                <option value="1">3</option>--}}
-{{--                                                <option value="1">4</option>--}}
-{{--                                                <option value="2">5</option>--}}
-{{--                                            </select><span>02</span>--}}
-{{--                                        </div>--}}
-{{--                                        <p class="ps-product__price sale">$35.89 <del>$42.20 </del></p>--}}
-{{--                                    </div>--}}
-{{--                                    <div class="ps-product__content hover"><a class="ps-product__title" href="product-default.html">Unero Military Classical Backpack</a>--}}
-{{--                                        <p class="ps-product__price sale">$35.89 <del>$42.20 </del></p>--}}
-{{--                                    </div>--}}
-{{--                                </div>--}}
-{{--                            </div>--}}
-{{--                        </div>--}}
-{{--                        <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6 col-6 ">--}}
-{{--                            <div class="ps-product">--}}
-{{--                                <div class="ps-product__thumbnail"><a href="product-default.html"><img src="{{asset('frontend/img/products/shop/9.jpg')}}" alt=""></a>--}}
-{{--                                    <ul class="ps-product__actions">--}}
-{{--                                        <li><a href="#" data-toggle="tooltip" data-placement="top" title="Add To Cart"><i class="icon-bag2"></i></a></li>--}}
-{{--                                        <li><a href="#" data-placement="top" title="Quick View" data-toggle="modal" data-target="#product-quickview"><i class="icon-eye"></i></a></li>--}}
-{{--                                        <li><a href="#" data-toggle="tooltip" data-placement="top" title="Add to Whishlist"><i class="icon-heart"></i></a></li>--}}
-{{--                                        <li><a href="#" data-toggle="tooltip" data-placement="top" title="Compare"><i class="icon-chart-bars"></i></a></li>--}}
-{{--                                    </ul>--}}
-{{--                                </div>--}}
-{{--                                <div class="ps-product__container"><a class="ps-product__vendor" href="#">Young shop</a>--}}
-{{--                                    <div class="ps-product__content"><a class="ps-product__title" href="product-default.html">Rayban Rounded Sunglass Brown Color</a>--}}
-{{--                                        <div class="ps-product__rating">--}}
-{{--                                            <select class="ps-rating" data-read-only="true">--}}
-{{--                                                <option value="1">1</option>--}}
-{{--                                                <option value="1">2</option>--}}
-{{--                                                <option value="1">3</option>--}}
-{{--                                                <option value="1">4</option>--}}
-{{--                                                <option value="2">5</option>--}}
-{{--                                            </select><span>02</span>--}}
-{{--                                        </div>--}}
-{{--                                        <p class="ps-product__price">$35.89</p>--}}
-{{--                                    </div>--}}
-{{--                                    <div class="ps-product__content hover"><a class="ps-product__title" href="product-default.html">Rayban Rounded Sunglass Brown Color</a>--}}
-{{--                                        <p class="ps-product__price">$35.89</p>--}}
-{{--                                    </div>--}}
-{{--                                </div>--}}
-{{--                            </div>--}}
-{{--                        </div>--}}
-{{--                    </div>--}}
-{{--                </div>--}}
-{{--            </div>--}}
             <div class="ps-section--default">
                 <div class="ps-section__header">
                     <h3>Related products</h3>
@@ -592,14 +354,14 @@
                 <div class="ps-section__content">
                     <div class="ps-carousel--nav owl-slider" data-owl-auto="true" data-owl-loop="true" data-owl-speed="10000" data-owl-gap="30" data-owl-nav="true" data-owl-dots="true" data-owl-item="6" data-owl-item-xs="2" data-owl-item-sm="2" data-owl-item-md="3" data-owl-item-lg="4" data-owl-item-xl="5" data-owl-duration="1000" data-owl-mousedrag="on">
                         @foreach($categories as $Cat)
-                            @foreach($Cat->product as $product)
+                            @foreach($Cat->product->where('published',1) as $product)
                                 <div class="ps-product">
                                     <div class="ps-product__thumbnail"><a href="{{route('product-details',$product->slug)}}"><img src="{{url($product->thumbnail_img)}}" alt=""></a>
                                         <ul class="ps-product__actions">
                                             <li><a href="#" data-toggle="tooltip" data-placement="top" title="Add To Cart"><i class="icon-bag2"></i></a></li>
                                             <li><a href="#" data-placement="top" title="Quick View" data-toggle="modal" data-target="#product-quickview"><i class="icon-eye"></i></a></li>
                                             <li><a href="#" data-toggle="tooltip" data-placement="top" title="Add to Whishlist"><i class="icon-heart"></i></a></li>
-                                            <li><a href="#" data-toggle="tooltip" data-placement="top" title="Compare"><i class="icon-chart-bars"></i></a></li>
+{{--                                            <li><a href="#" data-toggle="tooltip" data-placement="top" title="Compare"><i class="icon-chart-bars"></i></a></li>--}}
                                         </ul>
                                     </div>
                                     <div class="ps-product__container"><a class="ps-product__vendor" href="{{route('shop.details',$shop->slug)}}">{{$shop->name}}</a>

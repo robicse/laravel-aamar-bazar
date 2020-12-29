@@ -27,14 +27,16 @@ Route::get('/blog-details', 'Frontend\BlogController@details')->name('blog-detai
 
 //Search
 Route::get('/search/product', 'Frontend\VendorController@search_product');
+Route::get('/search/shop', 'Frontend\VendorController@search_shop');
 
 
 Route::post('/registration','Frontend\FrontendController@register')->name('user.register');
 Route::get('/get-verification-code/{id}', 'Frontend\VerificationController@getVerificationCode')->name('get-verification-code');
 
 //product
-Route::get('/products/details/{slug}', 'Frontend\ProductController@ProductDetails')->name('product-details');
+Route::get('/product/{slug}', 'Frontend\ProductController@ProductDetails')->name('product-details');
 Route::post('/products/get/variant/price', 'Frontend\ProductController@ProductVariantPrice')->name('product.variant.price');
+Route::get('/product-list/{slug}', 'Frontend\ProductController@productList')->name('product.list');
 Route::post('/products/ajax/addtocart', 'Frontend\CartController@ProductAddCart')->name('product.add.cart');
 Route::get('/product/clear/cart', 'Frontend\CartController@clearCart')->name('product.clear.cart');
 Route::get('/product/remove/cart/{id}', 'Frontend\CartController@cartRemove')->name('product.cart.remove');
