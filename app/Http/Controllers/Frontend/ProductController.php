@@ -7,11 +7,14 @@ use App\Model\Brand;
 use App\Model\Category;
 use App\Model\Product;
 use App\Model\ProductStock;
+use App\Model\Shop;
+use App\Model\ShopCategory;
 use Illuminate\Http\Request;
 
 class ProductController extends Controller
 {
     public function ProductDetails($slug) {
+        echo 'okk';die();
         $productDetails = Product::where('slug',$slug)->first();
         $attributes=json_decode($productDetails->attributes);
         $options=json_decode($productDetails->choice_options);
@@ -44,5 +47,11 @@ class ProductController extends Controller
       $variant=ProductStock::where('variant',implode("-", $v))->first();
       return response()->json(['success'=> true, 'response'=>$variant]);
       //dd($variant);
+    }
+    public function productList($slug) {
+        $shop = Shop::where('slug',$slug)->first();
+        $categories = ShopCategory::where('shop_id',$shop->id)->latest()->get();
+        $products = Product::where('added_by','seller')->where('user_id',$shop->id)->where('published',1)->latest()->paginate(24);
+        return view('frontend.pages.shop.product_list',compact('shop','categories','products'));
     }
 }

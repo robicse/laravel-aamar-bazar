@@ -1,4 +1,4 @@
-<footer class="ps-footer">
+<footer class="ps-footer" style="background: #ab538acc!important;">
     <div class="ps-container">
         <div class="ps-footer__widgets">
             <aside class="widget widget_footer widget_contact-us">

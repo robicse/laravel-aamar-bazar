@@ -370,100 +370,38 @@
     </div>
     <nav class="navigation">
         <div class="ps-container">
-            <div class="navigation__left">
-                <div class="menu--product-categories">
-                    <div class="menu__toggle"><i class="icon-menu"></i><span> Shop by Department</span></div>
-                    <div class="menu__content">
-                        @php
-                            $categories = \App\Model\Category::where('is_home',1)->latest()->get();
-                        @endphp
-                        <ul class="menu--dropdown">
-                            {{--                            <li class="current-menu-item "><a href="#"><i class="icon-star"></i> Hot Promotions</a>--}}
-                            {{--                            </li>--}}
-                            @foreach($categories as $cat)
-                                <li class="current-menu-item menu-item-has-children has-mega-menu"><a href="#"><i class="icon">
+{{--            <div class="navigation__left">--}}
+{{--                <div class="menu--product-categories">--}}
+{{--                    <div class="menu__toggle"><i class="icon-menu"></i><span> Shop by Department</span></div>--}}
+{{--                    <div class="menu__content">--}}
+{{--                        @php--}}
+{{--                            $categories = \App\Model\Category::where('is_home',1)->latest()->get();--}}
+{{--                        @endphp--}}
+{{--                        <ul class="menu--dropdown">--}}
+{{--                            @foreach($categories as $cat)--}}
+{{--                                <li class="current-menu-item menu-item-has-children has-mega-menu"><a href="#"><i class="icon">--}}
 {{--                                            <img src="{{ asset('uploads/categories/'.$cat->icon) }}">--}}
-                                        </i>{{ $cat->name }}</a>
-                                    <div class="mega-menu">
-                                        <div class="mega-menu__column">
-                                            <h4>{{ $cat->name }}<span class="sub-toggle"></span></h4>
-                                            @php
-                                                $subcategories = \App\Model\Subcategory::where('category_id',$cat->id)->latest()->get();
-                                            @endphp
-                                            <ul class="mega-menu__list">
-                                                @foreach($subcategories as $subCat)
-                                                    <li class="current-menu-item "><a href="#">{{$subCat->name}}</a>
-                                                    </li>
-                                                @endforeach
-                                            </ul>
-                                        </div>
-                                        {{--                                    <div class="mega-menu__column">--}}
-                                        {{--                                        <h4>Accessories &amp; Parts<span class="sub-toggle"></span></h4>--}}
-                                        {{--                                        <ul class="mega-menu__list">--}}
-                                        {{--                                            <li class="current-menu-item "><a href="#">Digital Cables</a>--}}
-                                        {{--                                            </li>--}}
-                                        {{--                                            <li class="current-menu-item "><a href="#">Audio &amp; Video Cables</a>--}}
-                                        {{--                                            </li>--}}
-                                        {{--                                            <li class="current-menu-item "><a href="#">Batteries</a>--}}
-                                        {{--                                            </li>--}}
-                                        {{--                                        </ul>--}}
-                                        {{--                                    </div>--}}
-                                    </div>
-                                </li>
-                            @endforeach
-                            {{--                            <li class="current-menu-item "><a href="#"><i class="icon-shirt"></i> Clothing &amp; Apparel</a>--}}
-                            {{--                            </li>--}}
-                            {{--                            <li class="current-menu-item "><a href="#"><i class="icon-lampshade"></i> Home, Garden &amp; Kitchen</a>--}}
-                            {{--                            </li>--}}
-                            {{--                            <li class="current-menu-item "><a href="#"><i class="icon-heart-pulse"></i> Health &amp; Beauty</a>--}}
-                            {{--                            </li>--}}
-                            {{--                            <li class="current-menu-item "><a href="#"><i class="icon-diamond2"></i> Yewelry &amp; Watches</a>--}}
-                            {{--                            </li>--}}
-                            {{--                            <li class="current-menu-item menu-item-has-children has-mega-menu"><a href="#"><i class="icon-desktop"></i> Computer &amp; Technology</a>--}}
-                            {{--                                <div class="mega-menu">--}}
-                            {{--                                    <div class="mega-menu__column">--}}
-                            {{--                                        <h4>Computer &amp; Technologies<span class="sub-toggle"></span></h4>--}}
-                            {{--                                        <ul class="mega-menu__list">--}}
-                            {{--                                            <li class="current-menu-item "><a href="#">Computer &amp; Tablets</a>--}}
-                            {{--                                            </li>--}}
-                            {{--                                            <li class="current-menu-item "><a href="#">Laptop</a>--}}
-                            {{--                                            </li>--}}
-                            {{--                                            <li class="current-menu-item "><a href="#">Monitors</a>--}}
-                            {{--                                            </li>--}}
-                            {{--                                            <li class="current-menu-item "><a href="#">Networking</a>--}}
-                            {{--                                            </li>--}}
-                            {{--                                            <li class="current-menu-item "><a href="#">Drive &amp; Storages</a>--}}
-                            {{--                                            </li>--}}
-                            {{--                                            <li class="current-menu-item "><a href="#">Computer Components</a>--}}
-                            {{--                                            </li>--}}
-                            {{--                                            <li class="current-menu-item "><a href="#">Security &amp; Protection</a>--}}
-                            {{--                                            </li>--}}
-                            {{--                                            <li class="current-menu-item "><a href="#">Gaming Laptop</a>--}}
-                            {{--                                            </li>--}}
-                            {{--                                            <li class="current-menu-item "><a href="#">Accessories</a>--}}
-                            {{--                                            </li>--}}
-                            {{--                                        </ul>--}}
-                            {{--                                    </div>--}}
-                            {{--                                </div>--}}
-                            {{--                            </li>--}}
-                            {{--                            <li class="current-menu-item "><a href="#"><i class="icon-baby-bottle"></i> Babies &amp; Moms</a>--}}
-                            {{--                            </li>--}}
-                            {{--                            <li class="current-menu-item "><a href="#"><i class="icon-baseball"></i> Sport &amp; Outdoor</a>--}}
-                            {{--                            </li>--}}
-                            {{--                            <li class="current-menu-item "><a href="#"><i class="icon-smartphone"></i> Phones &amp; Accessories</a>--}}
-                            {{--                            </li>--}}
-                            {{--                            <li class="current-menu-item "><a href="#"><i class="icon-book2"></i> Books &amp; Office</a>--}}
-                            {{--                            </li>--}}
-                            {{--                            <li class="current-menu-item "><a href="#"><i class="icon-car-siren"></i> Cars &amp; Motocycles</a>--}}
-                            {{--                            </li>--}}
-                            {{--                            <li class="current-menu-item "><a href="#"><i class="icon-wrench"></i> Home Improments</a>--}}
-                            {{--                            </li>--}}
-                            {{--                            <li class="current-menu-item "><a href="#"><i class="icon-tag"></i> Vouchers &amp; Services</a>--}}
-                            {{--                            </li>--}}
-                        </ul>
-                    </div>
-                </div>
-            </div>
+{{--                                        </i>{{ $cat->name }}</a>--}}
+{{--                                    <div class="mega-menu">--}}
+{{--                                        <div class="mega-menu__column">--}}
+{{--                                            <h4>{{ $cat->name }}<span class="sub-toggle"></span></h4>--}}
+{{--                                            @php--}}
+{{--                                                $subcategories = \App\Model\Subcategory::where('category_id',$cat->id)->latest()->get();--}}
+{{--                                            @endphp--}}
+{{--                                            <ul class="mega-menu__list">--}}
+{{--                                                @foreach($subcategories as $subCat)--}}
+{{--                                                    <li class="current-menu-item "><a href="#">{{$subCat->name}}</a>--}}
+{{--                                                    </li>--}}
+{{--                                                @endforeach--}}
+{{--                                            </ul>--}}
+{{--                                        </div>--}}
+{{--                                    </div>--}}
+{{--                                </li>--}}
+{{--                            @endforeach--}}
+{{--                        </ul>--}}
+{{--                    </div>--}}
+{{--                </div>--}}
+{{--            </div>--}}
             <div class="navigation__right">
 
 {{--                <ul class="menu">--}}
