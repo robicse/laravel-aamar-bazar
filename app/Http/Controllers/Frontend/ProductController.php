@@ -14,7 +14,6 @@ use Illuminate\Http\Request;
 class ProductController extends Controller
 {
     public function ProductDetails($slug) {
-        echo 'okk';die();
         $productDetails = Product::where('slug',$slug)->first();
         $attributes=json_decode($productDetails->attributes);
         $options=json_decode($productDetails->choice_options);
