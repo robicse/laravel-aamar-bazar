@@ -112,7 +112,7 @@
         </li>--}}
         <li class="nav-item dropdown">
             <a class="nav-link" data-toggle="dropdown" href="#">
-                <i class="fa fa-user-circle"></i>
+                <i class="fa fa-user-circle"></i> <strong>{{Auth::user()->name}}</strong>
             </a>
             <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
                 <div class="image text-center">

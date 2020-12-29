@@ -32,7 +32,7 @@
                             </p>
                         </a>
                     </li>
-                    <li class="nav-item has-treeview {{(Request::is('seller/products*'))
+                    <li class="nav-item has-treeview {{(Request::is('seller/products*')) || (Request::is('seller/get/admin/products*'))
                     ? 'menu-open' : ''}}">
                         <a href="#" class="nav-link">
                             <i class="nav-icon fas fa-shopping-cart"></i>
@@ -45,7 +45,13 @@
                             <li class="nav-item">
                                 <a href="{{route('seller.products.index')}}" class="nav-link {{Request::is('seller/products*') ? 'active' :''}}">
                                     <i class="fa fa-{{Request::is('seller/products*') ? 'folder-open':'folder'}} nav-icon"></i>
-                                    <p>Products</p>
+                                    <p>All Products</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{{route('seller.get.admin.products')}}" class="nav-link {{Request::is('seller/get/admin/products*') ? 'active' :''}}">
+                                    <i class="fa fa-{{Request::is('seller/get/admin/products*') ? 'folder-open':'folder'}} nav-icon"></i>
+                                    <p>Admin Inserted Products</p>
                                 </a>
                             </li>
                         </ul>

@@ -124,7 +124,7 @@
                 </span>
                 <div class="dropdown-divider"></div>
                 <div class="float-left">
-                    <a href="" class="dropdown-item">
+                    <a href="{{route('seller.profile.show')}}" class="dropdown-item">
                         <i class="fa fa-user-circle-o mr-2"></i> Profile
                     </a>
                 </div>

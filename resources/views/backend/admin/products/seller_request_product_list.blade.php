@@ -1,4 +1,4 @@
-@extends('backend.seller.layouts.master')
+@extends('backend.layouts.master')
 @section("title","In House Product List")
 @push('css')
     <link rel="stylesheet" href="{{asset('backend/plugins/datatables/dataTables.bootstrap4.css')}}">
@@ -12,7 +12,7 @@
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item"><a href="{{route('seller.dashboard')}}">Home</a></li>
+                        <li class="breadcrumb-item"><a href="{{route('admin.dashboard')}}">Home</a></li>
                         <li class="breadcrumb-item active">In House Product List</li>
                     </ol>
                 </div>
@@ -27,7 +27,7 @@
                     <div class="card-header">
                         <h3 class="card-title float-left">In House Product List</h3>
                         <div class="float-right">
-                            <a href="{{route('seller.products.create')}}">
+                            <a href="{{route('admin.products.create')}}">
                                 <button class="btn btn-success">
                                     <i class="fa fa-plus-circle"></i>
                                     Add
@@ -70,16 +70,12 @@
                                         </div>
                                     </td>
                                     <td>
-                                        @if($product->admin_permission == 1)
                                         <div class="form-group col-md-2">
                                             <label class="switch" style="margin-top:40px;">
                                                 <input onchange="update_published(this)" value="{{ $product->id }}" {{$product->published == 1 ? 'checked':''}} type="checkbox" >
                                                 <span class="slider round"></span>
                                             </label>
                                         </div>
-                                        @else
-                                            <span class="badge badge-danger">Not Yet Approved</span>
-                                        @endif
                                     </td>
                                     <td>
                                         <div class="form-group col-md-2">
@@ -95,14 +91,14 @@
                                                 Actions
                                             </button>
                                             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                                <a class="bg-info dropdown-item" href="{{route('seller.products.edit',$product->id)}}">
+                                                <a class="bg-info dropdown-item" href="{{route('admin.products.edit',$product->id)}}">
                                                     <i class="fa fa-edit"></i> Edit
                                                 </a>
                                                 <button class="bg-danger dropdown-item" type="button"
                                                         onclick="deleteProduct({{$product->id}})">
                                                     <i class="fa fa-trash"></i> Delete
                                                 </button>
-                                                <form id="delete-form-{{$product->id}}" action="{{route('seller.products.destroy',$product->id)}}" method="POST" style="display: none;">
+                                                <form id="delete-form-{{$product->id}}" action="{{route('admin.products.destroy',$product->id)}}" method="POST" style="display: none;">
                                                     @csrf
                                                     @method('DELETE')
                                                 </form>
@@ -189,7 +185,7 @@
             else{
                 var status = 0;
             }
-            $.post('{{ route('seller.products.todays_deal') }}', {_token:'{{ csrf_token() }}', id:el.value, status:status}, function(data){
+            $.post('{{ route('admin.products.todays_deal') }}', {_token:'{{ csrf_token() }}', id:el.value, status:status}, function(data){
                 if(data == 1){
                     toastr.success('success', 'Todays Deal updated successfully');
                 }
@@ -208,7 +204,7 @@
                 //alert('else')
                 var status = 0;
             }
-            $.post('{{ route('seller.products.published') }}', {_token:'{{ csrf_token() }}', id:el.value, status:status}, function(data){
+            $.post('{{ route('admin.products.published') }}', {_token:'{{ csrf_token() }}', id:el.value, status:status}, function(data){
                 if(data == 1){
                     toastr.success('success', 'Published products updated successfully');
                 }
@@ -225,7 +221,7 @@
             else{
                 var status = 0;
             }
-            $.post('{{ route('seller.products.featured') }}', {_token:'{{ csrf_token() }}', id:el.value, status:status}, function(data){
+            $.post('{{ route('admin.products.featured') }}', {_token:'{{ csrf_token() }}', id:el.value, status:status}, function(data){
                 if(data == 1){
                     toastr.success('success', 'Featured products updated successfully');
                 }

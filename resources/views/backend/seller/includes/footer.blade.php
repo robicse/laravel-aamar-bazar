@@ -4,5 +4,5 @@
         Develop By <a href="https://staritltd.com/"> Star IT Ltd</a>
     </div>
     <!-- Default to the left -->
-    <strong>Copyright &copy; 2018-{{date('Y')}} <a href="#">Aamar Bazar</a>.</strong> All rights reserved.
+    <strong>Copyright &copy; 2018-{{date('Y')}} <a href="#">Mudi Hat</a>.</strong> All rights reserved.
 </footer>

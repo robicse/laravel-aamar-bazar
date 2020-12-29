@@ -275,7 +275,7 @@
                 maxCount: 10,
                 rowHeight: '200px',
                 groupClassName: 'col-md-4 col-sm-4 col-xs-6',
-                maxFileSize: '',
+                maxFileSize: '150000',
                 dropFileLabel: "Drop Here",
                 onExtensionErr: function (index, file) {
                     console.log(index, file, 'extension err');
@@ -283,7 +283,7 @@
                 },
                 onSizeErr: function (index, file) {
                     console.log(index, file, 'file size too big');
-                    alert('File size too big');
+                    alert('Image size too big. Please upload below 150kb');
                 },
                 onAddRow:function(index){
                     var altData = '<input type="text" placeholder="Image Alt" name="photos_alt[]" class="form-control" required=""></div>'
@@ -302,7 +302,7 @@
                 maxCount: 1,
                 rowHeight: '200px',
                 groupClassName: 'col-md-4 col-sm-4 col-xs-6',
-                maxFileSize: '',
+                maxFileSize: '100000',
                 dropFileLabel: "Drop Here",
                 onExtensionErr: function (index, file) {
                     console.log(index, file, 'extension err');
@@ -310,7 +310,7 @@
                 },
                 onSizeErr: function (index, file) {
                     console.log(index, file, 'file size too big');
-                    alert('File size too big');
+                    alert('Image size too big. Please upload below 100kb');
                 },
                 onAddRow:function(index){
                     var altData = '<input type="text" placeholder="Thumbnails Alt" name="thumbnail_img_alt[]" class="form-control" required=""></div>'
