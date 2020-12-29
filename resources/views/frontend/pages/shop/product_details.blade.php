@@ -172,7 +172,7 @@
                             <div class="ps-tabs">
                                 <div class="ps-tab active" id="tab-1">
                                     <div class="ps-document">
-                                        <p>{{ $productDetails->description }} </p>
+                                        <p>{!! $productDetails->description !!} </p>
                                     </div>
                                 </div>
                                 <div class="ps-tab" id="tab-3">
