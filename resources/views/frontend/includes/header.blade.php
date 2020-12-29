@@ -10,7 +10,12 @@
     <div class="header__top">
         <div class="ps-container">
             <div class="header__left">
-                {{--                <div class="menu--product-categories">--}}
+{{--                <div class="menu--toggle">--}}
+{{--                <div class=""><a class="ps-logo" href="{{url('/')}}"><img src="{{asset('frontend/img/logo-mudi-hat.png')}}" alt=""></a></div>--}}
+{{--                </div>--}}
+{{--                                <div class="menu--product-categories">--}}
+{{--                                    <div class="navigation__left"><a class="ps-logo" href="{{url('/')}}"><img src="{{asset('frontend/img/logo-mudi-hat.png')}}" alt=""></a></div>--}}
+{{--                                </div>--}}
                 {{--                    <div class="menu__toggle"><i class="icon-menu"></i><span> Shop by Department</span></div>--}}
                 {{--                    <div class="menu__content">--}}
                 {{--                        @php--}}
@@ -460,104 +465,18 @@
                 </div>
             </div>
             <div class="navigation__right">
-                <ul class="menu">
-                    <li class="menu-item"><a href="{{url('/')}}">Home</a>
-                    </li>
-                    <li class="menu-item has-mega-menu"><a href="{{route('vendor.list')}}">Shop</a><span class="sub-toggle"></span>
-                        {{--                        <div class="mega-menu">--}}
-                        {{--                            <div class="mega-menu__column">--}}
-                        {{--                                <h4>Catalog Pages<span class="sub-toggle"></span></h4>--}}
-                        {{--                                <ul class="mega-menu__list">--}}
-                        {{--                                    <li class="current-menu-item "><a href="shop-default.html">Shop Default</a>--}}
-                        {{--                                    </li>--}}
-                        {{--                                    <li class="current-menu-item "><a href="shop-default.html">Shop Fullwidth</a>--}}
-                        {{--                                    </li>--}}
-                        {{--                                    <li class="current-menu-item "><a href="shop-categories.html">Shop Categories</a>--}}
-                        {{--                                    </li>--}}
-                        {{--                                    <li class="current-menu-item "><a href="shop-sidebar.html">Shop Sidebar</a>--}}
-                        {{--                                    </li>--}}
-                        {{--                                    <li class="current-menu-item "><a href="shop-sidebar-without-banner.html">Shop Without Banner</a>--}}
-                        {{--                                    </li>--}}
-                        {{--                                    <li class="current-menu-item "><a href="shop-carousel.html">Shop Carousel</a>--}}
-                        {{--                                    </li>--}}
-                        {{--                                </ul>--}}
-                        {{--                            </div>--}}
-                        {{--                            <div class="mega-menu__column">--}}
-                        {{--                                <h4>Product Layout<span class="sub-toggle"></span></h4>--}}
-                        {{--                                <ul class="mega-menu__list">--}}
-                        {{--                                    <li class="current-menu-item "><a href="product-default.html">Default</a>--}}
-                        {{--                                    </li>--}}
-                        {{--                                    <li class="current-menu-item "><a href="product-extend.html">Extended</a>--}}
-                        {{--                                    </li>--}}
-                        {{--                                    <li class="current-menu-item "><a href="product-full-content.html">Full Content</a>--}}
-                        {{--                                    </li>--}}
-                        {{--                                    <li class="current-menu-item "><a href="product-box.html">Boxed</a>--}}
-                        {{--                                    </li>--}}
-                        {{--                                    <li class="current-menu-item "><a href="product-sidebar.html">Sidebar</a>--}}
-                        {{--                                    </li>--}}
-                        {{--                                    <li class="current-menu-item "><a href="product-default.html">Fullwidth</a>--}}
-                        {{--                                    </li>--}}
-                        {{--                                </ul>--}}
-                        {{--                            </div>--}}
-                        {{--                            <div class="mega-menu__column">--}}
-                        {{--                                <h4>Product Types<span class="sub-toggle"></span></h4>--}}
-                        {{--                                <ul class="mega-menu__list">--}}
-                        {{--                                    <li class="current-menu-item "><a href="product-default.html">Simple</a>--}}
-                        {{--                                    </li>--}}
-                        {{--                                    <li class="current-menu-item "><a href="product-default.html">Color Swatches</a>--}}
-                        {{--                                    </li>--}}
-                        {{--                                    <li class="current-menu-item "><a href="product-image-swatches.html">Images Swatches</a>--}}
-                        {{--                                    </li>--}}
-                        {{--                                    <li class="current-menu-item "><a href="product-countdown.html">Countdown</a>--}}
-                        {{--                                    </li>--}}
-                        {{--                                    <li class="current-menu-item "><a href="product-multi-vendor.html">Multi-Vendor</a>--}}
-                        {{--                                    </li>--}}
-                        {{--                                    <li class="current-menu-item "><a href="product-instagram.html">Instagram</a>--}}
-                        {{--                                    </li>--}}
-                        {{--                                    <li class="current-menu-item "><a href="product-affiliate.html">Affiliate</a>--}}
-                        {{--                                    </li>--}}
-                        {{--                                    <li class="current-menu-item "><a href="product-on-sale.html">On sale</a>--}}
-                        {{--                                    </li>--}}
-                        {{--                                    <li class="current-menu-item "><a href="product-video.html">Video Featured</a>--}}
-                        {{--                                    </li>--}}
-                        {{--                                    <li class="current-menu-item "><a href="product-groupped.html">Grouped</a>--}}
-                        {{--                                    </li>--}}
-                        {{--                                    <li class="current-menu-item "><a href="product-out-stock.html">Out Of Stock</a>--}}
-                        {{--                                    </li>--}}
-                        {{--                                </ul>--}}
-                        {{--                            </div>--}}
-                        {{--                            <div class="mega-menu__column">--}}
-                        {{--                                <h4>Woo Pages<span class="sub-toggle"></span></h4>--}}
-                        {{--                                <ul class="mega-menu__list">--}}
-                        {{--                                    <li class="current-menu-item "><a href="shopping-cart.html">Shopping Cart</a>--}}
-                        {{--                                    </li>--}}
-                        {{--                                    <li class="current-menu-item "><a href="checkout.html">Checkout</a>--}}
-                        {{--                                    </li>--}}
-                        {{--                                    <li class="current-menu-item "><a href="whishlist.html">Whishlist</a>--}}
-                        {{--                                    </li>--}}
-                        {{--                                    <li class="current-menu-item "><a href="compare.html">Compare</a>--}}
-                        {{--                                    </li>--}}
-                        {{--                                    <li class="current-menu-item "><a href="order-tracking.html">Order Tracking</a>--}}
-                        {{--                                    </li>--}}
-                        {{--                                    <li class="current-menu-item "><a href="my-account.html">My Account</a>--}}
-                        {{--                                    </li>--}}
-                        {{--                                    <li class="current-menu-item "><a href="checkout-2.html">Checkout 2</a>--}}
-                        {{--                                    </li>--}}
-                        {{--                                    <li class="current-menu-item "><a href="shipping.html">Shipping</a>--}}
-                        {{--                                    </li>--}}
-                        {{--                                    <li class="current-menu-item "><a href="payment.html">Payment</a>--}}
-                        {{--                                    </li>--}}
-                        {{--                                    <li class="current-menu-item "><a href="payment-success.html">Payment Success</a>--}}
-                        {{--                                    </li>--}}
-                        {{--                                </ul>--}}
-                        {{--                            </div>--}}
-                        {{--                        </div>--}}
-                    </li>
-                    <li class="menu-item has-mega-menu"><a href="{{route('about-us')}}">About Us</a>
-                    <li class="menu-item has-mega-menu"><a href="{{route('blog-list')}}">Blogs</a>
-                    <li class="menu-item has-mega-menu"><a href="{{route('contact')}}">Contact Us</a>
-                    </li>
-                </ul>
+
+{{--                <ul class="menu">--}}
+{{--                    <li class="menu-item"><a href="{{url('/')}}">Home</a>--}}
+{{--                    </li>--}}
+{{--                    <li class="menu-item has-mega-menu"><a href="{{route('vendor.list')}}">Shop</a><span class="sub-toggle"></span>--}}
+{{--                    </li>--}}
+{{--                    <li class="menu-item has-mega-menu"><a href="{{route('about-us')}}">About Us</a>--}}
+{{--                    <li class="menu-item has-mega-menu"><a href="{{route('blog-list')}}">Blogs</a>--}}
+{{--                    <li class="menu-item has-mega-menu"><a href="{{route('contact')}}">Contact Us</a>--}}
+{{--                    </li>--}}
+{{--                </ul>--}}
+
     {{--    <nav class="navigation">--}}
     {{--        <div class="ps-container">--}}
     {{--            <div class="navigation__left">--}}

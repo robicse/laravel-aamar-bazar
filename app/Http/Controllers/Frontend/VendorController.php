@@ -18,7 +18,7 @@ class VendorController extends Controller
         //dd($slug);
         $shop=Shop::where('slug',$slug)->first();
 
-        $products=Product::where('added_by','seller')->where('user_id',$shop->user_id)->get();
+        $products=Product::where('added_by','seller')->where('user_id',$shop->user_id)->where('published',1)->latest()->take(8)->get();
         $shopCat=ShopCategory::where('shop_id',$shop->id)->latest()->get();
 
         return view('frontend.pages.vendor.vendor_store',compact('shop','products','shopCat'));
@@ -48,8 +48,16 @@ class VendorController extends Controller
     }
     public function search_product(Request $request){
         $name = $request->get('q');
+        //$shops = Shop::where('id','shop_id')->first();
+        //dd($shops);
         $product = Product::where('name', 'LIKE', '%'. $name. '%')->limit(5)->get();
-        //dd($product);
+
         return $product;
+    }
+    public function search_shop(Request $request){
+        $name = $request->get('q');
+        $shop = Shop::where('name', 'LIKE', '%'. $name. '%')->limit(5)->get();
+        //dd($product);
+        return $shop;
     }
 }
