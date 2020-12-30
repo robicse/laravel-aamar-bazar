@@ -9,6 +9,7 @@ use App\Model\Product;
 use App\Model\ProductStock;
 use App\Model\Shop;
 use App\Model\ShopCategory;
+use App\Model\Subcategory;
 use Illuminate\Http\Request;
 
 class ProductController extends Controller
@@ -50,7 +51,17 @@ class ProductController extends Controller
     public function productList($slug) {
         $shop = Shop::where('slug',$slug)->first();
         $categories = ShopCategory::where('shop_id',$shop->id)->latest()->get();
-        $products = Product::where('added_by','seller')->where('user_id',$shop->id)->where('published',1)->latest()->paginate(24);
+        $products = Product::where('added_by','seller')->where('user_id',$shop->id)->where('published',1)->where('featured',1)->latest()->paginate(24);
         return view('frontend.pages.shop.product_list',compact('shop','categories','products'));
+    }
+    public function productSubCategory($name,$slug,$sub) {
+//        dd('sffk');
+        $shops = Shop::where('slug',$name)->first();
+        $categories = Category::where('slug',$slug)->first();
+        $subcategories = Subcategory::where('slug',$sub)->first();
+        $shopCat = ShopCategory::where('shop_id',$shops->id)->latest()->get();
+        $products = Product::where('category_id',$categories->id)->where('subcategory_id',$subcategories->id)->where('user_id',$shops->user_id)->where('published',1)->where('featured',1)->latest()->paginate(24);
+//        dd($products);
+        return view('frontend.pages.shop.products_by_subcategory',compact('shops','categories','subcategories','shopCat','products'));
     }
 }

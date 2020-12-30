@@ -950,7 +950,7 @@ h6 {
 p {
     font-size: 1.4rem;
     line-height: 1.6em;
-    color: #666;
+    color: #A7A7AA;
 }
 
 p span {
@@ -1489,7 +1489,7 @@ body {
 
 .ps-list--link li a {
     display: inline-block;
-    color: #666;
+    color: #A6A6A9;
     line-height: 20px;
     position: relative;
 }
@@ -7294,7 +7294,7 @@ textarea.form-control {
 .widget_footer .widget-title {
     font-size: 16px;
     margin-bottom: 30px;
-    color: #000;
+    color: #cacacc;
     font-weight: 600;
 }
 

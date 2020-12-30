@@ -1,4 +1,4 @@
-<footer class="ps-footer" style="background: #ab538acc!important;">
+<footer class="ps-footer" style="background: #26262F!important;">
     <div class="ps-container">
         <div class="ps-footer__widgets">
             <aside class="widget widget_footer widget_contact-us">
@@ -7,12 +7,6 @@
                     <p>Call us 24/7</p>
                     <h3>1800 97 97 69</h3>
                     <p>502 New Design Str, Melbourne, Australia <br><a href="http://nouthemes.net/cdn-cgi/l/email-protection#fc9f9392889d9f88bc919d8e889a898e85d29f93"><span class="__cf_email__" data-cfemail="7714181903161403371a1605031102050e591418">[email&#160;protected]</span></a></p>
-                    <ul class="ps-list--social">
-                        <li><a class="facebook" href="#"><i class="fa fa-facebook"></i></a></li>
-                        <li><a class="twitter" href="#"><i class="fa fa-twitter"></i></a></li>
-                        <li><a class="google-plus" href="#"><i class="fa fa-google-plus"></i></a></li>
-                        <li><a class="instagram" href="#"><i class="fa fa-instagram"></i></a></li>
-                    </ul>
                 </div>
             </aside>
             <aside class="widget widget_footer">
@@ -23,6 +17,12 @@
                     <li><a href="#">Shipping</a></li>
                     <li><a href="#">Return</a></li>
                     <li><a href="faqs.html">FAQs</a></li>
+                </ul>
+                <ul class="ps-list--social text-center" style="padding-top: 10px;">
+                    <li><a class="facebook" href="#"><i class="fa fa-facebook"></i></a></li>
+                    <li><a class="twitter" href="#"><i class="fa fa-twitter"></i></a></li>
+                    <li><a class="google-plus" href="#"><i class="fa fa-google-plus"></i></a></li>
+                    <li><a class="instagram" href="#"><i class="fa fa-instagram"></i></a></li>
                 </ul>
             </aside>
             <aside class="widget widget_footer">
