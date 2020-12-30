@@ -23,15 +23,16 @@ class ShopController extends Controller
         return response()->json(['success'=> true, 'response'=>$data]);
     }
 
-    public function create()
+    public function dataUpdate($data)
     {
-        $shop_set = Shop::where('user_id',Auth::id())->latest()->first();
+        $shop_set = Shop::where('user_id',Auth::id())->first();
 //        dd(Auth::id());
         return view('backend.seller.settings.shop.create',compact('shop_set'));
     }
 
     public function store(Request $request)
     {
+        //dd($request->all());
         $new_shop = Shop::where('user_id',Auth::id())->first();
         $seller = Seller::where('user_id',Auth::id())->first();
         if(empty($new_shop)){
@@ -44,26 +45,28 @@ class ShopController extends Controller
             $shop->latitude = $request->latitude;
             $shop->longitude = $request->longitude;
             $shop->user_id = Auth::id();
-            $shop->seller_id = $request->$seller->id;
+            $shop->seller_id = $seller->id;
+            $shop->about = $request->about;
             $shop->meta_title = $request->meta_title;
             $shop->meta_description = $request->meta_description;
+            $shop->sliders = [];
 //        $sliders = array();
 
-            if($request->has('previous_sliders')){
+            /*if($request->has('previous_sliders')){
                 $sliders = $request->previous_sliders;
             }
             else{
                 $sliders = array();
-            }
+            }*/
 
-            if($request->hasFile('sliders')){
+            /*if($request->hasFile('sliders')){
                 foreach ($request->sliders as $key => $slider) {
                     array_push($sliders, $slider->store('uploads/shop/sliders'));
                 }
-            }
+            }*/
 
-            $shop->sliders = json_encode($sliders);
-
+            //$shop->sliders = json_encode($sliders);
+            $shop->logo = $request->previous_thumbnail_img;
             if($request->hasFile('logo')){
                 $shop->logo = $request->logo->store('uploads/shop/logo');
                 //ImageOptimizer::optimize(base_path('public/').$product->thumbnail_img);
@@ -71,7 +74,7 @@ class ShopController extends Controller
             $shop->save();
 
             Toastr::success("Shop Inserted Successfully","Success");
-            return redirect()->route('seller.shop.create');
+            return redirect()->back();
         }else {
             $new_shop->name = $request->name;
             $new_shop->slug = Str::slug($request->name).'-'.Auth::id();
@@ -81,7 +84,8 @@ class ShopController extends Controller
             $new_shop->latitude = $request->latitude;
             $new_shop->longitude = $request->longitude;
             $new_shop->user_id = Auth::id();
-            $new_shop->seller_id = $request->$seller->id;
+            $new_shop->seller_id = $seller->id;
+            $new_shop->about = $request->about;
             $new_shop->meta_title = $request->meta_title;
             $new_shop->meta_description = $request->meta_description;
 //        $sliders = array();
@@ -105,10 +109,10 @@ class ShopController extends Controller
                 $new_shop->logo = $request->logo->store('uploads/shop/logo');
                 //ImageOptimizer::optimize(base_path('public/').$product->thumbnail_img);
             }
-            $new_shop->update();
+            $new_shop->save();
 
             Toastr::success("Shop Updated Successfully","Success");
-            return redirect()->route('seller.shop.create');
+            return redirect()->back();
         }
 
     }

@@ -52,7 +52,7 @@
                                 </li>
                             </ul>
 
-                            <a href="{{route('seller.shop.create')}}" class="btn btn-primary btn-block"><b>Go To Shop</b></a>
+                            <a href="{{route('shop.details',$shopInfo->slug)}}" target="_blank" class="btn btn-primary btn-block"><b>Go To Shop</b></a>
                         </div>
                         <!-- /.card-body -->
                     </div>
@@ -68,7 +68,7 @@
                             <strong><i class="fas fa-book mr-1"></i> Description</strong>
 
                             <p class="text-muted">
-                                B.S. in Computer Science from the University of Tennessee at Knoxville
+                                {{$shopInfo->about}}
                             </p>
                         </div>
                         <!-- /.card-body -->
@@ -125,8 +125,9 @@
                                 </div>
                                 <!-- /.tab-pane -->
                                 <div class="tab-pane" id="edit">
-                                    <form class="form-horizontal" action="{{route('seller.profile.update')}}" method="post">
+                                    <form class="form-horizontal" action="{{route('seller.profile.update',$userInfo->id)}}" method="post" enctype="multipart/form-data">
                                         @csrf
+                                        @method('PUT')
                                         <div class="form-group row">
                                             <label for="inputName" class="col-sm-2 col-form-label">Name</label>
                                             <div class="col-sm-10">
@@ -149,6 +150,12 @@
                                             <label for="shop_name" class="col-sm-2 col-form-label">Shop Name</label>
                                             <div class="col-sm-10">
                                                 <input type="text" value="{{$shopInfo->name}}" name="shop_name" class="form-control" id="shop_name" >
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label for="avatar_original" class="col-sm-2 col-form-label">Profile Image <small class="text-danger">(Photo size: 300x300 and below 100kb)</small></label>
+                                            <div class="col-sm-10">
+                                                <input type="file"  name="avatar_original" class="form-control"  >
                                             </div>
                                         </div>
                                         <div class="form-group row">

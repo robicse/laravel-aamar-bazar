@@ -241,7 +241,7 @@
         jQuery(document).ready(function($) {
             var product = new Bloodhound({
                 remote: {
-                    url: '/search/product?q=%QUERY%',
+                    url: '/search/product?q=%QUERY%&storeId={{$shop->id}}',
                     wildcard: '%QUERY%'
                 },
                 datumTokenizer: Bloodhound.tokenizers.whitespace('searchName'),
