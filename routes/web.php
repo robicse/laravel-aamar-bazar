@@ -38,6 +38,7 @@ Route::get('/product/{slug}', 'Frontend\ProductController@ProductDetails')->name
 Route::post('/products/get/variant/price', 'Frontend\ProductController@ProductVariantPrice')->name('product.variant.price');
 Route::get('/products/{slug}', 'Frontend\ProductController@productList')->name('product.list');
 Route::get('/products/{name}/{slug}/{sub}', 'Frontend\ProductController@productSubCategory')->name('product.by.subcategory');
+Route::get('/products/{name}/{slug}', 'Frontend\ProductController@productByBrand')->name('product.by.brand');
 Route::post('/products/ajax/addtocart', 'Frontend\CartController@ProductAddCart')->name('product.add.cart');
 Route::get('/product/clear/cart', 'Frontend\CartController@clearCart')->name('product.clear.cart');
 Route::get('/product/remove/cart/{id}', 'Frontend\CartController@cartRemove')->name('product.cart.remove');

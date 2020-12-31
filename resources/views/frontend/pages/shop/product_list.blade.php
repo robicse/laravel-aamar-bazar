@@ -20,7 +20,6 @@
                             <li class="current-menu-item menu-item-has-children"><a href=""> {{$Cat->category->name}} </a><span class="sub-toggle"><i class="fa fa-angle-down"></i></span>
                                 @php
                                     $subcategories = \App\Model\Subcategory::where('category_id',$Cat->category_id)->latest()->get();
-//@dd($subcategories)
                                 @endphp
                                 <ul class="sub-menu">
                                     @foreach($subcategories as $subCat)
@@ -50,50 +49,16 @@
                             <button><i class="icon-magnifier"></i></button>
                         </form>
                         <figure class="ps-custom-scrollbar" data-height="250">
+                            @foreach($shopBrands as $brand)
                             <div class="ps-checkbox">
-                                <input class="form-control" type="checkbox" id="brand-1" name="brand">
-                                <label for="brand-1">Adidas (3)</label>
+                                <input class="form-control" type="checkbox" id="{{$brand->brand_id}}" name="brand">
+                                <label for="{{$brand->brand_id}}">{{ $brand->brand->name }}</label>
                             </div>
-                            <div class="ps-checkbox">
-                                <input class="form-control" type="checkbox" id="brand-2" name="brand">
-                                <label for="brand-2">Amcrest (1)</label>
-                            </div>
-                            <div class="ps-checkbox">
-                                <input class="form-control" type="checkbox" id="brand-3" name="brand">
-                                <label for="brand-3">Apple (2)</label>
-                            </div>
-                            <div class="ps-checkbox">
-                                <input class="form-control" type="checkbox" id="brand-4" name="brand">
-                                <label for="brand-4">Asus (19)</label>
-                            </div>
-                            <div class="ps-checkbox">
-                                <input class="form-control" type="checkbox" id="brand-5" name="brand">
-                                <label for="brand-5">Baxtex (20)</label>
-                            </div>
-                            <div class="ps-checkbox">
-                                <input class="form-control" type="checkbox" id="brand-6" name="brand">
-                                <label for="brand-6">Adidas (11)</label>
-                            </div>
-                            <div class="ps-checkbox">
-                                <input class="form-control" type="checkbox" id="brand-7" name="brand">
-                                <label for="brand-7">Casio (9)</label>
-                            </div>
-                            <div class="ps-checkbox">
-                                <input class="form-control" type="checkbox" id="brand-8" name="brand">
-                                <label for="brand-8">Electrolux (0)</label>
-                            </div>
-                            <div class="ps-checkbox">
-                                <input class="form-control" type="checkbox" id="brand-9" name="brand">
-                                <label for="brand-9">Gallaxy (0)</label>
-                            </div>
-                            <div class="ps-checkbox">
-                                <input class="form-control" type="checkbox" id="brand-10" name="brand">
-                                <label for="brand-10">Samsung (0)</label>
-                            </div>
-                            <div class="ps-checkbox">
-                                <input class="form-control" type="checkbox" id="brand-11" name="brand">
-                                <label for="brand-11">Sony (0)</label>
-                            </div>
+                            @endforeach
+{{--                            <div class="ps-checkbox">--}}
+{{--                                <input class="form-control" type="checkbox" id="brand-11" name="brand">--}}
+{{--                                <label for="brand-11">Sony (0)</label>--}}
+{{--                            </div>--}}
                         </figure>
                         <figure>
                             <h4 class="widget-title">By Price</h4>

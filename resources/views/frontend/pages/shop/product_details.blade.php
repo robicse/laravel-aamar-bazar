@@ -43,6 +43,9 @@
             </ul>
         </div>
     </div>
+    @php
+        $shop=\App\Model\Shop::where('user_id',$productDetails->user_id)->first();
+    @endphp
     <div class="ps-page--product">
         <div class="ps-container">
             <div class="ps-page__container">
@@ -76,7 +79,7 @@
                             <div class="ps-product__info">
                                 <h1>{{ $productDetails->name }}</h1>
                                 <div class="ps-product__meta">
-                                    <p>Brand:<a href="shop-default.html">{{ $productDetails->brand->name }}</a></p>
+                                    <p>Brand:<a href="{{url('/products/'.$shop->slug.'/'.$productDetails->brand->slug)}}">{{ $productDetails->brand->name }}</a></p>
                                     <div class="ps-product__rating">
                                         <select class="ps-rating" data-read-only="true">
                                             <option value="1">1</option>
@@ -89,9 +92,7 @@
                                 </div>
                                 <h4 class="ps-product__price">৳<span class="price ps-product__price">{{ $price }}</span>/{{ $productDetails->unit }}</h4>
                                 <div class="ps-product__desc">
-                                    @php
-                                    $shop=\App\Model\Shop::where('user_id',$productDetails->user_id)->first();
-                                    @endphp
+
                                     <p>Sold By:<a href="{{route('shop.details',$shop->slug)}}"><strong> {{ $shop->name }}</strong></a></p>
                                     <ul class="ps-list--dot">
                                         <li>  {!!  Str::limit($productDetails->description, 40)!!}</li>

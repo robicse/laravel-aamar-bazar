@@ -8,6 +8,7 @@ use App\Model\Category;
 use App\Model\Product;
 use App\Model\ProductStock;
 use App\Model\Shop;
+use App\Model\ShopBrand;
 use App\Model\ShopCategory;
 use App\Model\Subcategory;
 use Illuminate\Http\Request;
@@ -51,10 +52,11 @@ class ProductController extends Controller
     public function productList($slug) {
         $shop = Shop::where('slug',$slug)->first();
         $categories = ShopCategory::where('shop_id',$shop->id)->latest()->get();
+        $shopBrands = ShopBrand::where('shop_id',$shop->id)->latest()->get();
 
 //        $products = Product::where('added_by','seller')->where('user_id',$shop->id)->where('published',1)->where('featured',1)->latest()->paginate(24);
         $products = Product::where('added_by','seller')->where('user_id',$shop->user_id)->where('published',1)->latest()->paginate(24);
-        return view('frontend.pages.shop.product_list',compact('shop','categories','products'));
+        return view('frontend.pages.shop.product_list',compact('shop','categories','shopBrands','products'));
     }
     public function productSubCategory($name,$slug,$sub) {
 //        dd('sffk');
@@ -62,8 +64,17 @@ class ProductController extends Controller
         $categories = Category::where('slug',$slug)->first();
         $subcategories = Subcategory::where('slug',$sub)->first();
         $shopCat = ShopCategory::where('shop_id',$shops->id)->latest()->get();
+        $shopBrand = ShopBrand::where('shop_id',$shops->id)->latest()->get();
         $products = Product::where('category_id',$categories->id)->where('subcategory_id',$subcategories->id)->where('user_id',$shops->user_id)->where('published',1)->where('featured',1)->latest()->paginate(24);
 //        dd($products);
-        return view('frontend.pages.shop.products_by_subcategory',compact('shops','categories','subcategories','shopCat','products'));
+        return view('frontend.pages.shop.products_by_subcategory',compact('shops','categories','subcategories','shopBrand','shopCat','products'));
+    }
+    public function productByBrand($name,$slug) {
+        $shops = Shop::where('slug',$name)->first();
+        $brands = Brand::where('slug',$slug)->first();
+        $shopCat = ShopCategory::where('shop_id',$shops->id)->latest()->get();
+        $products = Product::where('brand_id',$brands->id)->where('user_id',$shops->user_id)->where('published',1)->latest()->paginate(24);
+//        dd($products);
+        return view('frontend.pages.shop.products_by_brands',compact('shops','brands','shopCat','products'));
     }
 }
