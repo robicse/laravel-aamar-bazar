@@ -37,19 +37,19 @@
                             <div class="form-group ">
                                 <label for="name">Product Name</label>
                                 <input type="text" class="form-control " name="name" id="name" placeholder="Enter Name"
-                                       onchange="update_sku()" required>
+                                       onchange="update_sku()" value="{{$product->name}}" required>
                             </div>
                             <div class="form-group">
                                 <label for="slug">Slug (SEO Url) <small class="text-danger">(requried* and
                                         unique)</small></label>
                                 <input type="text" id="slug" name="slug" class="form-control"
-                                       placeholder="Slug (e.g. this-is-test-product-title)">
+                                       placeholder="Slug (e.g. this-is-test-product-title)" value="{{$product->slug}}">
                             </div>
                             <div class="form-group">
                                 <label for="category_id">Category</label>
                                 <select name="category_id" id="category_id" class="form-control demo-select2" required>
                                     @foreach($categories as $category)
-                                        <option value="{{$category->id}}">{{$category->name}}</option>
+                                        <option value="{{$category->id}}" {{$product->category_id == $category->id ? 'selected' : ''}}>{{$category->name}}</option>
                                     @endforeach
                                 </select>
                             </div>
@@ -63,7 +63,7 @@
                             <div class="form-group">
                                 <label for="">Sub Subcategory</label>
                                 <select name="subsubcategory_id" id="subsubcategory_id"
-                                        class="form-control demo-select2" required>
+                                        class="form-control demo-select2" >
 
                                 </select>
                             </div>
@@ -78,7 +78,7 @@
                             <div class="form-group ">
                                 <label for="name">Unit</label>
                                 <input type="text" class="form-control " name="unit" id="unit"
-                                       placeholder="Unit (e.g. KG, Pc etc)" required>
+                                       placeholder="Unit (e.g. KG, Pc etc)" value="{{$product->unit}}" required>
                             </div>
                         </div>
                     </div>
@@ -90,7 +90,19 @@
                         <div class="form-group">
                             <label class="control-label ml-3">Gallery Images</label>
                             <div class="ml-3 mr-3">
-                                <div class="row" id="photos"></div>
+                                <div class="row" id="photos">
+                                    @if(is_array(json_decode($product->photos)))
+                                        @foreach (json_decode($product->photos) as $key => $photo)
+                                            <div class="col-md-4 col-sm-4 col-xs-6">
+                                                <div class="img-upload-preview">
+                                                    <img loading="lazy"  src="{{url($photo)}}" alt="" class="img-responsive">
+                                                    <input type="hidden" name="previous_photos[]" value="{{url($photo)}}">
+                                                    <button type="button" class="btn btn-danger close-btn remove-files"><i class="fa fa-times"></i></button>
+                                                </div>
+                                            </div>
+                                        @endforeach
+                                    @endif
+                                </div>
                                 <div class="row" id="photos_alt"></div>
                             </div>
                         </div>
@@ -98,14 +110,24 @@
                             <label class="control-label ml-3">Thumbnail Images <small class="text-danger">(Size: 290 *
                                     300px)</small></label>
                             <div class="ml-3 mr-3">
-                                <div class="row" id="thumbnail_img"></div>
+                                <div class="row" id="thumbnail_img">
+                                    @if ($product->thumbnail_img != null)
+                                        <div class="col-md-4 col-sm-4 col-xs-6">
+                                            <div class="img-upload-preview">
+                                                <img loading="lazy"  src="{{ url($product->thumbnail_img) }}" alt="" class="img-responsive">
+                                                <input type="hidden" name="previous_thumbnail_img" value="{{ url($product->thumbnail_img) }}">
+                                                <button type="button" class="btn btn-danger close-btn remove-files"><i class="fa fa-times"></i></button>
+                                            </div>
+                                        </div>
+                                    @endif
+                                </div>
                                 <div class="row" id="thumbnail_img_alt"></div>
                             </div>
                         </div>
                         <div class="form-group ml-3 mr-3">
                             <label for="video_link">Video Url</label>
                             <input type="url" class="form-control " name="video_link" id="video_link"
-                                   placeholder="Enter youtube video link">
+                                   placeholder="Enter youtube video link" value="{{$product->video_link}}">
                         </div>
                     </div>
                 </div>
@@ -120,11 +142,11 @@
                                     <div class="row">
                                         <div class="form-group col-md-6">
                                             <label for="unit_price">Unit price</label>
-                                            <input type="number" min="0" value="0" step="0.01" placeholder="Unit price" name="unit_price" class="form-control" required="">
+                                            <input type="number" min="0" value="{{$product->unit_price}}" step="0.01" placeholder="Unit price" name="unit_price" class="form-control" required="">
                                         </div>
                                         <div class="form-group col-md-6">
                                             <label for="purchase_price">Purchase price</label>
-                                            <input type="number" min="0" value="0" step="0.01"
+                                            <input type="number" min="0" value="{{$product->purchase_price}}" step="0.01"
                                                    placeholder="Purchase price" name="purchase_price"
                                                    class="form-control" required="">
                                         </div>
@@ -132,19 +154,19 @@
                                     <div class="row">
                                         <div class="form-group col-md-4">
                                             <label for="unit_price">Quantity</label>
-                                            <input type="number" min="0" value="0" step="1" placeholder="Quantity" name="current_stock" class="form-control" required="">
+                                            <input type="number" min="0" value="{{$product->current_stock}}" step="1" placeholder="Quantity" name="current_stock" class="form-control" required="">
                                         </div>
                                         <div class="form-group col-md-5">
                                             <label for="discount">Discount</label>
-                                            <input type="number" min="0" value="0" step="0.01" placeholder="Discount"
+                                            <input type="number" min="0" value="{{$product->discount}}" step="0.01" placeholder="Discount"
                                                    name="discount" class="form-control" required="">
                                         </div>
                                         <div class="form-group col-md-3">
                                             <label for="discount">Discount Type</label>
                                             <select class="form-control " name="discount_type" tabindex="-1"
                                                     aria-hidden="true">
-                                                <option value="amount">Flat</option>
-                                                <option value="percent">Percent</option>
+                                                <option value="amount" {{$product->discount_type == 'amount' ? 'selected' : ''}}>Flat</option>
+                                                <option value="percent" {{$product->discount_type == 'percent' ? 'selected' : ''}}>Percent</option>
                                             </select>
                                         </div>
                                     </div>
@@ -153,17 +175,20 @@
                                 <div class="col-md-6">
                                     <div class="row">
                                         <div class="form-group col-md-10">
-                                            <label for="discount">Colors</label>
-                                            <select class="form-control color-var-select" name="colors[]" id="colors"
-                                                    multiple disabled>
-                                                @foreach (\App\Model\Color::orderBy('name', 'asc')->get() as $key => $color)
-                                                    <option value="{{ $color->code }}">{{ $color->name }}</option>
+                                            <label for="colors">Colors</label>
+                                            @php
+                                              $colors =  \App\Model\Color::orderBy('name', 'asc')->get()
+                                            @endphp
+                                            {{dd($product->colors[0]['name'])}}
+                                            <select class="form-control color-var-select" name="colors[]" id="colors" multiple>
+                                                @foreach ($colors as $key => $color)
+                                                    <option value="{{ $color->code }}" <?php if(in_array($color->code, json_decode($product->colors))) echo 'selected'?> >{{ $color->name }}</option>
                                                 @endforeach
                                             </select>
                                         </div>
                                         <div class="form-group col-md-2">
                                             <label class="switch" style="margin-top:40px;">
-                                                <input value="1" type="checkbox" name="colors_active">
+                                                <input value="1" type="checkbox" name="colors_active" <?php if(count(json_decode($product->colors)) > 0) echo "checked";?> >
                                                 <span class="slider round"></span>
                                             </label>
                                         </div>
@@ -210,18 +235,18 @@
                                 <div class="col-md-6" style="border-right: 1px solid #ddd;">
                                     <div class="form-group">
                                         <label for="description">Product Description</label>
-                                        <textarea name="description" id="description"  class="form-control"></textarea>
+                                        <textarea name="description" id="description"  class="form-control">{{$product->description}}</textarea>
                                     </div>
                                 </div>
 
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="meta_description">Meta Title</label>
-                                        <input type="text" class="form-control" name="meta_title" placeholder="Meta Title">
+                                        <input type="text" class="form-control" name="meta_title" placeholder="Meta Title" value="{{$product->meta_title}}">
                                     </div>
                                     <div class="form-group">
                                         <label for="meta_description">Meta Description</label>
-                                        <textarea name="meta_description" id="meta_description" rows="5"  class="form-control"></textarea>
+                                        <textarea name="meta_description" id="meta_description" rows="5"  class="form-control">{{$product->meta_description}}</textarea>
                                     </div>
                                 </div>
                             </div>
@@ -364,8 +389,13 @@
                         value: data[i].id,
                         text: data[i].name
                     }));
-                    $('.demo-select2').select2();
                 }
+                $("#subcategory_id > option").each(function() {
+                    if(this.value == '{{$product->subcategory_id}}'){
+                        $("#subcategory_id").val(this.value).change();
+                    }
+                });
+                $('.demo-select2').select2();
                 get_subsubcategories_by_subcategory();
             });
         }
@@ -389,6 +419,11 @@
                         text: data[i].name
                     }));
                 }
+                $("#subsubcategory_id > option").each(function() {
+                    if(this.value == '{{$product->subsubcategory_id}}'){
+                        $("#subsubcategory_id").val(this.value).change();
+                    }
+                });
                 $('.demo-select2').select2();
                 $('.color-var-select').select2();
 
@@ -451,15 +486,41 @@
         }
 
         //attribute choose
-        $('#choice_attributes').on('change', function () {
-            $('#customer_choice_options').html(null);
-            $.each($("#choice_attributes option:selected"), function () {
-                //console.log($(this).val());
-                add_more_customer_choice_option($(this).val(), $(this).text());
+        $('#choice_attributes').on('change', function() {
+            //$('#customer_choice_options').html(null);
+            $.each($("#choice_attributes option:selected"), function(j, attribute){
+                flag = false;
+                $('input[name="choice_no[]"]').each(function(i, choice_no) {
+                    if($(attribute).val() == $(choice_no).val()){
+                        flag = true;
+                    }
+                });
+                if(!flag){
+                    add_more_customer_choice_option($(attribute).val(), $(attribute).text());
+                }
             });
+
+            var str = @php echo $product->attributes @endphp;
+
+            $.each(str, function(index, value){
+                flag = false;
+                $.each($("#choice_attributes option:selected"), function(j, attribute){
+                    if(value == $(attribute).val()){
+                        flag = true;
+                    }
+                });
+                if(!flag){
+                    //console.log();
+                    $('input[name="choice_no[]"][value="'+value+'"]').parent().parent().remove();
+                }
+            });
+
             update_sku();
         });
 
+        $('.remove-files').on('click', function(){
+            $(this).parents(".col-md-4").remove();
+        });
 
 
     </script>

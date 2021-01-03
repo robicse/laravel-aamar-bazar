@@ -271,8 +271,8 @@ class ProductController extends Controller
         $categories = Category::all();
         $brands = Brand::all();
         $product = Product::find(decrypt($id));
-        dd($product);
-        return view('backend.admin.products.edit',compact('brands', 'categories'));
+        //dd($product);
+        return view('backend.admin.products.edit',compact('brands', 'categories','product'));
     }
 
     /**
