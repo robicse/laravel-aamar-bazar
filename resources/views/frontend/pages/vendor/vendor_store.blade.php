@@ -182,6 +182,7 @@
                                 </div>
                             </div>
                         </div>
+                        @if($best_sales_products->count() > 0)
                         <div class="ps-shopping ps-tab-root">
                             <div class="ps-shopping__header">
                                 <p>Best Selling</p>
@@ -194,7 +195,7 @@
                             <div class="ps-tabs">
                                 <div class="ps-tab active" id="tab-1">
                                     <div class="row">
-                                        @foreach($todaysDeal as $product)
+                                        @foreach($best_sales_products as $product)
                                             <div class="col-xl-3 col-lg-4 col-md-4 col-sm-6 col-6 ">
                                                 <div class="ps-product">
                                                     <div class="ps-product__thumbnail"><a href="{{route('product-details',$product->slug)}}"><img src="{{asset($product->thumbnail_img)}}" alt=""></a>
@@ -229,6 +230,7 @@
                                 </div>
                             </div>
                         </div>
+                        @endif
                     </div>
                 </div>
             </div>

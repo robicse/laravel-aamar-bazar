@@ -16,11 +16,12 @@ class VendorController extends Controller
     }
     public function singleshop($slug) {
         $shop=Shop::where('slug',$slug)->first();
-        $products=Product::where('added_by','seller')->where('user_id',$shop->user_id)->where('published',1)->where('featured',1)->latest()->take(8)->get();
+        $products=Product::where('added_by','seller')->where('user_id',$shop->user_id)->where('published',1)->latest()->take(8)->get();
+        $best_sales_products=Product::where('added_by','seller')->where('user_id',$shop->user_id)->where('published',1)->where('num_of_sale', '>',0)->limit(8)->get();
         $todaysDeal = Product::where('added_by','seller')->where('user_id',$shop->user_id)->where('published',1)->where('todays_deal',1)->latest()->take(8)->get();
         $shopCat=ShopCategory::where('shop_id',$shop->id)->latest()->get();
 
-        return view('frontend.pages.vendor.vendor_store',compact('shop','products','todaysDeal','shopCat'));
+        return view('frontend.pages.vendor.vendor_store',compact('shop','products','todaysDeal','shopCat','best_sales_products'));
     }
 //    public function shopCategories($slug) {
 //        //dd($slug);
