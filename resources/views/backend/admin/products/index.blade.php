@@ -91,7 +91,7 @@
                                             Actions
                                         </button>
                                         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                            <a class="bg-info dropdown-item" href="{{route('admin.products.edit',$product->id)}}">
+                                            <a class="bg-info dropdown-item" href="{{route('admin.products.edit',encrypt($product->id))}}">
                                                 <i class="fa fa-edit"></i> Edit
                                             </a>
                                             <button class="bg-danger dropdown-item" type="button"

@@ -816,7 +816,7 @@
         });
     }
 
-    function filterSlider() {
+    /*function filterSlider() {
         var nonLinearSlider = document.getElementById('nonlinear');
         if (typeof nonLinearSlider != 'undefined' && nonLinearSlider != null) {
             noUiSlider.create(nonLinearSlider, {
@@ -845,7 +845,7 @@
                 nodes[handle].innerHTML = Math.round(values[handle]);
             });
         }
-    }
+    }*/
 
     function handleLiveSearch() {
         $('body').on('click', function(e) {
