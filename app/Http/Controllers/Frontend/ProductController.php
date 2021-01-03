@@ -73,8 +73,9 @@ class ProductController extends Controller
         $shops = Shop::where('slug',$name)->first();
         $brands = Brand::where('slug',$slug)->first();
         $shopCat = ShopCategory::where('shop_id',$shops->id)->latest()->get();
+        $shopBrand = ShopBrand::where('shop_id',$shops->id)->latest()->get();
         $products = Product::where('brand_id',$brands->id)->where('user_id',$shops->user_id)->where('published',1)->latest()->paginate(24);
 //        dd($products);
-        return view('frontend.pages.shop.products_by_brands',compact('shops','brands','shopCat','products'));
+        return view('frontend.pages.shop.products_by_brands',compact('shops','brands','shopCat','shopBrand','products'));
     }
 }
