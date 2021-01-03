@@ -340,10 +340,10 @@
                             <div class="ps-block--user-header">
                                 <div class="ps-widget__header">
                                     <div class="ps-block__left">
-                                        @if(is_null(Auth::user()->avatar))
+                                        @if(is_null(Auth::user()->avatar_original))
                                           <a href="{{route('login')}}">  <img src="{{asset('uploads/profile/default.png')}}" alt="" class="ps-widget-img rounded-circle" width="50" height="50"></a>
                                         @else
-                                           <a href="{{route('login')}}"> <img src="{{url(Auth::user()->avatar)}}" alt="" class="ps-widget-img rounded-circle" width="50" height="50"></a>
+                                           <a href="{{route('login')}}"> <img src="{{url(Auth::user()->avatar_original)}}" alt="" class="ps-widget-img rounded-circle" width="50" height="50"></a>
                                         @endif
                                             <div class="ps-block__right"><a href="{{route('login')}}">{{Auth::user()->name}}</a>
 {{--                                                <a href="{{ route('logout') }}">Logout</a>--}}
@@ -708,10 +708,10 @@
                     <div class="ps-block--user-header">
                         <div class="ps-widget__header">
                             <div class="ps-block__left">
-                                @if(is_null(Auth::user()->avatar))
+                                @if(is_null(Auth::user()->avatar_original))
                                     <a href="{{route('login')}}">  <img src="{{asset('uploads/profile/default.png')}}" alt="" class="ps-widget-img rounded-circle" width="30" height="30"></a>
                                 @else
-                                    <a href="{{route('login')}}"> <img src="{{url(Auth::user()->avatar)}}" alt="" class="ps-widget-img rounded-circle" width="30" height="30"></a>
+                                    <a href="{{route('login')}}"> <img src="{{url(Auth::user()->avatar_original)}}" alt="" class="ps-widget-img rounded-circle" width="30" height="30"></a>
                                 @endif
                                 <div class="ps-block__right"><a href="{{route('login')}}">{{Auth::user()->name}}</a>
                                     {{--                                                <a href="{{ route('logout') }}">Logout</a>--}}
