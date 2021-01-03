@@ -70,6 +70,5 @@ class VendorController extends Controller
         $data_max = (int) $data2[1];
         $result_data = Product::where('user_id',$sellerId)->where('unit_price', '>=', $data_min)->where('unit_price', '<=', $data_max)->get();
         return $result_data;
-
     }
 }
