@@ -179,7 +179,6 @@
                                             @php
                                               $colors =  \App\Model\Color::orderBy('name', 'asc')->get()
                                             @endphp
-                                            {{dd($product->colors[0]['name'])}}
                                             <select class="form-control color-var-select" name="colors[]" id="colors" multiple>
                                                 @foreach ($colors as $key => $color)
                                                     <option value="{{ $color->code }}" <?php if(in_array($color->code, json_decode($product->colors))) echo 'selected'?> >{{ $color->name }}</option>
