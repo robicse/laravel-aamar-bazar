@@ -19,7 +19,7 @@
                     <li><a href="faqs.html">FAQs</a></li>
                 </ul>
                 <ul class="ps-list--social text-center" style="padding-top: 10px;">
-                    <li><a class="facebook" href="#"><i class="fa fa-facebook"></i></a></li>
+                    <li><a class="facebook" href="#"><i class="fa fa-facebook" target="_blank" data-toggle="tooltip" data-original-title="Facebook"></i></a></li>
                     <li><a class="twitter" href="#"><i class="fa fa-twitter"></i></a></li>
                     <li><a class="google-plus" href="#"><i class="fa fa-google-plus"></i></a></li>
                     <li><a class="instagram" href="#"><i class="fa fa-instagram"></i></a></li>
@@ -42,8 +42,18 @@
                     <li><a href="my-account.html">My account</a></li>
                     <li><a href="shop-default.html">Shop</a></li>
                 </ul>
+                <div class="widget widget_footer" style="padding-top: 30px;">
+                    <h4 class="" style="color: #cacacc!important;">BE A SELLER</h4>
+                    <button type="submit" class="btn btn-lg btn-success"><a href="{{route('seller.registration')}}"> Apply Now</a></button>
+                </div>
             </aside>
         </div>
+        <div class="ps-footer__right">
+            <aside>
+
+            </aside>
+        </div>
+
 {{--        <div class="ps-footer__links">--}}
 {{--            <p><strong>Consumer Electric:</strong><a href="#">Air Conditioners</a><a href="#">Audios &amp; Theaters</a><a href="#">Car Electronics</a><a href="#">Office Electronics</a><a href="#">TV Televisions</a><a href="#">Washing Machines</a>--}}
 {{--            </p>--}}

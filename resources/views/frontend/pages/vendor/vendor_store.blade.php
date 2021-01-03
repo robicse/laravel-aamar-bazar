@@ -135,7 +135,8 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="ps-shopping ps-tab-root">
+                        @if($todaysDeal->count() > 0)
+                        <div class="ps-shopping ps-tab-root" style="padding-top: 10px;">
                             <div class="ps-shopping__header">
                                 <p>Todays Deal</p>
                                 <div class="ps-shopping__actions">
@@ -182,6 +183,7 @@
                                 </div>
                             </div>
                         </div>
+                        @endif
                         @if($best_sales_products->count() > 0)
                         <div class="ps-shopping ps-tab-root">
                             <div class="ps-shopping__header">
