@@ -1,5 +1,5 @@
 @extends('frontend.layouts.master')
-@section('title','Product List')
+@section('title',$categories->name)
 @section('content')
     <div class="ps-breadcrumb">
         <div class="ps-container">
@@ -16,29 +16,29 @@
                     <aside class="widget widget_shop">
                         <h4 class="widget-title">Categories</h4>
                         <ul class="ps-list--categories">
-                            @foreach($categories as $Cat)
-                            <li class="current-menu-item menu-item-has-children"><a href=""> {{$Cat->category->name}} </a><span class="sub-toggle"><i class="fa fa-angle-down"></i></span>
-                                @php
-                                    $subcategories = \App\Model\Subcategory::where('category_id',$Cat->category_id)->latest()->get();
-                                @endphp
-                                <ul class="sub-menu">
-                                    @foreach($subcategories as $subCat)
-                                    <li class="current-menu-item "><a href="{{url('/products/'.$shop->slug.'/'.$Cat->category->slug.'/'.$subCat->slug)}}">{{$subCat->name}}</a>
-                                    </li>
-                                    @endforeach
+                            @foreach($shopCat as $Cat)
+                                <li class="current-menu-item menu-item-has-children"><a href="#"> {{$Cat->category->name}} </a><span class="sub-toggle"><i class="fa fa-angle-down"></i></span>
+                                    @php
+                                        $subcategory = \App\Model\Subcategory::where('category_id',$Cat->id)->latest()->get();
+                                    @endphp
+                                    <ul class="sub-menu">
+                                        @foreach($subcategory as $subCat)
+                                            <li class="current-menu-item "><a href="{{url('/products/'.$shops->slug.'/'.$Cat->category->slug.'/'.$subCat->slug)}}">{{$subCat->name}}</a>
+                                            </li>
+                                        @endforeach
 
-{{--                                    <li class="current-menu-item "><a href="shop-default.html">Mens</a>--}}
-{{--                                    </li>--}}
-{{--                                    <li class="current-menu-item "><a href="shop-default.html">Bags</a>--}}
-{{--                                    </li>--}}
-{{--                                    <li class="current-menu-item "><a href="shop-default.html">Sunglasses</a>--}}
-{{--                                    </li>--}}
-{{--                                    <li class="current-menu-item "><a href="shop-default.html">Accessories</a>--}}
-{{--                                    </li>--}}
-{{--                                    <li class="current-menu-item "><a href="shop-default.html">Kid's Fashion</a>--}}
-{{--                                    </li>--}}
-                                </ul>
-                            </li>
+                                        {{--                                    <li class="current-menu-item "><a href="shop-default.html">Mens</a>--}}
+                                        {{--                                    </li>--}}
+                                        {{--                                    <li class="current-menu-item "><a href="shop-default.html">Bags</a>--}}
+                                        {{--                                    </li>--}}
+                                        {{--                                    <li class="current-menu-item "><a href="shop-default.html">Sunglasses</a>--}}
+                                        {{--                                    </li>--}}
+                                        {{--                                    <li class="current-menu-item "><a href="shop-default.html">Accessories</a>--}}
+                                        {{--                                    </li>--}}
+                                        {{--                                    <li class="current-menu-item "><a href="shop-default.html">Kid's Fashion</a>--}}
+                                        {{--                                    </li>--}}
+                                    </ul>
+                                </li>
                             @endforeach
                         </ul>
                     </aside>
@@ -49,10 +49,10 @@
                             <button><i class="icon-magnifier"></i></button>
                         </form>
                         <figure class="ps-custom-scrollbar" data-height="250">
-                            @foreach($shopBrands as $brand)
+                            @foreach($shopBrand as $Brand)
                             <div class="ps-checkbox">
-                                <input class="form-control" type="checkbox" id="{{$brand->brand_id}}" name="brand">
-                                <label for="{{$brand->brand_id}}">{{ $brand->brand->name }}</label>
+                                <input class="form-control" type="checkbox" id="{{$Brand->brand_id}}" name="brand">
+                                <label for="{{$Brand->brand_id}}">{{$Brand->brand->name}} ({{ count($shopBrand) }})</label>
                             </div>
                             @endforeach
 {{--                            <div class="ps-checkbox">--}}
@@ -132,48 +132,48 @@
                     <div class="ps-shopping ps-tab-root">
                         <div class="ps-shopping__header">
                             <p><strong>{{ count($products) }}</strong> Products found</p>
-{{--                            <div class="ps-shopping__actions">--}}
-{{--                                <select class="ps-select" data-placeholder="Sort Items">--}}
-{{--                                    <option>Sort by latest</option>--}}
-{{--                                    <option>Sort by popularity</option>--}}
-{{--                                    <option>Sort by average rating</option>--}}
-{{--                                    <option>Sort by price: low to high</option>--}}
-{{--                                    <option>Sort by price: high to low</option>--}}
-{{--                                </select>--}}
-{{--                                <div class="ps-shopping__view">--}}
-{{--                                    <p>View</p>--}}
-{{--                                    <ul class="ps-tab-list">--}}
-{{--                                        <li class="active"><a href="#tab-1"><i class="icon-grid"></i></a></li>--}}
-{{--                                        <li><a href="#tab-2"><i class="icon-list4"></i></a></li>--}}
-{{--                                    </ul>--}}
-{{--                                </div>--}}
-{{--                            </div>--}}
+                            {{--                            <div class="ps-shopping__actions">--}}
+                            {{--                                <select class="ps-select" data-placeholder="Sort Items">--}}
+                            {{--                                    <option>Sort by latest</option>--}}
+                            {{--                                    <option>Sort by popularity</option>--}}
+                            {{--                                    <option>Sort by average rating</option>--}}
+                            {{--                                    <option>Sort by price: low to high</option>--}}
+                            {{--                                    <option>Sort by price: high to low</option>--}}
+                            {{--                                </select>--}}
+                            {{--                                <div class="ps-shopping__view">--}}
+                            {{--                                    <p>View</p>--}}
+                            {{--                                    <ul class="ps-tab-list">--}}
+                            {{--                                        <li class="active"><a href="#tab-1"><i class="icon-grid"></i></a></li>--}}
+                            {{--                                        <li><a href="#tab-2"><i class="icon-list4"></i></a></li>--}}
+                            {{--                                    </ul>--}}
+                            {{--                                </div>--}}
+                            {{--                            </div>--}}
                         </div>
                         <div class="ps-tabs">
                             <div class="ps-tab active" id="tab-1">
                                 <div class="ps-shopping-product">
                                     <div class="row">
                                         @foreach($products as $product)
-                                        <div class="col-xl-3 col-lg-4 col-md-4 col-sm-6 col-6 ">
-                                            <div class="ps-product">
-                                                <div class="ps-product__thumbnail"><a href="{{route('product-details',$product->slug)}}"><img src="{{url($product->thumbnail_img)}}" alt=""></a>
-                                                    <ul class="ps-product__actions">
-                                                        <li><a href="#" data-toggle="tooltip" data-placement="top" title="Add To Cart"><i class="icon-bag2"></i></a></li>
-                                                        <li><a href="#" data-placement="top" title="Quick View" data-toggle="modal" data-target="#product-quickview"><i class="icon-eye"></i></a></li>
-                                                        <li><a href="#" data-toggle="tooltip" data-placement="top" title="Add to Whishlist"><i class="icon-heart"></i></a></li>
-{{--                                                        <li><a href="#" data-toggle="tooltip" data-placement="top" title="Compare"><i class="icon-chart-bars"></i></a></li>--}}
-                                                    </ul>
-                                                </div>
-                                                <div class="ps-product__container"><a class="ps-product__vendor" href="#">{{ $shop->name }}</a>
-                                                    <div class="ps-product__content"><a class="ps-product__title" href="{{route('product-details',$product->slug)}}">{{$product->name}}</a>
-                                                        <p class="ps-product__price">৳ {{$product->unit_price}}</p>
+                                            <div class="col-xl-3 col-lg-4 col-md-4 col-sm-6 col-6 ">
+                                                <div class="ps-product">
+                                                    <div class="ps-product__thumbnail"><a href="{{route('product-details',$product->slug)}}"><img src="{{url($product->thumbnail_img)}}" alt=""></a>
+                                                        <ul class="ps-product__actions">
+                                                            <li><a href="#" data-toggle="tooltip" data-placement="top" title="Add To Cart"><i class="icon-bag2"></i></a></li>
+                                                            <li><a href="#" data-placement="top" title="Quick View" data-toggle="modal" data-target="#product-quickview"><i class="icon-eye"></i></a></li>
+                                                            <li><a href="#" data-toggle="tooltip" data-placement="top" title="Add to Whishlist"><i class="icon-heart"></i></a></li>
+                                                            {{--                                                        <li><a href="#" data-toggle="tooltip" data-placement="top" title="Compare"><i class="icon-chart-bars"></i></a></li>--}}
+                                                        </ul>
                                                     </div>
-                                                    <div class="ps-product__content hover"><a class="ps-product__title" href="{{route('product-details',$product->slug)}}">{{$product->name}}</a>
-                                                        <p class="ps-product__price">৳ {{$product->unit_price}}</p>
+                                                    <div class="ps-product__container"><a class="ps-product__vendor" href="#">{{ $shops->name }}</a>
+                                                        <div class="ps-product__content"><a class="ps-product__title" href="{{route('product-details',$product->slug)}}">{{$product->name}}</a>
+                                                            <p class="ps-product__price">৳ {{$product->unit_price}}</p>
+                                                        </div>
+                                                        <div class="ps-product__content hover"><a class="ps-product__title" href="{{route('product-details',$product->slug)}}">{{$product->name}}</a>
+                                                            <p class="ps-product__price">৳ {{$product->unit_price}}</p>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div>
                                         @endforeach
                                     </div>
                                 </div>

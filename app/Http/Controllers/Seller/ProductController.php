@@ -10,6 +10,7 @@ use App\Model\Color;
 use App\Model\Product;
 use App\Model\ProductStock;
 use App\Model\Shop;
+use App\Model\ShopBrand;
 use App\Model\ShopCategory;
 use App\Model\Subcategory;
 use App\Model\SubSubcategory;
@@ -225,6 +226,15 @@ class ProductController extends Controller
             //Toastr::success("Shop Category Inserted Successfully","Success");
             $shopCategoryData->save();
         }
+        //check shop Brands
+        $shopBrand = ShopBrand::where('shop_id',$shopId->id)->where('brand_id',$request->brand_id)->first();
+        if(empty($shopBrand)){
+            $shopBrandData = new ShopBrand();
+            $shopBrandData->shop_id = $shopId->id;
+            $shopBrandData->brand_id = $request->brand_id;
+            //Toastr::success("Shop Category Inserted Successfully","Success");
+            $shopBrandData->save();
+        }
         $product->save();
         Toastr::success("Product Inserted Successfully","Success");
         return redirect()->route('seller.products.index');
@@ -340,6 +350,14 @@ class ProductController extends Controller
                 $shopCategoryData->category_id = $product_new->category_id;
                 //Toastr::success("Shop Category Inserted Successfully","Success");
                 $shopCategoryData->save();
+            }
+            $shopBrand = ShopBrand::where('shop_id',$shopId->id)->where('brand_id',$product_new->brand_id)->first();
+            if(empty($shopBrand)){
+                $shopBrandData = new ShopBrand();
+                $shopBrandData->shop_id = $shopId->id;
+                $shopBrandData->brand_id = $product_new->brand_id;
+                //Toastr::success("Shop Category Inserted Successfully","Success");
+                $shopBrandData->save();
             }
         }
         Toastr::success('Product Successfully Copied!');
