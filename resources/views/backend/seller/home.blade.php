@@ -124,11 +124,10 @@
                         </div><!-- /.card-body -->
                     </div>
                 </section>
-
-            <section class="col-lg-5 connectedSortable">
+            <section class="col-lg-3 connectedSortable">
 
                 <!-- Map card -->
-                <div class="card " style="width: 25rem;">
+                <div class="card " >
                     <div class="card-header border-0">
                        <a class="card-img" href="">
 {{--                        <img src="{{asset('uploads/shop/logo/new.png')}}" class="card-img-top" alt="...">--}}
@@ -141,26 +140,27 @@
                     <!-- /.card-body-->
                     <div class="card-footer bg-transparent">
                         <div class="row">
-                            <div class="col-4 text-center">
-                                <div id="sparkline-1"></div>
-                                <div class="text-white">Visitors</div>
-                            </div>
-                            <!-- ./col -->
-                            <div class="col-4 text-center">
-                                <div id="sparkline-2"></div>
-                                <div class="text-white">Online</div>
-                            </div>
-                            <!-- ./col -->
-                            <div class="col-4 text-center">
-                                <div id="sparkline-3"></div>
-                                <div class="text-white">Sales</div>
-                            </div>
+
                             <!-- ./col -->
                         </div>
                         <!-- /.row -->
                     </div>
                 </div>
             </section>
+            <div class="col-lg-3 col-6">
+                <!-- small box -->
+                <div class="small-box bg-warning">
+                    <div class="inner text-center">
+                        <h4>{{$adminCommission}}</h4>
+                        <p>Admin get commission</p>
+
+                    </div>
+                    <div class="icon">
+                        <i class="fa fa-money"></i>
+                    </div>
+                    <a href="" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                </div>
+            </div>
         </div>
 
 
