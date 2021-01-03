@@ -23,7 +23,7 @@
                                     @endphp
                                     <ul class="sub-menu">
                                         @foreach($subcategory as $subCat)
-                                            <li class="current-menu-item "><a href="{{url('/products/'.$shops->slug.'/'.$Cat->category->slug.'/'.$subCat->slug)}}">{{$subCat->name}}</a>
+                                            <li class="current-menu-item "><a href="{{url('/products/'.$shop->slug.'/'.$Cat->category->slug.'/'.$subCat->slug)}}">{{$subCat->name}}</a>
                                             </li>
                                         @endforeach
 
@@ -99,7 +99,7 @@
                                                             {{--                                                        <li><a href="#" data-toggle="tooltip" data-placement="top" title="Compare"><i class="icon-chart-bars"></i></a></li>--}}
                                                         </ul>
                                                     </div>
-                                                    <div class="ps-product__container"><a class="ps-product__vendor" href="#">{{ $shops->name }}</a>
+                                                    <div class="ps-product__container"><a class="ps-product__vendor" href="{{route('shop.details',$shop->slug)}}">{{ $shop->name }}</a>
                                                         <div class="ps-product__content"><a class="ps-product__title" href="{{route('product-details',$product->slug)}}">{{$product->name}}</a>
                                                             <p class="ps-product__price">৳ {{$product->unit_price}}</p>
                                                         </div>
@@ -515,7 +515,7 @@
             timeout = setTimeout(function () {
                 $.ajax({
                     type: 'GET', //THIS NEEDS TO BE GET
-                    url: '/product/filter/'+values+'/sellerId/'+{{$shops->user_id}},
+                    url: '/product/filter/'+values+'/sellerId/'+{{$shop->user_id}},
                     dataType: 'json',
                     success: function (data) {
                         console.log(data);

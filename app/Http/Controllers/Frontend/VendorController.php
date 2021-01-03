@@ -63,10 +63,13 @@ class VendorController extends Controller
     }
     public function productFilter($data,$sellerId)
     {
+        //$shops = Shop::find($sellerId);
+//        dd($shops);
         $data2 = explode(',',$data);
         $data_min = (int) $data2[0];
         $data_max = (int) $data2[1];
         $result_data = Product::where('user_id',$sellerId)->where('unit_price', '>=', $data_min)->where('unit_price', '<=', $data_max)->get();
         return $result_data;
+
     }
 }

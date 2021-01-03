@@ -17,7 +17,7 @@
                         <h4 class="widget-title">Categories</h4>
                         <ul class="ps-list--categories">
                             @foreach($categories as $Cat)
-                            <li class="current-menu-item menu-item-has-children"><a href=""> {{$Cat->category->name}} </a><span class="sub-toggle"><i class="fa fa-angle-down"></i></span>
+                            <li class="current-menu-item menu-item-has-children"><a href="#"> {{$Cat->category->name}} </a><span class="sub-toggle"><i class="fa fa-angle-down"></i></span>
                                 @php
                                     $subcategories = \App\Model\Subcategory::where('category_id',$Cat->category_id)->latest()->get();
                                 @endphp
@@ -126,7 +126,7 @@
 {{--                                                        <li><a href="#" data-toggle="tooltip" data-placement="top" title="Compare"><i class="icon-chart-bars"></i></a></li>--}}
                                                     </ul>
                                                 </div>
-                                                <div class="ps-product__container"><a class="ps-product__vendor" href="#">{{ $shop->name }}</a>
+                                                <div class="ps-product__container"><a class="ps-product__vendor" href="{{route('shop.details',$shop->slug)}}">{{ $shop->name }}</a>
                                                     <div class="ps-product__content"><a class="ps-product__title" href="{{route('product-details',$product->slug)}}">{{$product->name}}</a>
                                                         <p class="ps-product__price">৳ {{$product->unit_price}}</p>
                                                     </div>

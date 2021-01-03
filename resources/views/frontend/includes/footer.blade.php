@@ -18,11 +18,11 @@
                     <li><a href="#">Return</a></li>
                     <li><a href="faqs.html">FAQs</a></li>
                 </ul>
-                <ul class="ps-list--social text-center" style="padding-top: 10px;">
-                    <li><a class="facebook" href="#"><i class="fa fa-facebook" target="_blank" data-toggle="tooltip" data-original-title="Facebook"></i></a></li>
-                    <li><a class="twitter" href="#"><i class="fa fa-twitter"></i></a></li>
-                    <li><a class="google-plus" href="#"><i class="fa fa-google-plus"></i></a></li>
-                    <li><a class="instagram" href="#"><i class="fa fa-instagram"></i></a></li>
+                <ul class="ps-list--social text-center my-3 my-md-0" style="padding-top: 10px;">
+                    <li><a class="facebook" href="#" target="_blank" data-toggle="tooltip" data-original-title="Facebook"><i class="fa fa-facebook"></i></a></li>
+                    <li><a class="twitter" href="#" target="_blank" data-toggle="tooltip" data-original-title="Twitter"><i class="fa fa-twitter"></i></a></li>
+                    <li><a class="google-plus" href="#" target="_blank" data-toggle="tooltip" data-original-title="Google-plus"><i class="fa fa-google-plus"></i></a></li>
+                    <li><a class="instagram" href="#" target="_blank" data-toggle="tooltip" data-original-title="Instagram"><i class="fa fa-instagram"></i></a></li>
                 </ul>
             </aside>
             <aside class="widget widget_footer">
