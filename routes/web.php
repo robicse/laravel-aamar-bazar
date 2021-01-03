@@ -28,6 +28,8 @@ Route::get('/blog-details', 'Frontend\BlogController@details')->name('blog-detai
 //Search
 Route::get('/search/product', 'Frontend\VendorController@search_product');
 Route::get('/search/shop', 'Frontend\VendorController@search_shop');
+Route::get('/product/filter/{data}/sellerId/{sellerId}', 'Frontend\VendorController@productFilter');
+
 
 
 Route::post('/registration','Frontend\FrontendController@register')->name('user.register');

@@ -608,6 +608,22 @@
 @endsection
 @push('js')
     <script>
+        var timeout = 0;
+        var update = function (values) {
+            clearTimeout(timeout);
+            timeout = setTimeout(function () {
+                $.ajax({
+                    type: 'GET', //THIS NEEDS TO BE GET
+                    url: '/product/filter/'+values+'/sellerId/'+{{$shops->user_id}},
+                    dataType: 'json',
+                    success: function (data) {
+                        console.log(data);
+                    },error:function(){
+                        console.log(data);
+                    }
+                });
+            }, 1000);
+        };
         function filterSlider() {
             var nonLinearSlider = document.getElementById('nonlinear');
             if (typeof nonLinearSlider != 'undefined' && nonLinearSlider != null) {
@@ -633,23 +649,29 @@
                     document.querySelector('.ps-slider__min'),
                     document.querySelector('.ps-slider__max'),
                 ];
+
                 nonLinearSlider.noUiSlider.on('update', function(values, handle) {
                     //console.log(values)
+                    var wto;
                     nodes[handle].innerHTML = Math.round(values[handle]);
                     var filter_price = Math.round(values[handle]);
-                    console.log(filter_price)
-                    $.ajax({
-                        type: 'GET', //THIS NEEDS TO BE GET
-                        url: '',
-                        dataType: 'json',
-                        success: function (data) {
-                            console.log(data);
+                    /*clearTimeout(wto);
+                    wto  = setTimeout(function() {
+                        $.ajax({
+                            type: 'GET', //THIS NEEDS TO BE GET
+                            url: '/product/filter/'+values,
+                            dataType: 'json',
+                            success: function (data) {
+                                console.log(data);
+                            },error:function(){
+                                console.log(data);
+                            }
+                        });
+                    }, 5000);*/
+
+                    update(values);
 
 
-                        },error:function(){
-                            console.log(data);
-                        }
-                    });
                 });
             }
         }
