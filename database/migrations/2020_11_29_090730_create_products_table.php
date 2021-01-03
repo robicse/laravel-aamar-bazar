@@ -37,6 +37,7 @@ class CreateProductsTable extends Migration
             $table->integer('todays_deal');
             $table->integer('published');
             $table->integer('featured');
+            $table->integer('num_of_sale')->default(0);
             $table->integer('current_stock');
             $table->string('unit')->nullable();
             $table->double('discount')->nullable();

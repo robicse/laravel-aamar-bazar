@@ -139,7 +139,7 @@ class CartController extends Controller
         if($request->pay == 'ssl'){
             $payment_status = 'Paid';
         }
-//dd($request->all());
+        //dd($request->all());
         $data['name'] = $request->name;
         $data['phone'] = $request->phone;
         $data['email'] = $request->email;
@@ -176,6 +176,9 @@ class CartController extends Controller
             $orderDetails->price = $content->price;
             $orderDetails->quantity = $content->qty;
             $orderDetails->save();
+            $product = Product::find($content->id);
+            $product->num_of_sale++;
+            $product->save();
         }
 
         if ($request->pay == 'cod') {
