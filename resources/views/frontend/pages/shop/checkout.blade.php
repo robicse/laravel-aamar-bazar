@@ -15,7 +15,7 @@
         [type=radio] + label {
             cursor: pointer;
             padding: 10px 10px;
-            background-color: #fcb800;
+            background-color: #fff87a;
             color: #000000;
             border-radius: 6px;
         }
