@@ -9,16 +9,16 @@
             </div>
             <div class="ps-widget__content">
                 <ul>
-                    <li class="active"><a href="{{route('user.dashboard')}}"><i class="icon-user"></i> Dashboard</a></li>
-                    <li><a href="{{route('user.notification')}}"><i class="icon-alarm-ringing"></i> Notifications</a></li>
-                    <li><a href="{{route('user.invoices')}}"><i class="icon-papers"></i> Invoices</a></li>
-                    <li><a href="{{route('user.address')}}"><i class="icon-map-marker"></i> Address</a></li>
-                    <li><a href="{{route('user.order.history')}}"><i class="icon-store"></i> Order History</a></li>
-                    <li><a href="{{route('user.wishlist')}}"><i class="icon-heart"></i> Wishlist</a></li>
+                    <li class="active"><a href="{{route('user.dashboard')}}"><i class="icon-user"></i>Dashboard</a></li>
+                    <li><a href="{{route('user.notification')}}"><i class="icon-alarm-ringing"></i>Notifications</a></li>
+{{--                    <li><a href="{{route('user.invoices')}}"><i class="icon-papers"></i> Invoices</a></li>--}}
+                    <li><a href="{{route('user.address')}}"><i class="icon-map-marker"></i>Address</a></li>
+                    <li><a href="{{route('user.order.history')}}"><i class="icon-store"></i>Order History</a></li>
+                    <li><a href="{{route('user.wishlist')}}"><i class="icon-heart"></i>Wishlist</a></li>
                     <li>
                         <form action = "{{route('logout')}}" method="post">
                             @csrf
-                            <button type="submit"><i class="icon-power-switch"></i>Logout</button>
+                            <button type="submit" class="btn btn-lg" style="padding:15px 20px; font-size: 16px; color: #000!important; line-height: 20px;"><i class="icon-power-switch"></i> Logout</button>
                         </form>
                     </li>
                 </ul>
