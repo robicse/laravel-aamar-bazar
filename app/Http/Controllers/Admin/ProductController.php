@@ -337,9 +337,38 @@ class ProductController extends Controller
         $products = Product::where('added_by','seller')->where('admin_permission',0)->latest()->get();
         return view('backend.admin.products.seller_request_product_list', compact('products'));
     }
+
+
+    public function sku_combination_edit(Request $request)
+    {
+        //dd($request->all());
+        $product = Product::find($request->id);
+        $options = array();
+        if ($request->has('colors_active') && $request->has('colors') && count($request->colors) > 0) {
+            $colors_active = 1;
+            array_push($options, $request->colors);
+        } else {
+            $colors_active = 0;
+        }
+
+        $product_name = $request->name;
+        $unit_price = $request->unit_price;
+
+        if ($request->has('choice_no')) {
+            foreach ($request->choice_no as $key => $no) {
+                $name = 'choice_options_' . $no;
+                $my_str = implode('|', $request[$name]);
+                array_push($options, explode(',', $my_str));
+            }
+        }
+
+        $combinations = Helpers::combinations($options);
+        return view('backend.partials.sku_combinations_edit', compact('combinations', 'unit_price', 'colors_active', 'product_name', 'product'));
+    }
     public function sellerProductList()
     {
         $products = Product::where('added_by','seller')->where('admin_permission',1)->latest()->get();
         return view('backend.admin.products.seller_all_products', compact('products'));
+
     }
 }
