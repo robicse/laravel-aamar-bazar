@@ -17,7 +17,7 @@
                     @include('frontend.user.includes.user_sidebar')
                     <div class="col-lg-8">
                         <div class="ps-section__right">
-                            <form class="ps-form--account-setting" action="{{route('user.profile-update')}}" method="POST">
+                            <form class="ps-form--account-setting" action="{{route('user.profile-update')}}" method="POST" enctype="multipart/form-data">
                                 @csrf
                                 <div class="ps-form__header">
                                     <h3> User Information</h3>
@@ -40,6 +40,19 @@
                                                 <input class="form-control" type="email" name="email" value="{{ Auth::User()->email }}" placeholder="Please enter your email...">
                                             </div>
                                         </div>
+                                        <div class="col-sm-6">
+                                            <div class="form-group">
+                                                <label>Profile Image </label>
+                                                <input type="file"  name="avatar_original" class="form-control"  >
+                                                {{--  <input class="form-control" type="email" name="email" value="{{ Auth::User()->email }}" placeholder="Please enter your email...">--}}
+                                            </div>
+                                        </div>
+{{--                                        <div class="form-group row">--}}
+{{--                                            <label for="avatar_original" class="col-sm-2 col-form-label">Profile Image <small class="text-danger">(Photo size: 300x300 and below 100kb)</small></label>--}}
+{{--                                            <div class="col-sm-10">--}}
+{{--                                                <input type="file"  name="avatar_original" class="form-control"  >--}}
+{{--                                            </div>--}}
+{{--                                        </div>--}}
 {{--                                        <div class="col-sm-6">--}}
 {{--                                            <div class="form-group">--}}
 {{--                                                <label>Birthday</label>--}}

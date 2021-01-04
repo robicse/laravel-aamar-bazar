@@ -19,11 +19,11 @@
                             @foreach($shopCat as $Cat)
                                 <li class="current-menu-item menu-item-has-children"><a href="#"> {{$Cat->category->name}} </a><span class="sub-toggle"><i class="fa fa-angle-down"></i></span>
                                     @php
-                                        $subcategory = \App\Model\Subcategory::where('category_id',$Cat->id)->latest()->get();
+                                        $subcategory = \App\Model\Subcategory::where('category_id',$Cat->category_id)->latest()->get();
                                     @endphp
                                     <ul class="sub-menu">
                                         @foreach($subcategory as $subCat)
-                                            <li class="current-menu-item "><a href="{{url('/products/'.$shops->slug.'/'.$Cat->category->slug.'/'.$subCat->slug)}}">{{$subCat->name}}</a>
+                                            <li class="current-menu-item "><a href="{{url('/products/'.$shop->slug.'/'.$Cat->category->slug.'/'.$subCat->slug)}}">{{$subCat->name}}</a>
                                             </li>
                                         @endforeach
 
@@ -52,7 +52,7 @@
                             @foreach($shopBrand as $Brand)
                             <div class="ps-checkbox">
                                 <input class="form-control" type="checkbox" id="{{$Brand->brand_id}}" name="brand">
-                                <label for="{{$Brand->brand_id}}">{{$Brand->brand->name}} ({{ count($shopBrand) }})</label>
+                                <label for="{{$Brand->brand_id}}">{{$Brand->brand->name}}</label>
                             </div>
                             @endforeach
 {{--                            <div class="ps-checkbox">--}}
@@ -126,7 +126,7 @@
                                                             {{--                                                        <li><a href="#" data-toggle="tooltip" data-placement="top" title="Compare"><i class="icon-chart-bars"></i></a></li>--}}
                                                         </ul>
                                                     </div>
-                                                    <div class="ps-product__container"><a class="ps-product__vendor" href="#">{{ $shops->name }}</a>
+                                                    <div class="ps-product__container"><a class="ps-product__vendor" href="{{route('shop.details',$shop->slug)}}">{{ $shop->name }}</a>
                                                         <div class="ps-product__content"><a class="ps-product__title" href="{{route('product-details',$product->slug)}}">{{$product->name}}</a>
                                                             <p class="ps-product__price">৳ {{$product->unit_price}}</p>
                                                         </div>

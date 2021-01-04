@@ -36,6 +36,7 @@
                         || Request::is('admin/sub-subcategories*')
                         || Request::is('admin/products*')
                         || Request::is('admin/request/products*')
+                        || Request::is('admin/all/seller/products*')
                         || Request::is('admin/attributes*'))
                     ? 'menu-open' : ''}}">
                         <a href="#" class="nav-link">
@@ -93,6 +94,13 @@
                                    class="nav-link {{Request::is('admin/request/products/from/seller*') ? 'active' :''}}">
                                     <i class="fa fa-{{Request::is('admin/request/products/from/seller*') ? 'folder-open':'folder'}} nav-icon"></i>
                                     <p>Seller Req Products</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{{route('admin.all.seller.products')}}"
+                                   class="nav-link {{Request::is('admin/all/seller/products*') ? 'active' :''}}">
+                                    <i class="fa fa-{{Request::is('admin/all/seller/products*') ? 'folder-open':'folder'}} nav-icon"></i>
+                                    <p>All Seller Products</p>
                                 </a>
                             </li>
                         </ul>

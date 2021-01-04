@@ -345,8 +345,14 @@
                                         @else
                                            <a href="{{route('login')}}"> <img src="{{url(Auth::user()->avatar_original)}}" alt="" class="ps-widget-img rounded-circle" width="50" height="50"></a>
                                         @endif
-                                            <div class="ps-block__right"><a href="{{route('login')}}">{{Auth::user()->name}}</a>
-{{--                                                <a href="{{ route('logout') }}">Logout</a>--}}
+                                            @php
+                                                $values = explode(" ",Auth::user()->name);
+                                            @endphp
+{{--                                            @if(in_array("Auth::user()->name", $values))--}}
+{{--                                                <div class="ps-block__right"><a href="{{route('login')}}">{{ strtoupper(Auth::user()->name) }}</a>--}}
+
+{{--                                            @endif--}}
+                                            <div class="ps-block__right"><a href="{{route('login')}}">{{$values[1]}}</a>
                                                 <form action = "{{route('logout')}}" method="post">
                                                     @csrf
                                                     <button type="submit" class="btn btn-lg btn-bold">Logout</button>

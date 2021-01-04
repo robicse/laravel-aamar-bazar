@@ -6,7 +6,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class Product extends Model
 {
-
+    public function user()
+    {
+        return $this->belongsTo('App\User', 'user_id');
+    }
     public function seller()
     {
         return $this->belongsTo('App\Model\Seller', 'user_id');
