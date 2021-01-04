@@ -4,7 +4,15 @@
     <link rel="stylesheet" href="{{asset('backend/plugins/select2/select2.min.css')}}">
     <link rel="stylesheet" href="{{asset('backend/plugins/bootstrap-tagsinput/bootstrap-tagsinput.css')}}">
     <link rel="stylesheet" href="{{asset('backend/dist/css/spectrum.css')}}">
-
+    <style>
+        .select2-container--default .color-preview {
+            height: 12px;
+            width: 12px;
+            display: inline-block;
+            margin-right: 5px;
+            margin-top: 2px;
+        }
+    </style>
 @endpush
 @section('content')
     <section class="content-header">
@@ -23,7 +31,7 @@
         </div><!-- /.container-fluid -->
     </section>
     <!-- Main content -->
-    <form role="form" id="choice_form" action="{{route('admin.products.store')}}" method="post"
+    <form role="form" id="choice_form" action="{{route('admin.products.update2',$product->id)}}" method="post"
           enctype="multipart/form-data">
         @csrf
         <input type="hidden" name="id" value="{{ $product->id }}">
@@ -155,7 +163,12 @@
                                     <div class="row">
                                         <div class="form-group col-md-4">
                                             <label for="unit_price">Quantity</label>
-                                            <input type="number" min="0" value="{{$product->current_stock}}" step="1" placeholder="Quantity" name="current_stock" class="form-control" required="">
+                                            <label for="current_stock">Stock</label>
+                                            <select name="current_stock" id="current_stock" class="form-control {{$product->current_stock == 0 ? 'bg-danger' : 'bg-success'}}">
+                                                <option value="1" {{$product->current_stock > 0 ? 'selected' : ''}} class="bg-success">Available</option>
+                                                <option value="0" {{$product->current_stock == 0 ? 'selected' : ''}} class="bg-danger">Not Available</option>
+                                            </select>
+                                            {{--<input type="number" min="0" value="{{$product->current_stock}}" step="1" placeholder="Quantity" name="current_stock" class="form-control" required="">--}}
                                         </div>
                                         <div class="form-group col-md-5">
                                             <label for="discount">Discount</label>

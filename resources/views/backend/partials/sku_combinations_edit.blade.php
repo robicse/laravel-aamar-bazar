@@ -74,9 +74,9 @@
                         echo $stock->qty;
                     }
                     else{
-                        echo '10';
+                        echo '100000';
                     }
-                @endphp" min="0" step="1" class="form-control" required>
+                @endphp" min="0" step="1" class="form-control" required readonly>
 			</td>
 		</tr>
 	@endif

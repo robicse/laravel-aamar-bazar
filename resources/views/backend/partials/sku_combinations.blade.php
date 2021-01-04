@@ -57,7 +57,7 @@
 					<input type="text" name="sku_{{ $str }}" value="{{ $sku }}" class="form-control" required>
 				</td>
 				<td>
-					<input type="number" name="qty_{{ $str }}" value="10" min="0" step="1" class="form-control" required>
+					<input type="number" name="qty_{{ $str }}" value="1000000" min="0" step="1" class="form-control" required readonly>
 				</td>
 			</tr>
 	@endif

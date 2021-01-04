@@ -94,10 +94,10 @@
                                             <a class="bg-info dropdown-item" href="{{route('admin.products.edit',encrypt($product->id))}}">
                                                 <i class="fa fa-edit"></i> Edit
                                             </a>
-                                            <button class="bg-danger dropdown-item" type="button"
+                                            {{--<button class="bg-danger dropdown-item" type="button"
                                                     onclick="deleteProduct({{$product->id}})">
                                                 <i class="fa fa-trash"></i> Delete
-                                            </button>
+                                            </button>--}}
                                             <form id="delete-form-{{$product->id}}" action="{{route('admin.products.destroy',$product->id)}}" method="POST" style="display: none;">
                                                 @csrf
                                                 @method('DELETE')
