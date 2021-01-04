@@ -15568,7 +15568,7 @@ html:not([dir="rtl"]) .noUi-horizontal .noUi-handle {
     display: inline-block;
     position: relative;
     width: 30px;
-    height: 42px;
+    /*height: 42px;*/
     transition: all .4s ease;
 }
 

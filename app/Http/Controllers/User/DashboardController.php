@@ -44,6 +44,9 @@ class DashboardController extends Controller
         $user->name = $request->name;
         $user->email = $request->email;
         $user->phone = $request->phone;
+        if($request->hasFile('avatar_original')){
+            $user->avatar_original = $request->avatar_original->store('uploads/profile');
+        }
         $user->update();
         Toastr::success('Profile Updated Successfully');
         return redirect()->back();

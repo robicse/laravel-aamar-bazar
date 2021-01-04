@@ -337,4 +337,9 @@ class ProductController extends Controller
         $products = Product::where('added_by','seller')->where('admin_permission',0)->latest()->get();
         return view('backend.admin.products.seller_request_product_list', compact('products'));
     }
+    public function sellerProductList()
+    {
+        $products = Product::where('added_by','seller')->where('admin_permission',1)->latest()->get();
+        return view('backend.admin.products.seller_all_products', compact('products'));
+    }
 }
