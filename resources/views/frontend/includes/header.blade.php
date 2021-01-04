@@ -352,7 +352,7 @@
 {{--                                                <div class="ps-block__right"><a href="{{route('login')}}">{{ strtoupper(Auth::user()->name) }}</a>--}}
 
 {{--                                            @endif--}}
-                                            <div class="ps-block__right"><a href="{{route('login')}}">{{$values[1]}}</a>
+                                            <div class="ps-block__right"><a href="{{route('login')}}">{{$values[0]}}</a>
                                                 <form action = "{{route('logout')}}" method="post">
                                                     @csrf
                                                     <button type="submit" class="btn btn-lg btn-bold">Logout</button>
@@ -719,7 +719,10 @@
                                 @else
                                     <a href="{{route('login')}}"> <img src="{{url(Auth::user()->avatar_original)}}" alt="" class="ps-widget-img rounded-circle" width="30" height="30"></a>
                                 @endif
-                                <div class="ps-block__right"><a href="{{route('login')}}">{{Auth::user()->name}}</a>
+                                    @php
+                                        $values = explode(" ",Auth::user()->name);
+                                    @endphp
+                                <div class="ps-block__right"><a href="{{route('login')}}">{{$values[0]}}</a>
                                     {{--                                                <a href="{{ route('logout') }}">Logout</a>--}}
                                     <form action = "{{route('logout')}}" method="post">
                                         @csrf

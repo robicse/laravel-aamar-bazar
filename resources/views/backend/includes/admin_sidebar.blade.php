@@ -105,8 +105,8 @@
                             </li>
                         </ul>
                     </li>
-                    <li class="nav-item has-treeview">
-                        <a href="" class="nav-link {{Request::is('seller/order') ? 'active' : ''}}">
+                    <li class="nav-item has-treeview {{(Request::is('admin/order*')) ? 'menu-open' : ''}}">
+                        <a href="" class="nav-link {{Request::is('admin/order') ? 'active' : ''}}">
                             <i class="nav-icon fas fa-box"></i>
                             <p>
                                 Order Management
@@ -115,44 +115,44 @@
                         </a>
                         <ul class="nav nav-treeview">
                             <li class="nav-item">
-                                <a href="{{route('admin.pending.order')}}"
-                                   class="nav-link {{Request::is('admin/pending-order*') ? 'active' :''}}">
-                                    <i class="fa fa-{{Request::is('admin/pending-order*') ? 'folder-open':'folder'}} nav-icon"></i>
+                                <a href="{{route('admin.order.pending')}}"
+                                   class="nav-link {{Request::is('admin/order/pending*') ? 'active' :''}}">
+                                    <i class="fa fa-{{Request::is('admin/order/pending*') ? 'folder-open':'folder'}} nav-icon"></i>
                                     <p>Pending Order</p>
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a href="{{route('admin.on-reviewed.order')}}"
-                                   class="nav-link {{Request::is('admin/on-reviewed-order*') ? 'active' :''}}">
-                                    <i class="fa fa-{{Request::is('admin/on-reviewed-order*') ? 'folder-open':'folder'}} nav-icon"></i>
+                                <a href="{{route('admin.order.on-reviewed')}}"
+                                   class="nav-link {{Request::is('admin/order/on-reviewed*') ? 'active' :''}}">
+                                    <i class="fa fa-{{Request::is('admin/order/on-reviewed*') ? 'folder-open':'folder'}} nav-icon"></i>
                                     <p>On Reviewed Order</p>
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a href="{{route('admin.on-delivered.order')}}"
-                                   class="nav-link {{Request::is('admin/on-delivered-order*') ? 'active' :''}}">
-                                    <i class="fa fa-{{Request::is('admin/on-delivered-order*') ? 'folder-open':'folder'}} nav-icon"></i>
+                                <a href="{{route('admin.order.on-delivered')}}"
+                                   class="nav-link {{Request::is('admin/order/on-delivered*') ? 'active' :''}}">
+                                    <i class="fa fa-{{Request::is('admin/order/on-delivered*') ? 'folder-open':'folder'}} nav-icon"></i>
                                     <p>On Delivered Order</p>
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a href="{{route('admin.delivered.order')}}"
-                                   class="nav-link {{Request::is('admin/delivered-order*') ? 'active' :''}}">
-                                    <i class="fa fa-{{Request::is('admin/delivered-order*') ? 'folder-open':'folder'}} nav-icon"></i>
+                                <a href="{{route('admin.order.delivered')}}"
+                                   class="nav-link {{Request::is('admin/order/delivered*') ? 'active' :''}}">
+                                    <i class="fa fa-{{Request::is('admin/order/delivered*') ? 'folder-open':'folder'}} nav-icon"></i>
                                     <p>Delivered Order</p>
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a href="{{route('admin.completed.order')}}"
-                                   class="nav-link {{Request::is('admin/completed-order*') ? 'active' :''}}">
-                                    <i class="fa fa-{{Request::is('admin/completed-order*') ? 'folder-open':'folder'}} nav-icon"></i>
+                                <a href="{{route('admin.order.completed')}}"
+                                   class="nav-link {{Request::is('admin/order/completed*') ? 'active' :''}}">
+                                    <i class="fa fa-{{Request::is('admin/order/completed*') ? 'folder-open':'folder'}} nav-icon"></i>
                                     <p>Completed Order</p>
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a href="{{route('admin.canceled.order')}}"
-                                   class="nav-link {{Request::is('admin/canceled-order*') ? 'active' :''}}">
-                                    <i class="fa fa-{{Request::is('admin/canceled-order*') ? 'folder-open':'folder'}} nav-icon"></i>
+                                <a href="{{route('admin.order.canceled')}}"
+                                   class="nav-link {{Request::is('admin/order/canceled*') ? 'active' :''}}">
+                                    <i class="fa fa-{{Request::is('admin/order/canceled*') ? 'folder-open':'folder'}} nav-icon"></i>
                                     <p>Cancel Order</p>
                                 </a>
                             </li>
@@ -219,6 +219,24 @@
                                    class="nav-link {{Request::is('admin/sellers/commission/form*') ? 'active' :''}}">
                                     <i class="fa fa-{{Request::is('admin/sellers/commission/form*') ? 'folder-open':'folder'}} nav-icon"></i>
                                     <p>Commission Settings</p>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="nav-item has-treeview {{(Request::is('admin/customers*') ) ? 'menu-open' : ''}}">
+                        <a href="#" class="nav-link">
+                            <i class="nav-icon fas fa-user-circle"></i>
+                            <p>
+                                Customers
+                                <i class="right fa fa-angle-left"></i>
+                            </p>
+                        </a>
+                        <ul class="nav nav-treeview">
+                            <li class="nav-item">
+                                <a href="{{route('admin.customers.index')}}"
+                                   class="nav-link {{Request::is('admin/customers') ? 'active' :''}}">
+                                    <i class="fa fa-{{Request::is('admin/customers') ? 'folder-open':'folder'}} nav-icon"></i>
+                                    <p>Customer List</p>
                                 </a>
                             </li>
                         </ul>
