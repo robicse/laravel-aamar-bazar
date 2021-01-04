@@ -19,7 +19,7 @@
                             @foreach($shopCat as $Cat)
                                 <li class="current-menu-item menu-item-has-children"><a href="#"> {{$Cat->category->name}} </a><span class="sub-toggle"><i class="fa fa-angle-down"></i></span>
                                     @php
-                                        $subcategory = \App\Model\Subcategory::where('category_id',$Cat->id)->latest()->get();
+                                        $subcategory = \App\Model\Subcategory::where('category_id',$Cat->category_id)->latest()->get();
                                     @endphp
                                     <ul class="sub-menu">
                                         @foreach($subcategory as $subCat)
