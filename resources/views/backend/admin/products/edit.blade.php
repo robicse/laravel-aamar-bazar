@@ -26,6 +26,7 @@
     <form role="form" id="choice_form" action="{{route('admin.products.store')}}" method="post"
           enctype="multipart/form-data">
         @csrf
+        <input type="hidden" name="id" value="{{ $product->id }}">
         <input type="hidden" name="added_by" value="admin">
         <section class="content">
             <div class="row m-2">
@@ -177,11 +178,18 @@
                                         <div class="form-group col-md-10">
                                             <label for="colors">Colors</label>
                                             @php
-                                              $colors =  \App\Model\Color::orderBy('name', 'asc')->get()
+                                              $colors =  \App\Model\Color::orderBy('name', 'asc')->get();
+                                                $pColors = json_decode($product->colors);
+                                                $pColorArr = [];
+                                                foreach ($pColors as $pColor){
+                                                    $data = $pColor->code;
+                                                    array_push($pColorArr, $data);
+                                                }
                                             @endphp
+                                           {{-- {{dd($pColorArr)}}--}}
                                             <select class="form-control color-var-select" name="colors[]" id="colors" multiple>
                                                 @foreach ($colors as $key => $color)
-                                                    <option value="{{ $color->code }}" <?php if(in_array($color->code, json_decode($product->colors))) echo 'selected'?> >{{ $color->name }}</option>
+                                                    <option value="{{ $color->code }}" <?php if(in_array($color->code, $pColorArr)) echo 'selected'?> >{{ $color->name }}</option>
                                                 @endforeach
                                             </select>
                                         </div>
@@ -199,19 +207,32 @@
                                                     class="form-control demo-select2" multiple
                                                     data-placeholder="Choose Attributes">
                                                 @foreach (\App\Model\Attribute::all() as $key => $attribute)
-                                                    <option value="{{ $attribute->id }}">{{ $attribute->name }}</option>
+                                                    <option value="{{ $attribute->id }}" @if($product->attributes != null && in_array($attribute->id, json_decode($product->attributes, true))) selected @endif>{{ $attribute->name }}</option>
                                                 @endforeach
                                             </select>
                                         </div>
                                     </div>
-                                    <div class="row">
-                                        <div class="col-md-12">
-                                            <div class="customer_choice_options" id="customer_choice_options">
-
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="customer_choice_options" id="customer_choice_options">
+                                        @foreach (json_decode($product->choice_options) as $key => $choice_option)
+                                            <div class="form-group row">
+                                                <div class="col-lg-2">
+                                                    <input type="hidden" name="choice_no[]" value="{{ $choice_option->attribute_id }}">
+                                                    <input type="text" class="form-control" name="choice[]" value="{{ \App\Model\Attribute::find($choice_option->attribute_id)->name }}" placeholder="Choice Title" disabled>
+                                                </div>
+                                                <div class="col-lg-9">
+                                                    <input type="text" class="form-control" name="choice_options_{{ $choice_option->attribute_id }}[]" placeholder="Enter choice values" value="{{ implode(',', $choice_option->values) }}" data-role="tagsinput" onchange="update_sku()">
+                                                </div>
+                                                <div class="col-lg-1">
+                                                    <button onclick="delete_row(this)" class="btn btn-danger btn-icon"><i class="fa fa-trash"></i></button>
+                                                </div>
                                             </div>
-                                        </div>
+                                        @endforeach
                                     </div>
-
                                 </div>
                             </div>
                             <div class="row">
@@ -279,100 +300,46 @@
             $("input[data-role=tagsinput], select[multiple][data-role=tagsinput]").tagsinput();
         }
 
-        $(document).ready(function () {
-            get_subcategories_by_category();
-            //title to slug make
-            $("#name").keyup(function () {
-                var name = $("#name").val();
-                console.log(name);
-                $.ajax({
-                    url: "{{URL('/admin/products/slug')}}/" + name,
-                    method: "get",
-                    success: function (data) {
-                        //console.log(data.response)
-                        $('#slug').val(data.response);
-                    }
-                });
-            })
-            $("#photos").spartanMultiImagePicker({
-                fieldName: 'photos[]',
-                maxCount: 10,
-                rowHeight: '200px',
-                groupClassName: 'col-md-4 col-sm-4 col-xs-6',
-                maxFileSize: '150000',
-                dropFileLabel: "Drop Here",
-                onExtensionErr: function (index, file) {
-                    console.log(index, file, 'extension err');
-                    alert('Please only input png or jpg type file')
-                },
-                onSizeErr: function (index, file) {
-                    console.log(index, file, 'file size too big');
-                    alert('Image size too big. Please upload below 150kb');
-                },
-                onAddRow:function(index){
-                     var altData = '<input type="text" placeholder="Image Alt" name="photos_alt[]" class="form-control" required=""></div>'
-                    //var index = index + 1;
-                    //$('#photos_alt').append('<h4 id="abc_'+index+'">'+index+'</h4>')
-                    //$('#photos_alt').append('<div class="col-md-4 col-sm-4 col-xs-6" id="abc_'+index+'">'+altData+'</div>')
-                },
-                onRemoveRow : function(index){
-                    var index = index + 1;
-                    $(`#abc_${index}`).remove()
-                },
-            });
-
-            $("#thumbnail_img").spartanMultiImagePicker({
-                fieldName: 'thumbnail_img',
-                maxCount: 1,
-                rowHeight: '200px',
-                groupClassName: 'col-md-4 col-sm-4 col-xs-6',
-                maxFileSize: '100000',
-                dropFileLabel: "Drop Here",
-                onExtensionErr: function (index, file) {
-                    console.log(index, file, 'extension err');
-                    alert('Please only input png or jpg type file')
-                },
-                onSizeErr: function (index, file) {
-                    console.log(index, file, 'file size too big');
-                    alert('Image size too big. Please upload below 100kb');
-                },
-                onAddRow:function(index){
-                    var altData = '<input type="text" placeholder="Thumbnails Alt" name="thumbnail_img_alt[]" class="form-control" required=""></div>'
-                    //var index = index + 1;
-                    //$('#photos_alt').append('<h4 id="abc_'+index+'">'+index+'</h4>')
-                    //$('#thumbnail_img_alt').append('<div class="col-md-4 col-sm-4 col-xs-6" id="abc_'+index+'">'+altData+'</div>')
-                },
-                onRemoveRow : function(index){
-                    var index = index + 1;
-                    $(`#abc_${index}`).remove()
-                },
-            });
-
-            $(".color-var-select").select2({
-                templateResult: colorCodeSelect,
-                templateSelection: colorCodeSelect,
-                escapeMarkup: function (m) {
-                    return m;
-                },
-            });
-
-            function colorCodeSelect(state) {
-                var colorCode = $(state.element).val();
-                if (!colorCode) return state.text;
-                return (
-                    "<span class='color-preview' style='background-color:" +
-                    colorCode +
-                    ";'></span>" +
-                    state.text
-                );
+        $('input[name="colors_active"]').on('change', function() {
+            if(!$('input[name="colors_active"]').is(':checked')){
+                $('#colors').prop('disabled', true);
             }
-            //CKEDITOR.replace( 'description' );
-            CKEDITOR.replace( 'description', {
-                filebrowserUploadUrl: "{{route('admin.ckeditor.upload', ['_token' => csrf_token() ])}}",
-                filebrowserUploadMethod: 'form'
-            });
-
+            else{
+                $('#colors').prop('disabled', false);
+            }
+            update_sku();
         });
+
+        $('#colors').on('change', function() {
+            update_sku();
+        });
+        function delete_row(em){
+            $(em).closest('.form-group').remove();
+            update_sku();
+        }
+
+        function update_sku() {
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+            $.ajax({
+                type: "POST",
+                url: '{{ route('admin.products.sku_combination_edit') }}',
+                data:$('#choice_form').serialize(),
+                success: function(data){
+                    $('#sku_combination').html(data);
+                    if (data.length > 1) {
+                        $('#quantity').hide();
+                    }
+                    else {
+                        $('#quantity').show();
+                    }
+                }
+            });
+        }
+
 
         function get_subcategories_by_category() {
             var category_id = $('#category_id').val();
@@ -436,18 +403,92 @@
             get_subsubcategories_by_subcategory();
         });
 
-        //colors
-        $('input[name="colors_active"]').on('change', function () {
-            if (!$('input[name="colors_active"]').is(':checked')) {
-                $('#colors').prop('disabled', true);
-            } else {
-                $('#colors').prop('disabled', false);
-            }
+        $(document).ready(function () {
             update_sku();
-        });
+            get_subcategories_by_category();
+            //title to slug make
+            $("#name").keyup(function () {
+                var name = $("#name").val();
+                console.log(name);
+                $.ajax({
+                    url: "{{URL('/admin/products/slug')}}/" + name,
+                    method: "get",
+                    success: function (data) {
+                        //console.log(data.response)
+                        $('#slug').val(data.response);
+                    }
+                });
+            })
+            $("#photos").spartanMultiImagePicker({
+                fieldName: 'photos[]',
+                maxCount: 10,
+                rowHeight: '200px',
+                groupClassName: 'col-md-4 col-sm-4 col-xs-6',
+                maxFileSize: '150000',
+                dropFileLabel: "Drop Here",
+                onExtensionErr: function (index, file) {
+                    console.log(index, file, 'extension err');
+                    alert('Please only input png or jpg type file')
+                },
+                onSizeErr: function (index, file) {
+                    console.log(index, file, 'file size too big');
+                    alert('Image size too big. Please upload below 150kb');
+                },
+                onAddRow:function(index){
+                    var altData = '<input type="text" placeholder="Image Alt" name="photos_alt[]" class="form-control" required=""></div>'
+                    //var index = index + 1;
+                    //$('#photos_alt').append('<h4 id="abc_'+index+'">'+index+'</h4>')
+                    //$('#photos_alt').append('<div class="col-md-4 col-sm-4 col-xs-6" id="abc_'+index+'">'+altData+'</div>')
+                },
+                onRemoveRow : function(index){
+                    var index = index + 1;
+                    $(`#abc_${index}`).remove()
+                },
+            });
 
-        $('#colors').on('change', function () {
-            update_sku();
+            $("#thumbnail_img").spartanMultiImagePicker({
+                fieldName: 'thumbnail_img',
+                maxCount: 1,
+                rowHeight: '200px',
+                groupClassName: 'col-md-4 col-sm-4 col-xs-6',
+                maxFileSize: '100000',
+                dropFileLabel: "Drop Here",
+                onExtensionErr: function (index, file) {
+                    console.log(index, file, 'extension err');
+                    alert('Please only input png or jpg type file')
+                },
+                onSizeErr: function (index, file) {
+                    console.log(index, file, 'file size too big');
+                    alert('Image size too big. Please upload below 100kb');
+                },
+                onAddRow:function(index){
+                    var altData = '<input type="text" placeholder="Thumbnails Alt" name="thumbnail_img_alt[]" class="form-control" required=""></div>'
+                    //var index = index + 1;
+                    //$('#photos_alt').append('<h4 id="abc_'+index+'">'+index+'</h4>')
+                    //$('#thumbnail_img_alt').append('<div class="col-md-4 col-sm-4 col-xs-6" id="abc_'+index+'">'+altData+'</div>')
+                },
+                onRemoveRow : function(index){
+                    var index = index + 1;
+                    $(`#abc_${index}`).remove()
+                },
+            });
+
+            $(".color-var-select").select2({
+                templateResult: colorCodeSelect,
+                templateSelection: colorCodeSelect,
+                escapeMarkup: function (m) {
+                    return m;
+                },
+            });
+            //CKEDITOR.replace( 'description' );
+            CKEDITOR.replace( 'description', {
+                filebrowserUploadUrl: "{{route('admin.ckeditor.upload', ['_token' => csrf_token() ])}}",
+                filebrowserUploadMethod: 'form'
+            });
+            $('.remove-files').on('click', function(){
+                $(this).parents(".col-md-4").remove();
+            });
+
         });
 
         $('input[name="unit_price"]').on('keyup', function () {
@@ -458,33 +499,6 @@
             update_sku();
         });
 
-        function delete_row(em) {
-            $(em).closest('.form-group').remove();
-            update_sku();
-        }
-
-        function update_sku() {
-            $.ajaxSetup({
-                headers: {
-                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                }
-            });
-            $.ajax({
-                type: "POST",
-                url: '{{ route('admin.products.sku_combination') }}',
-                data: $('#choice_form').serialize(),
-                success: function (data) {
-                    $('#sku_combination').html(data);
-                    if (data.length > 1) {
-                        $('#quantity').hide();
-                    } else {
-                        $('#quantity').show();
-                    }
-                }
-            });
-        }
-
-        //attribute choose
         $('#choice_attributes').on('change', function() {
             //$('#customer_choice_options').html(null);
             $.each($("#choice_attributes option:selected"), function(j, attribute){
@@ -517,9 +531,16 @@
             update_sku();
         });
 
-        $('.remove-files').on('click', function(){
-            $(this).parents(".col-md-4").remove();
-        });
+        function colorCodeSelect(state) {
+            var colorCode = $(state.element).val();
+            if (!colorCode) return state.text;
+            return (
+                "<span class='color-preview' style='background-color:" +
+                colorCode +
+                ";'></span>" +
+                state.text
+            );
+        }
 
 
     </script>
