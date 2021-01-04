@@ -63,7 +63,7 @@
                         <figure>
                             <h4 class="widget-title">By Price</h4>
                             <div id="nonlinear"></div>
-                            <p class="ps-slider__meta">Price:<span class="ps-slider__value">$<span class="ps-slider__min"></span></span>-<span class="ps-slider__value">$<span class="ps-slider__max"></span></span></p>
+                            <p class="ps-slider__meta">Price:<span class="ps-slider__value">৳<span class="ps-slider__min"></span></span>-<span class="ps-slider__value">৳<span class="ps-slider__max"></span></span></p>
                         </figure>
 {{--                        <figure>--}}
 {{--                            <h4 class="widget-title">By Price</h4>--}}
@@ -534,3 +534,104 @@
         </div>
     </div>
 @endsection
+@push('js')
+    <script>
+        var timeout = 0;
+        var update = function (values) {
+            clearTimeout(timeout);
+            timeout = setTimeout(function () {
+                $.ajax({
+                    type: 'GET', //THIS NEEDS TO BE GET
+                    url: '/product/filter/'+values+'/sellerId/'+{{$shop->user_id}},
+                    dataType: 'json',
+                    success: function (data) {
+                        console.log(data);
+                        $('.found_product').empty();
+                        if(data.length==0){
+                            $('.found_product').append('<h3 class="ml-5">Nothing Found</h3>');
+                            $('.found_product_length').html(data.length);
+                        }else{
+                            $('.found_product_length').html(data.length);
+                            var i=0;
+                            for(i=0;i<data.length;i++){
+                                $('.found_product').append(`<div class="col-xl-3 col-lg-4 col-md-4 col-sm-6 col-6 ">
+                                                <div class="ps-product">
+                                                    <div class="ps-product__thumbnail"><a href="/product/${data[i].slug}"><img src="{{url($product->thumbnail_img)}}" alt=""></a>
+                                                        <ul class="ps-product__actions">
+                                                            <li><a href="#" data-toggle="tooltip" data-placement="top" title="Add To Cart"><i class="icon-bag2"></i></a></li>
+                                                            <li><a href="#" data-placement="top" title="Quick View" data-toggle="modal" data-target="#product-quickview"><i class="icon-eye"></i></a></li>
+                                                            <li><a href="#" data-toggle="tooltip" data-placement="top" title="Add to Whishlist"><i class="icon-heart"></i></a></li>
+                                                            {{--                                                        <li><a href="#" data-toggle="tooltip" data-placement="top" title="Compare"><i class="icon-chart-bars"></i></a></li>--}}
+                                </ul>
+                            </div>
+                            <div class="ps-product__container"><a class="ps-product__vendor" href="/product/${data[i].slug}">${data[i].name}</a>
+                                                        <div class="ps-product__content"><a class="ps-product__title" href="/product/${data[i].slug}">${data[i].name}</a>
+                                                            <p class="ps-product__price">৳ ${data[i].unit_price}</p>
+                                                        </div>
+                                                        <div class="ps-product__content hover"><a class="ps-product__title" href="/product/${data[i].slug}">${data[i].name}</a>
+                                                            <p class="ps-product__price">৳ ${data[i].unit_price}</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>`);
+                            }
+                        }
+                    },error:function(){
+                        console.log(data);
+                    }
+                });
+            }, 1000);
+        };
+        function filterSlider() {
+            var nonLinearSlider = document.getElementById('nonlinear');
+            if (typeof nonLinearSlider != 'undefined' && nonLinearSlider != null) {
+                noUiSlider.create(nonLinearSlider, {
+                    connect: true,
+                    behaviour: 'tap',
+                    start: [0, 1000],
+                    range: {
+                        min: 0,
+                        '10%': 100,
+                        '20%': 200,
+                        '30%': 300,
+                        '40%': 400,
+                        '50%': 500,
+                        '60%': 600,
+                        '70%': 700,
+                        '80%': 800,
+                        '90%': 900,
+                        max: 1000,
+                    },
+                });
+                var nodes = [
+                    document.querySelector('.ps-slider__min'),
+                    document.querySelector('.ps-slider__max'),
+                ];
+
+                nonLinearSlider.noUiSlider.on('update', function(values, handle) {
+                    //console.log(values)
+                    var wto;
+                    nodes[handle].innerHTML = Math.round(values[handle]);
+                    var filter_price = Math.round(values[handle]);
+                    /*clearTimeout(wto);
+                    wto  = setTimeout(function() {
+                        $.ajax({
+                            type: 'GET', //THIS NEEDS TO BE GET
+                            url: '/product/filter/'+values,
+                            dataType: 'json',
+                            success: function (data) {
+                                console.log(data);
+                            },error:function(){
+                                console.log(data);
+                            }
+                        });
+                    }, 5000);*/
+
+                    update(values);
+
+
+                });
+            }
+        }
+    </script>
+@endpush
