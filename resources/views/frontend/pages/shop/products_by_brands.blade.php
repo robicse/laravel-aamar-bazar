@@ -521,7 +521,7 @@
                         console.log(data);
                         $('.found_product').empty();
                         if(data.length==0){
-                            $('.found_product').append('<h3>Nothing Found</h3>');
+                            $('.found_product').append('<h3 class="ml-5">Nothing Found</h3>');
                             $('.found_product_length').html(data.length);
                         }else{
                             $('.found_product_length').html(data.length);
