@@ -355,7 +355,7 @@
                                             <div class="ps-block__right"><a href="{{route('login')}}">{{$values[0]}}</a>
                                                 <form action = "{{route('logout')}}" method="post">
                                                     @csrf
-                                                    <button type="submit" class="btn btn-lg btn-bold">Logout</button>
+                                                    <button type="submit" class="btn btn-lg btn-bold p-0">Logout</button>
                                                 </form>
                                             </div>
 
@@ -726,7 +726,7 @@
                                     {{--                                                <a href="{{ route('logout') }}">Logout</a>--}}
                                     <form action = "{{route('logout')}}" method="post">
                                         @csrf
-                                        <button type="submit" class="btn btn-lg btn-bold">Logout</button>
+                                        <button type="submit" class="btn btn-lg btn-bold p-0">Logout</button>
                                     </form>
                                 </div>
                             </div>

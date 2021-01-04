@@ -89,9 +89,9 @@
                                                 </a>
                                                 <button class="bg-danger dropdown-item" type="button"
                                                         onclick="deleteProduct({{$Info->id}})">
-                                                    <i class="fa fa-ban"></i> Ban this seller
+                                                    <i class="fa fa-ban"></i> Ban this Customer
                                                 </button>
-                                                <form id="delete-form-{{$Info->id}}" action="{{route('admin.sellers.destroy',$Info->id)}}" method="POST" style="display: none;">
+                                                <form id="delete-form-{{$Info->id}}" action="{{route('admin.customers.destroy',$Info->id)}}" method="POST" style="display: none;">
                                                     @csrf
                                                     @method('DELETE')
                                                 </form>
