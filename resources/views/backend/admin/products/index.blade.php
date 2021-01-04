@@ -43,7 +43,7 @@
                                 <th>#Id</th>
                                 <th>Icon</th>
                                 <th>Name</th>
-                                <th>Total Stock</th>
+                                <th>Stock</th>
                                 <th>Base Price</th>
                                 <th>Today's Deal</th>
                                 <th>Published</th>
@@ -59,7 +59,7 @@
                                     <img src="{{url($product->thumbnail_img)}}" width="32" height="32" alt="">
                                 </td>
                                 <td>{{$product->name}}</td>
-                                <td>{{$product->current_stock}}</td>
+                                <td class="{{$product->current_stock == 0 ? 'badge badge-danger' : 'badge badge-success'}}">{{$product->current_stock == 0 ? 'Not Available': 'Available'}}</td>
                                 <td>{{$product->unit_price}}</td>
                                 <td>
                                     <div class="form-group col-md-2">
