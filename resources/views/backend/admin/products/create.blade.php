@@ -63,7 +63,7 @@
                             <div class="form-group">
                                 <label for="">Sub Subcategory</label>
                                 <select name="subsubcategory_id" id="subsubcategory_id"
-                                        class="form-control demo-select2" required>
+                                        class="form-control demo-select2" >
 
                                 </select>
                             </div>
@@ -130,9 +130,16 @@
                                         </div>
                                     </div>
                                     <div class="row">
-                                        <div class="form-group col-md-4">
+                                       {{-- <div class="form-group col-md-4">
                                             <label for="unit_price">Quantity</label>
                                             <input type="number" min="0" value="0" step="1" placeholder="Quantity" name="current_stock" class="form-control" required="">
+                                        </div>--}}
+                                        <div class="form-group col-md-3">
+                                            <label for="current_stock">Stock</label>
+                                            <select name="current_stock" id="current_stock" class="form-control">
+                                                <option value="1" class="bg-success">Available</option>
+                                                <option value="0" class="bg-danger">Not Available</option>
+                                            </select>
                                         </div>
                                         <div class="form-group col-md-5">
                                             <label for="discount">Discount</label>

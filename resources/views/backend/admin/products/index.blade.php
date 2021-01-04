@@ -43,7 +43,7 @@
                                 <th>#Id</th>
                                 <th>Icon</th>
                                 <th>Name</th>
-                                <th>Total Stock</th>
+                                <th>Stock</th>
                                 <th>Base Price</th>
                                 <th>Today's Deal</th>
                                 <th>Published</th>
@@ -59,7 +59,7 @@
                                     <img src="{{url($product->thumbnail_img)}}" width="32" height="32" alt="">
                                 </td>
                                 <td>{{$product->name}}</td>
-                                <td>{{$product->current_stock}}</td>
+                                <td class="{{$product->current_stock == 0 ? 'badge badge-danger' : 'badge badge-success'}}">{{$product->current_stock == 0 ? 'Not Available': 'Available'}}</td>
                                 <td>{{$product->unit_price}}</td>
                                 <td>
                                     <div class="form-group col-md-2">
@@ -94,10 +94,10 @@
                                             <a class="bg-info dropdown-item" href="{{route('admin.products.edit',encrypt($product->id))}}">
                                                 <i class="fa fa-edit"></i> Edit
                                             </a>
-                                            <button class="bg-danger dropdown-item" type="button"
+                                            {{--<button class="bg-danger dropdown-item" type="button"
                                                     onclick="deleteProduct({{$product->id}})">
                                                 <i class="fa fa-trash"></i> Delete
-                                            </button>
+                                            </button>--}}
                                             <form id="delete-form-{{$product->id}}" action="{{route('admin.products.destroy',$product->id)}}" method="POST" style="display: none;">
                                                 @csrf
                                                 @method('DELETE')

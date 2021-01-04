@@ -25,6 +25,7 @@ Route::group(['as'=>'admin.','prefix' =>'admin','namespace'=>'Admin', 'middlewar
     Route::resource('subcategories','SubcategoryController');
     Route::resource('sub-subcategories','SubSubcategoryController');
     Route::resource('products','ProductController');
+    Route::post('products/update2/{id}','ProductController@update2')->name('products.update2');
     Route::get('products/slug/{name}','ProductController@ajaxSlugMake')->name('products.slug');
     Route::post('products/get-subcategories-by-category','ProductController@ajaxSubCat')->name('products.get_subcategories_by_category');
     Route::post('products/get-subsubcategories-by-subcategory','ProductController@ajaxSubSubCat')->name('products.get_subsubcategories_by_subcategory');
