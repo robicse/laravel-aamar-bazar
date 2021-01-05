@@ -36,7 +36,7 @@ class ProductController extends Controller
     }
 
     public function ProductVariantPrice(Request  $request) {
-      //dd($request->all());
+      dd($request->all());
       $c=count($request->variant);
       $i=1;
       $var=$request->variant;

@@ -14,10 +14,10 @@
         </div>
         <section class="ps-store-list">
             <div class="container">
-                <div class="ps-section__header">
-                    @include('frontend.includes.sliders')
+{{--                <div class="ps-section__header">--}}
+{{--                    @include('frontend.includes.sliders')--}}
 {{--                    <h3>Store list</h3>--}}
-                </div>
+{{--                </div>--}}
                 <div class="ps-section__wrapper">
                     <div class="ps-section__left">
                         <aside class="widget widget--vendor">

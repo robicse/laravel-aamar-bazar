@@ -2,7 +2,10 @@
     <div class="ps-container">
         <div class="ps-footer__widgets">
             <aside class="widget widget_footer widget_contact-us">
-                <h4 class="widget-title">Contact us</h4>
+                <div class="widget-title">
+                <a class="ps-logo" href="{{url('/')}}"><img src="{{asset('frontend/img/logo-mudi-hat.png')}}" alt=""></a>
+                </div>
+{{--                <h4 class="widget-title">Contact us</h4>--}}
                 <div class="widget_content">
                     <p>Call us 24/7</p>
                     <h3>1800 97 97 69</h3>

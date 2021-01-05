@@ -66,6 +66,7 @@
                                 </form>
                             </div>
                         </div>
+                        @if($shopCat->count() > 0)
                         <div class="ps-vendor-best-seller">
                             <div class="ps-section__header">
                                 <h3>Featured Categories</h3>
@@ -88,6 +89,8 @@
                                 </div>
                             </div>
                         </div>
+                        @endif
+                        @if($products->count() > 0)
                         <div class="ps-shopping ps-tab-root">
                             <div class="ps-shopping__header">
                                 <p>Featured Products</p>
@@ -135,6 +138,11 @@
                                 </div>
                             </div>
                         </div>
+                        @else
+                            <div class="text-center">
+                                <p>Product isn't inserted yet..</p>
+                            </div>
+                        @endif
                         @if($todaysDeal->count() > 0)
                         <div class="ps-shopping ps-tab-root" style="padding-top: 10px;">
                             <div class="ps-shopping__header">

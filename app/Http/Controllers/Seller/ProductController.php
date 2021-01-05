@@ -12,6 +12,7 @@ use App\Model\ProductStock;
 use App\Model\Shop;
 use App\Model\ShopBrand;
 use App\Model\ShopCategory;
+use App\Model\ShopSubcategory;
 use App\Model\Subcategory;
 use App\Model\SubSubcategory;
 use Brian2694\Toastr\Facades\Toastr;
@@ -235,6 +236,17 @@ class ProductController extends Controller
             //Toastr::success("Shop Category Inserted Successfully","Success");
             $shopCategoryData->save();
         }
+//        //check shop subcategories
+        $shopSubcategory = ShopSubcategory::where('shop_id',$shopId->id)->where('subcategory_id',$request->subcategory_id)->where('category_id',$request->category_id)->first();
+        if(empty($shopSubcategory)){
+            $shopSubcategoryData = new ShopSubcategory();
+            $shopSubcategoryData->shop_id = $shopId->id;
+            $shopSubcategoryData->subcategory_id = $request->subcategory_id;
+            $shopSubcategoryData->category_id = $request->category_id;
+            //Toastr::success("Shop Subcategory Inserted Successfully","Success");
+            $shopSubcategoryData->save();
+        }
+
         //check shop Brands
         $shopBrand = ShopBrand::where('shop_id',$shopId->id)->where('brand_id',$request->brand_id)->first();
         if(empty($shopBrand)){
@@ -514,6 +526,17 @@ class ProductController extends Controller
                 //Toastr::success("Shop Category Inserted Successfully","Success");
                 $shopCategoryData->save();
             }
+            //check shop subcategories
+            $shopSubcategory = ShopSubcategory::where('shop_id',$shopId->id)->where('subcategory_id',$request->subcategory_id)->where('category_id',$request->category_id)->first();
+            if(empty($shopSubcategory)){
+                $shopSubcategoryData = new ShopSubcategory();
+                $shopSubcategoryData->shop_id = $shopId->id;
+                $shopSubcategoryData->subcategory_id = $product_new->subcategory_id;
+                $shopSubcategoryData->category_id = $product_new->category_id;
+                //Toastr::success("Shop Subcategory Inserted Successfully","Success");
+                $shopSubcategoryData->save();
+            }
+
             $shopBrand = ShopBrand::where('shop_id',$shopId->id)->where('brand_id',$product_new->brand_id)->first();
             if(empty($shopBrand)){
                 $shopBrandData = new ShopBrand();

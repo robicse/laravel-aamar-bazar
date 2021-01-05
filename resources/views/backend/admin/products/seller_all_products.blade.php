@@ -1,5 +1,5 @@
 @extends('backend.layouts.master')
-@section("title","Seller All Products")
+@section("title","All Seller Products")
 @push('css')
     <link rel="stylesheet" href="{{asset('backend/plugins/datatables/dataTables.bootstrap4.css')}}">
 @endpush
@@ -8,12 +8,12 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>In House Product List</h1>
+                    <h1>All Seller Products</h1>
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
                         <li class="breadcrumb-item"><a href="{{route('admin.dashboard')}}">Home</a></li>
-                        <li class="breadcrumb-item active">In House Product List</li>
+                        <li class="breadcrumb-item active">All Seller Products</li>
                     </ol>
                 </div>
             </div>
@@ -25,7 +25,7 @@
             <div class="col-12">
                 <div class="card card-info card-outline">
                     <div class="card-header">
-                        <h3 class="card-title float-left">In House Product List</h3>
+                        <h3 class="card-title float-left">All Seller Products</h3>
                         <div class="float-right">
                             <a href="{{route('admin.products.create')}}">
                                 <button class="btn btn-success">
@@ -36,13 +36,14 @@
                         </div>
                     </div>
                     <!-- /.card-header -->
+
                     <div class="card-body table-responsive">
                         <table id="example1" class="table table-bordered table-striped">
                             <thead>
                             <tr>
                                 <th>#Id</th>
                                 <th>Icon</th>
-                                <th>Seller Name</th>
+                                <th>Shop Name</th>
                                 <th>Name</th>
                                 <th>Total Stock</th>
                                 <th>Base Price</th>
@@ -52,14 +53,19 @@
                                 <th>Action</th>
                             </tr>
                             </thead>
+
                             <tbody>
                             @foreach($products as $key => $product)
+{{--                                @dd($product->user->name)--}}
+                                @php
+                                    $shop = \App\Model\Shop::where('user_id',$product->user->id)->first();
+                                @endphp
                                 <tr>
                                     <td>{{$key + 1}}</td>
                                     <td>
                                         <img src="{{url($product->thumbnail_img)}}" width="32" height="32" alt="">
                                     </td>
-                                    <td>{{$product->user->name}}</td>
+                                    <td>{{$shop->name}}</td>
                                     <td>{{$product->name}}</td>
                                     <td>{{$product->current_stock}}</td>
                                     <td>{{$product->unit_price}}</td>
@@ -114,6 +120,7 @@
                             <tr>
                                 <th>#Id</th>
                                 <th>Icon</th>
+                                <th>Shop Name</th>
                                 <th>Name</th>
                                 <th>Total Stock</th>
                                 <th>Base Price</th>
