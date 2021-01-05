@@ -17,7 +17,7 @@
             </div>--}}
         </div>
 
-    @if (Auth::check() )
+    @if (Auth::check() && Auth::user()->user_type == 'seller' )
         <!-- Sidebar Menu -->
             <nav class="mt-2">
                 <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"

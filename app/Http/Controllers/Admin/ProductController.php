@@ -381,7 +381,6 @@ class ProductController extends Controller
         else {
             $product->attributes = json_encode(array());
         }
-
         $product->choice_options = json_encode($choice_options);
 
         //combinations start
@@ -434,7 +433,6 @@ class ProductController extends Controller
                 }else{
                     $product_stock->qty = 0;
                 }
-
                 $product_stock->save();
             }
         }

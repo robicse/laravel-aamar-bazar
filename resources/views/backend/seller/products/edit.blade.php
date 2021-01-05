@@ -1,10 +1,18 @@
 @extends('backend.seller.layouts.master')
-@section("title","Add Products")
+@section("title","Edit Products")
 @push('css')
     <link rel="stylesheet" href="{{asset('backend/plugins/select2/select2.min.css')}}">
     <link rel="stylesheet" href="{{asset('backend/plugins/bootstrap-tagsinput/bootstrap-tagsinput.css')}}">
     <link rel="stylesheet" href="{{asset('backend/dist/css/spectrum.css')}}">
-
+    <style>
+        .select2-container--default .color-preview {
+            height: 12px;
+            width: 12px;
+            display: inline-block;
+            margin-right: 5px;
+            margin-top: 2px;
+        }
+    </style>
 @endpush
 @section('content')
     <section class="content-header">
@@ -15,7 +23,7 @@
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item"><a href="{{route('seller.dashboard')}}">Home</a></li>
+                        <li class="breadcrumb-item"><a href="{{route('admin.dashboard')}}">Home</a></li>
                         <li class="breadcrumb-item active">Add Products</li>
                     </ol>
                 </div>
@@ -23,10 +31,11 @@
         </div><!-- /.container-fluid -->
     </section>
     <!-- Main content -->
-    <form role="form" id="choice_form" action="{{route('seller.products.store')}}" method="post"
+    <form role="form" id="choice_form" action="{{route('seller.products.update2',$product->id)}}" method="post"
           enctype="multipart/form-data">
         @csrf
-        <input type="hidden" name="added_by" value="seller">
+        <input type="hidden" name="id" value="{{ $product->id }}">
+        <input type="hidden" name="added_by" value="admin">
         <section class="content">
             <div class="row m-2">
                 <div class="col-md-6">
@@ -37,19 +46,19 @@
                             <div class="form-group ">
                                 <label for="name">Product Name</label>
                                 <input type="text" class="form-control " name="name" id="name" placeholder="Enter Name"
-                                       onchange="update_sku()" required>
+                                       onchange="update_sku()" value="{{$product->name}}" required>
                             </div>
                             <div class="form-group">
                                 <label for="slug">Slug (SEO Url) <small class="text-danger">(requried* and
                                         unique)</small></label>
                                 <input type="text" id="slug" name="slug" class="form-control"
-                                       placeholder="Slug (e.g. this-is-test-product-title)">
+                                       placeholder="Slug (e.g. this-is-test-product-title)" value="{{$product->slug}}">
                             </div>
                             <div class="form-group">
                                 <label for="category_id">Category</label>
                                 <select name="category_id" id="category_id" class="form-control demo-select2" required>
                                     @foreach($categories as $category)
-                                        <option value="{{$category->id}}">{{$category->name}}</option>
+                                        <option value="{{$category->id}}" {{$product->category_id == $category->id ? 'selected' : ''}}>{{$category->name}}</option>
                                     @endforeach
                                 </select>
                             </div>
@@ -63,7 +72,7 @@
                             <div class="form-group">
                                 <label for="">Sub Subcategory</label>
                                 <select name="subsubcategory_id" id="subsubcategory_id"
-                                        class="form-control demo-select2" required>
+                                        class="form-control demo-select2" >
 
                                 </select>
                             </div>
@@ -78,7 +87,7 @@
                             <div class="form-group ">
                                 <label for="name">Unit</label>
                                 <input type="text" class="form-control " name="unit" id="unit"
-                                       placeholder="Unit (e.g. KG, Pc etc)" required>
+                                       placeholder="Unit (e.g. KG, Pc etc)" value="{{$product->unit}}" required>
                             </div>
                         </div>
                     </div>
@@ -90,7 +99,19 @@
                         <div class="form-group">
                             <label class="control-label ml-3">Gallery Images</label>
                             <div class="ml-3 mr-3">
-                                <div class="row" id="photos"></div>
+                                <div class="row" id="photos">
+                                    @if(is_array(json_decode($product->photos)))
+                                        @foreach (json_decode($product->photos) as $key => $photo)
+                                            <div class="col-md-4 col-sm-4 col-xs-6">
+                                                <div class="img-upload-preview">
+                                                    <img loading="lazy"  src="{{url($photo)}}" alt="" class="img-responsive">
+                                                    <input type="hidden" name="previous_photos[]" value="{{url($photo)}}">
+                                                    <button type="button" class="btn btn-danger close-btn remove-files"><i class="fa fa-times"></i></button>
+                                                </div>
+                                            </div>
+                                        @endforeach
+                                    @endif
+                                </div>
                                 <div class="row" id="photos_alt"></div>
                             </div>
                         </div>
@@ -98,14 +119,24 @@
                             <label class="control-label ml-3">Thumbnail Images <small class="text-danger">(Size: 290 *
                                     300px)</small></label>
                             <div class="ml-3 mr-3">
-                                <div class="row" id="thumbnail_img"></div>
+                                <div class="row" id="thumbnail_img">
+                                    @if ($product->thumbnail_img != null)
+                                        <div class="col-md-4 col-sm-4 col-xs-6">
+                                            <div class="img-upload-preview">
+                                                <img loading="lazy"  src="{{ url($product->thumbnail_img) }}" alt="" class="img-responsive">
+                                                <input type="hidden" name="previous_thumbnail_img" value="{{ url($product->thumbnail_img) }}">
+                                                <button type="button" class="btn btn-danger close-btn remove-files"><i class="fa fa-times"></i></button>
+                                            </div>
+                                        </div>
+                                    @endif
+                                </div>
                                 <div class="row" id="thumbnail_img_alt"></div>
                             </div>
                         </div>
                         <div class="form-group ml-3 mr-3">
                             <label for="video_link">Video Url</label>
                             <input type="url" class="form-control " name="video_link" id="video_link"
-                                   placeholder="Enter youtube video link">
+                                   placeholder="Enter youtube video link" value="{{$product->video_link}}">
                         </div>
                     </div>
                 </div>
@@ -120,35 +151,36 @@
                                     <div class="row">
                                         <div class="form-group col-md-6">
                                             <label for="unit_price">Unit price</label>
-                                            <input type="number" min="0" value="0" step="0.01" placeholder="Unit price" name="unit_price" class="form-control" required="">
+                                            <input type="number" min="0" value="{{$product->unit_price}}" step="0.01" placeholder="Unit price" name="unit_price" class="form-control" required="">
                                         </div>
                                         <div class="form-group col-md-6">
                                             <label for="purchase_price">Purchase price</label>
-                                            <input type="number" min="0" value="0" step="0.01"
+                                            <input type="number" min="0" value="{{$product->purchase_price}}" step="0.01"
                                                    placeholder="Purchase price" name="purchase_price"
                                                    class="form-control" required="">
                                         </div>
                                     </div>
                                     <div class="row">
                                         <div class="form-group col-md-4">
+                                            <label for="unit_price">Quantity</label>
                                             <label for="current_stock">Stock</label>
-                                            <select name="current_stock" id="current_stock" class="form-control">
-                                                <option value="1" class="bg-success">Available</option>
-                                                <option value="0" class="bg-danger">Not Available</option>
+                                            <select name="current_stock" id="current_stock" class="form-control {{$product->current_stock == 0 ? 'bg-danger' : 'bg-success'}}">
+                                                <option value="1" {{$product->current_stock > 0 ? 'selected' : ''}} class="bg-success">Available</option>
+                                                <option value="0" {{$product->current_stock == 0 ? 'selected' : ''}} class="bg-danger">Not Available</option>
                                             </select>
+                                            {{--<input type="number" min="0" value="{{$product->current_stock}}" step="1" placeholder="Quantity" name="current_stock" class="form-control" required="">--}}
                                         </div>
-
                                         <div class="form-group col-md-5">
                                             <label for="discount">Discount</label>
-                                            <input type="number" min="0" value="0" step="0.01" placeholder="Discount"
+                                            <input type="number" min="0" value="{{$product->discount}}" step="0.01" placeholder="Discount"
                                                    name="discount" class="form-control" required="">
                                         </div>
                                         <div class="form-group col-md-3">
                                             <label for="discount">Discount Type</label>
                                             <select class="form-control " name="discount_type" tabindex="-1"
                                                     aria-hidden="true">
-                                                <option value="amount">Flat</option>
-                                                <option value="percent">Percent</option>
+                                                <option value="amount" {{$product->discount_type == 'amount' ? 'selected' : ''}}>Flat</option>
+                                                <option value="percent" {{$product->discount_type == 'percent' ? 'selected' : ''}}>Percent</option>
                                             </select>
                                         </div>
                                     </div>
@@ -157,17 +189,26 @@
                                 <div class="col-md-6">
                                     <div class="row">
                                         <div class="form-group col-md-10">
-                                            <label for="discount">Colors</label>
-                                            <select class="form-control color-var-select" name="colors[]" id="colors"
-                                                    multiple disabled>
-                                                @foreach (\App\Model\Color::orderBy('name', 'asc')->get() as $key => $color)
-                                                    <option value="{{ $color->code }}">{{ $color->name }}</option>
+                                            <label for="colors">Colors</label>
+                                            @php
+                                              $colors =  \App\Model\Color::orderBy('name', 'asc')->get();
+                                                $pColors = json_decode($product->colors);
+                                                $pColorArr = [];
+                                                foreach ($pColors as $pColor){
+                                                    $data = $pColor->code;
+                                                    array_push($pColorArr, $data);
+                                                }
+                                            @endphp
+                                           {{-- {{dd($pColorArr)}}--}}
+                                            <select class="form-control color-var-select" name="colors[]" id="colors" multiple>
+                                                @foreach ($colors as $key => $color)
+                                                    <option value="{{ $color->code }}" <?php if(in_array($color->code, $pColorArr)) echo 'selected'?> >{{ $color->name }}</option>
                                                 @endforeach
                                             </select>
                                         </div>
                                         <div class="form-group col-md-2">
                                             <label class="switch" style="margin-top:40px;">
-                                                <input value="1" type="checkbox" name="colors_active">
+                                                <input value="1" type="checkbox" name="colors_active" <?php if(count(json_decode($product->colors)) > 0) echo "checked";?> >
                                                 <span class="slider round"></span>
                                             </label>
                                         </div>
@@ -179,19 +220,32 @@
                                                     class="form-control demo-select2" multiple
                                                     data-placeholder="Choose Attributes">
                                                 @foreach (\App\Model\Attribute::all() as $key => $attribute)
-                                                    <option value="{{ $attribute->id }}">{{ $attribute->name }}</option>
+                                                    <option value="{{ $attribute->id }}" @if($product->attributes != null && in_array($attribute->id, json_decode($product->attributes, true))) selected @endif>{{ $attribute->name }}</option>
                                                 @endforeach
                                             </select>
                                         </div>
                                     </div>
-                                    <div class="row">
-                                        <div class="col-md-12">
-                                            <div class="customer_choice_options" id="customer_choice_options">
-
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="customer_choice_options" id="customer_choice_options">
+                                        @foreach (json_decode($product->choice_options) as $key => $choice_option)
+                                            <div class="form-group row">
+                                                <div class="col-lg-2">
+                                                    <input type="hidden" name="choice_no[]" value="{{ $choice_option->attribute_id }}">
+                                                    <input type="text" class="form-control" name="choice[]" value="{{ \App\Model\Attribute::find($choice_option->attribute_id)->name }}" placeholder="Choice Title" disabled>
+                                                </div>
+                                                <div class="col-lg-9">
+                                                    <input type="text" class="form-control" name="choice_options_{{ $choice_option->attribute_id }}[]" placeholder="Enter choice values" value="{{ implode(',', $choice_option->values) }}" data-role="tagsinput" onchange="update_sku()">
+                                                </div>
+                                                <div class="col-lg-1">
+                                                    <button onclick="delete_row(this)" class="btn btn-danger btn-icon"><i class="fa fa-trash"></i></button>
+                                                </div>
                                             </div>
-                                        </div>
+                                        @endforeach
                                     </div>
-
                                 </div>
                             </div>
                             <div class="row">
@@ -214,18 +268,18 @@
                                 <div class="col-md-6" style="border-right: 1px solid #ddd;">
                                     <div class="form-group">
                                         <label for="description">Product Description</label>
-                                        <textarea name="description" id="description"  class="form-control"></textarea>
+                                        <textarea name="description" id="description"  class="form-control">{{$product->description}}</textarea>
                                     </div>
                                 </div>
 
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="meta_description">Meta Title</label>
-                                        <input type="text" class="form-control" name="meta_title" placeholder="Meta Title">
+                                        <input type="text" class="form-control" name="meta_title" placeholder="Meta Title" value="{{$product->meta_title}}">
                                     </div>
                                     <div class="form-group">
                                         <label for="meta_description">Meta Description</label>
-                                        <textarea name="meta_description" id="meta_description" rows="5"  class="form-control"></textarea>
+                                        <textarea name="meta_description" id="meta_description" rows="5"  class="form-control">{{$product->meta_description}}</textarea>
                                     </div>
                                 </div>
                             </div>
@@ -259,7 +313,111 @@
             $("input[data-role=tagsinput], select[multiple][data-role=tagsinput]").tagsinput();
         }
 
+        $('input[name="colors_active"]').on('change', function() {
+            if(!$('input[name="colors_active"]').is(':checked')){
+                $('#colors').prop('disabled', true);
+            }
+            else{
+                $('#colors').prop('disabled', false);
+            }
+            update_sku();
+        });
+
+        $('#colors').on('change', function() {
+            update_sku();
+        });
+        function delete_row(em){
+            $(em).closest('.form-group').remove();
+            update_sku();
+        }
+
+        function update_sku() {
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+            $.ajax({
+                type: "POST",
+                url: '{{ route('seller.products.sku_combination_edit') }}',
+                data:$('#choice_form').serialize(),
+                success: function(data){
+                    $('#sku_combination').html(data);
+                    if (data.length > 1) {
+                        $('#quantity').hide();
+                    }
+                    else {
+                        $('#quantity').show();
+                    }
+                }
+            });
+        }
+
+
+        function get_subcategories_by_category() {
+            var category_id = $('#category_id').val();
+            //console.log(category_id)
+            $.post('{{ route('seller.products.get_subcategories_by_category') }}', {
+                _token: '{{ csrf_token() }}',
+                category_id: category_id
+            }, function (data) {
+                $('#subcategory_id').html(null);
+                //console.log(data)
+                for (var i = 0; i < data.length; i++) {
+                    $('#subcategory_id').append($('<option>', {
+                        value: data[i].id,
+                        text: data[i].name
+                    }));
+                }
+                $("#subcategory_id > option").each(function() {
+                    if(this.value == '{{$product->subcategory_id}}'){
+                        $("#subcategory_id").val(this.value).change();
+                    }
+                });
+                $('.demo-select2').select2();
+                get_subsubcategories_by_subcategory();
+            });
+        }
+
+        function get_subsubcategories_by_subcategory() {
+            var subcategory_id = $('#subcategory_id').val();
+            console.log(subcategory_id)
+            $.post('{{ route('seller.products.get_subsubcategories_by_subcategory') }}', {
+                _token: '{{ csrf_token() }}',
+                subcategory_id: subcategory_id
+            }, function (data) {
+                //console.log(data)
+                $('#subsubcategory_id').html(null);
+                $('#subsubcategory_id').append($('<option>', {
+                    value: null,
+                    text: null
+                }));
+                for (var i = 0; i < data.length; i++) {
+                    $('#subsubcategory_id').append($('<option>', {
+                        value: data[i].id,
+                        text: data[i].name
+                    }));
+                }
+                $("#subsubcategory_id > option").each(function() {
+                    if(this.value == '{{$product->subsubcategory_id}}'){
+                        $("#subsubcategory_id").val(this.value).change();
+                    }
+                });
+                $('.demo-select2').select2();
+                $('.color-var-select').select2();
+
+            });
+        }
+
+        $('#category_id').on('change', function () {
+            get_subcategories_by_category();
+        });
+        $('#subcategory_id').on('change', function () {
+            get_subsubcategories_by_subcategory();
+        });
+
         $(document).ready(function () {
+            update_sku();
             get_subcategories_by_category();
             //title to slug make
             $("#name").keyup(function () {
@@ -335,89 +493,15 @@
                     return m;
                 },
             });
-
-            function colorCodeSelect(state) {
-                var colorCode = $(state.element).val();
-                if (!colorCode) return state.text;
-                return (
-                    "<span class='color-preview' style='background-color:" +
-                    colorCode +
-                    ";'></span>" +
-                    state.text
-                );
-            }
             //CKEDITOR.replace( 'description' );
             CKEDITOR.replace( 'description', {
-                filebrowserUploadUrl: "{{route('seller.ckeditor.upload', ['_token' => csrf_token() ])}}",
+                filebrowserUploadUrl: "{{route('admin.ckeditor.upload', ['_token' => csrf_token() ])}}",
                 filebrowserUploadMethod: 'form'
             });
-
-        });
-
-        function get_subcategories_by_category() {
-            var category_id = $('#category_id').val();
-            //console.log(category_id)
-            $.post('{{ route('seller.products.get_subcategories_by_category') }}', {
-                _token: '{{ csrf_token() }}',
-                category_id: category_id
-            }, function (data) {
-                $('#subcategory_id').html(null);
-                //console.log(data)
-                for (var i = 0; i < data.length; i++) {
-                    $('#subcategory_id').append($('<option>', {
-                        value: data[i].id,
-                        text: data[i].name
-                    }));
-                    $('.demo-select2').select2();
-                }
-                get_subsubcategories_by_subcategory();
+            $('.remove-files').on('click', function(){
+                $(this).parents(".col-md-4").remove();
             });
-        }
 
-        function get_subsubcategories_by_subcategory() {
-            var subcategory_id = $('#subcategory_id').val();
-            console.log(subcategory_id)
-            $.post('{{ route('seller.products.get_subsubcategories_by_subcategory') }}', {
-                _token: '{{ csrf_token() }}',
-                subcategory_id: subcategory_id
-            }, function (data) {
-                //console.log(data)
-                $('#subsubcategory_id').html(null);
-                $('#subsubcategory_id').append($('<option>', {
-                    value: null,
-                    text: null
-                }));
-                for (var i = 0; i < data.length; i++) {
-                    $('#subsubcategory_id').append($('<option>', {
-                        value: data[i].id,
-                        text: data[i].name
-                    }));
-                }
-                $('.demo-select2').select2();
-                $('.color-var-select').select2();
-
-            });
-        }
-
-        $('#category_id').on('change', function () {
-            get_subcategories_by_category();
-        });
-        $('#subcategory_id').on('change', function () {
-            get_subsubcategories_by_subcategory();
-        });
-
-        //colors
-        $('input[name="colors_active"]').on('change', function () {
-            if (!$('input[name="colors_active"]').is(':checked')) {
-                $('#colors').prop('disabled', true);
-            } else {
-                $('#colors').prop('disabled', false);
-            }
-            update_sku();
-        });
-
-        $('#colors').on('change', function () {
-            update_sku();
         });
 
         $('input[name="unit_price"]').on('keyup', function () {
@@ -428,42 +512,48 @@
             update_sku();
         });
 
-        function delete_row(em) {
-            $(em).closest('.form-group').remove();
-            update_sku();
-        }
-
-        function update_sku() {
-            $.ajaxSetup({
-                headers: {
-                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                }
-            });
-            $.ajax({
-                type: "POST",
-                url: '{{ route('seller.products.sku_combination') }}',
-                data: $('#choice_form').serialize(),
-                success: function (data) {
-                    $('#sku_combination').html(data);
-                    if (data.length > 1) {
-                        $('#quantity').hide();
-                    } else {
-                        $('#quantity').show();
+        $('#choice_attributes').on('change', function() {
+            //$('#customer_choice_options').html(null);
+            $.each($("#choice_attributes option:selected"), function(j, attribute){
+                flag = false;
+                $('input[name="choice_no[]"]').each(function(i, choice_no) {
+                    if($(attribute).val() == $(choice_no).val()){
+                        flag = true;
                     }
+                });
+                if(!flag){
+                    add_more_customer_choice_option($(attribute).val(), $(attribute).text());
                 }
             });
-        }
 
-        //attribute choose
-        $('#choice_attributes').on('change', function () {
-            $('#customer_choice_options').html(null);
-            $.each($("#choice_attributes option:selected"), function () {
-                //console.log($(this).val());
-                add_more_customer_choice_option($(this).val(), $(this).text());
+            var str = @php echo $product->attributes @endphp;
+
+            $.each(str, function(index, value){
+                flag = false;
+                $.each($("#choice_attributes option:selected"), function(j, attribute){
+                    if(value == $(attribute).val()){
+                        flag = true;
+                    }
+                });
+                if(!flag){
+                    //console.log();
+                    $('input[name="choice_no[]"][value="'+value+'"]').parent().parent().remove();
+                }
             });
+
             update_sku();
         });
 
+        function colorCodeSelect(state) {
+            var colorCode = $(state.element).val();
+            if (!colorCode) return state.text;
+            return (
+                "<span class='color-preview' style='background-color:" +
+                colorCode +
+                ";'></span>" +
+                state.text
+            );
+        }
 
 
     </script>

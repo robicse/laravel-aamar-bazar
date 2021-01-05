@@ -45,11 +45,12 @@ Route::group(['as'=>'seller.','prefix' =>'seller', 'middleware' => ['auth', 'sel
     Route::get('money/withdraw','Seller\PaymentController@money')->name('money.withdraw');
     Route::post('money/withdraw/store','Seller\PaymentController@store')->name('withdraw-request.store');
 
-
+    Route::post('products/update2/{id}','Seller\ProductController@update2')->name('products.update2');
     Route::get('products/slug/{name}','Seller\ProductController@ajaxSlugMake')->name('products.slug');
     Route::post('products/get-subcategories-by-category','Seller\ProductController@ajaxSubCat')->name('products.get_subcategories_by_category');
     Route::post('products/get-subsubcategories-by-subcategory','Seller\ProductController@ajaxSubSubCat')->name('products.get_subsubcategories_by_subcategory');
     Route::post('products/sku_combination','Seller\ProductController@sku_combination')->name('products.sku_combination');
+    Route::post('products/sku_combination_edit','Seller\ProductController@sku_combination_edit')->name('products.sku_combination_edit');
     Route::post('products/todays_deal', 'Seller\ProductController@updateTodaysDeal')->name('products.todays_deal');
     Route::post('products/published/update', 'Seller\ProductController@updatePublished')->name('products.published');
     Route::post('products/featured/update', 'Seller\ProductController@updateFeatured')->name('products.featured');
