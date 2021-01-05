@@ -1,5 +1,5 @@
 @extends('backend.seller.layouts.master')
-@section("title","In House Product List")
+@section("title","Product List")
 @push('css')
     <link rel="stylesheet" href="{{asset('backend/plugins/datatables/dataTables.bootstrap4.css')}}">
 @endpush
@@ -8,12 +8,12 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>In House Product List</h1>
+                    <h1>Product List</h1>
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
                         <li class="breadcrumb-item"><a href="{{route('seller.dashboard')}}">Home</a></li>
-                        <li class="breadcrumb-item active">In House Product List</li>
+                        <li class="breadcrumb-item active">Product List</li>
                     </ol>
                 </div>
             </div>
@@ -25,7 +25,7 @@
             <div class="col-12">
                 <div class="card card-info card-outline">
                     <div class="card-header">
-                        <h3 class="card-title float-left">In House Product List</h3>
+                        <h3 class="card-title float-left">Product List</h3>
                         <div class="float-right">
                             <a href="{{route('seller.products.create')}}">
                                 <button class="btn btn-success">
@@ -43,7 +43,7 @@
                                 <th>#Id</th>
                                 <th>Icon</th>
                                 <th>Name</th>
-                                <th>Total Stock</th>
+                                <th>Stock</th>
                                 <th>Base Price</th>
                                 <th>Today's Deal</th>
                                 <th>Published</th>
@@ -59,7 +59,7 @@
                                         <img src="{{url($product->thumbnail_img)}}" width="32" height="32" alt="">
                                     </td>
                                     <td>{{$product->name}}</td>
-                                    <td>{{$product->current_stock}}</td>
+                                    <td class="{{$product->current_stock == 0 ? 'badge badge-danger' : 'badge badge-success'}}">{{$product->current_stock == 0 ? 'Not Available': 'Available'}}</td>
                                     <td>{{$product->unit_price}}</td>
                                     <td>
                                         <div class="form-group col-md-2">
@@ -95,13 +95,13 @@
                                                 Actions
                                             </button>
                                             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                                <a class="bg-info dropdown-item" href="{{route('seller.products.edit',$product->id)}}">
+                                                <a class="bg-info dropdown-item" href="{{route('seller.products.edit',encrypt($product->id))}}">
                                                     <i class="fa fa-edit"></i> Edit
                                                 </a>
-                                                <button class="bg-danger dropdown-item" type="button"
+                                               {{-- <button class="bg-danger dropdown-item" type="button"
                                                         onclick="deleteProduct({{$product->id}})">
                                                     <i class="fa fa-trash"></i> Delete
-                                                </button>
+                                                </button>--}}
                                                 <form id="delete-form-{{$product->id}}" action="{{route('seller.products.destroy',$product->id)}}" method="POST" style="display: none;">
                                                     @csrf
                                                     @method('DELETE')
@@ -117,7 +117,7 @@
                                 <th>#Id</th>
                                 <th>Icon</th>
                                 <th>Name</th>
-                                <th>Total Stock</th>
+                                <th>Stock</th>
                                 <th>Base Price</th>
                                 <th>Today's Deal</th>
                                 <th>Published</th>

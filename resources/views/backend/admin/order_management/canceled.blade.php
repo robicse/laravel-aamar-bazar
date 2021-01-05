@@ -1,4 +1,4 @@
-@extends('backend.seller.layouts.master')
+@extends('backend.layouts.master')
 @section("title","Cancel Order")
 @push('css')
     <link rel="stylesheet" href="{{asset('backend/plugins/datatables/dataTables.bootstrap4.css')}}">
