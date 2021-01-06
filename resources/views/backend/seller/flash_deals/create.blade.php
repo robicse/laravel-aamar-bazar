@@ -44,10 +44,9 @@
         </div><!-- /.container-fluid -->
     </section>
     <!-- Main content -->
-    <form role="form" id="choice_form" action="{{route('seller.products.store')}}" method="post"
+    <form role="form" id="choice_form" action="{{route('seller.flash_deals.store')}}" method="post"
           enctype="multipart/form-data">
         @csrf
-        <input type="hidden" name="added_by" value="seller">
         <section class="content">
             <div class="row m-2">
                 <div class="col-md-12">
@@ -58,21 +57,37 @@
                             <div class="row">
                                 <div class="form-group col-md-6">
                                     <label for="name">Title</label>
-                                    <input type="text" class="form-control " name="name" id="name" placeholder="Enter Name"
+                                    <input type="text" class="form-control " name="title" id="name" placeholder="Enter Flash sales title"
                                            required>
                                 </div>
                                 <div class="form-group col-md-6">
                                     <div id="demo-dp-range">
                                         <label for="name">Select Date Range</label>
                                         <div class="input-daterange input-group" id="datepicker">
-                                            <input type="text" class="form-control" name="start_date" autocomplete="off">
+                                            <input type="text" class="form-control" name="start_date" autocomplete="off" required>
                                             <span class="input-group-addon">To</span>
-                                            <input type="text" class="form-control" name="end_date" autocomplete="off">
+                                            <input type="text" class="form-control" name="end_date" autocomplete="off" required>
                                         </div>
                                     </div>
                                 </div>
+                                <div class="form-group mb-3 col-sm-12">
+                                    <label class="control-label" for="products">Products</label>
+                                    <div class="">
+                                        <select name="products[]" id="products" class="form-control demo-select2" multiple required data-placeholder="Choose Products">
+                                            @foreach(\App\Model\Product::where('added_by','seller')->where('user_id',Auth::id())->get() as $product)
+                                                <option value="{{$product->id}}">{{$product->name}}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                </div>
+                                <br>
                             </div>
+                            <div class="form-group" id="discount_table">
 
+                            </div>
+                            <div>
+                                <button class="btn btn-success float-right">Save</button>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -88,11 +103,26 @@
     <script src="//cdn.ckeditor.com/4.15.1/standard/ckeditor.js"></script>
     <script src="{{asset('backend/plugins/ckeditor/ckeditor.js')}}"></script>
     <script>
+        $('.demo-select2').select2();
         $("#demo-dp-range .input-daterange").datepicker({
             startDate: "-0d",
             todayBtn: "linked",
             autoclose: true,
             todayHighlight: true,
+        });
+        $(document).ready(function(){
+            $('#products').on('change', function(){
+                var product_ids = $('#products').val();
+                if(product_ids.length > 0){
+                    $.post('{{ route('seller.flash_deals.product_discount') }}', {_token:'{{ csrf_token() }}', product_ids:product_ids}, function(data){
+                        $('#discount_table').html(data);
+                        $('.demo-select2').select2();
+                    });
+                }
+                else{
+                    $('#discount_table').html(null);
+                }
+            });
         });
 
     </script>
