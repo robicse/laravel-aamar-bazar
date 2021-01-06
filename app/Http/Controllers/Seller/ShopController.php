@@ -47,6 +47,10 @@ class ShopController extends Controller
             $shop->user_id = Auth::id();
             $shop->seller_id = $seller->id;
             $shop->about = $request->about;
+            $shop->facebook = $request->facebook;
+            $shop->google = $request->google;
+            $shop->twitter = $request->twitter;
+            $shop->youtube = $request->youtube;
             $shop->meta_title = $request->meta_title;
             $shop->meta_description = $request->meta_description;
             $shop->sliders = [];
@@ -86,6 +90,10 @@ class ShopController extends Controller
             $new_shop->user_id = Auth::id();
             $new_shop->seller_id = $seller->id;
             $new_shop->about = $request->about;
+            $new_shop->facebook = $request->facebook;
+            $new_shop->google = $request->google;
+            $new_shop->twitter = $request->twitter;
+            $new_shop->youtube = $request->youtube;
             $new_shop->meta_title = $request->meta_title;
             $new_shop->meta_description = $request->meta_description;
 //        $sliders = array();

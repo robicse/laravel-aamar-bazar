@@ -72,7 +72,7 @@
                                                 Actions
                                             </button>
                                             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                                <a class="bg-dark dropdown-item" href="{{route('admin.customers.profile.show',$Info->id)}}">
+                                                <a class="bg-dark dropdown-item" href="{{route('admin.customers.profile.show',encrypt($Info->id))}}">
                                                     <i class="fa fa-user"></i> Profile
                                                 </a>
 {{--                                                <a class="bg-success dropdown-item" onclick="show_seller_payment_modal('{{$customerInfos->seller->id}}');" href="#">--}}
@@ -81,12 +81,12 @@
 {{--                                                <a class="bg-danger dropdown-item" onclick="show_seller_commission_modal('{{$customerInfos->seller->id}}');" href="#">--}}
 {{--                                                    <i class="fa fa-money-bill-wave"></i> Set Commission--}}
 {{--                                                </a>--}}
-                                                <a class="bg-secondary dropdown-item" href="{{route('admin.customers.edit',$Info->id)}}">
-                                                    <i class="fa fa-history"></i> Payment History
-                                                </a>
-                                                <a class="bg-info dropdown-item" href="{{route('admin.customers.edit',$Info->id)}}">
-                                                    <i class="fa fa-edit"></i> Edit
-                                                </a>
+{{--                                                <a class="bg-secondary dropdown-item" href="{{route('admin.customers.edit',$Info->id)}}">--}}
+{{--                                                    <i class="fa fa-history"></i> Payment History--}}
+{{--                                                </a>--}}
+{{--                                                <a class="bg-info dropdown-item" href="{{route('admin.customers.edit',$Info->id)}}">--}}
+{{--                                                    <i class="fa fa-edit"></i> Edit--}}
+{{--                                                </a>--}}
                                                 <button class="bg-danger dropdown-item" type="button"
                                                         onclick="deleteProduct({{$Info->id}})">
                                                     <i class="fa fa-ban"></i> Ban this Customer
