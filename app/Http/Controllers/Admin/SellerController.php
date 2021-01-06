@@ -209,5 +209,12 @@ class SellerController extends Controller
         }
 
     }
+    public function banSeller($id) {
+       dd($id);
+        $seller = Seller::find($id);
+        $seller->verification_status = 0;
+        $seller->update();
+        return redirect()->back();
+    }
 
 }
