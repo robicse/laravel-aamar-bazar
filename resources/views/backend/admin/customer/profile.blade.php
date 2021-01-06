@@ -83,9 +83,9 @@
                             <ul class="nav nav-pills">
                                 <li class="nav-item"><a class="nav-link active" href="#seller_info" data-toggle="tab">Customer
                                         Info</a></li>
-{{--                                <li class="nav-item"><a class="nav-link" href="#edit" data-toggle="tab">Edit--}}
-{{--                                        Profile </a></li>--}}
-{{--                                <li class="nav-item"><a class="nav-link" href="#change_pass" data-toggle="tab">Change Password</a></li>--}}
+                                <li class="nav-item"><a class="nav-link" href="#edit" data-toggle="tab">Edit
+                                        Profile </a></li>
+                                <li class="nav-item"><a class="nav-link" href="#change_pass" data-toggle="tab">Change Password</a></li>
                             </ul>
                         </div><!-- /.card-header -->
                         <div class="card-body">
@@ -125,60 +125,60 @@
                                     </form>
                                 </div>
                                 <!-- /.tab-pane -->
-{{--                                <div class="tab-pane" id="edit">--}}
-{{--                                    <form class="form-horizontal" action="{{route('admin.seller.profile.update',$userInfo->id)}}" method="POST">--}}
-{{--                                        @csrf--}}
-{{--                                        @method('PUT')--}}
-{{--                                        <div class="form-group row">--}}
-{{--                                            <label for="inputName" class="col-sm-2 col-form-label">Name</label>--}}
-{{--                                            <div class="col-sm-10">--}}
-{{--                                                <input type="text" value="{{$userInfo->name}}" name="name" class="form-control" id="inputName" >--}}
-{{--                                            </div>--}}
-{{--                                        </div>--}}
-{{--                                        <div class="form-group row">--}}
-{{--                                            <label for="inputEmail" class="col-sm-2 col-form-label">Phone</label>--}}
-{{--                                            <div class="col-sm-10">--}}
-{{--                                                <input type="number" value="{{$userInfo->phone}}" name="phone" class="form-control" id="inputEmail" >--}}
-{{--                                            </div>--}}
-{{--                                        </div>--}}
-{{--                                        <div class="form-group row">--}}
-{{--                                            <label for="inputEmail" class="col-sm-2 col-form-label">Email</label>--}}
-{{--                                            <div class="col-sm-10">--}}
-{{--                                                <input type="email" value="{{$userInfo->email}}" name="email" class="form-control" id="inputEmail" >--}}
-{{--                                            </div>--}}
-{{--                                        </div>--}}
-{{--                                        <div class="form-group row">--}}
-{{--                                            <div class="offset-sm-2 col-sm-10">--}}
-{{--                                                <button type="submit" class="btn btn-danger">Update</button>--}}
-{{--                                            </div>--}}
-{{--                                        </div>--}}
-{{--                                    </form>--}}
-{{--                                </div>--}}
+                                <div class="tab-pane" id="edit">
+                                    <form class="form-horizontal" action="{{route('admin.customer.profile.update',$userInfo->id)}}" method="POST">
+                                        @csrf
+                                        @method('PUT')
+                                        <div class="form-group row">
+                                            <label for="inputName" class="col-sm-2 col-form-label">Name</label>
+                                            <div class="col-sm-10">
+                                                <input type="text" value="{{$userInfo->name}}" name="name" class="form-control" id="inputName" >
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label for="inputEmail" class="col-sm-2 col-form-label">Phone</label>
+                                            <div class="col-sm-10">
+                                                <input type="number" value="{{$userInfo->phone}}" name="phone" class="form-control" id="inputEmail" >
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label for="inputEmail" class="col-sm-2 col-form-label">Email</label>
+                                            <div class="col-sm-10">
+                                                <input type="email" value="{{$userInfo->email}}" name="email" class="form-control" id="inputEmail" >
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <div class="offset-sm-2 col-sm-10">
+                                                <button type="submit" class="btn btn-danger">Update</button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
                                 <!-- /.tab-pane -->
 
-{{--                                <div class="tab-pane" id="change_pass">--}}
-{{--                                    <form class="form-horizontal" action="{{route('admin.seller.password.update',$userInfo->id)}}" method="POST">--}}
-{{--                                        @csrf--}}
-{{--                                        @method('PUT')--}}
-{{--                                        <div class="form-group row">--}}
-{{--                                            <label for="inputName" class="col-sm-2 col-form-label">New Password</label>--}}
-{{--                                            <div class="col-sm-10">--}}
-{{--                                                <input type="password" name="password" class="form-control" id="inputName">--}}
-{{--                                            </div>--}}
-{{--                                        </div>--}}
-{{--                                        <div class="form-group row">--}}
-{{--                                            <label for="inputEmail" class="col-sm-2 col-form-label">Confirm Password</label>--}}
-{{--                                            <div class="col-sm-10">--}}
-{{--                                                <input type="password" name="password_confirmation" class="form-control" id="inputEmail">--}}
-{{--                                            </div>--}}
-{{--                                        </div>--}}
-{{--                                        <div class="form-group row">--}}
-{{--                                            <div class="offset-sm-2 col-sm-10">--}}
-{{--                                                <button type="submit" class="btn btn-danger">Update</button>--}}
-{{--                                            </div>--}}
-{{--                                        </div>--}}
-{{--                                    </form>--}}
-{{--                                </div>--}}
+                                <div class="tab-pane" id="change_pass">
+                                    <form class="form-horizontal" action="{{route('admin.customer.password.update',$userInfo->id)}}" method="POST">
+                                        @csrf
+                                        @method('PUT')
+                                        <div class="form-group row">
+                                            <label for="inputName" class="col-sm-2 col-form-label">New Password</label>
+                                            <div class="col-sm-10">
+                                                <input type="password" name="password" class="form-control" id="inputName">
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label for="inputEmail" class="col-sm-2 col-form-label">Confirm Password</label>
+                                            <div class="col-sm-10">
+                                                <input type="password" name="password_confirmation" class="form-control" id="inputEmail">
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <div class="offset-sm-2 col-sm-10">
+                                                <button type="submit" class="btn btn-danger">Update</button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
                                 <!-- /.tab-pane -->
                             </div>
                             <!-- /.tab-content -->

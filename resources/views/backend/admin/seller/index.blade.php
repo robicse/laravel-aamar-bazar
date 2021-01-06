@@ -75,7 +75,7 @@
                                             Actions
                                         </button>
                                         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                            <a class="bg-dark dropdown-item" href="{{route('admin.seller.profile.show',$sellerUserInfo->id)}}">
+                                            <a class="bg-dark dropdown-item" href="{{route('admin.seller.profile.show',encrypt($sellerUserInfo->id))}}">
                                                 <i class="fa fa-user"></i> Profile
                                             </a>
                                             <a class="bg-success dropdown-item" onclick="show_seller_payment_modal('{{$sellerUserInfo->seller->id}}');" href="#">

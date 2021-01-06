@@ -66,9 +66,9 @@ class SellerController extends Controller
 
    public function profileShow($id)
    {
-       $userInfo = User::find($id);
-       $sellerInfo = Seller::where('user_id',$id)->first();
-       $shopInfo = Shop::where('user_id',$id)->first();
+       $userInfo = User::find(decrypt($id));
+       $sellerInfo = Seller::where('user_id',decrypt($id))->first();
+       $shopInfo = Shop::where('user_id',decrypt($id))->first();
        return view('backend.admin.seller.profile', compact('userInfo','sellerInfo','shopInfo'));
    }
    public function updateProfile(Request $request, $id)

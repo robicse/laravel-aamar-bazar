@@ -88,15 +88,36 @@
                                 <label for="about">About Shop <small style="color: red">*(Write in 300 words.)</small> </label>
                                 <textarea name="about" id="about" rows="5"  class="form-control" required>{{ $shop_set->about }}</textarea>
                             </div>
-
-
-
+                            <div class="form-group">
+                                <label for="facebook">Facebook Url</label>
+                                <input type="url" class="form-control " name="facebook" id="facebook"
+                                       value="{{ $shop_set->facebook }}">
+                            </div>
+                            <div class="form-group">
+                                <label for="google">Google Url</label>
+                                <input type="url" class="form-control " name="google" id="google"
+                                       value="{{ $shop_set->google }}">
+                            </div>
+                            <div class="form-group">
+                                <label for="twitter">Twitter Url</label>
+                                <input type="url" class="form-control " name="twitter" id="twitter"
+                                       value="{{ $shop_set->twitter }}">
+                            </div>
+                            <div class="form-group">
+                                <label for="youtube">YouTube Url</label>
+                                <input type="url" class="form-control " name="youtube" id="youtube"
+                                      value="{{ $shop_set->youtube }}">
+                            </div>
                         </div>
                     </div>
                 </div>
                 <div class="col-md-6">
                     <!-- general form elements -->
                     <div class="card card-info card-outline">
+                        <div class="form-group pl-3 pr-3">
+                            <label for="about">About Shop<small style="color: red">*</small> </label>
+                            <textarea name="about" id="about" rows="4"  class="form-control" required>{{ $shop_set->about }}</textarea>
+                        </div>
                         <div class="form-group pl-3 pr-3">
                             <label for="meta_title">Meta Title <small style="color: red">*</small> </label>
                             <input type="text" class="form-control" name="meta_title" id="meta_title" value="{{ $shop_set->meta_title }}" placeholder="Meta Title" required>
