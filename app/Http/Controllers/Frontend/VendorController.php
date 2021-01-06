@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Frontend;
 use App\Http\Controllers\Controller;
 use App\Model\Category;
 use App\Model\Product;
+use App\Model\Seller;
 use App\Model\Shop;
 use App\Model\ShopCategory;
 use Illuminate\Http\Request;
@@ -16,13 +17,14 @@ class VendorController extends Controller
     }
     public function singleshop($slug) {
         $shop=Shop::where('slug',$slug)->first();
+        $seller = Seller::where('user_id',$shop->user_id)->first();
         $products=Product::where('added_by','seller')->where('user_id',$shop->user_id)->where('published',1)->where('featured',1)->latest()->take(8)->get();
         $best_sales_products=Product::where('added_by','seller')->where('user_id',$shop->user_id)->where('published',1)->where('num_of_sale', '>',0)->limit(8)->get();
         $todaysDeal = Product::where('added_by','seller')->where('user_id',$shop->user_id)->where('published',1)->where('todays_deal',1)->latest()->take(8)->get();
         $shopCat=ShopCategory::where('shop_id',$shop->id)->latest()->get();
 //        dd($products);
 
-        return view('frontend.pages.vendor.vendor_store',compact('shop','products','todaysDeal','shopCat','best_sales_products'));
+        return view('frontend.pages.vendor.vendor_store',compact('shop','products','todaysDeal','shopCat','best_sales_products','seller'));
     }
 //    public function shopCategories($slug) {
 //        //dd($slug);

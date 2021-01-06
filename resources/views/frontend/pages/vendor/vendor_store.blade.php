@@ -50,8 +50,8 @@
                             </div>
                         </div>
                     </div>
-{{--                    @dd($shop->seller->verification_status)--}}
-                    @if($shop->seller->verification_status == 1)
+{{--                    @dd($seller->verification_status)--}}
+                    @if($seller->verification_status == 1)
                     <div class="ps-section__right">
                         <div class="ps-block--vendor-filter">
                             <div class="ps-block__left">
