@@ -19,7 +19,8 @@ Route::group(['as'=>'seller.','prefix' =>'seller', 'middleware' => ['auth', 'sel
 
     Route::resource('products','Seller\ProductController');
     Route::resource('shop','Seller\ShopController');
-    Route::resource('flash/deals','Seller\FlashDealController');
+    Route::resource('flash_deals','Seller\FlashDealController');
+    Route::post('/flash_deals/product_discount', 'Seller\FlashDealController@product_discount')->name('flash_deals.product_discount');
     Route::get('shop/manage/{slug}','Seller\ShopController@dataUpdate')->name('shop.manage');
 
     //Seller Order Management
