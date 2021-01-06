@@ -90,12 +90,10 @@
                                             <a class="bg-info dropdown-item" href="{{route('admin.sellers.edit',$sellerUserInfo->id)}}">
                                                 <i class="fa fa-edit"></i> Edit
                                             </a>
-                                            <form action="{{route('admin.sellers.ban',$sellerUserInfo->id)}}" method="POST">
-                                                @csrf
-                                            <a class="bg-info dropdown-item" href="">
+                                            <a class="bg-info dropdown-item" href="{{route('admin.sellers.ban',$sellerUserInfo->id)}}">
                                                 <i class="fa fa-ban"></i> Ban this seller
                                             </a>
-                                            </form>
+
 {{--                                            <button class="bg-danger dropdown-item" type="button"--}}
 {{--                                                    onclick="deleteProduct({{$sellerUserInfo->id}})">--}}
 {{--                                                <i class="fa fa-ban"></i> Ban this seller--}}

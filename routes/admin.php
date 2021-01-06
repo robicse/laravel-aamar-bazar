@@ -52,7 +52,7 @@ Route::group(['as'=>'admin.','prefix' =>'admin','namespace'=>'Admin', 'middlewar
     Route::post('/sellers/commission_modal', 'SellerController@commission_modal')->name('sellers.commission_modal');
     Route::put('/sellers/individual/commission/set/{id}', 'SellerController@individulCommissionSet')->name('seller.individual.commission.set');
     Route::post('/sellers/pay_to_seller_commission', 'SellerController@pay_to_seller_commission')->name('seller.commissions.pay_to_seller');
-    Route::post('/sellers/ban/{id}','SellerController@banSeller')->name('sellers.ban');
+    Route::get('/sellers/ban/{id}','SellerController@banSeller')->name('sellers.ban');
 
 // Admin Order Management
     Route::get('order/pending','OrderManagementController@pendingOrder')->name('order.pending');

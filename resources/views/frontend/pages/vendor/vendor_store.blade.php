@@ -50,6 +50,8 @@
                             </div>
                         </div>
                     </div>
+{{--                    @dd($shop->seller->verification_status)--}}
+                    @if($shop->seller->verification_status == 1)
                     <div class="ps-section__right">
                         <div class="ps-block--vendor-filter">
                             <div class="ps-block__left">
@@ -242,6 +244,14 @@
                         </div>
                         @endif
                     </div>
+                    @else
+                        <div class="ps-section__right text-center">
+                            <div class="ps-image text-center" style="padding-top: 50px;">
+                                <img src="{{asset('uploads/shop/not-verified.png')}}" width="300" height="300">
+                            </div>
+{{--                            <h3>Seller is not Verified</h3>--}}
+                        </div>
+                    @endif
                 </div>
             </div>
         </div>
