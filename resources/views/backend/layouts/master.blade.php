@@ -53,6 +53,9 @@
             width: 100%;
             height: auto;
         }
+        .content-header {
+            padding: 0px .5rem!important;
+        }
     </style>
     @stack('css')
 </head>
