@@ -19,7 +19,7 @@ class FlashDealController extends Controller
      */
     public function index()
     {
-        $fashDeals = FlashDeal::latest()->all();
+        $fashDeals = FlashDeal::latest()->get();
         return view('backend.seller.flash_deals.index', compact('fashDeals'));
     }
 
@@ -41,9 +41,9 @@ class FlashDealController extends Controller
      */
     public function store(Request $request)
     {
-        //dd(count($request->products));
+        //dd($request->all());
         $flash_deal = new FlashDeal;
-        $flash_deal->title = $request->$flash_deal->slug = strtolower(str_replace(' ', '-', $request->title).'-'.Str::random(5));;
+        $flash_deal->title = $request->title;
         $flash_deal->user_id = Auth::id();
         $flash_deal->user_type = 'seller';
         $flash_deal->start_date = strtotime($request->start_date);
@@ -54,12 +54,14 @@ class FlashDealController extends Controller
                 $flash_deal_product = new FlashDealProduct;
                 $flash_deal_product->flash_deal_id = $flash_deal->id;
                 $flash_deal_product->product_id = $product;
+                $flash_deal_product->user_id = Auth::id();
+                $flash_deal_product->user_type = 'seller';
                 $flash_deal_product->discount = $request['discount_'.$product];
                 $flash_deal_product->discount_type = $request['discount_type_'.$product];
                 $flash_deal_product->save();
             }
             Toastr::success('Flash Deal has been inserted successfully');
-            return redirect()->route('flash_deals.index');
+            return redirect()->route('seller.flash_deals.index');
         }
         else{
             Toastr::error('Something went wrong');
@@ -86,7 +88,8 @@ class FlashDealController extends Controller
      */
     public function edit($id)
     {
-        //
+        $flash_deal = FlashDeal::findOrFail(decrypt($id));
+        return view('backend.seller.flash_deals.edit', compact('flash_deal'));
     }
 
     /**
@@ -114,5 +117,35 @@ class FlashDealController extends Controller
     public function product_discount(Request $request){
         $product_ids = $request->product_ids;
         return view('backend.partials.flash_deal_discount', compact('product_ids'));
+    }
+    public function update_status(Request $request)
+    {
+        $flash_deal = FlashDeal::findOrFail($request->id);
+        $flash_deal->status = $request->status;
+        if($flash_deal->save()){
+            Toastr::success('Flash deal status updated successfully');
+            return 1;
+        }
+        return 0;
+    }
+
+    public function update_featured(Request $request)
+    {
+        foreach (FlashDeal::all() as $key => $flash_deal) {
+            $flash_deal->featured = 0;
+            $flash_deal->save();
+        }
+        $flash_deal = FlashDeal::findOrFail($request->id);
+        $flash_deal->featured = $request->featured;
+        if($flash_deal->save()){
+            Toastr::success('Flash deal status updated successfully');
+            return 1;
+        }
+        return 0;
+    }
+    public function product_discount_edit(Request $request){
+        $product_ids = $request->product_ids;
+        $flash_deal_id = $request->flash_deal_id;
+        return view('backend.partials.flash_deal_discount_edit', compact('product_ids', 'flash_deal_id'));
     }
 }

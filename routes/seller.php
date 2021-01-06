@@ -20,7 +20,11 @@ Route::group(['as'=>'seller.','prefix' =>'seller', 'middleware' => ['auth', 'sel
     Route::resource('products','Seller\ProductController');
     Route::resource('shop','Seller\ShopController');
     Route::resource('flash_deals','Seller\FlashDealController');
+    Route::post('/flash_deals/update_status', 'Seller\FlashDealController@update_status')->name('flash_deals.update_status');
+    Route::post('/flash_deals/update_featured', 'Seller\FlashDealController@update_featured')->name('flash_deals.update_featured');
     Route::post('/flash_deals/product_discount', 'Seller\FlashDealController@product_discount')->name('flash_deals.product_discount');
+    Route::post('/flash_deals/product_discount_edit', 'Seller\FlashDealController@product_discount_edit')->name('flash_deals.product_discount_edit');
+
     Route::get('shop/manage/{slug}','Seller\ShopController@dataUpdate')->name('shop.manage');
 
     //Seller Order Management
