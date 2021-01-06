@@ -90,14 +90,18 @@
                                             <a class="bg-info dropdown-item" href="{{route('admin.sellers.edit',$sellerUserInfo->id)}}">
                                                 <i class="fa fa-edit"></i> Edit
                                             </a>
-                                            <button class="bg-danger dropdown-item" type="button"
-                                                    onclick="deleteProduct({{$sellerUserInfo->id}})">
+                                            <a class="bg-info dropdown-item" href="{{route('admin.sellers.ban',$sellerUserInfo->id)}}">
                                                 <i class="fa fa-ban"></i> Ban this seller
-                                            </button>
-                                            <form id="delete-form-{{$sellerUserInfo->id}}" action="{{route('admin.sellers.destroy',$sellerUserInfo->id)}}" method="POST" style="display: none;">
-                                                @csrf
-                                                @method('DELETE')
-                                            </form>
+                                            </a>
+
+{{--                                            <button class="bg-danger dropdown-item" type="button"--}}
+{{--                                                    onclick="deleteProduct({{$sellerUserInfo->id}})">--}}
+{{--                                                <i class="fa fa-ban"></i> Ban this seller--}}
+{{--                                            </button>--}}
+{{--                                            <form id="delete-form-{{$sellerUserInfo->id}}" action="{{route('admin.sellers.destroy',$sellerUserInfo->id)}}" method="POST" style="display: none;">--}}
+{{--                                                @csrf--}}
+{{--                                                @method('DELETE')--}}
+{{--                                            </form>--}}
                                         </div>
                                     </div>
                                 </td>
