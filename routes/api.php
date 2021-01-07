@@ -19,3 +19,11 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 Route::get('/brands','Api\BrandController@getBrands');
+Route::get('/categories','Api\CategoryController@getCategories');
+Route::get('/subcategories','Api\SubcategoryController@getSubcategories');
+Route::get('/shops','Api\ShopController@getShop');
+Route::get('/sellers','Api\SellerController@getSellers');
+Route::get('/shop-categories','Api\ShopCategoryController@getShopCategories');
+Route::get('/shop-subcategories','Api\ShopSubcategoryController@getShopSubcategories');
+Route::get('/shop-brands','Api\ShopBrandController@getShopBrands');
+

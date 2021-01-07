@@ -69,4 +69,7 @@ Route::group(['as'=>'admin.','prefix' =>'admin','namespace'=>'Admin', 'middlewar
     Route::get('customers/show/profile/{id}','CustomerController@profileShow')->name('customers.profile.show');
     Route::put('customers/update/profile/{id}','CustomerController@updateProfile')->name('customer.profile.update');
     Route::put('customers/password/update/{id}','CustomerController@updatePassword')->name('customer.password.update');
+
+    //Sliders
+    Route::resource('sliders','SliderController');
 });
