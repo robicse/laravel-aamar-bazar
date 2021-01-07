@@ -41,6 +41,10 @@
                                             <tbody>
                                             @foreach($orders as $key => $order)
                                             <tr>
+                                                @php
+                                                $review = \App\Model\Review::where('user_id',$order->user_id)->where('product_id',$order->order_details->product_id)->first();
+                                                @endphp
+{{--                                                @dd($review)--}}
                                                 <td>{{$key + 1}}</td>
                                                 <td>{{ $order->invoice_code }}</td>
                                                 <td>{{date('j-m-Y',strtotime($order->created_at))}}</td>
@@ -52,7 +56,7 @@
                                                     <a href="{{ route('invoice.print',$order->id) }}" target="_blank" class="btn btn-default" style="background: green;"><i class="fa fa-print"></i></a>
                                                 </td>
                                                 <td>
-                                                    @if($order->delivery_status == 'Completed')
+                                                    @if($order->delivery_status == 'Completed' && $review == Null)
                                                         <a class="btn btn-default" data-toggle="modal" onclick="getProductId('{{$order->order_details->product_id}}')" data-target="#exampleModal" style="background: yellow;"><i class="fa fa-star"></i></a>
                                                     @endif
                                                 </td>

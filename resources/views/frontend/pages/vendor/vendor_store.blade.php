@@ -325,6 +325,7 @@
                                 </div>
                             </div>
                         </div>
+
                         @if($shopCat->count() > 0)
                         <div class="ps-vendor-best-seller">
                             <div class="ps-section__header">
