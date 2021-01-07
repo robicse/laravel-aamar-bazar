@@ -15,6 +15,7 @@
         "guzzlehttp/guzzle": "^6.3",
         "intervention/image": "^2.5",
         "laravel/framework": "^7.24",
+        "laravel/passport": "^9.4",
         "laravel/tinker": "^2.0",
         "olimortimer/laravelshoppingcart": "^4.0",
         "spatie/laravel-permission": "^3.17"
