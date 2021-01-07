@@ -53,7 +53,7 @@
                                                 </td>
                                                 <td>
                                                     @if($order->delivery_status == 'Completed')
-                                                    <a class="btn btn-default" data-toggle="modal" data-target="#exampleModal" style="background: yellow;"><i class="fa fa-star"></i></a>
+                                                        <a class="btn btn-default" data-toggle="modal" onclick="getProductId('{{$order->order_details->product_id}}')" data-target="#exampleModal" style="background: yellow;"><i class="fa fa-star"></i></a>
                                                     @endif
                                                 </td>
                                             </tr>
@@ -72,13 +72,14 @@
                                                     <span aria-hidden="true">&times;</span>
                                                 </button>
                                             </div>
-                                            <form class="ps-form--review" action="http://nouthemes.net/html/martfury/index.html" method="get">
+                                            <form class="ps-form--review" action="{{route('user.order.review.store')}}" method="post">
+                                                @csrf
+                                                <input type="hidden" name="product_id" id="product_id">
                                                 <div class="modal-body">
 {{--                                                    <h4>Submit Your Review</h4>--}}
-                                                    <p>Your email address will not be published. Required fields are marked<sup>*</sup></p>
                                                     <div class="form-group form-group__rating">
                                                         <label>Your rating of this product</label>
-                                                        <select class="ps-rating" data-read-only="false">
+                                                        <select class="ps-rating" name="rating" data-read-only="false">
                                                             <option value="0">0</option>
                                                             <option value="1">1</option>
                                                             <option value="2">2</option>
@@ -88,13 +89,7 @@
                                                         </select>
                                                     </div>
                                                     <div class="form-group">
-                                                        <input class="form-control" type="text" placeholder="Your Name">
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <input class="form-control" type="email" placeholder="Your Email">
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <textarea class="form-control" rows="4" placeholder="Write your review here"></textarea>
+                                                        <textarea class="form-control" name="comment" rows="4" placeholder="Write your review here"></textarea>
                                                     </div>
                                                 </div>
                                                 <div class="modal-footer">
@@ -114,3 +109,11 @@
         </section>
     </main>
 @endsection
+@push('js')
+    <script>
+        function getProductId(productId){
+            $('#product_id').val(productId);
+            console.log(productId)
+        }
+    </script>
+@endpush

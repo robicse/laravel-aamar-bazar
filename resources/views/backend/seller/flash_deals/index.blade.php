@@ -41,53 +41,32 @@
                             <thead>
                             <tr>
                                 <th>#Id</th>
-                                <th>Icon</th>
-                                <th>Name</th>
-                                <th>Stock</th>
-                                <th>Base Price</th>
-                                <th>Today's Deal</th>
+                                <th>Title</th>
+                                <th>Start Date</th>
+                                <th>End Date</th>
                                 <th>Published</th>
                                 <th>Featured</th>
                                 <th>Action</th>
                             </tr>
                             </thead>
                             <tbody>
-                            @foreach($products as $key => $product)
+                            @foreach($fashDeals as $key => $fashDeal)
                                 <tr>
                                     <td>{{$key + 1}}</td>
+                                    <td>{{$fashDeal->title}}</td>
+                                    <td>{{ date('d-m-Y', $fashDeal->start_date) }}</td>
+                                    <td>{{ date('d-m-Y', $fashDeal->end_date) }}</td>
                                     <td>
-                                        <img src="{{url($product->thumbnail_img)}}" width="32" height="32" alt="">
-                                    </td>
-                                    <td>{{$product->name}}</td>
-                                    <td class="{{$product->current_stock == 0 ? 'badge badge-danger' : 'badge badge-success'}}">{{$product->current_stock == 0 ? 'Not Available': 'Available'}}</td>
-                                    <td>{{$product->unit_price}}</td>
-                                    <td>
-                                        <div class="form-group col-md-2">
-                                            <label class="switch" style="margin-top:40px;">
-                                                <input onchange="update_todays_deal(this)" value="{{ $product->id }}" {{$product->todays_deal == 1? 'checked':''}} type="checkbox" >
-                                                <span class="slider round"></span>
-                                            </label>
-                                        </div>
+                                        <label class="switch">
+                                            <input onchange="update_flash_deal_status(this)" value="{{ $fashDeal->id }}" type="checkbox" <?php if($fashDeal->status == 1) echo "checked";?> >
+                                            <span class="slider round"></span>
+                                        </label>
                                     </td>
                                     <td>
-                                        @if($product->admin_permission == 1)
-                                        <div class="form-group col-md-2">
-                                            <label class="switch" style="margin-top:40px;">
-                                                <input onchange="update_published(this)" value="{{ $product->id }}" {{$product->published == 1 ? 'checked':''}} type="checkbox" >
-                                                <span class="slider round"></span>
-                                            </label>
-                                        </div>
-                                        @else
-                                            <span class="badge badge-danger">Not Yet Approved</span>
-                                        @endif
-                                    </td>
-                                    <td>
-                                        <div class="form-group col-md-2">
-                                            <label class="switch" style="margin-top:40px;">
-                                                <input onchange="update_featured(this)"  value="{{ $product->id }}" {{$product->featured == 1 ? 'checked':''}} type="checkbox" >
-                                                <span class="slider round"></span>
-                                            </label>
-                                        </div>
+                                        <label class="switch">
+                                            <input onchange="update_flash_deal_feature(this)" value="{{ $fashDeal->id }}" type="checkbox" <?php if($fashDeal->featured == 1) echo "checked";?> >
+                                            <span class="slider round"></span>
+                                        </label>
                                     </td>
                                     <td>
                                         <div class="dropdown">
@@ -95,14 +74,14 @@
                                                 Actions
                                             </button>
                                             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                                <a class="bg-info dropdown-item" href="{{route('seller.products.edit',encrypt($product->id))}}">
+                                                <a class="bg-info dropdown-item" href="{{route('seller.flash_deals.edit',encrypt($fashDeal->id))}}">
                                                     <i class="fa fa-edit"></i> Edit
                                                 </a>
                                                {{-- <button class="bg-danger dropdown-item" type="button"
-                                                        onclick="deleteProduct({{$product->id}})">
+                                                        onclick="deleteProduct({{$fashDeal->id}})">
                                                     <i class="fa fa-trash"></i> Delete
                                                 </button>--}}
-                                                <form id="delete-form-{{$product->id}}" action="{{route('seller.products.destroy',$product->id)}}" method="POST" style="display: none;">
+                                                <form id="delete-form-{{$fashDeal->id}}" action="{{route('seller.products.destroy',$fashDeal->id)}}" method="POST" style="display: none;">
                                                     @csrf
                                                     @method('DELETE')
                                                 </form>
@@ -115,11 +94,9 @@
                             <tfoot>
                             <tr>
                                 <th>#Id</th>
-                                <th>Icon</th>
-                                <th>Name</th>
-                                <th>Stock</th>
-                                <th>Base Price</th>
-                                <th>Today's Deal</th>
+                                <th>Title</th>
+                                <th>Start Date</th>
+                                <th>End Date</th>
                                 <th>Published</th>
                                 <th>Featured</th>
                                 <th>Action</th>
@@ -181,58 +158,38 @@
                 }
             })
         }
-        //today's deals
-        function update_todays_deal(el){
+        function update_flash_deal_status(el){
             if(el.checked){
                 var status = 1;
             }
             else{
                 var status = 0;
             }
-            $.post('{{ route('seller.products.todays_deal') }}', {_token:'{{ csrf_token() }}', id:el.value, status:status}, function(data){
+            $.post('{{ route('seller.flash_deals.update_status') }}', {_token:'{{ csrf_token() }}', id:el.value, status:status}, function(data){
                 if(data == 1){
-                    toastr.success('success', 'Todays Deal updated successfully');
+                    location.reload();
                 }
                 else{
-                    toastr.danger('danger', 'Something went wrong');
+                    showAlert('danger', 'Something went wrong');
                 }
             });
         }
-        //product published
-        function update_published(el){
+        function update_flash_deal_feature(el){
             if(el.checked){
-                //alert('if')
-                var status = 1;
+                var featured = 1;
             }
             else{
-                //alert('else')
-                var status = 0;
+                var featured = 0;
             }
-            $.post('{{ route('seller.products.published') }}', {_token:'{{ csrf_token() }}', id:el.value, status:status}, function(data){
+            $.post('{{ route('seller.flash_deals.update_featured') }}', {_token:'{{ csrf_token() }}', id:el.value, featured:featured}, function(data){
                 if(data == 1){
-                    toastr.success('success', 'Published products updated successfully');
+                    location.reload();
                 }
                 else{
-                    toastr.danger('danger', 'Something went wrong');
+                    showAlert('danger', 'Something went wrong');
                 }
             });
         }
-        //product featured product
-        function update_featured(el){
-            if(el.checked){
-                var status = 1;
-            }
-            else{
-                var status = 0;
-            }
-            $.post('{{ route('seller.products.featured') }}', {_token:'{{ csrf_token() }}', id:el.value, status:status}, function(data){
-                if(data == 1){
-                    toastr.success('success', 'Featured products updated successfully');
-                }
-                else{
-                    toastr.danger('danger', 'Something went wrong');
-                }
-            });
-        }
+
     </script>
 @endpush

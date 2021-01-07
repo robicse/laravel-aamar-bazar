@@ -32,7 +32,7 @@
                             </p>
                         </a>
                     </li>
-                    <li class="nav-item has-treeview {{(Request::is('seller/products*')) || (Request::is('seller/get/admin/products*'))
+                    <li class="nav-item has-treeview {{(Request::is('seller/products*')) || (Request::is('seller/get/admin/products*')) || (Request::is('seller/flash_deals*'))
                     ? 'menu-open' : ''}}">
                         <a href="#" class="nav-link">
                             <i class="nav-icon fas fa-shopping-cart"></i>
@@ -52,6 +52,12 @@
                                 <a href="{{route('seller.get.admin.products')}}" class="nav-link {{Request::is('seller/get/admin/products*') ? 'active' :''}}">
                                     <i class="fa fa-{{Request::is('seller/get/admin/products*') ? 'folder-open':'folder'}} nav-icon"></i>
                                     <p>Admin Inserted Products</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{{route('seller.flash_deals.index')}}" class="nav-link {{Request::is('seller/seller/flash_deals*') ? 'active' :''}}">
+                                    <i class="fa fa-{{Request::is('seller/flash_deals*') ? 'folder-open':'bolt'}} nav-icon"></i>
+                                    <p>Flash Deals</p>
                                 </a>
                             </li>
                         </ul>
