@@ -47,38 +47,29 @@
                                 <th>Action</th>
                             </tr>
                             </thead>
-{{--                            <tbody>--}}
-{{--                            @foreach($categories as $key => $category)--}}
-{{--                                <tr>--}}
-{{--                                    <td>{{$key + 1}}</td>--}}
-{{--                                    <td>{{$category->name}}</td>--}}
-{{--                                    <td>--}}
-{{--                                        <img src="{{asset('uploads/categories/'.$category->icon)}}" width="32" height="32" alt="">--}}
-{{--                                    </td>--}}
-{{--                                    <td>--}}
-{{--                                        <div class="form-group col-md-2">--}}
-{{--                                            <label class="switch" style="margin-top:40px;">--}}
-{{--                                                <input onchange="update_is_home(this)" value="{{ $category->id }}" {{$category->is_home == 1? 'checked':''}} type="checkbox" >--}}
-{{--                                                <span class="slider round"></span>--}}
-{{--                                            </label>--}}
-{{--                                        </div>--}}
-{{--                                    </td>--}}
-{{--                                    <td>--}}
-{{--                                        <a class="btn btn-info waves-effect" href="{{route('admin.categories.edit',$category->id)}}">--}}
-{{--                                            <i class="fa fa-edit"></i>--}}
-{{--                                        </a>--}}
-{{--                                        <button class="btn btn-danger waves-effect" type="button"--}}
-{{--                                                onclick="deleteCategory({{$category->id}})">--}}
-{{--                                            <i class="fa fa-trash"></i>--}}
-{{--                                        </button>--}}
-{{--                                        <form id="delete-form-{{$category->id}}" action="{{route('admin.categories.destroy',$category->id)}}" method="POST" style="display: none;">--}}
-{{--                                            @csrf--}}
-{{--                                            @method('DELETE')--}}
-{{--                                        </form>--}}
-{{--                                    </td>--}}
-{{--                                </tr>--}}
-{{--                            @endforeach--}}
-{{--                            </tbody>--}}
+                            <tbody>
+                            @foreach($sliders as $key => $slider)
+                                <tr>
+                                    <td>{{$key + 1}}</td>
+                                    <td>
+                                        <img src="{{asset('uploads/sliders/'.$slider->image)}}" width="50" height="50" alt="">
+                                    </td>
+                                    <td>
+                                        <a class="btn btn-info waves-effect" href="{{route('admin.sliders.edit',$slider->id)}}">
+                                            <i class="fa fa-edit"></i>
+                                        </a>
+                                        <button class="btn btn-danger waves-effect" type="button"
+                                                onclick="deleteCategory({{$slider->id}})">
+                                            <i class="fa fa-trash"></i>
+                                        </button>
+                                        <form id="delete-form-{{$slider->id}}" action="{{route('admin.sliders.destroy',$slider->id)}}" method="POST" style="display: none;">
+                                            @csrf
+                                            @method('DELETE')
+                                        </form>
+                                    </td>
+                                </tr>
+                            @endforeach
+                            </tbody>
                             <tfoot>
                             <tr>
                                 <th>#Id</th>
