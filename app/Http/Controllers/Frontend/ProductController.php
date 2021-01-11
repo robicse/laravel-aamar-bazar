@@ -7,6 +7,7 @@ use App\Model\Brand;
 use App\Model\Category;
 use App\Model\Product;
 use App\Model\ProductStock;
+use App\Model\Review;
 use App\Model\Shop;
 use App\Model\ShopBrand;
 use App\Model\ShopCategory;
@@ -23,6 +24,7 @@ class ProductController extends Controller
         $photos=json_decode($productDetails->photos);
         $brands = Brand::where('id',$productDetails->brand_id)->latest()->get();
         $categories = Category::where('id',$productDetails->category_id)->latest()->get();
+        $reviews = Review::where('product_id',$productDetails->id)->where('status',1)->get();
 //dd($colors);
         $variant=ProductStock::where('product_id',$productDetails->id)->first();
         if(!empty($variant)){
@@ -32,7 +34,7 @@ class ProductController extends Controller
             $price=$productDetails->unit_price;
             $avilability=$productDetails->current_stock;
         }
-        return view('frontend.pages.shop.product_details', compact('productDetails','attributes','options','colors','price','avilability','photos','brands','categories'));
+        return view('frontend.pages.shop.product_details', compact('productDetails','attributes','options','colors','price','avilability','photos','brands','categories','reviews'));
     }
 
     public function ProductVariantPrice(Request  $request) {

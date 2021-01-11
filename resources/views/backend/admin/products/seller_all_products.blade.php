@@ -65,7 +65,11 @@
                                     <td>
                                         <img src="{{url($product->thumbnail_img)}}" width="32" height="32" alt="">
                                     </td>
-                                    <td>{{$shop->name}}</td>
+                                    <td>
+                                        <a target="_blank" href="{{route('shop.details',$shop->slug)}}">
+                                            {{$shop->name}}
+                                        </a>
+                                    </td>
                                     <td>{{$product->name}}</td>
                                     <td>{{$product->current_stock}}</td>
                                     <td>{{$product->unit_price}}</td>
@@ -93,19 +97,20 @@
                                             </label>
                                         </div>
                                     </td>
+
                                     <td>
                                         <div class="dropdown">
                                             <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                                 Actions
                                             </button>
                                             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                                <a class="bg-info dropdown-item" href="{{route('admin.products.edit',$product->id)}}">
+                                                <a class="bg-info dropdown-item" href="{{route('admin.edit.seller.products',encrypt($product->id))}}">
                                                     <i class="fa fa-edit"></i> Edit
                                                 </a>
-                                                <button class="bg-danger dropdown-item" type="button"
+                                                {{--<button class="bg-danger dropdown-item" type="button"
                                                         onclick="deleteProduct({{$product->id}})">
                                                     <i class="fa fa-trash"></i> Delete
-                                                </button>
+                                                </button>--}}
                                                 <form id="delete-form-{{$product->id}}" action="{{route('admin.products.destroy',$product->id)}}" method="POST" style="display: none;">
                                                     @csrf
                                                     @method('DELETE')

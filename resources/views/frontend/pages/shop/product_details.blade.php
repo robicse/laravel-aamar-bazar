@@ -192,14 +192,38 @@
                                         <div class="col-xl-5 col-lg-5 col-md-12 col-sm-12 col-12 ">
                                             <div class="ps-block--average-rating">
                                                 <div class="ps-block__header">
-                                                    <h3>4.00</h3>
+                                                    <h3>{{$productDetails->rating}}</h3>
                                                     <select class="ps-rating" data-read-only="true">
-                                                        <option value="1">1</option>
-                                                        <option value="1">2</option>
-                                                        <option value="1">3</option>
-                                                        <option value="1">4</option>
-                                                        <option value="2">5</option>
-                                                    </select><span>1 Review</span>
+                                                        @for ($i=0; $i < $productDetails->rating; $i++)
+                                                            <option value="1">{{$i}}</option>
+                                                        @endfor
+                                                        {{--@for ($i=0; $i < 5-$productDetails->rating; $i++)
+                                                                <option value="{{$i}}">{{$i}}</option>
+                                                        @endfor--}}
+                                                        {{--@if($productDetails->rating >= 1)
+                                                            <option value="1">1</option>
+                                                        @else
+                                                        @
+                                                        @elseif($productDetails->rating >= 2 )
+                                                            <option value="1">1</option>
+                                                            <option value="1">2</option>
+                                                        @elseif($productDetails->rating >= 3 )
+                                                            <option value="1">1</option>
+                                                            <option value="1">2</option>
+                                                            <option value="1">3</option>
+                                                        @elseif($productDetails->rating >= 4 )
+                                                            <option value="1">1</option>
+                                                            <option value="1">2</option>
+                                                            <option value="1">3</option>
+                                                            <option value="1">4</option>
+                                                        @elseif($productDetails->rating >= 5 )
+                                                            <option value="1">1</option>
+                                                            <option value="1">2</option>
+                                                            <option value="1">3</option>
+                                                            <option value="1">4</option>
+                                                            <option value="1">5</option>
+                                                        @endif--}}
+                                                    </select><span>{{$reviews->count()}} Review</span>
                                                 </div>
                                                 <div class="ps-block__star"><span>5 Star</span>
                                                     <div class="ps-progress" data-value="100"><span></span></div><span>100%</span>
