@@ -36,6 +36,9 @@
                             </a>
                         </div>
                     </div>
+
+
+
                     <!-- /.card-header -->
                     <!-- form start -->
                     <form role="form" action="{{route('admin.sliders.update',$slider->id)}}" method="post" enctype="multipart/form-data">

@@ -241,12 +241,11 @@
                             </li>
                         </ul>
                     </li>
-                    <li class="nav-item">
+                    <li class="nav-item {{(Request::is('sliders*') ) ? 'active' : ''}}">
                         <a href="{{route('admin.sliders.index')}}" class="nav-link">
                             <i class="nav-icon fas fa-sliders"></i>
                             <p>
                                 Sliders
-                                <i class="right fa fa-angle-left"></i>
                             </p>
                         </a>
                     </li>
