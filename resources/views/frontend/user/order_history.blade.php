@@ -56,8 +56,11 @@
                                                     <a href="{{ route('invoice.print',$order->id) }}" target="_blank" class="btn btn-default" style="background: green;"><i class="fa fa-print"></i></a>
                                                 </td>
                                                 <td>
-                                                    @if($order->delivery_status == 'Completed' && $review == Null)
-                                                        <a class="btn btn-default" data-toggle="modal" onclick="getProductId('{{$order->order_details->product_id}}')" data-target="#exampleModal" style="background: yellow;"><i class="fa fa-star"></i></a>
+                                                    @if($order->delivery_status == 'Completed' && empty($review) )
+                                                        <a class="btn btn-default" data-toggle="modal" onclick="getProductId('{{$order->order_details->product_id}}')" data-target="#exampleModal" style="background: yellow;">
+                                                            <i class="fa fa-star"></i></a>
+                                                    @else
+                                                        <i title="Review submitted!" class="fa fa-check-square text-success text-bold"></i>
                                                     @endif
                                                 </td>
                                             </tr>
@@ -83,7 +86,7 @@
 {{--                                                    <h4>Submit Your Review</h4>--}}
                                                     <div class="form-group form-group__rating">
                                                         <label>Your rating of this product</label>
-                                                        <select class="ps-rating" name="rating" data-read-only="false">
+                                                        <select class="ps-rating" name="rating" data-read-only="false" required>
                                                             <option value="0">0</option>
                                                             <option value="1">1</option>
                                                             <option value="2">2</option>
@@ -93,7 +96,7 @@
                                                         </select>
                                                     </div>
                                                     <div class="form-group">
-                                                        <textarea class="form-control" name="comment" rows="4" placeholder="Write your review here"></textarea>
+                                                        <textarea class="form-control" name="comment" rows="4" placeholder="Write your review here" required></textarea>
                                                     </div>
                                                 </div>
                                                 <div class="modal-footer">

@@ -87,6 +87,10 @@
         </div>
     </section>
 
+
+
+
+
 @stop
 @push('js')
     <script src="{{asset('backend/plugins/datatables/jquery.dataTables.js')}}"></script>

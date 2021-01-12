@@ -22,9 +22,15 @@ class ProductController extends Controller
         $options=json_decode($productDetails->choice_options);
         $colors=json_decode($productDetails->colors);
         $photos=json_decode($productDetails->photos);
-        $brands = Brand::where('id',$productDetails->brand_id)->latest()->get();
-        $categories = Category::where('id',$productDetails->category_id)->latest()->get();
+        $relatedBrands = Product::where('brand_id', $productDetails->brand_id)->latest()->take(3)->where('published',1)->get();
+        $categories = Product::where('category_id',$productDetails->category_id)->take(3)->where('published',1)->latest()->get();
         $reviews = Review::where('product_id',$productDetails->id)->where('status',1)->get();
+        $reviewsComments = Review::where('product_id',$productDetails->id)->where('status',1)->latest()->paginate(5);
+        $fiveStarRev = Review::where('product_id',$productDetails->id)->where('rating',5)->where('status',1)->get();
+        $fourStarRev = Review::where('product_id',$productDetails->id)->where('rating',4)->where('status',1)->get();
+        $threeStarRev = Review::where('product_id',$productDetails->id)->where('rating',3)->where('status',1)->get();
+        $twoStarRev = Review::where('product_id',$productDetails->id)->where('rating',2)->where('status',1)->get();
+        $oneStarRev = Review::where('product_id',$productDetails->id)->where('rating',1)->where('status',1)->get();
 //dd($colors);
         $variant=ProductStock::where('product_id',$productDetails->id)->first();
         if(!empty($variant)){
@@ -34,11 +40,15 @@ class ProductController extends Controller
             $price=$productDetails->unit_price;
             $avilability=$productDetails->current_stock;
         }
-        return view('frontend.pages.shop.product_details', compact('productDetails','attributes','options','colors','price','avilability','photos','brands','categories','reviews'));
+        return view('frontend.pages.shop.product_details',
+            compact('productDetails','attributes','options','colors','price',
+                'avilability','photos','relatedBrands','categories','reviews','fiveStarRev','fourStarRev',
+            'threeStarRev','twoStarRev','oneStarRev','reviewsComments')
+        );
     }
 
     public function ProductVariantPrice(Request  $request) {
-      dd($request->all());
+      //dd($request->all());
       $c=count($request->variant);
       $i=1;
       $var=$request->variant;

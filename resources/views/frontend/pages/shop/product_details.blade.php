@@ -194,9 +194,12 @@
                                                 <div class="ps-block__header">
                                                     <h3>{{$productDetails->rating}}</h3>
                                                     <select class="ps-rating" data-read-only="true">
-                                                        @for ($i=0; $i < $productDetails->rating; $i++)
+                                                        @for ($i=0; $i < round($productDetails->rating); $i++)
                                                             <option value="1">{{$i}}</option>
                                                         @endfor
+                                                        @foreach($reviews as $review)
+
+                                                        @endforeach
                                                         {{--@for ($i=0; $i < 5-$productDetails->rating; $i++)
                                                                 <option value="{{$i}}">{{$i}}</option>
                                                         @endfor--}}
@@ -226,56 +229,47 @@
                                                     </select><span>{{$reviews->count()}} Review</span>
                                                 </div>
                                                 <div class="ps-block__star"><span>5 Star</span>
-                                                    <div class="ps-progress" data-value="100"><span></span></div><span>100%</span>
+                                                    <div class="ps-progress" data-value="{{$fiveStarRev->count()}}"><span></span></div><span>{{$fiveStarRev->count()}}</span>
                                                 </div>
                                                 <div class="ps-block__star"><span>4 Star</span>
-                                                    <div class="ps-progress" data-value="0"><span></span></div><span>0</span>
+                                                    <div class="ps-progress" data-value="{{$fourStarRev->count()}}"><span></span></div><span>{{$fourStarRev->count()}}</span>
                                                 </div>
                                                 <div class="ps-block__star"><span>3 Star</span>
-                                                    <div class="ps-progress" data-value="0"><span></span></div><span>0</span>
+                                                    <div class="ps-progress" data-value="{{$threeStarRev->count()}}"><span></span></div><span>{{$threeStarRev->count()}}</span>
                                                 </div>
                                                 <div class="ps-block__star"><span>2 Star</span>
-                                                    <div class="ps-progress" data-value="0"><span></span></div><span>0</span>
+                                                    <div class="ps-progress" data-value="{{$twoStarRev->count()}}"><span></span></div><span>{{$twoStarRev->count()}}</span>
                                                 </div>
                                                 <div class="ps-block__star"><span>1 Star</span>
-                                                    <div class="ps-progress" data-value="0"><span></span></div><span>0</span>
+                                                    <div class="ps-progress " data-value="{{$oneStarRev->count()}}"><span></span></div><span>{{$oneStarRev->count()}}</span>
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="col-xl-7 col-lg-7 col-md-12 col-sm-12 col-12 ">
-                                            <form class="ps-form--review" action="http://nouthemes.net/html/martfury/index.html" method="get">
-                                                <h4>Submit Your Review</h4>
-                                                <p>Your email address will not be published. Required fields are marked<sup>*</sup></p>
-                                                <div class="form-group form-group__rating">
-                                                    <label>Your rating of this product</label>
-                                                    <select class="ps-rating" data-read-only="false">
-                                                        <option value="0">0</option>
-                                                        <option value="1">1</option>
-                                                        <option value="2">2</option>
-                                                        <option value="3">3</option>
-                                                        <option value="4">4</option>
-                                                        <option value="5">5</option>
-                                                    </select>
-                                                </div>
-                                                <div class="form-group">
-                                                    <textarea class="form-control" rows="6" placeholder="Write your review here"></textarea>
-                                                </div>
-                                                <div class="row">
-                                                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12  ">
-                                                        <div class="form-group">
-                                                            <input class="form-control" type="text" placeholder="Your Name">
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12  ">
-                                                        <div class="form-group">
-                                                            <input class="form-control" type="email" placeholder="Your Email">
-                                                        </div>
+                                            @forelse($reviewsComments as $reviews)
+                                                @php
+                                                    $userData = App\User::find($reviews->user_id)
+                                                @endphp
+                                            <div class="row">
+                                                <div class="col-md-1 p-0 m-0">
+                                                    <div class="ps-widget__header">
+                                                        <img src="{{url($userData->avatar_original)}}" alt="" width="60">
                                                     </div>
                                                 </div>
-                                                <div class="form-group submit">
-                                                    <button class="ps-btn">Submit Review</button>
+                                                <div class="col-md-2"><figcaption>{{$userData->name}}</figcaption></div>
+                                                <div class="col-md-8">
+                                                    <p>{{$reviews->comment}}</p>
                                                 </div>
-                                            </form>
+                                            </div>
+                                            <hr>
+                                            @empty
+                                                <div>
+                                                    <h3 class="text-info">No review yet!!</h3>
+                                                </div>
+                                            @endforelse
+                                            <div class="float-right">
+                                                {{$reviewsComments->links()}}
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -308,8 +302,7 @@
                     <aside class="widget widget_same-brand">
                         <h3>Same Brand</h3>
                         <div class="widget__content">
-                            @foreach($brands as $brand)
-                            @foreach($brand->product->where('published',1)  as $product)
+                            @foreach($relatedBrands  as $product)
                             <div class="ps-product">
                                 <div class="ps-product__thumbnail"><a href="{{route('product-details',$product->slug)}}"><img src="{{url($product->thumbnail_img)}}" alt=""></a>
 {{--                                    <div class="ps-product__badge">-37%</div>--}}
@@ -337,7 +330,6 @@
                                     </div>
                                 </div>
                             </div>
-                                @endforeach
                             @endforeach
 {{--                            <div class="ps-product">--}}
 {{--                                <div class="ps-product__thumbnail"><a href="product-default.html"><img src="{{asset('frontend/img/products/shop/6.jpg')}}" alt=""></a>--}}
@@ -378,9 +370,8 @@
 
                 <div class="ps-section__content">
                     <div class="ps-carousel--nav owl-slider" data-owl-auto="true" data-owl-loop="true" data-owl-speed="10000" data-owl-gap="30" data-owl-nav="true" data-owl-dots="true" data-owl-item="6" data-owl-item-xs="2" data-owl-item-sm="2" data-owl-item-md="3" data-owl-item-lg="4" data-owl-item-xl="5" data-owl-duration="1000" data-owl-mousedrag="on">
-                        @foreach($categories as $Cat)
-                            @foreach($Cat->product->where('published',1) as $product)
-                                <div class="ps-product">
+                        @foreach($categories as $product)
+                            <div class="ps-product">
                                     <div class="ps-product__thumbnail"><a href="{{route('product-details',$product->slug)}}"><img src="{{url($product->thumbnail_img)}}" alt=""></a>
                                         <ul class="ps-product__actions">
                                             <li><a href="#" data-toggle="tooltip" data-placement="top" title="Add To Cart"><i class="icon-bag2"></i></a></li>
@@ -407,7 +398,6 @@
                                         </div>
                                     </div>
                                 </div>
-                            @endforeach
                         @endforeach
 {{--                        <div class="ps-product">--}}
 {{--                            <div class="ps-product__thumbnail"><a href="product-default.html"><img src="{{asset('frontend/img/products/shop/19.jpg')}}" alt=""></a>--}}
