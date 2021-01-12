@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
 use App\Model\Category;
+use App\Model\FlashDeal;
 use App\Model\FlashDealProduct;
 use App\Model\Product;
 use App\Model\Seller;
@@ -22,11 +23,17 @@ class VendorController extends Controller
         $products=Product::where('added_by','seller')->where('user_id',$shop->user_id)->where('published',1)->where('featured',1)->latest()->take(8)->get();
         $best_sales_products=Product::where('added_by','seller')->where('user_id',$shop->user_id)->where('published',1)->where('num_of_sale', '>',0)->limit(8)->get();
         $todaysDeal = Product::where('added_by','seller')->where('user_id',$shop->user_id)->where('published',1)->where('todays_deal',1)->latest()->take(8)->get();
-        $flashDeal = FlashDealProduct::where('user_id',$shop->user_id)->latest()->take(7)->get();
+        $flashDeal = FlashDeal::where('status',1)->where('user_id',$shop->user_id)->where('user_type','seller')->where('featured',1)->first();
+        $flashDealProducts = FlashDealProduct::where('user_id',$shop->user_id)->where('flash_deal_id',$flashDeal->id)->latest()->take(7)->get();
+        //dd($flashDealProducts);
         $shopCat=ShopCategory::where('shop_id',$shop->id)->latest()->get();
 //        dd($products);
 
-        return view('frontend.pages.vendor.vendor_store',compact('shop','products','todaysDeal','shopCat','best_sales_products','seller','flashDeal'));
+        return view('frontend.pages.vendor.vendor_store',
+            compact('shop','products','todaysDeal','shopCat',
+                'best_sales_products','seller','flashDeal','flashDealProducts'
+            )
+        );
     }
 //    public function shopCategories($slug) {
 //        //dd($slug);
