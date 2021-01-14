@@ -27,5 +27,9 @@ class Product extends Model
     public function stocks(){
         return $this->hasMany("App\Model\ProductStock",'product_id');
     }
+    public function wishlist()
+    {
+        return $this->hasMany('App\Model\Wishlist', 'product_id');
+    }
 
 }
