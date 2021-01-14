@@ -22,8 +22,6 @@ class FrontendController extends Controller
         return view('frontend.pages.index', compact('categories','products','new_products','shops'));
     }
     public function register(Request $request) {
-//        dd('sjf');
-
         $this->validate($request, [
             'name' =>  'required',
             'email' =>  'required',

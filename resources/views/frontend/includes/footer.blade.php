@@ -31,10 +31,10 @@
             <aside class="widget widget_footer">
                 <h4 class="widget-title">Company</h4>
                 <ul class="ps-list--link">
-                    <li><a href="about-us.html">About Us</a></li>
-                    <li><a href="#">Affilate</a></li>
-                    <li><a href="#">Career</a></li>
-                    <li><a href="contact-us.html">Contact</a></li>
+                    <li><a href="{{route('about-us')}}">About Us</a></li>
+{{--                    <li><a href="#">Affilate</a></li>--}}
+{{--                    <li><a href="#">Career</a></li>--}}
+                    <li><a href="{{route('contact')}}">Contact</a></li>
                 </ul>
             </aside>
             <aside class="widget widget_footer">
