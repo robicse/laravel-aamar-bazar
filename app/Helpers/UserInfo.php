@@ -8,6 +8,9 @@
 
 namespace App\Helpers;
 
+use App\Model\FlashDeal;
+use App\Model\FlashDealProduct;
+use App\Model\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 //use Illuminate\Support\Facades\Auth;
@@ -58,5 +61,6 @@ class UserInfo
             return $response;
         }
     }
+
 
 }

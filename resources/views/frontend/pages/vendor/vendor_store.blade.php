@@ -1,6 +1,12 @@
 @extends('frontend.layouts.master')
 @section('title', $shop->name)
 @push('css')
+    <style>
+        .ps-product:hover {
+            border-color: silver;
+            margin-bottom: 98px!important;
+        }
+    </style>
 @endpush
 @section('content')
     <div class="ps-page--single">
@@ -79,10 +85,10 @@
                                                 </div>
                                             </div><a href="#">View all</a>
                                         </div>
-                                        <div class="ps-section__content">
+                                        <div class="ps-section__content mb-5">
                                             <div class="ps-carousel--nav owl-slider" data-owl-auto="false" data-owl-loop="false" data-owl-speed="10000" data-owl-gap="30" data-owl-nav="true" data-owl-dots="true" data-owl-item="7" data-owl-item-xs="2" data-owl-item-sm="3" data-owl-item-md="4" data-owl-item-lg="5" data-owl-item-xl="6" data-owl-duration="1000" data-owl-mousedrag="on">
                                                 @foreach($shopCat as $cat)
-                                                    <div class="ps-product ps-product--inner">
+                                                    <div class="ps-product--inner">
                                                         <div class="text-center"><a href="{{url('/shop/'.$shop->slug.'/'.$cat->category->slug)}}"><img src="{{asset('uploads/categories/'.$cat->category->icon)}}" alt="" class="rounded-circle" alt="" width="80" height="80"></a>
                                                             <div class="item-content text-center">
                                                                 <h4 class="item-title"><a href="{{url('/shop/'.$shop->slug.'/'.$cat->category->slug)}}" style="color: #06c; padding: 5px;" data-toggle="tooltip" title="{{$cat->category->name}}">{!! Str::limit($cat->category->name,7) !!}</h4></a>
@@ -116,42 +122,51 @@
                                                 </div>
                                             </div><a href="#">View all</a>
                                         </div>
-                                        <div class="ps-section__content">
-                                            <div class="ps-carousel--nav owl-slider" data-owl-auto="false" data-owl-loop="false" data-owl-speed="10000" data-owl-gap="30" data-owl-nav="true" data-owl-dots="true" data-owl-item="7" data-owl-item-xs="2" data-owl-item-sm="3" data-owl-item-md="4" data-owl-item-lg="5" data-owl-item-xl="6" data-owl-duration="1000" data-owl-mousedrag="on">
-                                                @forelse($flashDealProducts as $flashDealProduct)
-                                                <div class="ps-product ps-product--inner" style="border:1px solid #ddd; padding: 5px;">
-                                                    <div class="ps-product__thumbnail"><a href="{{route('product-details',$flashDealProduct->product->slug)}}"><img src="{{url($flashDealProduct->product->thumbnail_img)}}" alt=""></a>
-                                                        <div class="ps-product__badge">-16%</div>
-                                                        <ul class="ps-product__actions">
-                                                            <li><a href="#" data-toggle="tooltip" data-placement="top" title="Read More"><i class="icon-bag2"></i></a></li>
-                                                            <li><a href="#" data-placement="top" title="Quick View" data-toggle="modal" data-target="#product-quickview"><i class="icon-eye"></i></a></li>
-                                                            <li><a href="#" data-toggle="tooltip" data-placement="top" title="Add to Whishlist"><i class="icon-heart"></i></a></li>
-                                                            <li><a href="#" data-toggle="tooltip" data-placement="top" title="Compare"><i class="icon-chart-bars"></i></a></li>
-                                                        </ul>
-                                                    </div>
-                                                    <div class="ps-product__container">
-                                                        <p class="ps-product__price sale">$567.99 <del>$670.00 </del><small>18% off</small></p>
-                                                        <div class="ps-product__content"><a class="ps-product__title" href="{{route('product-details',$flashDealProduct->product->slug)}}">{{$flashDealProduct->product->name}}</a>
-                                                           {{-- <div class="ps-product__rating">
-                                                                <select class="ps-rating" data-read-only="true">
-                                                                    <option value="1">1</option>
-                                                                    <option value="1">2</option>
-                                                                    <option value="1">3</option>
-                                                                    <option value="1">4</option>
-                                                                    <option value="2">5</option>
-                                                                </select><span>01</span>
-                                                            </div>--}}
-                                                           {{-- <div class="ps-product__progress-bar ps-progress" data-value="37">
-                                                                <div class="ps-progress__value"><span></span></div>
-                                                                <p>Sold:16</p>
-                                                            </div>--}}
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                @empty
-                                                    <h3>No product found!</h3>
-                                                @endforelse
+                                        <div class="ps-tabs">
+                                            <div class="ps-tab active" id="tab-1">
+                                                <div class="row">
+                                                    @foreach($flashDealProducts as $flashDealProduct)
 
+                                                        <div class="col-xl-3 col-lg-4 col-md-4 col-sm-6 col-6 ">
+                                                            <div class="ps-product">
+                                                                <div class="ps-product__thumbnail"><a href="{{route('product-details',$flashDealProduct->product->slug)}}"><img src="{{asset($flashDealProduct->product->thumbnail_img)}}" alt=""></a>
+                                                                    {{--                                                        <div class="ps-product__badge">11%</div>--}}
+                                                                    <ul class="ps-product__actions">
+                                                                        <li><a href="{{route('product-details',$flashDealProduct->product->slug)}}" data-toggle="tooltip" data-placement="top" title="Add To Cart"><i class="icon-bag2"></i></a></li>
+                                                                        <li><a href="{{route('product-details',$flashDealProduct->product->slug)}}" data-placement="top" title="Quick View"><i class="icon-eye"></i></a></li>
+                                                                        <li><a href="#" data-toggle="tooltip" data-placement="top" title="Add to Whishlist"><i class="icon-heart"></i></a></li>
+                                                                    </ul>
+                                                                </div>
+                                                                <div class="ps-product__container"><a class="ps-product__vendor" href="{{route('product-details',$flashDealProduct->product->slug)}}"></a>
+                                                                    <div class="ps-product__content"><a class="ps-product__title" href="">{{$flashDealProduct->product->name}}</a>
+                                                                        <div class="ps-product__rating">
+                                                                            <select class="ps-rating" data-read-only="true">
+                                                                                <option value="1">1</option>
+                                                                                <option value="1">2</option>
+                                                                                <option value="1">3</option>
+                                                                                <option value="1">4</option>
+                                                                                <option value="2">5</option>
+                                                                            </select><span>01</span>
+                                                                        </div>
+                                                                        <p class="ps-product__price sale">
+                                                                            ৳{{home_discounted_base_price($flashDealProduct->product_id)}}
+                                                                            @if(home_base_price($flashDealProduct->product_id) != home_discounted_base_price($flashDealProduct->product_id))
+                                                                                <del>৳{{home_base_price($flashDealProduct->product_id)}}</del>
+                                                                            @else
+                                                                                ৳{{home_discounted_base_price($flashDealProduct->product_id)}}
+                                                                            @endif
+                                                                        </p>
+                                                                    </div>
+                                                                    <div class="ps-product__content hover"><a class="ps-product__title" href="{{route('product-details',$flashDealProduct->product->slug)}}">{{$flashDealProduct->product->name}}</a>
+                                                                        <p class="ps-product__price sale">৳{{$flashDealProduct->product->unit_price}}
+                                                                            <del>৳{{$flashDealProduct->product->purchase_price}}</del>
+                                                                        </p>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    @endforeach
+                                                </div>
                                             </div>
                                         </div>
                                     </div>

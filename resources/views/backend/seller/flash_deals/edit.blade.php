@@ -44,7 +44,7 @@
         </div><!-- /.container-fluid -->
     </section>
     <!-- Main content -->
-    <form role="form" id="choice_form" action="{{route('seller.flash_deals.update', $flash_deal->id)}}" method="post"
+    <form role="form" id="choice_form" action="{{route('seller.flash_deals.update2', $flash_deal->id)}}" method="post"
           enctype="multipart/form-data">
         @csrf
         <section class="content">
