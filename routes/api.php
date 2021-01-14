@@ -22,6 +22,7 @@ Route::get('/brands','Api\BrandController@getBrands');
 Route::get('/categories','Api\CategoryController@getCategories');
 Route::get('/subcategories','Api\SubcategoryController@getSubcategories');
 Route::get('/shops','Api\ShopController@getShop');
+Route::get('/shops/lat/{lat}/lng/{lng}','Api\ShopController@getShopByLatLng');
 Route::get('/sellers','Api\SellerController@getSellers');
 Route::get('/shop-categories','Api\ShopCategoryController@getShopCategories');
 Route::get('/shop-subcategories','Api\ShopSubcategoryController@getShopSubcategories');

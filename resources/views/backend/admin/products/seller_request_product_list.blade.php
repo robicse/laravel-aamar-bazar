@@ -48,7 +48,7 @@
                                 <th>Today's Deal</th>
                                 <th>Published</th>
                                 <th>Featured</th>
-                                <th>Action</th>
+                                {{--<th>Action</th>--}}
                             </tr>
                             </thead>
                             <tbody>
@@ -85,26 +85,26 @@
                                             </label>
                                         </div>
                                     </td>
-                                    <td>
+                                    {{--<td>
                                         <div class="dropdown">
-                                            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                           --}}{{-- <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                                 Actions
-                                            </button>
+                                            </button>--}}{{--
                                             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                                                 <a class="bg-info dropdown-item" href="{{route('admin.products.edit',$product->id)}}">
                                                     <i class="fa fa-edit"></i> Edit
                                                 </a>
-                                                <button class="bg-danger dropdown-item" type="button"
+                                                --}}{{--<button class="bg-danger dropdown-item" type="button"
                                                         onclick="deleteProduct({{$product->id}})">
                                                     <i class="fa fa-trash"></i> Delete
-                                                </button>
+                                                </button>--}}{{--
                                                 <form id="delete-form-{{$product->id}}" action="{{route('admin.products.destroy',$product->id)}}" method="POST" style="display: none;">
                                                     @csrf
                                                     @method('DELETE')
                                                 </form>
                                             </div>
                                         </div>
-                                    </td>
+                                    </td>--}}
                                 </tr>
                             @endforeach
                             </tbody>
@@ -118,7 +118,7 @@
                                 <th>Today's Deal</th>
                                 <th>Published</th>
                                 <th>Featured</th>
-                                <th>Action</th>
+                                {{--<th>Action</th>--}}
                             </tr>
                             </tfoot>
                         </table>
