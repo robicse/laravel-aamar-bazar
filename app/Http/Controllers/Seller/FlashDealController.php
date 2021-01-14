@@ -99,10 +99,44 @@ class FlashDealController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+   /* public function update(Request $request, $id)
     {
         //
+    }*/
+
+    public function update(Request $request,$id){
+        //dd($request->all());
+        $flash_deal =  FlashDeal::find($id);
+        $flash_deal->title = $request->title;
+        $flash_deal->user_id = Auth::id();
+        $flash_deal->user_type = 'seller';
+        $flash_deal->start_date = strtotime($request->start_date);
+        $flash_deal->end_date = strtotime($request->end_date);
+        $flash_deal->slug =  Str::slug($request->title);
+        foreach ($flash_deal->flashDealProduct as $key => $flash_deal_product) {
+            $flash_deal_product->delete();
+        }
+        if($flash_deal->save()){
+            foreach ($request->products as $key => $product) {
+                $flash_deal_product =   new FlashDealProduct;
+                $flash_deal_product->flash_deal_id = $flash_deal->id;
+                $flash_deal_product->product_id = $product;
+                $flash_deal_product->user_id = Auth::id();
+                $flash_deal_product->user_type = 'seller';
+                $flash_deal_product->discount = $request['discount_'.$product];
+                $flash_deal_product->discount_type = $request['discount_type_'.$product];
+                $flash_deal_product->save();
+            }
+            Toastr::success('Flash Deal has been Updated successfully');
+            return redirect()->route('seller.flash_deals.index');
+        }
+        else{
+            Toastr::error('Something went wrong');
+            return back();
+        }
+
     }
+
 
     /**
      * Remove the specified resource from storage.
