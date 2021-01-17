@@ -118,6 +118,9 @@
                                             <td>{{$orders->order_details->quantity}}</td>
                                             <td>{{$orders->order_details->price}}</td>
                                             <td>{{$orders->order_details->price * $orders->order_details->quantity }}</td>
+                                            <td>
+                                                <a href="{{ route('invoice.print',$orders->id) }}" target="_blank" class="btn btn-default" style="background: green;"><i class="fa fa-print"></i></a>
+                                            </td>
                                         </tr>
                                         </tbody>
                                     </table>

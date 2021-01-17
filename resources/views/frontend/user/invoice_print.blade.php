@@ -26,7 +26,7 @@
         <div class="row">
             <div class="col-12">
                 <h2 class="page-header">
-                    <i class="fas fa-globe"></i> Mudi Hat
+                    <img src="{{asset('frontend/img/logo-mudi-hat.png')}}">
                 </h2>
             </div>
             <!-- /.col -->
@@ -76,7 +76,7 @@
                     <tr>
                         <th>Qty</th>
                         <th>Product Name</th>
-                        <th>Transaction Id</th>
+                        <th>Product Variant</th>
                         <th>Payment Type</th>
                         <th>Grand Total</th>
                     </tr>
@@ -85,7 +85,8 @@
                     <tr>
                         <td>{{$orders->order_details->quantity}}</td>
                         <td>{{$orders->order_details->name}}</td>
-                        <td>{{$orders->transaction_id}}</td>
+                        <td></td>
+{{--                        <td>{{$orders->transaction_id}}</td>--}}
                         <td>{{$orders->payment_status}}</td>
                         <td>{{$orders->grand_total}}</td>
                     </tr>
@@ -119,19 +120,19 @@
                     <table class="table">
                         <tr>
                             <th style="width:50%">Subtotal:</th>
-                            <td>$250.30</td>
+                            <td>{{$orders->grand_total}}</td>
                         </tr>
-                        <tr>
-                            <th>Tax (9.3%)</th>
-                            <td>$10.34</td>
-                        </tr>
+{{--                        <tr>--}}
+{{--                            <th>Tax (9.3%)</th>--}}
+{{--                            <td>$10.34</td>--}}
+{{--                        </tr>--}}
                         <tr>
                             <th>Shipping:</th>
-                            <td>$5.80</td>
+                            <td>{{$orders->delivery_cost}}</td>
                         </tr>
                         <tr>
                             <th>Total:</th>
-                            <td>$265.24</td>
+                            <td>{{$orders->grand_total + $orders->delivery_cost}}</td>
                         </tr>
                     </table>
                 </div>
