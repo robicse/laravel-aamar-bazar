@@ -24,7 +24,11 @@ class VendorController extends Controller
         $best_sales_products=Product::where('added_by','seller')->where('user_id',$shop->user_id)->where('published',1)->where('num_of_sale', '>',0)->limit(8)->get();
         $todaysDeal = Product::where('added_by','seller')->where('user_id',$shop->user_id)->where('published',1)->where('todays_deal',1)->latest()->take(8)->get();
         $flashDeal = FlashDeal::where('status',1)->where('user_id',$shop->user_id)->where('user_type','seller')->where('featured',1)->first();
-        $flashDealProducts = FlashDealProduct::where('user_id',$shop->user_id)->where('flash_deal_id',$flashDeal->id)->latest()->take(7)->get();
+        if(!empty($flashDeal)){
+            $flashDealProducts = FlashDealProduct::where('user_id',$shop->user_id)->where('flash_deal_id',$flashDeal->id)->latest()->take(7)->get();
+        }else{
+            $flashDealProducts = null;
+        }
         //dd($flashDealProducts);
         $shopCat=ShopCategory::where('shop_id',$shop->id)->latest()->get();
 //        dd($products);

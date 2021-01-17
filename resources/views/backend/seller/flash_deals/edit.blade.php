@@ -47,6 +47,7 @@
     <form role="form" id="choice_form" action="{{route('seller.flash_deals.update', $flash_deal->id)}}" method="post"
           enctype="multipart/form-data">
         @csrf
+        @method('PUT')
         <section class="content">
             <div class="row m-2">
                 <div class="col-md-12">
