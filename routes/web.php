@@ -24,6 +24,8 @@ Route::get('/about-us', 'Frontend\AboutController@About')->name('about-us');
 Route::get('/contact', 'Frontend\AboutController@contact')->name('contact');
 Route::get('/blog-list', 'Frontend\BlogController@index')->name('blog-list');
 Route::get('/blog-details', 'Frontend\BlogController@details')->name('blog-details');
+Route::get('/add/wishlist/{id}', 'Frontend\WishlistController@wishlistAdd' )->name('add.wishlist');
+Route::get('/remove/wishlist/{id}', 'Frontend\WishlistController@wishlistRemove' )->name('remove.wishlist');
 
 //Search
 Route::get('/search/product', 'Frontend\VendorController@search_product');
@@ -67,7 +69,7 @@ Route::group(['middleware' => ['auth', 'user']], function () {
     Route::get('/user/order/history', 'User\OrderManagementController@orderHistory')->name('user.order.history');
     Route::post('/user/order/review', 'User\OrderManagementController@reviewStore')->name('user.order.review.store');
     Route::get('order-details/invoice/print/{id}','User\OrderManagementController@printInvoice')->name('invoice.print');
-    Route::get('/user/wishlist', 'User\DashboardController@wishlist')->name('user.wishlist');
+    Route::get('/user/wishlist', 'Frontend\WishlistController@wishlist')->name('user.wishlist');
     Route::get('/checkout', 'Frontend\CartController@checkout')->name('checkout');
     Route::post('/checkout/order/submit', 'Frontend\CartController@orderSubmit')->name('checkout.order.submit');
     //this route only for resource controller
