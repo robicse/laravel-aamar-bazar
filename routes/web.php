@@ -22,6 +22,7 @@ Route::get('/shopping-cart', 'Frontend\CartController@viewCart')->name('shopping
 Route::get('/shop', 'Frontend\ShopController@shop')->name('shop');
 Route::get('/about-us', 'Frontend\AboutController@About')->name('about-us');
 Route::get('/contact', 'Frontend\AboutController@contact')->name('contact');
+Route::get('/faqs', 'Frontend\AboutController@faqs')->name('faqs');
 Route::get('/blog-list', 'Frontend\BlogController@index')->name('blog-list');
 Route::get('/blog-details', 'Frontend\BlogController@details')->name('blog-details');
 Route::get('/add/wishlist/{id}', 'Frontend\WishlistController@wishlistAdd' )->name('add.wishlist');

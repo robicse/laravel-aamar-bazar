@@ -13,4 +13,7 @@ class AboutController extends Controller
     public function contact() {
         return view('frontend.pages.contact');
     }
+    public function faqs() {
+        return view('frontend.pages.faq');
+    }
 }

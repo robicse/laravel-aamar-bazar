@@ -19,7 +19,7 @@
                     <li><a href="#">Term & Condition</a></li>
                     <li><a href="#">Shipping</a></li>
                     <li><a href="#">Return</a></li>
-                    <li><a href="faqs.html">FAQs</a></li>
+                    <li><a href="{{route('faqs')}}">FAQs</a></li>
                 </ul>
                 <ul class="ps-list--social text-center my-3 my-md-0" style="padding-top: 20px;">
                     <li><a class="facebook" href="#" target="_blank" data-toggle="tooltip" data-original-title="Facebook" style="background: #3b579d;"><i class="fa fa-facebook" style="color: white"></i></a></li>
@@ -40,10 +40,10 @@
             <aside class="widget widget_footer">
                 <h4 class="widget-title">Bussiness</h4>
                 <ul class="ps-list--link">
-                    <li><a href="#">Our Press</a></li>
-                    <li><a href="checkout.html">Checkout</a></li>
-                    <li><a href="my-account.html">My account</a></li>
-                    <li><a href="shop-default.html">Shop</a></li>
+{{--                    <li><a href="#">Our Press</a></li>--}}
+                    <li><a href="{{route('checkout')}}">Checkout</a></li>
+                    <li><a href="{{route('login')}}">My account</a></li>
+                    <li><a href="{{route('vendor.list')}}">Shop</a></li>
                 </ul>
                 <div class="widget widget_footer" style="padding-top: 30px;">
                     <h4 class="" style="color: #cacacc!important;">BE A SELLER</h4>
