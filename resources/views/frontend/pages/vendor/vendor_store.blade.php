@@ -102,7 +102,7 @@
                                 </div>
                             @endif
                             @if( !empty($flashDeal) && $flashDeal->featured == 1  && strtotime(date('d-m-Y')) >= $flashDeal->start_date && strtotime(date('d-m-Y')) <= $flashDeal->end_date)
-                                <div class="ps-deal-of-day">
+                                <div class="ps-deal-of-day" style="padding-top: 10px;">
                                     <div class="ps-container">
                                         <div class="ps-section__header">
                                             <div class="ps-block--countdown-deal">
@@ -120,7 +120,7 @@
                                                         </ul>
                                                     </figure>
                                                 </div>
-                                            </div><a href="#">View all</a>
+                                            </div><a href="{{route('flash-deals',$flashDeal->slug)}}">View all</a>
                                         </div>
 
                                         <div class="ps-tabs">
@@ -159,8 +159,13 @@
                                                                         </p>
                                                                     </div>
                                                                     <div class="ps-product__content hover"><a class="ps-product__title" href="{{route('product-details',$flashDealProduct->product->slug)}}">{{$flashDealProduct->product->name}}</a>
-                                                                        <p class="ps-product__price sale">৳{{$flashDealProduct->product->unit_price}}
-                                                                            <del>৳{{$flashDealProduct->product->purchase_price}}</del>
+                                                                        <p class="ps-product__price sale">
+                                                                            ৳{{home_discounted_base_price($flashDealProduct->product_id)}}
+                                                                            @if(home_base_price($flashDealProduct->product_id) != home_discounted_base_price($flashDealProduct->product_id))
+                                                                                <del>৳{{home_base_price($flashDealProduct->product_id)}}</del>
+                                                                            @else
+                                                                                ৳{{home_discounted_base_price($flashDealProduct->product_id)}}
+                                                                            @endif
                                                                         </p>
                                                                     </div>
                                                                 </div>

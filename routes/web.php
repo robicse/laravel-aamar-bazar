@@ -58,6 +58,7 @@ Route::get('/become-a-vendor', 'Frontend\VendorController@index')->name('become-
 Route::get('/shop/{name}/{slug}', 'Frontend\VendorController@categoryProducts')->name('category.products');
 Route::get('/shop/{slug}', 'Frontend\VendorController@singleshop')->name('shop.details');
 Route::get('/vendor/list', 'Frontend\VendorController@vendorList')->name('vendor.list');
+Route::get('/flash-deals/{slug}', 'Frontend\VendorController@flashdeal')->name('flash-deals');
 
 Auth::routes();
 
