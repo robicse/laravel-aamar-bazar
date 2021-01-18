@@ -8,9 +8,11 @@
                     <li><a href="{{url('/')}}">Home</a></li>
                     <li>Contact Us</li>
                 </ul>
+
             </div>
         </div>
-        <div id="contact-map" data-address="17 Queen St, Southbank, Melbourne 10560, Australia" data-title="Funiture!" data-zoom="17"></div>
+{{--        <div id="contact-map" data-address="17 Queen St, Southbank, Melbourne 10560, Australia" data-title="Funiture!" data-zoom="17"></div>--}}
+        <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d14604.557245622878!2d90.360452!3d23.778053!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x14c0ec04f1828c03!2saccounting%20software%20in%20bangladesh%20-%20Staritltd!5e0!3m2!1sen!2sbd!4v1610961117516!5m2!1sen!2sbd" width="600" height="450" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
         <div class="ps-contact-info">
             <div class="container">
                 <div class="ps-section__header">
@@ -92,3 +94,6 @@
         </div>
     </div>
 @endsection
+@push('js')
+    <script src="{{asset('frontend/plugins/gmap3.min.js')}}"></script>
+@endpush

@@ -509,7 +509,7 @@
         <div class="ps-product-list ps-new-arrivals">
             <div class="ps-container">
                 <div class="ps-section__header">
-                    <h3>Trending Product</h3>
+                    <h3>Best Sell Product</h3>
 {{--                    <ul class="ps-section__links">--}}
 {{--                        @foreach($categories as $cat)--}}
 {{--                            <li><a href="shop-grid.html">{{$cat->name}}</a></li>--}}
@@ -519,34 +519,34 @@
                 </div>
                 <div class="ps-section__content">
                     <div class="row">
-                        @foreach($new_products as $new)
+                        @foreach($best_sales_products as $product)
                             <div class="col-xl-3 col-lg-4 col-md-4 col-sm-6 col-12 ">
                                 <div class="ps-product--horizontal">
-                                    <div class="ps-product__thumbnail"><a href="{{route('product-details',$new->slug)}}"><img src="{{url($new->thumbnail_img)}}" alt=""></a></div>
-                                    <div class="ps-product__content"><a class="ps-product__title" href="{{route('product-details',$new->slug)}}">{{ $new->name }}</a>
-                                        <p class="ps-product__price">৳{{$new->unit_price}}</p>
+                                    <div class="ps-product__thumbnail"><a href="{{route('product-details',$product->slug)}}"><img src="{{url($product->thumbnail_img)}}" alt=""></a></div>
+                                    <div class="ps-product__content"><a class="ps-product__title" href="{{route('product-details',$product->slug)}}">{{ $product->name }}</a>
+                                        <p class="ps-product__price">৳{{$product->unit_price}}</p>
                                     </div>
                                 </div>
                             </div>
                         @endforeach
 
-                        <div class="col-xl-3 col-lg-4 col-md-4 col-sm-6 col-12 ">
-                            <div class="ps-product--horizontal">
-                                <div class="ps-product__thumbnail"><a href="product-default.html"><img src="{{asset('frontend/img/products/arrivals/4.jpg')}}" alt=""></a></div>
-                                <div class="ps-product__content"><a class="ps-product__title" href="product-default.html">Xbox One Wireless Controller Black Color</a>
-                                    <div class="ps-product__rating">
-                                        <select class="ps-rating" data-read-only="true">
-                                            <option value="1">1</option>
-                                            <option value="1">2</option>
-                                            <option value="1">3</option>
-                                            <option value="1">4</option>
-                                            <option value="2">5</option>
-                                        </select><span>02</span>
-                                    </div>
-                                    <p class="ps-product__price">$55.30</p>
-                                </div>
-                            </div>
-                        </div>
+{{--                        <div class="col-xl-3 col-lg-4 col-md-4 col-sm-6 col-12 ">--}}
+{{--                            <div class="ps-product--horizontal">--}}
+{{--                                <div class="ps-product__thumbnail"><a href="product-default.html"><img src="{{asset('frontend/img/products/arrivals/4.jpg')}}" alt=""></a></div>--}}
+{{--                                <div class="ps-product__content"><a class="ps-product__title" href="product-default.html">Xbox One Wireless Controller Black Color</a>--}}
+{{--                                    <div class="ps-product__rating">--}}
+{{--                                        <select class="ps-rating" data-read-only="true">--}}
+{{--                                            <option value="1">1</option>--}}
+{{--                                            <option value="1">2</option>--}}
+{{--                                            <option value="1">3</option>--}}
+{{--                                            <option value="1">4</option>--}}
+{{--                                            <option value="2">5</option>--}}
+{{--                                        </select><span>02</span>--}}
+{{--                                    </div>--}}
+{{--                                    <p class="ps-product__price">$55.30</p>--}}
+{{--                                </div>--}}
+{{--                            </div>--}}
+{{--                        </div>--}}
                     </div>
                 </div>
             </div>

@@ -1,19 +1,19 @@
 @extends('frontend.layouts.master')
-@section('title','FAQ')
+@section('title','Terms and Conditions')
 @section('content')
     <div class="ps-page--single">
         <div class="ps-breadcrumb">
             <div class="container">
                 <ul class="breadcrumb">
                     <li><a href="{{url('/')}}">Home</a></li>
-                    <li>Frequently Asked Questions</li>
+                    <li>Terms and Conditions</li>
                 </ul>
             </div>
         </div>
         <div class="ps-faqs">
             <div class="container">
                 <div class="ps-section__header">
-                    <h1>Frequently Asked Questions</h1>
+                    <h1>Terms and Conditions</h1>
                 </div>
                 <div class="ps-section__content">
                     <div class="table-responsive">
