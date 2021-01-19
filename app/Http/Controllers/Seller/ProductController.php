@@ -179,7 +179,7 @@ class ProductController extends Controller
         //Generates the combinations of customer choice options
         $combinations = Helpers::combinations($options);
         if(count($combinations[0]) > 0){
-            dd('inside seller controller after');
+//            dd('inside seller controller after');
             $product->variant_product = 1;
             foreach ($combinations as $key => $combination){
                 $str = '';

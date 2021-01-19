@@ -31,5 +31,8 @@ class Product extends Model
     {
         return $this->hasMany('App\Model\Wishlist', 'product_id');
     }
+    public function productStock() {
+        return $this->hasMany('App\Model\ProductStock', 'product_id');
+    }
 
 }

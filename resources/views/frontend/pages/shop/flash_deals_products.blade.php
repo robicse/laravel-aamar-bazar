@@ -45,40 +45,10 @@
                     </div>
             </div>
             <div class="ps-section--default ps-customer-bought">
-{{--                <div class="ps-section__header">--}}
-{{--                    <h3>Customers who bought this item also bought</h3>--}}
-{{--                </div>--}}
                 <div class="ps-section__content">
                     <div class="row">
                         @foreach($flashDealProducts as $flashDealProduct)
                         <div class="col-xl-2 col-lg-2 col-md-2 col-sm-6 col-6 ">
-{{--                            <div class="ps-product">--}}
-{{--                                <div class="ps-product__thumbnail"><a href="{{route('product-details',$flashDealProduct->product->slug)}}"><img src="{{asset($flashDealProduct->product->thumbnail_img)}}" alt="" width="175" height="200"></a>--}}
-{{--                                    <ul class="ps-product__actions">--}}
-{{--                                        <li><a href="#" data-toggle="tooltip" data-placement="top" title="Add To Cart"><i class="icon-bag2"></i></a></li>--}}
-{{--                                        <li><a href="#" data-placement="top" title="Quick View" data-toggle="modal" data-target="#product-quickview"><i class="icon-eye"></i></a></li>--}}
-{{--                                        <li><a href="#" data-toggle="tooltip" data-placement="top" title="Add to Whishlist"><i class="icon-heart"></i></a></li>--}}
-{{--                                        <li><a href="#" data-toggle="tooltip" data-placement="top" title="Compare"><i class="icon-chart-bars"></i></a></li>--}}
-{{--                                    </ul>--}}
-{{--                                </div>--}}
-{{--                                <div class="ps-product__container"><a class="ps-product__vendor" href="#"></a>--}}
-{{--                                    <div class="ps-product__content"><a class="ps-product__title" href="{{route('product-details',$flashDealProduct->product->slug)}}">{{$flashDealProduct->product->name}}</a>--}}
-{{--                                        <div class="ps-product__rating">--}}
-{{--                                            <select class="ps-rating" data-read-only="true">--}}
-{{--                                                <option value="1">1</option>--}}
-{{--                                                <option value="1">2</option>--}}
-{{--                                                <option value="1">3</option>--}}
-{{--                                                <option value="1">4</option>--}}
-{{--                                                <option value="2">5</option>--}}
-{{--                                            </select><span>01</span>--}}
-{{--                                        </div>--}}
-{{--                                        <p class="ps-product__price">৳{{$flashDealProduct->product->unit_price}}</p>--}}
-{{--                                    </div>--}}
-{{--                                    <div class="ps-product__content hover"><a class="ps-product__title" href="{{route('product-details',$flashDealProduct->product->slug)}}">{{$flashDealProduct->product->name}}</a>--}}
-{{--                                        <p class="ps-product__price">৳{{$flashDealProduct->product->purchase_price}}</p>--}}
-{{--                                    </div>--}}
-{{--                                </div>--}}
-{{--                            </div>--}}
                             <div class="ps-product">
                                 <div class="ps-product__thumbnail"><a href="{{route('product-details',$flashDealProduct->product->slug)}}"><img src="{{asset($flashDealProduct->product->thumbnail_img)}}" alt="" width="175" height="200"></a>
                                     {{--                                                        <div class="ps-product__badge">11%</div>--}}

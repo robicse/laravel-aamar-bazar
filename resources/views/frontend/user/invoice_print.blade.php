@@ -85,7 +85,7 @@
                     <tr>
                         <td>{{$orders->order_details->quantity}}</td>
                         <td>{{$orders->order_details->name}}</td>
-                        <td></td>
+                        <td>{{$orders->order_details->productStock->variant}}</td>
 {{--                        <td>{{$orders->transaction_id}}</td>--}}
                         <td>{{$orders->payment_status}}</td>
                         <td>{{$orders->grand_total}}</td>
