@@ -44,7 +44,7 @@
             <div class="form-group row">
                 <label class="col-sm-4 control-label" for="amount">Amount</label>
                 <div class="col-sm-8">
-                    <input type="number" min="0" step="0.01" name="amount" id="amount" value="{{ $seller->admin_to_pay }}" class="form-control" required>
+                    <input type="number" min="0" step="0.01" name="amount" id="amount" value="{{ $seller->admin_to_pay }}" class="form-control" max="{{$seller->admin_to_pay}}" required>
                 </div>
             </div>
             <div class="form-group row">

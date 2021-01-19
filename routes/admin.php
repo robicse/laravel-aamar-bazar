@@ -44,16 +44,19 @@ Route::group(['as'=>'admin.','prefix' =>'admin','namespace'=>'Admin', 'middlewar
     Route::get('sellers/commission/form','SellerController@commissionForm')->name('seller.commission.form');
     Route::put('sellers/commission/update/{id}','SellerController@commissionStore')->name('seller.commission.update');
     Route::get('sellers/payment/history','SellerController@paymentHistory')->name('seller.payment.history');
+    Route::get('payment/history','SellerController@adminPaymentHistory')->name('payment.history');
     Route::get('sellers/withdraw/request','SellerController@withdrawRequest')->name('seller.withdraw.request');
     Route::get('sellers/profile/show/{id}','SellerController@profileShow')->name('seller.profile.show');
     Route::put('sellers/profile/update/{id}','SellerController@updateProfile')->name('seller.profile.update');
     Route::put('sellers/password/update/{id}','SellerController@updatePassword')->name('seller.password.update');
     Route::put('sellers/bankinfo/update/{id}','SellerController@bankInfoUpdate')->name('seller.bankinfo.update');
     Route::post('/sellers/payment_modal', 'SellerController@payment_modal')->name('sellers.payment_modal');
+    Route::post('/payment_modal', 'SellerController@admin_payment_modal')->name('payment_modal');
     Route::post('/sellers/withdraw_payment_modal', 'SellerController@withdraw_payment_modal')->name('sellers.withdraw_payment_modal');
     Route::post('/sellers/commission_modal', 'SellerController@commission_modal')->name('sellers.commission_modal');
     Route::put('/sellers/individual/commission/set/{id}', 'SellerController@individulCommissionSet')->name('seller.individual.commission.set');
     Route::post('/sellers/pay_to_seller_commission', 'SellerController@pay_to_seller_commission')->name('seller.commissions.pay_to_seller');
+    Route::post('/widthdraw-request/store/{id}', 'SellerController@admin_withdraw_store')->name('withdraw-request.store');
     Route::get('/sellers/ban/{id}','SellerController@banSeller')->name('sellers.ban');
 
 // Admin Order Management
@@ -74,4 +77,6 @@ Route::group(['as'=>'admin.','prefix' =>'admin','namespace'=>'Admin', 'middlewar
 
     //Sliders
     Route::resource('sliders','SliderController');
+    Route::resource('profile','ProfileController');
+    Route::put('password/update/{id}','ProfileController@updatePassword')->name('password.update');
 });
