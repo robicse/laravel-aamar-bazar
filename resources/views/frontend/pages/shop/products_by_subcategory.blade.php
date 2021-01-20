@@ -1,5 +1,5 @@
 @extends('frontend.layouts.master')
-@section('title',$categories->name)
+@section('title',$category->name)
 @section('content')
     <div class="ps-breadcrumb">
         <div class="ps-container">
@@ -136,15 +136,15 @@
                             for(i=0;i<data.length;i++){
                                 $('.found_product').append(`<div class="col-xl-3 col-lg-4 col-md-4 col-sm-6 col-6 ">
                                                 <div class="ps-product">
-                                                    <div class="ps-product__thumbnail"><a href="/product/${data[i].slug}"><img src="{{url($product->thumbnail_img)}}" alt=""></a>
+                                                    <div class="ps-product__thumbnail"><a href="/product/${data[i].slug}"><img src="{{url('/')}}/${data[i].thumbnail_img}" alt=""></a>
                                                         <ul class="ps-product__actions">
-                                                            <li><a href="#" data-toggle="tooltip" data-placement="top" title="Add To Cart"><i class="icon-bag2"></i></a></li>
-                                                            <li><a href="#" data-placement="top" title="Quick View" data-toggle="modal" data-target="#product-quickview"><i class="icon-eye"></i></a></li>
-                                                            <li><a href="#" data-toggle="tooltip" data-placement="top" title="Add to Whishlist"><i class="icon-heart"></i></a></li>
+                                                            <li><a href="/product/${data[i].slug}" data-toggle="tooltip" data-placement="top" title="Add To Cart"><i class="icon-bag2"></i></a></li>
+                                                            <li><a href="/product/${data[i].slug}" data-placement="top" title="Quick View" data-toggle="modal" data-target="#product-quickview"><i class="icon-eye"></i></a></li>
+                                                            <li><a href="/add/wishlist/${data[i].id}" data-toggle="tooltip" data-placement="top" title="Add to Whishlist"><i class="icon-heart"></i></a></li>
                                                             {{--                                                        <li><a href="#" data-toggle="tooltip" data-placement="top" title="Compare"><i class="icon-chart-bars"></i></a></li>--}}
                                 </ul>
                             </div>
-                            <div class="ps-product__container"><a class="ps-product__vendor" href="/product/${data[i].slug}">${data[i].name}</a>
+                            <div class="ps-product__container">
                                                         <div class="ps-product__content"><a class="ps-product__title" href="/product/${data[i].slug}">${data[i].name}</a>
                                                             <p class="ps-product__price">৳ ${data[i].unit_price}</p>
                                                         </div>

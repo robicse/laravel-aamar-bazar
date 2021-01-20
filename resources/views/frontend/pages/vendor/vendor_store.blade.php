@@ -135,20 +135,20 @@
                                                                     <ul class="ps-product__actions">
                                                                         <li><a href="{{route('product-details',$flashDealProduct->product->slug)}}" data-toggle="tooltip" data-placement="top" title="Add To Cart"><i class="icon-bag2"></i></a></li>
                                                                         <li><a href="{{route('product-details',$flashDealProduct->product->slug)}}" data-placement="top" title="Quick View"><i class="icon-eye"></i></a></li>
-                                                                        <li><a href="#" data-toggle="tooltip" data-placement="top" title="Add to Whishlist"><i class="icon-heart"></i></a></li>
+                                                                        <li><a href="{{route('add.wishlist',$flashDealProduct->id)}}" data-toggle="tooltip" data-placement="top" title="Add to Whishlist"><i class="icon-heart"></i></a></li>
                                                                     </ul>
                                                                 </div>
                                                                 <div class="ps-product__container"><a class="ps-product__vendor" href="{{route('product-details',$flashDealProduct->product->slug)}}"></a>
                                                                     <div class="ps-product__content"><a class="ps-product__title" href="">{{$flashDealProduct->product->name}}</a>
-                                                                        <div class="ps-product__rating">
-                                                                            <select class="ps-rating" data-read-only="true">
-                                                                                <option value="1">1</option>
-                                                                                <option value="1">2</option>
-                                                                                <option value="1">3</option>
-                                                                                <option value="1">4</option>
-                                                                                <option value="2">5</option>
-                                                                            </select><span>01</span>
-                                                                        </div>
+{{--                                                                        <div class="ps-product__rating">--}}
+{{--                                                                            <select class="ps-rating" data-read-only="true">--}}
+{{--                                                                                <option value="1">1</option>--}}
+{{--                                                                                <option value="1">2</option>--}}
+{{--                                                                                <option value="1">3</option>--}}
+{{--                                                                                <option value="1">4</option>--}}
+{{--                                                                                <option value="2">5</option>--}}
+{{--                                                                            </select><span>01</span>--}}
+{{--                                                                        </div>--}}
                                                                         <p class="ps-product__price sale">
                                                                             ৳{{home_discounted_base_price($flashDealProduct->product_id)}}
                                                                             @if(home_base_price($flashDealProduct->product_id) != home_discounted_base_price($flashDealProduct->product_id))
