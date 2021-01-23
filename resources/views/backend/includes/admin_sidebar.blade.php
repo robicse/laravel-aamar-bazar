@@ -184,6 +184,33 @@
                             </li>
                         </ul>
                     </li>
+
+                    <li class="nav-item has-treeview {{(Request::is('admin/profile*') ) ? 'menu-open' : '' || (Request::is('admin/payment*') ) ? 'menu-open' : '' }}">
+                        <a href="#" class="nav-link">
+                            <i class="nav-icon fas fa-user-circle"></i>
+                            <p>
+                                Admin
+                                <i class="right fa fa-angle-left"></i>
+                            </p>
+                        </a>
+                        <ul class="nav nav-treeview">
+                            <li class="nav-item">
+                                <a href="{{route('admin.profile.index')}}"
+                                   class="nav-link {{Request::is('admin/profile') ? 'active' :''}}">
+                                    <i class="fa fa-{{Request::is('admin/profile') ? 'folder-open':'folder'}} nav-icon"></i>
+                                    <p>Profile</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{{route('admin.payment.history')}}"
+                                   class="nav-link {{Request::is('admin/payment/history*') ? 'active' :''}}">
+                                    <i class="fa fa-{{Request::is('admin/payment/history*') ? 'folder-open':'folder'}} nav-icon"></i>
+                                    <p>Admin Payments History</p>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+
                     <li class="nav-item has-treeview {{(Request::is('admin/sellers*') ) ? 'menu-open' : ''}}">
                         <a href="#" class="nav-link">
                             <i class="nav-icon fas fa-user-plus"></i>
@@ -211,7 +238,7 @@
                                 <a href="{{route('admin.seller.payment.history')}}"
                                    class="nav-link {{Request::is('admin/sellers/payment/history*') ? 'active' :''}}">
                                     <i class="fa fa-{{Request::is('admin/sellers/payment/history*') ? 'folder-open':'folder'}} nav-icon"></i>
-                                    <p>Payments History</p>
+                                    <p>Seller Payments History</p>
                                 </a>
                             </li>
                             <li class="nav-item">
@@ -225,7 +252,7 @@
                     </li>
                     <li class="nav-item has-treeview {{(Request::is('admin/customers*') ) ? 'menu-open' : ''}}">
                         <a href="#" class="nav-link">
-                            <i class="nav-icon fas fa-user-circle"></i>
+                            <i class="nav-icon fas fa-users"></i>
                             <p>
                                 Customers
                                 <i class="right fa fa-angle-left"></i>

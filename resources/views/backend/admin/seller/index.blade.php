@@ -48,6 +48,7 @@
                                 <th>Commission</th>
                                 <th>Num. of Products</th>
                                 <th>Due to seller</th>
+                                <th>Due to Admin</th>
                                 <th>Action</th>
                             </tr>
                             </thead>
@@ -69,6 +70,7 @@
                                 <td ><strong class="badge badge-danger w-100">{{$sellerUserInfo->seller->commission}}%</strong></td>
                                 <td>{{$sellerUserInfo->products->count()}}</td>
                                 <td>{{$sellerUserInfo->seller->admin_to_pay}}</td>
+                                <td>{{$sellerUserInfo->seller->seller_will_pay_admin}}</td>
                                 <td>
                                     <div class="dropdown">
                                         <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -79,7 +81,10 @@
                                                 <i class="fa fa-user"></i> Profile
                                             </a>
                                             <a class="bg-success dropdown-item" onclick="show_seller_payment_modal('{{$sellerUserInfo->seller->id}}');" href="#">
-                                                <i class="fa fa-money"></i> Pay Now
+                                                <i class="fa fa-money"></i> Pay To Seller
+                                            </a>
+                                            <a class="bg-success dropdown-item" onclick="show_admin_payment_modal('{{$sellerUserInfo->seller->id}}');" href="#">
+                                                <i class="fa fa-money"></i> Pay To Admin
                                             </a>
                                             <a class="bg-danger dropdown-item" onclick="show_seller_commission_modal('{{$sellerUserInfo->seller->id}}');" href="#">
                                                 <i class="fa fa-money-bill-wave"></i> Set Commission
@@ -118,6 +123,7 @@
                                 <th>Commission</th>
                                 <th>Num. of Products</th>
                                 <th>Due to seller</th>
+                                <th>Due to Admin</th>
                                 <th>Action</th>
                             </tr>
                             </tfoot>
@@ -204,6 +210,13 @@
         }
         function show_seller_payment_modal(id){
             $.post('{{ route('admin.sellers.payment_modal') }}',{_token:'{{ @csrf_token() }}', id:id}, function(data){
+                $('#payment_modal #modal-content').html(data);
+                $('#payment_modal').modal('show', {backdrop: 'static'});
+
+            });
+        }
+        function show_admin_payment_modal(id){
+            $.post('{{ route('admin.payment_modal') }}',{_token:'{{ @csrf_token() }}', id:id}, function(data){
                 $('#payment_modal #modal-content').html(data);
                 $('#payment_modal').modal('show', {backdrop: 'static'});
 

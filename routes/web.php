@@ -23,6 +23,10 @@ Route::get('/shop', 'Frontend\ShopController@shop')->name('shop');
 Route::get('/about-us', 'Frontend\AboutController@About')->name('about-us');
 Route::get('/contact', 'Frontend\AboutController@contact')->name('contact');
 Route::get('/faqs', 'Frontend\AboutController@faqs')->name('faqs');
+Route::get('/our-policy', 'Frontend\AboutController@policy')->name('policy');
+Route::get('/terms-and-conditions', 'Frontend\AboutController@terms')->name('terms-condition');
+Route::get('/shipping', 'Frontend\AboutController@shipping')->name('shipping');
+Route::get('/order-returns', 'Frontend\AboutController@returns')->name('returns');
 Route::get('/blog-list', 'Frontend\BlogController@index')->name('blog-list');
 Route::get('/blog-details', 'Frontend\BlogController@details')->name('blog-details');
 Route::get('/add/wishlist/{id}', 'Frontend\WishlistController@wishlistAdd' )->name('add.wishlist');
@@ -54,6 +58,7 @@ Route::get('/become-a-vendor', 'Frontend\VendorController@index')->name('become-
 Route::get('/shop/{name}/{slug}', 'Frontend\VendorController@categoryProducts')->name('category.products');
 Route::get('/shop/{slug}', 'Frontend\VendorController@singleshop')->name('shop.details');
 Route::get('/vendor/list', 'Frontend\VendorController@vendorList')->name('vendor.list');
+Route::get('/flash-deals/{slug}', 'Frontend\VendorController@flashdeal')->name('flash-deals');
 
 Auth::routes();
 

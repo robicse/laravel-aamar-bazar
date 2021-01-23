@@ -1,53 +1,27 @@
 @extends('frontend.layouts.master')
-@section('title','FAQ')
+@section('title','Order & Returns')
 @section('content')
     <div class="ps-page--single">
         <div class="ps-breadcrumb">
             <div class="container">
                 <ul class="breadcrumb">
                     <li><a href="{{url('/')}}">Home</a></li>
-                    <li>Frequently Asked Questions</li>
+                    <li>Order & Returns</li>
                 </ul>
             </div>
         </div>
         <div class="ps-faqs">
             <div class="container">
                 <div class="ps-section__header">
-                    <h1>Frequently Asked Questions</h1>
+                    <h1>Order & Returns</h1>
                 </div>
                 <div class="ps-section__content">
                     <div class="table-responsive">
                         <table class="table ps-table--faqs">
                             <tbody>
                             <tr>
-                                <td class="heading" rowspan="3">
-                                    <h4>SHIPPING</h4>
-                                </td>
-                                <td class="question"> What Shipping Methods Are Available?</td>
-                                <td>Ex Portland Pitchfork irure mustache. Eutra fap before they sold out literally. Aliquip ugh bicycle rights actually mlkshk, seitan squid craft beer tempor.</td>
-                            </tr>
-                            <tr>
-                                <td class="question">Do You Ship Internationally?</td>
-                                <td>Hoodie tote bag mixtape tofu. Typewriter jean shorts wolf quinoa, messenger bag organic freegan cray.</td>
-                            </tr>
-                            <tr>
-                                <td class="question">How Long Will It Take To Get My Package?</td>
-                                <td>Swag slow-carb quinoa VHS typewriter pork belly brunch, paleo single-origin coffee Wes Anderson. Flexitarian Pitchfork forage, literally paleo fap pour-over. Wes Anderson Pinterest YOLO fanny pack meggings, deep v XOXO chambray sustainable slow-carb raw denim church-key fap chillwave Etsy. +1 typewriter kitsch, American Apparel tofu Banksy Vice.</td>
-                            </tr>
-                            <tr>
-                                <td class="heading" rowspan="2">
-                                    <h4>PAYMENT</h4>
-                                </td>
-                                <td class="question"> What Payment Methods Are Accepted?</td>
-                                <td>Fashion axe DIY jean shorts, swag kale chips meh polaroid kogi butcher Wes Anderson chambray next level semiotics gentrify yr. Voluptate photo booth fugiat Vice. Austin sed Williamsburg, ea labore raw denim voluptate cred proident mixtape excepteur mustache. Twee chia photo booth readymade food truck, hoodie roof party swag keytar PBR DIY.</td>
-                            </tr>
-                            <tr>
-                                <td class="question">Is Buying On-Line Safe?</td>
-                                <td>Art party authentic freegan semiotics jean shorts chia cred. Neutra Austin roof party Brooklyn, synth Thundercats swag 8-bit photo booth. Plaid letterpress leggings craft beer meh ethical Pinterest.</td>
-                            </tr>
-                            <tr>
                                 <td class="heading" rowspan="5">
-                                    <h4>Order & Retunrs</h4>
+                                    <h4>Order & Returns</h4>
                                 </td>
                                 <td class="question"> How do I place an Order?</td>
                                 <td>Keytar cray slow-carb, Godard banh mi salvia pour-over. Slow-carb Odd Future seitan normcore. Master cleanse American Apparel gentrify flexitarian beard slow-carb next level. Raw denim polaroid paleo farm-to-table, put a bird on it lo-fi tattooed Wes Anderson Pinterest letterpress. Fingerstache McSweeney’s pour-over, letterpress Schlitz photo booth master cleanse bespoke hashtag chillwave gentrify.</td>

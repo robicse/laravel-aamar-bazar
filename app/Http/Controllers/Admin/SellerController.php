@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Model\AdminPaymentHistory;
+use App\Model\AdminWithdrawRequest;
 use App\Model\BusinessSetting;
 use App\Model\Order;
 use App\Model\Payment;
@@ -14,6 +16,7 @@ use App\User;
 use Brian2694\Toastr\Facades\Toastr;
 use http\Exception\RuntimeException;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
 
@@ -53,11 +56,16 @@ class SellerController extends Controller
         Toastr::success($request->value.' % Seller Commission successfully added for all sellers');
         return redirect()->back();
    }
-   public function paymentHistory()
+   public function adminPaymentHistory()
    {
-       $paymentHistories = Payment::latest()->get();
-    return view('backend.admin.seller.payment_history',compact('paymentHistories'));
+       $paymentHistories = AdminPaymentHistory::latest()->get();
+    return view('backend.admin.seller.admin_payment_history',compact('paymentHistories'));
    }
+    public function paymentHistory()
+    {
+        $paymentHistories = Payment::latest()->get();
+        return view('backend.admin.seller.payment_history',compact('paymentHistories'));
+    }
    public function withdrawRequest()
    {
        $withdrawRequests = SellerWithdrawRequest::latest()->get();
@@ -138,6 +146,29 @@ class SellerController extends Controller
     {
         $seller = Seller::find($request->id);
         return view('backend.admin.seller.payment_modal', compact('seller'));
+    }
+    public function admin_payment_modal(Request $request)
+    {
+        $seller = Seller::find($request->id);
+        return view('backend.admin.seller.admin_payment_modal', compact('seller'));
+    }
+    public function admin_withdraw_store(Request $request, $id) {
+       $seller = Seller::find($id);
+//       dd($seller);
+        if($seller->seller_will_pay_admin >= $request->amount ) {
+            $payment = new AdminPaymentHistory();
+            $payment->seller_id = $seller->id;
+            $payment->amount = $request->amount;
+            $payment->payment_method = $request->payment_option;;
+            $payment->save();
+            $seller->seller_will_pay_admin -= $request->amount;
+            $seller->save();
+            Toastr::success("Request Inserted Successfully", "Success");
+            return redirect()->route('admin.payment.history');
+        } else {
+            Toastr::error("You do not have enough balance to send withdraw request");
+            return redirect()->back();
+        }
     }
     public function withdraw_payment_modal(Request $request)
     {

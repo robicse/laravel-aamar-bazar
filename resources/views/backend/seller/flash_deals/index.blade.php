@@ -27,7 +27,7 @@
                     <div class="card-header">
                         <h3 class="card-title float-left">Flash Deals Product List</h3>
                         <div class="float-right">
-                            <a href="{{route('seller.products.create')}}">
+                            <a href="{{route('seller.flash_deals.create')}}">
                                 <button class="btn btn-success">
                                     <i class="fa fa-plus-circle"></i>
                                     Add

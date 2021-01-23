@@ -11,6 +11,7 @@ use App\Model\Review;
 use App\Model\Shop;
 use App\Model\ShopBrand;
 use App\Model\ShopCategory;
+use App\Model\ShopSubcategory;
 use App\Model\Subcategory;
 use Illuminate\Http\Request;
 
@@ -73,13 +74,13 @@ class ProductController extends Controller
     public function productSubCategory($name,$slug,$sub) {
 //        dd('sffk');
         $shop = Shop::where('slug',$name)->first();
-        $categories = Category::where('slug',$slug)->first();
-        $subcategories = Subcategory::where('slug',$sub)->first();
+        $category= Category::where('slug',$slug)->first();
+        $subcategory = Subcategory::where('slug',$sub)->first();
         $shopCat = ShopCategory::where('shop_id',$shop->id)->latest()->get();
         $shopBrand = ShopBrand::where('shop_id',$shop->id)->latest()->get();
-        $products = Product::where('category_id',$categories->id)->where('subcategory_id',$subcategories->id)->where('user_id',$shop->user_id)->where('published',1)->where('featured',1)->latest()->paginate(24);
+        $products = Product::where('category_id',$category->id)->where('subcategory_id',$subcategory->id)->where('user_id',$shop->user_id)->where('published',1)->where('featured',1)->latest()->paginate(24);
 //        dd($products);
-        return view('frontend.pages.shop.products_by_subcategory',compact('shop','categories','subcategories','shopBrand','shopCat','products'));
+        return view('frontend.pages.shop.products_by_subcategory',compact('shop','category','subcategory','shopBrand','shopCat','products'));
     }
     public function productByBrand($name,$slug) {
         $shop = Shop::where('slug',$name)->first();

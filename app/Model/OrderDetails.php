@@ -16,4 +16,8 @@ class OrderDetails extends Model
     {
         return $this->belongsTo('App\Model\ProductStock', 'variation_id');
     }
+    public function product()
+    {
+        return $this->belongsTo('App\Model\Product', 'product_id');
+    }
 }

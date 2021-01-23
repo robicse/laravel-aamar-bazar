@@ -102,7 +102,7 @@
                                 </div>
                             @endif
                             @if( !empty($flashDeal) && $flashDeal->featured == 1  && strtotime(date('d-m-Y')) >= $flashDeal->start_date && strtotime(date('d-m-Y')) <= $flashDeal->end_date)
-                                <div class="ps-deal-of-day">
+                                <div class="ps-deal-of-day" style="padding-top: 10px;">
                                     <div class="ps-container">
                                         <div class="ps-section__header">
                                             <div class="ps-block--countdown-deal">
@@ -120,7 +120,7 @@
                                                         </ul>
                                                     </figure>
                                                 </div>
-                                            </div><a href="#">View all</a>
+                                            </div><a href="{{route('flash-deals',$flashDeal->slug)}}">View all</a>
                                         </div>
 
                                         <div class="ps-tabs">
@@ -135,20 +135,20 @@
                                                                     <ul class="ps-product__actions">
                                                                         <li><a href="{{route('product-details',$flashDealProduct->product->slug)}}" data-toggle="tooltip" data-placement="top" title="Add To Cart"><i class="icon-bag2"></i></a></li>
                                                                         <li><a href="{{route('product-details',$flashDealProduct->product->slug)}}" data-placement="top" title="Quick View"><i class="icon-eye"></i></a></li>
-                                                                        <li><a href="#" data-toggle="tooltip" data-placement="top" title="Add to Whishlist"><i class="icon-heart"></i></a></li>
+                                                                        <li><a href="{{route('add.wishlist',$flashDealProduct->id)}}" data-toggle="tooltip" data-placement="top" title="Add to Whishlist"><i class="icon-heart"></i></a></li>
                                                                     </ul>
                                                                 </div>
                                                                 <div class="ps-product__container"><a class="ps-product__vendor" href="{{route('product-details',$flashDealProduct->product->slug)}}"></a>
                                                                     <div class="ps-product__content"><a class="ps-product__title" href="">{{$flashDealProduct->product->name}}</a>
-                                                                        <div class="ps-product__rating">
-                                                                            <select class="ps-rating" data-read-only="true">
-                                                                                <option value="1">1</option>
-                                                                                <option value="1">2</option>
-                                                                                <option value="1">3</option>
-                                                                                <option value="1">4</option>
-                                                                                <option value="2">5</option>
-                                                                            </select><span>01</span>
-                                                                        </div>
+{{--                                                                        <div class="ps-product__rating">--}}
+{{--                                                                            <select class="ps-rating" data-read-only="true">--}}
+{{--                                                                                <option value="1">1</option>--}}
+{{--                                                                                <option value="1">2</option>--}}
+{{--                                                                                <option value="1">3</option>--}}
+{{--                                                                                <option value="1">4</option>--}}
+{{--                                                                                <option value="2">5</option>--}}
+{{--                                                                            </select><span>01</span>--}}
+{{--                                                                        </div>--}}
                                                                         <p class="ps-product__price sale">
                                                                             ৳{{home_discounted_base_price($flashDealProduct->product_id)}}
                                                                             @if(home_base_price($flashDealProduct->product_id) != home_discounted_base_price($flashDealProduct->product_id))
@@ -159,8 +159,13 @@
                                                                         </p>
                                                                     </div>
                                                                     <div class="ps-product__content hover"><a class="ps-product__title" href="{{route('product-details',$flashDealProduct->product->slug)}}">{{$flashDealProduct->product->name}}</a>
-                                                                        <p class="ps-product__price sale">৳{{$flashDealProduct->product->unit_price}}
-                                                                            <del>৳{{$flashDealProduct->product->purchase_price}}</del>
+                                                                        <p class="ps-product__price sale">
+                                                                            ৳{{home_discounted_base_price($flashDealProduct->product_id)}}
+                                                                            @if(home_base_price($flashDealProduct->product_id) != home_discounted_base_price($flashDealProduct->product_id))
+                                                                                <del>৳{{home_base_price($flashDealProduct->product_id)}}</del>
+                                                                            @else
+                                                                                ৳{{home_discounted_base_price($flashDealProduct->product_id)}}
+                                                                            @endif
                                                                         </p>
                                                                     </div>
                                                                 </div>

@@ -88,4 +88,11 @@ class VendorController extends Controller
 
         return $result_data;
     }
+    public function flashdeal($slug) {
+        $flashDeal = FlashDeal::where('slug',$slug)->first();
+        $shop = Shop::where('user_id',$flashDeal->user_id)->first();
+        $flashDealProducts = FlashDealProduct::where('flash_deal_id',$flashDeal->id)->where('user_id',$shop->user_id)->get();
+        return view('frontend.pages.shop.flash_deals_products',compact('flashDealProducts','flashDeal','shop'));
+
+    }
 }
