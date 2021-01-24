@@ -211,5 +211,8 @@
                 });
             }
         }
+        function subcatId(id){
+
+        }
     </script>
 @endpush
