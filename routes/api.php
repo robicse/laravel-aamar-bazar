@@ -28,4 +28,5 @@ Route::get('/shop-categories','Api\ShopCategoryController@getShopCategories');
 Route::get('/shop-subcategories','Api\ShopSubcategoryController@getShopSubcategories');
 Route::get('/shop-brands','Api\ShopBrandController@getShopBrands');
 Route::get('/sliders','Api\SliderController@getSliders');
+Route::get('/featured-products/{id}','Api\ProductController@getFeaturedProducts');
 
