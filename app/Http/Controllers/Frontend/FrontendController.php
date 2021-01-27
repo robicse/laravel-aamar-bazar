@@ -11,6 +11,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Session;
 
 class FrontendController extends Controller
 {
@@ -29,6 +30,12 @@ class FrontendController extends Controller
             'phone' => 'required|min:8|numeric',
             'password' => 'required|min:6',
         ]);
+        $phn1 = (int)$request->phone;
+        $check = User::where('phone',$phn1)->first();
+        if (!empty($check)){
+            Toastr::error('This phone number already exist');
+            return back();
+        }
         $userReg = new User();
         $userReg->name = $request->name;
         $userReg->email = $request->email;
@@ -36,16 +43,24 @@ class FrontendController extends Controller
         $userReg->password = Hash::make($request->password);
         $userReg->user_type = 'customer';
         $userReg->save();
+//        dd($userReg);
+
+
+        Session::put('phone',$request->phone);
+        Session::put('password',$request->password);
+        Session::put('user_type','customer');
+
+
         Toastr::success('Your registration successfully done!');
-//        return redirect()->route('get-verification-code',$userReg->id);
-        $credential = [
-            'name' => $request->name,
-            'email' => $request->email,
-            'password' => $request->password,
-        ];
-        if (Auth::attempt($credential)) {
-            return redirect()->route('user.dashboard');
-        }
+        return redirect()->route('get-verification-code',$userReg->id);
+//        $credential = [
+//            'name' => $request->name,
+//            'email' => $request->email,
+//            'password' => $request->password,
+//        ];
+//        if (Auth::attempt($credential)) {
+//            return redirect()->route('user.dashboard');
+//        }
 
     }
 

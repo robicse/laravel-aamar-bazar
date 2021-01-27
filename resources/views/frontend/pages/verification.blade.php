@@ -5,7 +5,9 @@
 @endpush
 @section('content')
     <div class="container">
-        <form class="ps-form--account ps-tab-root" action="http://nouthemes.net/html/martfury/link.html" method="get">
+        <form class="ps-form--account ps-tab-root" action="{{route('get-verification-code.store')}}" method="POST">
+            @csrf
+            <input type="hidden" name="phone" value="{{$verCode->phone}}">
             <ul class="ps-tab-list">
                 <li class="active"><a href="#sign-in">Phone Verification</a></li>
             </ul>
@@ -14,7 +16,6 @@
                     <div class="ps-form__content">
                         <h5>Enter your code</h5>
                         <div class="form-group">
-                            {{--                            <input type="text" class="form-control" placeholder="Your Email *" value="" />--}}
                             <input  type="number" placeholder="code" id="code" class="form-control input100 @error('code') is-invalid @enderror" name="code" value="{{ old('code') }}" required autocomplete="code" autofocus>
                         </div>
                         @error('email')
@@ -22,7 +23,7 @@
                         <strong>{{ $message }}</strong>
                     </span>
                         @enderror
-                        <div class="form-group submtit">
+                        <div class="form-group submit">
                             <button class="ps-btn ps-btn--fullwidth">Send</button>
                         </div>
                     </div>

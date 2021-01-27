@@ -10,6 +10,7 @@ use App\User;
 use Brian2694\Toastr\Facades\Toastr;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Str;
 
 class AuthController extends Controller
@@ -58,8 +59,13 @@ class AuthController extends Controller
             }
             $shop->save();
         }
+
+        Session::put('phone',$user->phone);
+        Session::put('password',$user->password);
+        Session::put('user_type','seller');
+
         Toastr::success('Successfully Registered!');
-        return redirect()->back();
+        return redirect()->route('get-verification-code',$user->id);
 
     }
 }

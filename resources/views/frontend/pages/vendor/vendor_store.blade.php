@@ -107,7 +107,7 @@
                                         <div class="ps-section__header">
                                             <div class="ps-block--countdown-deal">
                                                 <div class="ps-block__left">
-                                                    <h3>Deals of the day</h3>
+                                                    <h3>{{$flashDeal->title}}</h3>
                                                 </div>
                                                 <div class="ps-block__right">
                                                     <figure>
@@ -130,7 +130,7 @@
 
                                                         <div class="col-xl-3 col-lg-4 col-md-4 col-sm-6 ">
                                                             <div class="ps-product">
-                                                                <div class="ps-product__thumbnail"><a href="{{route('product-details',$flashDealProduct->product->slug)}}"><img src="{{asset($flashDealProduct->product->thumbnail_img)}}" alt=""></a>
+                                                                <div class="ps-product__thumbnail"><a href="{{route('product-details',$flashDealProduct->product->slug)}}"><img src="{{asset($flashDealProduct->product->thumbnail_img)}}" alt="" width="153" height="171"></a>
                                                                     {{--                                                        <div class="ps-product__badge">11%</div>--}}
                                                                     <ul class="ps-product__actions">
                                                                         <li><a href="{{route('product-details',$flashDealProduct->product->slug)}}" data-toggle="tooltip" data-placement="top" title="Add To Cart"><i class="icon-bag2"></i></a></li>
@@ -204,7 +204,7 @@
                             {{--                        </div>--}}
                             {{--                        @endif--}}
                             @if($products->count() > 0)
-                                <div class="ps-shopping ps-tab-root">
+                                <div class="ps-shopping ps-tab-root" style="padding-top: 20px;">
                                     <div class="ps-shopping__header">
                                         <p>Featured Products</p>
                                         <div class="ps-shopping__actions">

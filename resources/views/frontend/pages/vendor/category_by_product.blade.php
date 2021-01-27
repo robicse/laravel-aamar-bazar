@@ -53,8 +53,6 @@
                             <div class="ps-block__left">
                                 <ul>
                                     <li class="active"><a href="#">Products</a></li>
-                                    {{--                                    <li><a href="#">Reviews</a></li>--}}
-                                    {{--                                    <li><a href="#">About</a></li>--}}
                                 </ul>
                             </div>
                             <div class="ps-block__right">
@@ -64,27 +62,69 @@
                                 </form>
                             </div>
                         </div>
+{{--                        <div class="ps-vendor-best-seller">--}}
+{{--                            <div class="ps-section__header">--}}
+{{--                                <h3>Featured Product</h3>--}}
+{{--                                <div class="ps-section__nav"><a class="ps-carousel__prev" href="#vendor-bestseller"><i class="icon-chevron-left"></i></a><a class="ps-carousel__next" href="#vendor-bestseller"><i class="icon-chevron-right"></i></a></div>--}}
+{{--                            </div>--}}
+{{--                            <div class="ps-section__content">--}}
+{{--                                <div class="owl-slider" id="vendor-bestseller" data-owl-auto="true" data-owl-loop="true" data-owl-speed="5000" data-owl-gap="0" data-owl-nav="false" data-owl-dots="false" data-owl-item="4" data-owl-item-xs="2" data-owl-item-sm="3" data-owl-item-md="3" data-owl-item-lg="4" data-owl-duration="1000" data-owl-mousedrag="on">--}}
+{{--                                    @foreach($featuredProducts as $product)--}}
+{{--                                        <div class="col-xl-3 col-lg-4 col-md-4 col-sm-6 col-6 ">--}}
+{{--                                            <div class="ps-product">--}}
+{{--                                                <div class="ps-product__thumbnail"><a href="{{route('product-details',$product->slug)}}"><img src="{{asset($product->thumbnail_img)}}" alt=""></a>--}}
+{{--                                                    <div class="ps-product__badge">11%</div>--}}
+{{--                                                    <ul class="ps-product__actions">--}}
+{{--                                                        <li><a href="{{route('product-details',$product->slug)}}" data-toggle="tooltip" data-placement="top" title="Add To Cart"><i class="icon-bag2"></i></a></li>--}}
+{{--                                                        <li><a href="{{route('product-details',$product->slug)}}" data-placement="top" title="Quick View"><i class="icon-eye"></i></a></li>--}}
+{{--                                                        --}}{{--                                                            <li><a href="#" data-toggle="tooltip" data-placement="top" title="Add to Whishlist"><i class="icon-heart"></i></a></li>--}}
+{{--                                                        --}}{{--                                                            <li><a href="#" data-toggle="tooltip" data-placement="top" title="Compare"><i class="icon-chart-bars"></i></a></li>--}}
+{{--                                                    </ul>--}}
+{{--                                                </div>--}}
+{{--                                                <div class="ps-product__container"><a class="ps-product__vendor" href="{{route('product-details',$product->slug)}}"></a>--}}
+{{--                                                    <div class="ps-product__content"><a class="ps-product__title" href="">{{$product->name}}</a>--}}
+{{--                                                        <div class="ps-product__rating">--}}
+{{--                                                            <select class="ps-rating" data-read-only="true">--}}
+{{--                                                                <option value="1">1</option>--}}
+{{--                                                                <option value="1">2</option>--}}
+{{--                                                                <option value="1">3</option>--}}
+{{--                                                                <option value="1">4</option>--}}
+{{--                                                                <option value="2">5</option>--}}
+{{--                                                            </select><span>01</span>--}}
+{{--                                                        </div>--}}
+{{--                                                        <p class="ps-product__price sale">৳{{$product->unit_price}} <del>৳{{$product->purchase_price}}</del></p>--}}
+{{--                                                    </div>--}}
+{{--                                                    <div class="ps-product__content hover"><a class="ps-product__title" href="{{route('product-details',$product->slug)}}">{{$product->name}}</a>--}}
+{{--                                                        <p class="ps-product__price sale">৳{{$product->unit_price}} <del>৳{{$product->purchase_price}}</del></p>--}}
+{{--                                                    </div>--}}
+{{--                                                </div>--}}
+{{--                                            </div>--}}
+{{--                                        </div>--}}
+{{--                                    @endforeach--}}
+{{--                                </div>--}}
+{{--                            </div>--}}
+{{--                        </div>--}}
+                        @if($featuredProducts->count() > 1)
                         <div class="ps-vendor-best-seller">
                             <div class="ps-section__header">
-                                <h3>Fetured Product</h3>
+                                <h3>Featured Products</h3>
                                 <div class="ps-section__nav"><a class="ps-carousel__prev" href="#vendor-bestseller"><i class="icon-chevron-left"></i></a><a class="ps-carousel__next" href="#vendor-bestseller"><i class="icon-chevron-right"></i></a></div>
                             </div>
                             <div class="ps-section__content">
                                 <div class="owl-slider" id="vendor-bestseller" data-owl-auto="true" data-owl-loop="true" data-owl-speed="5000" data-owl-gap="0" data-owl-nav="false" data-owl-dots="false" data-owl-item="4" data-owl-item-xs="2" data-owl-item-sm="3" data-owl-item-md="3" data-owl-item-lg="4" data-owl-duration="1000" data-owl-mousedrag="on">
-                                    @foreach($products as $product)
+                                    @foreach($featuredProducts as $featuredProduct)
+{{--                                    <div class="col-xl-3 col-lg-4 col-md-4 col-sm-6 col-6">--}}
                                         <div class="ps-product">
-                                            <div class="ps-product__thumbnail"><a href="{{route('product-details',$product->slug)}}"><img src="{{asset($product->thumbnail_img)}}" alt=""></a>
-                                                <div class="ps-product__badge">11%</div>
+                                            <div class="ps-product__thumbnail"><a href="product-default.html"><img src="{{asset('frontend/img/products/technology/1.jpg')}}" alt=""></a>
+{{--                                                <div class="ps-product__badge">11%</div>--}}
                                                 <ul class="ps-product__actions">
-                                                    <li><a href="{{route('product-details',$product->slug)}}" data-toggle="tooltip" data-placement="top" title="Add To Cart"><i class="icon-bag2"></i></a></li>
-                                                    <li><a href="{{route('product-details',$product->slug)}}" data-placement="top" title="Quick View" ><i class="icon-eye"></i></a></li>
-                                                    {{--                                                    <li><a href="{{route('product-details',$product->slug)}}" data-placement="top" title="Quick View" data-toggle="modal" data-target="#product-quickview"><i class="icon-eye"></i></a></li>--}}
-                                                    {{--                                                    <li><a href="#" data-toggle="tooltip" data-placement="top" title="Add to Whishlist"><i class="icon-heart"></i></a></li>--}}
-                                                    {{--                                                    <li><a href="#" data-toggle="tooltip" data-placement="top" title="Compare"><i class="icon-chart-bars"></i></a></li>--}}
+                                                    <li><a href="#" data-toggle="tooltip" data-placement="top" title="Add To Cart"><i class="icon-bag2"></i></a></li>
+                                                    <li><a href="#" data-placement="top" title="Quick View" data-toggle="modal" data-target="#product-quickview"><i class="icon-eye"></i></a></li>
+                                                    <li><a href="#" data-toggle="tooltip" data-placement="top" title="Add to Whishlist"><i class="icon-heart"></i></a></li>
                                                 </ul>
                                             </div>
-                                            <div class="ps-product__container"><a class="ps-product__vendor" href="{{route('product-details',$product->slug)}}"></a>
-                                                <div class="ps-product__content"><a class="ps-product__title" href="{{route('product-details',$product->slug)}}">{{$product->name}}</a>
+                                            <div class="ps-product__container"><a class="ps-product__vendor" href="#"></a>
+                                                <div class="ps-product__content"><a class="ps-product__title" href="product-default.html">Apple iPhone X 256GB T-Mobile – Black</a>
                                                     <div class="ps-product__rating">
                                                         <select class="ps-rating" data-read-only="true">
                                                             <option value="1">1</option>
@@ -94,185 +134,49 @@
                                                             <option value="2">5</option>
                                                         </select><span>01</span>
                                                     </div>
-                                                    <p class="ps-product__price sale">৳{{$product->unit_price}} <del>৳{{$product->purchase_price}}</del></p>
+                                                    <p class="ps-product__price sale">$1389.99 <del>$1893.00</del></p>
                                                 </div>
-                                                <div class="ps-product__content hover"><a class="ps-product__title" href="{{route('product-details',$product->slug)}}">{{$product->name}}</a>
-                                                    <p class="ps-product__price sale">৳{{$product->unit_price}} <del>৳{{$product->purchase_price}}</del></p>
+                                                <div class="ps-product__content hover"><a class="ps-product__title" href="product-default.html">Apple iPhone X 256GB T-Mobile – Black</a>
+                                                    <p class="ps-product__price sale">$1389.99 <del>$1893.00</del></p>
+                                                </div>
+                                            </div>
+{{--                                        </div>--}}
+                                    </div>
+{{--                                    <div class="col-xl-3 col-lg-4 col-md-4 col-sm-6 col-6 ">--}}
+                                        <div class="ps-product">
+                                            <div class="ps-product__thumbnail"><a href="product-default.html"><img src="{{asset('frontend/img/products/technology/1.jpg')}}" alt=""></a>
+{{--                                                <div class="ps-product__badge">11%</div>--}}
+                                                <ul class="ps-product__actions">
+                                                    <li><a href="#" data-toggle="tooltip" data-placement="top" title="Add To Cart"><i class="icon-bag2"></i></a></li>
+                                                    <li><a href="#" data-placement="top" title="Quick View" data-toggle="modal" data-target="#product-quickview"><i class="icon-eye"></i></a></li>
+                                                    <li><a href="#" data-toggle="tooltip" data-placement="top" title="Add to Whishlist"><i class="icon-heart"></i></a></li>
+                                                </ul>
+                                            </div>
+                                            <div class="ps-product__container"><a class="ps-product__vendor" href="#"></a>
+                                                <div class="ps-product__content"><a class="ps-product__title" href="product-default.html">Apple iPhone X 256GB T-Mobile – Black</a>
+                                                    <div class="ps-product__rating">
+                                                        <select class="ps-rating" data-read-only="true">
+                                                            <option value="1">1</option>
+                                                            <option value="1">2</option>
+                                                            <option value="1">3</option>
+                                                            <option value="1">4</option>
+                                                            <option value="2">5</option>
+                                                        </select><span>01</span>
+                                                    </div>
+                                                    <p class="ps-product__price sale">$1389.99 <del>$1893.00</del></p>
+                                                </div>
+                                                <div class="ps-product__content hover"><a class="ps-product__title" href="product-default.html">Apple iPhone X 256GB T-Mobile – Black</a>
+                                                    <p class="ps-product__price sale">$1389.99 <del>$1893.00</del></p>
                                                 </div>
                                             </div>
                                         </div>
+{{--                                    </div>--}}
                                     @endforeach
-                                    {{--                                    <div class="ps-product">--}}
-                                    {{--                                        <div class="ps-product__thumbnail"><a href=""><img src="{{asset('frontend/img/products/technology/2.jpg')}}" alt=""></a>--}}
-                                    {{--                                            <div class="ps-product__badge">11%</div>--}}
-                                    {{--                                            <ul class="ps-product__actions">--}}
-                                    {{--                                                <li><a href="#" data-toggle="tooltip" data-placement="top" title="Add To Cart"><i class="icon-bag2"></i></a></li>--}}
-                                    {{--                                                <li><a href="#" data-placement="top" title="Quick View" data-toggle="modal" data-target="#product-quickview"><i class="icon-eye"></i></a></li>--}}
-                                    {{--                                                <li><a href="#" data-toggle="tooltip" data-placement="top" title="Add to Whishlist"><i class="icon-heart"></i></a></li>--}}
-                                    {{--                                                <li><a href="#" data-toggle="tooltip" data-placement="top" title="Compare"><i class="icon-chart-bars"></i></a></li>--}}
-                                    {{--                                            </ul>--}}
-                                    {{--                                        </div>--}}
-                                    {{--                                        <div class="ps-product__container"><a class="ps-product__vendor" href="#">Global Office</a>--}}
-                                    {{--                                            <div class="ps-product__content"><a class="ps-product__title" href="">Apple iPhone 7 Plus 128 GB – Red Color</a>--}}
-                                    {{--                                                <div class="ps-product__rating">--}}
-                                    {{--                                                    <select class="ps-rating" data-read-only="true">--}}
-                                    {{--                                                        <option value="1">1</option>--}}
-                                    {{--                                                        <option value="1">2</option>--}}
-                                    {{--                                                        <option value="1">3</option>--}}
-                                    {{--                                                        <option value="1">4</option>--}}
-                                    {{--                                                        <option value="2">5</option>--}}
-                                    {{--                                                    </select><span>01</span>--}}
-                                    {{--                                                </div>--}}
-                                    {{--                                                <p class="ps-product__price sale">$820.99 <del>$893.00</del></p>--}}
-                                    {{--                                            </div>--}}
-                                    {{--                                            <div class="ps-product__content hover"><a class="ps-product__title" href="">Apple iPhone 7 Plus 128 GB – Red Color</a>--}}
-                                    {{--                                                <p class="ps-product__price sale">$820.99 <del>$893.00</del></p>--}}
-                                    {{--                                            </div>--}}
-                                    {{--                                        </div>--}}
-                                    {{--                                    </div>--}}
-                                    {{--                                    <div class="ps-product">--}}
-                                    {{--                                        <div class="ps-product__thumbnail"><a href=""><img src="{{asset('frontend/img/products/technology/3.jpg')}}" alt=""></a>--}}
-                                    {{--                                            <div class="ps-product__badge">21%</div>--}}
-                                    {{--                                            <ul class="ps-product__actions">--}}
-                                    {{--                                                <li><a href="#" data-toggle="tooltip" data-placement="top" title="Add To Cart"><i class="icon-bag2"></i></a></li>--}}
-                                    {{--                                                <li><a href="#" data-placement="top" title="Quick View" data-toggle="modal" data-target="#product-quickview"><i class="icon-eye"></i></a></li>--}}
-                                    {{--                                                <li><a href="#" data-toggle="tooltip" data-placement="top" title="Add to Whishlist"><i class="icon-heart"></i></a></li>--}}
-                                    {{--                                                <li><a href="#" data-toggle="tooltip" data-placement="top" title="Compare"><i class="icon-chart-bars"></i></a></li>--}}
-                                    {{--                                            </ul>--}}
-                                    {{--                                        </div>--}}
-                                    {{--                                        <div class="ps-product__container"><a class="ps-product__vendor" href="#">Global Office</a>--}}
-                                    {{--                                            <div class="ps-product__content"><a class="ps-product__title" href="">Apple MacBook Air Retina 13.3-Inch Laptop</a>--}}
-                                    {{--                                                <div class="ps-product__rating">--}}
-                                    {{--                                                    <select class="ps-rating" data-read-only="true">--}}
-                                    {{--                                                        <option value="1">1</option>--}}
-                                    {{--                                                        <option value="1">2</option>--}}
-                                    {{--                                                        <option value="1">3</option>--}}
-                                    {{--                                                        <option value="1">4</option>--}}
-                                    {{--                                                        <option value="2">5</option>--}}
-                                    {{--                                                    </select><span>01</span>--}}
-                                    {{--                                                </div>--}}
-                                    {{--                                                <p class="ps-product__price sale">$1020.99 <del>$1120.00</del></p>--}}
-                                    {{--                                            </div>--}}
-                                    {{--                                            <div class="ps-product__content hover"><a class="ps-product__title" href="">Apple MacBook Air Retina 13.3-Inch Laptop</a>--}}
-                                    {{--                                                <p class="ps-product__price sale">$1020.99 <del>$1120.00</del></p>--}}
-                                    {{--                                            </div>--}}
-                                    {{--                                        </div>--}}
-                                    {{--                                    </div>--}}
-                                    {{--                                    <div class="ps-product">--}}
-                                    {{--                                        <div class="ps-product__thumbnail"><a href=""><img src="{{asset('frontend/img/products/technology/4.jpg')}}" alt=""></a>--}}
-                                    {{--                                            <div class="ps-product__badge">18%</div>--}}
-                                    {{--                                            <ul class="ps-product__actions">--}}
-                                    {{--                                                <li><a href="#" data-toggle="tooltip" data-placement="top" title="Add To Cart"><i class="icon-bag2"></i></a></li>--}}
-                                    {{--                                                <li><a href="#" data-placement="top" title="Quick View" data-toggle="modal" data-target="#product-quickview"><i class="icon-eye"></i></a></li>--}}
-                                    {{--                                                <li><a href="#" data-toggle="tooltip" data-placement="top" title="Add to Whishlist"><i class="icon-heart"></i></a></li>--}}
-                                    {{--                                                <li><a href="#" data-toggle="tooltip" data-placement="top" title="Compare"><i class="icon-chart-bars"></i></a></li>--}}
-                                    {{--                                            </ul>--}}
-                                    {{--                                        </div>--}}
-                                    {{--                                        <div class="ps-product__container"><a class="ps-product__vendor" href="#">Global Office</a>--}}
-                                    {{--                                            <div class="ps-product__content"><a class="ps-product__title" href="">Samsung Gear VR Virtual Reality Headset</a>--}}
-                                    {{--                                                <div class="ps-product__rating">--}}
-                                    {{--                                                    <select class="ps-rating" data-read-only="true">--}}
-                                    {{--                                                        <option value="1">1</option>--}}
-                                    {{--                                                        <option value="1">2</option>--}}
-                                    {{--                                                        <option value="1">3</option>--}}
-                                    {{--                                                        <option value="1">4</option>--}}
-                                    {{--                                                        <option value="2">5</option>--}}
-                                    {{--                                                    </select><span>01</span>--}}
-                                    {{--                                                </div>--}}
-                                    {{--                                                <p class="ps-product__price sale">$64.99 <del>$80.00</del></p>--}}
-                                    {{--                                            </div>--}}
-                                    {{--                                            <div class="ps-product__content hover"><a class="ps-product__title" href="">Samsung Gear VR Virtual Reality Headset</a>--}}
-                                    {{--                                                <p class="ps-product__price sale">$64.99 <del>$80.00</del></p>--}}
-                                    {{--                                            </div>--}}
-                                    {{--                                        </div>--}}
-                                    {{--                                    </div>--}}
-                                    {{--                                    <div class="ps-product">--}}
-                                    {{--                                        <div class="ps-product__thumbnail"><a href="product-default.html"><img src="{{asset('frontend/img/products/technology/5.jpg')}}" alt=""></a>--}}
-                                    {{--                                            <div class="ps-product__badge">18%</div>--}}
-                                    {{--                                            <ul class="ps-product__actions">--}}
-                                    {{--                                                <li><a href="#" data-toggle="tooltip" data-placement="top" title="Add To Cart"><i class="icon-bag2"></i></a></li>--}}
-                                    {{--                                                <li><a href="#" data-placement="top" title="Quick View" data-toggle="modal" data-target="#product-quickview"><i class="icon-eye"></i></a></li>--}}
-                                    {{--                                                <li><a href="#" data-toggle="tooltip" data-placement="top" title="Add to Whishlist"><i class="icon-heart"></i></a></li>--}}
-                                    {{--                                                <li><a href="#" data-toggle="tooltip" data-placement="top" title="Compare"><i class="icon-chart-bars"></i></a></li>--}}
-                                    {{--                                            </ul>--}}
-                                    {{--                                        </div>--}}
-                                    {{--                                        <div class="ps-product__container"><a class="ps-product__vendor" href="#">Global Office</a>--}}
-                                    {{--                                            <div class="ps-product__content"><a class="ps-product__title" href="product-default.html">Bose Bluetooth &amp; Wireless Speaker 2.0 – Blue</a>--}}
-                                    {{--                                                <div class="ps-product__rating">--}}
-                                    {{--                                                    <select class="ps-rating" data-read-only="true">--}}
-                                    {{--                                                        <option value="1">1</option>--}}
-                                    {{--                                                        <option value="1">2</option>--}}
-                                    {{--                                                        <option value="1">3</option>--}}
-                                    {{--                                                        <option value="1">4</option>--}}
-                                    {{--                                                        <option value="2">5</option>--}}
-                                    {{--                                                    </select><span>01</span>--}}
-                                    {{--                                                </div>--}}
-                                    {{--                                                <p class="ps-product__price sale">$42.99 <del>$52.00</del></p>--}}
-                                    {{--                                            </div>--}}
-                                    {{--                                            <div class="ps-product__content hover"><a class="ps-product__title" href="product-default.html">Bose Bluetooth &amp; Wireless Speaker 2.0 – Blue</a>--}}
-                                    {{--                                                <p class="ps-product__price sale">$42.99 <del>$52.00</del></p>--}}
-                                    {{--                                            </div>--}}
-                                    {{--                                        </div>--}}
-                                    {{--                                    </div>--}}
-                                    {{--                                    <div class="ps-product">--}}
-                                    {{--                                        <div class="ps-product__thumbnail"><a href="product-default.html"><img src="{{asset('frontend/img/products/technology/6.jpg')}}" alt=""></a>--}}
-                                    {{--                                            <div class="ps-product__badge">17%</div>--}}
-                                    {{--                                            <ul class="ps-product__actions">--}}
-                                    {{--                                                <li><a href="#" data-toggle="tooltip" data-placement="top" title="Add To Cart"><i class="icon-bag2"></i></a></li>--}}
-                                    {{--                                                <li><a href="#" data-placement="top" title="Quick View" data-toggle="modal" data-target="#product-quickview"><i class="icon-eye"></i></a></li>--}}
-                                    {{--                                                <li><a href="#" data-toggle="tooltip" data-placement="top" title="Add to Whishlist"><i class="icon-heart"></i></a></li>--}}
-                                    {{--                                                <li><a href="#" data-toggle="tooltip" data-placement="top" title="Compare"><i class="icon-chart-bars"></i></a></li>--}}
-                                    {{--                                            </ul>--}}
-                                    {{--                                        </div>--}}
-                                    {{--                                        <div class="ps-product__container"><a class="ps-product__vendor" href="#">Global Office</a>--}}
-                                    {{--                                            <div class="ps-product__content"><a class="ps-product__title" href="product-default.html">Samsung Gallaxy A8 8GB Ram – Sliver Version</a>--}}
-                                    {{--                                                <div class="ps-product__rating">--}}
-                                    {{--                                                    <select class="ps-rating" data-read-only="true">--}}
-                                    {{--                                                        <option value="1">1</option>--}}
-                                    {{--                                                        <option value="1">2</option>--}}
-                                    {{--                                                        <option value="1">3</option>--}}
-                                    {{--                                                        <option value="1">4</option>--}}
-                                    {{--                                                        <option value="2">5</option>--}}
-                                    {{--                                                    </select><span>01</span>--}}
-                                    {{--                                                </div>--}}
-                                    {{--                                                <p class="ps-product__price sale">$542.99 <del>$592.00</del></p>--}}
-                                    {{--                                            </div>--}}
-                                    {{--                                            <div class="ps-product__content hover"><a class="ps-product__title" href="product-default.html">Samsung Gallaxy A8 8GB Ram – Sliver Version</a>--}}
-                                    {{--                                                <p class="ps-product__price sale">$542.99 <del>$592.00</del></p>--}}
-                                    {{--                                            </div>--}}
-                                    {{--                                        </div>--}}
-                                    {{--                                    </div>--}}
-                                    {{--                                    <div class="ps-product">--}}
-                                    {{--                                        <div class="ps-product__thumbnail"><a href="product-default.html"><img src="{{asset('frontend/img/products/technology/7.jpg')}}" alt=""></a>--}}
-                                    {{--                                            <div class="ps-product__badge">17%</div>--}}
-                                    {{--                                            <ul class="ps-product__actions">--}}
-                                    {{--                                                <li><a href="#" data-toggle="tooltip" data-placement="top" title="Add To Cart"><i class="icon-bag2"></i></a></li>--}}
-                                    {{--                                                <li><a href="#" data-placement="top" title="Quick View" data-toggle="modal" data-target="#product-quickview"><i class="icon-eye"></i></a></li>--}}
-                                    {{--                                                <li><a href="#" data-toggle="tooltip" data-placement="top" title="Add to Whishlist"><i class="icon-heart"></i></a></li>--}}
-                                    {{--                                                <li><a href="#" data-toggle="tooltip" data-placement="top" title="Compare"><i class="icon-chart-bars"></i></a></li>--}}
-                                    {{--                                            </ul>--}}
-                                    {{--                                        </div>--}}
-                                    {{--                                        <div class="ps-product__container"><a class="ps-product__vendor" href="#">Global Office</a>--}}
-                                    {{--                                            <div class="ps-product__content"><a class="ps-product__title" href="product-default.html">Samsung Gallaxy A8 8GB Ram – Sliver Version</a>--}}
-                                    {{--                                                <div class="ps-product__rating">--}}
-                                    {{--                                                    <select class="ps-rating" data-read-only="true">--}}
-                                    {{--                                                        <option value="1">1</option>--}}
-                                    {{--                                                        <option value="1">2</option>--}}
-                                    {{--                                                        <option value="1">3</option>--}}
-                                    {{--                                                        <option value="1">4</option>--}}
-                                    {{--                                                        <option value="2">5</option>--}}
-                                    {{--                                                    </select><span>01</span>--}}
-                                    {{--                                                </div>--}}
-                                    {{--                                                <p class="ps-product__price sale">$542.99 <del>$592.00</del></p>--}}
-                                    {{--                                            </div>--}}
-                                    {{--                                            <div class="ps-product__content hover"><a class="ps-product__title" href="product-default.html">Samsung Gallaxy A8 8GB Ram – Sliver Version</a>--}}
-                                    {{--                                                <p class="ps-product__price sale">$542.99 <del>$592.00</del></p>--}}
-                                    {{--                                            </div>--}}
-                                    {{--                                        </div>--}}
-                                    {{--                                    </div>--}}
                                 </div>
                             </div>
                         </div>
+                        @endif
+
                         <div class="ps-shopping ps-tab-root">
                             <div class="ps-shopping__header">
                                 <p><strong>{{count($products)}} </strong> Products found</p>
@@ -300,7 +204,7 @@
                                             <div class="col-xl-3 col-lg-4 col-md-4 col-sm-6 col-6 ">
                                                 <div class="ps-product">
                                                     <div class="ps-product__thumbnail"><a href="{{route('product-details',$product->slug)}}"><img src="{{asset($product->thumbnail_img)}}" alt=""></a>
-                                                        <div class="ps-product__badge">11%</div>
+{{--                                                        <div class="ps-product__badge">11%</div>--}}
                                                         <ul class="ps-product__actions">
                                                             <li><a href="{{route('product-details',$product->slug)}}" data-toggle="tooltip" data-placement="top" title="Add To Cart"><i class="icon-bag2"></i></a></li>
                                                             <li><a href="{{route('product-details',$product->slug)}}" data-placement="top" title="Quick View"><i class="icon-eye"></i></a></li>

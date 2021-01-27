@@ -58,9 +58,10 @@ class VendorController extends Controller
         $shops = Shop::where('slug',$name)->first();
         $categories = Category::where('slug',$slug)->first();
 //        $shopCat = ShopCategory::where('shop_id',$shop->id)->first();
-        $products = Product::where('category_id',$categories->id)->where('user_id',$shops->user_id)->get();
+        $featuredProducts = Product::where('category_id',$categories->id)->where('user_id',$shops->user_id)->where('published',1)->where('featured',1)->latest()->take(8)->get();
+        $products = Product::where('category_id',$categories->id)->where('user_id',$shops->user_id)->where('published',1)->latest()->take(8)->get();
 //        dd($products);
-        return view('frontend.pages.vendor.category_by_product',compact('shops','products'));
+        return view('frontend.pages.vendor.category_by_product',compact('shops','featuredProducts','products'));
     }
     public function search_product(Request $request){
         $storeId =  $request->get('storeId');

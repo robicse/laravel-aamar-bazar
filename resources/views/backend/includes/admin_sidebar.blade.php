@@ -278,6 +278,14 @@
                             </p>
                         </a>
                     </li>
+                    <li class="nav-item {{(Request::is('get-all-vendors*') ) ? 'active' : ''}}">
+                        <a href="" class="nav-link">
+                            <i class="nav-icon fas fa-shopping-bag"></i>
+                            <p>
+                                Get all Vendors
+                            </p>
+                        </a>
+                    </li>
                 </ul>
             </nav>
             <!-- /.sidebar-menu -->
