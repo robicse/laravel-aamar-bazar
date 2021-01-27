@@ -35,6 +35,7 @@
                         || Request::is('admin/subcategories*')
                         || Request::is('admin/sub-subcategories*')
                         || Request::is('admin/products*')
+                        || Request::is('admin/offers*')
                         || Request::is('admin/request/products*')
                         || Request::is('admin/all/seller/products*')
                         || Request::is('admin/attributes*'))
@@ -87,6 +88,13 @@
                                    class="nav-link {{Request::is('admin/products*') ? 'active' :''}}">
                                     <i class="fa fa-{{Request::is('admin/products*') ? 'folder-open':'folder'}} nav-icon"></i>
                                     <p>Products</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{{route('admin.offers.index')}}"
+                                   class="nav-link {{Request::is('admin/offers*') ? 'active' :''}}">
+                                    <i class="fa fa-{{Request::is('admin/offers*') ? 'folder-open':'folder'}} nav-icon"></i>
+                                    <p>Offer</p>
                                 </a>
                             </li>
                             <li class="nav-item">
@@ -279,7 +287,7 @@
                         </a>
                     </li>
                     <li class="nav-item {{(Request::is('get-all-vendors*') ) ? 'active' : ''}}">
-                        <a href="" class="nav-link">
+                        <a href="{{route('admin.get-all-vendors.index')}}" class="nav-link">
                             <i class="nav-icon fas fa-shopping-bag"></i>
                             <p>
                                 Get all Vendors
