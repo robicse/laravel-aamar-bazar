@@ -36,6 +36,11 @@ Route::get('/remove/wishlist/{id}', 'Frontend\WishlistController@wishlistRemove'
 Route::get('/search/product', 'Frontend\VendorController@search_product');
 Route::get('/search/shop', 'Frontend\VendorController@search_shop');
 Route::get('/product/filter/{data}/sellerId/{sellerId}', 'Frontend\VendorController@productFilter');
+Route::get('/featured-product/subcategories/filter/{data}/sellerId/{id}/sub/{subId}', 'Frontend\VendorController@FeaturedSubFilter');
+Route::get('/todays-deal/product/filter/{data}/sellerId/{sellerId}', 'Frontend\VendorController@todaysDealFilter');
+Route::get('/todays-deal/subcategories/filter/{data}/sellerId/{id}/sub/{subId}', 'Frontend\VendorController@todaysDealSubFilter');
+Route::get('/best-selling/product/filter/{data}/sellerId/{sellerId}', 'Frontend\VendorController@bestSellingFilter');
+Route::get('/best-selling/subcategories/filter/{data}/sellerId/{id}/sub/{subId}', 'Frontend\VendorController@bestSellingSubFilter');
 
 
 
@@ -61,6 +66,11 @@ Route::get('/shop/{name}/{slug}', 'Frontend\VendorController@categoryProducts')-
 Route::get('/shop/{slug}', 'Frontend\VendorController@singleshop')->name('shop.details');
 Route::get('/vendor/list', 'Frontend\VendorController@vendorList')->name('vendor.list');
 Route::get('/flash-deals/{slug}', 'Frontend\VendorController@flashdeal')->name('flash-deals');
+Route::get('/todays-deal/{slug}', 'Frontend\VendorController@todaysDeal')->name('todays-deal-products');
+Route::get('/todays-deal/{name}/{slug}/{sub}', 'Frontend\VendorController@todaysDealSubCategory');
+Route::get('/best-selling/{slug}', 'Frontend\VendorController@bestSelling')->name('best-selling-products');
+Route::get('/best-selling/{name}/{slug}/{sub}', 'Frontend\VendorController@bestSellingSubCategory');
+
 
 Auth::routes();
 

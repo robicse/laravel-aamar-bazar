@@ -1,5 +1,5 @@
 @extends('frontend.layouts.master')
-@section('title',$subcategory->name)
+@section('title','Best Selling Product List')
 @section('content')
     <div class="ps-breadcrumb">
         <div class="ps-container">
@@ -16,14 +16,15 @@
                     <aside class="widget widget_shop">
                         <h4 class="widget-title">Categories</h4>
                         <ul class="ps-list--categories">
-                            @foreach($shopCat as $Cat)
+                            @foreach($shopCategories as $Cat)
                                 <li class="current-menu-item menu-item-has-children"><a href="#"> {{$Cat->category->name}} </a><span class="sub-toggle"><i class="fa fa-angle-down"></i></span>
                                     @php
-                                        $shop_subcategories = \App\Model\ShopSubcategory::where('category_id',$Cat->id)->latest()->get();
+                                        $subcategories = \App\Model\ShopSubcategory::where('category_id',$Cat->id)->latest()->get();
                                     @endphp
                                     <ul class="sub-menu">
-                                        @foreach($shop_subcategories as $subCat)
-                                            <li class="current-menu-item "><a href="{{url('/products/'.$shop->slug.'/'.$Cat->category->slug.'/'.$subCat->subcategory->slug)}}">{{$subCat->subcategory->name}}</a>
+                                        @foreach($subcategories as $subCat)
+                                            {{--                                        @dd($subCat->subcategory)--}}
+                                            <li class="current-menu-item "><a href="{{url('/best-selling/'.$shop->slug.'/'.$Cat->category->slug.'/'.$subCat->subcategory->slug)}}">{{$subCat->subcategory->name}}</a>
                                             </li>
                                         @endforeach
                                     </ul>
@@ -38,10 +39,10 @@
                             <button><i class="icon-magnifier"></i></button>
                         </form>
                         <figure class="ps-custom-scrollbar" data-height="250">
-                            @foreach($shopBrand as $Brand)
+                            @foreach($shopBrands as $brand)
                                 <div class="ps-checkbox">
-                                    <input class="form-control" type="checkbox" id="{{$Brand->brand_id}}" name="brand">
-                                    <label for="{{$Brand->brand_id}}">{{$Brand->brand->name}}</label>
+                                    <input class="form-control" type="checkbox" id="{{$brand->brand_id}}" name="brand">
+                                    <label for="{{$brand->brand_id}}">{{ $brand->brand->name }}</label>
                                 </div>
                             @endforeach
                         </figure>
@@ -56,22 +57,6 @@
                     <div class="ps-shopping ps-tab-root">
                         <div class="ps-shopping__header">
                             <p><strong>{{ count($products) }}</strong> Products found</p>
-                            {{--                            <div class="ps-shopping__actions">--}}
-                            {{--                                <select class="ps-select" data-placeholder="Sort Items">--}}
-                            {{--                                    <option>Sort by latest</option>--}}
-                            {{--                                    <option>Sort by popularity</option>--}}
-                            {{--                                    <option>Sort by average rating</option>--}}
-                            {{--                                    <option>Sort by price: low to high</option>--}}
-                            {{--                                    <option>Sort by price: high to low</option>--}}
-                            {{--                                </select>--}}
-                            {{--                                <div class="ps-shopping__view">--}}
-                            {{--                                    <p>View</p>--}}
-                            {{--                                    <ul class="ps-tab-list">--}}
-                            {{--                                        <li class="active"><a href="#tab-1"><i class="icon-grid"></i></a></li>--}}
-                            {{--                                        <li><a href="#tab-2"><i class="icon-list4"></i></a></li>--}}
-                            {{--                                    </ul>--}}
-                            {{--                                </div>--}}
-                            {{--                            </div>--}}
                         </div>
                         <div class="ps-tabs">
                             <div class="ps-tab active" id="tab-1">
@@ -80,10 +65,10 @@
                                         @foreach($products as $product)
                                             <div class="col-xl-3 col-lg-4 col-md-4 col-sm-6 col-6 ">
                                                 <div class="ps-product">
-                                                    <div class="ps-product__thumbnail"><a href="{{route('product-details',$product->slug)}}"><img src="{{url($product->thumbnail_img)}}" alt="" width="153" height="171"></a>
+                                                    <div class="ps-product__thumbnail"><a href="{{route('product-details',$product->slug)}}"><img src="{{url($product->thumbnail_img)}}" alt=""></a>
                                                         <ul class="ps-product__actions">
-                                                            <li><a href="#" data-toggle="tooltip" data-placement="top" title="Add To Cart"><i class="icon-bag2"></i></a></li>
-                                                            <li><a href="#" data-placement="top" title="Quick View" data-toggle="modal" data-target="#product-quickview"><i class="icon-eye"></i></a></li>
+                                                            <li><a href="{{route('product-details',$product->slug)}}" data-toggle="tooltip" data-placement="top" title="Add To Cart"><i class="icon-bag2"></i></a></li>
+                                                            <li><a href="{{route('product-details',$product->slug)}}" data-placement="top" title="Quick View" data-toggle="modal" data-target="#product-quickview"><i class="icon-eye"></i></a></li>
                                                             <li><a href="{{route('add.wishlist',$product->id)}}" data-toggle="tooltip" data-placement="top" title="Add to Whishlist"><i class="icon-heart"></i></a></li>
                                                             {{--                                                        <li><a href="#" data-toggle="tooltip" data-placement="top" title="Compare"><i class="icon-chart-bars"></i></a></li>--}}
                                                         </ul>
@@ -122,7 +107,7 @@
             timeout = setTimeout(function () {
                 $.ajax({
                     type: 'GET', //THIS NEEDS TO BE GET
-                    url: '/featured-product/subcategories/filter/'+values+'/sellerId/'+'{{$shop->id}}'+'/sub/'+{{$subcategory->id}},
+                    url: '/best-selling/product/filter/'+values+'/sellerId/'+{{$shop->user_id}},
                     dataType: 'json',
                     success: function (data) {
                         console.log(data);
@@ -141,7 +126,7 @@
                                                             <li><a href="/product/${data[i].slug}" data-toggle="tooltip" data-placement="top" title="Add To Cart"><i class="icon-bag2"></i></a></li>
                                                             <li><a href="/product/${data[i].slug}" data-placement="top" title="Quick View" data-toggle="modal" data-target="#product-quickview"><i class="icon-eye"></i></a></li>
                                                             <li><a href="/add/wishlist/${data[i].id}" data-toggle="tooltip" data-placement="top" title="Add to Whishlist"><i class="icon-heart"></i></a></li>
-                                                                                                                    <li><a href="#" data-toggle="tooltip" data-placement="top" title="Compare"><i class="icon-chart-bars"></i></a></li>
+                                                            {{--                                                        <li><a href="#" data-toggle="tooltip" data-placement="top" title="Compare"><i class="icon-chart-bars"></i></a></li>--}}
                                 </ul>
                             </div>
                             <div class="ps-product__container">
@@ -208,11 +193,10 @@
                     }, 5000);*/
 
                     update(values);
+
+
                 });
             }
-        }
-        function subcatId(id){
-
         }
     </script>
 @endpush
