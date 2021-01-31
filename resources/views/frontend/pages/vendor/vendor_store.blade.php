@@ -219,7 +219,7 @@
                                                 @foreach($products as $product)
                                                     <div class="col-xl-3 col-lg-4 col-md-4 col-sm-6 col-6 ">
                                                         <div class="ps-product">
-                                                            <div class="ps-product__thumbnail"><a href="{{route('product-details',$product->slug)}}"><img src="{{asset($product->thumbnail_img)}}" alt=""></a>
+                                                            <div class="ps-product__thumbnail"><a href="{{route('product-details',$product->slug)}}"><img src="{{asset($product->thumbnail_img)}}" alt="" width="153" height="171"></a>
                                                                 {{--                                                        <div class="ps-product__badge">11%</div>--}}
                                                                 <ul class="ps-product__actions">
                                                                     <li><a href="{{route('product-details',$product->slug)}}" data-toggle="tooltip" data-placement="top" title="Add To Cart"><i class="icon-bag2"></i></a></li>
@@ -262,7 +262,7 @@
                                         <p>Todays Deal</p>
                                         <div class="ps-shopping__actions">
                                             <div class="ps-shopping__view">
-                                                <div><a href="">View All</a></div>
+                                                <div><a href="{{route('todays-deal-products',$shop->slug)}}">View All</a></div>
                                             </div>
                                         </div>
                                     </div>
@@ -272,7 +272,7 @@
                                                 @foreach($todaysDeal as $product)
                                                     <div class="col-xl-3 col-lg-4 col-md-4 col-sm-6 col-6 ">
                                                         <div class="ps-product">
-                                                            <div class="ps-product__thumbnail"><a href="{{route('product-details',$product->slug)}}"><img src="{{asset($product->thumbnail_img)}}" alt=""></a>
+                                                            <div class="ps-product__thumbnail"><a href="{{route('product-details',$product->slug)}}"><img src="{{asset($product->thumbnail_img)}}" alt="" width="153" height="171"></a>
                                                                 {{--                                                        <div class="ps-product__badge">11%</div>--}}
                                                                 <ul class="ps-product__actions">
                                                                     <li><a href="{{route('product-details',$product->slug)}}" data-toggle="tooltip" data-placement="top" title="Add To Cart"><i class="icon-bag2"></i></a></li>
@@ -311,7 +311,7 @@
                                         <p>Best Selling</p>
                                         <div class="ps-shopping__actions">
                                             <div class="ps-shopping__view">
-                                                <div><a href="">View All</a></div>
+                                                <div><a href="{{route('best-selling-products',$shop->slug)}}">View All</a></div>
                                             </div>
                                         </div>
                                     </div>
@@ -321,7 +321,7 @@
                                                 @foreach($best_sales_products as $product)
                                                     <div class="col-xl-3 col-lg-4 col-md-4 col-sm-6 col-6 ">
                                                         <div class="ps-product">
-                                                            <div class="ps-product__thumbnail"><a href="{{route('product-details',$product->slug)}}"><img src="{{asset($product->thumbnail_img)}}" alt=""></a>
+                                                            <div class="ps-product__thumbnail"><a href="{{route('product-details',$product->slug)}}"><img src="{{asset($product->thumbnail_img)}}" alt="" width="153" height="171"></a>
                                                                 {{--                                                        <div class="ps-product__badge">11%</div>--}}
                                                                 <ul class="ps-product__actions">
                                                                     <li><a href="{{route('product-details',$product->slug)}}" data-toggle="tooltip" data-placement="top" title="Add To Cart"><i class="icon-bag2"></i></a></li>

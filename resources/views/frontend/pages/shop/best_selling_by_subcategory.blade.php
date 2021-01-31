@@ -23,7 +23,7 @@
                                     @endphp
                                     <ul class="sub-menu">
                                         @foreach($shop_subcategories as $subCat)
-                                            <li class="current-menu-item "><a href="{{url('/products/'.$shop->slug.'/'.$Cat->category->slug.'/'.$subCat->subcategory->slug)}}">{{$subCat->subcategory->name}}</a>
+                                            <li class="current-menu-item "><a href="{{url('/best-selling/'.$shop->slug.'/'.$Cat->category->slug.'/'.$subCat->subcategory->slug)}}">{{$subCat->subcategory->name}}</a>
                                             </li>
                                         @endforeach
                                     </ul>
@@ -122,7 +122,7 @@
             timeout = setTimeout(function () {
                 $.ajax({
                     type: 'GET', //THIS NEEDS TO BE GET
-                    url: '/featured-product/subcategories/filter/'+values+'/sellerId/'+'{{$shop->id}}'+'/sub/'+{{$subcategory->id}},
+                    url: '/best-selling/subcategories/filter/'+values+'/sellerId/'+'{{$shop->id}}'+'/sub/'+{{$subcategory->id}},
                     dataType: 'json',
                     success: function (data) {
                         console.log(data);
@@ -135,25 +135,25 @@
                             var i=0;
                             for(i=0;i<data.length;i++){
                                 $('.found_product').append(`<div class="col-xl-3 col-lg-4 col-md-4 col-sm-6 col-6 ">
-                                                <div class="ps-product">
-                                                    <div class="ps-product__thumbnail"><a href="/product/${data[i].slug}"><img src="{{url('/')}}/${data[i].thumbnail_img}" alt="" width="153" height="171"></a>
-                                                        <ul class="ps-product__actions">
-                                                            <li><a href="/product/${data[i].slug}" data-toggle="tooltip" data-placement="top" title="Add To Cart"><i class="icon-bag2"></i></a></li>
-                                                            <li><a href="/product/${data[i].slug}" data-placement="top" title="Quick View" data-toggle="modal" data-target="#product-quickview"><i class="icon-eye"></i></a></li>
-                                                            <li><a href="/add/wishlist/${data[i].id}" data-toggle="tooltip" data-placement="top" title="Add to Whishlist"><i class="icon-heart"></i></a></li>
-                                                                                                                    <li><a href="#" data-toggle="tooltip" data-placement="top" title="Compare"><i class="icon-chart-bars"></i></a></li>
-                                </ul>
-                            </div>
-                            <div class="ps-product__container">
-                                                        <div class="ps-product__content"><a class="ps-product__title" href="/product/${data[i].slug}">${data[i].name}</a>
-                                                            <p class="ps-product__price">৳ ${data[i].unit_price}</p>
-                                                        </div>
-                                                        <div class="ps-product__content hover"><a class="ps-product__title" href="/product/${data[i].slug}">${data[i].name}</a>
-                                                            <p class="ps-product__price">৳ ${data[i].unit_price}</p>
+                                                    <div class="ps-product">
+                                                        <div class="ps-product__thumbnail"><a href="/product/${data[i].slug}"><img src="{{url('/')}}/${data[i].thumbnail_img}" alt="" width="153" height="171"></a>
+                                                            <ul class="ps-product__actions">
+                                                                <li><a href="/product/${data[i].slug}" data-toggle="tooltip" data-placement="top" title="Add To Cart"><i class="icon-bag2"></i></a></li>
+                                                                <li><a href="/product/${data[i].slug}" data-placement="top" title="Quick View" data-toggle="modal" data-target="#product-quickview"><i class="icon-eye"></i></a></li>
+                                                                <li><a href="/add/wishlist/${data[i].id}" data-toggle="tooltip" data-placement="top" title="Add to Whishlist"><i class="icon-heart"></i></a></li>
+                                                                                                                        <li><a href="#" data-toggle="tooltip" data-placement="top" title="Compare"><i class="icon-chart-bars"></i></a></li>
+                                    </ul>
+                                </div>
+                                <div class="ps-product__container">
+                                                            <div class="ps-product__content"><a class="ps-product__title" href="/product/${data[i].slug}">${data[i].name}</a>
+                                                                <p class="ps-product__price">৳ ${data[i].unit_price}</p>
+                                                            </div>
+                                                            <div class="ps-product__content hover"><a class="ps-product__title" href="/product/${data[i].slug}">${data[i].name}</a>
+                                                                <p class="ps-product__price">৳ ${data[i].unit_price}</p>
+                                                            </div>
                                                         </div>
                                                     </div>
-                                                </div>
-                                            </div>`);
+                                                </div>`);
                             }
                         }
                     },error:function(){

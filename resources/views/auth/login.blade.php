@@ -23,7 +23,7 @@
                             <div class="ps-form__content">
                                 <h5>Log In Your Account</h5>
                                 <div class="form-group">
-                                    <input id="phone" type="number" placeholder="Enter your Phone Number"  class="form-control @error('phone') is-invalid @enderror" name="phone" value="{{ old('phone') }}" required autocomplete="phone" autofocus>
+                                    <input id="phone" type="text" placeholder="Enter your Phone Number"  class="form-control @error('phone') is-invalid @enderror" name="phone" value="{{ old('phone') }}" required autocomplete="phone" autofocus>
 
                                     @error('phone')
                                     <span class="invalid-feedback" role="alert">

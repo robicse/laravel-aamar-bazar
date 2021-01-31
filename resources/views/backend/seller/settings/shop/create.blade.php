@@ -115,10 +115,6 @@
                     <!-- general form elements -->
                     <div class="card card-info card-outline">
                         <div class="form-group pl-3 pr-3">
-                            <label for="about">About Shop<small style="color: red">*</small> </label>
-                            <textarea name="about" id="about" rows="4"  class="form-control" required>{{ $shop_set->about }}</textarea>
-                        </div>
-                        <div class="form-group pl-3 pr-3">
                             <label for="meta_title">Meta Title <small style="color: red">*</small> </label>
                             <input type="text" class="form-control" name="meta_title" id="meta_title" value="{{ $shop_set->meta_title }}" placeholder="Meta Title" required>
                         </div>

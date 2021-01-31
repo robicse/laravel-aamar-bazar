@@ -19,7 +19,7 @@
                             @foreach($shopCat as $Cat)
                                 <li class="current-menu-item menu-item-has-children"><a href="#"> {{$Cat->category->name}} </a><span class="sub-toggle"><i class="fa fa-angle-down"></i></span>
                                     @php
-                                        $subcategories = \App\Model\ShopSubcategory::where('category_id',$Cat->category_id)->latest()->get();
+                                        $subcategories = \App\Model\ShopSubcategory::where('category_id',$Cat->id)->latest()->get();
                                     @endphp
                                     <ul class="sub-menu">
                                         @foreach($subcategories as $subCat)
@@ -121,7 +121,7 @@
                             for(i=0;i<data.length;i++){
                                 $('.found_product').append(`<div class="col-xl-3 col-lg-4 col-md-4 col-sm-6 col-6 ">
                                                 <div class="ps-product">
-                                                    <div class="ps-product__thumbnail"><a href="/product/${data[i].slug}"><img src="{{url('/')}}/${data[i].thumbnail_img}" alt=""></a>
+                                                    <div class="ps-product__thumbnail"><a href="/product/${data[i].slug}"><img src="{{url('/')}}/${data[i].thumbnail_img}" alt="" width="153" height="171"></a>
                                                         <ul class="ps-product__actions">
                                                             <li><a href="/product/${data[i].slug}" data-toggle="tooltip" data-placement="top" title="Add To Cart"><i class="icon-bag2"></i></a></li>
                                                             <li><a href="/product/${data[i].slug}" data-placement="top" title="Quick View" data-toggle="modal" data-target="#product-quickview"><i class="icon-eye"></i></a></li>
