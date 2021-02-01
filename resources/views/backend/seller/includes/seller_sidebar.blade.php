@@ -32,6 +32,7 @@
                             </p>
                         </a>
                     </li>
+                    @if(Auth::user()->seller->verification_status == 1)
                     <li class="nav-item has-treeview {{(Request::is('seller/products*')) || (Request::is('seller/get/admin/products*')) || (Request::is('seller/flash_deals*'))
                     ? 'menu-open' : ''}}">
                         <a href="#" class="nav-link">
@@ -158,7 +159,7 @@
                         {{--                            </li>--}}
                         {{--                        </ul>--}}
                     </li>
-                    <li class="nav-item has-treeview {{(Request::is('seller/shop*')) ? 'menu-open' : ''}}">
+                    <li class="nav-item has-treeview {{(Request::is('seller/shop*')) || (Request::is('seller/seller-info*')) ? 'menu-open' : ''}}">
                         <a href="" class="nav-link ">
                             <i class="nav-icon fas fa-cog"></i>
                             <p>
@@ -176,14 +177,42 @@
                                     <p>Shop Settings</p>
                                 </a>
                             </li>
-                            {{--                            <li class="nav-item">--}}
-                            {{--                                <a href="{{route('seller.slider.index')}}" class="nav-link {{Request::is('seller/slider*') ? 'active' :''}}">--}}
-                            {{--                                    <i class="fa fa-{{Request::is('seller/slider*') ? 'folder-open':'folder'}} nav-icon"></i>--}}
-                            {{--                                    <p>Slider Settings</p>--}}
-                            {{--                                </a>--}}
-                            {{--                            </li>--}}
+                            <li class="nav-item">
+                                <a href="{{route('seller.seller-info.index')}}" class="nav-link {{Request::is('seller/seller-info*') ? 'active' :''}}">
+                                    <i class="fa fa-{{Request::is('seller/seller-info*') ? 'folder-open':'folder'}} nav-icon"></i>
+                                    <p>Seller Info Settings</p>
+                                </a>
+                            </li>
                         </ul>
                     </li>
+                    @else
+                        <li class="nav-item has-treeview {{(Request::is('seller/shop*')) || (Request::is('seller/seller-info*')) ? 'menu-open' : ''}}">
+                            <a href="" class="nav-link ">
+                                <i class="nav-icon fas fa-cog"></i>
+                                <p>
+                                    Settings
+                                    <i class="right fa fa-angle-left"></i>
+                                </p>
+                            </a>
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item">
+                                    @php
+                                        $shop_set = App\Model\Shop::where('user_id',Auth::id())->select('slug')->first();
+                                    @endphp
+                                    <a href="{{route('seller.shop.manage',$shop_set->slug)}}" class="nav-link {{Request::is('seller/shop/manage*') ? 'active' :''}}">
+                                        <i class="fa fa-{{Request::is('seller/shop*') ? 'folder-open':'folder'}} nav-icon"></i>
+                                        <p>Shop Settings</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="{{route('seller.seller-info.index')}}" class="nav-link {{Request::is('seller/seller-info*') ? 'active' :''}}">
+                                        <i class="fa fa-{{Request::is('seller/seller-info*') ? 'folder-open':'folder'}} nav-icon"></i>
+                                        <p>Seller Info Settings</p>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                    @endif
                 </ul>
             </nav>
             <!-- /.sidebar-menu -->

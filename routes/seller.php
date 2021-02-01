@@ -19,6 +19,7 @@ Route::group(['as'=>'seller.','prefix' =>'seller', 'middleware' => ['auth', 'sel
 
     Route::resource('products','Seller\ProductController');
     Route::resource('shop','Seller\ShopController');
+    Route::resource('seller-info','Seller\SellerInfoController');
     Route::resource('flash_deals','Seller\FlashDealController');
     Route::post('/flash_deals/update_status', 'Seller\FlashDealController@update_status')->name('flash_deals.update_status');
     Route::post('/flash_deals/update_featured', 'Seller\FlashDealController@update_featured')->name('flash_deals.update_featured');

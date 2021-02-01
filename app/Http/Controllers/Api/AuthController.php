@@ -56,8 +56,8 @@ class AuthController extends Controller
         $verCode->code = mt_rand(1111,9999);
         $verCode->status = 0;
         $verCode->save();
-        $text = "<#> Dear ".$userReg->name.", Your Priyojon OTP is: ".$verCode->code." /bCe8bIGKEiT";
-        UserInfo::smsAPI("0".$verCode->phone,$text);
+        $text = "<#> Dear ".$userReg->name.", Your MudiHat OTP is: ".$verCode->code." /bCe8bIGKEiT";
+        UserInfo::smsAPI("088".$verCode->phone,$text);
 
         $success['token'] = $userReg->createToken('mudihat')-> accessToken;
         $success['details'] = $userReg;
@@ -106,8 +106,8 @@ class AuthController extends Controller
         $verCode->code = mt_rand(1111,9999);
         $verCode->status = 0;
         $verCode->save();
-        $text = "<#> Dear ".$sellerReg->name.", Your Priyojon OTP is: ".$verCode->code." /bCe8bIGKEiT";
-        UserInfo::smsAPI("0".$verCode->phone,$text);
+        $text = "<#> Dear ".$sellerReg->name.", Your MudiHat OTP is: ".$verCode->code." /bCe8bIGKEiT";
+        UserInfo::smsAPI("088".$verCode->phone,$text);
 
         $success['token'] = $sellerReg->createToken('mudihat')-> accessToken;
         $success['details'] = $sellerReg;

@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use Brian2694\Toastr\Facades\Toastr;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 
@@ -47,6 +48,24 @@ class LoginController extends Controller
             //return('/login');
             return('/');
         }
+    }
+
+
+
+//    protected function credentials(Request $request)
+//    {
+//        if(is_numeric($request->get('email'))){
+//            return ['phone'=>$request->get('email'),'password'=>$request->get('password')];
+//        }
+//        elseif (filter_var($request->get('email'), FILTER_VALIDATE_EMAIL)) {
+//            return ['email' => $request->get('email'), 'password'=>$request->get('password')];
+//        }
+//        return ['username' => $request->get('email'), 'password'=>$request->get('password')];
+//    }
+
+    protected function credentials(Request $request)
+    {
+        return ['phone' => $request->get('phone'), 'password'=>$request->get('password'),'banned'=>0];
     }
 
     public function username()

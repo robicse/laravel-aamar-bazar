@@ -26,8 +26,8 @@ class FrontendController extends Controller
     public function register(Request $request) {
         $this->validate($request, [
             'name' =>  'required',
-            'email' =>  'required',
-            'phone' => 'required|min:8|numeric',
+            'email' =>  'required|email|unique:users,email',
+            'phone' => 'required|regex:/(01)[0-9]{9}/|unique:users',
             'password' => 'required|min:6',
         ]);
         $phn1 = (int)$request->phone;
