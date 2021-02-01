@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
+use App\Model\Brand;
 use App\Model\Category;
 use App\Model\FlashDeal;
 use App\Model\FlashDealProduct;
@@ -192,6 +193,19 @@ class VendorController extends Controller
         $data_min = (int) $data2[0];
         $data_max = (int) $data2[1];
         $result_data = Product::where('user_id',$shop->user_id)->where('subcategory_id',$subcategory->id)->where('unit_price', '>=', $data_min)->where('unit_price', '<=', $data_max)->where('published',1)->where('num_of_sale', '>',0)->get();
+
+        return $result_data;
+    }
+    public function brandFilter($data,$id,$brndId)
+    {
+        $shop = Shop::find($id);
+        $brand = Brand::find($brndId);
+//        $shopSubcategory = ShopSubcategory::where('');
+//        dd($shops);
+        $data2 = explode(',',$data);
+        $data_min = (int) $data2[0];
+        $data_max = (int) $data2[1];
+        $result_data = Product::where('user_id',$shop->user_id)->where('brand_id',$brand->id)->where('unit_price', '>=', $data_min)->where('unit_price', '<=', $data_max)->where('published',1)->get();
 
         return $result_data;
     }

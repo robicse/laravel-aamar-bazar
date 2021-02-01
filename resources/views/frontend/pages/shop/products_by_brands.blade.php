@@ -1,5 +1,5 @@
 @extends('frontend.layouts.master')
-@section('title',$brands->name)
+@section('title',$brand->name)
 @section('content')
     <div class="ps-breadcrumb">
         <div class="ps-container">
@@ -107,7 +107,7 @@
             timeout = setTimeout(function () {
                 $.ajax({
                     type: 'GET', //THIS NEEDS TO BE GET
-                    url: '/product/filter/'+values+'/sellerId/'+{{$shop->user_id}},
+                    url: '/product/filter/'+values+'/sellerId/'+'{{$shop->id}}'+'/brnd/'+{{$brand->id}},
                     dataType: 'json',
                     success: function (data) {
                         console.log(data);

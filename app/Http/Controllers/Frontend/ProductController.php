@@ -84,11 +84,11 @@ class ProductController extends Controller
     }
     public function productByBrand($name,$slug) {
         $shop = Shop::where('slug',$name)->first();
-        $brands = Brand::where('slug',$slug)->first();
+        $brand = Brand::where('slug',$slug)->first();
         $shopCat = ShopCategory::where('shop_id',$shop->id)->latest()->get();
         $shopBrand = ShopBrand::where('shop_id',$shop->id)->latest()->get();
-        $products = Product::where('brand_id',$brands->id)->where('user_id',$shop->user_id)->where('published',1)->latest()->paginate(24);
+        $products = Product::where('brand_id',$brand->id)->where('user_id',$shop->user_id)->where('published',1)->latest()->paginate(24);
 //        dd($products);
-        return view('frontend.pages.shop.products_by_brands',compact('shop','brands','shopCat','shopBrand','products'));
+        return view('frontend.pages.shop.products_by_brands',compact('shop','brand','shopCat','shopBrand','products'));
     }
 }
