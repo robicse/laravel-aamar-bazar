@@ -82,9 +82,12 @@ Route::group(['middleware' => ['auth', 'user']], function () {
     //this route only for with out resource controller
     Route::get('/user/dashboard', 'User\DashboardController@index')->name('user.dashboard');
     Route::post('/user/dashboard/update', 'User\DashboardController@update')->name('user.profile-update');
+    Route::get('/user/edit-password', 'User\DashboardController@editPassword')->name('user.edit-password');
+    Route::post('/user/password/update', 'User\DashboardController@updatePassword')->name('user.password-update');
     Route::get('/user/invoices', 'User\DashboardController@invoices')->name('user.invoices');
     Route::get('/user/notifications', 'User\DashboardController@notification')->name('user.notification');
     Route::get('/user/address', 'User\DashboardController@address')->name('user.address');
+    Route::post('/user/address/update', 'User\DashboardController@updateAddress')->name('user.address-update');
     Route::get('/user/order/history', 'User\OrderManagementController@orderHistory')->name('user.order.history');
     Route::post('/user/order/review', 'User\OrderManagementController@reviewStore')->name('user.order.review.store');
     Route::get('order-details/invoice/print/{id}','User\OrderManagementController@printInvoice')->name('invoice.print');

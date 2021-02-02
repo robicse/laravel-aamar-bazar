@@ -53,7 +53,7 @@
                                 <tr>
                                     <td>{{$key + 1}}</td>
                                     <td>{{date('j-m-Y',strtotime($ondel->created_at))}}</td>
-                                    <td>{{$ondel->name}}</td>
+                                    <td>{{$ondel->order_details->name}}</td>
                                     <td>{{$ondel->payment_type}}</td>
                                     <td>
                                         <form action="{{route('admin.order-product.status',$ondel->id)}}">

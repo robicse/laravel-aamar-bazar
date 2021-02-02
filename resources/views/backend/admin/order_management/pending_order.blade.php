@@ -53,7 +53,7 @@
                                 <tr>
                                     <td>{{$key + 1}}</td>
                                     <td>{{date('j-m-Y',strtotime($pending->created_at))}}</td>
-                                    <td>{{$pending->name}}</td>
+                                    <td>{{$pending->order_details->name}}</td>
                                     <td>{{$pending->payment_type}}</td>
                                     <td>
                                         <form action="{{route('admin.order-product.status',$pending->id)}}">

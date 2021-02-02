@@ -64,8 +64,8 @@
                             <tr>
                                 <td>{{$key + 1}}</td>
                                 <td>{{date('j-m-Y',strtotime($pending->created_at))}}</td>
-                                <td>{{$pending->order_details->name}}</td>
                                 <td>{{$pending->invoice_code}}</td>
+                                <td>{{$pending->order_details->name}}</td>
                                 <td>{{$pending->payment_type}}</td>
                                 <td>
                                     <form id="status-form-{{$pending->id}}" action="{{route('seller.order-product.status',$pending->id)}}">
@@ -78,7 +78,6 @@
                                             <option value="Cancel" {{$pending->delivery_status == 'Cancel'? 'selected' : ''}}>Cancel</option>
                                         </select>
                                     </form>
-
                                 </td>
                                 <td>
                                     <a class="btn btn-info waves-effect" href="{{route('seller.order-details',$pending->id)}}">

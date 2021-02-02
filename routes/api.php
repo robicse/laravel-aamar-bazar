@@ -14,9 +14,11 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
+Route::group(['middleware' => ['auth:api', 'user']], function () {
+    Route::post('/user/profile/update', 'Api\CustomerController@profileUpdate');
+    Route::post('/user/password/update', 'Api\CustomerController@passwordUpdate');
 });
+
 
 Route::get('/brands','Api\BrandController@getBrands');
 Route::get('/categories','Api\CategoryController@getCategories');
@@ -37,4 +39,8 @@ Route::get('/flash-deals-products/{id}','Api\ProductController@getFlashDeals');
 Route::post('/login','Api\AuthController@login');
 Route::post('/register','Api\AuthController@register');
 Route::post('/seller/register','Api\AuthController@sellerRegister');
+
+//Customer Api
+//Route::post('/user/profile/update', 'Api\CustomerController@profileUpdate')->middleware('auth:api');
+
 

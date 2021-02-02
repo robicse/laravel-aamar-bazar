@@ -53,7 +53,7 @@
                                 <tr>
                                     <td>{{$key + 1}}</td>
                                     <td>{{date('j-m-Y',strtotime($Complete->created_at))}}</td>
-                                    <td>{{$Complete->name}}</td>
+                                    <td>{{$Complete->order_details->name}}</td>
                                     <td>{{$Complete->payment_type}}</td>
                                     <td>
                                         <form action="{{route('admin.order-product.status',$Complete->id)}}">

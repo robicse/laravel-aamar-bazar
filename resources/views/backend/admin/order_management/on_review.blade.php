@@ -53,7 +53,7 @@
                                 <tr>
                                     <td>{{$key + 1}}</td>
                                     <td>{{date('j-m-Y',strtotime($review->created_at))}}</td>
-                                    <td>{{$review->name}}</td>
+                                    <td>{{$review->order_details->name}}</td>
                                     <td>{{$review->payment_type}}</td>
                                     <td>
                                         <form action="{{route('admin.order-product.status',$review->id)}}">
