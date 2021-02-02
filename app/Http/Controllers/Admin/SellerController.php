@@ -247,6 +247,8 @@ class SellerController extends Controller
         //dd($seller);
         $seller->verification_status = 0;
         $seller->save();
+        $user->banned = 1;
+        $user->save();
         Toastr::success('Seller Baned ', 'Success');
         return redirect()->back();
     }

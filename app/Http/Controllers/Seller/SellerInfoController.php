@@ -70,7 +70,7 @@ class SellerInfoController extends Controller
         $sellerInfo->trade_licence_images = json_encode($photos);
         $sellerInfo->save();
         Toastr::success("Seller Info Updated Successfully","Success");
-        return redirect()->route('seller.seller-info.index');
+        return redirect()->route('seller.profile.show');
     }
 
     public function destroy($id)

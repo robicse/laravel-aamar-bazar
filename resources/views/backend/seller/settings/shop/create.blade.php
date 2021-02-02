@@ -64,16 +64,11 @@
                                 <input type="text" id="slug" name="slug" class="form-control" value="{{$shop_set->slug}}"
                                        placeholder="Slug (e.g. this-is-test-shop-title)" readonly>
                             </div>
-{{--                            <div class="form-group">--}}
-{{--                                <label for="email">Logo <small>(size: 120 * 120 pixel)</small></label>--}}
-{{--                                <input type="file" class="form-control" name="logo" id="logo" >--}}
-{{--                            </div>--}}
+
                             <div class="form-group">
-{{--                                <label for="name">Address <small style="color: red">*</small></label>--}}
-{{--                                <input type="text" class="form-control" name="address" value="{{ $shop_set->address }}" id="address" placeholder="Enter Address" required>--}}
-                                <label for="bksearch">Shop Address <small style="color: red">*</small></label>
+                                <label for="bksearch">Shop Address</label>
                                 <div class="form-group form-group--style-1">
-                                    <input type="text" class="form-control bksearch {{ $errors->has('bksearch') ? ' is-invalid' : '' }}" value="{{ $shop_set->address }}" placeholder="Enter Your Shop Address" name="bksearch" required>
+                                    <input type="text" class="form-control bksearch {{ $errors->has('bksearch') ? ' is-invalid' : '' }}" value="{{ $shop_set->address }}" placeholder="Enter Your Shop Address" name="bksearch" {{$shop_set->address ? 'readonly' : ''}} required>
                                 </div>
                                 <div class="bklist"></div>
                             </div>
@@ -122,14 +117,6 @@
                             <label for="meta_description">Meta Description <small style="color: red">*</small> </label>
                             <textarea name="meta_description" id="meta_description" rows="4"  class="form-control" required>{{ $shop_set->meta_description }}</textarea>
                         </div>
-                        {{--<p class="pl-2 pb-0 mb-0 bg-info">Slider Gallery</p>
-                        <div class="form-group">
-                            <label class="control-label ml-3">Slider Images</label>
-                            <div class="ml-3 mr-3">
-                                <div class="row" id="sliders"></div>
---}}{{--                                <div class="row" id="photos_alt"></div>--}}{{--
-                            </div>
-                        </div>--}}
                         <div class="form-group">
                             <label class="control-label ml-3">Logo <small class="text-danger">(Size: 120 *
                                     120px)</small></label>
@@ -217,7 +204,7 @@
             maxCount: 1,
             rowHeight: '200px',
             groupClassName: 'col-md-4 col-sm-4 col-xs-6',
-            maxFileSize: '150000',
+            maxFileSize: '100000',
             dropFileLabel: "Drop Here",
             onExtensionErr: function (index, file) {
                 console.log(index, file, 'extension err');
@@ -225,14 +212,14 @@
             },
             onSizeErr: function (index, file) {
                 console.log(index, file, 'file size too big');
-                alert('File size too big');
+                alert('Image size too big. Please upload below 100kb');
             },
-            // onAddRow:function(index){
-            //     var altData = '<input type="text" placeholder="Thumbnails Alt" name="thumbnail_img_alt[]" class="form-control" required=""></div>'
-            //     //var index = index + 1;
-            //     //$('#photos_alt').append('<h4 id="abc_'+index+'">'+index+'</h4>')
-            //     //$('#thumbnail_img_alt').append('<div class="col-md-4 col-sm-4 col-xs-6" id="abc_'+index+'">'+altData+'</div>')
-            // },
+            onAddRow:function(index){
+                var altData = '<input type="text" placeholder="Thumbnails Alt" name="thumbnail_img_alt[]" class="form-control" required=""></div>'
+                //var index = index + 1;
+                //$('#photos_alt').append('<h4 id="abc_'+index+'">'+index+'</h4>')
+                //$('#thumbnail_img_alt').append('<div class="col-md-4 col-sm-4 col-xs-6" id="abc_'+index+'">'+altData+'</div>')
+            },
             onRemoveRow : function(index){
                 var index = index + 1;
                 $(`#abc_${index}`).remove()

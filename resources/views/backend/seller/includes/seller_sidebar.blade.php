@@ -138,80 +138,61 @@
                                 {{--                                <i class="right fa fa-angle-left"></i>--}}
                             </p>
                         </a>
-                        {{--                        <ul class="nav nav-treeview">--}}
-                        {{--                            <li class="nav-item">--}}
-                        {{--                                <a href="" class="nav-link {{Request::is('seller/profile*') ? 'active' :''}}">--}}
-                        {{--                                    <i class="fa fa-{{Request::is('seller/profile*') ? 'folder-open':'folder'}} nav-icon"></i>--}}
-                        {{--                                    <p>Edit Profile</p>--}}
-                        {{--                                </a>--}}
-                        {{--                            </li>--}}
-                        {{--                            <li class="nav-item">--}}
-                        {{--                                <a href="{{route('seller.password.edit')}}" class="nav-link {{Request::is('seller/password*') ? 'active' :''}}">--}}
-                        {{--                                    <i class="fa fa-{{Request::is('seller/password*') ? 'folder-open':'folder'}} nav-icon"></i>--}}
-                        {{--                                    <p>Edit Password</p>--}}
-                        {{--                                </a>--}}
-                        {{--                            </li>--}}
-                        {{--                            <li class="nav-item">--}}
-                        {{--                                <a href="{{route('seller.payment.settings')}}" class="nav-link {{Request::is('seller/payment*') ? 'active' :''}}">--}}
-                        {{--                                    <i class="fa fa-{{Request::is('seller/payment*') ? 'folder-open':'folder'}} nav-icon"></i>--}}
-                        {{--                                    <p>Payment Settings</p>--}}
-                        {{--                                </a>--}}
-                        {{--                            </li>--}}
-                        {{--                        </ul>--}}
                     </li>
-                    <li class="nav-item has-treeview {{(Request::is('seller/shop*')) || (Request::is('seller/seller-info*')) ? 'menu-open' : ''}}">
-                        <a href="" class="nav-link ">
-                            <i class="nav-icon fas fa-cog"></i>
-                            <p>
-                                Settings
-                                <i class="right fa fa-angle-left"></i>
-                            </p>
-                        </a>
-                        <ul class="nav nav-treeview">
-                            <li class="nav-item">
-                                @php
-                                    $shop_set = App\Model\Shop::where('user_id',Auth::id())->select('slug')->first();
-                                @endphp
-                                <a href="{{route('seller.shop.manage',$shop_set->slug)}}" class="nav-link {{Request::is('seller/shop/manage*') ? 'active' :''}}">
-                                    <i class="fa fa-{{Request::is('seller/shop*') ? 'folder-open':'folder'}} nav-icon"></i>
-                                    <p>Shop Settings</p>
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="{{route('seller.seller-info.index')}}" class="nav-link {{Request::is('seller/seller-info*') ? 'active' :''}}">
-                                    <i class="fa fa-{{Request::is('seller/seller-info*') ? 'folder-open':'folder'}} nav-icon"></i>
-                                    <p>Seller Info Settings</p>
-                                </a>
-                            </li>
-                        </ul>
-                    </li>
+                        <li class="nav-item">
+                            @php
+                                $shop_set = App\Model\Shop::where('user_id',Auth::id())->select('slug')->first();
+                            @endphp
+                            <a href="{{route('seller.shop.manage',$shop_set->slug)}}" class="nav-link {{Request::is('seller/shop/manage*') ? 'active' :''}}">
+                                <i class="nav-icon fas fa-shopping-bag"></i>
+                                <p>Manage Shop</p>
+                            </a>
+                        </li>
                     @else
-                        <li class="nav-item has-treeview {{(Request::is('seller/shop*')) || (Request::is('seller/seller-info*')) ? 'menu-open' : ''}}">
-                            <a href="" class="nav-link ">
-                                <i class="nav-icon fas fa-cog"></i>
+                        <li class="nav-item">
+                            <a href="{{route('seller.profile.show')}}" class="nav-link {{Request::is('seller/manage-profile') ? 'active' : ''}}">
+                                <i class="nav-icon fas fa-user-circle"></i>
                                 <p>
-                                    Settings
-                                    <i class="right fa fa-angle-left"></i>
+                                    Manage Profile
+                                    {{--                                <i class="right fa fa-angle-left"></i>--}}
                                 </p>
                             </a>
-                            <ul class="nav nav-treeview">
-                                <li class="nav-item">
-                                    @php
-                                        $shop_set = App\Model\Shop::where('user_id',Auth::id())->select('slug')->first();
-                                    @endphp
-                                    <a href="{{route('seller.shop.manage',$shop_set->slug)}}" class="nav-link {{Request::is('seller/shop/manage*') ? 'active' :''}}">
-                                        <i class="fa fa-{{Request::is('seller/shop*') ? 'folder-open':'folder'}} nav-icon"></i>
-                                        <p>Shop Settings</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="{{route('seller.seller-info.index')}}" class="nav-link {{Request::is('seller/seller-info*') ? 'active' :''}}">
-                                        <i class="fa fa-{{Request::is('seller/seller-info*') ? 'folder-open':'folder'}} nav-icon"></i>
-                                        <p>Seller Info Settings</p>
-                                    </a>
-                                </li>
-                            </ul>
                         </li>
+                        <li class="nav-item">
+                            @php
+                                $shop_set = App\Model\Shop::where('user_id',Auth::id())->select('slug')->first();
+                            @endphp
+                            <a href="{{route('seller.shop.manage',$shop_set->slug)}}" class="nav-link {{Request::is('seller/shop/manage*') ? 'active' :''}}">
+                                <i class="nav-icon fas fa-shopping-bag"></i>
+                                <p>Manage Shop</p>
+                            </a>
+                        </li>
+{{--                        <li class="nav-item has-treeview {{(Request::is('seller/shop*')) || (Request::is('seller/seller-info*')) ? 'menu-open' : ''}}">--}}
+{{--                            <a href="" class="nav-link ">--}}
+{{--                                <i class="nav-icon fas fa-cog"></i>--}}
+{{--                                <p>--}}
+{{--                                    Settings--}}
+{{--                                    <i class="right fa fa-angle-left"></i>--}}
+{{--                                </p>--}}
+{{--                            </a>--}}
+{{--                            <ul class="nav nav-treeview">--}}
+{{--                                <li class="nav-item">--}}
+{{--                                    @php--}}
+{{--                                        $shop_set = App\Model\Shop::where('user_id',Auth::id())->select('slug')->first();--}}
+{{--                                    @endphp--}}
+{{--                                    <a href="{{route('seller.shop.manage',$shop_set->slug)}}" class="nav-link {{Request::is('seller/shop/manage*') ? 'active' :''}}">--}}
+{{--                                        <i class="fa fa-{{Request::is('seller/shop*') ? 'folder-open':'folder'}} nav-icon"></i>--}}
+{{--                                        <p>Shop Settings</p>--}}
+{{--                                    </a>--}}
+{{--                                </li>--}}
+{{--                                <li class="nav-item">--}}
+{{--                                    <a href="{{route('seller.seller-info.index')}}" class="nav-link {{Request::is('seller/seller-info*') ? 'active' :''}}">--}}
+{{--                                        <i class="fa fa-{{Request::is('seller/seller-info*') ? 'folder-open':'folder'}} nav-icon"></i>--}}
+{{--                                        <p>Seller Info Settings</p>--}}
+{{--                                    </a>--}}
+{{--                                </li>--}}
+{{--                            </ul>--}}
+{{--                        </li>--}}
                     @endif
                 </ul>
             </nav>

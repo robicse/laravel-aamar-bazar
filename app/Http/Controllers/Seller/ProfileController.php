@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Seller;
 
 use App\Http\Controllers\Controller;
+use App\Model\Order;
+use App\Model\Product;
 use App\Model\Seller;
 use App\Model\Shop;
 use App\User;
@@ -20,7 +22,10 @@ class ProfileController extends Controller
         $userInfo = User::where('id',Auth::id())->first();
         $sellerInfo = Seller::where('user_id',Auth::id())->first();
         $shopInfo = Shop::where('user_id',Auth::id())->first();
-        return view('backend.seller.profile.profile',compact('userInfo','sellerInfo','shopInfo'));
+        $totalProducts = Product::where('user_id',Auth::id())->count();
+        $totalOrders = Order::where('shop_id',$shopInfo->id)->count();
+        $totalSoldAmount = Order::where('shop_id',$shopInfo->id)->where('payment_status','paid')->where('delivery_status','Completed')->sum('grand_total');
+        return view('backend.seller.profile.profile',compact('userInfo','sellerInfo','shopInfo','totalProducts','totalOrders','totalSoldAmount'));
     }
     public function profile_update(Request $request,$id) {
         $this->validate($request, [
