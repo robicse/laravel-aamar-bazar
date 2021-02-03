@@ -9,6 +9,6 @@ class FlashDeal extends Model
 {
     public function flashDealProducts()
     {
-        return $this->hasMany('App\Models\FlashDealProduct','flash_deal_id');
+        return $this->hasMany('App\Model\FlashDealProduct','flash_deal_id');
     }
 }

@@ -97,8 +97,9 @@ use App\Model\Product;
                 $price -= $product->discount;
             }
         }
-
+//        dd($price);
         return $price;
+
     }
 
 

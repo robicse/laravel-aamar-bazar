@@ -27,7 +27,7 @@ class FavoriteShopController extends Controller
         }
     }
     public function removeFavoriteShop($id) {
-      
+
         $shop = Shop::find($id);
         $favoriteShop = FavoriteShop::where('user_id', Auth::id())->where('shop_id', $shop->id)->first();
         $favoriteShop->delete();

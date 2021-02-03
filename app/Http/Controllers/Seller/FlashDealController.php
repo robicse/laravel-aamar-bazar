@@ -105,15 +105,17 @@ class FlashDealController extends Controller
     }*/
 
     public function update(Request $request,$id){
-        //dd($request->all());
+//        dd($request->all());
         $flash_deal =  FlashDeal::find($id);
+//        dd($flash_deal);
         $flash_deal->title = $request->title;
         $flash_deal->user_id = Auth::id();
         $flash_deal->user_type = 'seller';
         $flash_deal->start_date = strtotime($request->start_date);
         $flash_deal->end_date = strtotime($request->end_date);
         $flash_deal->slug =  Str::slug($request->title);
-        foreach ($flash_deal->flashDealProduct as $key => $flash_deal_product) {
+//        dd($flash_deal->flashDealProducts);
+        foreach ($flash_deal->flashDealProducts as $key => $flash_deal_product) {
             $flash_deal_product->delete();
         }
         if($flash_deal->save()){
@@ -132,7 +134,7 @@ class FlashDealController extends Controller
         }
         else{
             Toastr::error('Something went wrong');
-            return back();
+            return redirect()->back();
         }
 
     }
