@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Frontend;
 use App\Http\Controllers\Controller;
 use App\Model\Brand;
 use App\Model\Category;
+use App\Model\FavoriteShop;
 use App\Model\FlashDeal;
 use App\Model\FlashDealProduct;
 use App\Model\Product;
@@ -15,6 +16,7 @@ use App\Model\ShopCategory;
 use App\Model\ShopSubcategory;
 use App\Model\Subcategory;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class VendorController extends Controller
 {
@@ -33,13 +35,15 @@ class VendorController extends Controller
         }else{
             $flashDealProducts = null;
         }
+        $favoriteShop = FavoriteShop::where('user_id', Auth::id())->where('shop_id', $shop->id)->first();
+
         //dd($flashDealProducts);
         $shopCat=ShopCategory::where('shop_id',$shop->id)->latest()->get();
 //        dd($products);
 
         return view('frontend.pages.vendor.vendor_store',
             compact('shop','products','todaysDeal','shopCat',
-                'best_sales_products','seller','flashDeal','flashDealProducts'
+                'best_sales_products','seller','flashDeal','flashDealProducts','favoriteShop'
             )
         );
     }

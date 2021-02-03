@@ -26,7 +26,20 @@
                             <div class="ps-block__thumbnail"><img src="{{asset($shop->logo)}}" alt=""></div>
                             <div class="ps-block__container">
                                 <div class="ps-block__header">
-                                    <h4><a href="{{route('shop.details',$shop->slug)}}">{{$shop->name}} </a></h4>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <h4><a href="{{route('shop.details',$shop->slug)}}">{{$shop->name}} </a></h4>
+                                        </div>
+                                        @if(empty($favoriteShop))
+                                        <div class="col-md-6 pull-right">
+                                            <button class="ps-btn" style="padding: 7px 20px 7px 20px; font-size: 14px;"><a href="{{route('add.favorite-shop',$shop->id)}}">Follow</a></button>
+                                        </div>
+                                        @else
+                                            <div class="col-md-6 pull-right">
+                                                <button class="ps-btn" style="padding: 7px 20px 7px 20px; font-size: 14px;"><a href="{{route('remove.favorite-shop',$shop->id)}}">Unfollow</a></button>
+                                            </div>
+                                        @endif
+                                    </div>
                                     <select class="ps-rating" data-read-only="true">
                                         <option value="1">1</option>
                                         <option value="1">2</option>

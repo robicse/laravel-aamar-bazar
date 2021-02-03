@@ -50,7 +50,7 @@
                         <div class="row">
                             <div class="col-xl-7 col-lg-8 col-md-12 col-sm-12  ">
                                 <div class="ps-form__billing-info">
-                                    <h3 class="ps-form__heading">Billing Details</h3>
+                                    <h3 class="ps-form__heading">Shipping Details</h3>
                                     <div class="form-group">
                                         <label>Name<sup>*</sup>
                                         </label>

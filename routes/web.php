@@ -31,6 +31,8 @@ Route::get('/blog-list', 'Frontend\BlogController@index')->name('blog-list');
 Route::get('/blog-details', 'Frontend\BlogController@details')->name('blog-details');
 Route::get('/add/wishlist/{id}', 'Frontend\WishlistController@wishlistAdd' )->name('add.wishlist');
 Route::get('/remove/wishlist/{id}', 'Frontend\WishlistController@wishlistRemove' )->name('remove.wishlist');
+Route::get('/add/favorite-shop/{id}', 'User\FavoriteShopController@favoriteShop')->name('add.favorite-shop');
+Route::get('/remove/favorite-shop/{id}', 'User\FavoriteShopController@removeFavoriteShop')->name('remove.favorite-shop');
 
 //Search
 Route::get('/search/product', 'Frontend\VendorController@search_product');

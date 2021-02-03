@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
+use App\Model\FavoriteShop;
 use App\Model\Wishlist;
 use Brian2694\Toastr\Facades\Toastr;
 use Illuminate\Http\Request;
