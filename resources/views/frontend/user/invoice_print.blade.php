@@ -45,7 +45,7 @@
             </div>
             <!-- /.col -->
             @php
-                $shippingInfo = json_decode($orders->shipping_address)
+                $shippingInfo = json_decode($order->shipping_address)
             @endphp
             <div class="col-sm-4">
                 Shipping Info
@@ -59,16 +59,20 @@
             <!-- /.col -->
             <div class="col-sm-4 invoice-col">
                 <b>Invoice Info</b><br>
-                <b>Invoice Code:</b> {{$orders->invoice_code}}<br>
-                <b>Order ID:</b> {{$orders->id}}<br>
-                <b>Payment Due:</b> {{date('j-m-Y',strtotime($orders->created_at))}}<br>
-                <b>Transaction ID:</b> {{$orders->transaction_id}}
+                <b>Invoice Code:</b> {{$order->invoice_code}}<br>
+                <b>Order ID:</b> {{$order->id}}<br>
+                <b>Payment Due:</b> {{date('j-m-Y',strtotime($order->created_at))}}<br>
+                <b>Transaction ID:</b> {{$order->transaction_id}}
             </div>
             <!-- /.col -->
         </div>
         <!-- /.row -->
 
         <!-- Table row -->
+        @php
+        $orderDetails = \App\Model\OrderDetails::where('order_id',$order->id)->get();
+
+        @endphp
         <div class="row" style="padding: 20px">
             <div class="col-12 table-responsive">
                 <table class="table table-striped">
@@ -82,14 +86,25 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <tr>
-                        <td>{{$orders->order_details->quantity}}</td>
-                        <td>{{$orders->order_details->name}}</td>
-                        <td>{{$orders->order_details->productStock->variant}}</td>
-{{--                        <td>{{$orders->transaction_id}}</td>--}}
-                        <td>{{$orders->payment_status}}</td>
-                        <td>{{$orders->grand_total}}</td>
-                    </tr>
+                    @foreach($orderDetails as $orderDetail)
+{{--                        @dd($orderDetail->productStock)--}}
+{{--                        @php--}}
+{{--                            $variants = \App\Model\ProductStock::where('id',$orderDetail->variation_id)->get();--}}
+{{--                        @endphp--}}
+                        <tr>
+                            <td>{{$orderDetail->quantity}}</td>
+                            <td>{{$orderDetail->name}}</td>
+                            @if(!empty($orderDetail->productStock))
+                                <td>{{$orderDetail->productStock->variant}}</td>
+                            @else
+                                <td> </td>
+                            @endif
+                            {{--                        <td>{{$order->order_details->productStock->variant}}</td>--}}
+                            {{--                        <td>{{$orders->transaction_id}}</td>--}}
+                            <td>{{$orderDetail->order->payment_status}}</td>
+                            <td>{{$orderDetail->price}}</td>
+                        </tr>
+                    @endforeach
 
                     </tbody>
                 </table>
@@ -120,7 +135,7 @@
                     <table class="table">
                         <tr>
                             <th style="width:50%">Subtotal:</th>
-                            <td>{{$orders->grand_total}}</td>
+                            <td>{{$order->grand_total}}</td>
                         </tr>
 {{--                        <tr>--}}
 {{--                            <th>Tax (9.3%)</th>--}}
@@ -128,11 +143,11 @@
 {{--                        </tr>--}}
                         <tr>
                             <th>Shipping:</th>
-                            <td>{{$orders->delivery_cost}}</td>
+                            <td>{{$order->delivery_cost}}</td>
                         </tr>
                         <tr>
                             <th>Total:</th>
-                            <td>{{$orders->grand_total + $orders->delivery_cost}}</td>
+                            <td>{{$order->grand_total + $order->delivery_cost}}</td>
                         </tr>
                     </table>
                 </div>

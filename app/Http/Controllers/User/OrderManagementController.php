@@ -17,10 +17,10 @@ class OrderManagementController extends Controller
         $orders = Order::where('user_id',Auth::id())->latest()->get();
         return view('frontend.user.order_history',compact('orders'));
     }
-    
+
     public function printInvoice($id) {
-        $orders = Order::find($id);
-        return view('frontend.user.invoice_print',compact('orders'));
+        $order = Order::find($id);
+        return view('frontend.user.invoice_print',compact('order'));
     }
     public function reviewStore(Request $request)
     {

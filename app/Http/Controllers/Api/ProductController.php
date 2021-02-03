@@ -55,4 +55,15 @@ class ProductController extends Controller
             return response()->json(['success'=>false,'response'=> 'Something went wrong!'], 404);
         }
     }
+    public function getRelatedProducts($id){
+        $product = Product::find($id);
+        $RelatedProducts = Product::where('category_id',$product->category_id)->where('published',1)->get();
+        if (!empty($RelatedProducts))
+        {
+            return response()->json(['success'=>true,'response'=> $RelatedProducts], 200);
+        }
+        else{
+            return response()->json(['success'=>false,'response'=> 'Something went wrong!'], 404);
+        }
+    }
 }

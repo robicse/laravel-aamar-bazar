@@ -17,6 +17,11 @@ use Illuminate\Support\Facades\Route;
 Route::group(['middleware' => ['auth:api', 'user']], function () {
     Route::post('/user/profile/update', 'Api\CustomerController@profileUpdate');
     Route::post('/user/password/update', 'Api\CustomerController@passwordUpdate');
+    Route::get('/user/address', 'Api\CustomerController@address');
+    Route::post('/user/address/update', 'Api\CustomerController@addressUpdate');
+    Route::get('/user/wishlist', 'Api\CustomerController@wishlist');
+    Route::post('/add/wishlist/{id}', 'Api\CustomerController@wishlistAdd' );
+    Route::delete('/remove/wishlist/{id}', 'Api\CustomerController@wishlistRemove' );
 });
 
 
@@ -35,6 +40,7 @@ Route::get('/shop-categories/{id}','Api\ShopCategoryController@getShopCategory')
 Route::get('/todays-deal-products/{id}','Api\ProductController@getTodaysDeal');
 Route::get('/best-sales-products/{id}','Api\ProductController@getBestSales');
 Route::get('/flash-deals-products/{id}','Api\ProductController@getFlashDeals');
+Route::get('/related-products/{id}','Api\ProductController@getRelatedProducts');
 
 Route::post('/login','Api\AuthController@login');
 Route::post('/register','Api\AuthController@register');
