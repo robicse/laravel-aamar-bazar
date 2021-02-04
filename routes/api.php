@@ -41,6 +41,7 @@ Route::get('/todays-deal-products/{id}','Api\ProductController@getTodaysDeal');
 Route::get('/best-sales-products/{id}','Api\ProductController@getBestSales');
 Route::get('/flash-deals-products/{id}','Api\ProductController@getFlashDeals');
 Route::get('/related-products/{id}','Api\ProductController@getRelatedProducts');
+Route::get('/search/product', 'Api\ProductController@search_product');
 
 Route::post('/login','Api\AuthController@login');
 Route::post('/register','Api\AuthController@register');

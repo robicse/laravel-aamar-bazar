@@ -277,7 +277,7 @@
                         </ul>
                     </li>
 
-                    <li class="nav-item {{(Request::is('sliders*') ) ? 'active' : ''}}">
+                    <li class="nav-item {{Request::is('admin/sliders*')  ? 'active' : ''}}">
                         <a href="{{route('admin.sliders.index')}}" class="nav-link">
 
                             <i class="nav-icon fas fa-sliders"></i>
@@ -286,11 +286,19 @@
                             </p>
                         </a>
                     </li>
-                    <li class="nav-item {{(Request::is('get-all-vendors*') ) ? 'active' : ''}}">
+                    <li class="nav-item {{Request::is('admin/get-all-vendors*') ? 'active' : ''}}">
                         <a href="{{route('admin.get-all-vendors.index')}}" class="nav-link">
                             <i class="nav-icon fas fa-shopping-bag"></i>
                             <p>
                                 Get all Vendors
+                            </p>
+                        </a>
+                    </li>
+                    <li class="nav-item {{Request::is('admin/seller-order-report*') ? 'active' : ''}}">
+                        <a href="{{route('admin.seller-order-report')}}" class="nav-link">
+                            <i class="nav-icon fab fa-first-order"></i>
+                            <p>
+                                Seller Order Report
                             </p>
                         </a>
                     </li>
