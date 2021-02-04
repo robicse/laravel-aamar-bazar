@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 class VendorController extends Controller
 {
     public function index() {
-//        echo "Hello";
+       //echo "Hello";
         return view('backend.admin.vendor.index');
     }
 }
