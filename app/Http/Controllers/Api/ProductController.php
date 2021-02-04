@@ -66,4 +66,20 @@ class ProductController extends Controller
             return response()->json(['success'=>false,'response'=> 'Something went wrong!'], 404);
         }
     }
+    public function search_product(Request $request) {
+
+        $storeId =  $request->get('storeId');
+        $name = $request->get('q');
+        $shops = Shop::find($storeId);
+//        return $name;
+
+        $products = Product::where('name', 'LIKE', '%'. $name. '%')->where('user_id',$shops->user_id)->where('added_by','seller')->get();
+        if (!empty($products))
+        {
+            return response()->json(['success'=>true,'response'=> $products], 200);
+        }
+        else{
+            return response()->json(['success'=>false,'response'=> 'Something went wrong!'], 404);
+        }
+    }
 }

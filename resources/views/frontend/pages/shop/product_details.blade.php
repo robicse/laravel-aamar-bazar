@@ -363,6 +363,7 @@
                     </aside>
                 </div>
             </div>
+            @if($categories->count() > 1)
             <div class="ps-section--default">
                 <div class="ps-section__header">
                     <h3>Related products</h3>
@@ -394,7 +395,7 @@
                                             <p class="ps-product__price">৳ {{$product->unit_price}}</p>
                                         </div>
                                         <div class="ps-product__content hover"><a class="ps-product__title" href="{{route('product-details',$product->slug)}}">{{$product->name}}</a>
-                                            <p class="ps-product__price">৳ {{$product->name}}</p>
+                                            <p class="ps-product__price">৳ {{$product->unit_price}}</p>
                                         </div>
                                     </div>
                                 </div>
@@ -429,6 +430,7 @@
                     </div>
                 </div>
             </div>
+            @endif
         </div>
         <input type = "hidden" class="base_price" value="{{$price}}" autocomplete="off">
         <input type = "hidden" class="base_qty" value="{{$avilability}}" autocomplete="off">
