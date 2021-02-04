@@ -111,7 +111,7 @@
 <script src="{{asset('backend/plugins/chartjs-old/Chart.min.js')}}"></script>
 
 <!-- PAGE SCRIPTS -->
-<script src="{{asset('backend/dist/js/pages/dashboard2.js')}}"></script>
+{{--<script src="{{asset('backend/dist/js/pages/dashboard2.js')}}"></script>--}}
 <script src="{{asset('backend/plugins/form.js')}}"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
 {!! Toastr::message() !!}
