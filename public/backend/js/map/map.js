@@ -35,8 +35,9 @@ function success(position) {
     console.log(latval)
     myLatLng = new google.maps.LatLng(latval, lngval);
 
-   /* createMap(myLatLng);
-    searchVendors(latval,lngval);*/
+    createMap(myLatLng);
+    searchVendors(latval,lngval);
+
 }
 
 function fail() {
@@ -44,7 +45,7 @@ function fail() {
 }
 //Create Map
 function createMap(myLatLng) {
-    map = new google.maps.Map(document.getElementById('map'), {
+    map = new google.maps.Map(document.getElementById('shop_map'), {
         center: myLatLng,
         zoom: 13,
     });
@@ -80,7 +81,7 @@ function searchVendors(lat,lng){
         }
     });
     $.ajax({
-        url: '/shop/location/near/list',
+        url: '/admin/get/all/shops/in/map',
         method: 'post',
         data: {
             lat:lat,
@@ -88,33 +89,37 @@ function searchVendors(lat,lng){
             // service_id:get_service(),
         },
         success: function(data){
-            //console.log(data);
+            console.log(data);
 
 
             if (data.response.length==0){
-                $('.near_shop_list').html(`<div class="row">
-                                            <div class="col-md-12 text-center">
-                                                <p class="font-weight-light p-5">Empty Location List</p>
-                                            </div>
-                                        </div>`);
+
             }
             else{
                 var i;
-                 $('.near_shop_list').empty();
+
                 for(i=0;i<data.response.length;i++){
-                    var glatval=data.response[i].lat;
-                    var glngval=data.response[i].lng;
-                    var gname=data.response[i].location_title;
+                    var glatval=data.response[i].latitude;
+                    var glngval=data.response[i].longitude;
+                    var gname=data.response[i].name;
                     var gaddress=data.response[i].address;
-
+                    var url = window.location.origin+'/shop/'+data.response[i].slug;
+                    console.log(url)
                     var gcontent= `<div class="row mx-1">
-                        <p>love</p>
-                    </div>`;
+                            <div class="col-md-12">
+                                <h6 class="m-1 p-0" style="font-size: 14px;line-height: 23px;font-weight: bold;">Name: `+data.response[i].name+`</h6>
+                                <p class="m-1 p-0" style="font-size: 14px;">Area: `+data.response[i].area+`</p>
+                                <p class="m-1 p-0" style="font-size: 14px;">City: `+data.response[i].city+`</p>
+                                <p class="m-1 p-0" style="font-size: 14px;">Address: `+data.response[i].address+`</p>
+                                <a class="btn btn-primary w-100" target="_blank" href="${url}" style="font-size: 14px;">Go to shop </a>
+                               
+                            </div>
+                        </div>`;
 
-                    var gicn= window.location.origin+'/frontend/img/pins/map-marker-sub.png'
+                    var gicn= window.location.origin+'/backend/dist/img/shop-marker.png'
                     var GLatLng = new google.maps.LatLng(glatval, glngval);
                     createMarker(GLatLng,gicn,gname,gcontent);
-                    // console.log(GLatLng);
+                     console.log(GLatLng);
 
                 }
             }

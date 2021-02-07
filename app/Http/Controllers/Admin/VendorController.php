@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Model\Order;
+use App\Model\Shop;
 use App\User;
 use Illuminate\Http\Request;
 
@@ -30,4 +31,11 @@ class VendorController extends Controller
         }
 
     }
+
+    public function nearestShp(Request $request)
+    {
+        $vendors = Shop::all();
+        return response()->json(['success'=> true, 'response'=>$vendors]);
+    }
+
 }
