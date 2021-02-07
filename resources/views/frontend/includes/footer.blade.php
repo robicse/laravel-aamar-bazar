@@ -8,8 +8,8 @@
 {{--                <h4 class="widget-title">Contact us</h4>--}}
                 <div class="widget_content">
                     <p>Call us 24/7</p>
-                    <h3>1800 97 97 69</h3>
-                    <p>502 New Design Str, Melbourne, Australia <br><a href="http://nouthemes.net/cdn-cgi/l/email-protection#fc9f9392889d9f88bc919d8e889a898e85d29f93"><span class="__cf_email__" data-cfemail="7714181903161403371a1605031102050e591418">[email&#160;protected]</span></a></p>
+                    <h3>01689-063954</h3>
+                    <p>5th Floor (Lift Button-4), BBTOA Building, 9 No South, Mirpur Rd, Dhaka 1207 <br><a href=""><span class="__cf_email__" data-cfemail="7714181903161403371a1605031102050e591418"></span></a></p>
                 </div>
             </aside>
             <aside class="widget widget_footer">

@@ -78,7 +78,7 @@ class CustomerController extends Controller
         $wishlists = DB::table('wishlists')
             ->join('products','wishlists.product_id','=','products.id')
             ->where('wishlists.user_id', Auth::user()->id)
-            ->select('wishlists.id','wishlists.product_id','products.name','products.current_stock','products.unit_price')
+            ->select('wishlists.id','wishlists.product_id','products.name','products.current_stock','products.unit_price','products.thumbnail_img')
             ->get();
 //        return $wishlists;
             if (!empty($wishlists))

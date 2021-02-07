@@ -46,15 +46,15 @@
                                                     </div>
                                                 </div>
                                                 <div class="card-body">
-                                                    <p class="card-text">Address: <strong>{{$address->address}}</strong></p>
-                                                    <p class="card-text">Postal Code: <strong>{{$address->postal_code}}</strong></p>
-                                                    <p class="card-text">City: <strong>{{$address->city}}</strong></p>
-                                                    <p class="card-text">Country: <strong>{{$address->country}}</strong></p>
-                                                    <p class="card-text">Phone: <strong>{{$address->phone}}</strong>
+                                                    <div class="card-text">Address: <strong>{{$address->address}}</strong></div>
+                                                    <div class="card-text">Postal Code: <strong>{{$address->postal_code}}</strong></div>
+                                                    <div class="card-text">City: <strong>{{$address->city}}</strong></div>
+                                                    <div class="card-text">Country: <strong>{{$address->country}}</strong></div>
+                                                    <div class="card-text">Phone: <strong>{{$address->phone}}</strong>
                                                     @if($address->set_default == 1)
                                                     <a href="#" class="btn btn-primary" style="margin-left: 150px;">Default</a>
                                                     @endif
-                                                    </p>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
@@ -163,77 +163,7 @@
                                     <button class="ps-btn">Save</button>
                                 </div>
                             </div>
-
                         </form>
-{{--                        <form class="form-horizontal" action="{{route('career.store',$jobDetails->id)}}" method="post" enctype="multipart/form-data">--}}
-{{--                            @csrf--}}
-{{--                            <fieldset class="modal-body">--}}
-{{--                                <div class="form-group">--}}
-{{--                                    <div class="col-sm-6">--}}
-{{--                                        <label>Your Name</label>--}}
-{{--                                        <input class="form-control" placeholder="Enter your name" id="name" value="" name="name" required="" type="text">--}}
-{{--                                    </div>--}}
-{{--                                    <div class="col-sm-6">--}}
-{{--                                        <label>Your Email</label>--}}
-{{--                                        <input class="form-control" id="email" placeholder="you@yourdomain.com" value="" name="email" required="" type="text">--}}
-{{--                                    </div>--}}
-{{--                                </div>--}}
-{{--                                <div class="form-group">--}}
-{{--                                    <div class="col-sm-6">--}}
-{{--                                        <label>Your Phone</label>--}}
-{{--                                        <input class="form-control" placeholder="Enter your Phone number" id="contact_number" value="" name="contact_number" required="" type="text">--}}
-{{--                                    </div>--}}
-{{--                                    <div class="col-sm-6">--}}
-{{--                                        --}}{{--                                <input class="form-control" id="input-email" placeholder="you@yourdomain.com" value="" name="email" required="" type="text">--}}
-{{--                                        <label for="CV">Upload your CV</label>--}}
-{{--                                        <input type="file" name="cv" placeholder="CV" required="">--}}
-{{--                                    </div>--}}
-{{--                                </div>--}}
-{{--                                --}}{{--                        <div class="form-group">--}}
-{{--                                --}}{{--                            <div class="col-sm-12">--}}
-{{--                                --}}{{--                                <label>Subject</label>--}}
-{{--                                --}}{{--                                <input class="form-control" id="input-subject" placeholder="" value="" name="email" required="" type="text">--}}
-{{--                                --}}{{--                            </div>--}}
-{{--                                --}}{{--                        </div>--}}
-{{--                                <div class="form-group">--}}
-{{--                                    <div class="col-sm-12">--}}
-{{--                                        <label>Message</label>--}}
-{{--                                        <textarea class="form-control" id="msg" rows="10" name="msg" placeholder="Enter Message" required=""></textarea>--}}
-{{--                                    </div>--}}
-{{--                                </div>--}}
-
-
-{{--                                <div class="button">--}}
-{{--                                    <button type="submit" value="Submit" class="btn btn-primary btnus">SUBMIT</button>--}}
-{{--                                </div>--}}
-{{--                            </fieldset>--}}
-{{--                        </form>--}}
-                        {{--                <form action="" method="post">--}}
-                        {{--                    <div class="row" style="padding: 10px 0px 0px 150px;">--}}
-                        {{--                        <div class="col-lg-8 col-6">--}}
-                        {{--                            <div class="small-box bg-info">--}}
-                        {{--                                <div class="inner text-center">--}}
-                        {{--                                    <p>Pending Balance</p>--}}
-                        {{--                                </div>--}}
-                        {{--                            </div>--}}
-                        {{--                        </div>--}}
-                        {{--                    </div>--}}
-                        {{--                    <div class="modal-body">--}}
-                        {{--                        @csrf--}}
-                        {{--                        <div class="form-group">--}}
-                        {{--                            <label for="exampleFormControlInput1">Amount</label>--}}
-                        {{--                            <input type="number" name="amount" class="form-control" id="exampleFormControlInput1">--}}
-                        {{--                        </div>--}}
-                        {{--                        <div class="form-group">--}}
-                        {{--                            <label for="exampleFormControlTextarea1">Message</label>--}}
-                        {{--                            <textarea class="form-control" name="message" id="exampleFormControlTextarea1" rows="4"></textarea>--}}
-                        {{--                        </div>--}}
-                        {{--                    </div>--}}
-                        {{--                    <div class="modal-footer">--}}
-                        {{--                        <button type="submit" class="btn btn-success">Send</button>--}}
-                        {{--                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>--}}
-                        {{--                    </div>--}}
-                        {{--                </form>--}}
                     </div>
                 </div>
             </div>

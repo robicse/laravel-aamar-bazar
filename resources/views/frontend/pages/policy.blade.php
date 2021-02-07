@@ -12,14 +12,20 @@
         </div>
         <div class="ps-faqs">
             <div class="container">
-                <div class="ps-section__header">
-                    <h1>Our Policy</h1>
+                <div class="text-center">
+                    <h3>Our Policy</h3>
                 </div>
                 <div class="ps-section__content text-justify">
-                    <h4>The standard Lorem Ipsum passage, used since the 1500s</h4>
-                    <p>"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."</p>
-                    <h4>Section 1.10.32 of "de Finibus Bonorum et Malorum", written by Cicero in 45 BC</h4>
-                    <p>"Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?"</p>
+                    <p>Mudi Hat, owner of the www.mudihat.com is an Innovative online based organic agro- product and beverage shopping space and the website respects your privacy. This Privacy Policy provides concisely the manner your data is collected and used by system on the Site. As a visitor to the Site/ Customer you are advised to please read the Privacy Policy carefully. By accessing the services provided by the Site you agree to the collection and use of your data by system.</p>
+                    <p>As part of the registration process on the Site, system may collect the following personally identifiable information about you: Name including first and last name, alternate email address, mobile phone number and contact details, Postal code, Demographic profile (like your age, gender, occupation, education, address etc.) and information about the pages on the site you visit/access, the links you click on the site, the number of times you access the page and any such browsing information.</p>
+                    <p>When you use our Website, we collect and store your personal information which is provided by you from time to time. Our primary goal in doing so is to provide you a safe, efficient, smooth and customized experience. This allows us to provide services and features that most likely meet your needs, and to customize our website to make your experience safer and easier. More importantly, while doing so, we collect personal information from you that we consider necessary for achieving this purpose.</p>
+                    <p>Below are some of the ways in which we collect and store your information:</p>
+                    <p>We receive and store any information you enter on our website or give us in any other way. We use the information that you provide for such purposes as responding to your requests, customizing future shopping for you, improving our stores, and communicating with you.</p>
+                    <p>We also store certain types of information whenever you interact with us. For example, like many websites, we use “cookies,” and we obtain certain types of information when your web browser accesses www.mudihat.com or advertisements and other content served by or on behalf of www.mudihat.com on other websites.</p>
+                    <p>To help us make e-mails more useful and interesting, we often receive a confirmation when you open e-mail from www.mudihat.com if your computer supports such capabilities.</p>
+                    <p>Information about our customers is an important part of our business, and we are not in the business of selling it to others.</p>
+                    <p>We release account and other personal information when we believe release is appropriate to comply with the law; enforce or apply our Terms of Use and other agreements; or protect the rights, property, or safety of www.mudihat.com, our users or others. This includes exchanging information with other companies and organizations for fraud protection.</p>
+                    <p>Mudi Hat Ltd. reserves the right to change or update this policy at any time. Such changes shall be effective immediately upon posting to the Site.</p>
                 </div>
             </div>
         </div>

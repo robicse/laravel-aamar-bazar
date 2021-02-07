@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
+use App\Model\Address;
 use App\Model\BusinessSetting;
 use App\Model\Order;
 use App\Model\OrderDetails;
@@ -122,7 +123,9 @@ class CartController extends Controller
             Toastr::error('Nothing fount in cart');
             return back();
         }
-        return view('frontend.pages.shop.checkout');
+        $addresses = Address::where('user_id', Auth::id())->get();
+//        dd($address);
+        return view('frontend.pages.shop.checkout',compact('addresses'));
     }
 
     public function orderSubmit(Request $request) {

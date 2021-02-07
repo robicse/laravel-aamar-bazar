@@ -89,7 +89,7 @@ Route::group(['middleware' => ['auth', 'user']], function () {
     Route::get('/user/invoices', 'User\DashboardController@invoices')->name('user.invoices');
     Route::get('/user/notifications', 'User\DashboardController@notification')->name('user.notification');
 //    Route::get('/user/address', 'User\DashboardController@address')->name('user.address');
-    Route::post('/user/address/update', 'User\DashboardController@updateAddress')->name('user.address-update');
+//    Route::post('/user/address/update', 'User\DashboardController@updateAddress')->name('user.address-update');
     Route::get('/user/order/history', 'User\OrderManagementController@orderHistory')->name('user.order.history');
     Route::post('/user/order/review', 'User\OrderManagementController@reviewStore')->name('user.order.review.store');
     Route::get('order-details/invoice/print/{id}','User\OrderManagementController@printInvoice')->name('invoice.print');

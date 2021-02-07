@@ -26,11 +26,11 @@ class DashboardController extends Controller
     {
         return view('frontend.user.notification');
     }
-    public function address()
-    {
-        $addresses = Address::where('user_id',Auth::id())->get();
-        return view('frontend.user.address',compact('addresses'));
-    }
+//    public function address()
+//    {
+//        $addresses = Address::where('user_id',Auth::id())->get();
+//        return view('frontend.user.address',compact('addresses'));
+//    }
     public function updateAddress(Request $request){
         $this->validate($request, [
            'address' =>'required',
