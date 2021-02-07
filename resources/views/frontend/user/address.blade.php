@@ -15,7 +15,7 @@
             <div class="container">
                 <div class="row">
                     @include('frontend.user.includes.user_sidebar')
-                    <div class="col-lg-8">
+                    <div class="col-lg-9">
                         <div class="ps-section__right">
                             <div class="ps-section--account-setting">
                                 <div class="ps-section__header">
@@ -23,21 +23,78 @@
                                 </div>
                                 <div class="ps-section__content">
                                     <div class="row">
-                                        <div class="col-md-6 col-12">
-                                            <figure class="ps-block--address">
-                                                <figcaption>Customer address</figcaption>
-                                                @if(!empty(Auth::User()->address))
-                                                <div class="ps-block__content">
-                                                    <h4>{{Auth::User()->address}}</h4>
-                                                    <button class="ps-btn" style="padding: 7px 15px 7px 15px; font-size: 14px; margin-top: 10px;"><a href="#" data-toggle="modal" data-target="#exampleModal">Edit</a></button>
-                                                </div>
-                                                @else
-                                                    <div class="ps-block__content">
-                                                        <p>You haven't upload your address yet..</p><a href="#" data-toggle="modal" data-target="#exampleModal">Edit</a>
+                                        @if(!empty($addresses))
+                                            @foreach($addresses as $address)
+                                        <div class="col-md-6 col-12" style="padding-bottom: 15px;">
+                                            <div class="card" style="width: 40rem;">
+                                                <div class="text-right dropdown">
+                                                <button class="btn bg-black" type="button" id="dropdownMenuButton" data-toggle="dropdown" style="background: #f1f1f1;">
+                                                    <i class="fa fa-ellipsis-v"></i>
+                                                </button>
+                                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" style="font-size: 14px;">
+                                                        @if($address->set_default == 0)
+                                                            <form action="{{route('user.update.status',$address->id)}}" method="POST">
+                                                                @csrf
+                                                               <button class="btn btn-lg"> <a class="dropdown-item">Make Default</a></button>
+                                                            </form>
+                                                        @endif
+                                                            <form action="{{route('user.address.destroy',$address->id)}}" method="POST">
+                                                                @csrf
+                                                                @method('DELETE')
+                                                                <button class="btn btn-lg"><a class="dropdown-item"> Delete </a></button>
+                                                            </form>
                                                     </div>
-                                                @endif
-                                            </figure>
+                                                </div>
+                                                <div class="card-body">
+                                                    <p class="card-text">Address: <strong>{{$address->address}}</strong></p>
+                                                    <p class="card-text">Postal Code: <strong>{{$address->postal_code}}</strong></p>
+                                                    <p class="card-text">City: <strong>{{$address->city}}</strong></p>
+                                                    <p class="card-text">Country: <strong>{{$address->country}}</strong></p>
+                                                    <p class="card-text">Phone: <strong>{{$address->phone}}</strong>
+                                                    @if($address->set_default == 1)
+                                                    <a href="#" class="btn btn-primary" style="margin-left: 150px;">Default</a>
+                                                    @endif
+                                                    </p>
+                                                </div>
+                                            </div>
                                         </div>
+                                            @endforeach
+                                            <div class="col-md-6 col-12" style="padding-bottom: 15px;">
+                                                <div class="card" style="width: 40rem; height: 12rem;">
+                                                    <div class="card-body">
+                                                        <h3 class="text-center">
+                                                            <a data-toggle="modal" data-target="#exampleModal"> <i class="fa fa-plus"></i></a>
+                                                            <p>Add new Address</p>
+                                                        </h3>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        @else
+                                            <div class="col-md-6 col-12">
+                                                <div class="card" style="width: 40rem; height: 12rem;">
+                                                    <div class="card-body">
+                                                        <h3 class="text-center">
+                                                           <a data-toggle="modal" data-target="#exampleModal"> <i class="fa fa-plus"></i></a>
+                                                            <p>Add new Address</p>
+                                                        </h3>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        @endif
+                                    </div>
+{{--                                            <figure class="ps-block--address">--}}
+{{--                                                <figcaption>Customer address</figcaption>--}}
+{{--                                                @if(!empty(Auth::User()->address))--}}
+{{--                                                <div class="ps-block__content">--}}
+{{--                                                    <h4>{{Auth::User()->address}}</h4>--}}
+{{--                                                    <button class="ps-btn" style="padding: 7px 15px 7px 15px; font-size: 14px; margin-top: 10px;"><a href="#" data-toggle="modal" data-target="#exampleModal">Edit</a></button>--}}
+{{--                                                </div>--}}
+{{--                                                @else--}}
+{{--                                                    <div class="ps-block__content">--}}
+{{--                                                        <p>You haven't upload your address yet..</p><a href="#" data-toggle="modal" data-target="#exampleModal">Edit</a>--}}
+{{--                                                    </div>--}}
+{{--                                                @endif--}}
+{{--                                            </figure>--}}
 {{--                                        <div class="col-md-6 col-12">--}}
 {{--                                            <figure class="ps-block--address">--}}
 {{--                                                <figcaption>Shipping address</figcaption>--}}
@@ -46,7 +103,7 @@
 {{--                                                </div>--}}
 {{--                                            </figure>--}}
 {{--                                        </div>--}}
-                                    </div>
+
                                 </div>
                             </div>
                         </div>
@@ -62,18 +119,48 @@
                                 <span aria-hidden="true">&times;</span>
                             </button>
                         </div>
-                        <form class="ps-form--account-setting" action="{{route('user.address-update')}}" method="POST" enctype="multipart/form-data">
+                        <form class="ps-form--account-setting" action="{{route('user.address.store')}}" method="POST" enctype="multipart/form-data">
                             @csrf
                             <div class="modal-body">
-                                <div class="ps-form__content">
-                                    <div class="form-group">
-                                        <label>Address</label>
-                                        <textarea class="form-control" name="address"></textarea>
-                                        {{--                                    <input class="form-control" type="text" name="name" value="{{ Auth::User()->name }}" placeholder="Please enter your name...">--}}
+                                <div class="ps-form__content" style="padding-left: 50px; padding-top: 20px;">
+{{--                                    <div class="form-group row">--}}
+{{--                                        <label class="col-md-2">Address</label>--}}
+{{--                                        <input class="form-control col-md-4" type="text" name="address" placeholder="Your Address">--}}
+{{--                                    </div>--}}
+                                    <div class="form-group row">
+                                        <label for="address" class="col-sm-2">Address</label>
+                                        <div class="col-sm-8">
+                                            <input type="text" class="form-control form-control-sm" name="address" placeholder="Your Address">
+                                        </div>
                                     </div>
+                                    <div class="form-group row">
+                                        <label for="country" class="col-sm-2">Country</label>
+                                        <div class="col-sm-8">
+                                            <input type="text" class="form-control form-control-sm" name="country" placeholder="Bangladesh" {{'Bangladesh' ? 'readonly' : ''}}>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="city" class="col-sm-2">City</label>
+                                        <div class="col-sm-8">
+                                            <input type="text" class="form-control form-control-sm" name="city" placeholder="Your City">
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="postal_code" class="col-sm-2">Postal Code</label>
+                                        <div class="col-sm-8">
+                                            <input type="text" class="form-control form-control-sm" name="postal_code" placeholder="Your Postal Code">
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="phone" class="col-sm-2">Phone</label>
+                                        <div class="col-sm-8">
+                                            <input type="text" class="form-control form-control-sm" name="phone" placeholder="Your phone">
+                                        </div>
+                                    </div>
+
                                 </div>
-                                <div class="form-group submit">
-                                    <button class="ps-btn">Update</button>
+                                <div class="form-group submit" style="padding-left: 125px;" >
+                                    <button class="ps-btn">Save</button>
                                 </div>
                             </div>
 

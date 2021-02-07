@@ -14,10 +14,13 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::group(['middleware' => ['auth:api', 'user']], function () {
+Route::group(['middleware' => ['auth:api']], function () {
     Route::post('/user/profile/update', 'Api\CustomerController@profileUpdate');
     Route::post('/user/password/update', 'Api\CustomerController@passwordUpdate');
-    Route::get('/user/address', 'Api\CustomerController@address');
+    Route::get('/user/address', 'Api\AddressController@index');
+    Route::post('/user/address/add', 'Api\AddressController@store');
+    Route::post('/user/address/set-default/{id}', 'Api\AddressController@setDefault');
+    Route::delete('/user/address/delete/{id}', 'Api\AddressController@destroy');
     Route::post('/user/address/update', 'Api\CustomerController@addressUpdate');
     Route::get('/user/wishlist', 'Api\CustomerController@wishlist');
     Route::post('/add/wishlist/{id}', 'Api\CustomerController@wishlistAdd' );
@@ -42,6 +45,8 @@ Route::get('/best-sales-products/{id}','Api\ProductController@getBestSales');
 Route::get('/flash-deals-products/{id}','Api\ProductController@getFlashDeals');
 Route::get('/related-products/{id}','Api\ProductController@getRelatedProducts');
 Route::get('/search/product', 'Api\ProductController@search_product');
+Route::get('/category/featured-products/{id}', 'Api\CategoryController@categoryProducts');
+Route::get('/category/all-products/{id}', 'Api\CategoryController@categoryAllProducts');
 
 Route::post('/login','Api\AuthController@login');
 Route::post('/register','Api\AuthController@register');

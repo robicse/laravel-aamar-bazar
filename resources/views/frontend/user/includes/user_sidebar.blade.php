@@ -13,7 +13,7 @@
                     <li class="{{Request::is('user/edit-password*') ? 'active' :''}}"><a href="{{route('user.edit-password')}}"><i class="icon-alarm-ringing"></i>Edit Password</a></li>
 {{--                    <li class="{{Request::is('user/notification*') ? 'active' :''}}"><a href="{{route('user.notification')}}"><i class="icon-alarm-ringing"></i>Notifications</a></li>--}}
 {{--                    <li><a href="{{route('user.invoices')}}"><i class="icon-papers"></i> Invoices</a></li>--}}
-                    <li class="{{Request::is('user/address*') ? 'active' :''}}"><a href="{{route('user.address')}}"><i class="icon-map-marker"></i>Address</a></li>
+                    <li class="{{Request::is('user/address*') ? 'active' :''}}"><a href="{{route('user.address.index')}}"><i class="icon-map-marker"></i>Address</a></li>
                     <li class="{{Request::is('user/order/history*') ? 'active' :''}}"><a href="{{route('user.order.history')}}"><i class="icon-store"></i>Order History</a></li>
                     <li class="{{Request::is('user/wishlist*') ? 'active' :''}}"><a href="{{route('user.wishlist')}}"><i class="icon-heart"></i>Wishlist</a></li>
                     <li>

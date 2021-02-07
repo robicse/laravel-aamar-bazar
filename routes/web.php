@@ -88,7 +88,7 @@ Route::group(['middleware' => ['auth', 'user']], function () {
     Route::post('/user/password/update', 'User\DashboardController@updatePassword')->name('user.password-update');
     Route::get('/user/invoices', 'User\DashboardController@invoices')->name('user.invoices');
     Route::get('/user/notifications', 'User\DashboardController@notification')->name('user.notification');
-    Route::get('/user/address', 'User\DashboardController@address')->name('user.address');
+//    Route::get('/user/address', 'User\DashboardController@address')->name('user.address');
     Route::post('/user/address/update', 'User\DashboardController@updateAddress')->name('user.address-update');
     Route::get('/user/order/history', 'User\OrderManagementController@orderHistory')->name('user.order.history');
     Route::post('/user/order/review', 'User\OrderManagementController@reviewStore')->name('user.order.review.store');
@@ -98,8 +98,9 @@ Route::group(['middleware' => ['auth', 'user']], function () {
     Route::post('/checkout/order/submit', 'Frontend\CartController@orderSubmit')->name('checkout.order.submit');
     //this route only for resource controller
     Route::group(['as' => 'user.', 'prefix' => 'user', 'namespace' => 'User',], function () {
-        //Route::resource('products', 'ProductController');
+        Route::resource('address', 'AddressController');
     });
+    Route::post('/user/address-status/update/{id}', 'User\AddressController@updateStatus')->name('user.update.status');
 
 });
 //Route::get('/vendor/dashboard', 'Vendor\DashboardController@index')->name('vendor.dashboard');

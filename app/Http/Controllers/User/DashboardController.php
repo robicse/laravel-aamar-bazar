@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\User;
 
+use App\Model\Address;
 use App\Model\Order;
 use App\Model\OrderDetails;
 use App\User;
@@ -27,16 +28,25 @@ class DashboardController extends Controller
     }
     public function address()
     {
-        return view('frontend.user.address');
+        $addresses = Address::where('user_id',Auth::id())->get();
+        return view('frontend.user.address',compact('addresses'));
     }
     public function updateAddress(Request $request){
         $this->validate($request, [
            'address' =>'required',
+            'city' =>'required',
+            'postal_code' => 'required',
+            'phone' => 'required',
         ]);
-        $user = User::find(Auth::id());
-        $user->address = $request->address;
-        $user->save();
-        Toastr::success('Address Updated Successfully');
+        $address = new Address();
+        $address->user_id = Auth::id();
+        $address->address = $request->address;
+        $address->country = 'Bangladesh';
+        $address->city = $request->city;
+        $address->postal_code = $request->postal_code;
+        $address->phone = $request->phone;
+        $address->save();
+        Toastr::success('Address Created Successfully');
         return redirect()->back();
 
     }
