@@ -54,6 +54,9 @@
                     <b>Phone: </b> {{$shippingInfo->phone}} <br>
                     <b>Email: </b> {{$shippingInfo->email}}<br>
                     <b>Address: </b> {{$shippingInfo->address}}<br>
+                    @if(!empty($shippingInfo->postal_code))
+                    <b>Postal Code: </b> {{$shippingInfo->postal_code}}<br>
+                    @endif
                 </address>
             </div>
             <!-- /.col -->

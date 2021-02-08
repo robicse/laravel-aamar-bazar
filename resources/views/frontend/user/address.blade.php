@@ -6,7 +6,6 @@
             <div class="container">
                 <ul class="breadcrumb">
                     <li><a href="{{('/')}}">Home</a></li>
-                    <li><a href="">Account</a></li>
                     <li>Addresses</li>
                 </ul>
             </div>
@@ -50,9 +49,10 @@
                                                     <div class="card-text">Postal Code: <strong>{{$address->postal_code}}</strong></div>
                                                     <div class="card-text">City: <strong>{{$address->city}}</strong></div>
                                                     <div class="card-text">Country: <strong>{{$address->country}}</strong></div>
-                                                    <div class="card-text">Phone: <strong>{{$address->phone}}</strong>
+                                                    <div class="card-text">Phone: <strong>{{$address->phone}}</strong></div>
+                                                    <div class="card-text">Type: <strong>{{$address->type}}</strong>
                                                     @if($address->set_default == 1)
-                                                    <a href="#" class="btn btn-primary" style="margin-left: 150px;">Default</a>
+                                                    <a href="#" class="btn btn-primary" style="margin-left: 180px;">Default</a>
                                                     @endif
                                                     </div>
                                                 </div>
@@ -155,6 +155,17 @@
                                         <label for="phone" class="col-sm-2">Phone</label>
                                         <div class="col-sm-8">
                                             <input type="text" class="form-control form-control-sm" name="phone" placeholder="Your phone">
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="phone" class="col-sm-2">Type</label>
+                                        <div class="col-sm-8">
+                                            <select name="type" id="type" class="form-control" required>
+                                                <option value="Home">Home</option>
+                                                <option value="Office">Office</option>
+                                                <option value="Others">Others</option>
+                                            </select>
+{{--                                            <input type="text" class="form-control form-control-sm" name="phone" placeholder="Your phone">--}}
                                         </div>
                                     </div>
 

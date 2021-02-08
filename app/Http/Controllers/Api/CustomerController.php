@@ -108,7 +108,7 @@ class CustomerController extends Controller
         }
     }
     public function wishlistRemove($id){
-        $wishlist = Wishlist::find($id);
+        $wishlist = Wishlist::where('product_id', $id)->where('user_id', Auth::id())->first();
         if (!empty($wishlist))
         {
             $wishlist->delete();

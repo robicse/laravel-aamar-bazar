@@ -36,6 +36,7 @@ class AddressController extends Controller
         $address->city = $request->city;
         $address->postal_code = $request->postal_code;
         $address->phone = $request->phone;
+        $address->type = $request->type;
         $address->save();
         Toastr::success('Address Created Successfully');
         return redirect()->back();

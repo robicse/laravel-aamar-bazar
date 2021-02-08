@@ -131,9 +131,9 @@ class CartController extends Controller
     public function orderSubmit(Request $request) {
         //dd($request->all());
         $this->validate($request,[
-            'name' => 'required',
-            'address' => 'required',
-            'phone' => 'required',
+//            'name' => 'required',
+//            'address' => 'required',
+//            'phone' => 'required',
             'pay' => 'required',
         ]);
         if($request->pay == 'cod'){
@@ -142,12 +142,15 @@ class CartController extends Controller
         if($request->pay == 'ssl'){
             $payment_status = 'Paid';
         }
+        $address = Address::where('user_id',Auth::id())->where('set_default',1)->first();
         //dd($request->all());
-        $data['name'] = $request->name;
-        $data['phone'] = $request->phone;
-        $data['email'] = $request->email;
-        $data['address'] = $request->address;
-        $data['note'] = $request->note;
+        $data['name'] = Auth::User()->name;
+        $data['email'] = Auth::User()->email;
+        $data['address'] = $address->address;
+        $data['country'] = $address->country;
+        $data['city'] = $address->city;
+        $data['postal_code'] = $address->postal_code;
+        $data['phone'] = $address->phone;
         $shipping_info = json_encode($data);
 
         foreach (Cart::content() as $content) {
@@ -168,7 +171,6 @@ class CartController extends Controller
         $order->view = 0;
         $order->type = "product";
         $order->save();
-
 
         foreach (Cart::content() as $content) {
             $orderDetails = new OrderDetails();

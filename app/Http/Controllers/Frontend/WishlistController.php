@@ -36,7 +36,7 @@ class WishlistController extends Controller
     }
     public function wishlist(){
         $wishlists = Wishlist::where('user_id', Auth::id())->latest()->get();
-        return view('Frontend.user.wishlist', compact('wishlists'));
+        return view('frontend.user.wishlist', compact('wishlists'));
     }
     public function wishlistRemove($id)
     {
