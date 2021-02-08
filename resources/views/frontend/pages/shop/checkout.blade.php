@@ -62,44 +62,35 @@
 {{--                                                                    <input type="radio" name="pay" id="ssl" value="ssl" style="background: red;">--}}
 {{--                                                            </form>--}}
 {{--                                                        </div>--}}
+                                                        <div class="text-right dropdown">
+                                                            <button class="btn bg-black" type="button" id="dropdownMenuButton" data-toggle="dropdown" style="background: #f1f1f1;">
+                                                                <i class="fa fa-ellipsis-v"></i>
+                                                            </button>
+                                                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" style="font-size: 14px;">
+                                                                @if($address->set_default == 0)
+                                                                    <form action="{{route('user.update.status',$address->id)}}" method="POST">
+                                                                        @csrf
+                                                                        <button class="btn btn-lg"> Make Default</button>
+                                                                    </form>
+                                                                @endif
+                                                                <form action="{{route('user.address.destroy',$address->id)}}" method="POST">
+                                                                    @csrf
+                                                                    @method('DELETE')
+                                                                    <button class="btn btn-lg"><a class="dropdown-item"> Delete </a></button>
+                                                                </form>
+                                                            </div>
+                                                        </div>
 
-
-{{--                                                        <div class="text-right dropdown">--}}
-{{--                                                            <button class="btn bg-black" type="button" id="dropdownMenuButton" data-toggle="dropdown" style="background: #f1f1f1;">--}}
-{{--                                                                <i class="fa fa-ellipsis-v"></i>--}}
-{{--                                                            </button>--}}
-{{--                                                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" style="font-size: 14px;">--}}
-{{--                                                                @if($address->set_default == 0)--}}
-{{--                                                                    <form action="{{route('user.update.status',$address->id)}}" method="POST">--}}
-{{--                                                                        @csrf--}}
-{{--                                                                        <button class="btn btn-lg"> <a class="dropdown-item">Make Default</a></button>--}}
-{{--                                                                    </form>--}}
-{{--                                                                @endif--}}
-{{--                                                                <form action="{{route('user.address.destroy',$address->id)}}" method="POST">--}}
-{{--                                                                    @csrf--}}
-{{--                                                                    @method('DELETE')--}}
-{{--                                                                    <button class="btn btn-lg"><a class="dropdown-item"> Delete </a></button>--}}
-{{--                                                                </form>--}}
-{{--                                                            </div>--}}
-{{--                                                        </div>--}}
-
-                                                        <div class="card-body" style="background: pink;">
-                                                            <form action="">
-                                                                @csrf
-                                                                <div class="form-group--nest">
-                                                                    <input type="radio" name="set_default" id="" >
-                                                                </div>
-                                                            </form>
-
+                                                        <div class="card-body">
                                                             <div class="card-text">Address: <strong>{{$address->address}}</strong></div>
                                                             <div class="card-text">Postal Code: <strong>{{$address->postal_code}}</strong></div>
                                                             <div class="card-text">City: <strong>{{$address->city}}</strong></div>
                                                             <div class="card-text">Country: <strong>{{$address->country}}</strong></div>
-{{--                                                            <div class="card-text">Phone: <strong>{{$address->phone}}</strong>--}}
-{{--                                                                @if($address->set_default == 1)--}}
-{{--                                                                    <a href="#" class="btn btn-primary" style="margin-left: 100px;">Default</a>--}}
-{{--                                                                @endif--}}
-{{--                                                            </div>--}}
+                                                            <div class="card-text">Phone: <strong>{{$address->phone}}</strong>
+                                                                @if($address->set_default == 1)
+                                                                    <a href="#" class="btn btn-primary" style="margin-left: 100px;">Default</a>
+                                                                @endif
+                                                            </div>
                                                         </div>
                                                     </div>
                                                 </div>
