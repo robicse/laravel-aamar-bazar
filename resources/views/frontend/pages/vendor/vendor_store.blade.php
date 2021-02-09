@@ -140,7 +140,6 @@
                                             <div class="ps-tab active" id="tab-1">
                                                 <div class="row">
                                                     @foreach($flashDealProducts as $flashDealProduct)
-
                                                         <div class="col-xl-3 col-lg-4 col-md-4 col-sm-6 ">
                                                             <div class="ps-product">
                                                                 <div class="ps-product__thumbnail"><a href="{{route('product-details',$flashDealProduct->product->slug)}}"><img src="{{asset($flashDealProduct->product->thumbnail_img)}}" alt="" width="153" height="171"></a>
@@ -148,7 +147,7 @@
                                                                     <ul class="ps-product__actions">
                                                                         <li><a href="{{route('product-details',$flashDealProduct->product->slug)}}" data-toggle="tooltip" data-placement="top" title="Add To Cart"><i class="icon-bag2"></i></a></li>
                                                                         <li><a href="{{route('product-details',$flashDealProduct->product->slug)}}" data-placement="top" title="Quick View"><i class="icon-eye"></i></a></li>
-                                                                        <li><a href="{{route('add.wishlist',$flashDealProduct->id)}}" data-toggle="tooltip" data-placement="top" title="Add to Whishlist"><i class="icon-heart"></i></a></li>
+                                                                        <li><a href="{{route('add.wishlist',$flashDealProduct->product->id)}}" data-toggle="tooltip" data-placement="top" title="Add to Whishlist"><i class="icon-heart"></i></a></li>
                                                                     </ul>
                                                                 </div>
                                                                 <div class="ps-product__container"><a class="ps-product__vendor" href="{{route('product-details',$flashDealProduct->product->slug)}}"></a>

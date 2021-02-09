@@ -62,6 +62,7 @@ Route::post('/products/ajax/addtocart', 'Frontend\CartController@ProductAddCart'
 Route::get('/product/clear/cart', 'Frontend\CartController@clearCart')->name('product.clear.cart');
 Route::get('/product/remove/cart/{id}', 'Frontend\CartController@cartRemove')->name('product.cart.remove');
 Route::post('/cart/quantity_update', 'Frontend\CartController@quantityUpdate')->name('qty.update');
+Route::get('/best-sells/products','Frontend\ProductController@bestSellsProducts')->name('best-sells-all-products');
 //Shop/Vendor
 Route::post('/shop/nearest/list', 'Frontend\ShopController@nearestshop')->name('shop.nearest');
 Route::get('/become-a-vendor', 'Frontend\VendorController@index')->name('become-vendor');
@@ -89,7 +90,7 @@ Route::group(['middleware' => ['auth', 'user']], function () {
     Route::get('/user/invoices', 'User\DashboardController@invoices')->name('user.invoices');
     Route::get('/user/notifications', 'User\DashboardController@notification')->name('user.notification');
 //    Route::get('/user/address', 'User\DashboardController@address')->name('user.address');
-    Route::post('/user/address/update', 'User\DashboardController@updateAddress')->name('user.address-update');
+//    Route::post('/user/address/update', 'User\DashboardController@updateAddress')->name('user.address-update');
     Route::get('/user/order/history', 'User\OrderManagementController@orderHistory')->name('user.order.history');
     Route::post('/user/order/review', 'User\OrderManagementController@reviewStore')->name('user.order.review.store');
     Route::get('order-details/invoice/print/{id}','User\OrderManagementController@printInvoice')->name('invoice.print');

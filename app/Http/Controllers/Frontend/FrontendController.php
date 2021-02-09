@@ -19,7 +19,7 @@ class FrontendController extends Controller
         $categories = Category::where('is_home',1)->latest()->get();
         $products = Product::where('todays_deal',1)->latest()->limit(7)->get();
         $new_products = Product::where('published',1)->latest()->limit(7)->get();
-        $best_sales_products=Product::where('added_by','seller')->where('published',1)->where('num_of_sale', '>',0)->limit(8)->get();
+        $best_sales_products=Product::where('added_by','seller')->where('published',1)->where('num_of_sale', '>',0)->limit(20)->get();
         $shops = Shop::all();
         return view('frontend.pages.index', compact('categories','products','new_products','shops','best_sales_products'));
     }

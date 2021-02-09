@@ -306,7 +306,7 @@
                                     {{--                                    @endforelse--}}
                                     @foreach(Cart::content() as $product)
                                         <div class="ps-product--cart-mobile">
-                                            <div class="ps-product__thumbnail"><a href="#"><img src="{{asset($product->options->image)}}" alt=""></a></div>
+                                            <div class="ps-product__thumbnail"><a href="#"><img src="{{url($product->options->image)}}" alt=""></a></div>
                                             <div class="ps-product__content"><a class="ps-product__remove" href="{{route('product.cart.remove',$product->rowId)}}"><i class="icon-cross"></i></a><a href="#">{{$product->name}}</a>
                                                 <p><small>{{$product->qty}} x ৳{{$product->price}}</small>
                                             </div>

@@ -91,4 +91,7 @@ class ProductController extends Controller
 //        dd($products);
         return view('frontend.pages.shop.products_by_brands',compact('shop','brand','shopCat','shopBrand','products'));
     }
+    public function bestSellsProducts() {
+
+    }
 }
