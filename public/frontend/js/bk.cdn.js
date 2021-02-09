@@ -93,7 +93,7 @@
     (window.Bkoi = new (function () {
         if (_params.key) {
             let Bkoi = {
-                container: { name: "list-item", element: document.querySelector(".bklist"), selector: ".bklist" },
+                container: { name: "list-item", element: document.querySelector(".bklist2"), selector: ".bklist2" },
                 getSelectedData: function () {
                     return JSON.parse(_searchData).place;
                 },

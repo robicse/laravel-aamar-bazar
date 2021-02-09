@@ -14,6 +14,11 @@ class VendorController extends Controller
        //echo "Hello";
         return view('backend.admin.vendor.index');
     }
+
+    public function indexTest(){
+        return view('backend.admin.vendor.index2');
+    }
+
     public function sellerReport() {
         $sellers = User::where('user_type','seller')->get();
         $orders = null;
@@ -37,5 +42,7 @@ class VendorController extends Controller
         $vendors = Shop::all();
         return response()->json(['success'=> true, 'response'=>$vendors]);
     }
+
+
 
 }

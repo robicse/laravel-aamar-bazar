@@ -286,16 +286,16 @@
                             </p>
                         </a>
                     </li>
-                    <li class="nav-item {{Request::is('admin/get-all-vendors*') ? 'active' : ''}}">
-                        <a href="{{route('admin.get-all-vendors.index')}}" class="nav-link">
+                    <li class="nav-item">
+                        <a href="{{route('admin.get-all-vendors.index')}}" class="nav-link {{Request::is('admin/get-all-vendors*') ? 'active' : ''}}">
                             <i class="nav-icon fas fa-shopping-bag"></i>
                             <p>
-                                Get all Vendors
+                                Get all Vendors In Map
                             </p>
                         </a>
                     </li>
-                    <li class="nav-item {{Request::is('admin/seller-order-report*') ? 'active' : ''}}">
-                        <a href="{{route('admin.seller-order-report')}}" class="nav-link">
+                    <li class="nav-item ">
+                        <a href="{{route('admin.seller-order-report')}}" class="nav-link {{Request::is('admin/seller-order-report*') ? 'active' : ''}}">
                             <i class="nav-icon fab fa-first-order"></i>
                             <p>
                                 Seller Order Report
