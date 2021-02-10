@@ -28,6 +28,16 @@ Route::group(['middleware' => ['auth:api']], function () {
     Route::get('/orders', 'Api\OrderController@order_get');
     Route::post('/order/details/{id}', 'Api\OrderController@order_details_get');
     Route::post('/order/submit', 'Api\OrderController@orderSubmit');
+
+    //Seller
+    Route::get('/seller/dashboard', 'Api\SellerController@dashboard');
+    Route::get('/seller/info', 'Api\SellerController@profile');
+    Route::post('/seller/profile-update', 'Api\SellerController@profileUpdate');
+    Route::post('/seller/password-update', 'Api\SellerController@passwordUpdate');
+    Route::post('/seller/bank-details-update', 'Api\SellerController@bankDetailsUpdate');
+    Route::post('/seller/nid-info-update', 'Api\SellerController@nidInfoUpdate');
+    Route::get('/seller/shop/info', 'Api\SellerController@shopInfo');
+    Route::post('/seller/shop/info-update', 'Api\SellerController@shopInfoUpdate');
 });
 
 
