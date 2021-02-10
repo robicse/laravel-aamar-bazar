@@ -1,6 +1,14 @@
 Bkoi.onSelect(function () {
+
     let selectedPlace = Bkoi.getSelectedData()
-    console.log(selectedPlace)
+    //console.log(selectedPlace.longitude)
+    console.log(selectedPlace.latitude +' : ' +  selectedPlace.longitude)
+    var latval = parseFloat(selectedPlace.latitude);
+    var lngval = parseFloat(selectedPlace.longitude);
+    alert( latval )
+    initializeForMap(latval,lngval)
+
+
 })
 
 $(document).ready(function(){
@@ -39,11 +47,16 @@ function success(position) {
 
     var latval = sessionStorage.getItem("latitude");
     var lngval = sessionStorage.getItem("longitude");
-
+    initializeForMap(latval, lngval)
     fetch(`https://barikoi.xyz/v1/api/search/reverse/MTg3NzpCRE5DQ01JSkgw/geocode?longitude=${lngval}&latitude=${latval}&district=true&post_code=true&country=true&sub_district=true&union=false&pauroshova=false&location_type=true&division=true`)
         .then(response => response.json())
         .catch(error => console.error('Error:', error))
         .then(response => $('#input-search').val(response.place.address))
+
+    fetch(`https://barikoi.xyz/v1/api/search/reverse/MTg3NzpCRE5DQ01JSkgw/geocode?longitude=${lngval}&latitude=${latval}&district=true&post_code=true&country=true&sub_district=true&union=false&pauroshova=false&location_type=true&division=true`)
+        .then(response => response.json())
+        .catch(error => console.error('Error:', error))
+        .then(response => $('#input-search-map').val(response.place.address))
 }
 function fail() {
     alert("Please Allow Location For Purchase");
@@ -117,4 +130,55 @@ function searchShops(lat,lng){
             }, 500);
         }
     });
+}
+
+function initializeForMap(lat, lng) {
+    alert(lat)
+    $("#txtLat").val(lat);
+    $("#txtLng").val(lng);
+    // Creating map object
+    /*var lat = sessionStorage.getItem("latitude");
+    var lng = sessionStorage.getItem("longitude");*/
+    var map = new google.maps.Map(document.getElementById('map_canvas'), {
+        zoom: 12,
+        center: new google.maps.LatLng(lat, lng),
+        mapTypeId: google.maps.MapTypeId.ROADMAP
+    });
+    // creates a draggable marker to the given coords
+    var vMarker = new google.maps.Marker({
+        position: new google.maps.LatLng(lat, lng),
+        draggable: true
+    });
+    // adds a listener to the marker
+    // gets the coords when drag event ends
+    // then updates the input with the new coords
+    google.maps.event.addListener(vMarker, 'dragend', function (evt) {
+        $("#txtLat").val(evt.latLng.lat().toFixed(7));
+        $("#txtLng").val(evt.latLng.lng().toFixed(7));
+        map.panTo(evt.latLng);
+        BarikoiPlaceFetch(evt.latLng.lng().toFixed(7), evt.latLng.lat().toFixed(7))
+    });
+    // centers the map on markers coords
+    //map.setCenter(vMarker.position);
+    // adds the marker on the map
+    vMarker.setMap(map);
+
+}
+
+function BarikoiPlaceFetch(lngval, latval){
+    //alert(latval+' : '+lngval )
+    fetch(`https://barikoi.xyz/v1/api/search/reverse/MTg3NzpCRE5DQ01JSkgw/geocode?longitude=${lngval}&latitude=${latval}&district=true&post_code=true&country=true&sub_district=true&union=false&pauroshova=false&location_type=true&division=true`)
+        .then(response => response.json())
+        .catch(error => console.error('Error:', error))
+        //.then(response => alert(response.place.address))
+        .then(response => $('#input-search-map').val(response.place.address))
+}
+
+
+function mapModalClick(){
+    //alert('okkkkk')
+    geoLocationInit()
+    $('.mapModalShow').modal('show');
+
+
 }

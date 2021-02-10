@@ -89,13 +89,9 @@ function searchVendors(lat,lng){
             // service_id:get_service(),
         },
         success: function(data){
-            console.log(data);
-
-
+            //console.log(data);
             if (data.response.length==0){
-
-            }
-            else{
+            }else{
                 var i;
 
                 for(i=0;i<data.response.length;i++){
@@ -104,7 +100,7 @@ function searchVendors(lat,lng){
                     var gname=data.response[i].name;
                     var gaddress=data.response[i].address;
                     var url = window.location.origin+'/shop/'+data.response[i].slug;
-                    console.log(url)
+                    //console.log(url)
                     var gcontent= `<div class="row mx-1">
                             <div class="col-md-12">
                                 <h6 class="m-1 p-0" style="font-size: 14px;line-height: 23px;font-weight: bold;">Name: `+data.response[i].name+`</h6>
@@ -119,12 +115,35 @@ function searchVendors(lat,lng){
                     var gicn= window.location.origin+'/backend/dist/img/shop-marker.png'
                     var GLatLng = new google.maps.LatLng(glatval, glngval);
                     createMarker(GLatLng,gicn,gname,gcontent);
-                     console.log(GLatLng);
-
+                     //console.log(GLatLng);
                 }
             }
         }
     });
 }
 
-
+function initialize() {
+    // Creating map object
+    var map = new google.maps.Map(document.getElementById('map_canvas'), {
+        zoom: 12,
+        center: new google.maps.LatLng(28.47399, 77.026489),
+        mapTypeId: google.maps.MapTypeId.ROADMAP
+    });
+    // creates a draggable marker to the given coords
+    var vMarker = new google.maps.Marker({
+        position: new google.maps.LatLng(28.47399, 77.026489),
+        draggable: true
+    });
+    // adds a listener to the marker
+    // gets the coords when drag event ends
+    // then updates the input with the new coords
+    google.maps.event.addListener(vMarker, 'dragend', function (evt) {
+        $("#txtLat").val(evt.latLng.lat().toFixed(6));
+        $("#txtLng").val(evt.latLng.lng().toFixed(6));
+        map.panTo(evt.latLng);
+    });
+    // centers the map on markers coords
+    map.setCenter(vMarker.position);
+    // adds the marker on the map
+    vMarker.setMap(map);
+}

@@ -164,6 +164,7 @@
                     @endif
                     <button class="ml-2 mr-1" style="border-radius: 4px;" onclick="geoLocationInit()"><i class="fa fa-map-marker" aria-hidden="true"></i></button>
                     <button class="mx-1" style="border-radius: 4px;" id="find">Find</button>
+                    <button class="mx-1" style="border-radius: 4px;"  title="Find in map" onclick="mapModalClick()"><i class="fa fa-map"></i></button>
                     <div class="ps-panel--search-result bklist ">
                         {{--                        <div class="ps-panel__content ">--}}
                         {{--                            <div class="ps-product ps-product--wide ps-product--search-result ">--}}
@@ -1087,6 +1088,31 @@
         </ul>
     </div>
 </div>
+<!-- Modal -->
+<div class="modal fade mapModalShow" id="product-quickview" tabindex="-1" role="dialog" aria-labelledby="product-quickview" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="mr-4">
+                <span class="modal-close" data-dismiss="modal"><i class="icon-cross2"></i></span>
+                <div class="row mb-3">
+                    <div class="col-md-9">
+                        <input class="form-control bksearch2 m-0" type="text" placeholder="Enter your full address" id="input-search-map" style="border-radius: 4px;" autocomplete="off" value="">
+                    </div>
+                    <div class="col-md-3">
+                        <button class="p-3 bg-dark" style="border-radius: 4px; color: #fff;" id="find">Find Shop</button>
+                    </div>
+                </div>
+                <div class="bklist2 "></div>
+                <input id="txtLat" type="text" style="color:red" value="" />
+                <input id="txtLng" type="text" style="color:red" value="" />
+                <div id="map_canvas" style="width: auto; height: 400px;"> </div>
+            </div>
+        </div>
+    </div>
+</div>
+
 @push('js')
     <script src="{{asset('frontend/js/location/home_location.js')}}"></script>
+    <script src="{{asset('frontend/js/bk.cdn.js')}}"></script>
+
 @endpush
