@@ -34,23 +34,25 @@ class SellerController extends Controller
         }
     }
     public function dashboard(){
-        $totalStaffs = User::where('user_type','staff')->count();
-        $totalUsers = User::where('user_type','customer')->count();
-        $totalCategories = Category::count();
-        $totalSubCategories = Subcategory::count();
-        $totalSubSubCategories = SubSubcategory::count();
-        $totalBrands = Brand::count();
-        $totalAttributes = Attribute::count();
-        $totalProducts =  Product::count();
+        $shop = Shop::where('user_id',Auth::id())->select('id')->first();
+        $totalPendingOrders = Order::where('shop_id',$shop->id)->where('delivery_status','pending')->count();
+        $totalCompletedOrders = Order::where('shop_id',$shop->id)->where('delivery_status','Completed')->count();
+        $totalSales = Order::where('shop_id',$shop->id)->where('delivery_status','Completed')->sum('grand_total');
+        $totalCancelOrders = Order::where('shop_id',$shop->id)->where('delivery_status','Cancel')->count();
+        $totalOrders = Order::where('shop_id',$shop->id)->count();
+        $totalProducts = Product::where('user_id',Auth::id())->count();
+        $adminCommission = Seller::where('user_id',Auth::id())->pluck('seller_will_pay_admin')->first();
+        $totalEarning = Order::where('shop_id',$shop->id)->where('payment_status','paid')->where('delivery_status','Completed')->sum('grand_total');
         $data = [
-            'Total Staffs'=>$totalStaffs,
-            'Total Users'=>$totalUsers,
-            'Total Categories'=>$totalCategories,
-            'Total SubCategories'=>$totalSubCategories,
-            'Total SubSubCategories'=>$totalSubSubCategories,
-            'Total Brands'=>$totalBrands,
-            'Total Attributes'=>$totalAttributes,
-            'Total Products'=>$totalProducts];
+            'Total Products'=>$totalProducts,
+            'Total Sales'=>$totalSales,
+            'Total Earning'=>$totalEarning,
+            'Total Successful Order'=>$totalCompletedOrders,
+            'Admin get Commission'=>$adminCommission,
+            'Total Orders'=>$totalOrders,
+            'Total Pending Orders'=>$totalPendingOrders,
+            'Total Cancel Orders'=>$totalCancelOrders,
+            ];
         if (!empty($data))
         {
             return response()->json(['success'=>true,'response'=> $data], 200);
@@ -95,9 +97,10 @@ class SellerController extends Controller
         $shop = Shop::where('user_id',Auth::id())->first();
         $shop->name = $request->shop_name;
         $shop->save();
+        $data = ['Shop Name:', $shop->name];
         if (!empty($user))
         {
-            return response()->json(['success'=>true,'response'=> $user, $shop->name], 200);
+            return response()->json(['success'=>true,'response'=> $user, $data], 200);
         }
         else{
             return response()->json(['success'=>false,'response'=> 'Something went wrong!'], 404);

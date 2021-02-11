@@ -77,7 +77,7 @@
                                         @foreach($shopCategories as $shopCategory)
                                             <div class="col-xl-3 col-lg-4 col-md-4 col-sm-6 col-6 ">
                                                 <div class="ps-product">
-                                                    <div class="ps-product__thumbnail"><a href=""><img src="{{asset('uploads/categories/'.$shopCategory->category->icon)}}" alt="" width="153" height="171"></a>
+                                                    <div class="ps-product__thumbnail"><a href="{{url('/shop/'.$shop->slug.'/'.$shopCategory->category->slug)}}"><img src="{{asset('uploads/categories/'.$shopCategory->category->icon)}}" alt="" width="153" height="171"></a>
                                                         {{--                                                        <div class="ps-product__badge">11%</div>--}}
 {{--                                                        <ul class="ps-product__actions">--}}
 {{--                                                            <li><a href="" data-toggle="tooltip" data-placement="top" title="Add To Cart"><i class="icon-bag2"></i></a></li>--}}
@@ -87,9 +87,9 @@
 {{--                                                        </ul>--}}
                                                     </div>
                                                     <div class="ps-product__container"><a class="ps-product__vendor" href=""></a>
-                                                        <div class="ps-product__content"><a class="ps-product__title" href="">{{$shopCategory->category->name}}</a>
+                                                        <div class="ps-product__content"><a class="ps-product__title" href="{{url('/shop/'.$shop->slug.'/'.$shopCategory->category->slug)}}">{{$shopCategory->category->name}}</a>
                                                         </div>
-                                                        <div class="ps-product__content hover"><a class="ps-product__title" href="">{{$shopCategory->category->name}}</a>
+                                                        <div class="ps-product__content hover"><a class="ps-product__title" href="{{url('/shop/'.$shop->slug.'/'.$shopCategory->category->slug)}}">{{$shopCategory->category->name}}</a>
                                                             <p class="ps-product__price sale"></p>
                                                         </div>
                                                     </div>

@@ -35,7 +35,7 @@
                         <div class="icon">
                             <i class="ion ion-person"></i>
                         </div>
-                        <a href="" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                        <a href="{{route('seller.products.index')}}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
                     </div>
                 </div>
                 <!-- ./col -->
@@ -58,7 +58,7 @@
                     <!-- small box -->
                     <div class="small-box bg-warning">
                         <div class="inner text-center">
-                            <h4>0</h4>
+                            <h4>{{$totalEarning}}</h4>
 
                             <p>Total Earnings</p>
                         </div>
@@ -80,7 +80,7 @@
                         <div class="icon">
                             <i class="ion ion-pie-graph"></i>
                         </div>
-                        <a href="" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                        <a href="{{route('seller.order.completed')}}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
                     </div>
                 </div>
                 <!-- ./col -->
