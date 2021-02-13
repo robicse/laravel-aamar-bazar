@@ -35,7 +35,7 @@ class PaymentController extends Controller
         $new_pay->amount = $request->amount;
         $new_pay->message = $request->message;
         $new_pay->status = 0;
-        $new_pay->save();
+        $new_pay->save();ap
         $seller->admin_to_pay -= $request->amount;
         $seller->save();
         Toastr::success("Request Inserted Successfully", "Success");
