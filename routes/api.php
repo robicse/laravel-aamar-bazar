@@ -57,7 +57,7 @@ Route::get('/todays-deal-products/{id}','Api\ProductController@getTodaysDeal');
 Route::get('/best-sales-products/{id}','Api\ProductController@getBestSales');
 Route::get('/flash-deals-products/{id}','Api\ProductController@getFlashDeals');
 Route::get('/related-products/{id}','Api\ProductController@getRelatedProducts');
-Route::get('/search/product', 'Api\ProductController@search_product');
+Route::post('/search/product', 'Api\ProductController@search_product');
 Route::get('/category/featured-products/{id}', 'Api\CategoryController@categoryProducts');
 Route::get('/category/all-products/{id}', 'Api\CategoryController@categoryAllProducts');
 

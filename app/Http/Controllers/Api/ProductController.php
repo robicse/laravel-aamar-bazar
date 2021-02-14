@@ -68,7 +68,7 @@ class ProductController extends Controller
     }
     public function search_product(Request $request) {
 
-        $storeId =  $request->storeId;
+        $storeId =  $request->shop_id;
         $name = $request->q;
         $shop = Shop::find($storeId);
         $products = Product::where('name', 'LIKE', '%'. $name. '%')->where('user_id',$shop->user_id)->where('added_by','seller')->get();
