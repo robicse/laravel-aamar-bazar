@@ -3,10 +3,12 @@ Bkoi.onSelect(function () {
     let selectedPlace = Bkoi.getSelectedData()
     //console.log(selectedPlace.longitude)
     console.log(selectedPlace.latitude +' : ' +  selectedPlace.longitude)
-    var latval = parseFloat(selectedPlace.latitude);
-    var lngval = parseFloat(selectedPlace.longitude);
-    alert( latval )
+    var latval = selectedPlace.latitude;
+    var lngval = selectedPlace.longitude;
+    //alert( latval )
     initializeForMap(latval,lngval)
+    searchShops(latval,lngval);
+    $('.mapModalShow').modal('hide');
 
 
 })
@@ -71,6 +73,15 @@ $('#find').click(function (){
     }
 
 })
+$('#find2').click(function (){
+    //alert('find 2')
+    //console.log()
+    var latval = $('#txtLat').val();
+    var lngval = $('#txtLng').val();
+    //alert(latval)
+    $('.mapModalShow').modal('hide');
+    searchShops(latval,lngval)
+})
 
 function searchShops(lat,lng){
     console.log(lat);
@@ -101,7 +112,7 @@ function searchShops(lat,lng){
             }
             else{
                 var i;
-                // $('.shop_list').empty();
+                 $('.shop_list').empty();
                 for(i=0;i<data.response.length;i++){
                     var gname=data.response[i].name;
                     var slug=data.response[i].slug;
@@ -133,7 +144,7 @@ function searchShops(lat,lng){
 }
 
 function initializeForMap(lat, lng) {
-    alert(lat)
+    //alert(lat)
     $("#txtLat").val(lat);
     $("#txtLng").val(lng);
     // Creating map object
@@ -159,7 +170,7 @@ function initializeForMap(lat, lng) {
         BarikoiPlaceFetch(evt.latLng.lng().toFixed(7), evt.latLng.lat().toFixed(7))
     });
     // centers the map on markers coords
-    //map.setCenter(vMarker.position);
+    map.setCenter(vMarker.position);
     // adds the marker on the map
     vMarker.setMap(map);
 

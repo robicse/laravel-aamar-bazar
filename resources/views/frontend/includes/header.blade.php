@@ -1099,12 +1099,12 @@
                         <input class="form-control bksearch2 m-0" type="text" placeholder="Enter your full address" id="input-search-map" style="border-radius: 4px;" autocomplete="off" value="">
                     </div>
                     <div class="col-md-3">
-                        <button class="p-3 bg-dark" style="border-radius: 4px; color: #fff;" id="find">Find Shop</button>
+                        <button class="p-3 bg-dark" style="border-radius: 4px; color: #fff;" id="find2">Find Shop</button>
                     </div>
                 </div>
                 <div class="bklist2 "></div>
-                <input id="txtLat" type="text" style="color:red" value="" />
-                <input id="txtLng" type="text" style="color:red" value="" />
+                <input class="latval" id="txtLat" type="text" style="color:red" value="" />
+                <input class="lngval" id="txtLng" type="text" style="color:red" value="" />
                 <div id="map_canvas" style="width: auto; height: 400px;"> </div>
             </div>
         </div>
