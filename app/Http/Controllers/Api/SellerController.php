@@ -97,10 +97,15 @@ class SellerController extends Controller
         $shop = Shop::where('user_id',Auth::id())->first();
         $shop->name = $request->shop_name;
         $shop->save();
-        $data = ['Shop Name:', $shop->name];
-        if (!empty($user))
+        $data = DB::table('users')
+            ->join('shops','users.id','=','shops.user_id')
+            ->where('users.id',Auth::id())
+            ->select('users.*','shops.name as shop_name')
+            ->get();
+//        $data = ['Shop Name:', $shop->name];
+        if (!empty($data))
         {
-            return response()->json(['success'=>true,'response'=> $user, $data], 200);
+            return response()->json(['success'=>true,'response'=> $data], 200);
         }
         else{
             return response()->json(['success'=>false,'response'=> 'Something went wrong!'], 404);
