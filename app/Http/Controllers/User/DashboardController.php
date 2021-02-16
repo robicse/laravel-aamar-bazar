@@ -59,8 +59,8 @@ class DashboardController extends Controller
 //        dd('saf');
         $this->validate($request, [
             'name' => 'required',
-            'email' => 'required',
-            'phone'=> 'required',
+            'phone' => 'required|regex:/(01)[0-9]{9}/|unique:users,phone,'.Auth::id(),
+            'email' =>  'required|email|unique:users,email,'.Auth::id(),
         ]);
         $user = User::findOrFail(Auth::id());
         $user->name = $request->name;

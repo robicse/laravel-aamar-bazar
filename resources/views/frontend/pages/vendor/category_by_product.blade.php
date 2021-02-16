@@ -1,5 +1,5 @@
 @extends('frontend.layouts.master')
-@section('title', $shops->name)
+@section('title', $category->name)
 @push('css')
 
 @endpush
@@ -9,7 +9,7 @@
             <div class="container">
                 <ul class="breadcrumb">
                     <li><a href="{{url('/')}}">Home</a></li>
-                    <li>{{$shops->name}}</li>
+                    <li>{{$shop->name}}</li>
                 </ul>
             </div>
         </div>
@@ -18,10 +18,10 @@
                 <div class="ps-section__container">
                     <div class="ps-section__left">
                         <div class="ps-block--vendor">
-                            <div class="ps-block__thumbnail"><img src="{{asset($shops->logo)}}" alt=""></div>
+                            <div class="ps-block__thumbnail"><img src="{{asset($shop->logo)}}" alt=""></div>
                             <div class="ps-block__container">
                                 <div class="ps-block__header">
-                                    <h4>{{$shops->name}}</h4>
+                                    <h4>{{$shop->name}}</h4>
                                     <select class="ps-rating" data-read-only="true">
                                         <option value="1">1</option>
                                         <option value="1">2</option>
@@ -32,20 +32,20 @@
                                     <p><strong>85% Positive</strong>  (62 rating)</p>
                                 </div><span class="ps-block__divider"></span>
                                 <div class="ps-block__content">
-                                    <p><strong>{{$shops->name}}</strong>, Bangladesh’s no.1 online retailer was established in May 2019 with the aim and vision to become the one-stop shop for retail in New York with implementation of best practices both online</p><span class="ps-block__divider"></span>
-                                    <p><strong>Address</strong> {{$shops->address}}</p>
+                                    <p><strong>{{$shop->name}}</strong>, Bangladesh’s no.1 online retailer was established in May 2019 with the aim and vision to become the one-stop shop for retail in New York with implementation of best practices both online</p><span class="ps-block__divider"></span>
+                                    <p><strong>Address</strong> {{$shop->address}}</p>
                                     <figure>
                                         <figcaption>Foloow us on social</figcaption>
                                         <ul class="ps-list--social-color">
-                                            <li><a class="facebook" href="{{$shops->facebook}}"><i class="fa fa-facebook"></i></a></li>
-                                            <li><a class="twitter" href="{{$shops->twitter}}"><i class="fa fa-twitter"></i></a></li>
-                                            <li><a class="linkedin" href="{{$shops->google}}"><i class="fa fa-google-plus"></i></a></li>
-                                            <li><a class="feed" href="{{$shops->youtube}}"><i class="fa fa-youtube"></i></a></li>
+                                            <li><a class="facebook" href="{{$shop->facebook}}"><i class="fa fa-facebook"></i></a></li>
+                                            <li><a class="twitter" href="{{$shop->twitter}}"><i class="fa fa-twitter"></i></a></li>
+                                            <li><a class="linkedin" href="{{$shop->google}}"><i class="fa fa-google-plus"></i></a></li>
+                                            <li><a class="feed" href="{{$shop->youtube}}"><i class="fa fa-youtube"></i></a></li>
                                         </ul>
                                     </figure>
                                 </div>
                                 <div class="ps-block__footer">
-                                    <p>Call us directly<strong>(+880) 1771123456</strong></p>
+                                    <p>Call us directly<strong><a href="tel:{{$user->phone}}">{{$user->phone}}</a></strong></p>
                                     <p>or Or if you have any question</p><a class="ps-btn ps-btn--fullwidth" href="#">Contact Seller</a>
                                 </div>
                             </div>
@@ -205,14 +205,14 @@
                                             </div>
                                         @endforeach
                                     </div>
-                                    <div class="ps-pagination">
-                                        <ul class="pagination">
-                                            <li class="active"><a href="#">1</a></li>
-                                            <li><a href="#">2</a></li>
-                                            <li><a href="#">3</a></li>
-                                            <li><a href="#">Next Page<i class="icon-chevron-right"></i></a></li>
-                                        </ul>
-                                    </div>
+{{--                                    <div class="ps-pagination">--}}
+{{--                                        <ul class="pagination">--}}
+{{--                                            <li class="active"><a href="#">1</a></li>--}}
+{{--                                            <li><a href="#">2</a></li>--}}
+{{--                                            <li><a href="#">3</a></li>--}}
+{{--                                            <li><a href="#">Next Page<i class="icon-chevron-right"></i></a></li>--}}
+{{--                                        </ul>--}}
+{{--                                    </div>--}}
                                 </div>
                             </div>
                         </div>

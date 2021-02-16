@@ -68,6 +68,7 @@ Route::post('/shop/nearest/list', 'Frontend\ShopController@nearestshop')->name('
 Route::get('/become-a-vendor', 'Frontend\VendorController@index')->name('become-vendor');
 Route::get('/shop/{name}/{slug}', 'Frontend\VendorController@categoryProducts')->name('category.products');
 Route::get('/shop/{slug}', 'Frontend\VendorController@singleshop')->name('shop.details');
+Route::get('/categories/{slug}', 'Frontend\VendorController@allCategories')->name('view.all.categories');
 Route::get('/vendor/list', 'Frontend\VendorController@vendorList')->name('vendor.list');
 Route::get('/flash-deals/{slug}', 'Frontend\VendorController@flashdeal')->name('flash-deals');
 Route::get('/todays-deal/{slug}', 'Frontend\VendorController@todaysDeal')->name('todays-deal-products');

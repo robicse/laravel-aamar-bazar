@@ -52,19 +52,19 @@
                                         <label for="remember-me">Rememeber me</label>
                                     </div>
                                 </div>
-                                <div class="form-group submtit">
+                                <div class="form-group submtit" style="padding-bottom: 40px;">
                                     <button class="ps-btn ps-btn--fullwidth">Login</button>
                                 </div>
                             </div>
-                            <div class="ps-form__footer">
-                                <p>Connect with:</p>
-                                <ul class="ps-list--social">
-                                    <li><a class="facebook" href="#"><i class="fa fa-facebook"></i></a></li>
-                                    <li><a class="google" href="#"><i class="fa fa-google-plus"></i></a></li>
-                                    <li><a class="twitter" href="#"><i class="fa fa-twitter"></i></a></li>
-                                    <li><a class="instagram" href="#"><i class="fa fa-instagram"></i></a></li>
-                                </ul>
-                            </div>
+{{--                            <div class="ps-form__footer">--}}
+{{--                                <p>Connect with:</p>--}}
+{{--                                <ul class="ps-list--social">--}}
+{{--                                    <li><a class="facebook" href="#"><i class="fa fa-facebook"></i></a></li>--}}
+{{--                                    <li><a class="google" href="#"><i class="fa fa-google-plus"></i></a></li>--}}
+{{--                                    <li><a class="twitter" href="#"><i class="fa fa-twitter"></i></a></li>--}}
+{{--                                    <li><a class="instagram" href="#"><i class="fa fa-instagram"></i></a></li>--}}
+{{--                                </ul>--}}
+{{--                            </div>--}}
                         </div>
 {{--                        <div class="ps-tab" id="register">--}}
 {{--                            <div class="ps-form__content">--}}

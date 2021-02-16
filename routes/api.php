@@ -28,6 +28,16 @@ Route::group(['middleware' => ['auth:api']], function () {
     Route::get('/orders', 'Api\OrderController@order_get');
     Route::post('/order/details/{id}', 'Api\OrderController@order_details_get');
     Route::post('/order/submit', 'Api\OrderController@orderSubmit');
+
+    //Seller
+    Route::get('/seller/dashboard', 'Api\SellerController@dashboard');
+    Route::get('/seller/info', 'Api\SellerController@profile');
+    Route::post('/seller/profile-update', 'Api\SellerController@profileUpdate');
+    Route::post('/seller/password-update', 'Api\SellerController@passwordUpdate');
+    Route::post('/seller/bank-details-update', 'Api\SellerController@bankDetailsUpdate');
+    Route::post('/seller/nid-info-update', 'Api\SellerController@nidInfoUpdate');
+    Route::get('/seller/shop/info', 'Api\SellerController@shopInfo');
+    Route::post('/seller/shop/info-update', 'Api\SellerController@shopInfoUpdate');
 });
 
 
@@ -47,7 +57,7 @@ Route::get('/todays-deal-products/{id}','Api\ProductController@getTodaysDeal');
 Route::get('/best-sales-products/{id}','Api\ProductController@getBestSales');
 Route::get('/flash-deals-products/{id}','Api\ProductController@getFlashDeals');
 Route::get('/related-products/{id}','Api\ProductController@getRelatedProducts');
-Route::get('/search/product', 'Api\ProductController@search_product');
+Route::post('/search/product', 'Api\ProductController@search_product');
 Route::get('/category/featured-products/{id}', 'Api\CategoryController@categoryProducts');
 Route::get('/category/all-products/{id}', 'Api\CategoryController@categoryAllProducts');
 

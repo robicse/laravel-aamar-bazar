@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Model\Shop;
 use App\Model\ShopCategory;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class ShopCategoryController extends Controller
 {
@@ -20,8 +21,12 @@ class ShopCategoryController extends Controller
         }
     }
     public function getShopCategory($id) {
-        $shop = Shop::where('id',$id)->first();
-        $shopCats=ShopCategory::where('shop_id',$shop->id)->latest()->get();
+
+        $shopCats = DB::table('shop_categories')
+            ->Join('categories','shop_categories.category_id','=','categories.id')
+            ->where('shop_categories.shop_id',$id)
+            ->select('shop_categories.id','shop_categories.shop_id','shop_categories.category_id','categories.name as category_name')
+            ->get();
         if (!empty($shopCats))
         {
             return response()->json(['success'=>true,'response'=> $shopCats], 200);
