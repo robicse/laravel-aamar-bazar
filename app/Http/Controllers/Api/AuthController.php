@@ -30,6 +30,10 @@ class AuthController extends Controller
             $user = Auth::user();
             $success['token'] = $user->createToken('mudihat')-> accessToken;
             $success['user'] = $user;
+            if ($user->user_type == 'seller'){
+                $seller = Seller::where('user_id',$user->id)->first();
+                $success['verification_status'] = $seller->verification_status;
+            }
             return response()->json(['success'=>true,'response' => $success], $this-> successStatus);
         }else{
             return response()->json(['success'=>false,'response'=>'Unauthorised'], 401);

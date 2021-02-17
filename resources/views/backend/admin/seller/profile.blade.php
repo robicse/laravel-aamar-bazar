@@ -2,6 +2,7 @@
 @section("title","Seller Profile")
 @push('css')
     <link rel="stylesheet" href="{{asset('backend/plugins/datatables/dataTables.bootstrap4.css')}}">
+    <link rel="stylesheet" href="{{asset('backend/dist/css/spectrum.css')}}">
 @endpush
 @section('content')
     <section class="content-header">
@@ -84,6 +85,7 @@
                                 <li class="nav-item"><a class="nav-link" href="#edit" data-toggle="tab">Edit
                                         Profile </a></li>
                                 <li class="nav-item"><a class="nav-link" href="#change_pass" data-toggle="tab">Change Password</a></li>
+                                <li class="nav-item"><a class="nav-link" href="#change_nid" data-toggle="tab">NID and Trade Licence</a></li>
                             </ul>
                         </div><!-- /.card-header -->
                         <div class="card-body">
@@ -178,6 +180,52 @@
                                     </form>
                                 </div>
                                 <!-- /.tab-pane -->
+                                <!-- .tab-pane -->
+                                <div class="tab-pane" id="change_nid">
+                                    <form class="form-horizontal" action="" method="post" enctype="multipart/form-data">
+                                        @csrf
+                                        @method('PUT')
+                                        <div class="form-group row">
+                                            <label for="nid_number" class="col-sm-2 col-form-label">NID Number</label>
+                                            <div class="col-sm-10">
+                                                <input type="text" class="form-control" name="nid_number" id="nid_number" placeholder="NID Number Does Not Added Yet" value="{{$userInfo->seller->nid_number}}" {{$userInfo->seller->nid_number ? 'readonly' : ''}} required>
+                                            </div>
+                                        </div>
+                                        @if(!empty($userInfo->seller->trade_licence_images))
+                                        <div class="form-group row">
+                                            <label class="control-label ml-3">Trade Licence Images</label>
+                                            <div class="col-sm-10">
+                                                <div class="row" id="trade_licence_images">
+                                                    @if(is_array(json_decode($userInfo->seller->trade_licence_images)))
+                                                        @foreach (json_decode($userInfo->seller->trade_licence_images) as $key => $photo)
+                                                            <div class="col-md-4 col-sm-4 col-xs-6">
+                                                                <div class="img-upload-preview">
+                                                                    <img loading="lazy"  src="{{url($photo)}}" alt="" class="img-responsive">
+                                                                    <input type="hidden" name="previous_photos[]" value="{{url($photo)}}">
+{{--                                                                    <button type="button" class="btn btn-danger close-btn remove-files"><i class="fa fa-times"></i></button>--}}
+                                                                </div>
+                                                            </div>
+                                                        @endforeach
+                                                    @endif
+                                                </div>
+                                                {{--                                    <div class="row" id="photos_alt"></div>--}}
+                                            </div>
+                                        </div>
+                                        @endif
+                                        {{--                                        <div class="form-group row">--}}
+                                        {{--                                            <label for="password_confirmation" class="col-sm-2 col-form-label">Confirm Password</label>--}}
+                                        {{--                                            <div class="col-sm-10">--}}
+                                        {{--                                                <input type="password" name="password_confirmation" class="form-control">--}}
+                                        {{--                                            </div>--}}
+                                        {{--                                        </div>--}}
+                                        <div class="form-group row">
+{{--                                            <div class="offset-sm-2 col-sm-10">--}}
+{{--                                                <button type="submit" class="btn btn-danger">Update</button>--}}
+{{--                                            </div>--}}
+                                        </div>
+                                    </form>
+                                </div>
+                                <!-- /.tab-pane -->
                             </div>
                             <!-- /.tab-content -->
                         </div><!-- /.card-body -->
@@ -233,6 +281,8 @@
 @push('js')
     <script src="{{asset('backend/plugins/datatables/jquery.dataTables.js')}}"></script>
     <script src="{{asset('backend/plugins/datatables/dataTables.bootstrap4.js')}}"></script>
+    <script src="{{asset('backend/dist/js/spartan-multi-image-picker-min.js')}}"></script>
+    <script src="https://unpkg.com/sweetalert2@7.19.1/dist/sweetalert2.all.js"></script>
     <script>
         $(function () {
             $("#example1").DataTable();
@@ -246,7 +296,36 @@
             });
         });
 
-
-
     </script>
+{{--    <script>--}}
+{{--        $("#trade_licence_images").spartanMultiImagePicker({--}}
+{{--            fieldName: 'trade_licence_images[]',--}}
+{{--            maxCount: 10,--}}
+{{--            rowHeight: '200px',--}}
+{{--            groupClassName: 'col-md-4 col-sm-4 col-xs-6',--}}
+{{--            maxFileSize: '1600000',--}}
+{{--            dropFileLabel: "Drop Here",--}}
+{{--            onExtensionErr: function (index, file) {--}}
+{{--                console.log(index, file, 'extension err');--}}
+{{--                alert('Please only input png or jpg type file')--}}
+{{--            },--}}
+{{--            onSizeErr: function (index, file) {--}}
+{{--                console.log(index, file, 'file size too big');--}}
+{{--                alert('Image size too big. Please upload below 1.5Mb');--}}
+{{--            },--}}
+{{--            onAddRow:function(index){--}}
+{{--                var altData = '<input type="text" placeholder="Image Alt" name="photos_alt[]" class="form-control" required=""></div>'--}}
+{{--                //var index = index + 1;--}}
+{{--                //$('#photos_alt').append('<h4 id="abc_'+index+'">'+index+'</h4>')--}}
+{{--                //$('#photos_alt').append('<div class="col-md-4 col-sm-4 col-xs-6" id="abc_'+index+'">'+altData+'</div>')--}}
+{{--            },--}}
+{{--            onRemoveRow : function(index){--}}
+{{--                var index = index + 1;--}}
+{{--                $(`#abc_${index}`).remove()--}}
+{{--            },--}}
+{{--        });--}}
+{{--        $('.remove-files').on('click', function(){--}}
+{{--            $(this).parents(".col-md-4").remove();--}}
+{{--        });--}}
+{{--    </script>--}}
 @endpush
