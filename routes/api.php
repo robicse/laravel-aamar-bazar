@@ -38,6 +38,15 @@ Route::group(['middleware' => ['auth:api']], function () {
     Route::post('/seller/nid-info-update', 'Api\SellerController@nidInfoUpdate');
     Route::get('/seller/shop/info', 'Api\SellerController@shopInfo');
     Route::post('/seller/shop/info-update', 'Api\SellerController@shopInfoUpdate');
+
+    //Seller Products
+    Route::get('/seller/all-products', 'Api\SellerController@allProducts');
+    Route::post('/seller/products/todays_deal-update', 'Api\SellerController@updateTodaysDeal');
+    Route::post('/seller/products/published-update', 'Api\SellerController@updatePublished');
+    Route::post('/seller/products/featured-update', 'Api\SellerController@updateFeatured');
+
+    //Seller Products Flash Deal Products
+//    Route::get('/seller/all-flash-deal-products', 'Api\SellerController@allFlashDealProducts');
 });
 
 

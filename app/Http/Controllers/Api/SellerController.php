@@ -131,6 +131,7 @@ class SellerController extends Controller
         $bankInfo->bank_name = $request->bank_name;
         $bankInfo->bank_acc_name = $request->bank_acc_name;
         $bankInfo->bank_acc_no = $request->bank_acc_no;
+        $bankInfo->bank_routing_no = $request->bank_routing_no;
         $bankInfo->save();
         if (!empty($bankInfo))
         {
@@ -198,6 +199,56 @@ class SellerController extends Controller
         if (!empty($shop))
         {
             return response()->json(['success'=>true,'response'=> $shop], 200);
+        }
+        else{
+            return response()->json(['success'=>false,'response'=> 'Something went wrong!'], 404);
+        }
+    }
+    public function allProducts(){
+        $products = Product::where('added_by','seller')->where('user_id',Auth::id())->get();
+        if (!empty($products))
+        {
+            return response()->json(['success'=>true,'response'=> $products], 200);
+        }
+        else{
+            return response()->json(['success'=>false,'response'=> 'Something went wrong!'], 404);
+        }
+    }
+    public function updateTodaysDeal(Request $request){
+        $product = Product::find($request->product_id);
+        $product->todays_deal = $request->status;
+        $product->save();
+        if (!empty($product))
+        {
+            return response()->json(['success'=>true,'response'=> $product], 200);
+        }
+        else{
+            return response()->json(['success'=>false,'response'=> 'Something went wrong!'], 404);
+        }
+
+    }
+    public function updatePublished(Request $request)
+    {
+        //return 'ok';
+        $product = Product::find($request->product_id);
+        $product->published = $request->status;
+        $product->save();
+        if (!empty($product))
+        {
+            return response()->json(['success'=>true,'response'=> $product], 200);
+        }
+        else{
+            return response()->json(['success'=>false,'response'=> 'Something went wrong!'], 404);
+        }
+    }
+    public function updateFeatured(Request $request)
+    {
+        $product = Product::find($request->product_id);
+        $product->featured = $request->status;
+        $product->save();
+        if (!empty($product))
+        {
+            return response()->json(['success'=>true,'response'=> $product], 200);
         }
         else{
             return response()->json(['success'=>false,'response'=> 'Something went wrong!'], 404);
