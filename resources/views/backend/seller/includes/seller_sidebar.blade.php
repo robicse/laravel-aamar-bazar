@@ -113,7 +113,7 @@
                     </li>
 
                     <li class="nav-item">
-                        <a href="{{route('seller.payment.history')}}" class="nav-link {{Request::is('seller/payment-history') ? 'active' : ''}}">
+                        <a href="{{route('seller.payment.history')}}" class="nav-link {{Request::is('seller/payment*') ? 'active' : ''}}">
                             <i class="nav-icon fas fa-history"></i>
                             <p>
                                 Payment History
@@ -122,7 +122,7 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="{{ route('seller.money.withdraw') }}" class="nav-link {{Request::is('seller/money-withdraw') ? 'active' : ''}}">
+                        <a href="{{ route('seller.money.withdraw') }}" class="nav-link {{Request::is('seller/money*') ? 'active' : ''}}">
                             <i class="nav-icon fas fa-money-bill-wave"></i>
                             <p>
                                 Money Withdraw
@@ -131,7 +131,7 @@
                         </a>
                     </li>
                     <li class="nav-item has-treeview">
-                        <a href="{{route('seller.profile.show')}}" class="nav-link {{Request::is('seller/manage-profile') ? 'active' : ''}}">
+                        <a href="{{route('seller.profile.show')}}" class="nav-link {{Request::is('seller/profile*') ? 'active' : ''}}">
                             <i class="nav-icon fas fa-user-circle"></i>
                             <p>
                                 Manage Profile
