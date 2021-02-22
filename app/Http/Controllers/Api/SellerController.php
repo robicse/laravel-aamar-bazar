@@ -7,6 +7,7 @@ use App\Model\Attribute;
 use App\Model\Brand;
 use App\Model\Category;
 use App\Model\Order;
+use App\Model\OrderTempCommission;
 use App\Model\Product;
 use App\Model\Seller;
 use App\Model\Shop;
@@ -249,6 +250,50 @@ class SellerController extends Controller
         if (!empty($product))
         {
             return response()->json(['success'=>true,'response'=> $product], 200);
+        }
+        else{
+            return response()->json(['success'=>false,'response'=> 'Something went wrong!'], 404);
+        }
+    }
+    public function allOrders() {
+        $shop = Shop::where('user_id',Auth::id())->select('id')->first();
+        $orders = Order::where('shop_id',$shop->id)->get();
+        if (!empty($orders))
+        {
+            return response()->json(['success'=>true,'response'=> $orders], 200);
+        }
+        else{
+            return response()->json(['success'=>false,'response'=> 'Something went wrong!'], 404);
+        }
+    }
+    public function deliveryStatusUpdate(Request $request){
+        $order = Order::find($request->order_id);
+        $order->delivery_status = $request->delivery_status;
+        $order->save();
+        if ($request->delivery_status == 'Completed'){
+            $tempCommission = OrderTempCommission::where('order_id',$request->order_id)->first();
+            $shop = Shop::find($tempCommission->shop_id);
+            $seller = Seller::find($shop->seller_id);
+            $seller->admin_to_pay += $tempCommission->temp_commission_to_seller;
+            $seller->seller_will_pay_admin += $tempCommission->temp_commission_to_admin;
+            $seller->save();
+            $tempCommission->temp_commission_to_seller = 0;
+            $tempCommission->temp_commission_to_admin = 0;
+            $tempCommission->save();
+        }elseif ($request->delivery_status == 'Cancel'){
+            $tempCommission = OrderTempCommission::where('order_id',$request->order_id)->first();
+            $shop = Shop::find($tempCommission->shop_id);
+            $seller = Seller::find($shop->seller_id);
+            $seller->admin_to_pay += 0;
+            $seller->seller_will_pay_admin += 0;
+            $seller->save();
+            $tempCommission->temp_commission_to_seller = 0;
+            $tempCommission->temp_commission_to_admin = 0;
+            $tempCommission->save();
+        }
+        if (!empty($order))
+        {
+            return response()->json(['success'=>true,'response'=> $order], 200);
         }
         else{
             return response()->json(['success'=>false,'response'=> 'Something went wrong!'], 404);

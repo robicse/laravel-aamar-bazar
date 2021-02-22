@@ -47,6 +47,11 @@ Route::group(['middleware' => ['auth:api']], function () {
 
     //Seller Products Flash Deal Products
 //    Route::get('/seller/all-flash-deal-products', 'Api\SellerController@allFlashDealProducts');
+
+    //Seller Order Management
+    Route::get('/seller/all-orders', 'Api\SellerController@allOrders');
+    Route::post('/seller/delivery-status/update', 'Api\SellerController@deliveryStatusUpdate');
+
 });
 
 
@@ -73,6 +78,8 @@ Route::get('/category/all-products/{id}', 'Api\CategoryController@categoryAllPro
 Route::post('/login','Api\AuthController@login');
 Route::post('/register','Api\AuthController@register');
 Route::post('/seller/register','Api\AuthController@sellerRegister');
+Route::post('/verification-code-store', 'Api\AuthController@verificationStore');
+Route::get('/check-verification-code', 'Api\AuthController@CheckVerificationCode');
 
 //Customer Api
 //Route::post('/user/profile/update', 'Api\CustomerController@profileUpdate')->middleware('auth:api');

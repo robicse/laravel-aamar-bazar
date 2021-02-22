@@ -36,16 +36,14 @@ class VerificationController extends Controller
     }
 
     public function verification(Request $request){
-//        dd($request->phone);
         if ($request->isMethod('post')){
             $check = VerificationCode::where('code',$request->code)->where('phone',$request->phone)->where('status',0)->first();
-//            dd($check);
             if (!empty($check)) {
                 $check->status = 1;
                 $check->update();
-//                dd($request->code);
                 $user = User::where('phone',$request->phone)->first();
                 $user->verification_code = $request->code;
+                $user->banned = 0;
                 $user->save();
                 Toastr::success('Your phone number successfully verified.' ,'Success');
                 /*return redirect('login');*/

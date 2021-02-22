@@ -42,6 +42,7 @@ class FrontendController extends Controller
         $userReg->phone= $request->phone;
         $userReg->password = Hash::make($request->password);
         $userReg->user_type = 'customer';
+        $userReg->banned = 1;
         $userReg->save();
 //        dd($userReg);
 

@@ -36,6 +36,7 @@ class AuthController extends Controller
         $user->email = $request->email;
         $user->phone = $request->phone;
         $user->user_type = "seller";
+        $user->banned = 1;
         $user->password = Hash::make($request->password);
         $user->save();
         $defaultCommissionPercent = BusinessSetting::where('type', 'seller_commission')->first();
