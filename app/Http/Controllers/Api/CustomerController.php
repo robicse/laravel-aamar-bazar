@@ -120,6 +120,19 @@ class CustomerController extends Controller
             return response()->json(['success'=>false,'response'=> 'Wishlist is empty!!!'], 404);
         }
     }
+    public function getFavoriteShop(){
+        $favoriteShop = DB::table('favorite_shops')
+            ->join('shops','favorite_shops.shop_id','=','shops.id')
+            ->select('shops.name as Shop_name','shops.logo as shop_logo','favorite_shops.*')
+            ->get();
+        if (!empty($favoriteShop))
+        {
+            return response()->json(['success'=>true,'response'=> $favoriteShop], 200);
+        }
+        else{
+            return response()->json(['success'=>false,'response'=> 'Something Went Wrong'], 404);
+        }
+    }
     public function favoriteShopAdd(Request $request){
         $shop = Shop::find($request->shop_id);
         if (Auth::user())

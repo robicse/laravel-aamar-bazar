@@ -3,6 +3,7 @@
 @push('css')
     <link rel="stylesheet" href="{{asset('backend/plugins/datatables/dataTables.bootstrap4.css')}}">
     <link rel="stylesheet" href="{{asset('backend/dist/css/spectrum.css')}}">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/barikoi/barikoi-js@b6f6295467c19177a7d8b73ad4db136905e7cad6/dist/barikoi.min.css">
 @endpush
 @section('content')
     <section class="content-header">
@@ -85,6 +86,7 @@
                                 <li class="nav-item"><a class="nav-link" href="#edit" data-toggle="tab">Edit
                                         Profile </a></li>
                                 <li class="nav-item"><a class="nav-link" href="#change_pass" data-toggle="tab">Change Password</a></li>
+                                <li class="nav-item"><a class="nav-link" href="#change_shop_address" data-toggle="tab">Change Shop Address</a></li>
                                 <li class="nav-item"><a class="nav-link" href="#change_nid" data-toggle="tab">NID and Trade Licence</a></li>
                             </ul>
                         </div><!-- /.card-header -->
@@ -171,6 +173,33 @@
                                             <div class="col-sm-10">
                                                 <input type="password" name="password_confirmation" class="form-control" id="inputEmail">
                                             </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <div class="offset-sm-2 col-sm-10">
+                                                <button type="submit" class="btn btn-danger">Update</button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                                <!-- /.tab-pane -->
+                                <div class="tab-pane" id="change_shop_address">
+                                    <form class="form-horizontal" action="{{route('admin.seller.address.update',$userInfo->id)}}" method="POST">
+                                        @csrf
+                                        @method('PUT')
+                                        <div class="form-group row">
+                                            <label for="address" class="col-sm-2 col-form-label">Shop Address</label>
+                                            <div class="col-sm-10">
+                                                <input type="text" class="form-control bksearch {{ $errors->has('bksearch') ? ' is-invalid' : '' }}" value="{{ old('bksearch') }}" placeholder="Enter Your Shop Address" name="bksearch" required>
+{{--                                               <input type="text" class="form-control bksearch {{ $errors->has('bksearch') ? ' is-invalid' : '' }}" value="{{ old('bksearch') }}" placeholder="Enter Your Shop Address" name="bksearch">--}}
+                                            </div>
+                                            <div class="bklist"></div>
+                                        </div>
+                                        <div class="form-group">
+                                            <input type="hidden" name="address">
+                                            <input type="hidden" name="city">
+                                            <input type="hidden" name="area">
+                                            <input type="hidden" name="latitude">
+                                            <input type="hidden" name="longitude">
                                         </div>
                                         <div class="form-group row">
                                             <div class="offset-sm-2 col-sm-10">
@@ -283,6 +312,7 @@
     <script src="{{asset('backend/plugins/datatables/dataTables.bootstrap4.js')}}"></script>
     <script src="{{asset('backend/dist/js/spartan-multi-image-picker-min.js')}}"></script>
     <script src="https://unpkg.com/sweetalert2@7.19.1/dist/sweetalert2.all.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/barikoi/barikoi-js@b6f6295467c19177a7d8b73ad4db136905e7cad6/dist/barikoi.min.js?key:MTg3NzpCRE5DQ01JSkgw"></script>
     <script>
         $(function () {
             $("#example1").DataTable();
@@ -296,36 +326,22 @@
             });
         });
 
+        Bkoi.onSelect(function () {
+            // get selected data from dropdown list
+            let selectedPlace = Bkoi.getSelectedData()
+            console.log(selectedPlace)
+            // center of the map
+            document.getElementsByName("address")[0].value = selectedPlace.address;
+            document.getElementsByName("city")[0].value = selectedPlace.city;
+            document.getElementsByName("area")[0].value = selectedPlace.area;
+            document.getElementsByName("latitude")[0].value = selectedPlace.latitude;
+            document.getElementsByName("longitude")[0].value = selectedPlace.longitude;
+
+        })
+        $('.remove-files').on('click', function(){
+            $(this).parents(".col-md-4").remove();
+        });
+
     </script>
-{{--    <script>--}}
-{{--        $("#trade_licence_images").spartanMultiImagePicker({--}}
-{{--            fieldName: 'trade_licence_images[]',--}}
-{{--            maxCount: 10,--}}
-{{--            rowHeight: '200px',--}}
-{{--            groupClassName: 'col-md-4 col-sm-4 col-xs-6',--}}
-{{--            maxFileSize: '1600000',--}}
-{{--            dropFileLabel: "Drop Here",--}}
-{{--            onExtensionErr: function (index, file) {--}}
-{{--                console.log(index, file, 'extension err');--}}
-{{--                alert('Please only input png or jpg type file')--}}
-{{--            },--}}
-{{--            onSizeErr: function (index, file) {--}}
-{{--                console.log(index, file, 'file size too big');--}}
-{{--                alert('Image size too big. Please upload below 1.5Mb');--}}
-{{--            },--}}
-{{--            onAddRow:function(index){--}}
-{{--                var altData = '<input type="text" placeholder="Image Alt" name="photos_alt[]" class="form-control" required=""></div>'--}}
-{{--                //var index = index + 1;--}}
-{{--                //$('#photos_alt').append('<h4 id="abc_'+index+'">'+index+'</h4>')--}}
-{{--                //$('#photos_alt').append('<div class="col-md-4 col-sm-4 col-xs-6" id="abc_'+index+'">'+altData+'</div>')--}}
-{{--            },--}}
-{{--            onRemoveRow : function(index){--}}
-{{--                var index = index + 1;--}}
-{{--                $(`#abc_${index}`).remove()--}}
-{{--            },--}}
-{{--        });--}}
-{{--        $('.remove-files').on('click', function(){--}}
-{{--            $(this).parents(".col-md-4").remove();--}}
-{{--        });--}}
-{{--    </script>--}}
+
 @endpush
