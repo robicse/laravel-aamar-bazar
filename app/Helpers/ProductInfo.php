@@ -70,6 +70,7 @@ use App\Model\Product;
 
     function home_discounted_base_price($id)
     {
+
         $product = Product::findOrFail($id);
         $price = $product->unit_price;
 
@@ -97,7 +98,7 @@ use App\Model\Product;
                 $price -= $product->discount;
             }
         }
-//        dd($price);
+       //dd($price);
         return $price;
 
     }
