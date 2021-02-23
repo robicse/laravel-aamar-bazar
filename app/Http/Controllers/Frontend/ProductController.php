@@ -23,6 +23,7 @@ class ProductController extends Controller
         $options=json_decode($productDetails->choice_options);
         $colors=json_decode($productDetails->colors);
         $photos=json_decode($productDetails->photos);
+
         $relatedBrands = Product::where('brand_id', $productDetails->brand_id)->latest()->take(3)->where('published',1)->get();
         $categories = Product::where('category_id',$productDetails->category_id)->take(3)->where('published',1)->latest()->get();
         $reviews = Review::where('product_id',$productDetails->id)->where('status',1)->get();
@@ -38,8 +39,8 @@ class ProductController extends Controller
             $price=$variant->price;
             $avilability=$variant->qty;
         }else{
-            $price=$productDetails->unit_price;
-            $avilability=$productDetails->current_stock;
+            $price =$productDetails->unit_price;
+            $avilability =$productDetails->current_stock;
         }
         return view('frontend.pages.shop.product_details',
             compact('productDetails','attributes','options','colors','price',

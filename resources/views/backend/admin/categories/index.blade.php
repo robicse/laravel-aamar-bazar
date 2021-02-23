@@ -2,6 +2,11 @@
 @section("title","Categories List")
 @push('css')
     <link rel="stylesheet" href="{{asset('backend/plugins/datatables/dataTables.bootstrap4.css')}}">
+    <style>
+        table.dataTable tbody th, table.dataTable tbody td {
+            padding: 0px 6px!important;
+        }
+    </style>
 @endpush
 @section('content')
     <section class="content-header">

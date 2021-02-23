@@ -56,6 +56,9 @@
         .content-header {
             padding: 0px .5rem!important;
         }
+        table.dataTable tbody th, table.dataTable tbody td {
+            padding: 0px 6px!important;
+        }
     </style>
     @stack('css')
 </head>
