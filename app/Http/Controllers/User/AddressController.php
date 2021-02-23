@@ -66,15 +66,14 @@ class AddressController extends Controller
 
     }
     public function updateStatus($id) {
-//        dd('sknk');
-        $addresses = Address::where('set_default',1)->first();
-        if (!empty($addresses)) {
-            $addresses->set_default = 0;
-            $addresses->save();
+        $addresses = Address::where('user_id',Auth::id())->get();
+        foreach ($addresses as $key => $address) {
+            $address->set_default = 0;
+            $address->save();
         }
-        $setDefault = Address::find($id);
-        $setDefault->set_default = 1;
-        $setDefault->save();
+        $address = Address::findOrFail($id);
+        $address->set_default = 1;
+        $address->save();
         Toastr::success('Default Address Added Successfully');
         return redirect()->back();
     }

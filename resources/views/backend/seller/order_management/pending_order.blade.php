@@ -53,7 +53,6 @@
                                 <th>#ID</th>
                                 <th>Date</th>
                                 <th>Invoice ID</th>
-                                <th>Product Name</th>
                                 <th>Payment Method</th>
                                 <th title="Delivery Status">D.Status</th>
                                 <th>Details</th>
@@ -65,7 +64,6 @@
                                 <td>{{$key + 1}}</td>
                                 <td>{{date('j-m-Y',strtotime($pending->created_at))}}</td>
                                 <td>{{$pending->invoice_code}}</td>
-                                <td>{{$pending->order_details->name}}</td>
                                 <td>{{$pending->payment_type}}</td>
                                 <td>
                                     <form id="status-form-{{$pending->id}}" action="{{route('seller.order-product.status',$pending->id)}}">
@@ -92,7 +90,6 @@
                                     <th>#ID</th>
                                     <th>Date</th>
                                     <th>Invoice ID</th>
-                                    <th>Product Name</th>
                                     <th>Payment Method</th>
                                     <th title="Delivery Status">D.Status</th>
                                     <th>Details</th>

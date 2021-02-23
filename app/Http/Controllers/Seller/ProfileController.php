@@ -101,14 +101,15 @@ class ProfileController extends Controller
             $new_pay->cash_on_delivery_status = 0;
             $new_pay->bank_payment_status = 0;
             $new_pay->save();
-            Toastr::success("Seller Inserted Successfully","Success");
+            Toastr::success("Seller Bank Info Inserted Successfully","Success");
             return redirect()->back();
         }else {
             $payment->bank_name = $request->bank_name;
             $payment->bank_acc_name = $request->bank_acc_name;
             $payment->bank_acc_no = $request->bank_acc_no;
+            $payment->bank_routing_no = $request->bank_routing_no;
             $payment->update();
-            Toastr::success("Seller Updated Successfully","Success");
+            Toastr::success("Seller Bank Info Updated Successfully","Success");
             return redirect()->back();
 
         }

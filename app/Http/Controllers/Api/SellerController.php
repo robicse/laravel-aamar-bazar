@@ -7,6 +7,8 @@ use App\Model\Attribute;
 use App\Model\Brand;
 use App\Model\Category;
 use App\Model\Order;
+use App\Model\OrderDetails;
+use App\Model\OrderTempCommission;
 use App\Model\Product;
 use App\Model\Seller;
 use App\Model\Shop;
@@ -131,6 +133,7 @@ class SellerController extends Controller
         $bankInfo->bank_name = $request->bank_name;
         $bankInfo->bank_acc_name = $request->bank_acc_name;
         $bankInfo->bank_acc_no = $request->bank_acc_no;
+        $bankInfo->bank_routing_no = $request->bank_routing_no;
         $bankInfo->save();
         if (!empty($bankInfo))
         {
@@ -201,6 +204,135 @@ class SellerController extends Controller
         }
         else{
             return response()->json(['success'=>false,'response'=> 'Something went wrong!'], 404);
+        }
+    }
+    public function allProducts(){
+        $products = Product::where('added_by','seller')->where('user_id',Auth::id())->get();
+        if (!empty($products))
+        {
+            return response()->json(['success'=>true,'response'=> $products], 200);
+        }
+        else{
+            return response()->json(['success'=>false,'response'=> 'Something went wrong!'], 404);
+        }
+    }
+    public function updateTodaysDeal(Request $request){
+        $product = Product::find($request->product_id);
+        $product->todays_deal = $request->status;
+        $product->save();
+        if (!empty($product))
+        {
+            return response()->json(['success'=>true,'response'=> $product], 200);
+        }
+        else{
+            return response()->json(['success'=>false,'response'=> 'Something went wrong!'], 404);
+        }
+
+    }
+    public function updatePublished(Request $request)
+    {
+        //return 'ok';
+        $product = Product::find($request->product_id);
+        $product->published = $request->status;
+        $product->save();
+        if (!empty($product))
+        {
+            return response()->json(['success'=>true,'response'=> $product], 200);
+        }
+        else{
+            return response()->json(['success'=>false,'response'=> 'Something went wrong!'], 404);
+        }
+    }
+    public function updateFeatured(Request $request)
+    {
+        $product = Product::find($request->product_id);
+        $product->featured = $request->status;
+        $product->save();
+        if (!empty($product))
+        {
+            return response()->json(['success'=>true,'response'=> $product], 200);
+        }
+        else{
+            return response()->json(['success'=>false,'response'=> 'Something went wrong!'], 404);
+        }
+    }
+    public function allOrders() {
+        $shop = Shop::where('user_id',Auth::id())->select('id')->first();
+        $orders = Order::where('shop_id',$shop->id)->get();
+        if (!empty($orders))
+        {
+            return response()->json(['success'=>true,'response'=> $orders], 200);
+        }
+        else{
+            return response()->json(['success'=>false,'response'=> 'Something went wrong!'], 404);
+        }
+    }
+    public function deliveryStatusUpdate(Request $request){
+        $order = Order::find($request->order_id);
+        $order->delivery_status = $request->delivery_status;
+        $order->save();
+        if ($request->delivery_status == 'Completed'){
+            $tempCommission = OrderTempCommission::where('order_id',$request->order_id)->first();
+            $shop = Shop::find($tempCommission->shop_id);
+            $seller = Seller::find($shop->seller_id);
+            $seller->admin_to_pay += $tempCommission->temp_commission_to_seller;
+            $seller->seller_will_pay_admin += $tempCommission->temp_commission_to_admin;
+            $seller->save();
+            $tempCommission->temp_commission_to_seller = 0;
+            $tempCommission->temp_commission_to_admin = 0;
+            $tempCommission->save();
+        }elseif ($request->delivery_status == 'Cancel'){
+            $tempCommission = OrderTempCommission::where('order_id',$request->order_id)->first();
+            $shop = Shop::find($tempCommission->shop_id);
+            $seller = Seller::find($shop->seller_id);
+            $seller->admin_to_pay += 0;
+            $seller->seller_will_pay_admin += 0;
+            $seller->save();
+            $tempCommission->temp_commission_to_seller = 0;
+            $tempCommission->temp_commission_to_admin = 0;
+            $tempCommission->save();
+        }
+        if (!empty($order))
+        {
+            return response()->json(['success'=>true,'response'=> $order], 200);
+        }
+        else{
+            return response()->json(['success'=>false,'response'=> 'Something went wrong!'], 404);
+        }
+    }
+    public function verificationStatus(){
+        $seller = Seller::where('user_id',Auth::id())->first();
+        $shop = Shop::where('user_id',Auth::id())->first();
+        $success['shop_id'] = $shop->id;
+        $success['verification_status'] = $seller->verification_status;
+        if (!empty($seller))
+        {
+            return response()->json(['success'=>true,'response'=> $success], 200);
+        }
+        else{
+            return response()->json(['success'=>false,'response'=> 'Something went wrong!'], 404);
+        }
+    }
+
+    public function getOrders() {
+        $shop = Shop::where('user_id',Auth::id())->first();
+        $orders=Order::where('shop_id',$shop->id)->latest('created_at')->get();
+        if (!empty($orders))
+        {
+            return response()->json(['success'=>true,'response'=> $orders], 200);
+        }
+        else{
+            return response()->json(['success'=>false,'response'=> 'Order is empty'], 404);
+        }
+    }
+    public function getOrderDetails($id){
+        $order_details=OrderDetails::where('order_id',$id)->get();
+        if (!empty($order_details))
+        {
+            return response()->json(['success'=>true,'response'=> $order_details], 200);
+        }
+        else{
+            return response()->json(['success'=>false,'response'=> 'Order is empty'], 404);
         }
     }
 }

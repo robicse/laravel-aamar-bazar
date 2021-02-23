@@ -43,7 +43,6 @@
                                 <th>#Id</th>
                                 <th>Date</th>
                                 <th>Invoice ID</th>
-                                <th>Product Name</th>
                                 <th>Payment Method</th>
                                 <th title="Delivery Status">D.Status</th>
                                 <th>Details</th>
@@ -55,7 +54,6 @@
                                     <td>{{$key + 1}}</td>
                                     <td>{{date('j-m-Y',strtotime($Complete->created_at))}}</td>
                                     <td>{{$Complete->invoice_code}}</td>
-                                    <td>{{$Complete->order_details->name}}</td>
                                     <td>{{$Complete->payment_type}}</td>
                                     <td>
                                         <span class="badge badge-success">{{$Complete->delivery_status}}</span>
@@ -73,7 +71,6 @@
                                 <th>#Id</th>
                                 <th>Date</th>
                                 <th>Invoice ID</th>
-                                <th>Product Name</th>
                                 <th>Payment Method</th>
                                 <th title="Delivery Status">D.Status</th>
                                 <th>Details</th>

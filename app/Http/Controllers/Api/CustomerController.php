@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Model\FavoriteShop;
+use App\Model\Shop;
 use App\Model\Wishlist;
 use App\User;
 use Brian2694\Toastr\Facades\Toastr;
@@ -116,6 +118,33 @@ class CustomerController extends Controller
         }
         else{
             return response()->json(['success'=>false,'response'=> 'Wishlist is empty!!!'], 404);
+        }
+    }
+    public function favoriteShopAdd(Request $request){
+        $shop = Shop::find($request->shop_id);
+        if (Auth::user())
+        {
+            $check = FavoriteShop::where('user_id', Auth::id())->where('shop_id', $shop->id)->first();
+            if (!empty($check)){
+                $check->delete();
+            }
+            $favoriteShop = new FavoriteShop();
+            $favoriteShop->user_id = Auth::id();
+            $favoriteShop->shop_id= $shop->id;
+            $favoriteShop->save();
+            return response()->json(['success'=>true,'response'=> $favoriteShop], 200);
+        }else{
+            return response()->json(['success'=>false,'response'=> 'Login first to Follow!!'], 404);
+        }
+    }
+    public function favoriteShopRemove(Request $request) {
+//        $shop = Shop::find($request->shop_id);
+        if (Auth::user()) {
+            $favoriteShop = FavoriteShop::where('user_id', Auth::id())->where('shop_id', $request->shop_id)->first();
+            $favoriteShop->delete();
+            return response()->json(['success' => true, 'response' => 'Favorite Shop removed successfully!!'], 200);
+        }else{
+            return response()->json(['success'=>false,'response'=> 'Login first to Follow!!'], 404);
         }
     }
 }

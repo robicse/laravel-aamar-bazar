@@ -9,9 +9,11 @@ use App\Model\Seller;
 use App\Model\Shop;
 use App\Model\VerificationCode;
 use App\User;
+use Brian2694\Toastr\Facades\Toastr;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Str;
 
 class AuthController extends Controller
@@ -24,12 +26,17 @@ class AuthController extends Controller
         $credentials = [
             'phone' => $request->phone,
             'password' => $request->password,
+            'banned' => 0,
         ];
         if(Auth::attempt($credentials))
         {
             $user = Auth::user();
             $success['token'] = $user->createToken('mudihat')-> accessToken;
             $success['user'] = $user;
+            if ($user->user_type == 'seller'){
+                $seller = Seller::where('user_id',$user->id)->first();
+                $success['verification_status'] = $seller->verification_status;
+            }
             return response()->json(['success'=>true,'response' => $success], $this-> successStatus);
         }else{
             return response()->json(['success'=>false,'response'=>'Unauthorised'], 401);
@@ -37,14 +44,13 @@ class AuthController extends Controller
     }
     public function register(Request $request)
     {
-//
-//dd("md");
         $userReg = new User();
         $userReg->name = $request->name;
         $userReg->email = $request->email;
         $userReg->phone = $request->phone;
         $userReg->password = Hash::make($request->password);
         $userReg->user_type = 'customer';
+        $userReg->banned = 1;
         $userReg->save();
 
         $verification = VerificationCode::where('phone',$userReg->phone)->first();
@@ -56,24 +62,21 @@ class AuthController extends Controller
         $verCode->code = mt_rand(1111,9999);
         $verCode->status = 0;
         $verCode->save();
-        $text = "<#> Dear ".$userReg->name.", Your MudiHat OTP is: ".$verCode->code." /bCe8bIGKEiT";
-        UserInfo::smsAPI("088".$verCode->phone,$text);
-
-        $success['token'] = $userReg->createToken('mudihat')-> accessToken;
+        $text = "Dear ".$userReg->name.", Your MudiHat OTP is: ".$verCode->code;
+        UserInfo::smsAPI("88".$verCode->phone,$text);
         $success['details'] = $userReg;
         return response()->json(['success'=>true,'response' =>$success], $this-> successStatus);
     }
 
     public function sellerRegister(Request $request)
     {
-//
-//dd("md");
         $sellerReg = new User();
         $sellerReg->name = $request->name;
         $sellerReg->email = $request->email;
         $sellerReg->phone = $request->phone;
         $sellerReg->password = Hash::make($request->password);
         $sellerReg->user_type = 'seller';
+        $sellerReg->banned = 1;
         $sellerReg->save();
         $defaultCommissionPercent = BusinessSetting::where('type', 'seller_commission')->first();
         $seller = new Seller;
@@ -106,11 +109,57 @@ class AuthController extends Controller
         $verCode->code = mt_rand(1111,9999);
         $verCode->status = 0;
         $verCode->save();
-        $text = "<#> Dear ".$sellerReg->name.", Your MudiHat OTP is: ".$verCode->code." /bCe8bIGKEiT";
-        UserInfo::smsAPI("088".$verCode->phone,$text);
-
-        $success['token'] = $sellerReg->createToken('mudihat')-> accessToken;
+        $text = "Dear ".$sellerReg->name.", Your MudiHat OTP is: ".$verCode->code;
+        UserInfo::smsAPI("88".$verCode->phone,$text);
         $success['details'] = $sellerReg;
         return response()->json(['success'=>true,'response' =>$success], $this-> successStatus);
+    }
+    public function verificationStore(Request $request){
+        if ($request->isMethod('post')){
+            $check = VerificationCode::where('code',$request->code)->where('phone',$request->phone)->where('status',0)->first();
+            if (!empty($check)) {
+                $check->status = 1;
+                $check->update();
+                $user = User::where('phone',$request->phone)->first();
+                $user->verification_code = $request->code;
+                $user->banned = 0;
+                $user->save();
+                $success['message'] = 'Your phone number successfully verified';
+                $success['token'] = $user->createToken('mudihat')-> accessToken;
+               return response()->json(['success'=>true,'response' =>$success], $this-> successStatus);
+                /*return redirect('login');*/
+//                $credentials = [
+//                    'phone' => Session::get('phone'),
+//                    'password' => Session::get('password'),
+//                    'user_type' => Session::get('user_type'),
+//                ];
+//
+//                if (Auth::attempt($credentials)) {
+//                    Session::forget('phone');
+//                    Session::forget('password');
+//                    if (Session::get('user_type') == 'seller')
+//                    {
+//                        return redirect()->route('seller.dashboard');
+//                    }
+//                    elseif (Session::get('user_type') == 'customer')
+//                    {
+//                        return redirect()->route('user.dashboard');
+//                    }
+//
+//                }else{
+//                    die('no auth');
+//                }
+            }else{
+                return response()->json(['success'=>false,'response'=>'Unauthorised'], 401);
+            }
+        }
+    }
+    public function CheckVerificationCode(Request $request){
+        $check = VerificationCode::where('code', $request->code)->where('phone', Session::get('phone'))->where('status', 0)->first();
+        if(!empty($check)){
+            echo 'found';
+        }else{
+            echo 'not found';
+        }
     }
 }

@@ -83,10 +83,10 @@
                                             <a class="bg-success dropdown-item" onclick="show_seller_payment_modal('{{$sellerUserInfo->seller->id}}');" href="#">
                                                 <i class="fa fa-money"></i> Pay To Seller
                                             </a>
-                                            <a class="bg-success dropdown-item" onclick="show_admin_payment_modal('{{$sellerUserInfo->seller->id}}');" href="#">
+                                            <a class="bg-primary dropdown-item" onclick="show_admin_payment_modal('{{$sellerUserInfo->seller->id}}');" href="#">
                                                 <i class="fa fa-money"></i> Pay To Admin
                                             </a>
-                                            <a class="bg-danger dropdown-item" onclick="show_seller_commission_modal('{{$sellerUserInfo->seller->id}}');" href="#">
+                                            <a class="bg-warning dropdown-item" onclick="show_seller_commission_modal('{{$sellerUserInfo->seller->id}}');" href="#">
                                                 <i class="fa fa-money-bill-wave"></i> Set Commission
                                             </a>
                                             <a class="bg-secondary dropdown-item" href="{{route('admin.sellers.edit',$sellerUserInfo->id)}}">
@@ -95,7 +95,7 @@
                                             <a class="bg-info dropdown-item" href="{{route('admin.sellers.edit',$sellerUserInfo->id)}}">
                                                 <i class="fa fa-edit"></i> Edit
                                             </a>
-                                            <a class="bg-info dropdown-item" href="{{route('admin.sellers.ban',$sellerUserInfo->id)}}">
+                                            <a class="bg-danger dropdown-item" href="{{route('admin.sellers.ban',$sellerUserInfo->id)}}">
                                                 <i class="fa fa-ban"></i> Ban this seller
                                             </a>
 

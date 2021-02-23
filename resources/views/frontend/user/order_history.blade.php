@@ -22,6 +22,7 @@
                                     <h3>Order History</h3>
                                 </div>
                                 <div class="ps-section__content">
+
                                     <div class="table-responsive">
                                         <table class="table ps-table ps-table--invoices">
                                             <thead>
@@ -29,26 +30,23 @@
                                                 <th>Id</th>
                                                 <th>Invoice</th>
                                                 <th>Date</th>
-                                                <th>Product Name</th>
                                                 <th>Grand Total</th>
                                                 <th>Payment Status</th>
                                                 <th>Delivery Status</th>
                                                 <th>Print</th>
                                                 <th>Review</th>
-
                                             </tr>
                                             </thead>
                                             <tbody>
                                             @foreach($orders as $key => $order)
                                             <tr>
                                                 @php
-                                                $review = \App\Model\Review::where('user_id',$order->user_id)->where('product_id',$order->order_details->product_id)->first();
+                                                $review = \App\Model\Review::where('user_id',$order->user_id)->first();
                                                 @endphp
 {{--                                                @dd($review)--}}
                                                 <td>{{$key + 1}}</td>
                                                 <td>{{ $order->invoice_code }}</td>
                                                 <td>{{date('j-m-Y',strtotime($order->created_at))}}</td>
-                                                <td>{{ $order->order_details->name }}</td>
                                                 <td>{{ $order->grand_total }}</td>
                                                 <td>{{ $order->payment_status }}</td>
                                                 <td>{{ $order->delivery_status }}</td>

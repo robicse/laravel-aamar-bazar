@@ -43,7 +43,6 @@
                                 <th>#Id</th>
                                 <th>Date</th>
                                 <th>Invoice ID</th>
-                                <th>Product Name</th>
                                 <th>Payment Method</th>
                                 <th title="Delivery Status">D.Status</th>
                                 <th>Details</th>
@@ -55,7 +54,6 @@
                                     <td>{{$key + 1}}</td>
                                     <td>{{date('j-m-Y',strtotime($Deliver->created_at))}}</td>
                                     <td>{{$Deliver->invoice_code}}</td>
-                                    <td>{{$Deliver->order_details->name}}</td>
                                     <td>{{$Deliver->payment_type}}</td>
                                     <td>
                                         <form id="status-form-{{$Deliver->id}}" action="{{route('seller.order-product.status',$Deliver->id)}}">
@@ -79,7 +77,6 @@
                                 <th>#Id</th>
                                 <th>Date</th>
                                 <th>Invoice ID</th>
-                                <th>Product Name</th>
                                 <th>Payment Method</th>
                                 <th title="Delivery Status">D.Status</th>
                                 <th>Details</th>

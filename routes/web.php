@@ -80,6 +80,8 @@ Route::get('/best-selling/{name}/{slug}/{sub}', 'Frontend\VendorController@bestS
 Auth::routes();
 
 //Route::get('/home', 'HomeController@index')->name('home');
+Route::post('/reset-password', '\App\Http\Controllers\Auth\LoginController@reset_pass_check_mobile')->name('reset.pass.mobile');
+Route::post('/reset-password/send', '\App\Http\Controllers\Auth\LoginController@reset_pass')->name('reset.pass');
 
 
 Route::group(['middleware' => ['auth', 'user']], function () {
