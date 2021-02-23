@@ -40,10 +40,10 @@ class AddressController extends Controller
         }
     }
     public function setDefault($id){
-        $addresses = Address::where('set_default',1)->first();
-        if (!empty($addresses)) {
-            $addresses->set_default = 0;
-            $addresses->save();
+        $addresses = Address::where('user_id',Auth::id())->get();
+        foreach ($addresses as $key => $address) {
+            $address->set_default = 0;
+            $address->save();
         }
         $setDefault = Address::find($id);
         $setDefault->set_default = 1;

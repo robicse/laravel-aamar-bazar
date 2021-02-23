@@ -43,7 +43,6 @@
                                 <th>#Id</th>
                                 <th>Date</th>
                                 <th>Invoice ID</th>
-                                <th>Product Name</th>
                                 <th>Payment Method</th>
                                 <th title="Delivery Status">D.Status</th>
                                 <th>Details</th>
@@ -55,7 +54,6 @@
                                     <td>{{$key + 1}}</td>
                                     <td>{{date('j-m-Y',strtotime($Cancel->created_at))}}</td>
                                     <td>{{$Cancel->invoice_code}}</td>
-                                    <td>{{$Cancel->order_details->name}}</td>
                                     <td>{{$Cancel->payment_type}}</td>
                                     <td>
                                         <span class="badge badge-danger">{{$Cancel->delivery_status.'ed'}}</span>
@@ -79,7 +77,6 @@
                                 <th>#Id</th>
                                 <th>Date</th>
                                 <th>Invoice ID</th>
-                                <th>Product Name</th>
                                 <th>Payment Method</th>
                                 <th title="Delivery Status">D.Status</th>
                                 <th>Details</th>

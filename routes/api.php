@@ -25,9 +25,13 @@ Route::group(['middleware' => ['auth:api']], function () {
     Route::get('/user/wishlist', 'Api\CustomerController@wishlist');
     Route::post('/add/wishlist/{id}', 'Api\CustomerController@wishlistAdd' );
     Route::delete('/remove/wishlist/{id}', 'Api\CustomerController@wishlistRemove' );
-    Route::get('/orders', 'Api\OrderController@order_get');
-    Route::post('/order/details/{id}', 'Api\OrderController@order_details_get');
-    Route::post('/order/submit', 'Api\OrderController@orderSubmit');
+    Route::get('/user/orders', 'Api\OrderController@order_get');
+    Route::get('/user/order/details/{id}', 'Api\OrderController@order_details_get');
+    Route::post('/user/order/submit', 'Api\OrderController@orderSubmit');
+
+    //User Favorite Shop
+    Route::post('/add/favorite-shop', 'Api\CustomerController@favoriteShopAdd' );
+    Route::post('/remove/favorite-shop', 'Api\CustomerController@favoriteShopRemove' );
 
     //Seller
     Route::get('/seller/dashboard', 'Api\SellerController@dashboard');
@@ -38,12 +42,17 @@ Route::group(['middleware' => ['auth:api']], function () {
     Route::post('/seller/nid-info-update', 'Api\SellerController@nidInfoUpdate');
     Route::get('/seller/shop/info', 'Api\SellerController@shopInfo');
     Route::post('/seller/shop/info-update', 'Api\SellerController@shopInfoUpdate');
+    Route::get('/seller/verification-status', 'Api\SellerController@verificationStatus');
 
     //Seller Products
     Route::get('/seller/all-products', 'Api\SellerController@allProducts');
     Route::post('/seller/products/todays_deal-update', 'Api\SellerController@updateTodaysDeal');
     Route::post('/seller/products/published-update', 'Api\SellerController@updatePublished');
     Route::post('/seller/products/featured-update', 'Api\SellerController@updateFeatured');
+
+    //Seller Order Details
+    Route::get('/seller/orders', 'Api\SellerController@getOrders');
+    Route::get('/seller/order/details/{id}', 'Api\SellerController@getOrderDetails');
 
     //Seller Products Flash Deal Products
 //    Route::get('/seller/all-flash-deal-products', 'Api\SellerController@allFlashDealProducts');

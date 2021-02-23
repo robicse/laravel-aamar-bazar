@@ -143,7 +143,6 @@ class CartController extends Controller
             $payment_status = 'Paid';
         }
         $address = Address::where('user_id',Auth::id())->where('set_default',1)->first();
-        //dd($request->all());
         $data['name'] = Auth::User()->name;
         $data['email'] = Auth::User()->email;
         $data['address'] = $address->address;

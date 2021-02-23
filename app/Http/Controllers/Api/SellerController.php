@@ -7,6 +7,7 @@ use App\Model\Attribute;
 use App\Model\Brand;
 use App\Model\Category;
 use App\Model\Order;
+use App\Model\OrderDetails;
 use App\Model\OrderTempCommission;
 use App\Model\Product;
 use App\Model\Seller;
@@ -297,6 +298,41 @@ class SellerController extends Controller
         }
         else{
             return response()->json(['success'=>false,'response'=> 'Something went wrong!'], 404);
+        }
+    }
+    public function verificationStatus(){
+        $seller = Seller::where('user_id',Auth::id())->first();
+        $shop = Shop::where('user_id',Auth::id())->first();
+        $success['shop_id'] = $shop->id;
+        $success['verification_status'] = $seller->verification_status;
+        if (!empty($seller))
+        {
+            return response()->json(['success'=>true,'response'=> $success], 200);
+        }
+        else{
+            return response()->json(['success'=>false,'response'=> 'Something went wrong!'], 404);
+        }
+    }
+
+    public function getOrders() {
+        $shop = Shop::where('user_id',Auth::id())->first();
+        $orders=Order::where('shop_id',$shop->id)->latest('created_at')->get();
+        if (!empty($orders))
+        {
+            return response()->json(['success'=>true,'response'=> $orders], 200);
+        }
+        else{
+            return response()->json(['success'=>false,'response'=> 'Order is empty'], 404);
+        }
+    }
+    public function getOrderDetails($id){
+        $order_details=OrderDetails::where('order_id',$id)->get();
+        if (!empty($order_details))
+        {
+            return response()->json(['success'=>true,'response'=> $order_details], 200);
+        }
+        else{
+            return response()->json(['success'=>false,'response'=> 'Order is empty'], 404);
         }
     }
 }

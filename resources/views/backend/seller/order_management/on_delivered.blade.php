@@ -43,7 +43,6 @@
                                 <th>#Id</th>
                                 <th>Date</th>
                                 <th>Invoice ID</th>
-                                <th>Product Name</th>
                                 <th>Payment Method</th>
                                 <th title="Delivery Status">D.Status</th>
                                 <th>Details</th>
@@ -55,7 +54,6 @@
                                     <td>{{$key + 1}}</td>
                                     <td>{{date('j-m-Y',strtotime($ondel->created_at))}}</td>
                                     <td>{{$ondel->invoice_code}}</td>
-                                    <td>{{$ondel->order_details->name}}</td>
                                     <td>{{$ondel->payment_type}}</td>
                                     <td>
                                         <form id="status-form-{{$ondel->id}}" action="{{route('seller.order-product.status',$ondel->id)}}">
@@ -81,7 +79,6 @@
                                 <th>#Id</th>
                                 <th>Date</th>
                                 <th>Invoice ID</th>
-                                <th>Product Name</th>
                                 <th>Payment Method</th>
                                 <th title="Delivery Status">D.Status</th>
                                 <th>Details</th>

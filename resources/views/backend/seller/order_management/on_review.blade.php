@@ -43,7 +43,6 @@
                                 <th>#Id</th>
                                 <th>Date</th>
                                 <th>Invoice ID</th>
-                                <th>Product Name</th>
                                 <th>Payment Method</th>
                                 <th title="Delivery Status">D.Status</th>
                                 <th>Details</th>
@@ -54,7 +53,6 @@
                                 <tr>
                                     <td>{{$key + 1}}</td>
                                     <td>{{date('j-m-Y',strtotime($review->created_at))}}</td>
-                                    <td>{{$review->order_details->name}}</td>
                                     <td>{{$review->invoice_code}}</td>
                                     <td>{{$review->payment_type}}</td>
                                     <td>
@@ -82,7 +80,6 @@
                                 <th>#Id</th>
                                 <th>Date</th>
                                 <th>Invoice ID</th>
-                                <th>Product Name</th>
                                 <th>Payment Method</th>
                                 <th title="Delivery Status">D.Status</th>
                                 <th>Details</th>
