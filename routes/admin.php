@@ -50,6 +50,7 @@ Route::group(['as'=>'admin.','prefix' =>'admin','namespace'=>'Admin', 'middlewar
     Route::get('sellers/profile/show/{id}','SellerController@profileShow')->name('seller.profile.show');
     Route::put('sellers/profile/update/{id}','SellerController@updateProfile')->name('seller.profile.update');
     Route::put('sellers/password/update/{id}','SellerController@updatePassword')->name('seller.password.update');
+    Route::put('sellers/address/update/{id}','SellerController@updateAddress')->name('seller.address.update');
     Route::put('sellers/bankinfo/update/{id}','SellerController@bankInfoUpdate')->name('seller.bankinfo.update');
     Route::post('/sellers/payment_modal', 'SellerController@payment_modal')->name('sellers.payment_modal');
     Route::post('/payment_modal', 'SellerController@admin_payment_modal')->name('payment_modal');

@@ -1,15 +1,12 @@
 <?php
-
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Model\AdminPaymentHistory;
 use App\Model\AdminWithdrawRequest;
 use App\Model\BusinessSetting;
-use App\Model\Order;
 use App\Model\Payment;
 use App\Model\Seller;
-use App\Model\Product;
 use App\Model\SellerWithdrawRequest;
 use App\Model\Shop;
 use App\User;
@@ -22,31 +19,31 @@ use Illuminate\Support\Facades\Session;
 
 class SellerController extends Controller
 {
-   public function index()
-   {
-       $sellerUserInfos = User::where('user_type','seller')->get();
-       return view('backend.admin.seller.index', compact('sellerUserInfos'));
-   }
+    public function index()
+    {
+        $sellerUserInfos = User::where('user_type','seller')->get();
+        return view('backend.admin.seller.index', compact('sellerUserInfos'));
+    }
 
-   public function verification(Request $request)
-   {
-       //return $request->id;
-       $seller = Seller::find($request->id);
-       $seller->verification_status = $request->status;
-       if($seller->save()){
-           return 1;
-       }
-       return 0;
-   }
-   public function commissionForm()
-   {
-       $commission = BusinessSetting::where('type','seller_commission')->first();
+    public function verification(Request $request)
+    {
+        //return $request->id;
+        $seller = Seller::find($request->id);
+        $seller->verification_status = $request->status;
+        if($seller->save()){
+            return 1;
+        }
+        return 0;
+    }
+    public function commissionForm()
+    {
+        $commission = BusinessSetting::where('type','seller_commission')->first();
 
-       return view('backend.admin.seller.commission',compact('commission'));
-   }
+        return view('backend.admin.seller.commission',compact('commission'));
+    }
 
-   public function commissionStore(Request $request, $id)
-   {
+    public function commissionStore(Request $request, $id)
+    {
         $this->validate($request,[
             'value' => 'required',
         ]);
@@ -55,46 +52,46 @@ class SellerController extends Controller
         $data->save();
         Toastr::success($request->value.' % Seller Commission successfully added for all sellers');
         return redirect()->back();
-   }
-   public function adminPaymentHistory()
-   {
-       $paymentHistories = AdminPaymentHistory::latest()->get();
-    return view('backend.admin.seller.admin_payment_history',compact('paymentHistories'));
-   }
+    }
+    public function adminPaymentHistory()
+    {
+        $paymentHistories = AdminPaymentHistory::latest()->get();
+        return view('backend.admin.seller.admin_payment_history',compact('paymentHistories'));
+    }
     public function paymentHistory()
     {
         $paymentHistories = Payment::latest()->get();
         return view('backend.admin.seller.payment_history',compact('paymentHistories'));
     }
-   public function withdrawRequest()
-   {
-       $withdrawRequests = SellerWithdrawRequest::latest()->get();
-       return view('backend.admin.seller.withdraw_request', compact('withdrawRequests'));
-   }
+    public function withdrawRequest()
+    {
+        $withdrawRequests = SellerWithdrawRequest::latest()->get();
+        return view('backend.admin.seller.withdraw_request', compact('withdrawRequests'));
+    }
 
-   public function profileShow($id)
-   {
-       $userInfo = User::find(decrypt($id));
-       $sellerInfo = Seller::where('user_id',decrypt($id))->first();
-       $shopInfo = Shop::where('user_id',decrypt($id))->first();
-       return view('backend.admin.seller.profile', compact('userInfo','sellerInfo','shopInfo'));
-   }
-   public function updateProfile(Request $request, $id)
-   {
-       $this->validate($request, [
-           'name' =>  'required',
-           'phone' => 'required|regex:/(01)[0-9]{9}/|unique:users,phone,'.$id,
-           'email' =>  'required|email|unique:users,email,'.$id,
-       ]);
+    public function profileShow($id)
+    {
+        $userInfo = User::find(decrypt($id));
+        $sellerInfo = Seller::where('user_id',decrypt($id))->first();
+        $shopInfo = Shop::where('user_id',decrypt($id))->first();
+        return view('backend.admin.seller.profile', compact('userInfo','sellerInfo','shopInfo'));
+    }
+    public function updateProfile(Request $request, $id)
+    {
+        $this->validate($request, [
+            'name' =>  'required',
+            'phone' => 'required|regex:/(01)[0-9]{9}/|unique:users,phone,'.$id,
+            'email' =>  'required|email|unique:users,email,'.$id,
+        ]);
 
-       $user =  User::find($id);
-       $user->name = $request->name;
-       $user->email = $request->email;
-       $user->phone = $request->phone;
-       $user->save();
-       Toastr::success('Seller Profile Updated Successfully','Success');
-       return redirect()->back();
-   }
+        $user =  User::find($id);
+        $user->name = $request->name;
+        $user->email = $request->email;
+        $user->phone = $request->phone;
+        $user->save();
+        Toastr::success('Seller Profile Updated Successfully','Success');
+        return redirect()->back();
+    }
     public function updatePassword(Request $request, $id)
     {
         $this->validate($request, [
@@ -107,6 +104,23 @@ class SellerController extends Controller
         Toastr::success('Seller Password Updated Successfully','Success');
         return redirect()->back();
     }
+
+    public function updateAddress(Request $request, $id){
+        $this->validate($request, [
+            'address' =>  'required',
+        ]);
+        $user =  User::find($id);
+        $shop = Shop::where('user_id',$user->id)->first();
+        $shop->address = $request->address;
+        $shop->city = $request->city;
+        $shop->area = $request->area;
+        $shop->latitude = $request->latitude;
+        $shop->longitude = $request->longitude;
+        $shop->save();
+        Toastr::success('Shop Address Updated Successfully','Success');
+        return redirect()->back();
+    }
+
     public function bankInfoUpdate(Request $request, $id)
     {
         //dd($request->all());
@@ -153,7 +167,7 @@ class SellerController extends Controller
         return view('backend.admin.seller.admin_payment_modal', compact('seller'));
     }
     public function admin_withdraw_store(Request $request, $id) {
-       $seller = Seller::find($id);
+        $seller = Seller::find($id);
 //       dd($seller);
         if($seller->seller_will_pay_admin >= $request->amount ) {
             $payment = new AdminPaymentHistory();
@@ -241,7 +255,7 @@ class SellerController extends Controller
 
     }
     public function banSeller($id) {
-       //dd($id);
+        //dd($id);
         $user = User::findOrFail($id);
         $seller = Seller::where('user_id',$user->id)->first();
         //dd($seller);

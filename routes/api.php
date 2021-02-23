@@ -84,6 +84,8 @@ Route::post('/search/product', 'Api\ProductController@search_product');
 Route::get('/category/featured-products/{id}', 'Api\CategoryController@categoryProducts');
 Route::get('/category/all-products/{id}', 'Api\CategoryController@categoryAllProducts');
 
+Route::get('/favorite-shops', 'Api\CustomerController@getFavoriteShop' );
+
 Route::post('/login','Api\AuthController@login');
 Route::post('/register','Api\AuthController@register');
 Route::post('/seller/register','Api\AuthController@sellerRegister');

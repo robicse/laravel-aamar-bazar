@@ -44,12 +44,18 @@
                                         <strong>{{ $message }}</strong>
                                     </span>
                                     @enderror
+
 {{--                                    <input class="form-control" type="text" placeholder="Password"><a href="#">Forgot?</a>--}}
                                 </div>
                                 <div class="form-group">
                                     <div class="ps-checkbox">
                                         <input class="form-control" type="checkbox" id="remember-me" name="remember-me">
                                         <label for="remember-me">Rememeber me</label>
+{{--                                        <form action="{{route('reset.pass.mobile')}}" method="POST">--}}
+{{--                                            @csrf--}}
+{{--                                            <button class="float-right">Forgot?</button>--}}
+{{--                                        </form>--}}
+
                                     </div>
                                 </div>
                                 <div class="form-group submtit" style="padding-bottom: 40px;">

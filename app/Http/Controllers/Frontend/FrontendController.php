@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Frontend;
 use App\Model\Category;
 use App\Model\Product;
+use App\Model\Seller;
 use App\Model\Shop;
 use App\Model\Subcategory;
 use App\User;
@@ -10,6 +11,7 @@ use Brian2694\Toastr\Facades\Toastr;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
 
@@ -20,7 +22,11 @@ class FrontendController extends Controller
         $products = Product::where('todays_deal',1)->latest()->limit(7)->get();
         $new_products = Product::where('published',1)->latest()->limit(7)->get();
         $best_sales_products=Product::where('added_by','seller')->where('published',1)->where('num_of_sale', '>',0)->limit(20)->get();
-        $shops = Shop::all();
+        $shops = DB::table('sellers')
+            ->join('shops','sellers.user_id','=','shops.user_id')
+            ->where('sellers.verification_status','=',1)
+            ->select('shops.*')
+            ->get();
         return view('frontend.pages.index', compact('categories','products','new_products','shops','best_sales_products'));
     }
     public function register(Request $request) {

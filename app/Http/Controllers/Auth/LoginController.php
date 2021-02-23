@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Helpers\UserInfo;
 use App\Http\Controllers\Controller;
 use App\Model\PasswordResetCode;
+use App\Model\VerificationCode;
 use App\Providers\RouteServiceProvider;
 use App\User;
 use Brian2694\Toastr\Facades\Toastr;
@@ -80,23 +81,22 @@ class LoginController extends Controller
         $user= User::where('phone',$request->phone)->first();
         if(!empty($user)){
 
-            $verification = PasswordResetCode::where('phone',$user->phone)->first();
+            $verification = VerificationCode::where('phone',$user->phone)->first();
             if (!empty($verification)){
                 $verification->delete();
             }
-            $verCode = new PasswordResetCode();
+            $verCode = new VerificationCode();
             $verCode->phone = $user->phone;
             $verCode->code = mt_rand(1111,9999);
             $verCode->status = 0;
             $verCode->save();
             $text = "Dear ".$user->name.", Your Password Reset Verification Code is ".$verCode->code;
             UserInfo::smsAPI("88".$verCode->phone,$text);
-            $type="found";
-            return response()->json(['status'=>$user , 'type'=>$type]);
+            Toastr::success('Thank you for your registration. We send a verification code in your mobile number. please verify your phone number.' ,'Success');
+            return view('frontend.pages.verification',compact('verCode'));
         }else{
-            $content="oops!! No User Found With This Phone Number.Please Sign Up First.";
-            $type="Not_found";
-            return response()->json(['status'=>$content , 'type'=>$type]);
+            Toastr::danger('oops!! No User Found With This Phone Number.Please Sign Up First.','Success');
+            return redirect()->back();
         }
     }
 
@@ -104,7 +104,7 @@ class LoginController extends Controller
         $this->validate($request, [
             'newPassword' =>  'required|min:6',
         ]);
-        $verification = \App\Password_Reset_Code::where('phone',$request->phone)->where('code',$request->code)->first();
+        $verification = VerificationCode::where('phone',$request->phone)->where('code',$request->code)->first();
         if (!empty($verification)){
             $user=\App\User::where('phone',$request->phone)->first();
 //                $rand_pass= mt_rand(111111,999999);
