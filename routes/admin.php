@@ -77,6 +77,12 @@ Route::group(['as'=>'admin.','prefix' =>'admin','namespace'=>'Admin', 'middlewar
     Route::put('customers/update/profile/{id}','CustomerController@updateProfile')->name('customer.profile.update');
     Route::put('customers/password/update/{id}','CustomerController@updatePassword')->name('customer.password.update');
 
+    //review
+    Route::get('review','ReviewController@index')->name('review.index');
+    Route::post('review/status', 'ReviewController@updateStatus')->name('review.status');
+    Route::get('review/view/{id}','ReviewController@view')->name('review.view');
+    Route::post('review/update/{id}','ReviewController@reviewUpdate')->name('review.update');
+
     //Sliders
     Route::resource('sliders','SliderController');
     Route::resource('profile','ProfileController');

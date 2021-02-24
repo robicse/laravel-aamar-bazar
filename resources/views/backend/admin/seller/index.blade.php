@@ -92,9 +92,9 @@
                                             <a class="bg-secondary dropdown-item" href="{{route('admin.sellers.edit',$sellerUserInfo->id)}}">
                                                 <i class="fa fa-history"></i> Payment History
                                             </a>
-                                            <a class="bg-info dropdown-item" href="{{route('admin.sellers.edit',$sellerUserInfo->id)}}">
-                                                <i class="fa fa-edit"></i> Edit
-                                            </a>
+{{--                                            <a class="bg-info dropdown-item" href="{{route('admin.sellers.edit',$sellerUserInfo->id)}}">--}}
+{{--                                                <i class="fa fa-edit"></i> Edit--}}
+{{--                                            </a>--}}
                                             <a class="bg-danger dropdown-item" href="{{route('admin.sellers.ban',$sellerUserInfo->id)}}">
                                                 <i class="fa fa-ban"></i> Ban this seller
                                             </a>
