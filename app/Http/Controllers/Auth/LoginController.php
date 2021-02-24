@@ -77,6 +77,8 @@ class LoginController extends Controller
         return 'phone';
     }
 
+
+
     public function reset_pass_check_mobile(Request $request) {
         $user= User::where('phone',$request->phone)->first();
         if(!empty($user)){

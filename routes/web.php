@@ -52,6 +52,7 @@ Route::get('/get-verification-code/{id}', 'Frontend\VerificationController@getVe
 Route::post('/get-verification-code-store', 'Frontend\VerificationController@verification')->name('get-verification-code.store');
 Route::get('/check-verification-code', 'Frontend\VerificationController@CheckVerificationCode')->name('check-verification-code');
 
+
 //product
 Route::get('/product/{slug}', 'Frontend\ProductController@ProductDetails')->name('product-details');
 Route::post('/products/get/variant/price', 'Frontend\ProductController@ProductVariantPrice')->name('product.variant.price');
@@ -80,7 +81,11 @@ Route::get('/best-selling/{name}/{slug}/{sub}', 'Frontend\VendorController@bestS
 Auth::routes();
 
 //Route::get('/home', 'HomeController@index')->name('home');
-Route::post('/reset-password', '\App\Http\Controllers\Auth\LoginController@reset_pass_check_mobile')->name('reset.pass.mobile');
+Route::get('/reset-password','Frontend\FrontendController@getPhoneNumber')->name('reset.password');
+Route::post('/otp-store','Frontend\FrontendController@checkPhoneNumber')->name('phone.check');
+Route::post('/change-password','Frontend\FrontendController@otpStore')->name('otp.store');
+Route::post('/new-password/update/{id}','Frontend\FrontendController@passwordUpdate')->name('reset.password.update');
+//Route::post('/reset-password', '\App\Http\Controllers\Auth\LoginController@reset_pass_check_mobile')->name('reset.pass.mobile');
 Route::post('/reset-password/send', '\App\Http\Controllers\Auth\LoginController@reset_pass')->name('reset.pass');
 
 
