@@ -58,7 +58,11 @@
                                         @endif
                                     </td>
                                     <td>{{$review->user->name}}</td>
-                                    <td>{{$review->shop->name}}</td>
+                                    <td>
+                                        @if($review->shop != null)
+                                        {{$review->shop->name}}
+                                        @endif
+                                    </td>
                                     <td>{{$review->product->name}}</td>
                                     <td>{{$review->rating}}</td>
                                     <td>
@@ -154,7 +158,7 @@
             }
             $.post('{{ route('admin.review.status') }}', {_token:'{{ csrf_token() }}', id:el.value, status:status}, function(data){
                 if(data == 1){
-                    toastr.success('success', 'Is Home updated successfully');
+                    toastr.success('success', 'Status updated successfully');
                 }
                 else{
                     toastr.danger('danger', 'Something went wrong');
