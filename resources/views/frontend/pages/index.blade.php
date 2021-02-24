@@ -605,26 +605,21 @@
                 <div class="ps-section__content">
                     <div class="row">
                         @foreach($shops as $shop)
-                        <div class="col-xl-3 col-lg-4 col-md-4 col-sm-6 col-12 ">
-                            <div class="ps-product--horizontal">
-                                <div class="ps-product__thumbnail"><a href="{{route('shop.details',$shop->slug)}}"><img src="{{url($shop->logo)}}" alt=""></a></div>
-                                <div class="ps-product__content"><a class="ps-product__title" href="{{route('shop.details',$shop->slug)}}">{{ $shop->name }}</a>
-                                    <div class="ps-product__rating">
-                                        <select class="ps-rating" data-read-only="true">
-                                            <option value="1">1</option>
-                                            <option value="1">2</option>
-                                            <option value="1">3</option>
-                                            <option value="1">4</option>
-                                            <option value="2">5</option>
-                                        </select>
-                                    </div>
-                                    <div class="">
-                                        <p class="ps-product__price"> <a href="{{route('shop.details',$shop->slug)}}">Visit Store</a>
-                                    <i class="right fa fa-angle-left"></i> </p>
+                            @php
+                                $product = \App\Model\Product::where('user_id',$shop->user_id)->sum('num_of_sale');
+                            @endphp
+                                <div class="col-xl-3 col-lg-4 col-md-4 col-sm-6 col-12 ">
+                                    <div class="ps-product--horizontal">
+                                        <div class="ps-product__thumbnail"><a href="{{route('shop.details',$shop->slug)}}"><img src="{{url($shop->logo)}}" alt=""></a></div>
+                                        <div class="ps-product__content"><a class="ps-product__title" href="{{route('shop.details',$shop->slug)}}">{{ $shop->name }}</a>
+
+                                            <div class="">
+                                                <p class="ps-product__price"> <a href="{{route('shop.details',$shop->slug)}}">Visit Store</a>
+                                                    <i class="right fa fa-angle-left"></i> </p>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                        </div>
                         @endforeach
                     </div>
                 </div>

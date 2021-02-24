@@ -24,8 +24,8 @@ class FrontendController extends Controller
         $products = Product::where('todays_deal',1)->latest()->limit(7)->get();
         $new_products = Product::where('published',1)->latest()->limit(7)->get();
         $best_sales_products=Product::where('added_by','seller')->where('published',1)->where('num_of_sale', '>',0)->limit(20)->get();
-        $shops = DB::table('sellers')
-            ->join('shops','sellers.user_id','=','shops.user_id')
+        $shops = DB::table('shops')
+            ->join('sellers','shops.user_id','=','sellers.user_id')
             ->where('sellers.verification_status','=',1)
             ->select('shops.*')
             ->get();

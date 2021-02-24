@@ -110,7 +110,6 @@ Route::group(['middleware' => ['auth', 'user']], function () {
         Route::resource('address', 'AddressController');
     });
     Route::post('/user/address-status/update/{id}', 'User\AddressController@updateStatus')->name('user.update.status');
-
 });
 //Route::get('/vendor/dashboard', 'Vendor\DashboardController@index')->name('vendor.dashboard');
 
