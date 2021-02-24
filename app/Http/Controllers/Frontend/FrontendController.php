@@ -1,11 +1,13 @@
 <?php
 
 namespace App\Http\Controllers\Frontend;
+use App\Helpers\UserInfo;
 use App\Model\Category;
 use App\Model\Product;
 use App\Model\Seller;
 use App\Model\Shop;
 use App\Model\Subcategory;
+use App\Model\VerificationCode;
 use App\User;
 use Brian2694\Toastr\Facades\Toastr;
 use App\Http\Controllers\Controller;
@@ -69,6 +71,60 @@ class FrontendController extends Controller
 //            return redirect()->route('user.dashboard');
 //        }
 
+    }
+    public function getPhoneNumber(){
+        return view('auth.password_verification.check_phone_number');
+    }
+    public function checkPhoneNumber(Request $request){
+        $user = User::where('phone',$request->phone)->first();
+       if (!empty($user)) {
+           $verification = VerificationCode::where('phone',$user->phone)->first();
+           if (!empty($verification)){
+               $verification->delete();
+           }
+           $verCode = new VerificationCode();
+           $verCode->phone = $user->phone;
+           $verCode->code = mt_rand(1111,9999);
+           $verCode->status = 0;
+           $verCode->save();
+           $text = "Dear ".$user->name.", Your Mudi Hat OTP is ".$verCode->code;
+//        echo $text;exit();
+           UserInfo::smsAPI("88".$verCode->phone,$text);
+           Toastr::success('Thank you for your registration. We send a verification code in your mobile number. please verify your phone number.' ,'Success');
+           //$verCode = $verCode->phone;
+           //dd($text);
+           return view('auth.password_verification.send_otp',compact('verCode'));
+       }else{
+           Toastr::error('This phone number does not exist to the system');
+           return redirect()->back();
+       }
+    }
+    public function otpStore(Request $request) {
+        if ($request->isMethod('post')){
+            $check = VerificationCode::where('code',$request->code)->where('phone',$request->phone)->where('status',0)->first();
+            if (!empty($check)) {
+                $check->status = 1;
+                $check->update();
+                $user = User::where('phone',$request->phone)->first();
+                $user->verification_code = $request->code;
+                $user->banned = 0;
+                $user->save();
+                Toastr::success('Your phone number successfully verified.' ,'Success');
+                return view('auth.password_verification.reset_password',compact('user'));
+            }else{
+                //$verCode = $request->phone;
+                $verCode = VerificationCode::where('phone',$request->phone)->where('status',0)->first();
+                Toastr::error('Invalid Code' ,'Error');
+                return view('auth.password_verification.send_otp',compact('verCode'));
+            }
+        }
+    }
+    public function passwordUpdate(Request $request, $id) {
+        $user = User::find($id);
+        $user->password = Hash::make($request->password);
+        $user->save();
+        Toastr::success('Your Password Updated successfully verified.' ,'Success');
+        return redirect()->route('login');
     }
 
 }

@@ -44,6 +44,7 @@
                                         <strong>{{ $message }}</strong>
                                     </span>
                                     @enderror
+                                    <a href="{{route('reset.password')}}">Forgot?</a>
 
 {{--                                    <input class="form-control" type="text" placeholder="Password"><a href="#">Forgot?</a>--}}
                                 </div>

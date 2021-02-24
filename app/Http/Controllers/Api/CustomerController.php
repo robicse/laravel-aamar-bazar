@@ -19,7 +19,6 @@ class CustomerController extends Controller
         $user = User::find(Auth::id());
         $user->name = $request->name;
         $user->email = $request->email;
-        $user->phone = $request->phone;
         if($request->hasFile('avatar_original')){
             $user->avatar_original = $request->avatar_original->store('uploads/profile');
         }
@@ -44,14 +43,9 @@ class CustomerController extends Controller
                 return response()->json(['success'=>false,'response'=> 'Something went wrong!'], 404);
             }
 
+        }else{
+            return response()->json(['success'=>false,'response'=> 'Something went wrong!'], 404);
         }
-//        if (!empty($user))
-//        {
-//            return response()->json(['success'=>true,'response'=> $user], 200);
-//        }
-//        else{
-//            return response()->json(['success'=>false,'response'=> 'Something went wrong!'], 404);
-//        }
     }
     public function address(){
         $user = User::find(Auth::id());
