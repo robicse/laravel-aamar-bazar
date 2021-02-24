@@ -40,14 +40,17 @@
                                             </div>
                                         @endif
                                     </div>
-                                    <select class="ps-rating" data-read-only="true">
-                                        <option value="1">1</option>
-                                        <option value="1">2</option>
-                                        <option value="1">3</option>
-                                        <option value="1">4</option>
-                                        <option value="2">5</option>
-                                    </select>
-                                    <p><strong>85% Positive</strong>  (62 rating)</p>
+                                    <div class="mt-4">
+                                         <p class="float-left pr-2">Rating: <strong style="font-size: 30px;">{{$totalRatingCount}}</strong></p>
+                                        <div class="">
+                                            <select class="ps-rating" data-read-only="true" style="margin-top: 7px;">
+                                                @for ($i=0; $i < round($totalRatingCount); $i++)
+                                                    <option value="1">{{$i}}</option>
+                                                @endfor
+                                            </select>
+                                        </div>
+                                    </div>
+
                                 </div><span class="ps-block__divider"></span>
                                 <div class="ps-block__content">
                                     <p><strong>{{$shop->name}}</strong>, {{$shop->about}}</p><span class="ps-block__divider"></span>
