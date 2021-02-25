@@ -81,18 +81,19 @@
                 <table class="table table-striped">
                     <thead>
                     <tr>
-                        <th>Qty</th>
+                        <th>ID</th>
                         <th>Product Name</th>
                         <th>Product Variant</th>
                         <th>Payment Type</th>
+                        <th>Qty</th>
                         <th>Grand Total</th>
                     </tr>
                     </thead>
                     <tbody>
-                    @foreach($orderDetails as $orderDetail)
+                    @foreach($orderDetails as $key=>$orderDetail)
 
                         <tr>
-                            <td>{{$orderDetail->quantity}}</td>
+                            <td>{{$key +1 }}</td>
                             <td>{{$orderDetail->name}}</td>
                             @if(!empty($orderDetail->productStock))
                                 @php
@@ -107,6 +108,7 @@
                                 <td><p>Empty</p></td>
                             @endif
                             <td>{{$orderDetail->order->payment_status}}</td>
+                            <td>{{$orderDetail->quantity}}</td>
                             <td>{{$orderDetail->price}}</td>
                         </tr>
                     @endforeach

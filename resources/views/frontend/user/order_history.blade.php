@@ -35,7 +35,6 @@
                                                 <th>Delivery Status</th>
                                                 <th>Print</th>
                                                 <th>Details</th>
-{{--                                                <th>Review</th>--}}
                                             </tr>
                                             </thead>
                                             <tbody>
@@ -44,7 +43,6 @@
                                                 @php
                                                 $review = \App\Model\Review::where('user_id',$order->user_id)->first();
                                                 @endphp
-{{--                                                @dd($review)--}}
                                                 <td>{{$key + 1}}</td>
                                                 <td>{{ $order->invoice_code }}</td>
                                                 <td>{{date('j-m-Y',strtotime($order->created_at))}}</td>
@@ -57,59 +55,15 @@
                                                 <td>
                                                     <a class="btn btn-info" href="{{route('user.order.details',$order->id)}}"><i class="fa fa-eye"></i></a>
                                                 </td>
-{{--                                                <td>--}}
-{{--                                                    @if($order->delivery_status == 'Pending')--}}
-{{--                                                        <a class="btn btn-default" data-toggle="modal" onclick="getProductId('{{$order->order_details->product_id}}')" data-target="#exampleModal" style="background: yellow;">--}}
-{{--                                                            <i class="fa fa-star"></i></a>--}}
-{{--                                                    @else--}}
-{{--                                                        <i title="Review submitted!" class="fa fa-check-square text-success text-bold"></i>--}}
-{{--                                                    @endif--}}
-{{--                                                </td>--}}
                                             </tr>
                                             @endforeach
+
                                             </tbody>
                                         </table>
                                     </div>
                                 </div>
-                                <!-- Modal -->
-                                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                    <div class="modal-dialog">
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                                <h5 class="modal-title" id="exampleModalLabel">Submit Your Review</h5>
-                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                    <span aria-hidden="true">&times;</span>
-                                                </button>
-                                            </div>
-                                            <form class="ps-form--review" action="{{route('user.order.review.store')}}" method="post">
-                                                @csrf
-                                                <input type="hidden" name="product_id" id="product_id">
-                                                <div class="modal-body">
-{{--                                                    <h4>Submit Your Review</h4>--}}
-                                                    <div class="form-group form-group__rating">
-                                                        <label>Your rating of this product</label>
-                                                        <select class="ps-rating" name="rating" data-read-only="false" required>
-                                                            <option value="0">0</option>
-                                                            <option value="1">1</option>
-                                                            <option value="2">2</option>
-                                                            <option value="3">3</option>
-                                                            <option value="4">4</option>
-                                                            <option value="5">5</option>
-                                                        </select>
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <textarea class="form-control" name="comment" rows="4" placeholder="Write your review here" required></textarea>
-                                                    </div>
-                                                </div>
-                                                <div class="modal-footer">
-                                                    <div class="form-group submit">
-                                                        <button class="ps-btn">Submit Review</button>
-                                                    </div>
-                                                </div>
-                                            </form>
-                                        </div>
-                                    </div>
-                                </div>
+
+
                             </div>
                         </div>
                     </div>
@@ -119,10 +73,4 @@
     </main>
 @endsection
 @push('js')
-    <script>
-        function getProductId(productId){
-            $('#product_id').val(productId);
-            console.log(productId)
-        }
-    </script>
 @endpush

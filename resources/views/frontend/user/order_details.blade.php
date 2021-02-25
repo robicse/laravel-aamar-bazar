@@ -79,6 +79,7 @@
                                         </table>
                                     </div>
                                 </div>
+                                <!-- Modal -->
                                 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                     <div class="modal-dialog">
                                         <div class="modal-content">
@@ -117,7 +118,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="ps-section__footer"><a class="ps-btn ps-btn--sm" href="#">Back to invoices</a></div>
+{{--                                <div class="ps-section__footer"><a class="ps-btn ps-btn--sm" href="#">Back to invoices</a></div>--}}
                             </div>
                         </div>
                     </div>

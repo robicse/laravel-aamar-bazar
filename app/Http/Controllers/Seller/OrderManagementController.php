@@ -57,7 +57,8 @@ class OrderManagementController extends Controller
     }
     public function orderDetails($id) {
         $orders = Order::find($id);
-        return view('backend.seller.order_management.order_details',compact('orders'));
+        $orderDetails = OrderDetails::where('order_id',$orders->id)->get();
+        return view('backend.seller.order_management.order_details',compact('orders','orderDetails'));
     }
     public function OrderProductChangeStatus(Request $request, $id)
     {
