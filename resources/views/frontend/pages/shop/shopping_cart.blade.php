@@ -66,7 +66,7 @@
                             </div>
                         @endif
                     </div>
-                    <div class="ps-section__cart-actions"><a class="ps-btn" href="shop-default.html"><i class="icon-arrow-left"></i> Back to Shop</a><a class="ps-btn" href="{{route('product.clear.cart')}}"><i class="fa fa-trash" aria-hidden="true"></i>Clear All</a></div>
+                    <div class="ps-section__cart-actions"><a class="ps-btn" href="{{url('/')}}"><i class="icon-arrow-left"></i> Back to Shop</a><a class="ps-btn" href="{{route('product.clear.cart')}}"><i class="fa fa-trash" aria-hidden="true"></i>Clear All</a></div>
                 </div>
                 @if(Cart::count()!=0)
                     <div class="ps-section__footer">

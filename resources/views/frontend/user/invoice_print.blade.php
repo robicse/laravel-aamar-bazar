@@ -90,20 +90,22 @@
                     </thead>
                     <tbody>
                     @foreach($orderDetails as $orderDetail)
-{{--                        @dd($orderDetail->productStock)--}}
-{{--                        @php--}}
-{{--                            $variants = \App\Model\ProductStock::where('id',$orderDetail->variation_id)->get();--}}
-{{--                        @endphp--}}
+
                         <tr>
                             <td>{{$orderDetail->quantity}}</td>
                             <td>{{$orderDetail->name}}</td>
                             @if(!empty($orderDetail->productStock))
-                                <td>{{$orderDetail->productStock->variant}}</td>
+                                @php
+                                    $name = explode('-', $orderDetail->productStock->variant);
+                                @endphp
+                                <td>
+                                    @for($i = 0; $i< count($name); $i++ )
+                                        {{$name[$i]}}
+                                    @endfor
+                                </td>
                             @else
-                                <td> </td>
+                                <td><p>Empty</p></td>
                             @endif
-                            {{--                        <td>{{$order->order_details->productStock->variant}}</td>--}}
-                            {{--                        <td>{{$orders->transaction_id}}</td>--}}
                             <td>{{$orderDetail->order->payment_status}}</td>
                             <td>{{$orderDetail->price}}</td>
                         </tr>
@@ -132,7 +134,7 @@
             </div>
             <!-- /.col -->
             <div class="col-6">
-                <p class="lead">Amount Due 2/22/2014</p>
+{{--                <p class="lead">Amount Due 2/22/2014</p>--}}
 
                 <div class="table-responsive">
                     <table class="table">

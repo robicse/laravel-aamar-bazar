@@ -98,6 +98,7 @@ Route::group(['middleware' => ['auth', 'user']], function () {
 //    Route::get('/user/address', 'User\DashboardController@address')->name('user.address');
 //    Route::post('/user/address/update', 'User\DashboardController@updateAddress')->name('user.address-update');
     Route::get('/user/order/history', 'User\OrderManagementController@orderHistory')->name('user.order.history');
+    Route::get('/user/order/details/{id}', 'User\OrderManagementController@orderDetails')->name('user.order.details');
     Route::post('/user/order/review', 'User\OrderManagementController@reviewStore')->name('user.order.review.store');
     Route::get('order-details/invoice/print/{id}','User\OrderManagementController@printInvoice')->name('invoice.print');
     Route::get('/user/wishlist', 'Frontend\WishlistController@wishlist')->name('user.wishlist');
