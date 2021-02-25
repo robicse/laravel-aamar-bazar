@@ -42,7 +42,6 @@
                             <tr>
                                 <th>#Id</th>
                                 <th>Date</th>
-                                <th>Name</th>
                                 <th>Payment Method</th>
                                 <th>Action</th>
                                 <th>Details</th>
@@ -53,7 +52,6 @@
                                 <tr>
                                     <td>{{$key + 1}}</td>
                                     <td>{{date('j-m-Y',strtotime($Deliver->created_at))}}</td>
-                                    <td>{{$Deliver->order_details->name}}</td>
                                     <td>{{$Deliver->payment_type}}</td>
                                     <td>
                                         <form action="{{route('admin.order-product.status',$Deliver->id)}}">
@@ -80,7 +78,6 @@
                             <tr>
                                 <th>#Id</th>
                                 <th>Date</th>
-                                <th>Name</th>
                                 <th>Payment Method</th>
                                 <th>Action</th>
                                 <th>Details</th>
