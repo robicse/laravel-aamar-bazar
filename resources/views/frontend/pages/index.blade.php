@@ -599,7 +599,7 @@
                 <div class="ps-section__header">
                     <h3>Best Sellers</h3>
                     <ul class="ps-section__links">
-                        <li><a href="{{route('vendor.list')}}">View All</a></li>
+                        <li><a href="{{route('best-seller.shop-list')}}">View All</a></li>
                     </ul>
                 </div>
                 <div class="ps-section__content">

@@ -19,7 +19,6 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', 'Frontend\FrontendController@index')->name('index');
 Route::get('/shopping-cart', 'Frontend\CartController@viewCart')->name('shopping-cart');
-Route::get('/shop', 'Frontend\ShopController@shop')->name('shop');
 Route::get('/about-us', 'Frontend\AboutController@About')->name('about-us');
 Route::get('/contact', 'Frontend\AboutController@contact')->name('contact');
 Route::get('/faqs', 'Frontend\AboutController@faqs')->name('faqs');
@@ -36,7 +35,6 @@ Route::get('/remove/favorite-shop/{id}', 'User\FavoriteShopController@removeFavo
 
 //Search
 Route::get('/search/product', 'Frontend\VendorController@search_product');
-Route::get('/search/shop', 'Frontend\VendorController@search_shop');
 Route::get('/product/filter/{data}/sellerId/{sellerId}', 'Frontend\VendorController@productFilter');
 Route::get('/featured-product/subcategories/filter/{data}/sellerId/{id}/sub/{subId}', 'Frontend\VendorController@FeaturedSubFilter');
 Route::get('/todays-deal/product/filter/{data}/sellerId/{sellerId}', 'Frontend\VendorController@todaysDealFilter');
@@ -70,7 +68,7 @@ Route::get('/become-a-vendor', 'Frontend\VendorController@index')->name('become-
 Route::get('/shop/{name}/{slug}', 'Frontend\VendorController@categoryProducts')->name('category.products');
 Route::get('/shop/{slug}', 'Frontend\VendorController@singleshop')->name('shop.details');
 Route::get('/categories/{slug}', 'Frontend\VendorController@allCategories')->name('view.all.categories');
-Route::get('/vendor/list', 'Frontend\VendorController@vendorList')->name('vendor.list');
+Route::get('/best-seller-shop/list', 'Frontend\ShopController@bestSellerShopList')->name('best-seller.shop-list');
 Route::get('/flash-deals/{slug}', 'Frontend\VendorController@flashdeal')->name('flash-deals');
 Route::get('/todays-deal/{slug}', 'Frontend\VendorController@todaysDeal')->name('todays-deal-products');
 Route::get('/todays-deal/{name}/{slug}/{sub}', 'Frontend\VendorController@todaysDealSubCategory');
