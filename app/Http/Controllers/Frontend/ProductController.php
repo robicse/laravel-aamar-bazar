@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Model\Brand;
 use App\Model\Category;
 use App\Model\FlashDeal;
+use App\Model\FlashDealProduct;
 use App\Model\Product;
 use App\Model\ProductStock;
 use App\Model\Review;
@@ -35,7 +36,7 @@ class ProductController extends Controller
         $twoStarRev = Review::where('product_id',$productDetails->id)->where('rating',2)->where('status',1)->get();
         $oneStarRev = Review::where('product_id',$productDetails->id)->where('rating',1)->where('status',1)->get();
 //dd($colors);
-        $flashSales = FlashDeal::where('user_id',$productDetails->user_id)->get();
+        $flashSales =  $flashSales = FlashDealProduct::where('product_id',$productDetails->id)->first();
         $variant=ProductStock::where('product_id',$productDetails->id)->first();
         if(!empty($variant)){
             $price = home_discounted_base_price($productDetails->id);
@@ -45,7 +46,12 @@ class ProductController extends Controller
             $price = home_discounted_base_price($productDetails->id);
             /*$price=$variant->price;*/
             $avilability = $productDetails->current_stock;
-        }else{
+        }elseif ($productDetails->discount > 0){
+            $price = home_discounted_base_price($productDetails->id);
+            /*$price=$variant->price;*/
+            $avilability = $productDetails->current_stock;
+        }
+        else{
             $price = $productDetails->unit_price;
             $avilability = $productDetails->current_stock;
         }
@@ -58,6 +64,8 @@ class ProductController extends Controller
 
     public function ProductVariantPrice(Request  $request) {
       //dd($request->all());
+
+
       $c=count($request->variant);
       $i=1;
       $var=$request->variant;
@@ -67,8 +75,23 @@ class ProductController extends Controller
       }
       //dd(implode("-", $v));
       $variant=ProductStock::where('variant',implode("-", $v))->first();
-      return response()->json(['success'=> true, 'response'=>$variant]);
-      //dd($variant);
+        //dd($variant);
+        $product = Product::find($variant->product_id);
+        if ($product->discount > 0){
+            $price = $variant->price;
+            if($product->discount_type == 'percent'){
+
+                $price -= ($variant->price*$product->discount)/100;
+            }
+            elseif($product->discount_type == 'amount'){
+                $price -= $product->discount;
+            }
+            $variant['price'] = $price;
+        }else{
+            $variant=ProductStock::where('variant',implode("-", $v))->first();
+        }
+
+        return response()->json(['success'=> true, 'response'=>$variant]);
     }
     public function productList($slug) {
         $shop = Shop::where('slug',$slug)->first();
