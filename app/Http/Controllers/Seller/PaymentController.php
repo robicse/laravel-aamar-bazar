@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Seller;
 
 use App\Http\Controllers\Controller;
+use App\Model\Order;
 use App\Model\Payment;
 use App\Model\Product;
 use App\Model\Seller;
@@ -51,16 +52,13 @@ class PaymentController extends Controller
     }
     public function paymentReport(){
         $shop = Shop::where('user_id',Auth::id())->first();
-        $value = DB::table('orders')
-            ->join('order_details','orders.id','=','order_details.order_id')
-            ->join('products','order_details.product_id','=','product_id')
-            ->where('orders.delivery_status','=','Completed')
-            ->whereMonth('products.created_at', '=', 2)
-            ->select('products.unit_price')
-            ->get();
-        dd($value);
-//$product = Product::where('user_id',Auth::id())->whereMonth('created_at', '=', 1)->sum('unit_price');
-
-        return view('backend.seller.payment_report.index');
+        $todayProfit = Order::where('status','Complete')->where('shop_id',$shop->id)->whereDate('created_at',Carbon::today())->get()->sum('profit');
+        $totalProfit = Order::where('status','Complete')->where('shop_id',$shop->id)->get()->sum('profit');
+        $monthlyProfit = Order::where('status','Complete')->where('shop_id',$shop->id)->latest()->get()->groupBy(function($date) {
+            return Carbon::parse($date->created_at)->format('y-m'); // grouping by years
+//return Carbon::parse($date->created_at)->format('m'); // grouping by months
+        });
+        dd($monthlyProfit);
+        return view('backend.seller.payment_report.index',compact('monthlyProfit'));
     }
 }
