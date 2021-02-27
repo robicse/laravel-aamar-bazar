@@ -34,7 +34,7 @@
 @endpush
 @section('content')
     <div class="ps-page--simple">
-        <div class="ps-breadcrumb">
+        <div class="ps-breadcrumb" style="background: #fff;">
             <div class="container">
                 <ul class="breadcrumb">
                     <li><a href="{{url('/')}}">Home</a></li>
@@ -42,7 +42,7 @@
                 </ul>
             </div>
         </div>
-        <div class="ps-checkout ps-section--shopping">
+        <div class="ps-checkout ps-section--shopping" style="background: #f3f3f3;">
             <div class="container">
                 <div class="ps-section__content">
                     <form class="ps-form--checkout" action="{{route('checkout.order.submit')}}" method="post">
@@ -56,38 +56,43 @@
                                             @foreach($addresses as $address)
                                                 <div class="col-md-6 col-12" style="padding-bottom: 15px;">
                                                     <div class="card" style="width: 35rem;">
-                                                        <div class="ps-radio">
-                                                            <input class="form-control" type="radio" id="not-show" name="not-show">
-                                                            <label for="not-show">Don't show this popup again</label>
-                                                        </div>
-                                                        <div class="text-right dropdown">
-                                                            <button class="btn bg-black" type="button" id="dropdownMenuButton" data-toggle="dropdown" style="background: #f1f1f1;">
-                                                                <i class="fa fa-ellipsis-v"></i>
-                                                            </button>
-                                                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" style="font-size: 14px;">
-                                                                @if($address->set_default == 0)
-                                                                    <form action="{{route('user.update.status',$address->id)}}" method="POST">
-                                                                        @csrf
-                                                                        <button class="btn btn-lg"> Make Default</button>
-                                                                    </form>
-                                                                @endif
-                                                                <form action="{{route('user.address.destroy',$address->id)}}" method="POST">
-                                                                    @csrf
-                                                                    @method('DELETE')
-                                                                    <button class="btn btn-lg"><a class="dropdown-item"> Delete </a></button>
-                                                                </form>
-                                                            </div>
-                                                        </div>
+{{--                                                        <div class="ps-radio">--}}
+{{--                                                            <input class="form-control" type="radio" id="not-show" name="not-show">--}}
+{{--                                                            <label for="not-show"></label>--}}
+{{--                                                        </div>--}}
+{{--                                                        <div class="text-right dropdown">--}}
+{{--                                                            <button class="btn bg-black" type="button" id="dropdownMenuButton" data-toggle="dropdown" style="background: #f1f1f1;">--}}
+{{--                                                                <i class="fa fa-ellipsis-v"></i>--}}
+{{--                                                            </button>--}}
+{{--                                                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" style="font-size: 14px;">--}}
+{{--                                                                @if($address->set_default == 0)--}}
+{{--                                                                    <form action="{{route('user.update.status',$address->id)}}" method="POST">--}}
+{{--                                                                        @csrf--}}
+{{--                                                                        <button class="btn btn-lg"> Make Default</button>--}}
+{{--                                                                    </form>--}}
+{{--                                                                @endif--}}
+{{--                                                                <form action="{{route('user.address.destroy',$address->id)}}" method="POST">--}}
+{{--                                                                    @csrf--}}
+{{--                                                                    @method('DELETE')--}}
+{{--                                                                    <button class="btn btn-lg"><a class="dropdown-item"> Delete </a></button>--}}
+{{--                                                                </form>--}}
+{{--                                                            </div>--}}
+{{--                                                        </div>--}}
 
                                                         <div class="card-body">
+                                                            <div class="ps-radio">
+                                                                <input class="form-check-input" type="radio" name="address_id" id="{{$address->id}}" value="{{$address->id}}" {{$address->set_default == 1 ? 'checked' : ''}}>
+                                                                <label class="form-check-label" for="{{$address->id}}" style="background: #f3f3f3; color: #f3f3f3;">
+                                                                </label>
+                                                            </div>
                                                             <div class="card-text">Address: <strong>{{$address->address}}</strong></div>
                                                             <div class="card-text">Postal Code: <strong>{{$address->postal_code}}</strong></div>
                                                             <div class="card-text">City: <strong>{{$address->city}}</strong></div>
                                                             <div class="card-text">Country: <strong>{{$address->country}}</strong></div>
                                                             <div class="card-text">Phone: <strong>{{$address->phone}}</strong>
-                                                                @if($address->set_default == 1)
-                                                                    <a href="#" class="btn btn-primary" style="margin-left: 100px;">Default</a>
-                                                                @endif
+{{--                                                                @if($address->set_default == 1)--}}
+{{--                                                                    <a href="#" class="btn btn-primary" style="margin-left: 100px;">Default</a>--}}
+{{--                                                                @endif--}}
                                                             </div>
                                                         </div>
                                                     </div>

@@ -170,7 +170,7 @@ class CartController extends Controller
         if($request->pay == 'ssl'){
             $payment_status = 'Paid';
         }
-        $address = Address::where('user_id',Auth::id())->where('set_default',1)->first();
+        $address = Address::where('user_id',Auth::id())->where('id',$request->address_id)->first();
         $data['name'] = Auth::User()->name;
         $data['email'] = Auth::User()->email;
         $data['address'] = $address->address;

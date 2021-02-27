@@ -2340,8 +2340,8 @@ textarea.form-control {
 }
 
 .ps-radio input[type=radio]:checked ~ label:before {
-    background-color: #222222;
-    border-color: #222222;
+    background-color: #72bf40;
+    border-color: #72bf40;
 }
 
 .ps-radio input[type=radio]:checked ~ label:after {
