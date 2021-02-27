@@ -56,7 +56,7 @@ class VendorController extends Controller
             $rating = (5*$fiveStarRev + 4*$fourStarRev + 3*$threeStarRev + 2*$twoStarRev + 1*$oneStarRev) / ($totalRating);
             $totalRatingCount = number_format((float)$rating, 1, '.', '');
         }else{
-            $totalRatingCount =number_format((float)0, 1, '.', '');;
+            $totalRatingCount =number_format((float)0, 1, '.', '');
         }
         //dd($totalRatingCount);
 
