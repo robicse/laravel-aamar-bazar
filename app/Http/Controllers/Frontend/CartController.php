@@ -212,7 +212,7 @@ class CartController extends Controller
             $product = Product::find($content->id);
             $product->num_of_sale++;
             $product->save();
-            $profitData = $content->price - $product->purchase_price;
+            $profitData = ($content->price - $product->purchase_price) * $content->qty;
             $profit += $profitData;
         }
         $orderUpdate = Order::find($order->id);

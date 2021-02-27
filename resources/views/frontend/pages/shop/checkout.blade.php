@@ -56,12 +56,10 @@
                                             @foreach($addresses as $address)
                                                 <div class="col-md-6 col-12" style="padding-bottom: 15px;">
                                                     <div class="card" style="width: 35rem;">
-{{--                                                        <div class="">--}}
-{{--                                                            <form action="">--}}
-{{--                                                                @csrf--}}
-{{--                                                                    <input type="radio" name="pay" id="ssl" value="ssl" style="background: red;">--}}
-{{--                                                            </form>--}}
-{{--                                                        </div>--}}
+                                                        <div class="ps-radio">
+                                                            <input class="form-control" type="radio" id="not-show" name="not-show">
+                                                            <label for="not-show">Don't show this popup again</label>
+                                                        </div>
                                                         <div class="text-right dropdown">
                                                             <button class="btn bg-black" type="button" id="dropdownMenuButton" data-toggle="dropdown" style="background: #f1f1f1;">
                                                                 <i class="fa fa-ellipsis-v"></i>
