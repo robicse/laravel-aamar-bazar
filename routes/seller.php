@@ -51,6 +51,7 @@ Route::group(['as'=>'seller.','prefix' =>'seller', 'middleware' => ['auth', 'sel
     Route::get('payment/request','Seller\PaymentController@index')->name('payment.history');
     Route::get('money/withdraw','Seller\PaymentController@money')->name('money.withdraw');
     Route::post('money/withdraw/store','Seller\PaymentController@store')->name('withdraw-request.store');
+    Route::get('payment-report','Seller\PaymentController@paymentReport')->name('payment.report');
 
     Route::post('products/update2/{id}','Seller\ProductController@update2')->name('products.update2');
     Route::get('products/slug/{name}','Seller\ProductController@ajaxSlugMake')->name('products.slug');

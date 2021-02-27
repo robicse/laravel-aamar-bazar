@@ -1,5 +1,5 @@
 @extends('backend.seller.layouts.master')
-@section("title","Payment History")
+@section("title","Payment Report")
 @push('css')
     <link rel="stylesheet" href="{{asset('backend/plugins/datatables/dataTables.bootstrap4.css')}}">
 @endpush
@@ -8,12 +8,12 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>Payment History</h1>
+                    <h1>Payment Report</h1>
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
                         <li class="breadcrumb-item"><a href="{{route('seller.dashboard')}}">Home</a></li>
-                        <li class="breadcrumb-item active">Payment History</li>
+                        <li class="breadcrumb-item active">Payment Report</li>
                     </ol>
                 </div>
             </div>
@@ -25,43 +25,34 @@
             <div class="col-12">
                 <div class="card card-info card-outline">
                     <div class="card-header">
-                        <h3 class="card-title float-left">Payment History</h3>
-{{--                        <div class="float-right">--}}
-{{--                            <a href="{{route('admin.categories.create')}}">--}}
-{{--                                <button class="btn btn-success">--}}
-{{--                                    <i class="fa fa-plus-circle"></i>--}}
-{{--                                    Add--}}
-{{--                                </button>--}}
-{{--                            </a>--}}
-{{--                        </div>--}}
+                        <h3 class="card-title float-left">Payment Report</h3>
                     </div>
                     <!-- /.card-header -->
                     <div class="card-body ">
-                        <table id="example1" class="table table-bordered table-striped">
+                        <table  id="example1" class="table table-bordered table-striped">
                             <thead>
                             <tr>
                                 <th>#</th>
-                                <th>Date</th>
                                 <th>Amount</th>
-                                <th>Payment Method</th>
+                                <th>Month</th>
                             </tr>
                             </thead>
-                            <tbody>
-                            @foreach($all_payment as $allPay)
-                            <tr>
-                                <td>{{$allPay->id}}</td>
-                                <td>{{date('j-m-Y',strtotime($allPay->created_at))}}</td>
-                                <td>{{$allPay->amount}}</td>
-                                <td>{{$allPay->payment_method}}</td>
-                            </tr>
-                            @endforeach
-                            </tbody>
+
+{{--                            <tbody>--}}
+{{--                            @foreach($all_payment as $allPay)--}}
+{{--                                <tr>--}}
+{{--                                    <td>{{$allPay->id}}</td>--}}
+{{--                                    <td>{{date('j-m-Y',strtotime($allPay->created_at))}}</td>--}}
+{{--                                    <td>{{$allPay->amount}}</td>--}}
+{{--                                    <td>{{$allPay->payment_method}}</td>--}}
+{{--                                </tr>--}}
+{{--                            @endforeach--}}
+{{--                            </tbody>--}}
                             <tfoot>
                             <tr>
                                 <th>#</th>
-                                <th>Date</th>
                                 <th>Amount</th>
-                                <th>Payment Method</th>
+                                <th>Month</th>
                             </tr>
                             </tfoot>
                         </table>
