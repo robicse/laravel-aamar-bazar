@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Model\Order;
+use App\Model\OrderDetails;
+use App\Model\Shop;
 use Brian2694\Toastr\Facades\Toastr;
 use Illuminate\Http\Request;
 
@@ -34,8 +36,10 @@ class OrderManagementController extends Controller
         return view('backend.admin.order_management.canceled',compact('Canceled'));
     }
     public function orderDetails($id) {
-        $order_details = Order::find($id);
-        return view('backend.admin.order_management.order_details',compact('order_details'));
+        $order= Order::find($id);
+        $shop = Shop::where('id',$order->shop_id)->first();
+        $orderDetails= OrderDetails::where('order_id',$order->id)->get();
+        return view('backend.admin.order_management.order_details',compact('order','orderDetails','shop'));
     }
     public function OrderProductChangeStatus(Request $request, $id)
     {

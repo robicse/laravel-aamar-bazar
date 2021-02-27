@@ -42,7 +42,6 @@
                             <tr>
                                 <th>#Id</th>
                                 <th>Date</th>
-                                <th>Name</th>
                                 <th>Payment Method</th>
                                 <th>Action</th>
                                 <th>Details</th>
@@ -53,7 +52,6 @@
                                 <tr>
                                     <td>{{$key + 1}}</td>
                                     <td>{{date('j-m-Y',strtotime($Cancel->created_at))}}</td>
-                                    <td>{{$Cancel->order_details->name}}</td>
                                     <td>{{$Cancel->payment_type}}</td>
                                     <td>
                                         <form action="{{route('admin.order-product.status',$Cancel->id)}}">
@@ -80,7 +78,6 @@
                             <tr>
                                 <th>#Id</th>
                                 <th>Date</th>
-                                <th>Name</th>
                                 <th>Payment Method</th>
                                 <th>Action</th>
                                 <th>Details</th>

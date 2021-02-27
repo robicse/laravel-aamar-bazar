@@ -19,6 +19,7 @@ use App\Model\Subcategory;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class VendorController extends Controller
 {
@@ -77,10 +78,7 @@ class VendorController extends Controller
 //
 //        return view('frontend.pages.vendor.shop_categories',compact('shop','shopCat'));
 //    }
-    public function vendorList() {
-        $shops = Shop::all();
-        return view('frontend.pages.vendor.vendor_list',compact('shops'));
-    }
+
     public function allCategories($slug){
         $shop = Shop::where('slug',$slug)->first();
         $user = User::where('id',$shop->user_id)->first();
@@ -105,12 +103,6 @@ class VendorController extends Controller
         $product = Product::where('name', 'LIKE', '%'. $name. '%')->where('user_id',$shops->user_id)->where('added_by','seller')->limit(5)->get();
 
         return $product;
-    }
-    public function search_shop(Request $request){
-        $name = $request->get('q');
-        $shop = Shop::where('name', 'LIKE', '%'. $name. '%')->limit(5)->get();
-        //dd($product);
-        return $shop;
     }
     public function productFilter($data,$sellerId)
     {

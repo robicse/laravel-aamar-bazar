@@ -28,7 +28,7 @@
                 <div class="card-header">
                     <h3 class="card-title float-left">Add Category</h3>
                     <div class="float-right">
-                        <a href="{{route('admin.staffs.index')}}">
+                        <a href="{{route('admin.categories.index')}}">
                             <button class="btn btn-success">
                                 <i class="fa fa-backward"> </i>
                                 Back

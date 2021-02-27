@@ -34,5 +34,4 @@ class Product extends Model
     public function productStock() {
         return $this->hasMany('App\Model\ProductStock', 'product_id');
     }
-
 }

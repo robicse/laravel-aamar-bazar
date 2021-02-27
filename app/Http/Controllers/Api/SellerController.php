@@ -78,6 +78,8 @@ class SellerController extends Controller
             'Bank Account Number'=>$sellerInfo->bank_acc_no,
             'Bank Account Routing Number'=>$sellerInfo->bank_routing_no,
             'NID Number'=>$sellerInfo->nid_number,
+            'avatar_original'=>$userInfo->avatar_original,
+            'Shop Logo'=>$shop->logo,
             ];
         if (!empty($data))
         {

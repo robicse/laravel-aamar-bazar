@@ -12,6 +12,7 @@ use App\User;
 use Brian2694\Toastr\Facades\Toastr;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Str;
@@ -35,6 +36,8 @@ class AuthController extends Controller
             $success['user'] = $user;
             if ($user->user_type == 'seller'){
                 $seller = Seller::where('user_id',$user->id)->first();
+                $shop = Shop::where('user_id',$user->id)->first();
+                $success['shop_name'] = $shop->name;
                 $success['verification_status'] = $seller->verification_status;
             }
             return response()->json(['success'=>true,'response' => $success], $this-> successStatus);

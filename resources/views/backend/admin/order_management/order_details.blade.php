@@ -33,17 +33,11 @@
                                 <div class="row">
                                     <div class="col-4">
                                         <label>Payment Status</label>
-                                        <select name="payment_status" id="" class="form-control select2">
-                                            <option value="">{{$order_details->payment_status}}</option>
-                                        </select>
-                                        {{--                                            <input type="text" class="form-control" placeholder="First name">--}}
+                                        <input type="text" value="{{$order->payment_status}}" class="form-control" id="inputName" readonly>
                                     </div>
                                     <div class="col-4">
                                         <label>Delivery Status</label>
-                                        <select name="delivery_status" id="" class="form-control select2">
-                                            <option value="">{{$order_details->delivery_status}}</option>
-                                        </select>
-                                        {{--  <input type="text" class="form-control" placeholder="First name">--}}
+                                        <input type="text" value="{{$order->delivery_status}}" class="form-control" id="inputName" readonly>
                                     </div>
                                 </div>
                             </form>
@@ -61,18 +55,16 @@
                         <!-- info row -->
                         <div class="row invoice-info">
                             <div class="col-sm-4 invoice-col">
-                                <strong>Company Info</strong>
+                                <strong>Shop Info</strong>
                                 <address>
-                                    <strong>{{ $order_details->name}}</strong><br>
-                                    795 Folsom Ave, Suite 600<br>
-                                    San Francisco, CA 94107<br>
-                                    Phone: (804) 123-5432<br>
-                                    Email: info@almasaeedstudio.com
+                                    <br>
+                                    <div>Shop Name: {{ $shop->name}}</div>
+                                    <div>Shop Address: {{ $shop->address}}</div>
                                 </address>
                             </div>
                             <!-- /.col -->
                             @php
-                                $shippingInfo = json_decode($order_details->shipping_address)
+                                $shippingInfo = json_decode($order->shipping_address)
                             @endphp
                             <div class="col-sm-4 invoice-col">
                                 <strong>Shipping Info</strong>
@@ -85,11 +77,11 @@
                             </div>
                             <!-- /.col -->
                             <div class="col-sm-4 invoice-col">
-                                <b>Invoice {{$order_details->invoice_code}}</b><br>
+                                <b>Invoice {{$order->invoice_code}}</b><br>
                                 <br>
-                                <b>Order ID:</b> {{$order_details->id}}<br>
-                                <b>Payment Due:</b> {{date('j-m-Y',strtotime($order_details->created_at))}}<br>
-                                <b>Transaction ID:</b> {{$order_details->transaction_id}}
+                                <b>Order ID:</b> {{$order->id}}<br>
+                                <b>Payment Due:</b> {{date('j-m-Y',strtotime($order->created_at))}}<br>
+                                <b>Transaction ID:</b> {{$order->transaction_id}}
                             </div>
                             <!-- /.col -->
                         </div>
@@ -102,24 +94,27 @@
                                     <thead>
                                     <tr>
                                         <th>#</th>
-                                        <th>Photo</th>
-                                        <th>Description</th>
-                                        <th>Delivery Type</th>
+                                        <th>Product Name</th>
+                                        <th>Payment Type</th>
                                         <th>QTY</th>
                                         <th>Price</th>
                                         <th>Total</th>
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    <tr>
-                                        <td>1</td>
-                                        <td></td>
-                                        <td>Gucci Shoes</td>
-                                        <td>Cash</td>
-                                        <td>2</td>
-                                        <td>$60.50</td>
-                                        <td>$121.00</td>
-                                    </tr>
+                                    @foreach($orderDetails as $key=>$orderDetail)
+                                        <tr>
+                                            <td>{{$key + 1}}</td>
+                                            <td>{{$orderDetail->name}}</td>
+                                            <td>{{$order->payment_status}}</td>
+                                            <td>{{$orderDetail->quantity}}</td>
+                                            <td>{{$orderDetail->price}}</td>
+                                            <td>{{$orderDetail->price * $orderDetail->quantity }}</td>
+{{--                                            <td>--}}
+{{--                                                <a href="{{ route('invoice.print',$order->id) }}" target="_blank" class="btn btn-default" style="background: green;"><i class="fa fa-print"></i></a>--}}
+{{--                                            </td>--}}
+                                        </tr>
+                                    @endforeach
                                     </tbody>
                                 </table>
                             </div>
@@ -137,15 +132,19 @@
                                     <table class="table">
                                         <tr>
                                             <th style="width:50%">Subtotal:</th>
-                                            <td>$121.00</td>
+                                            <td>{{$order->grand_total}}</td>
                                         </tr>
+{{--                                        <tr>--}}
+{{--                                            <th>Tax (9.3%)</th>--}}
+{{--                                            <td>$10.34</td>--}}
+{{--                                        </tr>--}}
                                         <tr>
-                                            <th>Tax </th>
-                                            <td>$10.00</td>
+                                            <th>Shipping:</th>
+                                            <td>{{$order->delivery_cost}}</td>
                                         </tr>
                                         <tr>
                                             <th>Total:</th>
-                                            <td>$131.00</td>
+                                            <td>{{$order->grand_total + $order->delivery_cost}}</td>
                                         </tr>
                                     </table>
                                 </div>

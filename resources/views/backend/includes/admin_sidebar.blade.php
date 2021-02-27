@@ -276,6 +276,21 @@
                             </li>
                         </ul>
                     </li>
+                    @php
+                    $reviews = \App\Model\Review::where('viewed',0)->count();
+                        @endphp
+                    <li class="nav-item ">
+                        <a href="{{route('admin.review.index')}}" class="nav-link {{Request::is('admin/review*')  ? 'active' : ''}}">
+
+                            <i class="nav-icon fas fa-star"></i>
+                            <p>
+                                Review
+                                @if(!empty($reviews))
+                                    <span class="right badge badge-danger">New ({{$reviews}})</span>
+                                @endif
+                            </p>
+                        </a>
+                    </li>
 
                     <li class="nav-item ">
                         <a href="{{route('admin.sliders.index')}}" class="nav-link {{Request::is('admin/sliders*')  ? 'active' : ''}}">
