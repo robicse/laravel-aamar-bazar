@@ -32,25 +32,22 @@
                         <table  id="example1" class="table table-bordered table-striped">
                             <thead>
                             <tr>
-                                <th>#</th>
                                 <th>Amount</th>
                                 <th>Month</th>
                             </tr>
                             </thead>
 
-{{--                            <tbody>--}}
-{{--                            @foreach($all_payment as $allPay)--}}
-{{--                                <tr>--}}
-{{--                                    <td>{{$allPay->id}}</td>--}}
-{{--                                    <td>{{date('j-m-Y',strtotime($allPay->created_at))}}</td>--}}
-{{--                                    <td>{{$allPay->amount}}</td>--}}
+                            <tbody>
+                            @foreach($monthlyProfits as $key => $monthlyProfit)
+                                <tr>
+                                    <td>{{ $monthlyProfit->sum('profit') }} tk</td>
+                                    <td>{{ date('F, Y',strtotime($monthlyProfit[0]['created_at'])) }}</td>
 {{--                                    <td>{{$allPay->payment_method}}</td>--}}
-{{--                                </tr>--}}
-{{--                            @endforeach--}}
-{{--                            </tbody>--}}
+                                </tr>
+                            @endforeach
+                            </tbody>
                             <tfoot>
                             <tr>
-                                <th>#</th>
                                 <th>Amount</th>
                                 <th>Month</th>
                             </tr>

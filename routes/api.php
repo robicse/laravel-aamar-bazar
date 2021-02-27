@@ -91,6 +91,8 @@ Route::post('/register','Api\AuthController@register');
 Route::post('/seller/register','Api\AuthController@sellerRegister');
 Route::post('/verification-code-store', 'Api\AuthController@verificationStore');
 Route::get('/check-verification-code', 'Api\AuthController@CheckVerificationCode');
+Route::post('/phone/check','Api\AuthController@checkPhoneNumber');
+Route::post('/new-password/update','Api\AuthController@passwordUpdate');
 
 //Customer Api
 //Route::post('/user/profile/update', 'Api\CustomerController@profileUpdate')->middleware('auth:api');

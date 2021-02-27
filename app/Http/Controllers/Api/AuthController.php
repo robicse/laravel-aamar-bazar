@@ -165,4 +165,37 @@ class AuthController extends Controller
             echo 'not found';
         }
     }
+    public function checkPhoneNumber(Request $request){
+        $user = User::where('phone',$request->phone)->first();
+        if (!empty($user)) {
+            $verification = VerificationCode::where('phone',$user->phone)->first();
+            if (!empty($verification)){
+                $verification->delete();
+            }
+            $verCode = new VerificationCode();
+            $verCode->phone = $user->phone;
+            $verCode->code = mt_rand(1111,9999);
+            $verCode->status = 0;
+            $verCode->save();
+            $text = "Dear ".$user->name.", Your Mudi Hat OTP is ".$verCode->code;
+//        echo $text;exit();
+            UserInfo::smsAPI("88".$verCode->phone,$text);
+            $success['details'] = $user;
+            return response()->json(['success'=>true,'response' =>$success], $this-> successStatus);
+        }else{
+            return response()->json(['success'=>false,'response'=>'This phone number does not exist to the system'], 401);
+        }
+    }
+    public function passwordUpdate(Request $request) {
+        $user = User::where('phone',$request->phone)->first();
+        $user->password = Hash::make($request->password);
+        $user->save();
+        if (!empty($user))
+        {
+            return response()->json(['success'=>true,'response'=> $user], 200);
+        }
+        else{
+            return response()->json(['success'=>false,'response'=> 'Something went wrong!'], 404);
+        }
+    }
 }

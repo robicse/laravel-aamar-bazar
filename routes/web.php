@@ -84,7 +84,7 @@ Route::post('/otp-store','Frontend\FrontendController@checkPhoneNumber')->name('
 Route::post('/change-password','Frontend\FrontendController@otpStore')->name('otp.store');
 Route::post('/new-password/update/{id}','Frontend\FrontendController@passwordUpdate')->name('reset.password.update');
 //Route::post('/reset-password', '\App\Http\Controllers\Auth\LoginController@reset_pass_check_mobile')->name('reset.pass.mobile');
-Route::post('/reset-password/send', '\App\Http\Controllers\Auth\LoginController@reset_pass')->name('reset.pass');
+//Route::post('/reset-password/send', '\App\Http\Controllers\Auth\LoginController@reset_pass')->name('reset.pass');
 
 
 Route::group(['middleware' => ['auth', 'user']], function () {

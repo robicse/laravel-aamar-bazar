@@ -11,6 +11,7 @@ use App\Model\SellerWithdrawRequest;
 use App\Model\Shop;
 use Brian2694\Toastr\Facades\Toastr;
 use Illuminate\Http\Request;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
@@ -52,13 +53,12 @@ class PaymentController extends Controller
     }
     public function paymentReport(){
         $shop = Shop::where('user_id',Auth::id())->first();
-        $todayProfit = Order::where('status','Complete')->where('shop_id',$shop->id)->whereDate('created_at',Carbon::today())->get()->sum('profit');
-        $totalProfit = Order::where('status','Complete')->where('shop_id',$shop->id)->get()->sum('profit');
-        $monthlyProfit = Order::where('status','Complete')->where('shop_id',$shop->id)->latest()->get()->groupBy(function($date) {
+        $todayProfit = Order::where('delivery_status','Completed')->where('shop_id',$shop->id)->whereDate('created_at',Carbon::today())->get()->sum('profit');
+        $totalProfit = Order::where('delivery_status','Completed')->where('shop_id',$shop->id)->get()->sum('profit');
+        $monthlyProfits = Order::where('delivery_status','Completed')->where('shop_id',$shop->id)->latest()->get()->groupBy(function($date) {
             return Carbon::parse($date->created_at)->format('y-m'); // grouping by years
 //return Carbon::parse($date->created_at)->format('m'); // grouping by months
         });
-        dd($monthlyProfit);
-        return view('backend.seller.payment_report.index',compact('monthlyProfit'));
+        return view('backend.seller.payment_report.index',compact('monthlyProfits','todayProfit','totalProfit'));
     }
 }
