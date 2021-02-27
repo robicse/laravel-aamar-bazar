@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Frontend;
 use App\Http\Controllers\Controller;
 use App\Model\Brand;
 use App\Model\Category;
+use App\Model\FlashDeal;
 use App\Model\Product;
 use App\Model\ProductStock;
 use App\Model\Review;
@@ -34,12 +35,18 @@ class ProductController extends Controller
         $twoStarRev = Review::where('product_id',$productDetails->id)->where('rating',2)->where('status',1)->get();
         $oneStarRev = Review::where('product_id',$productDetails->id)->where('rating',1)->where('status',1)->get();
 //dd($colors);
+        $flashSales = FlashDeal::where('user_id',$productDetails->user_id)->get();
         $variant=ProductStock::where('product_id',$productDetails->id)->first();
         if(!empty($variant)){
-            $price=$variant->price;
+            $price = home_discounted_base_price($productDetails->id);
+            /*$price=$variant->price;*/
             $avilability=$variant->qty;
+        }elseif(!empty($flashSales)){
+            $price = home_discounted_base_price($productDetails->id);
+            /*$price=$variant->price;*/
+            $avilability = $productDetails->current_stock;
         }else{
-            $price =$productDetails->unit_price;
+            $price = $productDetails->unit_price;
             $avilability =$productDetails->current_stock;
         }
         return view('frontend.pages.shop.product_details',

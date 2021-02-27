@@ -171,6 +171,7 @@ class CartController extends Controller
         $order->type = "product";
         $order->save();
 
+        $profit = 0;
         foreach (Cart::content() as $content) {
             $orderDetails = new OrderDetails();
             $orderDetails->order_id = $order->id;
@@ -183,7 +184,12 @@ class CartController extends Controller
             $product = Product::find($content->id);
             $product->num_of_sale++;
             $product->save();
+            $profitData = $content->price - $product->purchase_price;
+            $profit += $profitData;
         }
+        $orderUpdate = Order::find($order->id);
+        $orderUpdate->profit = $profit;
+        $orderUpdate->save();
 
         if ($request->pay == 'cod') {
             $getSellerId = Shop::find($shop_id);
