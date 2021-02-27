@@ -8,12 +8,10 @@
 use App\Model\FlashDeal;
 use App\Model\FlashDealProduct;
 use App\Model\Product;
+use App\Model\ProductStock;
 
 
-
-
-
-    function homeDiscountedPrice($id)
+function homeDiscountedPrice($id)
     {
         $product = Product::findOrFail($id);
         $lowest_price = $product->unit_price;
@@ -101,6 +99,21 @@ use App\Model\Product;
        //dd($price);
         return $price;
 
+    }
+
+    function variantProductPrice($variant_id)
+    {
+        $variant=ProductStock::find($variant_id);
+        $product = Product::findOrFail($variant->product_id);
+        $price =$variant->price;
+        if($product->discount_type == 'percent'){
+
+            $price -= ($variant->price*$product->discount)/100;
+        }
+        elseif($product->discount_type == 'amount'){
+            $price -= $product->discount;
+        }
+        return $price;
     }
 
 
