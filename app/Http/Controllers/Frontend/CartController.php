@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Frontend;
 use App\Http\Controllers\Controller;
 use App\Model\Address;
 use App\Model\BusinessSetting;
+use App\Model\FlashDeal;
 use App\Model\Order;
 use App\Model\OrderDetails;
 use App\Model\OrderTempCommission;
@@ -33,7 +34,7 @@ class CartController extends Controller
                 }
             }
         }
-
+        $flashSales = FlashDeal::where('user_id',$product->user_id)->get();
         $shop=\App\Model\Shop::where('user_id',$product->user_id)->first();
         if($product->variant_product==null){
             //dd("no");
@@ -60,7 +61,34 @@ class CartController extends Controller
             $data['countCart'] = Cart::count();
             //dd(Cart::content());
             return response()->json(['success'=> true, 'response'=>$data]);
-        }else{
+        }elseif(!empty($flashSales)){
+            //dd("no");
+            $qty=$var[count($var)-1]['value'];
+            $data = array();
+            $data['id'] = $product->id;
+            $data['name'] = $product->name;
+            $data['qty'] = $qty;
+            $data['price'] = home_discounted_base_price($product->id);
+            $data['options']['image'] = $product->thumbnail_img;
+            $data['options']['shipping_cost'] = 60;
+            $data['options']['variant_id'] = null;
+            $data['options']['variant'] = null;
+            $data['options']['shop_name'] =  $shop->name;
+            $data['options']['shop_id'] =  $shop->id;
+            $data['options']['shop_userid'] =  $product->user_id;
+            $data['options']['cart_type'] = "product";
+//            if (!empty($flashSale) && $product->flash_sale == 1 && $flDateTime >= $currDateTime){
+//                $data['price'] = $product->flash_sale_price;
+//            }else {
+//                $data['price'] = $product->sale_price;
+//            }
+            Cart::add($data);
+            $data['countCart'] = Cart::count();
+            //dd(Cart::content());
+            return response()->json(['success'=> true, 'response'=>$data]);
+        }
+
+        else{
             $c=count($request->variant);
             $i=1;
             $v=[];

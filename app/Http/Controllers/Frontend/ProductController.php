@@ -47,7 +47,7 @@ class ProductController extends Controller
             $avilability = $productDetails->current_stock;
         }else{
             $price = $productDetails->unit_price;
-            $avilability =$productDetails->current_stock;
+            $avilability = $productDetails->current_stock;
         }
         return view('frontend.pages.shop.product_details',
             compact('productDetails','attributes','options','colors','price',

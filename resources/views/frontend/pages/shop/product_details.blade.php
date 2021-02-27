@@ -153,7 +153,13 @@
                                             </div>
                                         </figure>
                                         <p class="aval">{{$avilability}} available</p>
+                                        @if($productDetails->current_stock > 0)
                                         <a class="ps-btn ps-btn--black" href="#" id="add_to_cart">Add to cart</a>
+                                        @else
+                                            <a class="ps-btn ps-btn--danger bg-danger" href="#" disabled="disabled">Stock Out</a>
+                                        @endif
+
+
                                         {{--                                        <a class="ps-btn" href="#">Buy Now</a>--}}
                                         {{--                                        <div class="ps-product__actions"><a href="#"><i class="icon-heart"></i></a><a href="#"><i class="icon-chart-bars"></i></a></div>--}}
                                     </div>
@@ -314,21 +320,12 @@
                                         <li><a href="{{route('add.wishlist',$product->id)}}" data-toggle="tooltip" data-placement="top" title="Add to Whishlist"><i class="icon-heart"></i></a></li>
                                     </ul>
                                 </div>
-                                <div class="ps-product__container"><a class="ps-product__vendor" href="{{route('shop.details',$shop->slug)}}">{{$shop->name}}</a>
+                                <div class="ps-product__container"><a class="ps-product__vendor" href="{{route('shop.details',$shop->slug)}}">{{ $shop->name }}</a>
                                     <div class="ps-product__content"><a class="ps-product__title" href="{{route('product-details',$product->slug)}}">{{$product->name}}</a>
-                                        <div class="ps-product__rating">
-                                            <select class="ps-rating" data-read-only="true">
-                                                <option value="1">1</option>
-                                                <option value="1">2</option>
-                                                <option value="1">3</option>
-                                                <option value="1">4</option>
-                                                <option value="2">5</option>
-                                            </select><span>01</span>
-                                        </div>
-                                        <p class="ps-product__price sale">৳ {{$product->unit_price}}</p>
+                                        <p class="ps-product__price">৳ {{$product->unit_price}}</p>
                                     </div>
                                     <div class="ps-product__content hover"><a class="ps-product__title" href="{{route('product-details',$product->slug)}}">{{$product->name}}</a>
-                                        <p class="ps-product__price sale">৳ {{$product->unit_price}} <del>$41.00 </del></p>
+                                        <p class="ps-product__price">৳ {{$product->unit_price}}</p>
                                     </div>
                                 </div>
                             </div>
