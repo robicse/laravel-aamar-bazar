@@ -13,6 +13,7 @@ use App\User;
 use Brian2694\Toastr\Facades\Toastr;
 use http\Exception\RuntimeException;
 use Illuminate\Http\Request;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
@@ -56,7 +57,17 @@ class SellerController extends Controller
     public function adminPaymentHistory()
     {
         $paymentHistories = AdminPaymentHistory::latest()->get();
-        return view('backend.admin.seller.admin_payment_history',compact('paymentHistories'));
+        return view('backend.admin.payment.admin_payment_history',compact('paymentHistories'));
+    }
+    public function adminPaymentReport($id)
+    {
+        $seller = Seller::find($id);
+//        $todayProfit = Order::where('delivery_status','Completed')->where('shop_id',$shop->id)->whereDate('created_at',Carbon::today())->get()->sum('profit');
+        $totalPayment = AdminPaymentHistory::where('seller_id', $seller->id)->get()->sum('amount');
+        $monthlyPayments = AdminPaymentHistory::where('seller_id', $seller->id)->latest()->get()->groupBy(function($date) {
+            return Carbon::parse($date->created_at)->format('y-m'); // grouping by years
+        });
+        return view('backend.admin.payment.admin_payment_report',compact('totalPayment','monthlyPayments'));
     }
     public function paymentHistory()
     {
