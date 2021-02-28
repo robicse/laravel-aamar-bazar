@@ -196,18 +196,18 @@
                                                 <h4 class="ps-block__title">Subtotal <span>৳{{Cart::subtotal()}}</span></h4>
                                                 <h3>Total <span>৳{{Cart::total()}}</span></h3>
                                             </div>
-                                            <div class="row my-3">
+                                            <div class="row my-3" style="padding-top: 10px; padding-bottom: 10px;">
                                                 <div class="col-md-12 text-center">
                                                     <div class="form-check form-check-inline mr-0">
                                                         <input class="form-check-input" type="radio" name="pay" id="cod" value="cod" checked autocomplete="off" >
                                                         <label class="form-check-label" for="cod" style="">
-                                                           COD
+                                                           Cash On Delivery
                                                         </label>
                                                     </div>
                                                     <div class="form-check form-check-inline mr-0">
                                                         <input class="form-check-input" type="radio" name="pay" id="ssl" value="ssl" checked autocomplete="off">
                                                         <label class="form-check-label" for="ssl" style="">
-                                                            Pay Now
+                                                            Online Pay
                                                         </label>
                                                     </div>
                                                 </div>
