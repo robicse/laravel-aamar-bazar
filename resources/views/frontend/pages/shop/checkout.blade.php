@@ -15,9 +15,10 @@
         [type=radio] + label {
             cursor: pointer;
             padding: 10px 10px;
-            background-color: #fff87a;
+            background-color: #fff;
             color: #000000;
             border-radius: 6px;
+
         }
 
         /* CHECKED STYLES */
@@ -27,7 +28,8 @@
         /*    border-radius: 10px;*/
         /*}*/
         [type=radio]:checked + label {
-            border: 2px solid #282727;
+            /*border: 2px solid #282727;*/
+            background: #fcb800;
             color: #212121;
         }
     </style>
@@ -197,7 +199,7 @@
                                             <div class="row my-3">
                                                 <div class="col-md-12 text-center">
                                                     <div class="form-check form-check-inline mr-0">
-                                                        <input class="form-check-input" type="radio" name="pay" id="cod" value="cod" checked autocomplete="off">
+                                                        <input class="form-check-input" type="radio" name="pay" id="cod" value="cod" checked autocomplete="off" >
                                                         <label class="form-check-label" for="cod" style="">
                                                             Pay Later
                                                         </label>
