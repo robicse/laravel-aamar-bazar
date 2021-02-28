@@ -201,7 +201,7 @@
                                                     <div class="form-check form-check-inline mr-0">
                                                         <input class="form-check-input" type="radio" name="pay" id="cod" value="cod" checked autocomplete="off" >
                                                         <label class="form-check-label" for="cod" style="">
-                                                            Pay Later
+                                                           COD
                                                         </label>
                                                     </div>
                                                     <div class="form-check form-check-inline mr-0">

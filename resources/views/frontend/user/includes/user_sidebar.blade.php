@@ -1,4 +1,12 @@
-<div class="col-lg-3">
+<style>
+    @media only screen and (max-width: 700px) {
+        .side_bar{
+            display: none;
+        }
+    }
+</style>
+
+<div class="col-lg-3 side_bar">
     <div class="ps-section__left">
         <aside class="ps-widget--account-dashboard">
             <div class="ps-widget__header"><img src="{{url(Auth::user()->avatar_original)}}" alt="">

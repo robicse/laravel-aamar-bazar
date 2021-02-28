@@ -1,5 +1,7 @@
 @extends('frontend.layouts.master')
 @section('title', 'Order History')
+@push('css')
+@endpush
 @section('content')
     <main class="ps-page--my-account">
         <div class="ps-breadcrumb">

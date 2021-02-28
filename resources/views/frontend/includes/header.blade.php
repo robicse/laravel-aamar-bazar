@@ -260,22 +260,10 @@
     <div class="navigation--mobile" style="background: #fcb800;">
         <div class="navigation__left"><a class="ps-logo" href="{{url('/')}}"><img src="{{asset('frontend/img/logo-mudi-hat-final.png')}}" alt="" width="156" height="45"></a></div>
         <div class="navigation__right">
-            <div class="header__actions">
+            <div class="header__actions" style="margin-left: -100px;">
                 <div class="ps-cart--mini"><a class="header__extra" href="#"><i class="icon-bag2"></i><span><i>{{Cart::count()}}</i></span></a>
                     <div class="ps-cart__content">
                         <div class="ps-cart__items">
-{{--                            <div class="ps-product--cart-mobile">--}}
-{{--                                <div class="ps-product__thumbnail"><a href="#"><img src="img/products/clothing/7.jpg" alt=""></a></div>--}}
-{{--                                <div class="ps-product__content"><a class="ps-product__remove" href="#"><i class="icon-cross"></i></a><a href="product-default.html">MVMTH Classical Leather Watch In Black</a>--}}
-{{--                                    <p><strong>Sold by:</strong>  YOUNG SHOP</p><small>1 x $59.99</small>--}}
-{{--                                </div>--}}
-{{--                            </div>--}}
-{{--                            <div class="ps-product--cart-mobile">--}}
-{{--                                <div class="ps-product__thumbnail"><a href="#"><img src="img/products/clothing/5.jpg" alt=""></a></div>--}}
-{{--                                <div class="ps-product__content"><a class="ps-product__remove" href="#"><i class="icon-cross"></i></a><a href="product-default.html">Sleeve Linen Blend Caro Pane Shirt</a>--}}
-{{--                                    <p><strong>Sold by:</strong>  YOUNG SHOP</p><small>1 x $59.99</small>--}}
-{{--                                </div>--}}
-{{--                            </div>--}}
                             @foreach(Cart::content() as $product)
                                 <div class="ps-product--cart-mobile">
                                     <div class="ps-product__thumbnail"><a href="#"><img src="{{url($product->options->image)}}" alt=""></a></div>
@@ -296,28 +284,28 @@
                         </div>
                     </div>
                 </div>
-                @if(Auth::guest())
-                <div class="ps-block--user-header">
-                    <div class="ps-block__left"><i class="icon-user"></i></div>
-                    <div class="ps-block__right"><a href="{{route('login')}}">Login</a><a href="{{route('register')}}">Register</a></div>
-                </div>
-                @else
-                    <div class="ps-block--user-header">
-                        <div class="ps-block__left">
-                            @if(is_null(Auth::user()->avatar_original))
-                                <a href="{{route('login')}}">  <img src="{{asset('uploads/profile/default.png')}}" alt="" class="ps-widget-img rounded-circle" width="40" height="40"></a>
-                            @else
-                                <a href="{{route('login')}}">  <img src="{{url(Auth::user()->avatar_original)}}" alt="" class="ps-widget-img rounded-circle" width="40" height="40"></a>
-                            @endif
-                        </div>
-                        <div class="ps-block__right"><a href="{{route('login')}}" data-toggle="tooltip" title="{{Auth::user()->name}}">{!! Str::limit(Auth::user()->name,10) !!}</a>
-                            <form action = "{{route('logout')}}" method="post">
-                                @csrf
-                                <button type="submit" class="btn btn-lg btn-bold p-0">Logout</button>
-                            </form>
-                        </div>
-                    </div>
-                @endif
+{{--                @if(Auth::guest())--}}
+{{--                <div class="ps-block--user-header">--}}
+{{--                    <div class="ps-block__left"><i class="icon-user"></i></div>--}}
+{{--                    <div class="ps-block__right"><a href="{{route('login')}}">Login</a><a href="{{route('register')}}">Register</a></div>--}}
+{{--                </div>--}}
+{{--                @else--}}
+{{--                    <div class="ps-block--user-header">--}}
+{{--                        <div class="ps-block__left">--}}
+{{--                            @if(is_null(Auth::user()->avatar_original))--}}
+{{--                                <a href="{{route('login')}}">  <img src="{{asset('uploads/profile/default.png')}}" alt="" class="ps-widget-img rounded-circle" width="40" height="40"></a>--}}
+{{--                            @else--}}
+{{--                                <a href="{{route('login')}}">  <img src="{{url(Auth::user()->avatar_original)}}" alt="" class="ps-widget-img rounded-circle" width="40" height="40"></a>--}}
+{{--                            @endif--}}
+{{--                        </div>--}}
+{{--                        <div class="ps-block__right"><a href="{{route('login')}}" data-toggle="tooltip" title="{{Auth::user()->name}}">{!! Str::limit(Auth::user()->name,10) !!}</a>--}}
+{{--                            <form action = "{{route('logout')}}" method="post">--}}
+{{--                                @csrf--}}
+{{--                                <button type="submit" class="btn btn-lg btn-bold p-0">Logout</button>--}}
+{{--                            </form>--}}
+{{--                        </div>--}}
+{{--                    </div>--}}
+{{--                @endif--}}
             </div>
         </div>
     </div>
@@ -404,24 +392,49 @@
 {{--    <div class="navigation__content"></div>--}}
 {{--</div>--}}
 <div class="ps-panel--sidebar" id="menu-mobile">
-    <div class="ps-panel__header">
-        <img src="{{asset('uploads/profile/default.png')}}" alt="" width="30" height="30">
-        <h3>Menu</h3>
+    <div class="ps-panel__header" style="padding-bottom: 50px;">
+        <div class="float-left">
+            @if(Auth::guest())
+            <img class="" src="{{asset('uploads/profile/default.png')}}" alt="" width="40" height="40">
+            <a href="{{route('login')}}"><strong>Login</strong></a> | <a href="{{route('register')}}"><strong>Register</strong></a>
+            @else
+                @if(is_null(Auth::user()->avatar_original))
+                    <a href="{{route('login')}}">  <img src="{{asset('uploads/profile/default.png')}}" alt="" class="ps-widget-img rounded-circle" width="40" height="40"> {{Auth::user()->name}}</a>
+                @else
+                    <a href="{{route('login')}}">  <img src="{{url(Auth::user()->avatar_original)}}" alt="" class="ps-widget-img rounded-circle" width="40" height="40"> {{Auth::user()->name}}</a>
+                @endif
+            @endif
+        </div>
     </div>
     <div class="ps-panel__content">
         <ul class="menu--mobile">
-            <li class="menu-item-has-children"><a href="{{url('/')}}"><i class="icon-home"></i> Home </a>
-            </li>
-            <li class="menu-item-has-children"><a href="{{route('user.dashboard')}}"><i class="icon-user"></i> User Dashboard </a>
-            </li>
-            <li class="menu-item-has-children"><a href="{{route('user.dashboard')}}"><i class="icon-store"></i> Order History </a>
-            </li>
-            <li class="menu-item-has-children"><a href="{{route('user.dashboard')}}"><i class="icon-heart"></i> Wishlist </a>
-            </li>
-            <li class="menu-item-has-children"><a href="{{route('user.dashboard')}}"><i class="icon-user"></i> Edit Password </a>
-            </li>
-            <li class="menu-item-has-children"><a href="{{route('user.dashboard')}}"><i class="icon-map-marker"></i> Address </a>
-            </li>
+            @if(Auth::guest())
+                <li class="menu-item-has-children"><a href="{{url('/')}}"><i class="icon-home"></i> Home </a>
+                </li>
+{{--                <li class="menu-item-has-children"><a href="{{url('/')}}"><i class="icon-user"></i> Login </a>--}}
+{{--                </li>--}}
+{{--                <li class="menu-item-has-children"><a href="{{url('/')}}"><i class="icon-home"></i> Register </a>--}}
+{{--                </li>--}}
+            @else
+                <li class="menu-item-has-children"><a href="{{url('/')}}"><i class="icon-home"></i> Home </a>
+                </li>
+                <li class="menu-item-has-children"><a href="{{route('user.dashboard')}}"><i class="icon-user"></i> User Dashboard </a>
+                </li>
+                <li class="menu-item-has-children"><a href="{{route('user.order.history')}}"><i class="icon-store"></i> Order History </a>
+                </li>
+                <li class="menu-item-has-children"><a href="{{route('user.wishlist')}}"><i class="icon-heart"></i> Wishlist </a>
+                </li>
+                <li class="menu-item-has-children"><a href="{{route('user.edit-password')}}"><i class="icon-alarm-ringing"></i> Edit Password </a>
+                </li>
+                <li class="menu-item-has-children"><a href="{{route('user.address.index')}}"><i class="icon-map-marker"></i> Address </a>
+                </li>
+                <li class="menu-item-has-children">
+                    <form action = "{{route('logout')}}" method="post">
+                        @csrf
+                        <button type="submit" class="btn btn-lg" style="padding:15px 20px; font-size: 16px; color: #000!important; line-height: 20px;"><i class="icon-power-switch"></i> Logout</button>
+                    </form>
+                </li>
+            @endif
         </ul>
     </div>
 </div>

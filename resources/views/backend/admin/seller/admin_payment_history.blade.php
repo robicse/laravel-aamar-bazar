@@ -43,16 +43,19 @@
                                 <th>#Id</th>
                                 <th>Date</th>
                                 <th>Seller Name</th>
+                                <th>Shop Name</th>
                                 <th>Amount</th>
                                 <th>Payment Method</th>
                             </tr>
                             </thead>
                             <tbody>
                             @foreach($paymentHistories as $key => $payHis)
+{{--                                @dd($payHis->seller->shop->name)--}}
                                 <tr>
                                     <td>{{$key + 1}}</td>
                                     <td>{{date('jS F Y H:i A',strtotime($payHis->created_at))}}</td>
                                     <td>{{$payHis->seller->user->name}}</td>
+{{--                                    <td>{{$payHis->seller->shop->name}}</td>--}}
                                     <td>৳{{$payHis->amount}}</td>
                                     <td>{{$payHis->payment_method}}</td>
                                 </tr>
@@ -63,6 +66,7 @@
                                 <th>#Id</th>
                                 <th>Date</th>
                                 <th>Seller Name</th>
+                                <th>Shop Name</th>
                                 <th>Amount</th>
                                 <th>Payment Method</th>
                             </tr>

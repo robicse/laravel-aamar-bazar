@@ -6923,7 +6923,7 @@ textarea.form-control {
 
 .widget {
     position: relative;
-    padding-bottom: 20px;
+    /*padding-bottom: 20px;*/
     margin-bottom: 20px;
 }
 
@@ -16386,7 +16386,7 @@ html:not([dir="rtl"]) .noUi-horizontal .noUi-handle {
     display: flex;
     flex-flow: row nowrap;
     justify-content: space-between;
-    padding-bottom: 35px;
+
 }
 
 .ps-footer__links {

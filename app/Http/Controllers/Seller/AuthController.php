@@ -47,7 +47,7 @@ class AuthController extends Controller
         if(Shop::where('user_id', $user->id)->first() == null){
             $shop = new Shop;
             $shop->user_id = $user->id;
-            $shop->seller_id = $user->id;
+            $shop->seller_id = $seller->id;
             $shop->name = $request->shop_name;
             $shop->slug = Str::slug($request->shop_name).'-'.$user->id;
             $shop->address = $request->address;
