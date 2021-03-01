@@ -82,7 +82,7 @@
                                     <p>Brand:<a href="{{url('/products/'.$shop->slug.'/'.$productDetails->brand->slug)}}">{{ $productDetails->brand->name }}</a></p>
                                     <p class="categories">
                                         <strong> Categories:</strong>
-                                        <a href="#">{{$productDetails->category->name}}</a>
+                                        <a href="{{url('/shop/'.$shop->slug.'/'.$productDetails->category->slug)}}">{{$productDetails->category->name}}</a>
                                     </p>
                                     <div class="ps-product__rating">
                                         <select class="ps-rating" data-read-only="true">
@@ -114,9 +114,10 @@
                                                 @foreach($colors as $index=>$col)
                                                     <div class="form-check form-check-inline mr-0">
                                                         <input class="form-check-input" type="radio" name="color" id="{{$col->code}}" value="{{$col->name}}" @if($index == 0) checked @endif autocomplete="off">
-                                                        <label class="form-check-label" for="{{$col->code}}" style="background-color: {{$col->code}};">
-                                                            {{$col->name}}
+                                                        <label class="form-check-label ps-variant ps-variant--color" for="{{$col->code}}" style="background-color: {{$col->code}}; border-radius: 50%;">
+                                                            <span class="ps-variant__tooltip">{{$col->name}}</span>
                                                         </label>
+                                                        {{--<div class="ps-variant ps-variant--color color--2"><span class="ps-variant__tooltip"> Gray</span></div>--}}
                                                     </div>
                                                 @endforeach
                                                 {{--                                            <div class="ps-variant ps-variant--color color--1"><span class="ps-variant__tooltip">Black</span></div>--}}
@@ -200,7 +201,7 @@
                                         <div class="col-xl-5 col-lg-5 col-md-12 col-sm-12 col-12 ">
                                             <div class="ps-block--average-rating">
                                                 <div class="ps-block__header">
-                                                    <h3>{{$productDetails->rating}}</h3>
+                                                    <h3>{{number_format((float)$productDetails->rating, 1, '.', '')}}</h3>
                                                     <select class="ps-rating" data-read-only="true">
                                                         @for ($i=0; $i < round($productDetails->rating); $i++)
                                                             <option value="1">{{$i}}</option>
@@ -265,8 +266,16 @@
                                                     </div>
                                                 </div>
                                                 <div class="col-md-2"><figcaption>{{$userData->name}}</figcaption></div>
-                                                <div class="col-md-8">
+                                                <div class="col-md-6">
                                                     <p>{{$reviews->comment}}</p>
+                                                </div>
+                                                <div class="col-md-2">
+                                                    <select class="ps-rating" data-read-only="true">
+                                                        @for ($i=0; $i < round($reviews->rating); $i++)
+                                                            <option value="1">{{$i}}</option>
+                                                        @endfor
+                                                    </select>
+                                                    <span style="font-size: 12px; font-style: italic;">{{$reviews->updated_at->diffForHumans()}}</span>
                                                 </div>
                                             </div>
                                             <hr>

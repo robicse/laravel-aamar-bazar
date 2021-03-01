@@ -258,7 +258,8 @@ class CartController extends Controller
 
         if ($request->pay == 'cod') {
             $getSellerId = Shop::find($shop_id);
-            $getSellerData = Seller::find($getSellerId->seller_id);
+            $getSellerData = Seller::where('user_id',$getSellerId->user_id)->first();
+            //dd($getSellerData);
             $grandTotal = Cart::total();
             //dd($grandTotal);
             $adminCommission = new OrderTempCommission();
@@ -276,8 +277,8 @@ class CartController extends Controller
 //            return redirect()->route('pay');
             /*Toastr::success('Order Successfully done! ');
             Cart::destroy();*/
-            Toastr::warning('Online Payment Method not yet done. Please try COD');
-            return redirect()->route('index');
+            Toastr::warning('Online Payment Method not yet done. Please try on COD');
+            return redirect()->back();
         }
         return view('frontend.pages.shop.checkout');
     }

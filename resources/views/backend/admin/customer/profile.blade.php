@@ -41,7 +41,7 @@
 
                             <p class="text-muted text-center">{{$userInfo->user_type}}</p>
 
-                            <ul class="list-group list-group-unbordered mb-3">
+                          {{--  <ul class="list-group list-group-unbordered mb-3">
                                 <li class="list-group-item">
                                     <b>Total Products</b> <a class="float-right">1,322</a>
                                 </li>
@@ -51,7 +51,7 @@
                                 <li class="list-group-item">
                                     <b>Total Sold Amount</b> <a class="float-right">13,287</a>
                                 </li>
-                            </ul>
+                            </ul>--}}
 
 {{--                            <a href="{{route('shop.details',$shopInfo->slug)}}" class="btn btn-primary btn-block"><b>Go To Shop</b></a>--}}
                         </div>
