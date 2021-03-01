@@ -89,7 +89,7 @@
                                             <a class="bg-warning dropdown-item" onclick="show_seller_commission_modal('{{$sellerUserInfo->seller->id}}');" href="#">
                                                 <i class="fa fa-money-bill-wave"></i> Set Commission
                                             </a>
-                                            <a class="bg-secondary dropdown-item" href="{{route('admin.sellers.edit',$sellerUserInfo->id)}}">
+                                            <a class="bg-secondary dropdown-item" href="{{route('admin.payment.history',$sellerUserInfo->id)}}">
                                                 <i class="fa fa-history"></i> Payment History
                                             </a>
 {{--                                            <a class="bg-info dropdown-item" href="{{route('admin.sellers.edit',$sellerUserInfo->id)}}">--}}

@@ -68,6 +68,9 @@ class DashboardController extends Controller
         $user->email = $request->email;
         $user->phone = $request->phone;
         if($request->hasFile('avatar_original')){
+            $this->validate($request, [
+                'avatar_original' =>  'mimes:jpeg,jpg,png,gif|required|max:150',
+            ]);
             $user->avatar_original = $request->avatar_original->store('uploads/profile');
         }
         $user->update();
