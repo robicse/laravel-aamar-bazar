@@ -99,6 +99,7 @@
                                         <th>QTY</th>
                                         <th>Price</th>
                                         <th>Total</th>
+                                        <th>Print</th>
                                     </tr>
                                     </thead>
                                     <tbody>
@@ -110,9 +111,9 @@
                                             <td>{{$orderDetail->quantity}}</td>
                                             <td>{{$orderDetail->price}}</td>
                                             <td>{{$orderDetail->price * $orderDetail->quantity }}</td>
-{{--                                            <td>--}}
-{{--                                                <a href="{{ route('invoice.print',$order->id) }}" target="_blank" class="btn btn-default" style="background: green;"><i class="fa fa-print"></i></a>--}}
-{{--                                            </td>--}}
+                                            <td>
+                                                <a href="{{ route('admin.invoice.print',$order->id) }}" target="_blank" class="btn btn-default" style="background: green;"><i class="fa fa-print"></i></a>
+                                            </td>
                                         </tr>
                                     @endforeach
                                     </tbody>

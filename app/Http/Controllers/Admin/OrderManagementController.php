@@ -49,4 +49,8 @@ class OrderManagementController extends Controller
         Toastr::success('Delivery status successfully changed');
         return redirect()->back();
     }
+    public function orderInvoicePrint($id){
+        $order = Order::find($id);
+        return view('backend.admin.order_management.invoice_print',compact('order'));
+    }
 }
