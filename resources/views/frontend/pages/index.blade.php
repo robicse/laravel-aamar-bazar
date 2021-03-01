@@ -354,11 +354,11 @@
         {{--                </div>--}}
         {{--            </div>--}}
         {{--        </div>--}}
-        <div class="ps-home-ads">
+        <div class="ps-home-ads" style="padding-top: 20px;">
             <div class="ps-container">
                 <div class="row">
                     @foreach($offers as $offer)
-                    <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12 "><a class="ps-collection" href="#"><img src="{{asset('uploads/offers/'.$offer->image)}}" alt=""></a>
+                    <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12 "><a class="ps-collection" href="#"><img src="{{url($offer->image)}}" alt=""></a>
                     </div>
                     @endforeach
                 </div>
@@ -371,19 +371,19 @@
                     <div class="container">
                         <div class="row">
                             <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12 ">
-                                <div class="ps-block__thumbnail"><img src="{{asset('frontend/img/app.png')}}" alt=""></div>
+                                <div class="ps-block__thumbnail"><img src="{{asset('frontend/img/application.png')}}" alt=""></div>
                             </div>
                             <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12 ">
                                 <div class="ps-block__content">
                                     <h3>Download Mudi Hat App Now!</h3>
                                     <p>Shopping fastly and easily more with our app. Get a link to download the app on your phone</p>
                                     <form class="ps-form--download-app" action="http://nouthemes.net/html/martfury/do_action" method="post">
-                                        <div class="form-group--nest">
-                                            <input class="form-control" type="Email" placeholder="Email Address">
-                                            <button class="ps-btn">Subscribe</button>
-                                        </div>
+{{--                                        <div class="form-group--nest">--}}
+{{--                                            <input class="form-control" type="Email" placeholder="Email Address">--}}
+{{--                                            <button class="ps-btn">Subscribe</button>--}}
+{{--                                        </div>--}}
                                     </form>
-                                    <p class="download-link"><a href="#"><img src="{{asset('frontend/img/google-play.png')}}" alt=""></a><a href="#"><img src="{{asset('frontend/img/app-store.png')}}" alt=""></a></p>
+                                    <p class="download-link"><a href="https://play.google.com/store/apps/details?id=com.starit.mudihat"><img src="{{asset('frontend/img/google-play.png')}}" alt=""></a></p>
                                 </div>
                             </div>
                         </div>
@@ -491,7 +491,7 @@
                     <div class="row">
                         @foreach($shops as $shop)
                             @php
-                                $product = \App\Model\Product::where('user_id',$shop->user_id)->sum('num_of_sale');
+                                $order = \App\Model\Order::where('shop_id',$shop->id)->count();
                             @endphp
                                 <div class="col-xl-3 col-lg-4 col-md-4 col-sm-6 col-12 ">
                                     <div class="ps-product--horizontal">

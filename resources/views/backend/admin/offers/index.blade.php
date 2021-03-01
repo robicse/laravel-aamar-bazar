@@ -53,7 +53,7 @@
                                     <td>{{$key + 1}}</td>
                                     <td>{{$offer->title}}</td>
                                     <td>
-                                        <img src="{{asset('uploads/offers/'.$offer->image)}}" width="80" height="80" alt="">
+                                        <img src="{{url($offer->image)}}" width="80" height="80" alt="">
                                     </td>
 {{--                                    <td>{{$offer->promo_code}}</td>--}}
                                     <td>

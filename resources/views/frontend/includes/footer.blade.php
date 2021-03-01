@@ -3,10 +3,10 @@
         <div class="ps-footer__widgets">
             <aside class="widget widget_footer widget_contact-us">
                 <div class="widget-title">
-                <a class="ps-logo" href="{{url('/')}}"><img src="{{asset('frontend/img/logo-mudi-hat.png')}}" alt=""></a>
+                <a class="ps-logo" href="{{url('/')}}"><img src="{{asset('frontend/img/logo-footer.png')}}" alt=""></a>
                 </div>
 {{--                <h4 class="widget-title">Contact us</h4>--}}
-                <div class="widget_content">
+                <div class="widget_content" style="margin-top: -20px;">
                     <p>Call us 24/7</p>
                     <h3>01689-063954</h3>
                     <p>5th Floor (Lift Button-4), BBTOA Building, 9 No South, Mirpur Rd, Dhaka 1207 <br><a href=""><span class="__cf_email__" data-cfemail="7714181903161403371a1605031102050e591418"></span></a></p>

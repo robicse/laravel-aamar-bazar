@@ -32,19 +32,9 @@ class OfferController extends Controller
 
         $offer = new Offer();
         $offer->title = $request->title;
-        $image = $request->file('image');
-        if (isset($image)) {
-            //make unique name for image
-            $currentDate = Carbon::now()->toDateString();
-            $imagename = $currentDate . '-' . uniqid() . '.' . $image->getClientOriginalExtension();
-//            resize image for hospital and upload
-            $proImage = Image::make($image)->resize(409, 220)->save($image->getClientOriginalExtension());
-            Storage::disk('public')->put('uploads/offers/' . $imagename, $proImage);
-
-        }else {
-            $imagename = "default.png";
+        if($request->hasFile('image')){
+            $offer->image = $request->image->store('uploads/offers/');
         }
-        $offer->image = $imagename;
         $offer->promo_code = $request->promo_code;
         $offer->save();
         Toastr::success('Offer Created Successfully');
@@ -66,23 +56,10 @@ class OfferController extends Controller
     public function update(Request $request, $id)
     {
         $offer =  Offer::find($id);
-        $image = $request->file('image');
-        if (isset($image)) {
-            //make unique name for image
-            if(Storage::disk('public')->exists('uploads/offers/'.$offer->image))
-            {
-                Storage::disk('public')->delete('uploads/offers/'.$offer->image);
-            }
-            $currentDate = Carbon::now()->toDateString();
-            $imagename = $currentDate . '-' . uniqid() . '.' . $image->getClientOriginalExtension();
-//            resize image for slider and upload
-            $proImage = Image::make($image)->resize(409, 220)->save($image->getClientOriginalExtension());
-            Storage::disk('public')->put('uploads/offers/' . $imagename, $proImage);
-
-        }else {
-            $imagename = $offer->image;
+        $offer->title = $request->title;
+        if($request->hasFile('image')){
+            $offer->image = $request->image->store('uploads/offers/');
         }
-        $offer->image = $imagename;
         $offer->promo_code = $request->promo_code;
         $offer->save();
         Toastr::success('Offer Updated Successfully');
