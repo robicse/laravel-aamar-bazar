@@ -22,9 +22,9 @@ class CategoryController extends Controller
         }
     }
     public function categoryProducts($id) {
-        $shopCategory = ShopCategory::where('id',$id)->first();
+        $shopCategory = ShopCategory::find($id);
         $shop = Shop::where('id',$shopCategory->shop_id)->first();
-        $featuredProducts = Product::where('category_id',$shopCategory->id)->where('user_id',$shop->user_id)->where('published',1)->where('featured',1)->get();
+        $featuredProducts = Product::where('category_id',$shopCategory->category_id)->where('user_id',$shop->user_id)->where('published',1)->where('featured',1)->get();
         if (!empty($featuredProducts))
         {
             return response()->json(['success'=>true,'response'=> $featuredProducts], 200);
@@ -36,7 +36,7 @@ class CategoryController extends Controller
     public function categoryAllProducts($id) {
         $shopCategory = ShopCategory::where('id',$id)->first();
         $shop = Shop::where('id',$shopCategory->shop_id)->first();
-        $allProducts = Product::where('category_id',$shopCategory->id)->where('user_id',$shop->user_id)->where('published',1)->get();
+        $allProducts = Product::where('category_id',$shopCategory->category_id)->where('user_id',$shop->user_id)->where('published',1)->get();
         if (!empty($allProducts))
         {
             return response()->json(['success'=>true,'response'=> $allProducts], 200);

@@ -5,7 +5,9 @@ use App\Http\Controllers\Controller;
 use App\Model\AdminPaymentHistory;
 use App\Model\AdminWithdrawRequest;
 use App\Model\BusinessSetting;
+use App\Model\Order;
 use App\Model\Payment;
+use App\Model\Product;
 use App\Model\Seller;
 use App\Model\SellerWithdrawRequest;
 use App\Model\Shop;
@@ -83,9 +85,12 @@ class SellerController extends Controller
     public function profileShow($id)
     {
         $userInfo = User::find(decrypt($id));
-        $sellerInfo = Seller::where('user_id',decrypt($id))->first();
-        $shopInfo = Shop::where('user_id',decrypt($id))->first();
-        return view('backend.admin.seller.profile', compact('userInfo','sellerInfo','shopInfo'));
+        $sellerInfo = Seller::where('user_id',$userInfo->id)->first();
+        $shopInfo = Shop::where('user_id',$userInfo->id)->first();
+        $totalProducts = Product::where('user_id',$userInfo->id)->count();
+        $totalOrders = Order::where('shop_id',$shopInfo->id)->count();
+        $totalSoldAmount = Order::where('shop_id',$shopInfo->id)->where('payment_status','paid')->where('delivery_status','Completed')->sum('grand_total');
+        return view('backend.admin.seller.profile', compact('userInfo','sellerInfo','shopInfo','totalProducts','totalOrders','totalSoldAmount'));
     }
     public function updateProfile(Request $request, $id)
     {

@@ -82,7 +82,9 @@
                         <td>{{$pay->id}}</td>
                         <td>{{date('j-m-Y',strtotime($pay->created_at))}}</td>
                         <td>{{$pay->amount}}</td>
-                        <td>{{$pay->status}}</td>
+                        <td>
+                            <span class="badge badge-{{$pay->status == 1 ? 'success' : 'danger'}}">{{$pay->status == 1 ? 'Paid' : 'Not paid'}}</span>
+                        </td>
                         <td>{{$pay->message}}</td>
                     </tr>
                     @endforeach

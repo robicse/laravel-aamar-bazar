@@ -62,7 +62,7 @@ class AuthController extends Controller
         }
 
         Session::put('phone',$user->phone);
-        Session::put('password',$user->password);
+        Session::put('password','123456');
         Session::put('user_type','seller');
 
         Toastr::success('Successfully Registered!');
