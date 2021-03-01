@@ -47,7 +47,7 @@ class AuthController extends Controller
         if(Shop::where('user_id', $user->id)->first() == null){
             $shop = new Shop;
             $shop->user_id = $user->id;
-            $shop->seller_id = $user->id;
+            $shop->seller_id = $seller->id;
             $shop->name = $request->shop_name;
             $shop->slug = Str::slug($request->shop_name).'-'.$user->id;
             $shop->address = $request->address;
@@ -62,7 +62,7 @@ class AuthController extends Controller
         }
 
         Session::put('phone',$user->phone);
-        Session::put('password',$user->password);
+        Session::put('password','123456');
         Session::put('user_type','seller');
 
         Toastr::success('Successfully Registered!');

@@ -15,9 +15,10 @@
         [type=radio] + label {
             cursor: pointer;
             padding: 10px 10px;
-            background-color: #fff87a;
+            background-color: #fff;
             color: #000000;
             border-radius: 6px;
+
         }
 
         /* CHECKED STYLES */
@@ -27,7 +28,8 @@
         /*    border-radius: 10px;*/
         /*}*/
         [type=radio]:checked + label {
-            border: 2px solid #282727;
+            /*border: 2px solid #282727;*/
+            background: #fcb800;
             color: #212121;
         }
     </style>
@@ -194,18 +196,18 @@
                                                 <h4 class="ps-block__title">Subtotal <span>৳{{Cart::subtotal()}}</span></h4>
                                                 <h3>Total <span>৳{{Cart::total()}}</span></h3>
                                             </div>
-                                            <div class="row my-3">
+                                            <div class="row my-3" style="padding-top: 10px; padding-bottom: 10px;">
                                                 <div class="col-md-12 text-center">
                                                     <div class="form-check form-check-inline mr-0">
-                                                        <input class="form-check-input" type="radio" name="pay" id="cod" value="cod" checked autocomplete="off">
+                                                        <input class="form-check-input" type="radio" name="pay" id="cod" value="cod" checked autocomplete="off" >
                                                         <label class="form-check-label" for="cod" style="">
-                                                            Pay Later
+                                                           Cash On Delivery
                                                         </label>
                                                     </div>
                                                     <div class="form-check form-check-inline mr-0">
                                                         <input class="form-check-input" type="radio" name="pay" id="ssl" value="ssl" checked autocomplete="off">
                                                         <label class="form-check-label" for="ssl" style="">
-                                                            Pay Now
+                                                            Online Pay
                                                         </label>
                                                     </div>
                                                 </div>

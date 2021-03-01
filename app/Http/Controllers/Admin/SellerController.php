@@ -5,7 +5,9 @@ use App\Http\Controllers\Controller;
 use App\Model\AdminPaymentHistory;
 use App\Model\AdminWithdrawRequest;
 use App\Model\BusinessSetting;
+use App\Model\Order;
 use App\Model\Payment;
+use App\Model\Product;
 use App\Model\Seller;
 use App\Model\SellerWithdrawRequest;
 use App\Model\Shop;
@@ -13,6 +15,7 @@ use App\User;
 use Brian2694\Toastr\Facades\Toastr;
 use http\Exception\RuntimeException;
 use Illuminate\Http\Request;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
@@ -56,7 +59,17 @@ class SellerController extends Controller
     public function adminPaymentHistory()
     {
         $paymentHistories = AdminPaymentHistory::latest()->get();
-        return view('backend.admin.seller.admin_payment_history',compact('paymentHistories'));
+        return view('backend.admin.payment.admin_payment_history',compact('paymentHistories'));
+    }
+    public function adminPaymentReport($id)
+    {
+        $seller = Seller::find($id);
+//        $todayProfit = Order::where('delivery_status','Completed')->where('shop_id',$shop->id)->whereDate('created_at',Carbon::today())->get()->sum('profit');
+        $totalPayment = AdminPaymentHistory::where('seller_id', $seller->id)->get()->sum('amount');
+        $monthlyPayments = AdminPaymentHistory::where('seller_id', $seller->id)->latest()->get()->groupBy(function($date) {
+            return Carbon::parse($date->created_at)->format('y-m'); // grouping by years
+        });
+        return view('backend.admin.payment.admin_payment_report',compact('totalPayment','monthlyPayments'));
     }
     public function paymentHistory()
     {
@@ -72,9 +85,12 @@ class SellerController extends Controller
     public function profileShow($id)
     {
         $userInfo = User::find(decrypt($id));
-        $sellerInfo = Seller::where('user_id',decrypt($id))->first();
-        $shopInfo = Shop::where('user_id',decrypt($id))->first();
-        return view('backend.admin.seller.profile', compact('userInfo','sellerInfo','shopInfo'));
+        $sellerInfo = Seller::where('user_id',$userInfo->id)->first();
+        $shopInfo = Shop::where('user_id',$userInfo->id)->first();
+        $totalProducts = Product::where('user_id',$userInfo->id)->count();
+        $totalOrders = Order::where('shop_id',$shopInfo->id)->count();
+        $totalSoldAmount = Order::where('shop_id',$shopInfo->id)->where('payment_status','paid')->where('delivery_status','Completed')->sum('grand_total');
+        return view('backend.admin.seller.profile', compact('userInfo','sellerInfo','shopInfo','totalProducts','totalOrders','totalSoldAmount'));
     }
     public function updateProfile(Request $request, $id)
     {

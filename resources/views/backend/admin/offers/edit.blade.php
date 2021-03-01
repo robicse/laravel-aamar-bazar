@@ -49,15 +49,15 @@
                                 <label for="title">Title</label>
                                 <input type="text" class="form-control" name="title" id="title" placeholder="Enter Title" value="{{$offer->title}}" required>
                             </div>
-                            <img src="{{asset('uploads/offers/'.$offer->image)}}" width="80" height="50" alt="">
+                            <img src="{{url($offer->image)}}" width="80" height="50" alt="">
                             <div class="form-group">
-                                <label for="image">Offer Image <small>(size: 409 * 220 pixel)</small></label>
-                                <input type="file" class="form-control" name="image" id="image" >
+                                <label for="image">Offer Image</label>
+                                <input type="file" class="form-control" name="image" id="image">
                             </div>
-                            <div class="form-group">
-                                <label for="promo_code">Promo Code</label>
-                                <input type="text" class="form-control" name="promo_code" id="promo_code" placeholder="Enter Promo Code" value="{{$offer->promo_code}}" required>
-                            </div>
+{{--                            <div class="form-group">--}}
+{{--                                <label for="promo_code">Promo Code</label>--}}
+{{--                                <input type="text" class="form-control" name="promo_code" id="promo_code" placeholder="Enter Promo Code" value="{{$offer->promo_code}}" required>--}}
+{{--                            </div>--}}
                         </div>
                         <!-- /.card-body -->
                         <div class="card-footer">

@@ -3,10 +3,10 @@
         <div class="ps-footer__widgets">
             <aside class="widget widget_footer widget_contact-us">
                 <div class="widget-title">
-                <a class="ps-logo" href="{{url('/')}}"><img src="{{asset('frontend/img/logo-mudi-hat.png')}}" alt=""></a>
+                <a class="ps-logo" href="{{url('/')}}"><img src="{{asset('frontend/img/logo-footer.png')}}" alt=""></a>
                 </div>
 {{--                <h4 class="widget-title">Contact us</h4>--}}
-                <div class="widget_content">
+                <div class="widget_content" style="margin-top: -20px;">
                     <p>Call us 24/7</p>
                     <h3>01689-063954</h3>
                     <p>5th Floor (Lift Button-4), BBTOA Building, 9 No South, Mirpur Rd, Dhaka 1207 <br><a href=""><span class="__cf_email__" data-cfemail="7714181903161403371a1605031102050e591418"></span></a></p>
@@ -21,12 +21,12 @@
                     <li><a href="{{route('returns')}}">Return</a></li>
                     <li><a href="{{route('faqs')}}">FAQs</a></li>
                 </ul>
-                <ul class="ps-list--social text-center my-3 my-md-0" style="padding-top: 20px;">
-                    <li><a class="facebook" href="#" target="_blank" data-toggle="tooltip" data-original-title="Facebook" style="background: #3b579d;"><i class="fa fa-facebook" style="color: white"></i></a></li>
-                    <li><a class="twitter" href="#" target="_blank" data-toggle="tooltip" data-original-title="Twitter" style="background: #50ABF1;"><i class="fa fa-twitter" style="color: white"></i></a></li>
-                    <li><a class="youtube" href="#" target="_blank" data-toggle="tooltip" data-original-title="YouTube" style="background: #E62117;"><i class="fa fa-youtube" style="color: white"></i></a></li>
-                    <li><a class="instagram" href="#" target="_blank" data-toggle="tooltip" data-original-title="Instagram" style="background: #e1306c"><i class="fa fa-instagram" style="color: white"></i></a></li>
-                </ul>
+{{--                <ul class="ps-list--social text-center my-3 my-md-0" style="padding-top: 20px;">--}}
+{{--                    <li><a class="facebook" href="#" target="_blank" data-toggle="tooltip" data-original-title="Facebook" style="background: #3b579d;"><i class="fa fa-facebook" style="color: white"></i></a></li>--}}
+{{--                    <li><a class="twitter" href="#" target="_blank" data-toggle="tooltip" data-original-title="Twitter" style="background: #50ABF1;"><i class="fa fa-twitter" style="color: white"></i></a></li>--}}
+{{--                    <li><a class="youtube" href="#" target="_blank" data-toggle="tooltip" data-original-title="YouTube" style="background: #E62117;"><i class="fa fa-youtube" style="color: white"></i></a></li>--}}
+{{--                    <li><a class="instagram" href="#" target="_blank" data-toggle="tooltip" data-original-title="Instagram" style="background: #e1306c"><i class="fa fa-instagram" style="color: white"></i></a></li>--}}
+{{--                </ul>--}}
             </aside>
             <aside class="widget widget_footer">
                 <h4 class="widget-title">Company</h4>
@@ -49,9 +49,14 @@
                 </div>
             </aside>
         </div>
-        <div class="ps-footer__right">
+        <div class="ps-footer__right" style="padding-bottom: 80px;">
             <aside>
-
+                <ul class="ps-list--social text-center my-3 my-md-0" style="padding-bottom: 40px;">
+                    <li><a class="facebook" href="#" target="_blank" data-toggle="tooltip" data-original-title="Facebook" style="background: #3b579d;"><i class="fa fa-facebook" style="color: white"></i></a></li>
+                    <li><a class="twitter" href="#" target="_blank" data-toggle="tooltip" data-original-title="Twitter" style="background: #50ABF1;"><i class="fa fa-twitter" style="color: white"></i></a></li>
+                    <li><a class="youtube" href="#" target="_blank" data-toggle="tooltip" data-original-title="YouTube" style="background: #E62117;"><i class="fa fa-youtube" style="color: white"></i></a></li>
+                    <li><a class="instagram" href="#" target="_blank" data-toggle="tooltip" data-original-title="Instagram" style="background: #e1306c"><i class="fa fa-instagram" style="color: white"></i></a></li>
+                </ul>
             </aside>
         </div>
     </div>

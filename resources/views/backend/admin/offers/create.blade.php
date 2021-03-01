@@ -49,13 +49,13 @@
                                 <input type="text" class="form-control" name="title" id="title" placeholder="Enter Title" required>
                             </div>
                             <div class="form-group">
-                                <label for="image">Offer Image <small>(size: 409 * 220 pixel)</small></label>
+                                <label for="image">Offer Image</label>
                                 <input type="file" class="form-control" name="image" id="image" >
                             </div>
-                            <div class="form-group">
-                                <label for="promo_code">Promo Code</label>
-                                <input type="text" class="form-control" name="promo_code" id="promo_code" placeholder="Enter Promo Code" required>
-                            </div>
+{{--                            <div class="form-group">--}}
+{{--                                <label for="promo_code">Promo Code</label>--}}
+{{--                                <input type="text" class="form-control" name="promo_code" id="promo_code" placeholder="Enter Promo Code" required>--}}
+{{--                            </div>--}}
                             {{--                            <div class="form-group">--}}
                             {{--                                <label for="phone">Meta Title</label>--}}
                             {{--                                <input type="text" class="form-control" name="meta_title" id="phone" placeholder="Enter meta title">--}}

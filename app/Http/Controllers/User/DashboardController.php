@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\User;
 
 use App\Model\Address;
+use App\Model\FavoriteShop;
 use App\Model\Order;
 use App\Model\OrderDetails;
 use App\User;
@@ -102,5 +103,9 @@ class DashboardController extends Controller
             Toastr::error('Current password not match.', 'Error');
             return redirect()->back();
         }
+    }
+    public function favoriteShop() {
+        $favoriteShops = FavoriteShop::where('user_id',Auth::id())->get();
+        return view('frontend.user.favorite_shop_list',compact('favoriteShops'));
     }
 }

@@ -102,6 +102,7 @@ Route::group(['middleware' => ['auth', 'user']], function () {
     Route::post('/user/order/review', 'User\OrderManagementController@reviewStore')->name('user.order.review.store');
     Route::get('order-details/invoice/print/{id}','User\OrderManagementController@printInvoice')->name('invoice.print');
     Route::get('/user/wishlist', 'Frontend\WishlistController@wishlist')->name('user.wishlist');
+    Route::get('/user/favorite-shops', 'User\DashboardController@favoriteShop')->name('user.favorite.shop');
     Route::get('/checkout', 'Frontend\CartController@checkout')->name('checkout');
     Route::post('/checkout/order/submit', 'Frontend\CartController@orderSubmit')->name('checkout.order.submit');
     //this route only for resource controller

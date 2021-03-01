@@ -40,13 +40,13 @@
 
                             <ul class="list-group list-group-unbordered mb-3">
                                 <li class="list-group-item">
-                                    <b>Total Products</b> <a class="float-right">1,322</a>
+                                    <b>Total Products</b> <a class="float-right">{{$totalProducts}}</a>
                                 </li>
                                 <li class="list-group-item">
-                                    <b>Total Orders</b> <a class="float-right">543</a>
+                                    <b>Total Orders</b> <a class="float-right">{{$totalOrders}}</a>
                                 </li>
                                 <li class="list-group-item">
-                                    <b>Total Sold Amount</b> <a class="float-right">13,287</a>
+                                    <b>Total Sold Amount</b> <a class="float-right">{{$totalSoldAmount}}</a>
                                 </li>
                                 <li class="list-group-item">
                                     <b>Wallet Balance</b> <a class="float-right">{{$userInfo->seller->admin_to_pay}}tk</a>

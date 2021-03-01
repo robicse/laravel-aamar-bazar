@@ -33,18 +33,27 @@
                     </aside>
                     <aside class="widget widget_shop">
                         <h4 class="widget-title">BY BRANDS</h4>
-                        <form class="ps-form--widget-search" action="http://nouthemes.net/html/martfury/do_action" method="get">
-                            <input class="form-control" type="text" placeholder="">
-                            <button><i class="icon-magnifier"></i></button>
-                        </form>
-                        <figure class="ps-custom-scrollbar" data-height="250">
-                            @foreach($shopBrand as $Brand)
-                                <div class="ps-checkbox">
-                                    <input class="form-control" type="checkbox" id="{{$Brand->brand_id}}" name="brand">
-                                    <label for="{{$Brand->brand_id}}">{{$Brand->brand->name}}</label>
-                                </div>
+                        <ul class="ps-list--categories">
+                            @foreach($shopBrand as $brand)
+                                <li class="current-menu-item menu-item-has-children"><a href="{{url('/products/'.$shop->slug.'/'.$brand->brand->slug)}}"> {{ $brand->brand->name }} </a>
+                                </li>
                             @endforeach
-                        </figure>
+                        </ul>
+                    </aside>
+                    <aside class="widget widget_shop">
+{{--                        <h4 class="widget-title">BY BRANDS</h4>--}}
+{{--                        <form class="ps-form--widget-search" action="http://nouthemes.net/html/martfury/do_action" method="get">--}}
+{{--                            <input class="form-control" type="text" placeholder="">--}}
+{{--                            <button><i class="icon-magnifier"></i></button>--}}
+{{--                        </form>--}}
+{{--                        <figure class="ps-custom-scrollbar" data-height="250">--}}
+{{--                            @foreach($shopBrand as $Brand)--}}
+{{--                                <div class="ps-checkbox">--}}
+{{--                                    <input class="form-control" type="checkbox" id="{{$Brand->brand_id}}" name="brand">--}}
+{{--                                    <label for="{{$Brand->brand_id}}">{{$Brand->brand->name}}</label>--}}
+{{--                                </div>--}}
+{{--                            @endforeach--}}
+{{--                        </figure>--}}
                         <figure>
                             <h4 class="widget-title">By Price</h4>
                             <div id="nonlinear"></div>

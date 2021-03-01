@@ -15,8 +15,6 @@ class VerificationController extends Controller
 {
     public function getVerificationCode($id) {
         $user = User::find($id);
-//        dd($user->name);
-
         $verification = VerificationCode::where('phone',$user->phone)->first();
         if (!empty($verification)){
             $verification->delete();
@@ -49,7 +47,7 @@ class VerificationController extends Controller
                 /*return redirect('login');*/
                 $credentials = [
                     'phone' => Session::get('phone'),
-                    'password' => Session::get('password'),
+                    'password' => '123456',
                     'user_type' => Session::get('user_type'),
                 ];
 

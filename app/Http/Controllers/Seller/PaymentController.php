@@ -19,7 +19,8 @@ class PaymentController extends Controller
 {
     public function index()
     {
-        $all_payment = Payment::where('seller_id',Auth::id())->get();
+        $seller = Seller::where('user_id',Auth::id())->first();
+        $all_payment = Payment::where('seller_id',$seller->id)->latest()->get();
         return view('backend.seller.payment_history.index',compact('all_payment'));
     }
 

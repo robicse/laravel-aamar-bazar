@@ -46,6 +46,7 @@ Route::group(['as'=>'admin.','prefix' =>'admin','namespace'=>'Admin', 'middlewar
     Route::put('sellers/commission/update/{id}','SellerController@commissionStore')->name('seller.commission.update');
     Route::get('sellers/payment/history','SellerController@paymentHistory')->name('seller.payment.history');
     Route::get('payment/history','SellerController@adminPaymentHistory')->name('payment.history');
+    Route::get('payment/report/{id}','SellerController@adminPaymentReport')->name('payment.report');
     Route::get('sellers/withdraw/request','SellerController@withdrawRequest')->name('seller.withdraw.request');
     Route::get('sellers/profile/show/{id}','SellerController@profileShow')->name('seller.profile.show');
     Route::put('sellers/profile/update/{id}','SellerController@updateProfile')->name('seller.profile.update');

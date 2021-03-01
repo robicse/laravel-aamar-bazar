@@ -43,7 +43,7 @@
                                 <th>#Id</th>
                                 <th>Title</th>
                                 <th>Image</th>
-                                <th>Promo Code</th>
+{{--                                <th>Promo Code</th>--}}
                                 <th>Action</th>
                             </tr>
                             </thead>
@@ -53,9 +53,9 @@
                                     <td>{{$key + 1}}</td>
                                     <td>{{$offer->title}}</td>
                                     <td>
-                                        <img src="{{asset('uploads/offers/'.$offer->image)}}" width="80" height="80" alt="">
+                                        <img src="{{url($offer->image)}}" width="80" height="80" alt="">
                                     </td>
-                                    <td>{{$offer->promo_code}}</td>
+{{--                                    <td>{{$offer->promo_code}}</td>--}}
                                     <td>
                                         <a class="btn btn-info waves-effect" href="{{route('admin.offers.edit',$offer->id)}}">
                                             <i class="fa fa-edit"></i>
@@ -77,7 +77,7 @@
                                 <th>#Id</th>
                                 <th>Title</th>
                                 <th>Image</th>
-                                <th>Promo Code</th>
+{{--                                <th>Promo Code</th>--}}
                                 <th>Action</th>
                             </tr>
                             </tfoot>
