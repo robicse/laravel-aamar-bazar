@@ -21,7 +21,18 @@
                             <div class="ps-block__thumbnail"><img src="{{asset($shop->logo)}}" alt=""></div>
                             <div class="ps-block__container">
                                 <div class="ps-block__header">
-                                    <h4>{{$shop->name}}</h4>
+                                    <div class="col-md-6">
+                                        <h4><a href="{{route('shop.details',$shop->slug)}}">{{$shop->name}} </a></h4>
+                                    </div>
+                                    @if(empty($favoriteShop))
+                                        <div class="col-md-6 pull-right">
+                                            <button class="ps-btn" style="padding: 7px 20px 7px 20px; font-size: 14px;"><a href="{{route('add.favorite-shop',$shop->id)}}">Follow</a></button>
+                                        </div>
+                                    @else
+                                        <div class="col-md-6 pull-right">
+                                            <button class="ps-btn" style="padding: 7px 20px 7px 20px; font-size: 14px;"><a href="{{route('remove.favorite-shop',$shop->id)}}">Unfollow</a></button>
+                                        </div>
+                                    @endif
                                     <select class="ps-rating" data-read-only="true">
                                         <option value="1">1</option>
                                         <option value="1">2</option>
@@ -32,7 +43,7 @@
                                     <p><strong>85% Positive</strong>  (62 rating)</p>
                                 </div><span class="ps-block__divider"></span>
                                 <div class="ps-block__content">
-                                    <p><strong>{{$shop->name}}</strong>, Bangladesh’s no.1 online retailer was established in May 2019 with the aim and vision to become the one-stop shop for retail in New York with implementation of best practices both online</p><span class="ps-block__divider"></span>
+                                    <p><strong>{{$shop->name}}</strong>, {{$shop->about}}</p><span class="ps-block__divider"></span>
                                     <p><strong>Address</strong> {{$shop->address}}</p>
                                     <figure>
                                         <figcaption>Foloow us on social</figcaption>
@@ -65,6 +76,32 @@
                                 </form>
                             </div>
                         </div>
+{{--                        <div class="ps-deal-of-day">--}}
+{{--                            <div class="ps-container">--}}
+{{--                                <div class="ps-section__header">--}}
+{{--                                    <div class="ps-block--countdown-deal">--}}
+{{--                                        <div class="ps-block__left">--}}
+{{--                                            <h4>Featured Categories</h4>--}}
+{{--                                        </div>--}}
+{{--                                        <div class="ps-block__right">--}}
+{{--                                        </div>--}}
+{{--                                    </div><a href="{{route('view.all.categories',$shop->slug)}}">View all</a>--}}
+{{--                                </div>--}}
+{{--                                <div class="ps-section__content mb-5">--}}
+{{--                                    <div class="ps-carousel--nav owl-slider" data-owl-auto="false" data-owl-loop="false" data-owl-speed="10000" data-owl-gap="30" data-owl-nav="true" data-owl-dots="true" data-owl-item="7" data-owl-item-xs="2" data-owl-item-sm="3" data-owl-item-md="4" data-owl-item-lg="5" data-owl-item-xl="6" data-owl-duration="1000" data-owl-mousedrag="on">--}}
+{{--                                        @foreach($shopCat as $cat)--}}
+{{--                                            <div class="ps-product--inner">--}}
+{{--                                                <div class="text-center"><a href="{{url('/shop/'.$shop->slug.'/'.$cat->category->slug)}}"><img src="{{asset('uploads/categories/'.$cat->category->icon)}}" alt="" class="rounded-circle" alt="" width="80" height="80"></a>--}}
+{{--                                                    <div class="item-content text-center">--}}
+{{--                                                        <h4 class="item-title"><a href="{{url('/shop/'.$shop->slug.'/'.$cat->category->slug)}}" style="color: #06c; padding: 5px;" data-toggle="tooltip" title="{{$cat->category->name}}">{!! Str::limit($cat->category->name,7) !!}</h4></a>--}}
+{{--                                                    </div>--}}
+{{--                                                </div>--}}
+{{--                                            </div>--}}
+{{--                                        @endforeach--}}
+{{--                                    </div>--}}
+{{--                                </div>--}}
+{{--                            </div>--}}
+{{--                        </div>--}}
 {{--                        <div class="ps-vendor-best-seller">--}}
 {{--                            <div class="ps-section__header">--}}
 {{--                                <h3>Featured Product</h3>--}}
