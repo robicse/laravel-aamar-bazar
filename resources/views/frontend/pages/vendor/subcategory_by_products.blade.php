@@ -76,9 +76,12 @@
                                 </ul>
                             </div>
                             <div class="ps-block__right">
-                                <form class="ps-form--search" action="http://nouthemes.net/html/martfury/index.html" method="get">
-                                    <input class="form-control" type="text" placeholder="Search in this shop">
-                                    <button><i class="fa fa-search"></i></button>
+                                <form class="ps-form--search text-right" action="" method="get">
+{{--                                    <input class="form-control" type="text" placeholder="Search in this shop">--}}
+                                    <input type="hidden" name="shop_id" value="{{ $shop->id }}">
+                                    <input type="hidden" name="category_id" value="{{ $category->id }}">
+                                    <input type="hidden" name="subcategory_id" value="{{ $subCategory->id }}">
+                                    <input  class="form-control" id="searchMain" name="searchName" type="search" placeholder="Search in this shop" autocomplete="off">
                                 </form>
                             </div>
                         </div>
@@ -184,4 +187,41 @@
     </div>
 @endsection
 @push('js')
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/typeahead.js/0.11.1/typeahead.bundle.min.js"></script>
+    <script !src = "">
+        jQuery(document).ready(function($) {
+            var product = new Bloodhound({
+                remote: {
+                    url: '/search/subcategory/product?q=%QUERY%&storeId={{$shop->id}}&CatId={{$category->id}}&subCatId={{$subCategory->id}}',
+                    wildcard: '%QUERY%'
+                },
+                datumTokenizer: Bloodhound.tokenizers.whitespace('searchName'),
+                queryTokenizer: Bloodhound.tokenizers.whitespace
+            });
+
+            $("#searchMain").typeahead({
+                    hint: true,
+                    highlight: true,
+                    minLength: 3
+                }, {
+                    source: product.ttAdapter(),
+                    // This will be appended to "tt-dataset-" to form the class name of the suggestion menu.
+                    name: 'serviceList',
+                    display: 'name',
+                    // the key from the array we want to display (name,id,email,etc...)
+                    templates: {
+                        empty: [
+                            '<div class="list-group search-results-dropdown"><div class="list-group-item">Sorry,We could not find any Product.</div></div>'
+                        ],
+                        header: [
+                            // '<div class="list-group search-results-dropdown"><div class="list-group-item custom-header">Product</div>'
+                        ],
+                        suggestion: function (data) {
+                            return '<a href="/product/'+data.slug+'" class="list-group-item custom-list-group-item">'+data.name+'</a>'
+                        }
+                    }
+                },
+            );
+        });
+    </script>
 @endpush

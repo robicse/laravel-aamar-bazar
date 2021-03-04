@@ -86,6 +86,7 @@
                                     <form class="ps-form--search text-right" action="" method="get">
                                         <input type="hidden" name="shop_id" value="{{ $shop->id }}">
                                         <input  class="form-control" id="searchMain" name="searchName" type="search" placeholder="Search in this shop" autocomplete="off">
+
                                     </form>
                                 </div>
                             </div>

@@ -147,7 +147,7 @@ class VendorController extends Controller
         }
 
         $favoriteShop = FavoriteShop::where('user_id', Auth::id())->where('shop_id', $shop->id)->first();
-        return view('frontend.pages.vendor.subcategory_by_products',compact('shop','user','subCategory','featuredProducts','products','totalRatingCount','favoriteShop'));
+        return view('frontend.pages.vendor.subcategory_by_products',compact('shop','user','category','subCategory','featuredProducts','products','totalRatingCount','favoriteShop'));
 
     }
     public function search_product(Request $request){
@@ -155,7 +155,7 @@ class VendorController extends Controller
         $name = $request->get('q');
         $shops = Shop::find($storeId);
 
-        $product = Product::where('name', 'LIKE', '%'. $name. '%')->where('user_id',$shops->user_id)->where('added_by','seller')->limit(5)->get();
+        $product = Product::where('name', 'LIKE', '%'. $name. '%')->where('user_id',$shops->user_id)->where('added_by','seller')->where('published',1)->limit(5)->get();
 
         return $product;
     }
@@ -165,7 +165,18 @@ class VendorController extends Controller
         $catId = $request->get('catId');
         $category = Category::find($catId);
         $shop = Shop::find($storeId);
-        $product = Product::where('name', 'LIKE', '%'. $name. '%')->where('user_id',$shop->user_id)->where('category_id',$category->id)->where('added_by','seller')->limit(5)->get();
+        $product = Product::where('name', 'LIKE', '%'. $name. '%')->where('user_id',$shop->user_id)->where('category_id',$category->id)->where('added_by','seller')->where('published',1)->limit(5)->get();
+        return $product;
+    }
+    public function search_subcategory_product(Request $request){
+        $storeId =  $request->get('storeId');
+        $name = $request->get('q');
+        $subCatId = $request->get('subCatId');
+        $catId = $request->get('CatId');
+        $category = Category::find($catId);
+        $subcategory = Subcategory::find($subCatId);
+        $shop = Shop::find($storeId);
+        $product = Product::where('name', 'LIKE', '%'. $name. '%')->where('user_id',$shop->user_id)->where('category_id',$category->id)->where('subcategory_id',$subcategory->id)->where('added_by','seller')->where('published',1)->limit(5)->get();
         return $product;
     }
     public function productFilter($data,$sellerId)

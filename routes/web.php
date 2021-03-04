@@ -36,6 +36,7 @@ Route::get('/remove/favorite-shop/{id}', 'User\FavoriteShopController@removeFavo
 //Search
 Route::get('/search/product', 'Frontend\VendorController@search_product');
 Route::get('/search/category/product', 'Frontend\VendorController@search_category_product');
+Route::get('/search/subcategory/product', 'Frontend\VendorController@search_subcategory_product');
 Route::get('/product/filter/{data}/sellerId/{sellerId}', 'Frontend\VendorController@productFilter');
 Route::get('/featured-product/subcategories/filter/{data}/sellerId/{id}/sub/{subId}', 'Frontend\VendorController@FeaturedSubFilter');
 Route::get('/todays-deal/product/filter/{data}/sellerId/{sellerId}', 'Frontend\VendorController@todaysDealFilter');
@@ -43,7 +44,6 @@ Route::get('/todays-deal/subcategories/filter/{data}/sellerId/{id}/sub/{subId}',
 Route::get('/best-selling/product/filter/{data}/sellerId/{sellerId}', 'Frontend\VendorController@bestSellingFilter');
 Route::get('/best-selling/subcategories/filter/{data}/sellerId/{id}/sub/{subId}', 'Frontend\VendorController@bestSellingSubFilter');
 Route::get('/brand/product/filter/{data}/sellerId/{id}/brnd/{brndId}', 'Frontend\VendorController@brandFilter');
-
 
 
 Route::post('/registration','Frontend\FrontendController@register')->name('user.register');
@@ -65,6 +65,8 @@ Route::post('/cart/quantity_update', 'Frontend\CartController@quantityUpdate')->
 Route::get('/best-sells/products','Frontend\ProductController@bestSellsProducts')->name('best-sells-all-products');
 //Shop/Vendor
 Route::post('/shop/nearest/list', 'Frontend\ShopController@nearestshop')->name('shop.nearest');
+
+
 Route::get('/become-a-vendor', 'Frontend\VendorController@index')->name('become-vendor');
 Route::get('/shop/{name}/{slug}', 'Frontend\VendorController@categoryProducts')->name('category.products');
 Route::get('/shop/{slug}/{cat}/{sub}', 'Frontend\VendorController@subCategoryProducts')->name('subcategory.products');

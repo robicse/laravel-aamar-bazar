@@ -1,7 +1,11 @@
 @extends('frontend.layouts.master')
 @section('title', $category->name)
 @push('css')
-
+<style>
+    a:hover {
+        color: #fff;
+    }
+</style>
 @endpush
 @section('content')
     <div class="ps-page--single">
