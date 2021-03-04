@@ -35,6 +35,7 @@ Route::get('/remove/favorite-shop/{id}', 'User\FavoriteShopController@removeFavo
 
 //Search
 Route::get('/search/product', 'Frontend\VendorController@search_product');
+Route::get('/search/category/product', 'Frontend\VendorController@search_category_product');
 Route::get('/product/filter/{data}/sellerId/{sellerId}', 'Frontend\VendorController@productFilter');
 Route::get('/featured-product/subcategories/filter/{data}/sellerId/{id}/sub/{subId}', 'Frontend\VendorController@FeaturedSubFilter');
 Route::get('/todays-deal/product/filter/{data}/sellerId/{sellerId}', 'Frontend\VendorController@todaysDealFilter');
@@ -66,6 +67,7 @@ Route::get('/best-sells/products','Frontend\ProductController@bestSellsProducts'
 Route::post('/shop/nearest/list', 'Frontend\ShopController@nearestshop')->name('shop.nearest');
 Route::get('/become-a-vendor', 'Frontend\VendorController@index')->name('become-vendor');
 Route::get('/shop/{name}/{slug}', 'Frontend\VendorController@categoryProducts')->name('category.products');
+Route::get('/shop/{slug}/{cat}/{sub}', 'Frontend\VendorController@subCategoryProducts')->name('subcategory.products');
 Route::get('/shop/{slug}', 'Frontend\VendorController@singleshop')->name('shop.details');
 Route::get('/categories/{slug}', 'Frontend\VendorController@allCategories')->name('view.all.categories');
 Route::get('/best-seller-shop/list', 'Frontend\ShopController@bestSellerShopList')->name('best-seller.shop-list');

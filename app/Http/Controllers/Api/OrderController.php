@@ -20,8 +20,14 @@ class OrderController extends Controller
 {
     public function order_get()
     {
-        $orders=Order::where('user_id',Auth::id())->latest('created_at')->get();
-//        return response()->json(['success'=>true,'response' =>$order], 200);
+//        $orders=Order::where('user_id',Auth::id())->latest('created_at')->get();
+        $orders = DB::table('orders')
+            ->join('shops','orders.shop_id','=','shops.id')
+            ->where('orders.user_id','=', Auth::id())
+            ->select('shops.logo as shop_logo','orders.*')
+            ->latest('orders.created_at')
+            ->get();
+
         if (!empty($orders))
         {
             return response()->json(['success'=>true,'response'=> $orders], 200);
