@@ -107,6 +107,7 @@ class ProductController extends Controller
         $product->subcategory_id = $request->subcategory_id;
         $product->subsubcategory_id = $request->subsubcategory_id;
         $product->brand_id = $request->brand_id;
+        $product->tags = implode('|',$request->tags);
         if ($request->current_stock == 1){
             $product->current_stock = 100000;
         }else{
@@ -279,8 +280,9 @@ class ProductController extends Controller
         $categories = Category::all();
         $brands = Brand::all();
         $product = Product::find(decrypt($id));
+        $tags = json_decode($product->tags);
         //dd($product);
-        return view('backend.admin.products.edit',compact('brands', 'categories','product'));
+        return view('backend.admin.products.edit',compact('brands', 'categories','product','tags'));
     }
 
     /**
@@ -299,6 +301,7 @@ class ProductController extends Controller
         $product->subcategory_id = $request->subcategory_id;
         $product->subsubcategory_id = $request->subsubcategory_id;
         $product->brand_id = $request->brand_id;
+        $product->tags = implode('|',$request->tags);
         if ($request->current_stock == 1){
             $product->current_stock = 100000;
         }else{
@@ -545,6 +548,7 @@ class ProductController extends Controller
         $product->subcategory_id = $request->subcategory_id;
         $product->subsubcategory_id = $request->subsubcategory_id;
         $product->brand_id = $request->brand_id;
+        $product->tags = implode('|',$request->tags);
         if ($request->current_stock == 1){
             $product->current_stock = 100000;
         }else{

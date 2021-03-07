@@ -79,7 +79,11 @@
                             <div class="ps-product__info">
                                 <h1>{{ $productDetails->name }}</h1>
                                 <div class="ps-product__meta">
+                                    @if(!empty($productDetails->brand->slug))
                                     <p>Brand:<a href="{{url('/products/'.$shop->slug.'/'.$productDetails->brand->slug)}}">{{ $productDetails->brand->name }}</a></p>
+                                    @else
+                                        <p>Brand:<a href="#">No Brand</a></p>
+                                    @endif
                                     <p class="categories">
                                         <strong> Categories:</strong>
                                         <a href="{{url('/shop/'.$shop->slug.'/'.$productDetails->category->slug)}}">{{$productDetails->category->name}}</a>

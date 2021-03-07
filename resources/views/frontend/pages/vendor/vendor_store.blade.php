@@ -6,6 +6,12 @@
             border-color: silver;
             margin-bottom: 98px!important;
         }
+        .twitter-typeahead{
+            width: 100% !important;
+        }
+        .tt-menu{
+            width: 100% !important;
+        }
     </style>
 @endpush
 @section('content')
