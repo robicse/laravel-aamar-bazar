@@ -47,9 +47,9 @@
                             </tr>
                             </thead>
                             <tbody>
-                            @foreach($all_payment as $allPay)
+                            @foreach($all_payment as $key=>$allPay)
                             <tr>
-                                <td>{{$allPay->id}}</td>
+                                <td>{{$key + 1}}</td>
                                 <td>{{date('j-m-Y',strtotime($allPay->created_at))}}</td>
                                 <td>{{$allPay->amount}}</td>
                                 <td>{{$allPay->payment_method}}</td>

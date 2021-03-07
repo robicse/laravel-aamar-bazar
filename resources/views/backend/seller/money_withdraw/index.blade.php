@@ -65,8 +65,8 @@
                     Withdraw Request History
                 </h3>
             </div><!-- /.card-header -->
-            <div class="card-body">
-                <table class="table table-bordered table-striped" id="example1">
+            <div class="card-body table-responsive">
+                <table id="example1" class="table table-bordered table-striped">
                     <thead>
                     <tr>
                         <th>#</th>
@@ -77,9 +77,9 @@
                     </tr>
                     </thead>
                     <tbody>
-                    @foreach($payment as $pay)
+                    @foreach($payment as $key=>$pay)
                     <tr>
-                        <td>{{$pay->id}}</td>
+                        <td>{{$key + 1}}</td>
                         <td>{{date('j-m-Y',strtotime($pay->created_at))}}</td>
                         <td>{{$pay->amount}}</td>
                         <td>

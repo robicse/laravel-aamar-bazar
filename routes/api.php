@@ -71,7 +71,6 @@ Route::get('/shops','Api\ShopController@getShop');
 Route::get('/shops/lat/{lat}/lng/{lng}','Api\ShopController@getShopByLatLng');
 Route::get('/sellers','Api\SellerController@getSellers');
 Route::get('/shop-categories','Api\ShopCategoryController@getShopCategories');
-Route::get('/shop-subcategories','Api\ShopSubcategoryController@getShopSubcategories');
 Route::get('/shop-brands','Api\ShopBrandController@getShopBrands');
 Route::get('/sliders','Api\SliderController@getSliders');
 Route::get('/featured-products/{id}','Api\ProductController@getFeaturedProducts');
@@ -81,8 +80,13 @@ Route::get('/best-sales-products/{id}','Api\ProductController@getBestSales');
 Route::get('/flash-deals-products/{id}','Api\ProductController@getFlashDeals');
 Route::get('/related-products/{id}','Api\ProductController@getRelatedProducts');
 Route::post('/search/product', 'Api\ProductController@search_product');
+
 Route::get('/category/featured-products/{id}', 'Api\CategoryController@categoryProducts');
 Route::get('/category/all-products/{id}', 'Api\CategoryController@categoryAllProducts');
+
+//Shop Subcategory
+Route::get('/shop-subcategories','Api\ShopSubcategoryController@getShopSubcategories');
+
 
 Route::get('/favorite-shops', 'Api\CustomerController@getFavoriteShop' );
 

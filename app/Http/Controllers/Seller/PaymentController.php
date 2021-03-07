@@ -27,7 +27,7 @@ class PaymentController extends Controller
     public function money()
     {
         $seller = Seller::where('user_id',Auth::id())->first();
-        $payment = SellerWithdrawRequest::where('user_id', Auth::id())->get();
+        $payment = SellerWithdrawRequest::where('user_id', Auth::id())->latest()->get();
 //        dd($payment);
         return view('backend.seller.money_withdraw.index',compact('seller','payment'));
     }

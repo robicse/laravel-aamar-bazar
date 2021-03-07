@@ -77,6 +77,8 @@ class SellerController extends Controller
             'Bank Account Name'=>$sellerInfo->bank_acc_name,
             'Bank Account Number'=>$sellerInfo->bank_acc_no,
             'Bank Account Routing Number'=>$sellerInfo->bank_routing_no,
+            'Bank cash_on_delivery_status'=>$sellerInfo->cash_on_delivery_status,
+            'Bank bank_payment_status'=>$sellerInfo->bank_payment_status,
             'NID Number'=>$sellerInfo->nid_number,
             'avatar_original'=>$userInfo->avatar_original,
             'Shop Logo'=>$shop->logo,
@@ -136,6 +138,8 @@ class SellerController extends Controller
         $bankInfo->bank_acc_name = $request->bank_acc_name;
         $bankInfo->bank_acc_no = $request->bank_acc_no;
         $bankInfo->bank_routing_no = $request->bank_routing_no;
+        $bankInfo->cash_on_delivery_status = $request->cash_on_delivery_status;
+        $bankInfo->bank_payment_status = $request->bank_payment_status;
         $bankInfo->save();
         if (!empty($bankInfo))
         {

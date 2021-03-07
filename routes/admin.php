@@ -71,6 +71,7 @@ Route::group(['as'=>'admin.','prefix' =>'admin','namespace'=>'Admin', 'middlewar
     Route::get('order/canceled','OrderManagementController@canceledOrder')->name('order.canceled');
     Route::get('order-product/status-change/{id}','OrderManagementController@OrderProductChangeStatus')->name('order-product.status');
     Route::get('order-details/{id}','OrderManagementController@orderDetails')->name('order-details');
+    Route::get('order-details/invoice/print/{id}','OrderManagementController@orderInvoicePrint')->name('invoice.print');
 
     // Admin User Management
     Route::resource('customers','CustomerController');

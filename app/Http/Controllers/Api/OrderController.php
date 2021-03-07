@@ -14,13 +14,20 @@ use Brian2694\Toastr\Facades\Toastr;
 use Gloudemans\Shoppingcart\Facades\Cart;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class OrderController extends Controller
 {
     public function order_get()
     {
-        $orders=Order::where('user_id',Auth::id())->latest('created_at')->get();
-//        return response()->json(['success'=>true,'response' =>$order], 200);
+//        $orders=Order::where('user_id',Auth::id())->latest('created_at')->get();
+        $orders = DB::table('orders')
+            ->join('shops','orders.shop_id','=','shops.id')
+            ->where('orders.user_id','=', Auth::id())
+            ->select('shops.logo as shop_logo','orders.*')
+            ->latest('orders.created_at')
+            ->get();
+
         if (!empty($orders))
         {
             return response()->json(['success'=>true,'response'=> $orders], 200);
@@ -31,7 +38,14 @@ class OrderController extends Controller
     }
     public function order_details_get($id)
     {
-        $order_details=OrderDetails::where('order_id',$id)->get();
+//        $order_details=OrderDetails::where('order_id',$id)->get();
+        $order_details = DB::table('order_details')
+            ->join('orders','order_details.order_id','=','orders.id')
+            ->join('shops','orders.shop_id','=','shops.id')
+            ->join('products','order_details.product_id','=','products.id')
+            ->where('orders.id','=',$id)
+            ->select('products.thumbnail_img as product_image','order_details.*','orders.grand_total as Subtotal','orders.delivery_cost as delivery_cost','shops.logo')
+            ->get();
         if (!empty($order_details))
         {
             return response()->json(['success'=>true,'response'=> $order_details], 200);
