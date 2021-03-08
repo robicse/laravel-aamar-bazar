@@ -293,7 +293,7 @@
                     </li>
 
                     <li class="nav-item ">
-                        <a href="{{route('admin.sliders.index')}}" class="nav-link {{Request::is('admin/sliders*')  ? 'active' : ''}}">
+                        <a href="{{route('admin.blogs.index')}}" class="nav-link {{Request::is('admin/blogs*')  ? 'active' : ''}}">
 
                             <i class="nav-icon fas fa-newspaper-o"></i>
                             <p>
