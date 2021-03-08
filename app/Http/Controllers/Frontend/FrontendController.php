@@ -26,12 +26,17 @@ class FrontendController extends Controller
         $all_products = Product::where('published',1)->latest()->get();
         $best_sales_products=Product::where('added_by','seller')->where('published',1)->where('num_of_sale', '>',0)->limit(20)->orderBy('num_of_sale','DESC')->get();
         $offers = Offer::latest()->take(3)->get();
-        $shops = DB::table('shops')
+        $orders = DB::table('orders')
+            ->join('shops','shops.id','=','orders.shop_id')
             ->join('sellers','shops.user_id','=','sellers.user_id')
             ->where('sellers.verification_status','=',1)
-            ->select('shops.*')
+            ->select('orders.shop_id',DB::raw('SUM(orders.grand_total) as total_amount'))
+            ->groupBy('orders.shop_id')
+            ->orderBy('total_amount', 'DESC')
+            ->take(8)
             ->get();
-        return view('frontend.pages.index', compact('categories','products','all_products','shops','best_sales_products','offers'));
+
+        return view('frontend.pages.index', compact('categories','products','all_products','orders','best_sales_products','offers'));
     }
     public function register(Request $request) {
         $this->validate($request, [

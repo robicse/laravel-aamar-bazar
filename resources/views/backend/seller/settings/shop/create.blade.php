@@ -56,7 +56,7 @@
                         <div class="card-body">
                             <div class="form-group">
                                 <label for="name">Shop Name <small style="color: red">*</small></label>
-                                <input type="text" class="form-control" name="name" value="{{ $shop_set->name }}" id="name" required>
+                                <input type="text" class="form-control" name="name" value="{{ $shop_set->name }}" id="name" readonly>
                             </div>
                             <div class="form-group">
                                 <label for="slug">Slug (SEO Url) <small class="text-danger">(requried* and
@@ -204,7 +204,7 @@
             maxCount: 1,
             rowHeight: '200px',
             groupClassName: 'col-md-4 col-sm-4 col-xs-6',
-            maxFileSize: '100000',
+            maxFileSize: '1000000',
             dropFileLabel: "Drop Here",
             onExtensionErr: function (index, file) {
                 console.log(index, file, 'extension err');

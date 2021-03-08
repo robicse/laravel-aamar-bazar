@@ -15,10 +15,13 @@
             <aside class="widget widget_footer">
                 <h4 class="widget-title">Quick links</h4>
                 <ul class="ps-list--link">
+                    <li><a href="{{route('blog-list')}}">Blogs</a></li>
+
+
                     <li><a href="{{route('policy')}}">Policy</a></li>
                     <li><a href="{{route('terms-condition')}}">Term & Condition</a></li>
-                    <li><a href="{{route('shipping')}}">Shipping</a></li>
-                    <li><a href="{{route('returns')}}">Return</a></li>
+{{--                    <li><a href="{{route('shipping')}}">Shipping</a></li>--}}
+{{--                    <li><a href="{{route('returns')}}">Return</a></li>--}}
                     <li><a href="{{route('faqs')}}">FAQs</a></li>
                 </ul>
 {{--                <ul class="ps-list--social text-center my-3 my-md-0" style="padding-top: 20px;">--}}

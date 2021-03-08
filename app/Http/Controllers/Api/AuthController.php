@@ -47,6 +47,15 @@ class AuthController extends Controller
     }
     public function register(Request $request)
     {
+        $userEmailCheck = User::where('email',$request->email)->first();
+        $userPhoneCheck = User::where('phone',$request->phone)->first();
+
+        if (!empty($userEmailCheck)){
+            return response()->json(['success'=>true,'response' =>"This email already exist!"], 405);
+        }
+        if (!empty($userPhoneCheck)){
+            return response()->json(['success'=>true,'response' =>"This number already exist!"], 405);
+        }
         $userReg = new User();
         $userReg->name = $request->name;
         $userReg->email = $request->email;
@@ -65,10 +74,17 @@ class AuthController extends Controller
         $verCode->code = mt_rand(1111,9999);
         $verCode->status = 0;
         $verCode->save();
+
         $text = "Dear ".$userReg->name.", Your MudiHat OTP is: ".$verCode->code;
         UserInfo::smsAPI("88".$verCode->phone,$text);
-        $success['details'] = $userReg;
-        return response()->json(['success'=>true,'response' =>$success], $this-> successStatus);
+        if (!empty($userReg))
+        {
+            return response()->json(['success'=>true,'response'=> 'Registration Successful. Please enter OTP code. '], 200);
+        }
+        else{
+            return response()->json(['success'=>false,'response'=> 'Something went wrong!'], 404);
+        }
+//        return response()->json(['success'=>true,'response' =>$success], $this-> successStatus);
     }
 
     public function sellerRegister(Request $request)
@@ -128,30 +144,8 @@ class AuthController extends Controller
                 $user->banned = 0;
                 $user->save();
                 $success['message'] = 'Your phone number successfully verified';
-                $success['token'] = $user->createToken('mudihat')-> accessToken;
+//                $success['token'] = $user->createToken('mudihat')-> accessToken;
                return response()->json(['success'=>true,'response' =>$success], $this-> successStatus);
-                /*return redirect('login');*/
-//                $credentials = [
-//                    'phone' => Session::get('phone'),
-//                    'password' => Session::get('password'),
-//                    'user_type' => Session::get('user_type'),
-//                ];
-//
-//                if (Auth::attempt($credentials)) {
-//                    Session::forget('phone');
-//                    Session::forget('password');
-//                    if (Session::get('user_type') == 'seller')
-//                    {
-//                        return redirect()->route('seller.dashboard');
-//                    }
-//                    elseif (Session::get('user_type') == 'customer')
-//                    {
-//                        return redirect()->route('user.dashboard');
-//                    }
-//
-//                }else{
-//                    die('no auth');
-//                }
             }else{
                 return response()->json(['success'=>false,'response'=>'Unauthorised'], 401);
             }

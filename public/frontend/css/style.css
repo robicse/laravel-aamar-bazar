@@ -3257,7 +3257,7 @@ textarea.form-control {
 .ps-post--parallax .ps-post__header {
     position: relative;
     z-index: 10;
-    padding: 180px 0;
+    /*padding: 180px 0;*/
     text-align: center;
 }
 

@@ -489,13 +489,13 @@
                 </div>
                 <div class="ps-section__content">
                     <div class="row">
-                        @foreach($shops as $shop)
+                        @foreach($orders as $order)
                             @php
-                                $order = \App\Model\Order::where('shop_id',$shop->id)->count();
+                                $shop = \App\Model\Shop::where('id',$order->shop_id)->first();
                             @endphp
                                 <div class="col-xl-3 col-lg-4 col-md-4 col-sm-6 col-12 ">
                                     <div class="ps-product--horizontal">
-                                        <div class="ps-product__thumbnail"><a href="{{route('shop.details',$shop->slug)}}"><img src="{{url($shop->logo)}}" alt=""></a></div>
+                                        <div class="ps-product__thumbnail"><a href="{{route('shop.details',$shop->slug)}}"><img src="{{url($shop->logo)}}" alt="" width="100" height="75"></a></div>
                                         <div class="ps-product__content"><a class="ps-product__title" href="{{route('shop.details',$shop->slug)}}">{{ $shop->name }}</a>
 
                                             <div class="">

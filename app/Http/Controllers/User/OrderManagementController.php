@@ -20,14 +20,14 @@ class OrderManagementController extends Controller
         return view('frontend.user.order_history',compact('orders'));
     }
     public function orderDetails($id){
-        $order = Order::find($id);
+        $order = Order::find(decrypt($id));
         $orderDetails = OrderDetails::where('order_id',$order->id)->get();
         return view('frontend.user.order_details',compact('order','orderDetails'));
 
     }
 
     public function printInvoice($id) {
-        $order = Order::find($id);
+        $order = Order::find(decrypt($id));
         return view('frontend.user.invoice_print',compact('order'));
     }
     public function reviewStore(Request $request)

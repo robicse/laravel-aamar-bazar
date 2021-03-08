@@ -26,7 +26,7 @@ Route::get('/terms-and-conditions', 'Frontend\AboutController@terms')->name('ter
 Route::get('/shipping', 'Frontend\AboutController@shipping')->name('shipping');
 Route::get('/order-returns', 'Frontend\AboutController@returns')->name('returns');
 Route::get('/blog-list', 'Frontend\BlogController@index')->name('blog-list');
-Route::get('/blog-details', 'Frontend\BlogController@details')->name('blog-details');
+Route::get('/blog-details/{slug}', 'Frontend\BlogController@details')->name('blog-details');
 Route::get('/add/wishlist/{id}', 'Frontend\WishlistController@wishlistAdd' )->name('add.wishlist');
 Route::get('/remove/wishlist/{id}', 'Frontend\WishlistController@wishlistRemove' )->name('remove.wishlist');
 Route::get('/add/favorite-shop/{id}', 'User\FavoriteShopController@favoriteShop')->name('add.favorite-shop');

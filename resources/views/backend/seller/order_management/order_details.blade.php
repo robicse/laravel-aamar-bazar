@@ -112,7 +112,7 @@
                                             <td>{{$orderDetail->price}}</td>
                                             <td>{{$orderDetail->price * $orderDetail->quantity }}</td>
                                             <td>
-                                                <a href="{{ route('invoice.print',$orders->id) }}" target="_blank" class="btn btn-default" style="background: green;"><i class="fa fa-print"></i></a>
+                                                <a href="{{ route('invoice.print',encrypt($orders->id)) }}" target="_blank" class="btn btn-default" style="background: green;"><i class="fa fa-print"></i></a>
                                             </td>
                                         </tr>
                                         @endforeach

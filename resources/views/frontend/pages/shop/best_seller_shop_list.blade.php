@@ -16,7 +16,10 @@
             <div class="ps-container">
                 <h3>Best Seller Shops</h3>
                 <div class="row">
-                    @foreach($shops as $shop)
+                    @foreach($orders as $order)
+                        @php
+                            $shop = \App\Model\Shop::where('id',$order->shop_id)->first();
+                        @endphp
                     <div class="col-xl-2 col-lg-3 col-md-4 col-sm-4 col-6 ">
                         <div class="ps-block--category"><a class="ps-block__overlay" href="{{route('shop.details',$shop->slug)}}"></a><img src="{{url($shop->logo)}}" alt="" width="148" height="148">
                             <p>{{$shop->name}}</p>

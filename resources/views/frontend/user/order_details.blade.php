@@ -57,7 +57,7 @@
                                                     @elseif(!empty($review))
                                                         <i title="Review submitted!" class="fa fa-check-square text-success text-bold"></i>
                                                     @else
-                                                        <p>Order not Complete yet</p>
+                                                        <p>Order not Delivered yet</p>
                                                     @endif
                                                 </td>
                                             </tr>

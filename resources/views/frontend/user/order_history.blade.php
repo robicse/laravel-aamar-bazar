@@ -52,10 +52,10 @@
                                                 <td>{{ $order->payment_status }}</td>
                                                 <td>{{ $order->delivery_status }}</td>
                                                 <td>
-                                                    <a href="{{ route('invoice.print',$order->id) }}" target="_blank" class="btn btn-default" style="background: green;"><i class="fa fa-print"></i></a>
+                                                    <a href="{{ route('invoice.print',encrypt($order->id)) }}" target="_blank" class="btn btn-default" style="background: green;"><i class="fa fa-print"></i></a>
                                                 </td>
                                                 <td>
-                                                    <a class="btn btn-info" href="{{route('user.order.details',$order->id)}}"><i class="fa fa-eye"></i></a>
+                                                    <a class="btn btn-info" href="{{route('user.order.details',encrypt($order->id))}}"><i class="fa fa-eye"></i></a>
                                                 </td>
                                             </tr>
                                             @endforeach

@@ -12,7 +12,8 @@ class BlogController extends Controller
         $blogs = Blog::all();
         return view('frontend.pages.blog_list',compact('blogs'));
     }
-    public function details() {
-        return view('frontend.pages.blog_details');
+    public function details($slug) {
+        $blog = Blog::where('slug',$slug)->first();
+        return view('frontend.pages.blog_details',compact('blog'));
     }
 }
