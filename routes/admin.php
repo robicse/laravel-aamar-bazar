@@ -95,4 +95,5 @@ Route::group(['as'=>'admin.','prefix' =>'admin','namespace'=>'Admin', 'middlewar
     Route::get('seller-order-report','VendorController@sellerReport')->name('seller-order-report');
     //Route::post('seller-order-report','VendorController@sellerOrderDetails')->name('seller-order-report');
     Route::post('seller-order-details','VendorController@sellerOrderDetails')->name('seller-order-details');
+    Route::get('top-rated-shop','VendorController@topRatedShop')->name('top-rated-shop');
 });

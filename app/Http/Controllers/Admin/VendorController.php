@@ -4,9 +4,11 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Model\Order;
+use App\Model\Review;
 use App\Model\Shop;
 use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class VendorController extends Controller
 {
@@ -43,6 +45,16 @@ class VendorController extends Controller
         return response()->json(['success'=> true, 'response'=>$vendors]);
     }
 
-
+public function topRatedShop()
+{
+    $reviews = DB::table('reviews')
+        //->where('stock_transfer_id', $stock_transfer_id)
+        ->join('shops','shops.id','=','reviews.shop_id')
+        ->select('reviews.shop_id',DB::raw('SUM(reviews.rating) as total_rating'))
+        ->groupBy('reviews.shop_id')
+        ->orderBy('total_rating', 'DESC')
+        ->get();
+    return view('backend.admin.Top_rated_shop.index',compact('reviews'));
+}
 
 }
