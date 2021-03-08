@@ -87,6 +87,11 @@ Route::group(['as'=>'admin.','prefix' =>'admin','namespace'=>'Admin', 'middlewar
 
     //Sliders
     Route::resource('sliders','SliderController');
+
+    //Blogs
+    Route::resource('blogs','BlogController');
+
+    //Profile
     Route::resource('profile','ProfileController');
     Route::put('password/update/{id}','ProfileController@updatePassword')->name('password.update');
     Route::get('get-all-vendors','VendorController@index')->name('get-all-vendors.index');
@@ -96,6 +101,7 @@ Route::group(['as'=>'admin.','prefix' =>'admin','namespace'=>'Admin', 'middlewar
     //Route::post('seller-order-report','VendorController@sellerOrderDetails')->name('seller-order-report');
     Route::post('seller-order-details','VendorController@sellerOrderDetails')->name('seller-order-details');
 
+
     //performance
     Route::get('/config-cache', 'SystemOptimize@ConfigCache')->name('config.cache');
     Route::get('/clear-cache', 'SystemOptimize@CacheClear')->name('cache.clear');
@@ -104,4 +110,7 @@ Route::group(['as'=>'admin.','prefix' =>'admin','namespace'=>'Admin', 'middlewar
     Route::get('/route-cache', 'SystemOptimize@RouteCache')->name('route.cache');
     Route::get('/route-clear', 'SystemOptimize@RouteClear')->name('route.clear');
     Route::get('/site-optimize', 'SystemOptimize@Settings')->name('site.optimize');
+
+    Route::get('top-rated-shop','VendorController@topRatedShop')->name('top-rated-shop');
+
 });

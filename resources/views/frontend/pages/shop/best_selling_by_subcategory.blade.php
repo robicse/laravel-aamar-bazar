@@ -99,10 +99,18 @@
                                                     </div>
                                                     <div class="ps-product__container"><a class="ps-product__vendor" href="{{route('shop.details',$shop->slug)}}">{{ $shop->name }}</a>
                                                         <div class="ps-product__content"><a class="ps-product__title" href="{{route('product-details',$product->slug)}}">{{$product->name}}</a>
-                                                            <p class="ps-product__price">৳ {{$product->unit_price}}</p>
+{{--                                                            <p class="ps-product__price">৳ {{$product->unit_price}}</p>--}}
+                                                            Price: ৳ {{home_discounted_base_price($product->id)}}
+                                                            @if(home_base_price($product->id) != home_discounted_base_price($product->id))
+                                                                <del>৳ {{home_base_price($product->id)}}</del>
+                                                            @endif
                                                         </div>
                                                         <div class="ps-product__content hover"><a class="ps-product__title" href="{{route('product-details',$product->slug)}}">{{$product->name}}</a>
-                                                            <p class="ps-product__price">৳ {{$product->unit_price}}</p>
+{{--                                                            <p class="ps-product__price">৳ {{$product->unit_price}}</p>--}}
+                                                            Price: ৳ {{home_discounted_base_price($product->id)}}
+                                                            @if(home_base_price($product->id) != home_discounted_base_price($product->id))
+                                                                <del>৳ {{home_base_price($product->id)}}</del>
+                                                            @endif
                                                         </div>
                                                     </div>
                                                 </div>

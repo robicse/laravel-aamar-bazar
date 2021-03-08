@@ -293,6 +293,15 @@
                     </li>
 
                     <li class="nav-item ">
+                        <a href="{{route('admin.blogs.index')}}" class="nav-link {{Request::is('admin/blogs*')  ? 'active' : ''}}">
+
+                            <i class="nav-icon fas fa-newspaper-o"></i>
+                            <p>
+                                Blog
+                            </p>
+                        </a>
+                    </li>
+                    <li class="nav-item ">
                         <a href="{{route('admin.sliders.index')}}" class="nav-link {{Request::is('admin/sliders*')  ? 'active' : ''}}">
 
                             <i class="nav-icon fas fa-sliders"></i>
@@ -318,10 +327,20 @@
                         </a>
                     </li>
                     <li class="nav-item ">
+
                         <a href="{{route('admin.site.optimize')}}" class="nav-link {{Request::is('admin/site-optimize*') ? 'active' : ''}}">
                             <i class="nav-icon fab fa-first-order"></i>
                             <p>
                                Site Optimize
+                            </p>
+                        </a>
+                    </li>
+                    <li class="nav-item ">
+
+                        <a href="{{route('admin.top-rated-shop')}}" class="nav-link {{Request::is('admin/top-rated-shop*') ? 'active' : ''}}">
+                            <i class="nav-icon fa fa-store"></i>
+                            <p>
+                                Top Rated Shop
                             </p>
                         </a>
                     </li>
