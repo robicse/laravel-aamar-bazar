@@ -317,6 +317,14 @@
                             </p>
                         </a>
                     </li>
+                    <li class="nav-item ">
+                        <a href="{{route('admin.site.optimize')}}" class="nav-link {{Request::is('admin/site-optimize*') ? 'active' : ''}}">
+                            <i class="nav-icon fab fa-first-order"></i>
+                            <p>
+                               Site Optimize
+                            </p>
+                        </a>
+                    </li>
                 </ul>
             </nav>
             <!-- /.sidebar-menu -->
