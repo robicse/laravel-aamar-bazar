@@ -329,7 +329,7 @@
                     <li class="nav-item ">
 
                         <a href="{{route('admin.site.optimize')}}" class="nav-link {{Request::is('admin/site-optimize*') ? 'active' : ''}}">
-                            <i class="nav-icon fab fa-first-order"></i>
+                            <i class="nav-icon fa fa-cog"></i>
                             <p>
                                Site Optimize
                             </p>

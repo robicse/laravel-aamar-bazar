@@ -38,7 +38,6 @@ class OrderController extends Controller
     }
     public function order_details_get($id)
     {
-//        $order_details=OrderDetails::where('order_id',$id)->get();
         $order_details = DB::table('order_details')
             ->join('orders','order_details.order_id','=','orders.id')
             ->join('shops','orders.shop_id','=','shops.id')
@@ -74,11 +73,6 @@ class OrderController extends Controller
         $data['phone'] = $address->phone;
         $shipping_info = json_encode($data);
 
-//        foreach (Cart::content() as $content) {
-//            $shop_id = $content->options->shop_id;
-//            break;
-//        }
-//        dd($shop_id);
         $shop_id = $request->shop_id;
         $order = new Order();
         $order->invoice_code = date('Ymd-his');
@@ -93,14 +87,11 @@ class OrderController extends Controller
         $order->view = 0;
         $order->type = "product";
         $order->save();
-//        return $order;
 
         $orderProducts = json_decode($request->cart,true);
         foreach ($orderProducts as $content) {
-//            return $content["product_id"];
             $orderDetails = new OrderDetails();
             $orderDetails->order_id = $order->id;
-//            $orderDetails->variation_id = $content->options->variant_id;
             $orderDetails->product_id = $content["product_id"];
             $orderDetails->name = $content["name"];
             $orderDetails->price = $content["price"];
@@ -112,25 +103,8 @@ class OrderController extends Controller
         }
 
         if ($request->pay == 'cod') {
-//            $getSellerId = Shop::find($shop_id);
-//            $getSellerData = Seller::find($getSellerId->seller_id);
-//            $grandTotal = Cart::total();
-//            //dd($grandTotal);
-//            $adminCommission = new OrderTempCommission();
-//            $adminCommission->order_id = $order->id;
-//            $adminCommission->shop_id = $shop_id;
-//            $adminCommission->temp_commission_to_seller = 0;
-//            $adminCommission->temp_commission_to_admin = $grandTotal*$getSellerData->commission / 100;
-//            $adminCommission->save();
-
             return response()->json(['success'=>true,'response'=> $order], 200);
         }else {
-//            Session::put('order_id',$order->id);
-//            return redirect()->route('pay');
-            /*Toastr::success('Order Successfully done! ');
-            Cart::destroy();*/
-//            Toastr::warning('Online Payment Method not yet done. Please try COD');
-//            return redirect()->route('index');
             return response()->json(['success'=>true,'response'=> 'Online Payment Method not yet done. Please try COD'], 404);
         }
     }
