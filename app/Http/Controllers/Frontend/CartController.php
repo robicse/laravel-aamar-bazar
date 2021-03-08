@@ -41,9 +41,32 @@ class CartController extends Controller
             }
         }
         $flashSales =  $flashSales = FlashDealProduct::where('product_id',$product->id)->first();
+        //dd($flashSales->count());
         $shop=\App\Model\Shop::where('user_id',$product->user_id)->first();
-        if($product->variant_product==null){
+        if($product->variant_product==null && $product->discount == 0 ){
             //dd("no");
+            if (!empty($flashSales)){
+                $qty=$var[count($var)-1]['value'];
+                $data = array();
+                $data['id'] = $product->id;
+                $data['name'] = $product->name;
+                $data['qty'] = $qty;
+                $data['price'] = home_discounted_base_price($product->id);
+                $data['options']['image'] = $product->thumbnail_img;
+                $data['options']['shipping_cost'] = 60;
+                $data['options']['variant_id'] = null;
+                $data['options']['variant'] = null;
+                $data['options']['shop_name'] =  $shop->name;
+                $data['options']['shop_id'] =  $shop->id;
+                $data['options']['shop_userid'] =  $product->user_id;
+                $data['options']['cart_type'] = "product";
+
+                Cart::add($data);
+                $data['countCart'] = Cart::count();
+                //dd(Cart::content());
+                return response()->json(['success'=> true, 'response'=>$data]);
+            }
+
             $qty=$var[count($var)-1]['value'];
             $data = array();
             $data['id'] = $product->id;
@@ -58,14 +81,11 @@ class CartController extends Controller
             $data['options']['shop_id'] =  $shop->id;
             $data['options']['shop_userid'] =  $product->user_id;
             $data['options']['cart_type'] = "product";
-//            if (!empty($flashSale) && $product->flash_sale == 1 && $flDateTime >= $currDateTime){
-//                $data['price'] = $product->flash_sale_price;
-//            }else {
-//                $data['price'] = $product->sale_price;
-//            }
+
             Cart::add($data);
             $data['countCart'] = Cart::count();
             //dd(Cart::content());
+            dd("not flash sales");
             return response()->json(['success'=> true, 'response'=>$data]);
         }elseif(!empty($flashSales)){
             //dd("flash sales");
@@ -83,11 +103,7 @@ class CartController extends Controller
             $data['options']['shop_id'] =  $shop->id;
             $data['options']['shop_userid'] =  $product->user_id;
             $data['options']['cart_type'] = "product";
-//            if (!empty($flashSale) && $product->flash_sale == 1 && $flDateTime >= $currDateTime){
-//                $data['price'] = $product->flash_sale_price;
-//            }else {
-//                $data['price'] = $product->sale_price;
-//            }
+
             Cart::add($data);
             $data['countCart'] = Cart::count();
             //dd(Cart::content());
@@ -152,12 +168,6 @@ class CartController extends Controller
                 //dd(Cart::content());
                 return response()->json(['success'=> true, 'response'=>$data]);
             }
-
-//            if (!empty($flashSale) && $product->flash_sale == 1 && $flDateTime >= $currDateTime){
-//                $data['price'] = $product->flash_sale_price;
-//            }else {
-//                $data['price'] = $product->sale_price;
-//            }
 
         }
 

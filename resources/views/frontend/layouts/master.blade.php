@@ -30,6 +30,15 @@
 
     {{--toastr js--}}
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css">
+    <style>
+        .twitter-typeahead{
+            width: 100% !important;
+        }
+        .tt-menu{
+            width: 100% !important;
+            text-align: left!important;
+        }
+    </style>
     @stack('css')
 </head>
 <body>

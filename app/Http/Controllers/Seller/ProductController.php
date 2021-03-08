@@ -86,6 +86,7 @@ class ProductController extends Controller
         $product->subcategory_id = $request->subcategory_id;
         $product->subsubcategory_id = $request->subsubcategory_id;
         $product->brand_id = $request->brand_id;
+        $product->tags = implode('|',$request->tags);
         $product->published = 0;
         $product->admin_permission = 0;
         if ($request->current_stock == 1){
@@ -286,6 +287,7 @@ class ProductController extends Controller
         $product->subcategory_id = $request->subcategory_id;
         $product->subsubcategory_id = $request->subsubcategory_id;
         $product->brand_id = $request->brand_id;
+        $product->tags = implode('|',$request->tags);
         if ($request->current_stock == 1){
             $product->current_stock = 100000;
         }else{

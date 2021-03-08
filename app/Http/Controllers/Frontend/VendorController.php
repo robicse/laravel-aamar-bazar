@@ -154,9 +154,8 @@ class VendorController extends Controller
         $storeId =  $request->get('storeId');
         $name = $request->get('q');
         $shops = Shop::find($storeId);
-
-        $product = Product::where('name', 'LIKE', '%'. $name. '%')->where('user_id',$shops->user_id)->where('added_by','seller')->where('published',1)->limit(5)->get();
-
+        //dd($shops);
+        $product = Product::where('user_id',$shops->user_id)->where('added_by','seller')->where('name', 'LIKE', '%'. $name. '%')->where('published',1)->orWhere('tags', 'like', '%'.$name.'%')->limit(5)->get();
         return $product;
     }
     public function search_category_product(Request $request){

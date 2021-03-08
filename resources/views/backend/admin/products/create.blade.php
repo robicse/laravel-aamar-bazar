@@ -75,6 +75,10 @@
                                     @endforeach
                                 </select>
                             </div>
+                            <div class="form-group">
+                                <label for="tags">Tags <small class="font-italic text-info">(type your tag and hit enter)</small></label>
+                                <input type="text" class="form-control" name="tags[]" placeholder="Type to add a tag" data-role="tagsinput">
+                            </div>
                             <div class="form-group ">
                                 <label for="name">Unit</label>
                                 <input type="text" class="form-control " name="unit" id="unit"
