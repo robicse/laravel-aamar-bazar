@@ -327,6 +327,16 @@
                         </a>
                     </li>
                     <li class="nav-item ">
+
+                        <a href="{{route('admin.site.optimize')}}" class="nav-link {{Request::is('admin/site-optimize*') ? 'active' : ''}}">
+                            <i class="nav-icon fab fa-first-order"></i>
+                            <p>
+                               Site Optimize
+                            </p>
+                        </a>
+                    </li>
+                    <li class="nav-item ">
+
                         <a href="{{route('admin.top-rated-shop')}}" class="nav-link {{Request::is('admin/top-rated-shop*') ? 'active' : ''}}">
                             <i class="nav-icon fa fa-store"></i>
                             <p>

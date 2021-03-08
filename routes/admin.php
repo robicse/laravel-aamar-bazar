@@ -100,5 +100,17 @@ Route::group(['as'=>'admin.','prefix' =>'admin','namespace'=>'Admin', 'middlewar
     Route::get('seller-order-report','VendorController@sellerReport')->name('seller-order-report');
     //Route::post('seller-order-report','VendorController@sellerOrderDetails')->name('seller-order-report');
     Route::post('seller-order-details','VendorController@sellerOrderDetails')->name('seller-order-details');
+
+
+    //performance
+    Route::get('/config-cache', 'SystemOptimize@ConfigCache')->name('config.cache');
+    Route::get('/clear-cache', 'SystemOptimize@CacheClear')->name('cache.clear');
+    Route::get('/view-cache', 'SystemOptimize@ViewCache')->name('view.cache');
+    Route::get('/view-clear', 'SystemOptimize@ViewClear')->name('view.clear');
+    Route::get('/route-cache', 'SystemOptimize@RouteCache')->name('route.cache');
+    Route::get('/route-clear', 'SystemOptimize@RouteClear')->name('route.clear');
+    Route::get('/site-optimize', 'SystemOptimize@Settings')->name('site.optimize');
+
     Route::get('top-rated-shop','VendorController@topRatedShop')->name('top-rated-shop');
+
 });
