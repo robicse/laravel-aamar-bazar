@@ -58,7 +58,7 @@
                                 <tr>
                                     <td>{{$key + 1}}</td>
                                     <td>{{$shop->name}}</td>
-                                    <td>{{$review->total_rating}}</td>
+                                    <td>{{$total_rating = number_format((float)$review->total_rating, 1, '.', '')}}</td>
                                 </tr>
                             @endforeach
                             </tbody>
