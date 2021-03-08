@@ -90,6 +90,9 @@ Route::get('/shop-subcategories','Api\ShopSubcategoryController@getShopSubcatego
 
 Route::get('/favorite-shops', 'Api\CustomerController@getFavoriteShop' );
 
+//Offers
+Route::get('/offers','Api\OfferController@getOffers');
+
 Route::post('/login','Api\AuthController@login');
 Route::post('/register','Api\AuthController@register');
 Route::post('/seller/register','Api\AuthController@sellerRegister');
