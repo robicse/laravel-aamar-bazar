@@ -97,6 +97,7 @@ Route::post('/login','Api\AuthController@login');
 Route::post('/register','Api\AuthController@register');
 Route::post('/seller/register','Api\AuthController@sellerRegister');
 Route::post('/verification-code-store', 'Api\AuthController@verificationStore');
+Route::post('/resend-otp', 'Api\AuthController@resendOtp');
 Route::get('/check-verification-code', 'Api\AuthController@CheckVerificationCode');
 Route::post('/phone/check','Api\AuthController@checkPhoneNumber');
 Route::post('/new-password/update','Api\AuthController@passwordUpdate');

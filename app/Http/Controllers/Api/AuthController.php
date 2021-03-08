@@ -151,6 +151,28 @@ class AuthController extends Controller
             }
         }
     }
+    public function resendOtp(Request $request) {
+        $user = User::where('phone',$request->phone)->first();
+        $verification = VerificationCode::where('phone',$request->phone)->first();
+        if (!empty($verification)){
+            $verification->delete();
+        }
+        $verCode = new VerificationCode();
+        $verCode->phone = $request->phone;
+        $verCode->code = mt_rand(1111,9999);
+        $verCode->status = 0;
+        $verCode->save();
+
+        $text = "Dear ".$user->name.", Your MudiHat OTP is: ".$verCode->code;
+        UserInfo::smsAPI("88".$verCode->phone,$text);
+        if (!empty($user))
+        {
+            return response()->json(['success'=>true,'response'=> 'Please Submit the verification code.'], 200);
+        }
+        else{
+            return response()->json(['success'=>false,'response'=> 'Something went wrong!'], 404);
+        }
+    }
     public function CheckVerificationCode(Request $request){
         $check = VerificationCode::where('code', $request->code)->where('phone', Session::get('phone'))->where('status', 0)->first();
         if(!empty($check)){

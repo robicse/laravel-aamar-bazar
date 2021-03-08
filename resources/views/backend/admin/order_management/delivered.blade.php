@@ -54,11 +54,8 @@
                                     <td>{{date('j-m-Y',strtotime($Deliver->created_at))}}</td>
                                     <td>{{$Deliver->payment_type}}</td>
                                     <td>
-                                        <form action="{{route('admin.order-product.status',$Deliver->id)}}">
-                                            <select name="delivery_status" id="" onchange="this.form.submit()">
-                                                <option value="Pending" {{$Deliver->delivery_status == 'Pending'? 'selected' : ''}}>Pending</option>
-                                                <option value="On review" {{$Deliver->delivery_status == 'On review'? 'selected' : ''}}>On review</option>
-                                                <option value="On delivered" {{$Deliver->delivery_status == 'On delivered'? 'selected' : ''}}>On delivered</option>
+                                        <form id="status-form-{{$Deliver->id}}" action="{{route('admin.order-product.status',$Deliver->id)}}">
+                                            <select name="delivery_status" id="" onchange="deliveryStatusChange({{$Deliver->id}})">
                                                 <option value="Delivered" {{$Deliver->delivery_status == 'Delivered'? 'selected' : ''}}>Delivered</option>
                                                 <option value="Delivered" {{$Deliver->delivery_status == 'Completed'? 'selected' : ''}}>Completed</option>
                                                 <option value="Cancel" {{$Deliver->delivery_status == 'Cancel'? 'selected' : ''}}>Cancel</option>
@@ -95,6 +92,7 @@
 @push('js')
     <script src="{{asset('backend/plugins/datatables/jquery.dataTables.js')}}"></script>
     <script src="{{asset('backend/plugins/datatables/dataTables.bootstrap4.js')}}"></script>
+    <script src="https://unpkg.com/sweetalert2@7.19.1/dist/sweetalert2.all.js"></script>
     <script>
         $(function () {
             $("#example1").DataTable();
@@ -107,5 +105,34 @@
                 "autoWidth": false
             });
         });
+        function deliveryStatusChange(id) {
+            swal({
+                title: 'Are you sure to change Delivery Status?',
+                text: "You won't be able to revert this!",
+                type: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, Change it!',
+                cancelButtonText: 'No, cancel!',
+                confirmButtonClass: 'btn btn-success',
+                cancelButtonClass: 'btn btn-danger',
+                buttonsStyling: true,
+                reverseButtons: true
+            }).then((result) => {
+                if (result.value) {
+                    document.getElementById('status-form-'+id).submit();
+                } else if (
+                    // Read more about handling dismissals
+                    result.dismiss === swal.DismissReason.cancel
+                ) {
+                    swal(
+                        'Cancelled',
+                        'Your Data is save :)',
+                        'error'
+                    )
+                }
+            })
+        }
     </script>
 @endpush

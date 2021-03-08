@@ -54,16 +54,7 @@
                                     <td>{{date('j-m-Y',strtotime($Cancel->created_at))}}</td>
                                     <td>{{$Cancel->payment_type}}</td>
                                     <td>
-                                        <form action="{{route('admin.order-product.status',$Cancel->id)}}">
-                                            <select name="delivery_status" id="" onchange="this.form.submit()">
-                                                {{--                                                <option value="Pending" {{$Deliver->delivery_status == 'Pending'? 'selected' : ''}}>Pending</option>--}}
-                                                {{--                                                <option value="On review" {{$Deliver->delivery_status == 'On review'? 'selected' : ''}}>On review</option>--}}
-                                                {{--                                                <option value="On delivered" {{$Deliver->delivery_status == 'On delivered'? 'selected' : ''}}>On delivered</option>--}}
-                                                {{--                                                <option value="Delivered" {{$Deliver->delivery_status == 'Delivered'? 'selected' : ''}}>Delivered</option>--}}
-                                                {{--                                                <option value="Delivered" {{$Complete->delivery_status == 'Completed'? 'selected' : ''}}>Completed</option>--}}
-                                                <option value="Cancel" {{$Cancel->delivery_status == 'Cancel'? 'selected' : ''}}>Cancel</option>
-                                            </select>
-                                        </form>
+                                        <span class="badge badge-danger">{{$Cancel->delivery_status.'ed'}}</span>
 
                                     </td>
                                     <td>

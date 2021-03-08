@@ -2,6 +2,7 @@
 @section("title","Pending Order")
 @push('css')
     <link rel="stylesheet" href="{{asset('backend/plugins/datatables/dataTables.bootstrap4.css')}}">
+    <link rel="stylesheet" href="https://cdn.datatables.net/select/1.3.1/css/select.dataTables.min.css">
 @endpush
 @section('content')
     <section class="content-header">
@@ -48,14 +49,15 @@
                             </tr>
                             </thead>
                             <tbody>
+
                             @foreach($pending_order as $key => $pending)
                                 <tr>
                                     <td>{{$key + 1}}</td>
                                     <td>{{date('j-m-Y',strtotime($pending->created_at))}}</td>
                                     <td>{{$pending->payment_type}}</td>
                                     <td>
-                                        <form action="{{route('admin.order-product.status',$pending->id)}}">
-                                            <select name="delivery_status" id="" onchange="this.form.submit()">
+                                        <form id="status-form-{{$pending->id}}" action="{{route('admin.order-product.status',$pending->id)}}">
+                                            <select name="delivery_status" id="" onchange="deliveryStatusChange({{$pending->id}})">
                                                 <option value="Pending" {{$pending->delivery_status == 'Pending'? 'selected' : ''}}>Pending</option>
                                                 <option value="On review" {{$pending->delivery_status == 'On review'? 'selected' : ''}}>On review</option>
                                                 <option value="On delivered" {{$pending->delivery_status == 'On delivered'? 'selected' : ''}}>On delivered</option>
@@ -91,10 +93,15 @@
         </div>
     </section>
 
+
+
+
 @stop
 @push('js')
     <script src="{{asset('backend/plugins/datatables/jquery.dataTables.js')}}"></script>
     <script src="{{asset('backend/plugins/datatables/dataTables.bootstrap4.js')}}"></script>
+    <script src="https://unpkg.com/sweetalert2@7.19.1/dist/sweetalert2.all.js"></script>
+    <script src="https://cdn.datatables.net/select/1.3.1/js/dataTables.select.min.js"></script>
     <script>
         $(function () {
             $("#example1").DataTable();
@@ -107,5 +114,34 @@
                 "autoWidth": false
             });
         });
+        function deliveryStatusChange(id) {
+            swal({
+                title: 'Are you sure to change Delivery Status?',
+                text: "You won't be able to revert this!",
+                type: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, Change it!',
+                cancelButtonText: 'No, cancel!',
+                confirmButtonClass: 'btn btn-success',
+                cancelButtonClass: 'btn btn-danger',
+                buttonsStyling: true,
+                reverseButtons: true
+            }).then((result) => {
+                if (result.value) {
+                    document.getElementById('status-form-'+id).submit();
+                } else if (
+                    // Read more about handling dismissals
+                    result.dismiss === swal.DismissReason.cancel
+                ) {
+                    swal(
+                        'Cancelled',
+                        'Your Data is save :)',
+                        'error'
+                    )
+                }
+            })
+        }
     </script>
 @endpush
