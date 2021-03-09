@@ -148,12 +148,12 @@
                                                 <input type="email" value="{{$userInfo->email}}" name="email" class="form-control" id="inputEmail" >
                                             </div>
                                         </div>
-                                        <div class="form-group row">
-                                            <label for="shop_name" class="col-sm-2 col-form-label">Shop Name</label>
-                                            <div class="col-sm-10">
-                                                <input type="text" value="{{$shopInfo->name}}" name="shop_name" class="form-control" id="shop_name" >
-                                            </div>
-                                        </div>
+{{--                                        <div class="form-group row">--}}
+{{--                                            <label for="shop_name" class="col-sm-2 col-form-label">Shop Name</label>--}}
+{{--                                            <div class="col-sm-10">--}}
+{{--                                                <input type="text" value="{{$shopInfo->name}}" name="shop_name" class="form-control" id="shop_name" >--}}
+{{--                                            </div>--}}
+{{--                                        </div>--}}
                                         <div class="form-group row">
                                             <label for="avatar_original" class="col-sm-2 col-form-label">Profile Image <small class="text-danger">(Photo size: 300x300 and below 100kb)</small></label>
                                             <div class="col-sm-10">

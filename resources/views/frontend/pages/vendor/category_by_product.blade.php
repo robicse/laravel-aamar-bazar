@@ -23,7 +23,7 @@
 
                         <div class="ps-section__left">
                             <div class="ps-block--vendor">
-                                <div class="ps-block__thumbnail"><img src="{{asset($shop->logo)}}" alt=""></div>
+                                <div class="ps-block__thumbnail"><img src="{{asset($shop->logo)}}" alt="" width="300" height="225"></div>
                                 <div class="ps-block__container">
                                     <div class="ps-block__header">
                                         <div class="row">
@@ -117,55 +117,14 @@
                                 </div>
                             </div>
                         </div>
-{{--                        <div class="ps-vendor-best-seller">--}}
-{{--                            <div class="ps-section__header">--}}
-{{--                                <h3>Featured Product</h3>--}}
-{{--                                <div class="ps-section__nav"><a class="ps-carousel__prev" href="#vendor-bestseller"><i class="icon-chevron-left"></i></a><a class="ps-carousel__next" href="#vendor-bestseller"><i class="icon-chevron-right"></i></a></div>--}}
-{{--                            </div>--}}
-{{--                            <div class="ps-section__content">--}}
-{{--                                <div class="owl-slider" id="vendor-bestseller" data-owl-auto="true" data-owl-loop="true" data-owl-speed="5000" data-owl-gap="0" data-owl-nav="false" data-owl-dots="false" data-owl-item="4" data-owl-item-xs="2" data-owl-item-sm="3" data-owl-item-md="3" data-owl-item-lg="4" data-owl-duration="1000" data-owl-mousedrag="on">--}}
-{{--                                    @foreach($featuredProducts as $product)--}}
-{{--                                        <div class="col-xl-3 col-lg-4 col-md-4 col-sm-6 col-6 ">--}}
-{{--                                            <div class="ps-product">--}}
-{{--                                                <div class="ps-product__thumbnail"><a href="{{route('product-details',$product->slug)}}"><img src="{{asset($product->thumbnail_img)}}" alt=""></a>--}}
-{{--                                                    <div class="ps-product__badge">11%</div>--}}
-{{--                                                    <ul class="ps-product__actions">--}}
-{{--                                                        <li><a href="{{route('product-details',$product->slug)}}" data-toggle="tooltip" data-placement="top" title="Add To Cart"><i class="icon-bag2"></i></a></li>--}}
-{{--                                                        <li><a href="{{route('product-details',$product->slug)}}" data-placement="top" title="Quick View"><i class="icon-eye"></i></a></li>--}}
-{{--                                                        --}}{{--                                                            <li><a href="#" data-toggle="tooltip" data-placement="top" title="Add to Whishlist"><i class="icon-heart"></i></a></li>--}}
-{{--                                                        --}}{{--                                                            <li><a href="#" data-toggle="tooltip" data-placement="top" title="Compare"><i class="icon-chart-bars"></i></a></li>--}}
-{{--                                                    </ul>--}}
-{{--                                                </div>--}}
-{{--                                                <div class="ps-product__container"><a class="ps-product__vendor" href="{{route('product-details',$product->slug)}}"></a>--}}
-{{--                                                    <div class="ps-product__content"><a class="ps-product__title" href="">{{$product->name}}</a>--}}
-{{--                                                        <div class="ps-product__rating">--}}
-{{--                                                            <select class="ps-rating" data-read-only="true">--}}
-{{--                                                                <option value="1">1</option>--}}
-{{--                                                                <option value="1">2</option>--}}
-{{--                                                                <option value="1">3</option>--}}
-{{--                                                                <option value="1">4</option>--}}
-{{--                                                                <option value="2">5</option>--}}
-{{--                                                            </select><span>01</span>--}}
-{{--                                                        </div>--}}
-{{--                                                        <p class="ps-product__price sale">৳{{$product->unit_price}} <del>৳{{$product->purchase_price}}</del></p>--}}
-{{--                                                    </div>--}}
-{{--                                                    <div class="ps-product__content hover"><a class="ps-product__title" href="{{route('product-details',$product->slug)}}">{{$product->name}}</a>--}}
-{{--                                                        <p class="ps-product__price sale">৳{{$product->unit_price}} <del>৳{{$product->purchase_price}}</del></p>--}}
-{{--                                                    </div>--}}
-{{--                                                </div>--}}
-{{--                                            </div>--}}
-{{--                                        </div>--}}
-{{--                                    @endforeach--}}
-{{--                                </div>--}}
-{{--                            </div>--}}
-{{--                        </div>--}}
+
                         @if($featuredProducts->count() > 1)
                         <div class="ps-vendor-best-seller">
                             <div class="ps-section__header">
                                 <h3>Featured Products</h3>
                                 <div class="ps-section__nav"><a class="ps-carousel__prev" href="#vendor-bestseller"><i class="icon-chevron-left"></i></a><a class="ps-carousel__next" href="#vendor-bestseller"><i class="icon-chevron-right"></i></a></div>
                             </div>
-                            <div class="ps-section__content">
+                            <div class="ps-section__content" style="">
                                 <div class="owl-slider" id="vendor-bestseller" data-owl-auto="true" data-owl-loop="true" data-owl-speed="5000" data-owl-gap="0" data-owl-nav="false" data-owl-dots="false" data-owl-item="4" data-owl-item-xs="2" data-owl-item-sm="3" data-owl-item-md="3" data-owl-item-lg="4" data-owl-duration="1000" data-owl-mousedrag="on">
                                     @foreach($featuredProducts as $featuredProduct)
                                         <div class="ps-product">
@@ -179,19 +138,22 @@
                                             </div>
                                             <div class="ps-product__container"><a class="ps-product__vendor" href="#"></a>
                                                 <div class="ps-product__content"><a class="ps-product__title" href="{{route('product-details',$featuredProduct->slug)}}">{{$featuredProduct->name}}</a>
+                                                    Price: ৳ {{home_discounted_base_price($featuredProduct->id)}}
+                                                    @if(home_base_price($featuredProduct->id) != home_discounted_base_price($featuredProduct->id))
+                                                        <del>৳ {{home_base_price($featuredProduct->id)}}</del>
+                                                    @endif
+
                                                     <div class="ps-product__rating">
                                                         <select class="ps-rating" data-read-only="true">
-                                                            <option value="1">1</option>
-                                                            <option value="1">2</option>
-                                                            <option value="1">3</option>
-                                                            <option value="1">4</option>
-                                                            <option value="2">5</option>
-                                                        </select><span>01</span>
+                                                        </select>
                                                     </div>
-                                                    <p class="ps-product__price sale">৳{{$featuredProduct->unit_price}}  <del>৳{{$featuredProduct->purchase_price}}</del></p>
+
                                                 </div>
                                                 <div class="ps-product__content hover"><a class="ps-product__title" href="{{route('product-details',$featuredProduct->slug)}}">{{$featuredProduct->name}}</a>
-                                                    <p class="ps-product__price sale">৳{{$featuredProduct->unit_price}} <del> ৳{{$featuredProduct->purchase_price}}</del></p>
+                                                    Price: ৳ {{home_discounted_base_price($featuredProduct->id)}}
+                                                    @if(home_base_price($featuredProduct->id) != home_discounted_base_price($featuredProduct->id))
+                                                        <del>৳ {{home_base_price($featuredProduct->id)}}</del>
+                                                    @endif
                                                 </div>
                                             </div>
                                     </div>
@@ -205,20 +167,6 @@
                             <div class="ps-shopping__header">
                                 <p><strong>{{count($products)}} </strong> Products found</p>
                                 <div class="ps-shopping__actions">
-                                    {{--                                    <select class="ps-select" data-placeholder="Sort Items">--}}
-                                    {{--                                        <option>Sort by latest</option>--}}
-                                    {{--                                        <option>Sort by popularity</option>--}}
-                                    {{--                                        <option>Sort by average rating</option>--}}
-                                    {{--                                        <option>Sort by price: low to high</option>--}}
-                                    {{--                                        <option>Sort by price: high to low</option>--}}
-                                    {{--                                    </select>--}}
-                                    {{--                                    <div class="ps-shopping__view">--}}
-                                    {{--                                        <p>View</p>--}}
-                                    {{--                                        <ul class="ps-tab-list">--}}
-                                    {{--                                            <li class="active"><a href="#tab-1"><i class="icon-grid"></i></a></li>--}}
-                                    {{--                                            <li><a href="#tab-2"><i class="icon-list4"></i></a></li>--}}
-                                    {{--                                        </ul>--}}
-                                    {{--                                    </div>--}}
                                 </div>
                             </div>
                             <div class="ps-tabs">
@@ -238,19 +186,27 @@
                                                     </div>
                                                     <div class="ps-product__container"><a class="ps-product__vendor" href="{{route('product-details',$product->slug)}}"></a>
                                                         <div class="ps-product__content"><a class="ps-product__title" href="">{{$product->name}}</a>
-                                                            <div class="ps-product__rating">
-                                                                <select class="ps-rating" data-read-only="true">
-                                                                    <option value="1">1</option>
-                                                                    <option value="1">2</option>
-                                                                    <option value="1">3</option>
-                                                                    <option value="1">4</option>
-                                                                    <option value="2">5</option>
-                                                                </select><span>01</span>
-                                                            </div>
-                                                            <p class="ps-product__price sale">৳{{$product->unit_price}} <del>৳{{$product->purchase_price}}</del></p>
+{{--                                                            <div class="ps-product__rating">--}}
+{{--                                                                <select class="ps-rating" data-read-only="true">--}}
+{{--                                                                    <option value="1">1</option>--}}
+{{--                                                                    <option value="1">2</option>--}}
+{{--                                                                    <option value="1">3</option>--}}
+{{--                                                                    <option value="1">4</option>--}}
+{{--                                                                    <option value="2">5</option>--}}
+{{--                                                                </select><span>01</span>--}}
+{{--                                                            </div>--}}
+{{--                                                            <p class="ps-product__price sale">৳{{$product->unit_price}} <del>৳{{$product->purchase_price}}</del></p>--}}
+                                                            Price: ৳ {{home_discounted_base_price($product->id)}}
+                                                            @if(home_base_price($product->id) != home_discounted_base_price($product->id))
+                                                                <del>৳ {{home_base_price($product->id)}}</del>
+                                                            @endif
                                                         </div>
                                                         <div class="ps-product__content hover"><a class="ps-product__title" href="{{route('product-details',$product->slug)}}">{{$product->name}}</a>
-                                                            <p class="ps-product__price sale">৳{{$product->unit_price}} <del>৳{{$product->purchase_price}}</del></p>
+{{--                                                            <p class="ps-product__price sale">৳{{$product->unit_price}} <del>৳{{$product->purchase_price}}</del></p>--}}
+                                                            Price: ৳ {{home_discounted_base_price($product->id)}}
+                                                            @if(home_base_price($product->id) != home_discounted_base_price($product->id))
+                                                                <del>৳ {{home_base_price($product->id)}}</del>
+                                                            @endif
                                                         </div>
                                                     </div>
                                                 </div>

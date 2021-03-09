@@ -109,7 +109,7 @@
                                             <div class="col-md-4 col-sm-4 col-xs-6">
                                                 <div class="img-upload-preview">
                                                     <img loading="lazy"  src="{{url($photo)}}" alt="" class="img-responsive">
-                                                    <input type="hidden" name="previous_photos[]" value="{{url($photo)}}">
+                                                    <input type="hidden" name="previous_photos[]" value="{{$photo}}">
                                                     <button type="button" class="btn btn-danger close-btn remove-files"><i class="fa fa-times"></i></button>
                                                 </div>
                                             </div>
@@ -128,7 +128,7 @@
                                         <div class="col-md-4 col-sm-4 col-xs-6">
                                             <div class="img-upload-preview">
                                                 <img loading="lazy"  src="{{ url($product->thumbnail_img) }}" alt="" class="img-responsive">
-                                                <input type="hidden" name="previous_thumbnail_img" value="{{ url($product->thumbnail_img) }}">
+                                                <input type="hidden" name="previous_thumbnail_img" value="{{ $product->thumbnail_img }}">
                                                 <button type="button" class="btn btn-danger close-btn remove-files"><i class="fa fa-times"></i></button>
                                             </div>
                                         </div>

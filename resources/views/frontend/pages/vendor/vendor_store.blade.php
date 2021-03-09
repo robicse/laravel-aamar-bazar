@@ -29,7 +29,7 @@
                 <div class="ps-section__container">
                     <div class="ps-section__left">
                         <div class="ps-block--vendor">
-                            <div class="ps-block__thumbnail"><img src="{{asset($shop->logo)}}" alt=""></div>
+                            <div class="ps-block__thumbnail"><img src="{{asset($shop->logo)}}" alt="" width="300" height="225"></div>
                             <div class="ps-block__container">
                                 <div class="ps-block__header">
                                     <div class="row">

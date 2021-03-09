@@ -149,10 +149,7 @@
                             <div class="ps-product__container">
                                                         <div class="ps-product__content"><a class="ps-product__title" href="/product/${data[i].slug}">${data[i].name}</a>
 
-                                                            Price: ৳ {{home_discounted_base_price($product->id)}}
-                                @if(home_base_price($product->id) != home_discounted_base_price($product->id))
-                                <del>৳ {{home_base_price($product->id)}}</del>
-                                                                    @endif
+                                                         <p class="ps-product__price">৳ ${data[i].unit_price}</p>
                                                         </div>
                                                         <div class="ps-product__content hover"><a class="ps-product__title" href="/product/${data[i].slug}">${data[i].name}</a>
                                                             <p class="ps-product__price">৳ ${data[i].unit_price}</p>

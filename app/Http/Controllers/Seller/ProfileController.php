@@ -41,25 +41,7 @@ class ProfileController extends Controller
         if($request->hasFile('avatar_original')){
             $user->avatar_original = $request->avatar_original->store('uploads/profile');
         }
-//        $user->address = $request->address;
         $user->update();
-
-//        $seller = Seller::where('user_id',Auth::id())->first();
-//        $seller->user_id = Auth::id();
-//        $seller->update();
-
-            $shop = Shop::where('user_id',Auth::id())->first();
-//            dd($shop->user_id);
-            $shop->name = $request->shop_name;
-//            $shop->address = $request->address;
-//            $shop->city = $request->city;
-//            $shop->area = $request->area;
-//            $shop->latitude = $request->latitude;
-//            $shop->longitude = $request->longitude;
-//            if($request->hasFile('logo')){
-//                $shop->logo = $request->logo->store('uploads/shop/logo');
-//            }
-            $shop->update();
         Toastr::success('Successfully Updated!');
         return redirect()->back();
     }

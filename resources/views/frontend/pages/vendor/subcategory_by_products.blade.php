@@ -19,7 +19,7 @@
 
                     <div class="ps-section__left">
                         <div class="ps-block--vendor">
-                            <div class="ps-block__thumbnail"><img src="{{asset($shop->logo)}}" alt=""></div>
+                            <div class="ps-block__thumbnail"><img src="{{asset($shop->logo)}}" alt="" width="300" height="225"></div>
                             <div class="ps-block__container">
                                 <div class="ps-block__header">
                                     <div class="row">
@@ -105,19 +105,20 @@
                                                 </div>
                                                 <div class="ps-product__container"><a class="ps-product__vendor" href="#"></a>
                                                     <div class="ps-product__content"><a class="ps-product__title" href="{{route('product-details',$featuredProduct->slug)}}">{{$featuredProduct->name}}</a>
+                                                        Price: ৳ {{home_discounted_base_price($featuredProduct->id)}}
+                                                        @if(home_base_price($featuredProduct->id) != home_discounted_base_price($featuredProduct->id))
+                                                            <del>৳ {{home_base_price($featuredProduct->id)}}</del>
+                                                        @endif
                                                         <div class="ps-product__rating">
                                                             <select class="ps-rating" data-read-only="true">
-                                                                <option value="1">1</option>
-                                                                <option value="1">2</option>
-                                                                <option value="1">3</option>
-                                                                <option value="1">4</option>
-                                                                <option value="2">5</option>
-                                                            </select><span>01</span>
+                                                            </select>
                                                         </div>
-                                                        <p class="ps-product__price sale">৳{{$featuredProduct->unit_price}}  <del>৳{{$featuredProduct->purchase_price}}</del></p>
                                                     </div>
                                                     <div class="ps-product__content hover"><a class="ps-product__title" href="{{route('product-details',$featuredProduct->slug)}}">{{$featuredProduct->name}}</a>
-                                                        <p class="ps-product__price sale">৳{{$featuredProduct->unit_price}} <del> ৳{{$featuredProduct->purchase_price}}</del></p>
+                                                        Price: ৳ {{home_discounted_base_price($featuredProduct->id)}}
+                                                        @if(home_base_price($featuredProduct->id) != home_discounted_base_price($featuredProduct->id))
+                                                            <del>৳ {{home_base_price($featuredProduct->id)}}</del>
+                                                        @endif
                                                     </div>
                                                 </div>
                                             </div>
@@ -150,19 +151,17 @@
                                                     </div>
                                                     <div class="ps-product__container"><a class="ps-product__vendor" href="{{route('product-details',$product->slug)}}"></a>
                                                         <div class="ps-product__content"><a class="ps-product__title" href="">{{$product->name}}</a>
-                                                            <div class="ps-product__rating">
-                                                                <select class="ps-rating" data-read-only="true">
-                                                                    <option value="1">1</option>
-                                                                    <option value="1">2</option>
-                                                                    <option value="1">3</option>
-                                                                    <option value="1">4</option>
-                                                                    <option value="2">5</option>
-                                                                </select><span>01</span>
-                                                            </div>
-                                                            <p class="ps-product__price sale">৳{{$product->unit_price}} <del>৳{{$product->purchase_price}}</del></p>
+
+                                                            Price: ৳ {{home_discounted_base_price($product->id)}}
+                                                            @if(home_base_price($product->id) != home_discounted_base_price($product->id))
+                                                                <del>৳ {{home_base_price($product->id)}}</del>
+                                                            @endif
                                                         </div>
                                                         <div class="ps-product__content hover"><a class="ps-product__title" href="{{route('product-details',$product->slug)}}">{{$product->name}}</a>
-                                                            <p class="ps-product__price sale">৳{{$product->unit_price}} <del>৳{{$product->purchase_price}}</del></p>
+                                                            Price: ৳ {{home_discounted_base_price($product->id)}}
+                                                            @if(home_base_price($product->id) != home_discounted_base_price($product->id))
+                                                                <del>৳ {{home_base_price($product->id)}}</del>
+                                                            @endif
                                                         </div>
                                                     </div>
                                                 </div>

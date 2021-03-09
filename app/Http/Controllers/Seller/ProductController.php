@@ -311,6 +311,7 @@ class ProductController extends Controller
         $product->photos = json_encode($photos);
 
         $product->thumbnail_img = $request->previous_thumbnail_img;
+        //dd($request->previous_thumbnail_img);
         if($request->hasFile('thumbnail_img')){
             $product->thumbnail_img = $request->thumbnail_img->store('uploads/products/thumbnail');
             //ImageOptimizer::optimize(base_path('public/').$product->thumbnail_img);

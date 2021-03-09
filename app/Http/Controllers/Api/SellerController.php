@@ -100,18 +100,17 @@ class SellerController extends Controller
         }
         $user->save();
 
-        $shop = Shop::where('user_id',Auth::id())->first();
-        $shop->name = $request->shop_name;
-        $shop->save();
-        $data = DB::table('users')
-            ->join('shops','users.id','=','shops.user_id')
-            ->where('users.id',Auth::id())
-            ->select('users.*','shops.name as shop_name')
-            ->get();
-//        $data = ['Shop Name:', $shop->name];
-        if (!empty($data))
+//        $shop = Shop::where('user_id',Auth::id())->first();
+//        $shop->name = $request->shop_name;
+//        $shop->save();
+//        $data = DB::table('users')
+//            ->join('shops','users.id','=','shops.user_id')
+//            ->where('users.id',Auth::id())
+//            ->select('users.*','shops.name as shop_name')
+//            ->get();
+        if (!empty($user))
         {
-            return response()->json(['success'=>true,'response'=> $data], 200);
+            return response()->json(['success'=>true,'response'=> $user], 200);
         }
         else{
             return response()->json(['success'=>false,'response'=> 'Something went wrong!'], 404);
