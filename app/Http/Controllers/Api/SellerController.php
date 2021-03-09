@@ -95,8 +95,14 @@ class SellerController extends Controller
         $user = User::find(Auth::id());
         $user->name = $request->name;
         $user->email = $request->email;
+//        if($request->hasFile('avatar_original')){
+//            $user->avatar_original = $request->avatar_original->store('uploads/profile');
+//        }
         if($request->hasFile('avatar_original')){
-            $user->avatar_original = $request->avatar_original->store('uploads/profile');
+            $imageName = time().'.'.$request->avatar_original->getClientOriginalExtension();
+            $request->avatar_original->move(public_path('uploads/profile'), $imageName);
+            //$user->avatar_original = $request->avatar_original->store('uploads/profile');
+            $user->avatar_original = $imageName;
         }
         $user->save();
 
@@ -108,6 +114,7 @@ class SellerController extends Controller
 //            ->where('users.id',Auth::id())
 //            ->select('users.*','shops.name as shop_name')
 //            ->get();
+//        $data = ['Shop Name:', $shop->name];
         if (!empty($user))
         {
             return response()->json(['success'=>true,'response'=> $user], 200);

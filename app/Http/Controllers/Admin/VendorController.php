@@ -9,6 +9,7 @@ use App\Model\Shop;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Session;
 
 class VendorController extends Controller
 {
@@ -24,19 +25,20 @@ class VendorController extends Controller
     public function sellerReport() {
         $sellers = User::where('user_type','seller')->get();
         $orders = null;
-        return view('backend.admin.vendor.seller_report',compact('sellers','orders'));
+        $sellerId = null;
+        $deliveryStatus = null;
+        return view('backend.admin.vendor.seller_report',compact('sellers','orders','sellerId','deliveryStatus'));
     }
     public function sellerOrderDetails(Request $request) {
-//        dd('dhs');
         $sellers = User::where('user_type','seller')->get();
         if (!empty($request->seller_id && $request->delivery_status)){
-//            dd($request->all());
             $sellerId = $request->seller_id;
+            $shop = Shop::where('user_id',$sellerId)->first();
             $deliveryStatus = $request->delivery_status;
-            $orders = Order::where('user_id',$sellerId)->where('delivery_status',$deliveryStatus)->get();
-            return view('backend.admin.vendor.seller_report',compact('sellers','orders'));
+            $orders = Order::where('shop_id',$shop->id)->where('delivery_status',$deliveryStatus)->get();
+            return view('backend.admin.vendor.seller_report',compact('sellers','orders','sellerId','deliveryStatus'));
         }
-
+        return redirect()->back();
     }
 
     public function nearestShp(Request $request)

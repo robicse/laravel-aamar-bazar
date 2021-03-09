@@ -45,7 +45,7 @@
                                         <label>Seller List</label>
                                         <select name="seller_id" id="" class="form-control select2">
                                             @foreach($sellers as $seller)
-                                            <option value="{{$seller->id}}" {{$seller->category_id ? 'selected' : ''}}>{{$seller->name}}</option>
+                                            <option value="{{$seller->id}}" {{$sellerId == $seller->id ? 'selected' : ''}}>{{$seller->name}}</option>
                                             @endforeach
                                         </select>
                                         {{--                                            <input type="text" class="form-control" placeholder="First name">--}}
@@ -54,12 +54,12 @@
                                     <div class="col-4">
                                         <label>Delivery Status</label>
                                         <select name="delivery_status" id="" class="form-control select2">
-                                                <option value="Pending">Pending</option>
-                                                <option value="On review">On review</option>
-                                                <option value="On delivered">On delivered</option>
-                                                <option value="Delivered">Delivered</option>
-                                                <option value="Delivered">Completed</option>
-                                                <option value="Cancel">Cancel</option>
+                                                <option value="Pending" {{$deliveryStatus == 'Pending' ? 'selected' : ''}}>Pending</option>
+                                                <option value="On review" {{$deliveryStatus == 'On review' ? 'selected' : ''}}>On review</option>
+                                                <option value="On delivered" {{$deliveryStatus == 'On delivered' ? 'selected' : ''}}>On delivered</option>
+                                                <option value="Delivered" {{$deliveryStatus == 'Delivered' ? 'selected' : ''}}>Delivered</option>
+                                                <option value="Completed" {{$deliveryStatus == 'Completed' ? 'selected' : ''}}>Completed</option>
+                                                <option value="Cancel" {{$deliveryStatus == 'Cancel' ? 'selected' : ''}}>Cancel</option>
                                         </select>
                                     </div>
                                     <div class="col-4" style="margin-top: 30px">
@@ -77,7 +77,7 @@
                             <tr>
                                 <th>#Id</th>
                                 <th>Date</th>
-                                <th>Name</th>
+                                <th>Invoice Code</th>
                                 <th>Payment Method</th>
                                 <th>Details</th>
                             </tr>
@@ -87,7 +87,7 @@
                                 <tr>
                                     <td>{{$key + 1}}</td>
                                     <td>{{date('j-m-Y',strtotime($order->created_at))}}</td>
-                                    <td>{{$order->order_details->name}}</td>
+                                    <td>{{$order->invoice_code}}</td>
                                     <td>{{$order->payment_type}}</td>
                                     <td>
                                         <a class="btn btn-info waves-effect" href="{{route('admin.order-details',$order->id)}}">
@@ -101,7 +101,7 @@
                             <tr>
                                 <th>#Id</th>
                                 <th>Date</th>
-                                <th>Name</th>
+                                <th>Invoice Code</th>
                                 <th>Payment Method</th>
                                 <th>Details</th>
                             </tr>

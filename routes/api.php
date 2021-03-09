@@ -15,6 +15,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::group(['middleware' => ['auth:api']], function () {
+    Route::get('/user/profile/info','Api\CustomerController@profileInfo');
     Route::post('/user/profile/update', 'Api\CustomerController@profileUpdate');
     Route::post('/user/password/update', 'Api\CustomerController@passwordUpdate');
     Route::get('/user/address', 'Api\AddressController@index');

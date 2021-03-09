@@ -3,7 +3,7 @@
 @section('content')
     <div class="ps-page--blog">
         <div class="container">
-            <div class="ps-page__header">
+            <div class="ps-page__header" style="padding: 60px;">
                 <h1>Our Blogs</h1>
                 <div class="ps-breadcrumb--2">
                     <ul class="breadcrumb">

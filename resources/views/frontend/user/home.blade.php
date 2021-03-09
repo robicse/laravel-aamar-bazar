@@ -31,7 +31,7 @@
                                         <div class="col-sm-6">
                                             <div class="form-group">
                                                 <label>Phone Number</label>
-                                                <input class="form-control" type="number" name="phone" value="{{ Auth::User()->phone }}" placeholder="Please enter phone number...">
+                                                <input class="form-control" type="number" name="phone" value="{{ Auth::User()->phone }}" placeholder="Please enter phone number..." readonly>
                                             </div>
                                         </div>
                                         <div class="col-sm-6">

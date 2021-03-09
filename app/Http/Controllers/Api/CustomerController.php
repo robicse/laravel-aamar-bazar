@@ -15,7 +15,22 @@ use Illuminate\Support\Facades\Hash;
 
 class CustomerController extends Controller
 {
+    public function profileInfo(){
+        $user = User::find(Auth::id());
+        if (!empty($user))
+        {
+            return response()->json(['success'=>true,'response'=> $user], 200);
+        }
+        else{
+            return response()->json(['success'=>false,'response'=> 'Something went wrong!'], 404);
+        }
+    }
     public function profileUpdate(Request $request){
+//        $this->validate($request, [
+//            'name' => 'required',
+//            'phone' => 'required|regex:/(01)[0-9]{9}/|unique:users,phone,'.Auth::id(),
+//            'email' =>  'required|email|unique:users,email,'.Auth::id(),
+//        ]);
         $user = User::find(Auth::id());
         $user->name = $request->name;
         $user->email = $request->email;

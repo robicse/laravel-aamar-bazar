@@ -3377,7 +3377,7 @@ textarea.form-control {
     display: inline-block;
     font-size: 14px;
     line-height: 20px;
-    color: #fff87a;
+    color: #fcb800;
 }
 
 .ps-breadcrumb--2 .breadcrumb li:before {
@@ -8562,7 +8562,7 @@ html:not([dir="rtl"]) .noUi-horizontal .noUi-handle {
 }
 
 .ps-product--horizontal .ps-product__title:hover {
-    color: #fff87a;
+    color: #fcb800;
 }
 
 .ps-product--horizontal .ps-product__price {
