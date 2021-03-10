@@ -34,10 +34,10 @@
                                     <input class="form-control" type="number" name="phone" placeholder="Phone Number">
                                 </div>
                                 <div class="form-group">
-                                    <input class="form-control" type="password" name="password" placeholder="Password">
+                                    <input class="form-control" type="password" minlength="6" name="password" placeholder="Password">
                                 </div>
                                 <div class="form-group submtit" style="padding-bottom: 40px;">
-                                    <button class="ps-btn ps-btn--fullwidth">Login</button>
+                                    <button class="ps-btn ps-btn--fullwidth">Register</button>
                                 </div>
                             </div>
                         </div>
