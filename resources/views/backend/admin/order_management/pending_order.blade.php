@@ -69,7 +69,7 @@
 
                                     </td>
                                     <td>
-                                        <a class="btn btn-info waves-effect" href="{{route('admin.order-details',$pending->id)}}">
+                                        <a class="btn btn-info waves-effect" href="{{route('admin.order-details',encrypt($pending->id))}}">
                                             <i class="fa fa-eye"></i> View
                                         </a>
                                     </td>

@@ -66,7 +66,7 @@
 
                                     </td>
                                     <td>
-                                        <a class="btn btn-info waves-effect" href="{{route('admin.order-details',$review->id)}}">
+                                        <a class="btn btn-info waves-effect" href="{{route('admin.order-details',encrypt($review->id))}}">
                                             <i class="fa fa-eye"></i> View
                                         </a>
                                     </td>

@@ -38,7 +38,7 @@ class OrderManagementController extends Controller
         return view('backend.admin.order_management.canceled',compact('Canceled'));
     }
     public function orderDetails($id) {
-        $order= Order::find($id);
+        $order= Order::find(decrypt($id));
         $shop = Shop::where('id',$order->shop_id)->first();
         $orderDetails= OrderDetails::where('order_id',$order->id)->get();
         return view('backend.admin.order_management.order_details',compact('order','orderDetails','shop'));
@@ -75,7 +75,7 @@ class OrderManagementController extends Controller
         return redirect()->back();
     }
     public function orderInvoicePrint($id){
-        $order = Order::find($id);
+        $order = Order::find(decrypt($id));
         return view('backend.admin.order_management.invoice_print',compact('order'));
     }
 }

@@ -56,7 +56,7 @@ class OrderManagementController extends Controller
         return view('backend.seller.order_management.cancel',compact('Canceled'));
     }
     public function orderDetails($id) {
-        $orders = Order::find($id);
+        $orders = Order::find(decrypt($id));
         $orderDetails = OrderDetails::where('order_id',$orders->id)->get();
         return view('backend.seller.order_management.order_details',compact('orders','orderDetails'));
     }

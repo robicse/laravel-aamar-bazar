@@ -15,7 +15,7 @@ class SliderController extends Controller
 {
     public function index()
     {
-        $sliders = Slider::all();
+        $sliders = Slider::latest()->get();
         return view('backend.admin.sliders.index',compact('sliders'));
     }
 
@@ -47,7 +47,7 @@ class SliderController extends Controller
         $slider->url = $request->url;
         $slider->save();
         Toastr::success('Slider Created Successfully');
-        return back();
+        return redirect()->route('admin.sliders.index');
     }
 
     public function show($id)

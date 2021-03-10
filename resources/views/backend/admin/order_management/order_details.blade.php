@@ -94,6 +94,7 @@
                                     <thead>
                                     <tr>
                                         <th>#</th>
+                                        <th>Product Image</th>
                                         <th>Product Name</th>
                                         <th>Payment Type</th>
                                         <th>QTY</th>
@@ -106,13 +107,16 @@
                                     @foreach($orderDetails as $key=>$orderDetail)
                                         <tr>
                                             <td>{{$key + 1}}</td>
+                                            <td>
+                                                <img src="{{url($orderDetail->product->thumbnail_img)}}" width="100" height="80">
+                                            </td>
                                             <td>{{$orderDetail->name}}</td>
                                             <td>{{$order->payment_status}}</td>
                                             <td>{{$orderDetail->quantity}}</td>
                                             <td>{{$orderDetail->price}}</td>
                                             <td>{{$orderDetail->price * $orderDetail->quantity }}</td>
                                             <td>
-                                                <a href="{{ route('admin.invoice.print',$order->id) }}" target="_blank" class="btn btn-default" style="background: green;"><i class="fa fa-print"></i></a>
+                                                <a href="{{ route('admin.invoice.print',encrypt($order->id)) }}" target="_blank" class="btn btn-default" style="background: green;"><i class="fa fa-print"></i></a>
                                             </td>
                                         </tr>
                                     @endforeach

@@ -94,6 +94,7 @@
                                         <thead>
                                         <tr>
                                             <th>#</th>
+                                            <th>Product Image</th>
                                             <th>Product Name</th>
                                             <th>Payment Type</th>
                                             <th>QTY</th>
@@ -106,6 +107,9 @@
                                         @foreach($orderDetails as $key=>$orderDetail)
                                         <tr>
                                             <td>{{$key + 1}}</td>
+                                            <td>
+                                                <img src="{{url($orderDetail->product->thumbnail_img)}}" width="100" height="80">
+                                            </td>
                                             <td>{{$orderDetail->name}}</td>
                                             <td>{{$orders->payment_status}}</td>
                                             <td>{{$orderDetail->quantity}}</td>

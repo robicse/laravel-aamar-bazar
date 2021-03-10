@@ -65,7 +65,7 @@
                                         </form>
                                     </td>
                                     <td>
-                                        <a class="btn btn-info waves-effect" href="{{route('seller.order-details',$Deliver->id)}}">
+                                        <a class="btn btn-info waves-effect" href="{{route('seller.order-details',encrypt($Deliver->id))}}">
                                             <i class="fa fa-eye"></i> View
                                         </a>
                                     </td>

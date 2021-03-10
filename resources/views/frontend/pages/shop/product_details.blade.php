@@ -33,6 +33,7 @@
     </style>
 @endpush
 @section('content')
+
     <div class="ps-breadcrumb">
         <div class="ps-container">
             <ul class="breadcrumb">
@@ -43,15 +44,18 @@
             </ul>
         </div>
     </div>
+
     @php
         $shop=\App\Model\Shop::where('user_id',$productDetails->user_id)->first();
     @endphp
+
     <div class="ps-page--product">
         <div class="ps-container">
             <div class="ps-page__container">
                 <div class="ps-page__left">
                     <div class="ps-product--detail ps-product--fullwidth">
                         <div class="ps-product__header">
+
                             <div class="ps-product__thumbnail" data-vertical="true">
                                 @if(count($photos)!=0)
                                 <figure>
@@ -60,8 +64,8 @@
                                             @foreach($photos as $key => $photo)
                                             <div class="item"><a href="{{url($photo)}}"><img src="{{url($photo)}}" alt=""></a></div>
                                             @endforeach
-{{--                                            <div class="item"><a href="{{asset('frontend/img/products/detail/fullwidth/2.jpg')}}"><img src="{{asset('frontend/img/products/detail/fullwidth/2.jpg')}}" alt=""></a></div>--}}
-{{--                                            <div class="item"><a href="{{asset('frontend/img/products/detail/fullwidth/3.jpg')}}"><img src="{{asset('frontend/img/products/detail/fullwidth/3.jpg')}}" alt=""></a></div>--}}
+                                            <div class="item"><a href="{{asset('frontend/img/products/detail/fullwidth/2.jpg')}}"><img src="{{asset('frontend/img/products/detail/fullwidth/2.jpg')}}" alt=""></a></div>
+                                            <div class="item"><a href="{{asset('frontend/img/products/detail/fullwidth/3.jpg')}}"><img src="{{asset('frontend/img/products/detail/fullwidth/3.jpg')}}" alt=""></a></div>
                                         </div>
                                     </div>
                                 </figure>
@@ -71,8 +75,8 @@
                                     @foreach($photos as $pht)
                                     <div class="item"><img src="{{url($pht)}}" alt=""></div>
                                     @endforeach
-{{--                                    <div class="item"><img src="{{asset('frontend/img/products/detail/fullwidth/2.jpg')}}" alt=""></div>--}}
-{{--                                    <div class="item"><img src="{{asset('frontend/img/products/detail/fullwidth/3.jpg')}}" alt=""></div>--}}
+                                    <div class="item"><img src="{{asset('frontend/img/products/detail/fullwidth/2.jpg')}}" alt=""></div>
+                                    <div class="item"><img src="{{asset('frontend/img/products/detail/fullwidth/3.jpg')}}" alt=""></div>
                                 </div>
 
                             </div>
@@ -185,6 +189,7 @@
                                         <p>{!! $productDetails->description !!} </p>
                                     </div>
                                 </div>
+
                                 <div class="ps-tab" id="tab-3">
                                     <h4>{{ $shop->name }}</h4>
                                     <div class="address">Address: {{ $shop->address }}</div>
@@ -316,12 +321,16 @@
                     {{--                        <p><i class="icon-store"></i> Sell on Martfury?<a href="#"> Register Now !</a></p>--}}
                     {{--                    </aside>--}}
 {{--                    <aside class="widget widget_ads"><a href="#"><img src="{{asset('frontend/img/ads/product-ads.png')}}" alt=""></a></aside>--}}
+
                     <aside class="widget widget_same-brand">
                         <h3>Same Brand</h3>
                         <div class="widget__content">
                             @foreach($relatedBrands  as $product)
                             <div class="ps-product">
-                                <div class="ps-product__thumbnail"><a href="{{route('product-details',$product->slug)}}"><img src="{{url($product->thumbnail_img)}}" alt=""></a>
+                                <div class="ps-product__thumbnail">
+                                    <a href="{{route('product-details',$product->slug)}}">
+                                        <img src="{{url($product->thumbnail_img)}}" alt="">
+                                    </a>
 {{--                                    <div class="ps-product__badge">-37%</div>--}}
                                     <ul class="ps-product__actions">
                                         <li><a href="#" data-toggle="tooltip" data-placement="top" title="Add To Cart"><i class="icon-bag2"></i></a></li>
