@@ -36,6 +36,7 @@ class OrderManagementController extends Controller
         $shop = Shop::where('user_id', $product->user_id)->first();
 
         $review = new Review;
+        $review->order_id = $request->order_id;
         $review->product_id = $request->product_id;
         $review->user_id = Auth::user()->id;
         $review->rating = $request->rating;

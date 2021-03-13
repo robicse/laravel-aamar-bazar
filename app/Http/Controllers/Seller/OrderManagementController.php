@@ -77,6 +77,8 @@ class OrderManagementController extends Controller
             $tempCommission->temp_commission_to_seller = 0.00;
             $tempCommission->temp_commission_to_admin = 0.00;
             $tempCommission->save();
+            $order->payment_status = 'Paid';
+            $order->save();
         }elseif ($request->delivery_status == 'Cancel'){
             $tempCommission = OrderTempCommission::where('order_id',$id)->first();
             $shop = Shop::find($tempCommission->shop_id);
