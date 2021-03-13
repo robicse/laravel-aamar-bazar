@@ -318,6 +318,15 @@
                             </p>
                         </a>
                     </li>
+                    <li class="nav-item ">
+                        <a href="{{route('admin.quote.index')}}" class="nav-link {{Request::is('admin/quote*')  ? 'active' : ''}}">
+
+                            <i class="nav-icon fa fa-quote-left"></i>
+                            <p>
+                                Quote
+                            </p>
+                        </a>
+                    </li>
                     <li class="nav-item">
                         <a href="{{route('admin.get-all-vendors.index')}}" class="nav-link {{Request::is('admin/get-all-vendors*') ? 'active' : ''}}">
                             <i class="nav-icon fas fa-shopping-bag"></i>

@@ -62,6 +62,14 @@ Route::group(['middleware' => ['auth:api']], function () {
     Route::get('/seller/all-orders', 'Api\SellerController@allOrders');
     Route::post('/seller/delivery-status/update', 'Api\SellerController@deliveryStatusUpdate');
 
+    //Seller Payment Details
+    Route::get('/seller/pending-balance', 'Api\SellerPaymentController@pendingBalance');
+    Route::post('/seller/withdraw-request', 'Api\SellerPaymentController@withdrawRequest');
+    Route::get('/seller/withdraw-request/history', 'Api\SellerPaymentController@withdrawRequestHistory');
+    Route::get('/seller/payment-history', 'Api\SellerPaymentController@paymentHistory');
+    Route::get('/seller/payment-report', 'Api\SellerPaymentController@paymentReport');
+
+
 });
 
 

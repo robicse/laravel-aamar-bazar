@@ -87,6 +87,7 @@ Route::group(['as'=>'admin.','prefix' =>'admin','namespace'=>'Admin', 'middlewar
 
     //Sliders
     Route::resource('sliders','SliderController');
+    Route::resource('quote','QuoteController');
 
     //Blogs
     Route::resource('blogs','BlogController');
