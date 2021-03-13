@@ -52,7 +52,12 @@
 
                             @foreach($pending_order as $key => $pending)
                                 <tr>
-                                    <td>{{$key + 1}}</td>
+                                    <td>
+                                        {{$key + 1}}
+                                        @if($pending->view == 0)
+                                            <span class="right badge badge-danger">New</span>
+                                        @endif
+                                    </td>
                                     <td>{{date('j-m-Y',strtotime($pending->created_at))}}</td>
                                     <td>{{$pending->payment_type}}</td>
                                     <td>

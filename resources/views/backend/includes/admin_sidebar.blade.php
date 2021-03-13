@@ -121,12 +121,20 @@
                                 <i class="right fa fa-angle-left"></i>
                             </p>
                         </a>
+                        @php
+                        $new_orders = \App\Model\Order::where('delivery_status','Pending')->where('view',0)->count();
+                        @endphp
                         <ul class="nav nav-treeview">
                             <li class="nav-item">
                                 <a href="{{route('admin.order.pending')}}"
                                    class="nav-link {{Request::is('admin/order/pending*') ? 'active' :''}}">
                                     <i class="fa fa-{{Request::is('admin/order/pending*') ? 'folder-open':'folder'}} nav-icon"></i>
-                                    <p>Pending Order</p>
+                                    <p>
+                                        Pending Order
+                                        @if(!empty($new_orders))
+                                            <span class="right badge badge-danger">New ({{$new_orders}})</span>
+                                        @endif
+                                    </p>
                                 </a>
                             </li>
                             <li class="nav-item">
@@ -232,7 +240,7 @@
                                 <a href="{{route('admin.sellers.index')}}"
                                    class="nav-link {{Request::is('admin/sellers') ? 'active' :''}}">
                                     <i class="fa fa-{{Request::is('admin/sellers') ? 'folder-open':'folder'}} nav-icon"></i>
-                                    <p>Seller List</p>
+                                    <p> Seller List </p>
                                 </a>
                             </li>
                             <li class="nav-item">
