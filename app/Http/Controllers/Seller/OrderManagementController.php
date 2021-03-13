@@ -68,7 +68,7 @@ class OrderManagementController extends Controller
         $order->save();
         if ($request->delivery_status == 'Completed'){
             $tempCommission = OrderTempCommission::where('order_id',$id)->first();
-            //dd($tempCommission);
+//            dd($tempCommission);
             $shop = Shop::find($tempCommission->shop_id);
             $seller = Seller::where('user_id',$shop->user_id)->first();
             $seller->admin_to_pay += $tempCommission->temp_commission_to_seller;

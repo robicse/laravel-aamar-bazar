@@ -267,8 +267,8 @@ class CartController extends Controller
         $orderUpdate->save();
 
         if ($request->pay == 'cod') {
-            $getSellerId = Shop::find($shop_id);
-            $getSellerData = Seller::where('user_id',$getSellerId->user_id)->first();
+            $getShopId = Shop::find($shop_id);
+            $getSellerData = Seller::where('user_id',$getShopId->user_id)->first();
             //dd($getSellerData);
             $grandTotal = Cart::total();
             //dd($grandTotal);

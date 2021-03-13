@@ -46,6 +46,11 @@
                                 <label for="title">Title</label>
                                 <input type="text" class="form-control" name="title" id="title" placeholder="Enter Quote Title" value="{{$quote->title}}" required>
                             </div>
+                            <img src="{{url($quote->image)}}" width="80" height="80">
+                            <div class="form-group">
+                                <label for="image">Image</label>
+                                <input type="file" class="form-control" name="image" id="image" >
+                            </div>
                         </div>
                         <!-- /.card-body -->
                         <div class="card-footer">
@@ -56,6 +61,10 @@
             </div>
         </div>
     </section>
+
+
+
+
 
 @stop
 @push('js')

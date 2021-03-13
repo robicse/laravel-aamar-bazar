@@ -103,6 +103,17 @@ class OrderController extends Controller
         }
 
         if ($request->pay == 'cod') {
+            $getSellerId = Shop::find($shop_id);
+            $getSellerData = Seller::where('user_id',$getSellerId->user_id)->first();
+            //dd($getSellerData);
+            $grandTotal = $order->grand_total;
+            //dd($grandTotal);
+            $adminCommission = new OrderTempCommission();
+            $adminCommission->order_id = $order->id;
+            $adminCommission->shop_id = $shop_id;
+            $adminCommission->temp_commission_to_seller = 0;
+            $adminCommission->temp_commission_to_admin = $grandTotal*$getSellerData->commission / 100;
+            $adminCommission->save();
             return response()->json(['success'=>true,'response'=> $order], 200);
         }else {
             return response()->json(['success'=>true,'response'=> 'Online Payment Method not yet done. Please try COD'], 404);

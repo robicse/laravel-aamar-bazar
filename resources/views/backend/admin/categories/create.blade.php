@@ -46,7 +46,7 @@
                             <input type="text" class="form-control" name="name" id="name" placeholder="Enter Name" required>
                         </div>
                         <div class="form-group">
-                            <label for="email">Icon <small>(size: 32 * 32 pixel)</small></label>
+                            <label for="icon">Image <small>(size: 300 * 300 pixel)</small></label>
                             <input type="file" class="form-control" name="icon" id="logo" >
                         </div>
                         <div class="form-group">

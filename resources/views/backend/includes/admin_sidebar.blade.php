@@ -227,7 +227,7 @@
                         </ul>
                     </li>
 
-                    <li class="nav-item has-treeview {{(Request::is('admin/sellers*') ) ? 'menu-open' : ''}}">
+                    <li class="nav-item has-treeview {{(Request::is('admin/sellers*') || Request::is('admin/due-to-seller*') || Request::is('admin/due-to-admin*') ) ? 'menu-open' : ''}}">
                         <a href="#" class="nav-link">
                             <i class="nav-icon fas fa-user-plus"></i>
                             <p>
@@ -241,6 +241,20 @@
                                    class="nav-link {{Request::is('admin/sellers') ? 'active' :''}}">
                                     <i class="fa fa-{{Request::is('admin/sellers') ? 'folder-open':'folder'}} nav-icon"></i>
                                     <p> Seller List </p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{{route('admin.due-to-seller')}}"
+                                   class="nav-link {{Request::is('admin/due-to-seller*') ? 'active' :''}}">
+                                    <i class="fa fa-{{Request::is('admin/due-to-seller*') ? 'folder-open':'folder'}} nav-icon"></i>
+                                    <p> Due to Seller </p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{{route('admin.due-to-admin')}}"
+                                   class="nav-link {{Request::is('admin/due-to-admin*') ? 'active' :''}}">
+                                    <i class="fa fa-{{Request::is('admin/due-to-admin*') ? 'folder-open':'folder'}} nav-icon"></i>
+                                    <p> Due to Admin </p>
                                 </a>
                             </li>
                             <li class="nav-item">

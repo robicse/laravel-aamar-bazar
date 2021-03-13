@@ -102,6 +102,12 @@ Route::group(['as'=>'admin.','prefix' =>'admin','namespace'=>'Admin', 'middlewar
     //Route::post('seller-order-report','VendorController@sellerOrderDetails')->name('seller-order-report');
     Route::post('seller-order-details','VendorController@sellerOrderDetails')->name('seller-order-details');
 
+    //Seller Payment
+    Route::get('due-to-seller','PaymentController@dueToSeller')->name('due-to-seller');
+    Route::post('due-to-seller-details','PaymentController@dueToSellerDetails')->name('due-to-seller-details');
+    Route::get('due-to-admin','PaymentController@dueToAdmin')->name('due-to-admin');
+    Route::post('due-to-admin-details','PaymentController@dueToAdminDetails')->name('due-to-admin-details');
+
 
     //performance
     Route::get('/config-cache', 'SystemOptimize@ConfigCache')->name('config.cache');

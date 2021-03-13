@@ -35,6 +35,9 @@ class QuoteController extends Controller
         ]);
         $new_quote = new Quote();
         $new_quote->title = $request->title;
+        if($request->hasFile('image')){
+            $new_quote->image = $request->image->store('uploads/quote/');
+        }
         $new_quote->save();
         Toastr::success('Quote Created Successfully');
         return redirect()->route('admin.quote.index');
@@ -55,6 +58,9 @@ class QuoteController extends Controller
     {
         $quote = Quote::find($id);
         $quote->title = $request->title;
+        if($request->hasFile('image')){
+            $quote->image = $request->image->store('uploads/quote/');
+        }
         $quote->save();
         Toastr::success('Quote Updated Successfully');
         return redirect()->route('admin.quote.index');

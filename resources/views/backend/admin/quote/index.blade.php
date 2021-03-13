@@ -47,6 +47,7 @@
                             <tr>
                                 <th>#Id</th>
                                 <th>Title</th>
+                                <th>Image</th>
                                 <th>Action</th>
                             </tr>
                             </thead>
@@ -55,6 +56,9 @@
                                 <tr>
                                     <td>{{$key + 1}}</td>
                                     <td>{{$quote->title}}</td>
+                                    <td>
+                                        <img src="{{url($quote->image)}}" width="60" height="50">
+                                    </td>
                                     <td>
                                         <a class="btn btn-info waves-effect" href="{{route('admin.quote.edit',$quote->id)}}">
                                             <i class="fa fa-edit"></i>
