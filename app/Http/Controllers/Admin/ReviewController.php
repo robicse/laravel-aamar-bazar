@@ -10,9 +10,16 @@ use Illuminate\Http\Request;
 class ReviewController extends Controller
 {
     public function index() {
-        $reviews = Review::all();
-        return view('backend.admin.review.index',compact('reviews'));
+        $value = null;
+        $reviews = null;
+        return view('backend.admin.review.index',compact('value','reviews'));
     }
+    public function reviewDetails(Request $request){
+        $value = $request->rating;
+        $reviews = Review::where('rating',$value)->get();
+        return view('backend.admin.review.index',compact('value','reviews'));
+    }
+
     public function updateStatus(Request $request){
         $review = Review::findOrFail($request->id);
         $review->status = $request->status;

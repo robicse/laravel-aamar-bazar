@@ -2,6 +2,7 @@
 @section("title","Review List")
 @push('css')
     <link rel="stylesheet" href="{{asset('backend/plugins/datatables/dataTables.bootstrap4.css')}}">
+    <link rel="stylesheet" href="{{asset('backend/plugins/select2/select2.min.css')}}">
     <style>
         table.dataTable tbody th, table.dataTable tbody td {
             padding: 0px 6px!important;
@@ -29,81 +30,178 @@
         <div class="row">
             <div class="col-12">
                 <div class="card card-info card-outline">
-                    <div class="card-header">
-                        <h3 class="card-title float-left">Review Lists</h3>
-                        <div class="float-right">
-
+                    <div class="callout callout-info">
+                        <div class="card card-info" style="padding: 20px 40px 40px 40px;">
+                            <form role="form" action="{{route('admin.review.details')}}" method="POST">
+                                @csrf
+                                <div class="row">
+                                    <div class="col-4">
+                                        <label>Rattings</label>
+                                        <select name="rating" id="" class="form-control select2">
+                                                <option value="5" {{$value == 5 ? 'selected' : ''}}>5</option>
+                                                <option value="4" {{$value == 4 ? 'selected' : ''}}>4</option>
+                                                <option value="3" {{$value == 3 ? 'selected' : ''}}>3</option>
+                                                <option value="2" {{$value == 2 ? 'selected' : ''}}>2</option>
+                                                <option value="1" {{$value == 1 ? 'selected' : ''}}>1</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-4" style="margin-top: 30px">
+                                        <button type="submit" class="btn btn-primary">Submit</button>
+                                    </div>
+                                </div>
+                            </form>
                         </div>
                     </div>
                     <!-- /.card-header -->
                     <div class="card-body table-responsive">
-                        <table id="example1" class="table table-bordered table-striped">
-                            <thead>
-                            <tr>
-                                <th>#Id</th>
-                                <th>User name</th>
-                                <th>Shop name</th>
-                                <th>Product name</th>
-                                <th>Rating</th>
-                                <th>Status</th>
-                                <th>Action</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            @foreach($reviews as $key => $review)
+                        @if($reviews != null)
+                            <table id="example1" class="table table-bordered table-striped">
+                                <thead>
                                 <tr>
-                                    <td>{{$key + 1}}
-                                        @if($review->viewed == 0)
-                                            <span class="right badge badge-danger">New</span>
-                                        @endif
-                                    </td>
-                                    <td>{{$review->user->name}}</td>
-                                    <td>
-                                        @if($review->shop != null)
-                                        {{$review->shop->name}}
-                                        @endif
-                                    </td>
-                                    <td>{{$review->product->name}}</td>
-                                    <td>{{$review->rating}}</td>
-                                    <td>
-                                        <div class="form-group col-md-2">
-                                            <label class="switch" style="margin-top:40px;">
-                                                <input onchange="update_review_status(this)" value="{{ $review->id }}" {{$review->status == 1? 'checked':''}} type="checkbox" >
-                                                <span class="slider round"></span>
-                                            </label>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <a class="btn btn-info waves-effect" href="{{route('admin.review.view',$review->id)}}">
-                                            <i class="fa fa-eye"></i>
-                                        </a>
-                                    </td>
+                                    <th>#Id</th>
+                                    <th>Customer name</th>
+                                    <th>Shop name</th>
+                                    <th>Product name</th>
+                                    <th>Rating</th>
+                                    <th>Status</th>
+                                    <th>Action</th>
                                 </tr>
-                            @endforeach
-                            </tbody>
-                            <tfoot>
-                            <tr>
-                                <th>#Id</th>
-                                <th>User name</th>
-                                <th>Shop name</th>
-                                <th>Product name</th>
-                                <th>Rating</th>
-                                <th>Status</th>
-                                <th>Action</th>
-                            </tr>
-                            </tfoot>
-                        </table>
+                                </thead>
+                                <tbody>
+                                @foreach($reviews as $key => $review)
+                                    <tr>
+                                        <td>{{$key + 1}}
+                                            @if($review->viewed == 0)
+                                                <span class="right badge badge-danger">New</span>
+                                            @endif
+                                        </td>
+                                        <td>{{$review->user->name}}</td>
+                                        <td>
+                                            @if($review->shop != null)
+                                                {{$review->shop->name}}
+                                            @endif
+                                        </td>
+                                        <td>{{$review->product->name}}</td>
+                                        <td>{{$review->rating}}</td>
+                                        <td>
+                                            <div class="form-group col-md-2">
+                                                <label class="switch" style="margin-top:40px;">
+                                                    <input onchange="update_review_status(this)" value="{{ $review->id }}" {{$review->status == 1? 'checked':''}} type="checkbox" >
+                                                    <span class="slider round"></span>
+                                                </label>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <a class="btn btn-info waves-effect" href="{{route('admin.review.view',$review->id)}}">
+                                                <i class="fa fa-eye"></i>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                @endforeach
+                                </tbody>
+                                <tfoot>
+                                <tr>
+                                    <th>#Id</th>
+                                    <th>User name</th>
+                                    <th>Shop name</th>
+                                    <th>Product name</th>
+                                    <th>Rating</th>
+                                    <th>Status</th>
+                                    <th>Action</th>
+                                </tr>
+                                </tfoot>
+                            </table>
+                        @else
+                            <div class="text-center ">
+                                <h2><i class="fa fa-info-circle text-info"></i> Please Select Ratting!!!</h2>
+                            </div>
+                        @endif
                     </div>
                     <!-- /.card-body -->
                 </div>
             </div>
         </div>
     </section>
+{{--    <section class="content">--}}
+{{--        <div class="row">--}}
+{{--            <div class="col-12">--}}
+{{--                <div class="card card-info card-outline">--}}
+{{--                    <div class="card-header">--}}
+{{--                        <h3 class="card-title float-left">Review Lists</h3>--}}
+{{--                        <div class="float-right">--}}
+
+{{--                        </div>--}}
+{{--                    </div>--}}
+{{--                    <!-- /.card-header -->--}}
+{{--                    <div class="card-body table-responsive">--}}
+{{--                        <table id="example1" class="table table-bordered table-striped">--}}
+{{--                            <thead>--}}
+{{--                            <tr>--}}
+{{--                                <th>#Id</th>--}}
+{{--                                <th>User name</th>--}}
+{{--                                <th>Shop name</th>--}}
+{{--                                <th>Product name</th>--}}
+{{--                                <th>Rating</th>--}}
+{{--                                <th>Status</th>--}}
+{{--                                <th>Action</th>--}}
+{{--                            </tr>--}}
+{{--                            </thead>--}}
+{{--                            <tbody>--}}
+{{--                            @foreach($reviews as $key => $review)--}}
+{{--                                <tr>--}}
+{{--                                    <td>{{$key + 1}}--}}
+{{--                                        @if($review->viewed == 0)--}}
+{{--                                            <span class="right badge badge-danger">New</span>--}}
+{{--                                        @endif--}}
+{{--                                    </td>--}}
+{{--                                    <td>{{$review->user->name}}</td>--}}
+{{--                                    <td>--}}
+{{--                                        @if($review->shop != null)--}}
+{{--                                        {{$review->shop->name}}--}}
+{{--                                        @endif--}}
+{{--                                    </td>--}}
+{{--                                    <td>{{$review->product->name}}</td>--}}
+{{--                                    <td>{{$review->rating}}</td>--}}
+{{--                                    <td>--}}
+{{--                                        <div class="form-group col-md-2">--}}
+{{--                                            <label class="switch" style="margin-top:40px;">--}}
+{{--                                                <input onchange="update_review_status(this)" value="{{ $review->id }}" {{$review->status == 1? 'checked':''}} type="checkbox" >--}}
+{{--                                                <span class="slider round"></span>--}}
+{{--                                            </label>--}}
+{{--                                        </div>--}}
+{{--                                    </td>--}}
+{{--                                    <td>--}}
+{{--                                        <a class="btn btn-info waves-effect" href="{{route('admin.review.view',$review->id)}}">--}}
+{{--                                            <i class="fa fa-eye"></i>--}}
+{{--                                        </a>--}}
+{{--                                    </td>--}}
+{{--                                </tr>--}}
+{{--                            @endforeach--}}
+{{--                            </tbody>--}}
+{{--                            <tfoot>--}}
+{{--                            <tr>--}}
+{{--                                <th>#Id</th>--}}
+{{--                                <th>User name</th>--}}
+{{--                                <th>Shop name</th>--}}
+{{--                                <th>Product name</th>--}}
+{{--                                <th>Rating</th>--}}
+{{--                                <th>Status</th>--}}
+{{--                                <th>Action</th>--}}
+{{--                            </tr>--}}
+{{--                            </tfoot>--}}
+{{--                        </table>--}}
+{{--                    </div>--}}
+{{--                    <!-- /.card-body -->--}}
+{{--                </div>--}}
+{{--            </div>--}}
+{{--        </div>--}}
+{{--    </section>--}}
 
 @stop
 @push('js')
     <script src="{{asset('backend/plugins/datatables/jquery.dataTables.js')}}"></script>
     <script src="{{asset('backend/plugins/datatables/dataTables.bootstrap4.js')}}"></script>
+    <script src="{{asset('backend/plugins/select2/select2.full.min.js')}}"></script>
     <script src="https://unpkg.com/sweetalert2@7.19.1/dist/sweetalert2.all.js"></script>
     <script>
         $(function () {
@@ -148,6 +246,11 @@
                 }
             })
         }
+            //Initialize Select2 Elements
+            $('.select2').select2();
+            /*$('.textarea').wysihtml5({
+            toolbar: { fa: true }
+        })*/
         //today's deals
         function update_review_status(el){
             if(el.checked){

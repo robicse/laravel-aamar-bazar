@@ -75,8 +75,8 @@
                                     @foreach($photos as $pht)
                                     <div class="item"><img src="{{url($pht)}}" alt=""></div>
                                     @endforeach
-                                    <div class="item"><img src="{{asset('frontend/img/products/detail/fullwidth/2.jpg')}}" alt=""></div>
-                                    <div class="item"><img src="{{asset('frontend/img/products/detail/fullwidth/3.jpg')}}" alt=""></div>
+{{--                                    <div class="item"><img src="{{asset('frontend/img/products/detail/fullwidth/2.jpg')}}" alt=""></div>--}}
+{{--                                    <div class="item"><img src="{{asset('frontend/img/products/detail/fullwidth/3.jpg')}}" alt=""></div>--}}
                                 </div>
 
                             </div>

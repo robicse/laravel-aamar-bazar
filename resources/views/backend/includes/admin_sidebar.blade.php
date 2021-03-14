@@ -298,21 +298,43 @@
                             </li>
                         </ul>
                     </li>
-                    @php
-                    $reviews = \App\Model\Review::where('viewed',0)->count();
-                        @endphp
-                    <li class="nav-item ">
-                        <a href="{{route('admin.review.index')}}" class="nav-link {{Request::is('admin/review*')  ? 'active' : ''}}">
-
-                            <i class="nav-icon fas fa-star"></i>
+                    <li class="nav-item has-treeview {{(Request::is('admin/review*') ) ? 'menu-open' : ''}}">
+                        <a href="#" class="nav-link">
+                            <i class="nav-icon fas fa-users"></i>
                             <p>
-                                Review
-                                @if(!empty($reviews))
-                                    <span class="right badge badge-danger">New ({{$reviews}})</span>
-                                @endif
+                                Reviews
+                                <i class="right fa fa-angle-left"></i>
                             </p>
                         </a>
+                        @php
+                            $reviews = \App\Model\Review::where('viewed',0)->count();
+                        @endphp
+                        <ul class="nav nav-treeview">
+                            <li class="nav-item">
+                                <a href="{{route('admin.review.index')}}"
+                                   class="nav-link {{Request::is('admin/review*') ? 'active' :''}}">
+                                    <i class="fa fa-{{Request::is('admin/review* ') ? 'folder-open':'folder'}} nav-icon"></i>
+                                    <p>
+                                        All Ratings
+                                        @if(!empty($reviews))
+                                            <span class="right badge badge-danger">New ({{$reviews}})</span>
+                                        @endif
+                                    </p>
+                                </a>
+                            </li>
+                        </ul>
                     </li>
+
+{{--                    <li class="nav-item ">--}}
+{{--                        <a href="{{route('admin.review.index')}}" class="nav-link {{Request::is('admin/review*')  ? 'active' : ''}}">--}}
+
+{{--                            <i class="nav-icon fas fa-star"></i>--}}
+{{--                            <p>--}}
+{{--                                Review--}}
+
+{{--                            </p>--}}
+{{--                        </a>--}}
+{{--                    </li>--}}
 
                     <li class="nav-item ">
                         <a href="{{route('admin.blogs.index')}}" class="nav-link {{Request::is('admin/blogs*')  ? 'active' : ''}}">

@@ -48,6 +48,9 @@ Route::group(['as'=>'seller.','prefix' =>'seller', 'middleware' => ['auth', 'sel
     Route::post('payment/cash_on_delivery_status', 'Seller\ProfileController@cashOnDelivery')->name('payment.cash_on_delivery_status');
     Route::post('payment/bank_payment_status', 'Seller\ProfileController@bankPayment')->name('payment.bank_payment_status');
 
+    //Customer Details
+    Route::get('customer/list','Seller\CustomerController@index')->name('customer.list');
+
     Route::get('payment/history','Seller\PaymentController@index')->name('payment.history');
     Route::get('money/withdraw','Seller\PaymentController@money')->name('money.withdraw');
     Route::post('money/withdraw/store','Seller\PaymentController@store')->name('withdraw-request.store');

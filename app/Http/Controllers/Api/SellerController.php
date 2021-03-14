@@ -80,6 +80,7 @@ class SellerController extends Controller
             'Bank cash_on_delivery_status'=>$sellerInfo->cash_on_delivery_status,
             'Bank bank_payment_status'=>$sellerInfo->bank_payment_status,
             'NID Number'=>$sellerInfo->nid_number,
+            'Trade Licence Images'=>$sellerInfo->trade_licence_images,
             'avatar_original'=>$userInfo->avatar_original,
             'Shop Logo'=>$shop->logo,
             ];
@@ -106,15 +107,6 @@ class SellerController extends Controller
 //        }
         $user->save();
 
-//        $shop = Shop::where('user_id',Auth::id())->first();
-//        $shop->name = $request->shop_name;
-//        $shop->save();
-//        $data = DB::table('users')
-//            ->join('shops','users.id','=','shops.user_id')
-//            ->where('users.id',Auth::id())
-//            ->select('users.*','shops.name as shop_name')
-//            ->get();
-//        $data = ['Shop Name:', $shop->name];
         if (!empty($user))
         {
             return response()->json(['success'=>true,'response'=> $user], 200);
@@ -158,12 +150,6 @@ class SellerController extends Controller
     public function nidInfoUpdate(Request $request){
         $sellerInfo = Seller::where('user_id',Auth::User()->id)->first();
         $sellerInfo->nid_number = $request->nid_number;
-        if($request->has('previous_photos')){
-            $photos = $request->previous_photos;
-        }
-        else{
-            $photos = array();
-        }
         if($request->hasFile('trade_licence_images')){
             foreach ($request->trade_licence_images as $key => $photo) {
                 $path = $photo->store('uploads/seller_info');

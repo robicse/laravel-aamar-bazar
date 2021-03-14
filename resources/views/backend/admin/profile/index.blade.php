@@ -78,7 +78,7 @@
                     <div class="card">
                         <div class="card-header p-2">
                             <ul class="nav nav-pills">
-                                <li class="nav-item"><a class="nav-link active" href="#seller_info" data-toggle="tab">Customer
+                                <li class="nav-item"><a class="nav-link active" href="#seller_info" data-toggle="tab">Admin
                                         Info</a></li>
                                 <li class="nav-item"><a class="nav-link" href="#edit" data-toggle="tab">Edit
                                         Profile </a></li>

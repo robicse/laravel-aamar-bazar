@@ -81,6 +81,7 @@ Route::group(['as'=>'admin.','prefix' =>'admin','namespace'=>'Admin', 'middlewar
 
     //review
     Route::get('review','ReviewController@index')->name('review.index');
+    Route::post('review/details', 'ReviewController@reviewDetails')->name('review.details');
     Route::post('review/status', 'ReviewController@updateStatus')->name('review.status');
     Route::get('review/view/{id}','ReviewController@view')->name('review.view');
     Route::post('review/update/{id}','ReviewController@reviewUpdate')->name('review.update');
