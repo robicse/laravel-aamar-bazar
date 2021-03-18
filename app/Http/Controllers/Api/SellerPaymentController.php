@@ -71,13 +71,40 @@ class SellerPaymentController extends Controller
         $shop = Shop::where('user_id',Auth::id())->first();
         $todayProfit = Order::where('delivery_status','Completed')->where('shop_id',$shop->id)->whereDate('created_at',Carbon::today())->get()->sum('profit');
         $totalProfit = Order::where('delivery_status','Completed')->where('shop_id',$shop->id)->get()->sum('profit');
-        $monthlyProfits = Order::where('delivery_status','Completed')->where('shop_id',$shop->id)->latest()->get()->groupBy(function($date) {
+//        $monthlyProfits = Order::where('delivery_status','Completed')->where('shop_id',$shop->id)->latest()->get()->groupBy(function($date) {
+//            return Carbon::parse($date->created_at)->format('y-m'); // grouping by years
+//        });
+        $monthlyProfits = Order::where('delivery_status','Completed')
+            ->where('shop_id',$shop->id)
+            //->latest()
+            ->get()
+            ->groupBy(function($date) {
             return Carbon::parse($date->created_at)->format('y-m'); // grouping by years
-//return Carbon::parse($date->created_at)->format('m'); // grouping by months
         });
-        if (!empty($monthlyProfits))
+
+
+        $month_amount = [];
+        $month = [];
+
+        if (!empty($monthlyProfits)){
+            foreach ($monthlyProfits as $monthlyProfit){
+                $nested_data = $monthlyProfit->sum('profit');
+                array_push($month_amount, $nested_data);
+
+            }
+        }
+        if (!empty($monthlyProfits)){
+            foreach ($monthlyProfits as $monthlyProfit){
+                $value2 = date('F, Y',strtotime($monthlyProfit[0]['created_at']));
+                array_push($month,$value2);
+
+            }
+        }
+        $success['amount'] = $month_amount;
+        $success['date'] = $month;
+        if (!empty($success))
         {
-            return response()->json(['success'=>true,'response'=> $monthlyProfits], 200);
+            return response()->json(['success'=>true,'response'=> $success], 200);
         }
         else{
             return response()->json(['success'=>false,'response'=> 'Something went wrong!'], 404);

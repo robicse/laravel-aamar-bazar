@@ -15,43 +15,32 @@ use Illuminate\Support\Facades\Auth;
 class OrderManagementController extends Controller
 {
     public function pendingOrder() {
-        //$pending_order = Order::where('delivery_status','Pending')->get();
         $shop = Shop::where('user_id',Auth::id())->select('id')->first();
-        //dd($shop);
         $pending_order = Order::where('shop_id',$shop->id)->where('delivery_status','pending')->latest()->get();
         return view('backend.seller.order_management.pending_order',compact('pending_order'));
     }
     public function onReviewedOrder() {
-        //$onReview = Order::where('delivery_status','On review')->get();
         $shop = Shop::where('user_id',Auth::id())->select('id')->first();
         $onReview = Order::where('delivery_status','On review')->where('shop_id',$shop->id)->latest()->get();
         return view('backend.seller.order_management.on_review',compact('onReview'));
     }
     public function onDeliveredOrder() {
-        $onDeliver= Order::where('delivery_status','On delivered')->latest()->get();
-//        $shop = Shop::where('user_id',Auth::id())->select('id')->first();
-//        //dd($shop);
-//        $pending_order = Order::where('shop_id',$shop->id)->get();
+        $shop = Shop::where('user_id',Auth::id())->select('id')->first();
+        $onDeliver= Order::where('shop_id',$shop->id)->where('delivery_status','On delivered')->latest()->get();
         return view('backend.seller.order_management.on_delivered',compact('onDeliver'));
     }
     public function deliveredOrder() {
-        $Delivered= Order::where('delivery_status','Delivered')->latest()->get();
-//        $shop = Shop::where('user_id',Auth::id())->select('id')->first();
-//        //dd($shop);
-//        $pending_order = Order::where('shop_id',$shop->id)->get();
+        $shop = Shop::where('user_id',Auth::id())->select('id')->first();
+        $Delivered= Order::where('shop_id',$shop->id)->where('delivery_status','Delivered')->latest()->get();
         return view('backend.seller.order_management.delivered',compact('Delivered'));
     }
     public function completedOrder() {
-        //$Completed= Order::where('delivery_status','Completed')->get();
         $shop = Shop::where('user_id',Auth::id())->select('id')->first();
-//        //dd($shop);
         $Completed = Order::where('delivery_status','Completed')->where('shop_id',$shop->id)->latest()->get();
         return view('backend.seller.order_management.completed',compact('Completed'));
     }
     public function canceledOrder() {
-        //$Canceled= Order::where('delivery_status','Cancel')->latest()->get();
         $shop = Shop::where('user_id',Auth::id())->select('id')->first();
-//        //dd($shop);
         $Canceled = Order::where('delivery_status','Cancel')->where('shop_id',$shop->id)->get();
         return view('backend.seller.order_management.cancel',compact('Canceled'));
     }

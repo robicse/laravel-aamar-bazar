@@ -179,8 +179,6 @@ class SellerController extends Controller
     }
     public function shopInfoUpdate(Request $request){
         $shop = Shop::where('user_id',Auth::id())->first();
-        $shop->name = $request->name;
-        $shop->slug = Str::slug($request->name) . '-' . Auth::id();
         $shop->about = $request->about;
         $shop->facebook = $request->facebook;
         $shop->google = $request->google;
