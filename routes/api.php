@@ -97,6 +97,7 @@ Route::get('/category/all-products/{id}', 'Api\CategoryController@categoryAllPro
 
 //Shop Subcategory
 Route::get('/shop-subcategories','Api\ShopSubcategoryController@getShopSubcategories');
+Route::get('/shop-total-ratings/{id}','Api\ShopController@getShopRatings');
 
 
 Route::get('/favorite-shops', 'Api\CustomerController@getFavoriteShop' );
