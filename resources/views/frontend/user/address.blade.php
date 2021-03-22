@@ -136,7 +136,7 @@
                             </button>
                         </div>
 
-                        <form class="ps-form--account-setting" action="{{route('user.address.store')}}" method="POST" enctype="multipart/form-data">
+                        <form class="ps-form--account-setting" id="bk_address" action="{{route('user.address.store')}}" method="POST" enctype="multipart/form-data">
                             @csrf
                             <div class="modal-body">
                                 <div class="ps-form__content" style="padding-left: 50px; padding-top: 20px;">
@@ -144,8 +144,12 @@
                                     <div class="form-group row">
                                         <label for="bksearch" class="col-sm-2">Address</label>
                                         <div class="col-sm-8">
-                                            <input type="text" class="form-control form-control-sm bksearch {{ $errors->has('bksearch') ? ' is-invalid' : '' }}" value="{{ old('bksearch') }}" placeholder="Enter Your Address" name="bksearch">
-                                            <div class="bklist"></div>
+                                            <input type="text" onkeyup="getAddress()" name="address" class="form-control form-control-sm address">
+                                        </div>
+                                        <div class="col-sm-8">
+                                            <ol class="addList">
+
+                                            </ol>
                                         </div>
                                     </div>
                                     <div class="form-group row">
@@ -214,6 +218,20 @@
             document.getElementsByName("longitude")[0].value = selectedPlace.longitude;
 
         })
+
+        function getAddress() {
+
+            let places=[];
+            let add=$('.address').val();
+            $('.addList').empty();
+            fetch("https://barikoi.xyz/v1/api/search/autocomplete/MTg5ODpJUTVHV0RWVFZP/place?q="+add)
+                .then(response => response.json())
+                .catch(error => console.error('Error:', error))
+                .then(response => {
+                    console.log(response);
+                    response.places.map((ad) => ($('.addList').append(`<p>${ad.address}</p>`)))
+                })
+        }
 
     </script>
 @endpush
