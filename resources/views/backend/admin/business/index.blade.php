@@ -42,8 +42,8 @@
                             <label>Commission <small class="text-info" >(Commission will be {{$sellerCommission->value}} percent (%) for all seller.) </small></label>
                             <form id="seller_commission">
                                 <div class="input-group mb-3">
-                                    <input type="hidden" class="form-control" name="id" value="{{$sellerCommission->id}}" aria-label="Recipient's username" aria-describedby="basic-addon2">
-                                    <input type="text" class="form-control" name="value" value="{{$sellerCommission->value}}" aria-label="Recipient's username" aria-describedby="basic-addon2">
+                                    <input type="hidden" class="form-control" name="id" value="{{$sellerCommission->id}}">
+                                    <input type="text" class="form-control" name="value" value="{{$sellerCommission->value}}">
                                     <div class="input-group-append">
                                         <button type="submit" class="btn btn-info">Update</button>
                                     </div>
@@ -53,8 +53,8 @@
                             <label>Refferal Value <small class="text-info" >(Refferal Value will be {{$refferalValue->value}} tk for all Customer.)</small></label>
                             <form id="refferal_value">
                                 <div class="input-group mb-3">
-                                    <input type="hidden" class="form-control" name="id" value="{{$refferalValue->id}}" aria-label="Recipient's username" aria-describedby="basic-addon2">
-                                    <input type="text" class="form-control" name="value" placeholder="Recipient's username" value="{{$refferalValue->value}}" aria-label="Recipient's username" aria-describedby="basic-addon2">
+                                    <input type="hidden" class="form-control" name="id" value="{{$refferalValue->id}}">
+                                    <input type="text" class="form-control" name="value" value="{{$refferalValue->value}}">
                                     <div class="input-group-append">
                                         <button type="submit" class="btn btn-info">Update</button>
                                     </div>
@@ -102,6 +102,11 @@
         })
 
         $("#refferal_value").submit(function(event){
+            event.preventDefault();
+            var $form = $(this);
+            var $inputs = $form.find("input, select, button, textarea");
+            var serializedData = $form.serialize();
+            console.log(serializedData)
             $.ajaxSetup({
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -111,7 +116,8 @@
                 type: "POST",
                 url: '{{url('/admin/refferal/value/update')}}',
                 data: $('#refferal_value').serialize(),
-                success: function(data){
+                success: function(data) {
+                    // console.log(data);
                     toastr.success('Refferal Value Updated Successfully');
                 }
             });
