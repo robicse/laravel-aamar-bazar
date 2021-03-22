@@ -36,6 +36,8 @@ class AuthController extends Controller
         $user->email = $request->email;
         $user->phone = $request->phone;
         $user->user_type = "seller";
+        $user->referral_code = mt_rand(000000,999999);
+        $user->referred_by = $request->referred_by;
         $user->banned = 1;
         $user->password = Hash::make($request->password);
         $user->save();

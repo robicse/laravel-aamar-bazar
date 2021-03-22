@@ -29,6 +29,8 @@ Route::group(['middleware' => ['auth:api']], function () {
     Route::get('/user/orders', 'Api\OrderController@order_get');
     Route::get('/user/order/details/{id}', 'Api\OrderController@order_details_get');
     Route::post('/user/order/submit', 'Api\OrderController@orderSubmit');
+    Route::post('/user/order/review/submit', 'Api\OrderController@reviewStore');
+    Route::get('/user/order/all-reviews', 'Api\OrderController@getReview');
 
     //User Favorite Shop
     Route::post('/add/favorite-shop', 'Api\CustomerController@favoriteShopAdd' );

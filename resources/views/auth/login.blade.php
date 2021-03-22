@@ -16,7 +16,6 @@
                     @csrf
                     <ul class="ps-tab-list">
                         <li class="active"><a href="#sign-in">Login</a></li>
-{{--                        <li><a href="#register">Register</a></li>--}}
                     </ul>
                     <div class="ps-tabs">
                         <div class="ps-tab active" id="sign-in">
@@ -30,12 +29,7 @@
                                         <strong>{{ $message }}</strong>
                                     </span>
                                     @enderror
-{{--                                    <input class="form-control" id="email" type="email" placeholder="Email address">--}}
                                 </div>
-{{--                                <div class="form-group">--}}
-{{--                                    <input type="number" name="phone" id="phone" class="form-control floating" placeholder="Enter your Phone Number" required>--}}
-{{--                                    --}}{{--                                    <input class="form-control" id="email" type="email" placeholder="Email address">--}}
-{{--                                </div>--}}
                                 <div class="form-group form-forgot">
                                     <input id="password" type="password" placeholder="Password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
 
@@ -45,57 +39,22 @@
                                     </span>
                                     @enderror
                                     <a href="{{route('reset.password')}}">Forgot?</a>
-
-{{--                                    <input class="form-control" type="text" placeholder="Password"><a href="#">Forgot?</a>--}}
                                 </div>
                                 <div class="form-group">
                                     <div class="ps-checkbox">
                                         <input class="form-control" type="checkbox" id="remember-me" name="remember-me">
                                         <label for="remember-me">Rememeber me</label>
-{{--                                        <form action="{{route('reset.pass.mobile')}}" method="POST">--}}
-{{--                                            @csrf--}}
-{{--                                            <button class="float-right">Forgot?</button>--}}
-{{--                                        </form>--}}
-
                                     </div>
                                 </div>
                                 <div class="form-group submtit" style="padding-bottom: 40px;">
                                     <button class="ps-btn ps-btn--fullwidth">Login</button>
                                 </div>
+                                <div class="" style="margin-top: -50px; padding-bottom: 30px;">
+                                    <p class="text-center">Need an account? <span style="color: green;"> <a href="{{route('register')}}">Register Now </a> </span></p>
+                                </div>
                             </div>
-{{--                            <div class="ps-form__footer">--}}
-{{--                                <p>Connect with:</p>--}}
-{{--                                <ul class="ps-list--social">--}}
-{{--                                    <li><a class="facebook" href="#"><i class="fa fa-facebook"></i></a></li>--}}
-{{--                                    <li><a class="google" href="#"><i class="fa fa-google-plus"></i></a></li>--}}
-{{--                                    <li><a class="twitter" href="#"><i class="fa fa-twitter"></i></a></li>--}}
-{{--                                    <li><a class="instagram" href="#"><i class="fa fa-instagram"></i></a></li>--}}
-{{--                                </ul>--}}
-{{--                            </div>--}}
                         </div>
-{{--                        <div class="ps-tab" id="register">--}}
-{{--                            <div class="ps-form__content">--}}
-{{--                                <h5>Register An Account</h5>--}}
-{{--                                <div class="form-group">--}}
-{{--                                    <input class="form-control" type="text" placeholder="Username or email address">--}}
-{{--                                </div>--}}
-{{--                                <div class="form-group">--}}
-{{--                                    <input class="form-control" type="text" placeholder="Password">--}}
-{{--                                </div>--}}
-{{--                                <div class="form-group submtit">--}}
-{{--                                    <button class="ps-btn ps-btn--fullwidth">Login</button>--}}
-{{--                                </div>--}}
-{{--                            </div>--}}
-{{--                            <div class="ps-form__footer">--}}
-{{--                                <p>Connect with:</p>--}}
-{{--                                <ul class="ps-list--social">--}}
-{{--                                    <li><a class="facebook" href="#"><i class="fa fa-facebook"></i></a></li>--}}
-{{--                                    <li><a class="google" href="#"><i class="fa fa-google-plus"></i></a></li>--}}
-{{--                                    <li><a class="twitter" href="#"><i class="fa fa-twitter"></i></a></li>--}}
-{{--                                    <li><a class="instagram" href="#"><i class="fa fa-instagram"></i></a></li>--}}
-{{--                                </ul>--}}
-{{--                            </div>--}}
-{{--                        </div>--}}
+
                     </div>
                 </form>
             </div>

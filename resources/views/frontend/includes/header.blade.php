@@ -400,9 +400,12 @@
             @else
                 @if(is_null(Auth::user()->avatar_original))
                     <a href="{{route('login')}}">  <img src="{{asset('uploads/profile/default.png')}}" alt="" class="ps-widget-img rounded-circle" width="40" height="40"> {{Auth::user()->name}}</a>
+                    <p>Refarral Code: <strong>{{Auth::user()->referral_code}}</strong></p>
                 @else
-                    <a href="{{route('login')}}">  <img src="{{url(Auth::user()->avatar_original)}}" alt="" class="ps-widget-img rounded-circle" width="40" height="40"> {{Auth::user()->name}}</a>
+                    <a href="{{route('login')}}" style="margin-top: -10px;" class="small">  <img src="{{url(Auth::user()->avatar_original)}}" alt="" class="ps-widget-img rounded-circle" width="30" height="30">{{Auth::user()->name}} </a>
+                    <p style="color: #0c0c0c; padding-left: 25px;">Refarral Code: <strong>{{Auth::user()->referral_code}}</strong></p>
                 @endif
+
             @endif
         </div>
     </div>
@@ -416,6 +419,16 @@
 {{--                <li class="menu-item-has-children"><a href="{{url('/')}}"><i class="icon-home"></i> Register </a>--}}
 {{--                </li>--}}
             @else
+                @if(Auth::user()->referral_code !=null)
+                    <li class="menu-item-has-children">
+                    <div class="input-group mb-3">
+                        <input type="text" class="form-control" placeholder="" value="{{route('registration.refer.code',Auth::user()->referral_code)}}" data-toggle="tooltip" title="Click here to copy link!" aria-label="Recipient's username" aria-describedby="basic-addon2" style="height: 35px; padding: 0 10px">
+                        <div class="input-group-append">
+                            <span class="input-group-text bg-info" style="color: #ffffff"><a href="{{route('registration.refer.code',Auth::user()->referral_code)}}">Share</a></span>
+                        </div>
+                    </div>
+                    </li>
+                @endif
                 <li class="menu-item-has-children"><a href="{{url('/')}}"><i class="icon-home"></i> Home </a>
                 </li>
                 <li class="menu-item-has-children"><a href="{{route('user.dashboard')}}"><i class="icon-user"></i> User Dashboard </a>

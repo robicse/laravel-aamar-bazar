@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Frontend;
 use App\Helpers\UserInfo;
+use App\Model\BusinessSetting;
 use App\Model\Category;
 use App\Model\Offer;
 use App\Model\Product;
@@ -51,12 +52,19 @@ class FrontendController extends Controller
             Toastr::error('This phone number already exist');
             return back();
         }
+        $refferalValue = BusinessSetting::where('type','refferal_value')->first();
         $userReg = new User();
         $userReg->name = $request->name;
         $userReg->email = $request->email;
         $userReg->phone= $request->phone;
         $userReg->password = Hash::make($request->password);
         $userReg->user_type = 'customer';
+        $userReg->referral_code = mt_rand(000000,999999);
+        $userReg->referred_by = $request->referred_by;
+
+        if ($userReg->referred_by !=null) {
+            $userReg->balance = $refferalValue->value;
+        }
         $userReg->banned = 1;
         $userReg->save();
 //        dd($userReg);
@@ -132,6 +140,10 @@ class FrontendController extends Controller
         $user->save();
         Toastr::success('Your Password Updated successfully verified.' ,'Success');
         return redirect()->route('login');
+    }
+    public function referCode($code){
+        $referralCode = $code;
+       return view('auth.register_with_refferal_code',compact('referralCode'));
     }
 
 }

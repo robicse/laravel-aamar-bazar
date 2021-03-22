@@ -52,8 +52,9 @@ class SellerController extends Controller
         ]);
         $data = BusinessSetting::find($id);
         $data->value = $request->value;
+        $data->refferal_value = $request->refferal_value;
         $data->save();
-        Toastr::success($request->value.' % Seller Commission successfully added for all sellers');
+        Toastr::success('Commission successfully added for all sellers and Customers');
         return redirect()->back();
     }
     public function adminPaymentHistory()

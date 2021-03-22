@@ -93,6 +93,10 @@ Route::group(['as'=>'admin.','prefix' =>'admin','namespace'=>'Admin', 'middlewar
     //Blogs
     Route::resource('blogs','BlogController');
 
+    //Business Settings
+    Route::get('business/settings','BusinessController@index')->name('business.index');
+    Route::post('seller/commission/update','BusinessController@commissionUpdate');
+    Route::post('refferal/value/update','BusinessController@refferalValueUpdate');
     //Profile
     Route::resource('profile','ProfileController');
     Route::put('password/update/{id}','ProfileController@updatePassword')->name('password.update');

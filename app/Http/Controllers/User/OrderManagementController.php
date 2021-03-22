@@ -11,6 +11,7 @@ use App\Model\Shop;
 use Brian2694\Toastr\Facades\Toastr;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class OrderManagementController extends Controller
 {
@@ -58,4 +59,5 @@ class OrderManagementController extends Controller
         Toastr::error('Something went wrong!');
         return back();
     }
+
 }

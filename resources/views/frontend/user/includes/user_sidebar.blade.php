@@ -9,6 +9,7 @@
         background-color: #ffc107;
         text-decoration: none;
     }
+
 </style>
 
 <div class="col-lg-3 side_bar">
@@ -17,9 +18,19 @@
             <div class="ps-widget__header"><img src="{{url(Auth::user()->avatar_original)}}" alt="">
                 <figure>
                     <figcaption>{{Auth::user()->name}}</figcaption>
-                    <p><a href="#"><span class="__cf_email__" data-cfemail="12676177607c737f7752757f737b7e3c717d7f">{{Auth::user()->email}}</span></a></p>
+                    <p>Refarral Code: <strong>{{Auth::user()->referral_code}}</strong></p>
+{{--                    <p><a href="#"><span class="__cf_email__" data-cfemail="12676177607c737f7752757f737b7e3c717d7f">{{Auth::user()->email}}</span></a></p>--}}
                 </figure>
             </div>
+            @if(Auth::user()->referral_code !=null)
+            <div class="input-group mb-3">
+                <input type="text" class="form-control" placeholder="" value="{{route('registration.refer.code',Auth::user()->referral_code)}}" id="myInput" aria-label="Recipient's username" aria-describedby="basic-addon2" data-toggle="tooltip" title="Click here to copy link!" style="height: 35px; padding: 0 10px">
+                <div class="input-group-append">
+                    <button class="btn btn-info" onclick="copyToClipboard()">Share</button>
+{{--                    <span class="input-group-text bg-info" style="color: #ffffff"><a onclick="copyToClipboard()">Share</a></span>--}}
+                </div>
+            </div>
+            @endif
             <div class="ps-widget__content">
                 <ul>
                     <li class="{{Request::is('user/dashboard*') ? 'active' :''}}"><a href="{{route('user.dashboard')}}"><i class="icon-user"></i>Dashboard</a></li>
@@ -39,3 +50,19 @@
         </aside>
     </div>
 </div>
+<script>
+    function copyToClipboard() {
+        /* Get the text field */
+        var copyText = document.getElementById("myInput");
+
+        /* Select the text field */
+        copyText.select();
+        copyText.setSelectionRange(0, 99999); /* For mobile devices */
+
+        /* Copy the text inside the text field */
+        document.execCommand("copy");
+
+        /* Alert the copied text */
+        alert("Referral Link successfully copied ");
+    }
+</script>
