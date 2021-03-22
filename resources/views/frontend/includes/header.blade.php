@@ -475,7 +475,6 @@
 </div>
 
 @push('js')
-    <script src="{{asset('frontend/js/location/home_location.js')}}"></script>
-    <script src="{{asset('frontend/js/bk.cdn.js')}}"></script>
+
 
 @endpush

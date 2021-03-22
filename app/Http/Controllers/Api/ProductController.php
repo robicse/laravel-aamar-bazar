@@ -119,7 +119,18 @@ class ProductController extends Controller
         $storeId =  $request->shop_id;
         $name = $request->q;
         $shop = Shop::find($storeId);
-        $products = Product::where('name', 'LIKE', '%'. $name. '%')->where('user_id',$shop->user_id)->where('added_by','seller')->get();
+        $products = DB::table('products')
+            ->join('categories','products.category_id','=','categories.id')
+            ->join('subcategories','products.subcategory_id','=','subcategories.id')
+            ->join('sub_subcategories','products.subsubcategory_id','=','sub_subcategories.id')
+            ->join('brands','products.brand_id','=','brands.id')
+            ->where('products.name','LIKE',"%{$name}%")
+            ->where('products.user_id','=',$shop->user_id)
+            ->orWhere('products.tags','like',"%{$name}%")
+            ->where('products.published','=',1)
+            ->select('categories.name as category_name','subcategories.name as subcategory_name','sub_subcategories.name as sub_subcategory_name','brands.name as brand_name','products.*')
+            ->get();
+//        $products = Product::where('name', 'LIKE', '%'. $name. '%')->where('user_id',$shop->user_id)->orWhere('tags', 'like', '%'.$name.'%')->where('published',1)->get();
         if (!empty($products))
         {
             return response()->json(['success'=>true,'response'=> $products], 200);

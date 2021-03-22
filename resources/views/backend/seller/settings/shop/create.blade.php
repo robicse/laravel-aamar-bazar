@@ -67,7 +67,7 @@
                             <div class="form-group">
                                 <label for="bksearch">Shop Address</label>
                                 <div class="form-group form-group--style-1">
-                                    <input type="text" class="form-control bksearch {{ $errors->has('bksearch') ? ' is-invalid' : '' }}" value="{{ $shop_set->address }}" placeholder="Enter Your Shop Address" name="bksearch" {{$shop_set->address ? 'readonly' : ''}} required>
+                                    <input type="text" class="form-control bksearch {{ $errors->has('bksearch') ? ' is-invalid' : '' }}" value="{{ $shop_set->address }}" placeholder="Enter Your Shop Address" name="bksearch" readonly>
                                 </div>
                                 <div class="bklist"></div>
                             </div>

@@ -20,20 +20,20 @@
         </div><!-- /.container-fluid -->
     </section>
     <!-- Main content -->
-    <section class="content">
+    <section class="content" style="margin-top: 50px">
         <div class="row">
             <div class="col-8 offset-2">
                 <!-- general form elements -->
                 <div class="card card-info card-outline">
                     <div class="card-header">
-                        <h3 class="card-title float-left">Set Commission For all Sellers</h3>
+                        <h3 class="card-title float-left">Set Commission</h3>
                         <div class="float-right">
-                            <a href="{{route('admin.sellers.index')}}">
-                                <button class="btn btn-success">
-                                    <i class="fa fa-backward"> </i>
-                                    Back
-                                </button>
-                            </a>
+{{--                            <a href="{{route('admin.sellers.index')}}">--}}
+{{--                                <button class="btn btn-success">--}}
+{{--                                    <i class="fa fa-backward"> </i>--}}
+{{--                                    Back--}}
+{{--                                </button>--}}
+{{--                            </a>--}}
                         </div>
                     </div>
                     <!-- /.card-header -->

@@ -25,15 +25,17 @@ class AddressController extends Controller
     {
         $this->validate($request, [
             'address' =>'required',
-            'city' =>'required',
             'postal_code' => 'required',
             'phone' => 'required',
         ]);
         $address = new Address();
         $address->user_id = Auth::id();
-        $address->address = $request->address;
         $address->country = 'Bangladesh';
+        $address->address = $request->address;
         $address->city = $request->city;
+        $address->area = $request->area;
+        $address->latitude = $request->latitude;
+        $address->longitude = $request->longitude;
         $address->postal_code = $request->postal_code;
         $address->phone = $request->phone;
         $address->type = $request->type;

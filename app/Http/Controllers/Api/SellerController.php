@@ -148,14 +148,22 @@ class SellerController extends Controller
         }
     }
     public function nidInfoUpdate(Request $request){
+
+
         $sellerInfo = Seller::where('user_id',Auth::User()->id)->first();
         $sellerInfo->nid_number = $request->nid_number;
-        if($request->has('previous_photos')){
-            $photos = [$request->previous_photos];
-        }
-        else{
-            $photos = [];
-        }
+        //return $sellerInfo->trade_licence_images;
+
+       $photos = array();
+       if($sellerInfo->trade_licence_images == null){
+           $photos  = array();
+       }else{
+          $prevPhotos = json_decode($sellerInfo->trade_licence_images);
+          foreach ($prevPhotos as $prevPhoto){
+              array_push($photos, $prevPhoto);
+          }
+
+       }
         if($request->hasFile('trade_licence_images')){
             $path = $request->trade_licence_images->store('uploads/seller_info');
             array_push($photos, $path);
