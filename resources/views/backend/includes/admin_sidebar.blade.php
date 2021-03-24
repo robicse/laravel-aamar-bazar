@@ -113,17 +113,21 @@
                             </li>
                         </ul>
                     </li>
+                    @php
+                        $new_orders = \App\Model\Order::where('delivery_status','Pending')->where('view',0)->count();
+                    @endphp
                     <li class="nav-item has-treeview {{(Request::is('admin/order*')) ? 'menu-open' : ''}}">
                         <a href="" class="nav-link {{Request::is('admin/order') ? 'active' : ''}}">
                             <i class="nav-icon fas fa-box"></i>
                             <p>
                                 Order Management
+                                @if(!empty($new_orders))
+                                    <span class="badge badge-danger"> {{$new_orders}} New</span>
+                                @endif
                                 <i class="right fa fa-angle-left"></i>
                             </p>
                         </a>
-                        @php
-                        $new_orders = \App\Model\Order::where('delivery_status','Pending')->where('view',0)->count();
-                        @endphp
+
                         <ul class="nav nav-treeview">
                             <li class="nav-item">
                                 <a href="{{route('admin.order.pending')}}"
@@ -170,6 +174,13 @@
                                    class="nav-link {{Request::is('admin/order/canceled*') ? 'active' :''}}">
                                     <i class="fa fa-{{Request::is('admin/order/canceled*') ? 'folder-open':'folder'}} nav-icon"></i>
                                     <p>Cancel Order</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{{route('admin.daily-orders')}}"
+                                   class="nav-link {{Request::is('admin/order/daily-orders*') ? 'active' :''}}">
+                                    <i class="fa fa-{{Request::is('admin/order/daily-orders*') ? 'folder-open':'folder'}} nav-icon"></i>
+                                    <p>Daily Orders</p>
                                 </a>
                             </li>
                         </ul>
@@ -226,12 +237,17 @@
                             </li>
                         </ul>
                     </li>
-
+                    @php
+                        $new_seller = \App\User::where('user_type','seller')->where('view',0)->count();
+                    @endphp
                     <li class="nav-item has-treeview {{(Request::is('admin/sellers*') || Request::is('admin/due-to-seller*') || Request::is('admin/due-to-admin*') ) ? 'menu-open' : ''}}">
                         <a href="#" class="nav-link">
                             <i class="nav-icon fas fa-user-plus"></i>
                             <p>
                                 Sellers
+                                @if(!empty($new_seller))
+                                    <span class="badge badge-danger"> {{$new_seller}} New</span>
+                                @endif
                                 <i class="right fa fa-angle-left"></i>
                             </p>
                         </a>
@@ -240,7 +256,11 @@
                                 <a href="{{route('admin.sellers.index')}}"
                                    class="nav-link {{Request::is('admin/sellers') ? 'active' :''}}">
                                     <i class="fa fa-{{Request::is('admin/sellers') ? 'folder-open':'folder'}} nav-icon"></i>
-                                    <p> Seller List </p>
+                                    <p> Seller List
+                                        @if(!empty($new_seller))
+                                            <span class="right badge badge-danger">New {{$new_seller}}</span>
+                                        @endif
+                                    </p>
                                 </a>
                             </li>
                             <li class="nav-item">
@@ -280,11 +300,17 @@
                             </li>
                         </ul>
                     </li>
+                    @php
+                        $new_customer = \App\User::where('user_type','customer')->where('view',0)->count();
+                    @endphp
                     <li class="nav-item has-treeview {{(Request::is('admin/customers*') ) ? 'menu-open' : ''}}">
                         <a href="#" class="nav-link">
                             <i class="nav-icon fas fa-users"></i>
                             <p>
                                 Customers
+                                @if(!empty($new_customer))
+                                    <span class="badge badge-danger"> {{$new_customer}} New</span>
+                                @endif
                                 <i class="right fa fa-angle-left"></i>
                             </p>
                         </a>
@@ -293,22 +319,30 @@
                                 <a href="{{route('admin.customers.index')}}"
                                    class="nav-link {{Request::is('admin/customers') ? 'active' :''}}">
                                     <i class="fa fa-{{Request::is('admin/customers') ? 'folder-open':'folder'}} nav-icon"></i>
-                                    <p>Customer List</p>
+                                    <p>
+                                        Customer List
+                                        @if(!empty($new_customer))
+                                            <span class="right badge badge-danger">New {{$new_customer}} </span>
+                                        @endif
+                                    </p>
                                 </a>
                             </li>
                         </ul>
                     </li>
+                    @php
+                        $reviews = \App\Model\Review::where('viewed',0)->count();
+                    @endphp
                     <li class="nav-item has-treeview {{(Request::is('admin/review*') ) ? 'menu-open' : ''}}">
                         <a href="#" class="nav-link">
                             <i class="nav-icon fas fa-users"></i>
                             <p>
                                 Reviews
+                                @if(!empty($reviews))
+                                    <span class="badge badge-danger">{{$reviews}} New</span>
+                                @endif
                                 <i class="right fa fa-angle-left"></i>
                             </p>
                         </a>
-                        @php
-                            $reviews = \App\Model\Review::where('viewed',0)->count();
-                        @endphp
                         <ul class="nav nav-treeview">
                             <li class="nav-item">
                                 <a href="{{route('admin.review.index')}}"

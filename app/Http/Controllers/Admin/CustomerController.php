@@ -7,14 +7,19 @@ use App\User;
 use Brian2694\Toastr\Facades\Toastr;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Crypt;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 
 class CustomerController extends Controller
 {
     public function index()
     {
-        $customerInfos = User::where('user_type','customer')->get();
-//        dd($customerInfos);
+        $customerInfos = DB::table('users')
+            ->where('user_type','=','customer')
+            ->where('verification_code','!=',null)
+            ->latest('created_at')
+            ->get();
+//        $customerInfos = User::where('user_type','customer')->latest()->get();
         return view('backend.admin.customer.index',compact('customerInfos'));
     }
 
@@ -49,8 +54,11 @@ class CustomerController extends Controller
     }
     public function profileShow($id)
     {
-        //dd($id);
         $userInfo = User::find(decrypt($id));
+        if($userInfo->view == 0){
+            $userInfo->view = 1;
+            $userInfo->save();
+        }
         return view('backend.admin.customer.profile', compact('userInfo'));
     }
     public function updateProfile(Request $request, $id)

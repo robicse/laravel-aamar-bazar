@@ -55,7 +55,12 @@
                             <tbody>
                             @foreach($sellerUserInfos as $key => $sellerUserInfo)
                             <tr>
-                                <td>{{$key + 1}}</td>
+                                <td>
+                                    {{$key + 1}}
+                                    @if($sellerUserInfo->view == 0)
+                                        <span class="right badge badge-danger">New</span>
+                                    @endif
+                                </td>
                                 <td>{{$sellerUserInfo->name}}</td>
                                 <td>{{$sellerUserInfo->phone}}</td>
                                 <td>{{$sellerUserInfo->email}}</td>
@@ -67,7 +72,7 @@
                                         </label>
                                     </div>
                                 </td>
-                                <td ><strong class="badge badge-danger w-100">{{$sellerUserInfo->seller->commission}}%</strong></td>
+                                <td ><strong class="badge badge-info w-100">{{$sellerUserInfo->seller->commission}}%</strong></td>
                                 <td>{{$sellerUserInfo->products->count()}}</td>
                                 <td>{{$sellerUserInfo->seller->admin_to_pay}}</td>
                                 <td>{{$sellerUserInfo->seller->seller_will_pay_admin}}</td>

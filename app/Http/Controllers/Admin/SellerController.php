@@ -91,6 +91,11 @@ class SellerController extends Controller
         $totalProducts = Product::where('user_id',$userInfo->id)->count();
         $totalOrders = Order::where('shop_id',$shopInfo->id)->count();
         $totalSoldAmount = Order::where('shop_id',$shopInfo->id)->where('payment_status','paid')->where('delivery_status','Completed')->sum('grand_total');
+        if($userInfo->view == 0){
+            $userInfo->view = 1;
+            $userInfo->save();
+        }
+
         return view('backend.admin.seller.profile', compact('userInfo','sellerInfo','shopInfo','totalProducts','totalOrders','totalSoldAmount'));
     }
     public function updateProfile(Request $request, $id)

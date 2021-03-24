@@ -85,7 +85,7 @@ class CartController extends Controller
             Cart::add($data);
             $data['countCart'] = Cart::count();
             //dd(Cart::content());
-            dd("not flash sales");
+//            dd("not flash sales");
             return response()->json(['success'=> true, 'response'=>$data]);
         }elseif(!empty($flashSales)){
             //dd("flash sales");
