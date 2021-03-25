@@ -151,7 +151,7 @@
                         @endphp
                         <li class="nav-item has-treeview">
                             <a href="{{route('seller.customer.review')}}" class="nav-link {{Request::is('seller/customer/review*') ? 'active' : ''}}">
-                                <i class="nav-icon fas fa-envelope-open-text"></i>
+                                <i class="nav-icon fas fa-star"></i>
                                 <p>
                                     Customer Review
                                     @if(!empty($new_review))

@@ -50,7 +50,8 @@
                                 </div>
                                 <div class="form-group form_padding">
                                     <label>Referral Code <span class="small" style="color: green;">(Enter your friend's referral code)</span></label>
-                                    <input class="form-control form_height" type="number" name="referred_by" value="{{$referralCode}}" readonly>
+                                    <input class="form-control form_height" type="number" name="referred_by" value="{{$refferal_by->referral_code}}" readonly>
+                                    <input type="hidden" name="refferal_by" value="{{$refferal_by->id}}">
                                 </div>
                                 <div class="form-group submtit" style="padding-bottom: 40px;">
                                     <button class="ps-btn ps-btn--fullwidth">Register</button>

@@ -177,7 +177,7 @@
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a href="{{route('admin.s')}}"
+                                <a href="{{route('admin.daily-orders')}}"
                                    class="nav-link {{Request::is('admin/order/daily-orders*') ? 'active' :''}}">
                                     <i class="fa fa-{{Request::is('admin/order/daily-orders*') ? 'folder-open':'folder'}} nav-icon"></i>
                                     <p>Daily Orders</p>
@@ -334,7 +334,7 @@
                     @endphp
                     <li class="nav-item has-treeview {{(Request::is('admin/review*') ) ? 'menu-open' : ''}}">
                         <a href="#" class="nav-link">
-                            <i class="nav-icon fas fa-users"></i>
+                            <i class="nav-icon fas fa-star"></i>
                             <p>
                                 Reviews
                                 @if(!empty($reviews))
@@ -359,21 +359,10 @@
                         </ul>
                     </li>
 
-{{--                    <li class="nav-item ">--}}
-{{--                        <a href="{{route('admin.review.index')}}" class="nav-link {{Request::is('admin/review*')  ? 'active' : ''}}">--}}
-
-{{--                            <i class="nav-icon fas fa-star"></i>--}}
-{{--                            <p>--}}
-{{--                                Review--}}
-
-{{--                            </p>--}}
-{{--                        </a>--}}
-{{--                    </li>--}}
-
                     <li class="nav-item ">
                         <a href="{{route('admin.business.index')}}" class="nav-link {{Request::is('admin/business*')  ? 'active' : ''}}">
 
-                            <i class="nav-icon fas fa-newspaper-o"></i>
+                            <i class="nav-icon fas fa-money-check-alt"></i>
                             <p>
                                 Business Settings
                             </p>
