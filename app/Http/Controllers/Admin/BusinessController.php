@@ -12,7 +12,8 @@ class BusinessController extends Controller
     public function index(){
         $sellerCommission = BusinessSetting::where('type','seller_commission')->first();
         $refferalValue = BusinessSetting::where('type','refferal_value')->first();
-        return view('backend.admin.business.index',compact('sellerCommission','refferalValue'));
+        $firstOrderDiscount = BusinessSetting::where('type','first_order_discount')->first();
+        return view('backend.admin.business.index',compact('sellerCommission','refferalValue','firstOrderDiscount'));
     }
     public function commissionUpdate(Request $request){
         //dd($request->all());
@@ -24,5 +25,10 @@ class BusinessController extends Controller
         $refferalValue = BusinessSetting::find($request->id);
         $refferalValue->value = $request->value;
         $refferalValue->save();
+    }
+    public function firstOrderValueUpdate(Request $request){
+        $firstOrderValue = BusinessSetting::find($request->id);
+        $firstOrderValue->value = $request->value;
+        $firstOrderValue->save();
     }
 }

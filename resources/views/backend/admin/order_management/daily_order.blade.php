@@ -42,7 +42,7 @@
 {{--                                @dd(date('jS F, y',strtotime($DailyOrder[0]['created_at'])))--}}
                                 <tr>
                                     <td>{{ date('jS F, y',strtotime($DailyOrder[0]['created_at'])) }}</td>
-                                    <td>Total ({{ $DailyOrder->count() }}) </td>
+                                    <td>{{ $DailyOrder->count() }} </td>
                                 </tr>
                             @endforeach
                             </tbody>
