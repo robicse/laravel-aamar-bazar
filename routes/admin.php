@@ -72,6 +72,7 @@ Route::group(['as'=>'admin.','prefix' =>'admin','namespace'=>'Admin', 'middlewar
     Route::get('order-product/status-change/{id}','OrderManagementController@OrderProductChangeStatus')->name('order-product.status');
     Route::get('order-details/{id}','OrderManagementController@orderDetails')->name('order-details');
     Route::get('order-details/invoice/print/{id}','OrderManagementController@orderInvoicePrint')->name('invoice.print');
+    Route::get('order/daily-orders','OrderManagementController@dailyOrders')->name('daily-orders');
 
     // Admin User Management
     Route::resource('customers','CustomerController');
@@ -81,16 +82,22 @@ Route::group(['as'=>'admin.','prefix' =>'admin','namespace'=>'Admin', 'middlewar
 
     //review
     Route::get('review','ReviewController@index')->name('review.index');
+    Route::post('review/details', 'ReviewController@reviewDetails')->name('review.details');
     Route::post('review/status', 'ReviewController@updateStatus')->name('review.status');
     Route::get('review/view/{id}','ReviewController@view')->name('review.view');
     Route::post('review/update/{id}','ReviewController@reviewUpdate')->name('review.update');
 
     //Sliders
     Route::resource('sliders','SliderController');
+    Route::resource('quote','QuoteController');
 
     //Blogs
     Route::resource('blogs','BlogController');
 
+    //Business Settings
+    Route::get('business/settings','BusinessController@index')->name('business.index');
+    Route::post('seller/commission/update','BusinessController@commissionUpdate');
+    Route::post('refferal/value/update','BusinessController@refferalValueUpdate');
     //Profile
     Route::resource('profile','ProfileController');
     Route::put('password/update/{id}','ProfileController@updatePassword')->name('password.update');
@@ -100,6 +107,12 @@ Route::group(['as'=>'admin.','prefix' =>'admin','namespace'=>'Admin', 'middlewar
     Route::get('seller-order-report','VendorController@sellerReport')->name('seller-order-report');
     //Route::post('seller-order-report','VendorController@sellerOrderDetails')->name('seller-order-report');
     Route::post('seller-order-details','VendorController@sellerOrderDetails')->name('seller-order-details');
+
+    //Seller Payment
+    Route::get('due-to-seller','PaymentController@dueToSeller')->name('due-to-seller');
+    Route::post('due-to-seller-details','PaymentController@dueToSellerDetails')->name('due-to-seller-details');
+    Route::get('due-to-admin','PaymentController@dueToAdmin')->name('due-to-admin');
+    Route::post('due-to-admin-details','PaymentController@dueToAdminDetails')->name('due-to-admin-details');
 
 
     //performance

@@ -50,9 +50,14 @@
                             </thead>
                             <tbody>
 
-                            @foreach($pending_order as $key => $pending)
+                            @foreach($pending_order as $key=>$pending)
                                 <tr>
-                                    <td>{{$key + 1}}</td>
+                                    <td>
+                                        {{$key + 1}}
+                                        @if($pending->view == 0)
+                                            <span class="right badge badge-danger">New</span>
+                                        @endif
+                                    </td>
                                     <td>{{date('j-m-Y',strtotime($pending->created_at))}}</td>
                                     <td>{{$pending->payment_type}}</td>
                                     <td>
@@ -69,7 +74,7 @@
 
                                     </td>
                                     <td>
-                                        <a class="btn btn-info waves-effect" href="{{route('admin.order-details',$pending->id)}}">
+                                        <a class="btn btn-info waves-effect" href="{{route('admin.order-details',encrypt($pending->id))}}">
                                             <i class="fa fa-eye"></i> View
                                         </a>
                                     </td>

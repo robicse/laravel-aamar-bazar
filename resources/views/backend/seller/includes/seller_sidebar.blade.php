@@ -137,6 +137,14 @@
                                 </p>
                             </a>
                         </li>
+                        <li class="nav-item has-treeview">
+                            <a href="{{route('seller.customer.list')}}" class="nav-link {{Request::is('seller/customer*') ? 'active' : ''}}">
+                                <i class="nav-icon fas fa-users"></i>
+                                <p>
+                                    Customer List
+                                </p>
+                            </a>
+                        </li>
                     <li class="nav-item has-treeview">
                         <a href="{{route('seller.profile.show')}}" class="nav-link {{Request::is('seller/profile*') ? 'active' : ''}}">
                             <i class="nav-icon fas fa-user-circle"></i>

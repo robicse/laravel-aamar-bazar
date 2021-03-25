@@ -53,24 +53,7 @@ class ShopController extends Controller
             $shop->youtube = $request->youtube;
             $shop->meta_title = $request->meta_title;
             $shop->meta_description = $request->meta_description;
-            $shop->sliders = [];
-//        $sliders = array();
-
-            /*if($request->has('previous_sliders')){
-                $sliders = $request->previous_sliders;
-            }
-            else{
-                $sliders = array();
-            }*/
-
-            /*if($request->hasFile('sliders')){
-                foreach ($request->sliders as $key => $slider) {
-                    array_push($sliders, $slider->store('uploads/shop/sliders'));
-                }
-            }*/
-
-            //$shop->sliders = json_encode($sliders);
-            $shop->logo = $request->previous_thumbnail_img;
+//            $shop->sliders = [];
             if($request->hasFile('logo')){
                 $shop->logo = $request->logo->store('uploads/shop/logo');
                 //ImageOptimizer::optimize(base_path('public/').$product->thumbnail_img);
@@ -79,50 +62,7 @@ class ShopController extends Controller
 
             Toastr::success("Shop Inserted Successfully","Success");
             return redirect()->back();
-        }else {
-            $new_shop->name = $request->name;
-            $new_shop->slug = Str::slug($request->name).'-'.Auth::id();
-            $new_shop->address = $request->address;
-            $new_shop->city = $request->city;
-            $new_shop->area = $request->area;
-            $new_shop->latitude = $request->latitude;
-            $new_shop->longitude = $request->longitude;
-            $new_shop->user_id = Auth::id();
-            $new_shop->seller_id = $seller->id;
-            $new_shop->about = $request->about;
-            $new_shop->facebook = $request->facebook;
-            $new_shop->google = $request->google;
-            $new_shop->twitter = $request->twitter;
-            $new_shop->youtube = $request->youtube;
-            $new_shop->meta_title = $request->meta_title;
-            $new_shop->meta_description = $request->meta_description;
-//        $sliders = array();
-
-            if($request->has('previous_sliders')){
-                $sliders = $request->previous_sliders;
-            }
-            else{
-                $sliders = array();
-            }
-
-            if($request->hasFile('sliders')){
-                foreach ($request->sliders as $key => $slider) {
-                    array_push($sliders, $slider->store('uploads/shop/sliders'));
-                }
-            }
-
-            $new_shop->sliders = json_encode($sliders);
-
-            if($request->hasFile('logo')){
-                $new_shop->logo = $request->logo->store('uploads/shop/logo');
-                //ImageOptimizer::optimize(base_path('public/').$product->thumbnail_img);
-            }
-            $new_shop->save();
-
-            Toastr::success("Shop Updated Successfully","Success");
-            return redirect()->back();
         }
-
     }
 
     public function show($id)

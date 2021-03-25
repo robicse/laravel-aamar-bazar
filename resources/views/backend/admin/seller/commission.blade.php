@@ -46,6 +46,10 @@
                             <label for="commission">Commission <small class="text-info" >(Commission will be {{$commission->value}} percent (%) for all seller.)</small></label>
                             <input type="number" class="form-control" name="value" value="{{$commission->value}}" id="commission" placeholder="Set Commission for this seller" required>
                         </div>
+                        <div class="form-group">
+                            <label for="commission">Refferal Value <small class="text-info" >(Refferal Value will be {{$commission->refferal_value}} tk for all Customer.)</small></label>
+                            <input type="number" class="form-control" name="refferal_value" value="{{$commission->refferal_value}}" id="refferal_value" placeholder="Set refferal value for customer" required>
+                        </div>
                     </div>
                     <!-- /.card-body -->
                     <div class="card-footer">

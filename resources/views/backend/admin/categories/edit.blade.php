@@ -48,7 +48,7 @@
                             </div>
                             <img src="{{asset('uploads/categories/'.$category->icon)}}" width="80" height="50" alt="">
                             <div class="form-group">
-                                <label for="email">Brand Logo <small>(size: 120 * 80 pixel)</small></label>
+                                <label for="email">Category Image <small>(size: 300 * 300 pixel)</small></label>
                                 <input type="file" class="form-control" name="icon" id="logo" >
                             </div>
                             <div class="form-group">

@@ -22,6 +22,26 @@ class AddressController extends Controller
     }
     public function store(Request $request)
     {
+        $check = Address::where('user_id',Auth::id())->first();
+        if (empty($check)){
+            $new_address = new Address();
+            $new_address->user_id = Auth::id();
+            $new_address->address = $request->address;
+            $new_address->country = 'Bangladesh';
+            $new_address->city = $request->city;
+            $new_address->postal_code = $request->postal_code;
+            $new_address->phone = $request->phone;
+            $new_address->type = $request->type;
+            $new_address->set_default = 1;
+            $new_address->save();
+            if (!empty($new_address))
+            {
+                return response()->json(['success'=>true,'response'=> $new_address], 200);
+            }
+            else{
+                return response()->json(['success'=>false,'response'=> 'Something went wrong!'], 404);
+            }
+        }
         $address = new Address();
         $address->user_id = Auth::id();
         $address->address = $request->address;
@@ -30,6 +50,7 @@ class AddressController extends Controller
         $address->postal_code = $request->postal_code;
         $address->phone = $request->phone;
         $address->type = $request->type;
+        $address->set_default = 0;
         $address->save();
         if (!empty($address))
         {

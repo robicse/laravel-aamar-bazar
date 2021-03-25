@@ -24,7 +24,7 @@ class SellerController extends Controller
 {
     public function index()
     {
-        $sellerUserInfos = User::where('user_type','seller')->get();
+        $sellerUserInfos = User::where('user_type','seller')->latest()->get();
         return view('backend.admin.seller.index', compact('sellerUserInfos'));
     }
 
@@ -52,8 +52,9 @@ class SellerController extends Controller
         ]);
         $data = BusinessSetting::find($id);
         $data->value = $request->value;
+        $data->refferal_value = $request->refferal_value;
         $data->save();
-        Toastr::success($request->value.' % Seller Commission successfully added for all sellers');
+        Toastr::success('Commission successfully added for all sellers and Customers');
         return redirect()->back();
     }
     public function adminPaymentHistory()
@@ -90,6 +91,11 @@ class SellerController extends Controller
         $totalProducts = Product::where('user_id',$userInfo->id)->count();
         $totalOrders = Order::where('shop_id',$shopInfo->id)->count();
         $totalSoldAmount = Order::where('shop_id',$shopInfo->id)->where('payment_status','paid')->where('delivery_status','Completed')->sum('grand_total');
+        if($userInfo->view == 0){
+            $userInfo->view = 1;
+            $userInfo->save();
+        }
+
         return view('backend.admin.seller.profile', compact('userInfo','sellerInfo','shopInfo','totalProducts','totalOrders','totalSoldAmount'));
     }
     public function updateProfile(Request $request, $id)

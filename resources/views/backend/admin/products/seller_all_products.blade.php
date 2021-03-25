@@ -111,10 +111,10 @@
                                                         onclick="deleteProduct({{$product->id}})">
                                                     <i class="fa fa-trash"></i> Delete
                                                 </button>--}}
-                                                <form id="delete-form-{{$product->id}}" action="{{route('admin.products.destroy',$product->id)}}" method="POST" style="display: none;">
-                                                    @csrf
-                                                    @method('DELETE')
-                                                </form>
+{{--                                                <form id="delete-form-{{$product->id}}" action="{{route('admin.products.destroy',$product->id)}}" method="POST" style="display: none;">--}}
+{{--                                                    @csrf--}}
+{{--                                                    @method('DELETE')--}}
+{{--                                                </form>--}}
                                             </div>
                                         </div>
                                     </td>

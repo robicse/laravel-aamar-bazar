@@ -38,7 +38,7 @@
                                             <tbody>
                                             @foreach($orderDetails as $key =>$orderDetail)
                                                 @php
-                                                $review = \App\Model\Review::where('user_id',$order->user_id)->where('product_id',$orderDetail->product_id)->first();
+                                                $review = \App\Model\Review::where('order_id',$order->id)->where('user_id',$order->user_id)->where('product_id',$orderDetail->product_id)->first();
                                                 @endphp
                                             <tr>
                                                 <td>{{ $key +1 }}</td>
@@ -92,6 +92,7 @@
                                             <form class="ps-form--review" action="{{route('user.order.review.store')}}" method="post">
                                                 @csrf
                                                 <input type="hidden" name="product_id" id="product_id">
+                                                <input type="hidden" name="order_id" id="order_id" value="{{$order->id}}">
                                                 <div class="modal-body">
                                                     {{--                                                    <h4>Submit Your Review</h4>--}}
                                                     <div class="form-group form-group__rating">

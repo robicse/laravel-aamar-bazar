@@ -35,7 +35,7 @@ class VendorController extends Controller
             $sellerId = $request->seller_id;
             $shop = Shop::where('user_id',$sellerId)->first();
             $deliveryStatus = $request->delivery_status;
-            $orders = Order::where('shop_id',$shop->id)->where('delivery_status',$deliveryStatus)->get();
+            $orders = Order::where('shop_id',$shop->id)->where('delivery_status',$deliveryStatus)->latest()->get();
             return view('backend.admin.vendor.seller_report',compact('sellers','orders','sellerId','deliveryStatus'));
         }
         return redirect()->back();

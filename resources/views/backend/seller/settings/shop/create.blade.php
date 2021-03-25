@@ -55,12 +55,11 @@
 
                         <div class="card-body">
                             <div class="form-group">
-                                <label for="name">Shop Name <small style="color: red">*</small></label>
+                                <label for="name">Shop Name</label>
                                 <input type="text" class="form-control" name="name" value="{{ $shop_set->name }}" id="name" readonly>
                             </div>
                             <div class="form-group">
-                                <label for="slug">Slug (SEO Url) <small class="text-danger">(requried* and
-                                        unique)</small></label>
+                                <label for="slug">Slug (SEO Url)</label>
                                 <input type="text" id="slug" name="slug" class="form-control" value="{{$shop_set->slug}}"
                                        placeholder="Slug (e.g. this-is-test-shop-title)" readonly>
                             </div>
@@ -68,7 +67,7 @@
                             <div class="form-group">
                                 <label for="bksearch">Shop Address</label>
                                 <div class="form-group form-group--style-1">
-                                    <input type="text" class="form-control bksearch {{ $errors->has('bksearch') ? ' is-invalid' : '' }}" value="{{ $shop_set->address }}" placeholder="Enter Your Shop Address" name="bksearch" {{$shop_set->address ? 'readonly' : ''}} required>
+                                    <input type="text" class="form-control bksearch {{ $errors->has('bksearch') ? ' is-invalid' : '' }}" value="{{ $shop_set->address }}" placeholder="Enter Your Shop Address" name="bksearch" readonly>
                                 </div>
                                 <div class="bklist"></div>
                             </div>
@@ -80,8 +79,8 @@
                                 <input type="hidden" name="longitude" value="{{$shop_set->longitude}}">
                             </div>
                             <div class="form-group">
-                                <label for="about">About Shop <small style="color: red">*(Write in 300 words.)</small> </label>
-                                <textarea name="about" id="about" rows="5"  class="form-control" required>{{ $shop_set->about }}</textarea>
+                                <label for="about">About Shop </label>
+                                <textarea name="about" id="about" rows="5"  class="form-control">{{ $shop_set->about }}</textarea>
                             </div>
                             <div class="form-group">
                                 <label for="facebook">Facebook Url</label>
@@ -110,12 +109,12 @@
                     <!-- general form elements -->
                     <div class="card card-info card-outline">
                         <div class="form-group pl-3 pr-3">
-                            <label for="meta_title">Meta Title <small style="color: red">*</small> </label>
-                            <input type="text" class="form-control" name="meta_title" id="meta_title" value="{{ $shop_set->meta_title }}" placeholder="Meta Title" required>
+                            <label for="meta_title">Meta Title </label>
+                            <input type="text" class="form-control" name="meta_title" id="meta_title" value="{{ $shop_set->meta_title }}" placeholder="Meta Title">
                         </div>
                         <div class="form-group pl-3 pr-3">
-                            <label for="meta_description">Meta Description <small style="color: red">*</small> </label>
-                            <textarea name="meta_description" id="meta_description" rows="4"  class="form-control" required>{{ $shop_set->meta_description }}</textarea>
+                            <label for="meta_description">Meta Description </label>
+                            <textarea name="meta_description" id="meta_description" rows="4"  class="form-control">{{ $shop_set->meta_description }}</textarea>
                         </div>
                         <div class="form-group">
                             <label class="control-label ml-3">Logo <small class="text-danger">(Size: 120 *

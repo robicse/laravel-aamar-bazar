@@ -8,12 +8,12 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>Seller List</h1>
+                    <h1>Customer List</h1>
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
                         <li class="breadcrumb-item"><a href="{{route('admin.dashboard')}}">Home</a></li>
-                        <li class="breadcrumb-item active">Seller List</li>
+                        <li class="breadcrumb-item active">Customer List</li>
                     </ol>
                 </div>
             </div>
@@ -25,7 +25,7 @@
             <div class="col-12">
                 <div class="card card-info card-outline">
                     <div class="card-header">
-                        <h3 class="card-title float-left">Seller Lists</h3>
+                        <h3 class="card-title float-left">Customer Lists</h3>
                         <div class="float-right">
                             {{--<a href="{{route('admin.sellers.index.create')}}">
                                 <button class="btn btn-success" >
@@ -48,57 +48,38 @@
                             </tr>
                             </thead>
                             <tbody>
-                            @foreach($customerInfos as $key => $Info)
-
-                                <tr>
-                                    <td>{{$key + 1}}</td>
-                                    <td>{{$Info->name}}</td>
-                                    <td>{{$Info->phone}}</td>
-                                    <td>{{$Info->email}}</td>
-
-{{--                                    <td>--}}
-{{--                                        <div class="form-group col-md-2">--}}
-{{--                                            <label class="switch" style="margin-top:40px;">--}}
-{{--                                                <input onchange="verification_status(this)" value="{{$Info->user->id }}" {{$Info->verification_status == 1? 'checked':''}} type="checkbox" >--}}
-{{--                                                <span class="slider round"></span>--}}
-{{--                                            </label>--}}
-{{--                                        </div>--}}
-{{--                                    </td>--}}
-{{--                                    <td>{{$Info->products->count()}}</td>--}}
-{{--                                    <td>{{$sellerUserInfo->seller->admin_to_pay}}</td>--}}
-                                    <td>
-                                        <div class="dropdown">
-                                            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                Actions
-                                            </button>
-                                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                                <a class="bg-dark dropdown-item" href="{{route('admin.customers.profile.show',encrypt($Info->id))}}">
-                                                    <i class="fa fa-user"></i> Profile
-                                                </a>
-{{--                                                <a class="bg-success dropdown-item" onclick="show_seller_payment_modal('{{$customerInfos->seller->id}}');" href="#">--}}
-{{--                                                    <i class="fa fa-money"></i> Pay Now--}}
-{{--                                                </a>--}}
-{{--                                                <a class="bg-danger dropdown-item" onclick="show_seller_commission_modal('{{$customerInfos->seller->id}}');" href="#">--}}
-{{--                                                    <i class="fa fa-money-bill-wave"></i> Set Commission--}}
-{{--                                                </a>--}}
-{{--                                                <a class="bg-secondary dropdown-item" href="{{route('admin.customers.edit',$Info->id)}}">--}}
-{{--                                                    <i class="fa fa-history"></i> Payment History--}}
-{{--                                                </a>--}}
-{{--                                                <a class="bg-info dropdown-item" href="{{route('admin.customers.edit',$Info->id)}}">--}}
-{{--                                                    <i class="fa fa-edit"></i> Edit--}}
-{{--                                                </a>--}}
-                                                <button class="bg-danger dropdown-item" type="button"
-                                                        onclick="deleteProduct({{$Info->id}})">
-                                                    <i class="fa fa-ban"></i> Ban this Customer
+                            @foreach($customerInfos as $key => $customerInfo)
+                                    <tr>
+                                        <td>
+                                            {{$key + 1}}
+                                            @if($customerInfo->view == 0)
+                                                <span class="right badge badge-danger">New</span>
+                                            @endif
+                                        </td>
+                                        <td>{{$customerInfo->name}}</td>
+                                        <td>{{$customerInfo->phone}}</td>
+                                        <td>{{$customerInfo->email}}</td>
+                                        <td>
+                                            <div class="dropdown">
+                                                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                    Actions
                                                 </button>
-                                                <form id="delete-form-{{$Info->id}}" action="{{route('admin.customers.destroy',$Info->id)}}" method="POST" style="display: none;">
-                                                    @csrf
-                                                    @method('DELETE')
-                                                </form>
+                                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                                    <a class="bg-dark dropdown-item" href="{{route('admin.customers.profile.show',encrypt($customerInfo->id))}}">
+                                                        <i class="fa fa-user"></i> Profile
+                                                    </a>
+                                                    <button class="bg-danger dropdown-item" type="button"
+                                                            onclick="deleteProduct({{$customerInfo->id}})">
+                                                        <i class="fa fa-ban"></i> Ban this Customer
+                                                    </button>
+                                                    <form id="delete-form-{{$customerInfo->id}}" action="{{route('admin.customers.destroy',$customerInfo->id)}}" method="POST" style="display: none;">
+                                                        @csrf
+                                                        @method('DELETE')
+                                                    </form>
+                                                </div>
                                             </div>
-                                        </div>
-                                    </td>
-                                </tr>
+                                        </td>
+                                    </tr>
                             @endforeach
                             </tbody>
                             <tfoot>
@@ -107,10 +88,10 @@
                                 <th>Name</th>
                                 <th>Phone</th>
                                 <th>Email</th>
-{{--                                <th>Approval</th>--}}
-{{--                                <th>Commission</th>--}}
-{{--                                <th>Num. of Products</th>--}}
-{{--                                <th>Due to seller</th>--}}
+                                {{--                                <th>Approval</th>--}}
+                                {{--                                <th>Commission</th>--}}
+                                {{--                                <th>Num. of Products</th>--}}
+                                {{--                                <th>Due to seller</th>--}}
                                 <th>Action</th>
                             </tr>
                             </tfoot>

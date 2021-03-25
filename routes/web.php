@@ -49,6 +49,7 @@ Route::post('/registration','Frontend\FrontendController@register')->name('user.
 Route::get('/get-verification-code/{id}', 'Frontend\VerificationController@getVerificationCode')->name('get-verification-code');
 Route::post('/get-verification-code-store', 'Frontend\VerificationController@verification')->name('get-verification-code.store');
 Route::get('/check-verification-code', 'Frontend\VerificationController@CheckVerificationCode')->name('check-verification-code');
+Route::get('refer/{code}','Frontend\FrontendController@referCode')->name('registration.refer.code');
 
 
 //product

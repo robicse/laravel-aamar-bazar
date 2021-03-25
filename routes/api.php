@@ -29,6 +29,8 @@ Route::group(['middleware' => ['auth:api']], function () {
     Route::get('/user/orders', 'Api\OrderController@order_get');
     Route::get('/user/order/details/{id}', 'Api\OrderController@order_details_get');
     Route::post('/user/order/submit', 'Api\OrderController@orderSubmit');
+    Route::post('/user/order/review/submit', 'Api\OrderController@reviewStore');
+    Route::get('/user/order/all-reviews', 'Api\OrderController@getReview');
 
     //User Favorite Shop
     Route::post('/add/favorite-shop', 'Api\CustomerController@favoriteShopAdd' );
@@ -62,6 +64,14 @@ Route::group(['middleware' => ['auth:api']], function () {
     Route::get('/seller/all-orders', 'Api\SellerController@allOrders');
     Route::post('/seller/delivery-status/update', 'Api\SellerController@deliveryStatusUpdate');
 
+    //Seller Payment Details
+    Route::get('/seller/pending-balance', 'Api\SellerPaymentController@pendingBalance');
+    Route::post('/seller/withdraw-request', 'Api\SellerPaymentController@withdrawRequest');
+    Route::get('/seller/withdraw-request/history', 'Api\SellerPaymentController@withdrawRequestHistory');
+    Route::get('/seller/payment-history', 'Api\SellerPaymentController@paymentHistory');
+    Route::get('/seller/payment-report', 'Api\SellerPaymentController@paymentReport');
+
+
 });
 
 
@@ -87,6 +97,7 @@ Route::get('/category/all-products/{id}', 'Api\CategoryController@categoryAllPro
 
 //Shop Subcategory
 Route::get('/shop-subcategories','Api\ShopSubcategoryController@getShopSubcategories');
+Route::get('/shop-total-ratings/{id}','Api\ShopController@getShopRatings');
 
 
 Route::get('/favorite-shops', 'Api\CustomerController@getFavoriteShop' );

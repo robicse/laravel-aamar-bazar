@@ -1,5 +1,21 @@
 @extends('frontend.layouts.master')
 @section('title', 'User Address')
+@push('css')
+    <style>
+        .form_height{
+            height: 40px;
+        }
+    </style>
+    <link rel="stylesheet"
+          href="https://cdn.jsdelivr.net/gh/barikoi/barikoi-js@b6f6295467c19177a7d8b73ad4db136905e7cad6/dist/barikoi.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.4.0/dist/leaflet.css"
+          integrity="sha512-puBpdR0798OZvTTbP4A8Ix/l+A4dHDD0DGqYW6RQ+9jxkRFclaxxQb/SJAWZfWAkuyeQUytO7+7N4QKrDh+drA=="
+          crossorigin=""/>
+    <script src="https://unpkg.com/leaflet@1.4.0/dist/leaflet.js"
+            integrity="sha512-QVftwZFqvtRNi0ZyCtsznlKSWOStnDORoefr1enyq5mVL4tmKB3S/EnC3rRJcxCPavG10IcrVGSmPh6Qw5lwrg=="
+            crossorigin=""></script>
+
+@endpush
 @section('content')
     <main class="ps-page--my-account">
         <div class="ps-breadcrumb">
@@ -119,32 +135,38 @@
                                 <span aria-hidden="true">&times;</span>
                             </button>
                         </div>
-                        <form class="ps-form--account-setting" action="{{route('user.address.store')}}" method="POST" enctype="multipart/form-data">
+
+                        <form class="ps-form--account-setting" id="bk_address" action="{{route('user.address.store')}}" method="POST" enctype="multipart/form-data">
                             @csrf
                             <div class="modal-body">
                                 <div class="ps-form__content" style="padding-left: 50px; padding-top: 20px;">
-{{--                                    <div class="form-group row">--}}
-{{--                                        <label class="col-md-2">Address</label>--}}
-{{--                                        <input class="form-control col-md-4" type="text" name="address" placeholder="Your Address">--}}
-{{--                                    </div>--}}
+
                                     <div class="form-group row">
-                                        <label for="address" class="col-sm-2">Address</label>
+                                        <label for="bksearch" class="col-sm-2">Address</label>
                                         <div class="col-sm-8">
-                                            <input type="text" class="form-control form-control-sm" name="address" placeholder="Your Address">
+                                            <input type="text" onkeyup="getAddress()" name="address" class="form-control form-control-sm address">
                                         </div>
+                                        <div class="col-sm-8">
+                                            <ol class="addList">
+
+                                            </ol>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <input type="hidden" name="address">
+                                        <input type="hidden" name="city">
+                                        <input type="hidden" name="area">
+                                        <input type="hidden" name="latitude">
+                                        <input type="hidden" name="longitude">
                                     </div>
                                     <div class="form-group row">
                                         <label for="country" class="col-sm-2">Country</label>
                                         <div class="col-sm-8">
-                                            <input type="text" class="form-control form-control-sm" name="country" placeholder="Bangladesh" {{'Bangladesh' ? 'readonly' : ''}}>
+                                            <input type="text" class="form-control form-control-sm" name="country" placeholder="Bangladesh" readonly>
                                         </div>
+
                                     </div>
-                                    <div class="form-group row">
-                                        <label for="city" class="col-sm-2">City</label>
-                                        <div class="col-sm-8">
-                                            <input type="text" class="form-control form-control-sm" name="city" placeholder="Your City">
-                                        </div>
-                                    </div>
+
                                     <div class="form-group row">
                                         <label for="postal_code" class="col-sm-2">Postal Code</label>
                                         <div class="col-sm-8">
@@ -165,7 +187,6 @@
                                                 <option value="Office">Office</option>
                                                 <option value="Others">Others</option>
                                             </select>
-{{--                                            <input type="text" class="form-control form-control-sm" name="phone" placeholder="Your phone">--}}
                                         </div>
                                     </div>
 
@@ -182,3 +203,35 @@
 
     </main>
 @endsection
+@push('js')
+    <script src="https://cdn.jsdelivr.net/gh/barikoi/barikoi-js@b6f6295467c19177a7d8b73ad4db136905e7cad6/dist/barikoi.min.js?key:MTg3NzpCRE5DQ01JSkgw"></script>
+    <script>
+        Bkoi.onSelect(function () {
+            // get selected data from dropdown list
+            let selectedPlace = Bkoi.getSelectedData()
+            console.log(selectedPlace)
+            // center of the map
+            document.getElementsByName("address")[0].value = selectedPlace.address;
+            document.getElementsByName("city")[0].value = selectedPlace.city;
+            document.getElementsByName("area")[0].value = selectedPlace.area;
+            document.getElementsByName("latitude")[0].value = selectedPlace.latitude;
+            document.getElementsByName("longitude")[0].value = selectedPlace.longitude;
+
+        })
+
+        function getAddress() {
+
+            let places=[];
+            let add=$('.address').val();
+            $('.addList').empty();
+            fetch("https://barikoi.xyz/v1/api/search/autocomplete/MTg5ODpJUTVHV0RWVFZP/place?q="+add)
+                .then(response => response.json())
+                .catch(error => console.error('Error:', error))
+                .then(response => {
+                    console.log(response);
+                    response.places.map((ad) => ($('.addList').append(`<p>${ad.address}</p>`)))
+                })
+        }
+
+    </script>
+@endpush

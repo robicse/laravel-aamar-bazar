@@ -218,7 +218,7 @@
                                                                 <div class="img-upload-preview">
                                                                     <img loading="lazy"  src="{{url($photo)}}" alt="" class="img-responsive">
                                                                     <input type="hidden" name="previous_photos[]" value="{{url($photo)}}">
-                                                                    <button type="button" class="btn btn-danger close-btn remove-files"><i class="fa fa-times"></i></button>
+{{--                                                                    <button type="button" class="btn btn-danger close-btn remove-files"><i class="fa fa-times"></i></button>--}}
                                                                 </div>
                                                             </div>
                                                         @endforeach

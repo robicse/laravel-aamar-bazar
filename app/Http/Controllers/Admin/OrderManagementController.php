@@ -10,6 +10,8 @@ use App\Model\Seller;
 use App\Model\Shop;
 use Brian2694\Toastr\Facades\Toastr;
 use Illuminate\Http\Request;
+use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\DB;
 
 class OrderManagementController extends Controller
 {
@@ -38,7 +40,11 @@ class OrderManagementController extends Controller
         return view('backend.admin.order_management.canceled',compact('Canceled'));
     }
     public function orderDetails($id) {
-        $order= Order::find($id);
+        $order= Order::find(decrypt($id));
+        if($order->view == 0){
+            $order->view = 1;
+            $order->save();
+        }
         $shop = Shop::where('id',$order->shop_id)->first();
         $orderDetails= OrderDetails::where('order_id',$order->id)->get();
         return view('backend.admin.order_management.order_details',compact('order','orderDetails','shop'));
@@ -75,7 +81,17 @@ class OrderManagementController extends Controller
         return redirect()->back();
     }
     public function orderInvoicePrint($id){
-        $order = Order::find($id);
+        $order = Order::find(decrypt($id));
         return view('backend.admin.order_management.invoice_print',compact('order'));
+    }
+    public function dailyOrders(){
+        $DailyOrders = Order::select('id', 'created_at')
+            ->latest()
+            ->get()
+            ->groupBy(function($date) {
+                return Carbon::parse($date->created_at)->format('d-m-y'); // grouping by day
+            });
+//            return  $DailyOrders;
+        return view('backend.admin.order_management.daily_order',compact('DailyOrders'));
     }
 }

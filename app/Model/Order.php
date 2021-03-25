@@ -17,4 +17,9 @@ class Order extends Model
     {
         return $this->hasOne('App\Model\OrderTempCommission', 'order_id');
     }
+    public function user()
+    {
+        return $this->belongsTo('App\User', 'user_id');
+
+    }
 }

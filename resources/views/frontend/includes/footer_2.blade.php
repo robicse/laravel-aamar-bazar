@@ -1,14 +1,20 @@
+
+{{--@php--}}
+{{--    $quote = \App\Model\Quote::first();--}}
+{{--@endphp--}}
 {{--<div class="ps-popup" id="subscribe" data-time="500">--}}
-{{--    <div class="ps-popup__content bg--cover" data-background="{{asset('frontend/img/bg/subscribe.jpg')}}"><a class="ps-popup__close" href="#"><i class="icon-cross"></i></a>--}}
-{{--        <form class="ps-form--subscribe-popup" action="http://nouthemes.net/html/martfury/index.html" method="get">--}}
+{{--    <div class="ps-popup__content bg--cover" data-background="{{url($quote->image)}}" ><a class="ps-popup__close" href="#"><i class="icon-cross"></i></a>--}}
+{{--        <form class="ps-form--subscribe-popup" action="" method="get">--}}
 {{--            <div class="ps-form__content">--}}
-{{--                <h4>Get <strong>25%</strong> Discount</h4>--}}
-{{--                <p>Subscribe to the Martfury mailing list <br /> to receive updates on new arrivals, special offers <br /> and our promotions.</p>--}}
+{{--                <h4>Today's Quote</h4>--}}
+{{--                @if(!empty($quote))--}}
+{{--                <h2>{{$quote->title}}</h2>--}}
+{{--                @endif--}}
 {{--                <div class="form-group">--}}
 {{--                    <input class="form-control" type="text" placeholder="Email Address" required>--}}
-{{--                    <button class="ps-btn">Subscribe</button>--}}
+{{--                    <button class="ps-btn"></button>--}}
 {{--                </div>--}}
-{{--                <div class="ps-checkbox">--}}
+{{--                <div class="ps-checkbox" style="padding-top: 10px;">--}}
 {{--                    <input class="form-control" type="checkbox" id="not-show" name="not-show">--}}
 {{--                    <label for="not-show">Don't show this popup again</label>--}}
 {{--                </div>--}}

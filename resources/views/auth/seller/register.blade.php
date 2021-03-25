@@ -117,7 +117,7 @@
                                         <div class="col-12">
                                             <div class="form-group">
                                                 <div class="input-group input-group--style-1">
-                                                    <input type="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" value="{{ old('password') }}" placeholder="Enter Your password" name="password">
+                                                    <input type="password" minlength="6" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" value="{{ old('password') }}" placeholder="Enter Your password" name="password">
                                                     <span class="input-group-addon">
                                                     <i class="fa fa-lock" aria-hidden="true"></i>
                                                 </span>
@@ -129,7 +129,7 @@
                                         <div class="col-12">
                                             <div class="form-group">
                                                 <div class="input-group input-group--style-1">
-                                                    <input type="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" value="{{ old('password') }}" placeholder="Enter Your confirm password" name="password_confirmation">
+                                                    <input type="password" minlength="6" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" value="{{ old('password') }}" placeholder="Enter Your confirm password" name="password_confirmation">
                                                     <span class="input-group-addon">
                                                     <i class="fa fa-lock" aria-hidden="true"></i>
                                                 </span>
@@ -138,7 +138,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="">
+                                <div class="" >
                                     <h4 class="text-info">Store Info..................</h4>
                                     <div class="row">
                                         <div class="col-12">
@@ -174,7 +174,7 @@
                                         <div class="col-12">
                                             <div class="form-group">
                                                 <label for="logo">Shop Logo</label>
-                                                <div class="input-group ">
+                                                <div class="input-group" >
                                                     <input type="file" class="form-control-file {{ $errors->has('logo') ? ' is-invalid' : '' }}" value="{{ old('logo') }}" placeholder="Enter Your Shop logo" name="logo">
                                                 </div>
                                             </div>

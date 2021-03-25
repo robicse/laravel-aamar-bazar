@@ -520,8 +520,8 @@ class ProductController extends Controller
             //check shop categories
             $shopId = Shop::where('user_id',Auth::id())->first();
             //dd($shopId);
-            $shopCategory = ShopCategory::where('shop_id',$shopId->id)->where('category_id',$product_new->category_id)->first();
-            if(empty($shopCategory)){
+            $checkShopCategory = ShopCategory::where('shop_id',$shopId->id)->where('category_id',$product_new->category_id)->first();
+            if(empty($checkShopCategory)){
                 $shopCategoryData = new ShopCategory();
                 $shopCategoryData->shop_id = $shopId->id;
                 $shopCategoryData->category_id = $product_new->category_id;
@@ -530,7 +530,7 @@ class ProductController extends Controller
             }
             //check shop subcategories
 //            $shopSubcategory = ShopSubcategory::where('shop_id',$shopId->id)->where('subcategory_id',$request->subcategory_id)->where('category_id',$shopCategoryData->id)->first();
-
+            $shopCategory = ShopCategory::where('shop_id',$shopId->id)->where('category_id',$product_new->category_id)->first();
                 $shopSubcategoryData = new ShopSubcategory();
                 $shopSubcategoryData->shop_id = $shopId->id;
                 $shopSubcategoryData->subcategory_id = $product_new->subcategory_id;
