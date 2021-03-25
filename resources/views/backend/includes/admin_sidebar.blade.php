@@ -177,7 +177,7 @@
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a href="{{route('admin.daily-orders')}}"
+                                <a href="{{route('admin.s')}}"
                                    class="nav-link {{Request::is('admin/order/daily-orders*') ? 'active' :''}}">
                                     <i class="fa fa-{{Request::is('admin/order/daily-orders*') ? 'folder-open':'folder'}} nav-icon"></i>
                                     <p>Daily Orders</p>
