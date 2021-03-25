@@ -61,6 +61,17 @@
                                 </div>
                             </form>
 
+                            <label>First Order Discount <small class="text-info" >(First Order DIscount will be {{$firstOrderDiscount->value}} tk for all Customer.)</small></label>
+                            <form id="first_order_value">
+                                <div class="input-group mb-3">
+                                    <input type="hidden" class="form-control" name="id" value="{{$firstOrderDiscount->id}}">
+                                    <input type="text" class="form-control" name="value" value="{{$firstOrderDiscount->value}}">
+                                    <div class="input-group-append">
+                                        <button type="submit" class="btn btn-info">Update</button>
+                                    </div>
+                                </div>
+                            </form>
+
                             {{--                            <div class="form-group">--}}
 {{--                                <label for="commission">Commission <small class="text-info" >(Commission will be  percent (%) for all seller.)</small></label>--}}
 {{--                                <input type="number" class="form-control" name="value" value="" id="commission" placeholder="Set Commission for this seller" required>--}}
@@ -119,6 +130,28 @@
                 success: function(data) {
                     // console.log(data);
                     toastr.success('Refferal Value Updated Successfully');
+                }
+            });
+        })
+
+        $("#first_order_value").submit(function(event){
+            event.preventDefault();
+            var $form = $(this);
+            var $inputs = $form.find("input, select, button, textarea");
+            var serializedData = $form.serialize();
+            console.log(serializedData)
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+            $.ajax({
+                type: "POST",
+                url: '{{url('/admin/first_order/value/update')}}',
+                data: $('#first_order_value').serialize(),
+                success: function(data) {
+                    // console.log(data);
+                    toastr.success('First Order Value Updated Successfully');
                 }
             });
         })

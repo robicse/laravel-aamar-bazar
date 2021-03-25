@@ -138,10 +138,25 @@
                             </a>
                         </li>
                         <li class="nav-item has-treeview">
-                            <a href="{{route('seller.customer.list')}}" class="nav-link {{Request::is('seller/customer*') ? 'active' : ''}}">
+                            <a href="{{route('seller.customer.list')}}" class="nav-link {{Request::is('seller/customer/list*') ? 'active' : ''}}">
                                 <i class="nav-icon fas fa-users"></i>
                                 <p>
                                     Customer List
+                                </p>
+                            </a>
+                        </li>
+                    @php
+                    $shop = \App\Model\Shop::where('user_id',Auth::id())->first();
+                    $new_review = \App\Model\Review::where('shop_id',$shop->id)->where('viewed',0)->count();
+                        @endphp
+                        <li class="nav-item has-treeview">
+                            <a href="{{route('seller.customer.review')}}" class="nav-link {{Request::is('seller/customer/review*') ? 'active' : ''}}">
+                                <i class="nav-icon fas fa-star"></i>
+                                <p>
+                                    Customer Review
+                                    @if(!empty($new_review))
+                                        <span class="badge badge-danger">{{$new_review}} New</span>
+                                    @endif
                                 </p>
                             </a>
                         </li>

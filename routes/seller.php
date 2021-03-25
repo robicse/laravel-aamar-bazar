@@ -50,6 +50,7 @@ Route::group(['as'=>'seller.','prefix' =>'seller', 'middleware' => ['auth', 'sel
 
     //Customer Details
     Route::get('customer/list','Seller\CustomerController@index')->name('customer.list');
+    Route::get('customer/review','Seller\CustomerController@customerReview')->name('customer.review');
 
     Route::get('payment/history','Seller\PaymentController@index')->name('payment.history');
     Route::get('money/withdraw','Seller\PaymentController@money')->name('money.withdraw');

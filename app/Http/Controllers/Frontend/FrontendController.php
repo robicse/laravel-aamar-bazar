@@ -64,6 +64,9 @@ class FrontendController extends Controller
 
         if ($userReg->referred_by !=null) {
             $userReg->balance = $refferalValue->value;
+            $refferal_by_user = User::find($request->refferal_by);
+            $refferal_by_user->balance += $refferalValue->value;
+            $refferal_by_user->save();
         }
         $userReg->banned = 1;
         $userReg->save();
@@ -142,8 +145,9 @@ class FrontendController extends Controller
         return redirect()->route('login');
     }
     public function referCode($code){
-        $referralCode = $code;
-       return view('auth.register_with_refferal_code',compact('referralCode'));
+        $refferal_by = User::where('referral_code',$code)->first();
+//        $referralCode = $code;
+       return view('auth.register_with_refferal_code',compact('refferal_by'));
     }
 
 }

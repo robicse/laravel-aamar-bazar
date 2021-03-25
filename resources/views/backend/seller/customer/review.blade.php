@@ -1,5 +1,5 @@
 @extends('backend.seller.layouts.master')
-@section("title","Customer List")
+@section("title","Customer Reviews")
 @push('css')
     <link rel="stylesheet" href="{{asset('backend/plugins/datatables/dataTables.bootstrap4.css')}}">
     <style>
@@ -13,12 +13,12 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>Customer List</h1>
+                    <h1>Customer Reviews</h1>
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
                         <li class="breadcrumb-item"><a href="{{route('admin.dashboard')}}">Home</a></li>
-                        <li class="breadcrumb-item active">Customer List</li>
+                        <li class="breadcrumb-item active">Customer Reviews</li>
                     </ol>
                 </div>
             </div>
@@ -30,7 +30,7 @@
             <div class="col-12">
                 <div class="card card-info card-outline">
                     <div class="card-header">
-                        <h3 class="card-title float-left">Customer Lists</h3>
+                        <h3 class="card-title float-left">Customer Reviews</h3>
                     </div>
                     <!-- /.card-header -->
                     <div class="card-body table-responsive">
@@ -38,27 +38,35 @@
                             <thead>
                             <tr>
                                 <th>#Id</th>
-                                <th>Name</th>
-                                <th>Email</th>
-                                <th>Phone</th>
+                                <th>Customer Name</th>
+                                <th>Product Name</th>
+                                <th>Rating</th>
+                                <th>Comment</th>
                             </tr>
                             </thead>
                             <tbody>
-                            @foreach($customers as $key => $customer)
+                            @foreach($reviews as $key => $review)
                                 <tr>
-                                    <td>{{$key + 1}}</td>
-                                    <td>{{$customer->name}}</td>
-                                    <td>{{$customer->email}}</td>
-                                    <td>{{$customer->phone}}</td>
+                                    <td>
+                                        {{$key + 1}}
+                                        @if($review->viewed == 0)
+                                            <span class="badge badge-danger">New</span>
+                                        @endif
+                                    </td>
+                                    <td>{{$review->user->name}}</td>
+                                    <td>{{$review->product->name}}</td>
+                                    <td>{{$review->rating}}</td>
+                                    <td>{{$review->comment}}</td>
                                 </tr>
                             @endforeach
                             </tbody>
                             <tfoot>
                             <tr>
                                 <th>#Id</th>
-                                <th>Name</th>
-                                <th>Email</th>
-                                <th>Phone</th>
+                                <th>Customer Name</th>
+                                <th>Product Name</th>
+                                <th>Rating</th>
+                                <th>Comment</th>
                             </tr>
                             </tfoot>
                         </table>

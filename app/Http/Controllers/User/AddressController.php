@@ -28,21 +28,43 @@ class AddressController extends Controller
             'postal_code' => 'required',
             'phone' => 'required',
         ]);
-        $address = new Address();
-        $address->user_id = Auth::id();
-        $address->country = 'Bangladesh';
-        $address->address = $request->address;
-        $address->city = $request->city;
-        $address->area = $request->area;
-        $address->latitude = $request->latitude;
-        $address->longitude = $request->longitude;
-        $address->postal_code = $request->postal_code;
-        $address->phone = $request->phone;
-        $address->type = $request->type;
-        $address->save();
+        $check = Address::where('user_id',Auth::id())->first();
+        if (empty($check)){
+            $new_address = new Address();
+            $new_address->user_id = Auth::id();
+            $new_address->country = 'Bangladesh';
+            $new_address->address = $request->address;
+            $new_address->city = $request->city;
+            $new_address->area = $request->area;
+            $new_address->latitude = $request->latitude;
+            $new_address->longitude = $request->longitude;
+            $new_address->postal_code = $request->postal_code;
+            $new_address->phone = $request->phone;
+            $new_address->type = $request->type;
+            $new_address->set_default = 1;
+            $new_address->save();
+        }else{
+            $address = new Address();
+            $address->user_id = Auth::id();
+            $address->country = 'Bangladesh';
+            $address->address = $request->address;
+            $address->city = $request->city;
+            $address->area = $request->area;
+            $address->latitude = $request->latitude;
+            $address->longitude = $request->longitude;
+            $address->postal_code = $request->postal_code;
+            $address->phone = $request->phone;
+            $address->type = $request->type;
+            $address->set_default = 0;
+            $address->save();
+        }
         Toastr::success('Address Created Successfully');
         return redirect()->back();
     }
+
+
+
+
 
     public function show($id)
     {
