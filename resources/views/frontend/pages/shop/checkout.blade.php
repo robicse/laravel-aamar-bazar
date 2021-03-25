@@ -123,53 +123,6 @@
                                             </div>
                                         @endif
                                     </div>
-                                    {{--                                    <div class="form-group">--}}
-                                    {{--                                        <label>Name<sup>*</sup>--}}
-                                    {{--                                        </label>--}}
-                                    {{--                                        <div class="form-group__content">--}}
-                                    {{--                                            <input class="form-control" type="text" name="name" value="{{Auth::user()->name}}">--}}
-                                    {{--                                        </div>--}}
-                                    {{--                                    </div>--}}
-                                    {{--                                    <div class="form-group">--}}
-                                    {{--                                        <label>Email Address<sup>*</sup>--}}
-                                    {{--                                        </label>--}}
-                                    {{--                                        <div class="form-group__content">--}}
-                                    {{--                                            <input class="form-control" type="email" name="email" value="{{Auth::user()->email}}">--}}
-                                    {{--                                        </div>--}}
-                                    {{--                                    </div>--}}
-                                    {{--                                    <div class="form-group">--}}
-                                    {{--                                        <label>Phone<sup>*</sup>--}}
-                                    {{--                                        </label>--}}
-                                    {{--                                        <div class="form-group__content">--}}
-                                    {{--                                            <input class="form-control" type="number" name="phone" value="{{Auth::user()->phone}}">--}}
-                                    {{--                                        </div>--}}
-                                    {{--                                    </div>--}}
-                                    {{--                                    <div class="form-group">--}}
-                                    {{--                                        <label>Address<sup>*</sup>--}}
-                                    {{--                                        </label>--}}
-                                    {{--                                        <div class="form-group__content">--}}
-                                    {{--                                            <input class="form-control" type="text" name="address" value="{{Auth::user()->address}}">--}}
-                                    {{--                                        </div>--}}
-                                    {{--                                    </div>--}}
-                                    {{--                                    <div class="form-group">--}}
-                                    {{--                                        <div class="ps-checkbox">--}}
-                                    {{--                                            <input class="form-control" type="checkbox" id="create-account">--}}
-                                    {{--                                            <label for="create-account">Create an account?</label>--}}
-                                    {{--                                        </div>--}}
-                                    {{--                                    </div>--}}
-                                    {{--                                    <div class="form-group">--}}
-                                    {{--                                        <div class="ps-checkbox">--}}
-                                    {{--                                            <input class="form-control" type="checkbox" id="cb01">--}}
-                                    {{--                                            <label for="cb01">Ship to a different address?</label>--}}
-                                    {{--                                        </div>--}}
-                                    {{--                                    </div>--}}
-                                    {{--                                    <h3 class="mt-40"> Addition information</h3>--}}
-                                    {{--                                    <div class="form-group">--}}
-                                    {{--                                        <label>Order Notes</label>--}}
-                                    {{--                                        <div class="form-group__content">--}}
-                                    {{--                                            <textarea class="form-control" rows="7" name="note" placeholder="Notes about your order, e.g. special notes for delivery."></textarea>--}}
-                                    {{--                                        </div>--}}
-                                    {{--                                    </div>--}}
                                 </div>
                             </div>
                             <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12  ">
@@ -204,12 +157,12 @@
                                                            Cash On Delivery
                                                         </label>
                                                     </div>
-                                                    <div class="form-check form-check-inline mr-0">
-                                                        <input class="form-check-input" type="radio" name="pay" id="ssl" value="ssl" checked autocomplete="off">
-                                                        <label class="form-check-label" for="ssl" style="">
-                                                            Online Pay
-                                                        </label>
-                                                    </div>
+{{--                                                    <div class="form-check form-check-inline mr-0">--}}
+{{--                                                        <input class="form-check-input" type="radio" name="pay" id="ssl" value="ssl" checked autocomplete="off">--}}
+{{--                                                        <label class="form-check-label" for="ssl" style="">--}}
+{{--                                                            Online Pay--}}
+{{--                                                        </label>--}}
+{{--                                                    </div>--}}
                                                 </div>
                                             </div>
                                         </div><button class="ps-btn ps-btn--fullwidth" >Submit Order</button>

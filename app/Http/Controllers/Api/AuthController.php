@@ -56,12 +56,21 @@ class AuthController extends Controller
         if (!empty($userPhoneCheck)){
             return response()->json(['success'=>true,'response' =>"This number already exist!"], 405);
         }
+        $refferalValue = BusinessSetting::where('type','refferal_value')->first();
         $userReg = new User();
         $userReg->name = $request->name;
         $userReg->email = $request->email;
         $userReg->phone = $request->phone;
         $userReg->password = Hash::make($request->password);
         $userReg->user_type = 'customer';
+        $userReg->referral_code = mt_rand(000000,999999);
+        $userReg->referred_by = $request->referral_code;
+        if ($userReg->referred_by !=null) {
+            $userReg->balance = $refferalValue->value;
+            $refferal_by_user = User::where('referral_code', $request->referral_code)->first();
+            $refferal_by_user->balance += $refferalValue->value;
+            $refferal_by_user->save();
+        }
         $userReg->banned = 1;
         $userReg->save();
 

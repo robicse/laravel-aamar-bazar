@@ -1,27 +1,29 @@
 
-{{--@php--}}
-{{--    $quote = \App\Model\Quote::first();--}}
-{{--@endphp--}}
-{{--<div class="ps-popup" id="subscribe" data-time="500">--}}
-{{--    <div class="ps-popup__content bg--cover" data-background="{{url($quote->image)}}" ><a class="ps-popup__close" href="#"><i class="icon-cross"></i></a>--}}
-{{--        <form class="ps-form--subscribe-popup" action="" method="get">--}}
-{{--            <div class="ps-form__content">--}}
-{{--                <h4>Today's Quote</h4>--}}
-{{--                @if(!empty($quote))--}}
-{{--                <h2>{{$quote->title}}</h2>--}}
-{{--                @endif--}}
+@php
+    $quote = \App\Model\Quote::first();
+@endphp
+@if(Auth::user() && Auth::user()->user_type == 'customer')
+<div class="ps-popup" id="subscribe" data-time="500">
+    <div class="ps-popup__content bg--cover" data-background="{{url($quote->image)}}" ><a class="ps-popup__close" href="#"><i class="icon-cross"></i></a>
+        <form class="ps-form--subscribe-popup" action="" method="get">
+            <div class="ps-form__content">
+                <h4>Today's Quote</h4>
+                @if(!empty($quote))
+                <h2>{{$quote->title}}</h2>
+                @endif
 {{--                <div class="form-group">--}}
 {{--                    <input class="form-control" type="text" placeholder="Email Address" required>--}}
 {{--                    <button class="ps-btn"></button>--}}
 {{--                </div>--}}
-{{--                <div class="ps-checkbox" style="padding-top: 10px;">--}}
-{{--                    <input class="form-control" type="checkbox" id="not-show" name="not-show">--}}
-{{--                    <label for="not-show">Don't show this popup again</label>--}}
-{{--                </div>--}}
-{{--            </div>--}}
-{{--        </form>--}}
-{{--    </div>--}}
-{{--</div>--}}
+                <div class="ps-checkbox" style="padding-top: 10px;">
+                    <input class="form-control" type="checkbox" id="not-show" name="not-show">
+                    <label for="not-show">Don't show this popup again</label>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+@endif
 <div id="back2top"><i class="icon icon-arrow-up"></i></div>
 <div class="ps-site-overlay"></div>
 <div id="loader-wrapper">
@@ -82,3 +84,16 @@
         </div>
     </div>
 </div>
+<script>
+    $j(document).ready(function() {
+        if(localStorage.getItem('popState') != 'shown'){
+            $j("#popup").delay(2000).fadeIn();
+            localStorage.setItem('popState','shown')
+        }
+
+        $j('#subscribe, #subscribe').click(function(e) // You are clicking the close button
+        {
+            $j('#subscribe').fadeOut(); // Now the pop up is hiden.
+        });
+    });
+</script>
