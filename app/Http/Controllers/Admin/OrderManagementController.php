@@ -91,7 +91,7 @@ class OrderManagementController extends Controller
             ->groupBy(function($date) {
                 return Carbon::parse($date->created_at)->format('d-m-y'); // grouping by day
             });
-//            return  $DailyOrders;
+        //return  $DailyOrders;
         return view('backend.admin.order_management.daily_order',compact('DailyOrders'));
     }
 }

@@ -2,29 +2,6 @@
 @section("title","In House Product List")
 @push('css')
     <link rel="stylesheet" href="{{asset('backend/plugins/datatables/dataTables.bootstrap4.css')}}">
-    <style>
-        .aa-input-container svg {
-            fill: var(--terthemecolor);
-        }
-        svg:hover {
-            fill: #ff0000;
-        }
-        ::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
-            color:#000000;
-            opacity: 1; /* Firefox */
-        }
-        .custom_search{
-            border: 0px solid #dbdbdb !important;
-            border-bottom: 1px solid #dbdbdb !important;
-            border-radius:7px !important;
-            font-size: 17px;padding: 24px 15px !important;
-            color:#0c0c0c !important;
-            margin-top: 10px !important;
-            -webkit-box-shadow: 0px 2px 4px 0px rgba(64,63,64,.34);
-            -moz-box-shadow: 0px 2px 4px 0px rgba(64,63,64,.34);
-            box-shadow: 0px 2px 4px 0px rgba(64,63,64,.07) !important;
-        }
-    </style>
 @endpush
 @section('content')
     <section class="content-header">
@@ -49,11 +26,6 @@
                 <div class="card card-info card-outline">
                     <div class="card-header">
                         <h3 class="card-title float-left">In House Product List</h3>
-                        <div class="col-md-12 text-center mb-4 mt-4">
-                            <div class="aa-input-container" id="aa-input-container">
-                                <input type="search" id="aa-search-input" class="aa-input-search custom_search" placeholder="Search for any keyword..." name="search" autocomplete="off"/>
-                            </div>
-                        </div>
                         <div class="float-right">
                             <a href="{{route('admin.products.create')}}">
                                 <button class="btn btn-success">

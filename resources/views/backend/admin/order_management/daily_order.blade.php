@@ -32,22 +32,27 @@
                         <table  id="example1" class="table table-bordered table-striped">
                             <thead>
                             <tr>
+                                <th>#ID</th>
                                 <th>Date</th>
                                 <th>Total Order</th>
                             </tr>
                             </thead>
 
                             <tbody>
+                            @php $i = 0; @endphp
                             @foreach($DailyOrders as $key => $DailyOrder)
+                                @php $i++; @endphp
 {{--                                @dd(date('jS F, y',strtotime($DailyOrder[0]['created_at'])))--}}
                                 <tr>
-                                    <td>{{ date('jS F, y',strtotime($DailyOrder[0]['created_at'])) }}</td>
-                                    <td>Total ({{ $DailyOrder->count() }}) </td>
+                                    <td>{{$i  }}</td>
+                                    <td>{{date('jS F, Y',strtotime($DailyOrder[0]['created_at'])) }}</td>
+                                    <td>Total Orders ({{ $DailyOrder->count() }}) </td>
                                 </tr>
                             @endforeach
                             </tbody>
                             <tfoot>
                             <tr>
+                                <th>#ID</th>
                                 <th>Date</th>
                                 <th>Total Order</th>
                             </tr>
@@ -74,7 +79,8 @@
                 "searching": false,
                 "ordering": true,
                 "info": true,
-                "autoWidth": false
+                "autoWidth": false,
+                "order": [[ 0, 'asc' ]],
             });
         });
 
