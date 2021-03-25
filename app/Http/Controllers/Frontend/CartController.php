@@ -60,7 +60,15 @@ class CartController extends Controller
                 $data['options']['shop_id'] =  $shop->id;
                 $data['options']['shop_userid'] =  $product->user_id;
                 $data['options']['cart_type'] = "product";
-
+                $vPrice = home_discounted_base_price($product->id);
+                if ($product->vat_type == 'percent') {
+                    $data['options']['vat_type'] = 'percent';
+                    $vPrice += ($vPrice * $product->vat) / 100;
+                } elseif ($product->vat_type == 'amount') {
+                    $data['options']['vat_type'] = 'amount';
+                    $vPrice += $product->vat;
+                }
+                $data['options']['vat'] = $vPrice;
                 Cart::add($data);
                 $data['countCart'] = Cart::count();
                 //dd(Cart::content());

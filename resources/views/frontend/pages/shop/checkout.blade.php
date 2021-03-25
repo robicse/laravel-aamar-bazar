@@ -136,10 +136,15 @@
                                             <div class="ps-block__content">
                                                 <table class="table ps-block__products">
                                                     <tbody>
+                                                    @php $vat = 0.00; @endphp
                                                     @foreach(Cart::content() as $product)
+
                                                         <tr>
-                                                            <td><a href="#"> {{$product->name}} ×{{$product->qty}}</a>
-                                                                <p>Sold By:<strong>{{$product->options->shop_name}}</strong></p>
+                                                            <td>
+                                                                <a href="#"> {{$product->name}} ×{{$product->qty}}</a>
+                                                                <p>VAT:<strong>{{$vat}}</strong></p>
+                                                                {{--<p>Sold By:<strong>{{$product->options->shop_name}}</strong></p>--}}
+                                                                <span class="ps-block__content"></span>
                                                             </td>
                                                             <td>৳{{$product->subtotal()}}</td>
                                                         </tr>
