@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Product extends Model
 {
+
     public function user()
     {
         return $this->belongsTo('App\User', 'user_id');
@@ -34,4 +35,5 @@ class Product extends Model
     public function productStock() {
         return $this->hasMany('App\Model\ProductStock', 'product_id');
     }
+
 }
