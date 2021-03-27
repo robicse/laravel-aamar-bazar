@@ -54,6 +54,9 @@
                                 <th>Date</th>
                                 <th>Invoice ID</th>
                                 <th>Payment Method</th>
+                                <th>Grand Total</th>
+                                <th>Discount</th>
+                                <th>Total Vat</th>
                                 <th title="Delivery Status">D.Status</th>
                                 <th>Details</th>
                             </tr>
@@ -65,6 +68,9 @@
                                 <td>{{date('j-m-Y',strtotime($pending->created_at))}}</td>
                                 <td>{{$pending->invoice_code}}</td>
                                 <td>{{$pending->payment_type}}</td>
+                                <td>{{$pending->grand_total }}</td>
+                                <td>{{$pending->discount }}</td>
+                                <td>{{$pending->total_vat }}</td>
                                 <td>
                                     <form id="status-form-{{$pending->id}}" action="{{route('seller.order-product.status',$pending->id)}}">
                                         <select name="delivery_status" id="" onchange="deliveryStatusChange({{$pending->id}})">
@@ -91,6 +97,9 @@
                                     <th>Date</th>
                                     <th>Invoice ID</th>
                                     <th>Payment Method</th>
+                                    <th>Grand Total</th>
+                                    <th>Discount</th>
+                                    <th>Total Vat</th>
                                     <th title="Delivery Status">D.Status</th>
                                     <th>Details</th>
                                 </tr>

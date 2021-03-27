@@ -98,7 +98,7 @@
                                             <th>Product Name</th>
                                             <th>Payment Type</th>
                                             <th>QTY</th>
-                                            <th>Price</th>
+                                            <th>Vat</th>
                                             <th>Total</th>
                                             <th>Print</th>
                                         </tr>
@@ -113,8 +113,8 @@
                                             <td>{{$orderDetail->name}}</td>
                                             <td>{{$orders->payment_status}}</td>
                                             <td>{{$orderDetail->quantity}}</td>
-                                            <td>{{$orderDetail->price}}</td>
-                                            <td>{{$orderDetail->price * $orderDetail->quantity }}</td>
+                                            <td>{{$orderDetail->vat}}</td>
+                                            <td>{{($orderDetail->price * $orderDetail->quantity) + $orderDetail->vat }}</td>
                                             <td>
                                                 <a href="{{ route('invoice.print',encrypt($orders->id)) }}" target="_blank" class="btn btn-default" style="background: green;"><i class="fa fa-print"></i></a>
                                             </td>
@@ -126,6 +126,43 @@
                                 <!-- /.col -->
                             </div>
                             <!-- /.row -->
+                            <div class="row">
+                                <!-- accepted payments column -->
+                                <div class="col-6">
+                                </div>
+                                <!-- /.col -->
+                                <div class="col-6">
+                                    <div class="table-responsive">
+                                        <table class="table">
+                                            <tr>
+                                                <th style="width:50%">Subtotal:</th>
+                                                <td>{{$orders->grand_total}}</td>
+                                            </tr>
+                                            {{--                                        <tr>--}}
+                                            {{--                                            <th>Tax (9.3%)</th>--}}
+                                            {{--                                            <td>$10.34</td>--}}
+                                            {{--                                        </tr>--}}
+                                            <tr>
+                                                <th>Total Vat:</th>
+                                                <td>{{$orders->total_vat}}</td>
+                                            </tr>
+                                            <tr>
+                                                <th>Shipping:</th>
+                                                <td>{{$orders->delivery_cost}}</td>
+                                            </tr>
+                                            <tr>
+                                                <th>Discount:</th>
+                                                <td>{{$orders->discount}}</td>
+                                            </tr>
+                                            <tr>
+                                                <th>Total:</th>
+                                                <td>{{($orders->grand_total + $orders->delivery_cost + $orders->total_vat)- $orders->discount}}</td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                </div>
+                                <!-- /.col -->
+                            </div>
                         </div>
                         <!-- /.invoice -->
                     </div><!-- /.col -->

@@ -8,6 +8,7 @@ use App\Model\Product;
 use App\Model\Review;
 use App\Model\Shop;
 use Illuminate\Http\Request;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\DB;
 
 class ProductController extends Controller
@@ -141,7 +142,12 @@ class ProductController extends Controller
         }
     }
     public function allReviews($id){
-        $reviews = Review::where('product_id',$id)->latest()->get();
+        $reviews = DB::table('reviews')
+            ->join('users','reviews.user_id','=','users.id')
+            ->where('reviews.product_id',$id)
+            ->select('users.avatar_original as user_image','users.name as user_name','reviews.*')
+            ->latest()
+            ->get();
         if (!empty($reviews))
         {
             return response()->json(['success'=>true,'response'=> $reviews], 200);

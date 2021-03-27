@@ -99,6 +99,7 @@
                                         <th>Payment Type</th>
                                         <th>QTY</th>
                                         <th>Price</th>
+                                        <th>Vat</th>
                                         <th>Total</th>
                                         <th>Print</th>
                                     </tr>
@@ -114,7 +115,8 @@
                                             <td>{{$order->payment_status}}</td>
                                             <td>{{$orderDetail->quantity}}</td>
                                             <td>{{$orderDetail->price}}</td>
-                                            <td>{{$orderDetail->price * $orderDetail->quantity }}</td>
+                                            <td>{{$orderDetail->vat}}</td>
+                                            <td>{{($orderDetail->price * $orderDetail->quantity) + $orderDetail->vat }}</td>
                                             <td>
                                                 <a href="{{ route('admin.invoice.print',encrypt($order->id)) }}" target="_blank" class="btn btn-default" style="background: green;"><i class="fa fa-print"></i></a>
                                             </td>
@@ -144,12 +146,20 @@
 {{--                                            <td>$10.34</td>--}}
 {{--                                        </tr>--}}
                                         <tr>
+                                            <th>Total Vat:</th>
+                                            <td>{{$order->total_vat}}</td>
+                                        </tr>
+                                        <tr>
                                             <th>Shipping:</th>
                                             <td>{{$order->delivery_cost}}</td>
                                         </tr>
                                         <tr>
+                                            <th>Discount:</th>
+                                            <td>{{$order->discount}}</td>
+                                        </tr>
+                                        <tr>
                                             <th>Total:</th>
-                                            <td>{{$order->grand_total + $order->delivery_cost}}</td>
+                                            <td>{{($order->grand_total + $order->delivery_cost + $order->total_vat)- $order->discount}}</td>
                                         </tr>
                                     </table>
                                 </div>
