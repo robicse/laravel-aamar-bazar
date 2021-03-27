@@ -37,6 +37,7 @@ class AuthController extends Controller
             if ($user->user_type == 'seller'){
                 $seller = Seller::where('user_id',$user->id)->first();
                 $shop = Shop::where('user_id',$user->id)->first();
+                $success['seller_id'] = $seller->id;
                 $success['shop_name'] = $shop->name;
                 $success['verification_status'] = $seller->verification_status;
             }

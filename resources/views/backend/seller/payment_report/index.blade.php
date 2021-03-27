@@ -32,14 +32,18 @@
                         <table  id="example1" class="table table-bordered table-striped">
                             <thead>
                             <tr>
+                                <th>#ID</th>
                                 <th>Amount</th>
                                 <th>Month</th>
                             </tr>
                             </thead>
 
                             <tbody>
+                            @php $i = 0; @endphp
                             @foreach($monthlyProfits as $key => $monthlyProfit)
+                                @php $i++; @endphp
                                 <tr>
+                                    <td>{{$i  }}</td>
                                     <td>{{ $monthlyProfit->sum('profit') }} tk</td>
                                     <td>{{ date('F, Y',strtotime($monthlyProfit[0]['created_at'])) }}</td>
 {{--                                    <td>{{$allPay->payment_method}}</td>--}}
@@ -48,6 +52,7 @@
                             </tbody>
                             <tfoot>
                             <tr>
+                                <th>#ID</th>
                                 <th>Amount</th>
                                 <th>Month</th>
                             </tr>

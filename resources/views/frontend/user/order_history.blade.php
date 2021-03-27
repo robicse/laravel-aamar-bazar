@@ -34,6 +34,7 @@
                                                 <th>Date</th>
                                                 <th>Grand Total</th>
                                                 <th>Discount</th>
+                                                <th>Total Vat</th>
                                                 <th>Payment Status</th>
                                                 <th>Delivery Status</th>
                                                 <th>Print</th>
@@ -51,6 +52,7 @@
                                                 <td>{{date('j-m-Y',strtotime($order->created_at))}}</td>
                                                 <td>{{ $order->grand_total }}</td>
                                                 <td>{{ $order->discount }}</td>
+                                                <td>{{ $order->total_vat }}</td>
                                                 <td>{{ $order->payment_status }}</td>
                                                 <td>{{ $order->delivery_status }}</td>
                                                 <td>

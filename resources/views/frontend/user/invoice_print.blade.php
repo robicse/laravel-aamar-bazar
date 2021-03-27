@@ -149,6 +149,10 @@
 {{--                            <td>$10.34</td>--}}
 {{--                        </tr>--}}
                         <tr>
+                            <th>Vat:</th>
+                            <td>{{$order->total_vat}}</td>
+                        </tr>
+                        <tr>
                             <th>Shipping:</th>
                             <td>{{$order->delivery_cost}}</td>
                         </tr>
