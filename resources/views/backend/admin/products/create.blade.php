@@ -158,7 +158,7 @@
                                                 <option value="percent">Percent</option>
                                             </select>
                                         </div>
-                                        <div class="form-group col-md-7">
+                                        <div class="form-group col-md-3">
                                             <label for="discount">VAT</label>
                                             <input type="number" min="0" value="0" step="0.01" placeholder="Vat"
                                                    name="vat" class="form-control" required="">
@@ -170,6 +170,11 @@
                                                 <option value="amount">Flat</option>
                                                 <option value="percent">Percent</option>
                                             </select>
+                                        </div>
+                                        <div class="form-group col-md-4">
+                                            <label for="labour_cost">Labour Cost</label>
+                                            <input type="number" min="0" value="0" step="0.01" placeholder="Labour Cost"
+                                                   name="labour_cost" class="form-control" required="">
                                         </div>
                                     </div>
                                 </div>

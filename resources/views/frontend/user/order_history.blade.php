@@ -17,7 +17,7 @@
             <div class="container">
                 <div class="row">
                     @include('frontend.user.includes.user_sidebar')
-                    <div class="col-lg-8">
+                    <div class="col-lg-9">
                         <div class="ps-section__right">
                             <div class="ps-section--account-setting">
                                 <div class="ps-section__header">
@@ -33,6 +33,7 @@
                                                 <th>Invoice</th>
                                                 <th>Date</th>
                                                 <th>Grand Total</th>
+                                                <th>Discount</th>
                                                 <th>Payment Status</th>
                                                 <th>Delivery Status</th>
                                                 <th>Print</th>
@@ -49,6 +50,7 @@
                                                 <td>{{ $order->invoice_code }}</td>
                                                 <td>{{date('j-m-Y',strtotime($order->created_at))}}</td>
                                                 <td>{{ $order->grand_total }}</td>
+                                                <td>{{ $order->discount }}</td>
                                                 <td>{{ $order->payment_status }}</td>
                                                 <td>{{ $order->delivery_status }}</td>
                                                 <td>

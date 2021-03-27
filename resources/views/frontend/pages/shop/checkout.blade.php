@@ -125,6 +125,11 @@
                                     </div>
                                 </div>
                             </div>
+                            @php
+                            $order = \App\Model\Order::where('user_id',Auth::id())->first();
+
+                            $offer = \App\Model\BusinessSetting::where('type','first_order_discount')->first();
+                            @endphp
                             <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12  ">
                                 <div class="ps-form__total">
                                     <h3 class="ps-form__heading">Your Order</h3>
@@ -136,26 +141,34 @@
                                             <div class="ps-block__content">
                                                 <table class="table ps-block__products">
                                                     <tbody>
-                                                    @php $totalVat = 0.00; @endphp
+                                                    @php $totalVat = 0.00; $totalLabourCost = 0.00@endphp
                                                     @foreach(Cart::content() as $product)
                                                         @php
                                                             $totalVat +=  $product->options->vat * $product->qty;
+                                                            $totalLabourCost +=  $product->options->labour_cost * $product->qty;
                                                         @endphp
-                                                        <tr>
+                                                        <tr style="border-bottom: 1px solid #ddd;">
                                                             <td>
                                                                 <a href="#"> {{$product->name}} ×{{$product->qty}}</a>
-                                                                <p>VAT:<strong class="text-dark"> ৳{{$product->options->vat * $product->qty}}</strong></p>
+                                                                <div>VAT:<strong class="text-dark"> ৳{{$product->options->vat * $product->qty}}</strong></div>
+                                                                <div>Labour Cost:<strong class="text-dark"> ৳{{$product->options->labour_cost * $product->qty}}</strong></div>
                                                                 {{--<p>Sold By:<strong>{{$product->options->shop_name}}</strong></p>--}}
-                                                                <span class="ps-block__content"></span>
+
                                                             </td>
-                                                            <td>৳{{$product->subtotal()}}</td>
+                                                            <td >Subtotal: ৳{{$product->subtotal()}}</td>
                                                         </tr>
                                                     @endforeach
                                                     </tbody>
                                                 </table>
                                                 <h4 class="ps-block__title">Total VAT: <span>৳{{$totalVat}}</span></h4>
                                                 <h4 class="ps-block__title">Subtotal: <span>৳{{Cart::subtotal()}}</span></h4>
-                                                <h3>Total: <span>৳{{Cart::total() + $totalVat}}</span></h3>
+                                                @if(empty($order))
+                                                    <h4 class="ps-block__title">Discount: <span>৳{{$offer->value}}</span></h4>
+                                                    <h3>Total: <span>৳{{(Cart::total() +$totalVat + $totalLabourCost) - $offer->value}}</span></h3>
+                                                @else
+                                                    <h3>Total: <span>৳{{Cart::total() + $totalVat + $totalLabourCost}}</span></h3>
+                                                @endif
+
                                             </div>
                                             <div class="row my-3" style="padding-top: 10px; padding-bottom: 10px;">
                                                 <div class="col-md-12 text-center">

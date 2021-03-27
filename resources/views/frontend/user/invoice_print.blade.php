@@ -153,8 +153,12 @@
                             <td>{{$order->delivery_cost}}</td>
                         </tr>
                         <tr>
+                            <th>Discount:</th>
+                            <td>{{$order->discount}}</td>
+                        </tr>
+                        <tr>
                             <th>Total:</th>
-                            <td>{{$order->grand_total + $order->delivery_cost}}</td>
+                            <td>{{$order->grand_total + $order->delivery_cost - $order->discount}}</td>
                         </tr>
                     </table>
                 </div>

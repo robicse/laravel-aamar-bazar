@@ -61,6 +61,8 @@ Route::group(['as'=>'admin.','prefix' =>'admin','namespace'=>'Admin', 'middlewar
     Route::post('/sellers/pay_to_seller_commission', 'SellerController@pay_to_seller_commission')->name('seller.commissions.pay_to_seller');
     Route::post('/widthdraw-request/store/{id}', 'SellerController@admin_withdraw_store')->name('withdraw-request.store');
     Route::get('/sellers/ban/{id}','SellerController@banSeller')->name('sellers.ban');
+    Route::get('/search/area', 'SellerController@search_area');
+    Route::get('/seller/{area}','SellerController@areaWiseSeller')->name('area-wise.seller');
 
 // Admin Order Management
     Route::get('order/pending','OrderManagementController@pendingOrder')->name('order.pending');

@@ -60,6 +60,7 @@ class CartController extends Controller
                 $data['options']['shop_id'] =  $shop->id;
                 $data['options']['shop_userid'] =  $product->user_id;
                 $data['options']['cart_type'] = "product";
+                $data['options']['labour_cost'] = $product->labour_cost;
                 $Price = home_discounted_base_price($product->id);
                 $vPrice = 0;
                 if ($product->vat_type == 'percent') {
@@ -90,6 +91,7 @@ class CartController extends Controller
             $data['options']['shop_id'] =  $shop->id;
             $data['options']['shop_userid'] =  $product->user_id;
             $data['options']['cart_type'] = "product";
+            $data['options']['labour_cost'] = $product->labour_cost;
             $Price = $product->unit_price;
             $vPrice = 0;
             if ($product->vat_type == 'percent') {
@@ -122,6 +124,7 @@ class CartController extends Controller
             $data['options']['shop_id'] =  $shop->id;
             $data['options']['shop_userid'] =  $product->user_id;
             $data['options']['cart_type'] = "product";
+            $data['options']['labour_cost'] = $product->labour_cost;
             $Price = home_discounted_base_price($product->id);
             $vPrice = 0;
             if ($product->vat_type == 'percent') {
@@ -161,6 +164,7 @@ class CartController extends Controller
                 $data['options']['shop_id'] =  $shop->id;
                 $data['options']['shop_userid'] =  $product->user_id;
                 $data['options']['cart_type'] = "product";
+                $data['options']['labour_cost'] = $product->labour_cost;
                 $Price = variantProductPrice($product->id);
                 $vPrice = 0;
                 if ($product->vat_type == 'percent') {
@@ -200,6 +204,7 @@ class CartController extends Controller
                 $data['options']['shop_id'] =  $shop->id;
                 $data['options']['shop_userid'] =  $product->user_id;
                 $data['options']['cart_type'] = "product";
+                $data['options']['labour_cost'] = $product->labour_cost;
                 $Price = $variant->price;
                 $vPrice = 0;
                 if ($product->vat_type == 'percent') {
@@ -253,6 +258,10 @@ class CartController extends Controller
     }
 
     public function orderSubmit(Request $request) {
+        if ($request->address_id == null) {
+            Toastr::error('Please select an address.','Please Select');
+            return back();
+        }
         //dd($request->all());
         $this->validate($request,[
 //            'name' => 'required',
@@ -280,7 +289,8 @@ class CartController extends Controller
            $shop_id = $content->options->shop_id;
            break;
         }
-//        dd($shop_id);
+        $check = Order::where('user_id',Auth::id())->first();
+        $discount = BusinessSetting::where('type','first_order_discount')->first();
         $order = new Order();
         $order->invoice_code = date('Ymd-his');
         $order->user_id = Auth::user()->id;
@@ -289,6 +299,10 @@ class CartController extends Controller
         $order->payment_type = $request->pay;
         $order->payment_status = $payment_status;
         $order->grand_total = Cart::total();
+        if (empty($check)) {
+            $order->discount = $discount->value;
+            $order->grand_total = Cart::total() - $order->discount;
+        }
         $order->delivery_cost = 0;
         $order->delivery_status = "Pending";
         $order->view = 0;
@@ -297,7 +311,11 @@ class CartController extends Controller
 
         $profit = 0;
         $totalVat = 0;
+        $totalLabourCost = 0;
         foreach (Cart::content() as $content) {
+            //dd($content->options->labour_cost);
+            $product = Product::find($content->id);
+
             $orderDetails = new OrderDetails();
             $orderDetails->order_id = $order->id;
             $orderDetails->variation_id = $content->options->variant_id;
@@ -305,8 +323,18 @@ class CartController extends Controller
             $orderDetails->name = $content->name;
             $orderDetails->price = $content->price;
             $orderDetails->quantity = $content->qty;
+            $vPrice = 0;
+            if ($product->vat_type == 'percent') {
+                $vPrice += ($content->price * $product->vat) / 100;
+            } elseif ($product->vat_type == 'amount') {
+                $vPrice += $product->vat;
+            }
+            $orderDetails->vat = $vPrice;
+            $orderDetails->labour_cost = $content->options->labour_cost;
+            $totalVat += $vPrice*$content->qty;
+            $totalLabourCost += ($content->options->labour_cost)*$content->qty;
             $orderDetails->save();
-            $product = Product::find($content->id);
+
             $product->num_of_sale++;
             $product->save();
             $profitData = ($content->price - $product->purchase_price) * $content->qty;
@@ -314,6 +342,9 @@ class CartController extends Controller
         }
         $orderUpdate = Order::find($order->id);
         $orderUpdate->profit = $profit;
+        $orderUpdate->total_vat = $totalVat;
+        $orderUpdate->total_labour_cost = $totalLabourCost;
+        $orderUpdate->grand_total += $totalVat;
         $orderUpdate->save();
 
         if ($request->pay == 'cod') {

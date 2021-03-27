@@ -25,9 +25,18 @@ class SellerController extends Controller
     public function index()
     {
         $sellerUserInfos = User::where('user_type','seller')->latest()->get();
-        return view('backend.admin.seller.index', compact('sellerUserInfos'));
+        $shops = null;
+        return view('backend.admin.seller.index', compact('sellerUserInfos','shops'));
     }
-
+    public function search_area(Request $request){
+        $name = $request->get('q');
+        $area = Shop::where('area', 'LIKE', '%'. $name. '%')->limit(5)->get();
+        return $area;
+    }
+    public function areaWiseSeller($area){
+        $shops = Shop::where('area',$area)->latest()->get();
+        return view('backend.admin.seller.index', compact('shops'));
+    }
     public function verification(Request $request)
     {
         //return $request->id;

@@ -101,6 +101,7 @@ Route::get('/shop-total-ratings/{id}','Api\ShopController@getShopRatings');
 
 
 Route::get('/favorite-shops', 'Api\CustomerController@getFavoriteShop' );
+Route::get('/product/reviews/{id}','Api\ProductController@allReviews');
 
 //Offers
 Route::get('/offers','Api\OfferController@getOffers');

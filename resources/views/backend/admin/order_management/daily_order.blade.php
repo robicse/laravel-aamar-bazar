@@ -42,11 +42,10 @@
                             @php $i = 0; @endphp
                             @foreach($DailyOrders as $key => $DailyOrder)
                                 @php $i++; @endphp
-{{--                                @dd(date('jS F, y',strtotime($DailyOrder[0]['created_at'])))--}}
                                 <tr>
                                     <td>{{$i  }}</td>
                                     <td>{{date('jS F, Y',strtotime($DailyOrder[0]['created_at'])) }}</td>
-                                    <td>Total Orders ({{ $DailyOrder->count() }}) </td>
+                                    <td>{{ $DailyOrder->count() }}</td>
                                 </tr>
                             @endforeach
                             </tbody>
