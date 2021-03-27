@@ -169,10 +169,10 @@
                                         {{--                                        <div class="ps-product__actions"><a href="#"><i class="icon-heart"></i></a><a href="#"><i class="icon-chart-bars"></i></a></div>--}}
                                     </div>
                                 </form>
-                                <div class="ps-product__specification"><a class="report" href="#">Report Abuse</a>
-                                    <p><strong>SKU:</strong> SF1133569600-1</p>
-                                    {{--<p class="tags"><strong> Tags</strong><a href="#">sofa</a>,<a href="#">technologies</a>,<a href="#">wireless</a></p>--}}
-                                </div>
+{{--                                <div class="ps-product__specification"><a class="report" href="#">Report Abuse</a>--}}
+{{--                                    <p><strong>SKU:</strong> SF1133569600-1</p>--}}
+{{--                                    --}}{{--<p class="tags"><strong> Tags</strong><a href="#">sofa</a>,<a href="#">technologies</a>,<a href="#">wireless</a></p>--}}
+{{--                                </div>--}}
 {{--                                <div class="ps-product__sharing"><a class="facebook" href="#"><i class="fa fa-facebook"></i></a><a class="twitter" href="#"><i class="fa fa-twitter"></i></a><a class="google" href="#"><i class="fa fa-google-plus"></i></a><a class="linkedin" href="#"><i class="fa fa-linkedin"></i></a><a class="instagram" href="#"><i class="fa fa-instagram"></i></a></div>--}}
                             </div>
                         </div>
