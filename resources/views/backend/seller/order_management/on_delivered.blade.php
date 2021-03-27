@@ -40,10 +40,13 @@
                         <table id="example1" class="table table-bordered table-striped">
                             <thead>
                             <tr>
-                                <th>#Id</th>
+                                <th>#ID</th>
                                 <th>Date</th>
                                 <th>Invoice ID</th>
                                 <th>Payment Method</th>
+                                <th>Grand Total</th>
+                                <th>Discount</th>
+                                <th>Total Vat</th>
                                 <th title="Delivery Status">D.Status</th>
                                 <th>Details</th>
                             </tr>
@@ -55,6 +58,9 @@
                                     <td>{{date('j-m-Y',strtotime($ondel->created_at))}}</td>
                                     <td>{{$ondel->invoice_code}}</td>
                                     <td>{{$ondel->payment_type}}</td>
+                                    <td>{{$ondel->grand_total }}</td>
+                                    <td>{{$ondel->discount }}</td>
+                                    <td>{{$ondel->total_vat }}</td>
                                     <td>
                                         <form id="status-form-{{$ondel->id}}" action="{{route('seller.order-product.status',$ondel->id)}}">
                                             <select name="delivery_status" id="" onchange="deliveryStatusChange({{$ondel->id}})">
@@ -76,10 +82,13 @@
                             </tbody>
                             <tfoot>
                             <tr>
-                                <th>#Id</th>
+                                <th>#ID</th>
                                 <th>Date</th>
                                 <th>Invoice ID</th>
                                 <th>Payment Method</th>
+                                <th>Grand Total</th>
+                                <th>Discount</th>
+                                <th>Total Vat</th>
                                 <th title="Delivery Status">D.Status</th>
                                 <th>Details</th>
                             </tr>

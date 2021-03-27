@@ -40,10 +40,13 @@
                         <table id="example1" class="table table-bordered table-striped">
                             <thead>
                             <tr>
-                                <th>#Id</th>
+                                <th>#ID</th>
                                 <th>Date</th>
                                 <th>Invoice ID</th>
                                 <th>Payment Method</th>
+                                <th>Grand Total</th>
+                                <th>Discount</th>
+                                <th>Total Vat</th>
                                 <th title="Delivery Status">D.Status</th>
                                 <th>Details</th>
                             </tr>
@@ -55,6 +58,9 @@
                                     <td>{{date('j-m-Y',strtotime($review->created_at))}}</td>
                                     <td>{{$review->invoice_code}}</td>
                                     <td>{{$review->payment_type}}</td>
+                                    <td>{{$review->grand_total }}</td>
+                                    <td>{{$review->discount }}</td>
+                                    <td>{{$review->total_vat }}</td>
                                     <td>
                                         <form id="status-form-{{$review->id}}" action="{{route('seller.order-product.status',$review->id)}}">
                                             <select name="delivery_status" id="" onchange="deliveryStatusChange({{$review->id}})">
@@ -77,10 +83,13 @@
                             </tbody>
                             <tfoot>
                             <tr>
-                                <th>#Id</th>
+                                <th>#ID</th>
                                 <th>Date</th>
                                 <th>Invoice ID</th>
                                 <th>Payment Method</th>
+                                <th>Grand Total</th>
+                                <th>Discount</th>
+                                <th>Total Vat</th>
                                 <th title="Delivery Status">D.Status</th>
                                 <th>Details</th>
                             </tr>
