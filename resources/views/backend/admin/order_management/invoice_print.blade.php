@@ -86,6 +86,7 @@
                         <th>Product Variant</th>
                         <th>Payment Type</th>
                         <th>Qty</th>
+                        <th>Vat</th>
                         <th>Grand Total</th>
                     </tr>
                     </thead>
@@ -109,7 +110,8 @@
                             @endif
                             <td>{{$orderDetail->order->payment_status}}</td>
                             <td>{{$orderDetail->quantity}}</td>
-                            <td>{{$orderDetail->price}}</td>
+                            <td>{{$orderDetail->vat}}</td>
+                            <td>{{$orderDetail->price + $orderDetail->vat}}</td>
                         </tr>
                     @endforeach
 
@@ -144,17 +146,22 @@
                             <th style="width:50%">Subtotal:</th>
                             <td>{{$order->grand_total}}</td>
                         </tr>
-                        {{--                        <tr>--}}
-                        {{--                            <th>Tax (9.3%)</th>--}}
-                        {{--                            <td>$10.34</td>--}}
-                        {{--                        </tr>--}}
+
+                        <tr>
+                            <th>Total Vat:</th>
+                            <td>{{$order->total_vat}}</td>
+                        </tr>
                         <tr>
                             <th>Shipping:</th>
                             <td>{{$order->delivery_cost}}</td>
                         </tr>
                         <tr>
+                            <th>Discount:</th>
+                            <td>{{$order->discount}}</td>
+                        </tr>
+                        <tr>
                             <th>Total:</th>
-                            <td>{{$order->grand_total + $order->delivery_cost}}</td>
+                            <td>{{($order->grand_total + $order->total_vat + $order->delivery_cost) - $order->discount}}</td>
                         </tr>
                     </table>
                 </div>

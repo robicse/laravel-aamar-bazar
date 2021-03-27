@@ -40,10 +40,14 @@
                         <table id="example1" class="table table-bordered table-striped">
                             <thead>
                             <tr>
-                                <th>#Id</th>
+                                <th>#ID</th>
                                 <th>Date</th>
+                                <th>Invoice ID</th>
                                 <th>Payment Method</th>
-                                <th>Action</th>
+                                <th>Grand Total</th>
+                                <th>Discount</th>
+                                <th>Total Vat</th>
+                                <th title="Delivery Status">D.Status</th>
                                 <th>Details</th>
                             </tr>
                             </thead>
@@ -52,7 +56,11 @@
                                 <tr>
                                     <td>{{$key + 1}}</td>
                                     <td>{{date('j-m-Y',strtotime($Complete->created_at))}}</td>
+                                    <td>{{$Complete->invoice_code}}</td>
                                     <td>{{$Complete->payment_type}}</td>
+                                    <td>{{$Complete->grand_total }}</td>
+                                    <td>{{$Complete->discount }}</td>
+                                    <td>{{$Complete->total_vat }}</td>
                                     <td>
                                         <span class="badge badge-success">{{$Complete->delivery_status}}</span>
 
@@ -67,10 +75,14 @@
                             </tbody>
                             <tfoot>
                             <tr>
-                                <th>#Id</th>
+                                <th>#ID</th>
                                 <th>Date</th>
+                                <th>Invoice ID</th>
                                 <th>Payment Method</th>
-                                <th>Action</th>
+                                <th>Grand Total</th>
+                                <th>Discount</th>
+                                <th>Total Vat</th>
+                                <th title="Delivery Status">D.Status</th>
                                 <th>Details</th>
                             </tr>
                             </tfoot>

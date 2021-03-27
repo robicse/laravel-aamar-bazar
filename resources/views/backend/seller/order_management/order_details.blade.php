@@ -126,6 +126,43 @@
                                 <!-- /.col -->
                             </div>
                             <!-- /.row -->
+                            <div class="row">
+                                <!-- accepted payments column -->
+                                <div class="col-6">
+                                </div>
+                                <!-- /.col -->
+                                <div class="col-6">
+                                    <div class="table-responsive">
+                                        <table class="table">
+                                            <tr>
+                                                <th style="width:50%">Subtotal:</th>
+                                                <td>{{$orders->grand_total}}</td>
+                                            </tr>
+                                            {{--                                        <tr>--}}
+                                            {{--                                            <th>Tax (9.3%)</th>--}}
+                                            {{--                                            <td>$10.34</td>--}}
+                                            {{--                                        </tr>--}}
+                                            <tr>
+                                                <th>Total Vat:</th>
+                                                <td>{{$orders->total_vat}}</td>
+                                            </tr>
+                                            <tr>
+                                                <th>Shipping:</th>
+                                                <td>{{$orders->delivery_cost}}</td>
+                                            </tr>
+                                            <tr>
+                                                <th>Discount:</th>
+                                                <td>{{$orders->discount}}</td>
+                                            </tr>
+                                            <tr>
+                                                <th>Total:</th>
+                                                <td>{{($orders->grand_total + $orders->delivery_cost + $orders->total_vat)- $orders->discount}}</td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                </div>
+                                <!-- /.col -->
+                            </div>
                         </div>
                         <!-- /.invoice -->
                     </div><!-- /.col -->
