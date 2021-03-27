@@ -2,6 +2,14 @@
 @section("title","Seller List")
 @push('css')
     <link rel="stylesheet" href="{{asset('backend/plugins/datatables/dataTables.bootstrap4.css')}}">
+    <style>
+        .twitter-typeahead{
+            width: 100% !important;
+        }
+        .tt-menu{
+            width: 100% !important;
+        }
+    </style>
 @endpush
 @section('content')
     <section class="content-header">
@@ -26,6 +34,19 @@
                 <div class="card card-info card-outline">
                     <div class="card-header">
                         <h3 class="card-title float-left">Seller Lists</h3>
+                        <div class="row">
+                            <form action="" method="get">
+                                @csrf
+                                <div class="input-group float-center rounded" style="padding-left: 200px;">
+                                    <input type="search" name="searchName" id="searchMain" class="form-control rounded" placeholder="Search Shop by Area" aria-label="Search"
+                                           aria-describedby="search-addon" />
+{{--                                    <span class="input-group-text border-0" id="searchMain">--}}
+{{--                                        <button class="submit" style="border: transparent;"> <i class="fas fa-search"></i> </button>--}}
+{{--                                    </span>--}}
+                                </div>
+                            </form>
+                        </div>
+
                         <div class="float-right">
                             {{--<a href="{{route('admin.sellers.index.create')}}">
                                 <button class="btn btn-success" >
@@ -44,6 +65,7 @@
                                 <th>Name</th>
                                 <th>Phone</th>
                                 <th>Email</th>
+                                <th>Area</th>
                                 <th>Approval</th>
                                 <th>Commission</th>
                                 <th>Num. of Products</th>
@@ -53,6 +75,7 @@
                             </tr>
                             </thead>
                             <tbody>
+                            @if($shops == null)
                             @foreach($sellerUserInfos as $key => $sellerUserInfo)
                             <tr>
                                 <td>
@@ -64,6 +87,11 @@
                                 <td>{{$sellerUserInfo->name}}</td>
                                 <td>{{$sellerUserInfo->phone}}</td>
                                 <td>{{$sellerUserInfo->email}}</td>
+                                <td>
+                                    @if(!empty($sellerUserInfo->shop->area))
+                                    {{$sellerUserInfo->shop->area}}
+                                    @endif
+                                </td>
                                 <td>
                                     <div class="form-group col-md-2">
                                         <label class="switch" style="margin-top:40px;">
@@ -117,6 +145,68 @@
                                 </td>
                             </tr>
                             @endforeach
+                            @else
+                                @foreach($shops as $key => $shop)
+                                    @php
+                                        $sellerUserInfo = $shop->user;
+                                    @endphp
+                                <tr>
+                                    <td>
+                                        {{$key + 1}}
+                                        @if($sellerUserInfo->view == 0)
+                                            <span class="right badge badge-danger">New</span>
+                                        @endif
+                                    </td>
+                                    <td>{{$sellerUserInfo->name}}</td>
+                                    <td>{{$sellerUserInfo->phone}}</td>
+                                    <td>{{$sellerUserInfo->email}}</td>
+                                    <td>
+                                        @if(!empty($sellerUserInfo->shop->area))
+                                            {{$sellerUserInfo->shop->area}}
+                                        @endif
+                                    </td>
+                                    <td>
+                                        <div class="form-group col-md-2">
+                                            <label class="switch" style="margin-top:40px;">
+                                                <input onchange="verification_status(this)" value="{{$sellerUserInfo->seller->id }}" {{$sellerUserInfo->seller->verification_status == 1? 'checked':''}} type="checkbox" >
+                                                <span class="slider round"></span>
+                                            </label>
+                                        </div>
+                                    </td>
+                                    <td ><strong class="badge badge-info w-100">{{$sellerUserInfo->seller->commission}}%</strong></td>
+                                    <td>{{$sellerUserInfo->products->count()}}</td>
+                                    <td>{{$sellerUserInfo->seller->admin_to_pay}}</td>
+                                    <td>{{$sellerUserInfo->seller->seller_will_pay_admin}}</td>
+                                    <td>
+                                        <div class="dropdown">
+                                            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                Actions
+                                            </button>
+                                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                                <a class="bg-dark dropdown-item" href="{{route('admin.seller.profile.show',encrypt($sellerUserInfo->id))}}">
+                                                    <i class="fa fa-user"></i> Profile
+                                                </a>
+                                                <a class="bg-success dropdown-item" onclick="show_seller_payment_modal('{{$sellerUserInfo->seller->id}}');" href="#">
+                                                    <i class="fa fa-money"></i> Pay To Seller
+                                                </a>
+                                                <a class="bg-primary dropdown-item" onclick="show_admin_payment_modal('{{$sellerUserInfo->seller->id}}');" href="#">
+                                                    <i class="fa fa-money"></i> Pay To Admin
+                                                </a>
+                                                <a class="bg-warning dropdown-item" onclick="show_seller_commission_modal('{{$sellerUserInfo->seller->id}}');" href="#">
+                                                    <i class="fa fa-money-bill-wave"></i> Set Commission
+                                                </a>
+                                                <a class="bg-secondary dropdown-item" href="{{route('admin.payment.history',$sellerUserInfo->id)}}">
+                                                    <i class="fa fa-history"></i> Payment History
+                                                </a>
+                                                <a class="bg-danger dropdown-item" href="{{route('admin.sellers.ban',$sellerUserInfo->id)}}">
+                                                    <i class="fa fa-ban"></i> Ban this seller
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                @endforeach
+                            @endif
                             </tbody>
                             <tfoot>
                             <tr>
@@ -124,6 +214,7 @@
                                 <th>Name</th>
                                 <th>Phone</th>
                                 <th>Email</th>
+                                <th>Area</th>
                                 <th>Approval</th>
                                 <th>Commission</th>
                                 <th>Num. of Products</th>
@@ -153,6 +244,7 @@
     <script src="{{asset('backend/plugins/datatables/jquery.dataTables.js')}}"></script>
     <script src="{{asset('backend/plugins/datatables/dataTables.bootstrap4.js')}}"></script>
     <script src="https://unpkg.com/sweetalert2@7.19.1/dist/sweetalert2.all.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/typeahead.js/0.11.1/typeahead.bundle.min.js"></script>
     <script>
         $(function () {
             $("#example1").DataTable();
@@ -165,37 +257,6 @@
                 "autoWidth": false
             });
         });
-
-        //sweet alert
-        function deleteBrand(id) {
-            swal({
-                title: 'Are you sure?',
-                text: "You won't be able to revert this!",
-                type: 'warning',
-                showCancelButton: true,
-                confirmButtonColor: '#3085d6',
-                cancelButtonColor: '#d33',
-                confirmButtonText: 'Yes, delete it!',
-                cancelButtonText: 'No, cancel!',
-                confirmButtonClass: 'btn btn-success',
-                cancelButtonClass: 'btn btn-danger',
-                buttonsStyling: true,
-                reverseButtons: true
-            }).then((result) => {
-                if (result.value) {
-                    document.getElementById('delete-form-'+id).submit();
-                } else if (
-                    // Read more about handling dismissals
-                    result.dismiss === swal.DismissReason.cancel
-                ) {
-                    swal(
-                        'Cancelled',
-                        'Your Data is save :)',
-                        'error'
-                    )
-                }
-            })
-        }
 
         function verification_status(el){
             if(el.checked){
@@ -234,6 +295,41 @@
 
             });
         }
+
+        jQuery(document).ready(function($) {
+            var shop = new Bloodhound({
+                remote: {
+                    url: '/admin/search/area?q=%QUERY%',
+                    wildcard: '%QUERY%'
+                },
+                datumTokenizer: Bloodhound.tokenizers.whitespace('searchName'),
+                queryTokenizer: Bloodhound.tokenizers.whitespace
+            });
+
+            $("#searchMain").typeahead({
+                    hint: true,
+                    highlight: true,
+                    minLength: 1
+                }, {
+                    source: shop.ttAdapter(),
+                    // This will be appended to "tt-dataset-" to form the class name of the suggestion menu.
+                    name: 'areaList',
+                    display: 'area',
+                    // the key from the array we want to display (name,id,email,etc...)
+                    templates: {
+                        empty: [
+                            '<div class="list-group search-results-dropdown"><div class="list-group-item">Sorry,We could not find any Area.</div></div>'
+                        ],
+                        header: [
+                            // '<div class="list-group search-results-dropdown"><div class="list-group-item custom-header">Product</div>'
+                        ],
+                        suggestion: function (data) {
+                               return '<a href="/admin/seller/'+data.area+'" class="list-group-item custom-list-group-item">'+data.area+'</a>'
+                        }
+                    }
+                },
+            );
+        });
 
     </script>
 @endpush

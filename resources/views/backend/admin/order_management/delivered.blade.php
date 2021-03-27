@@ -57,7 +57,7 @@
                                         <form id="status-form-{{$Deliver->id}}" action="{{route('admin.order-product.status',$Deliver->id)}}">
                                             <select name="delivery_status" id="" onchange="deliveryStatusChange({{$Deliver->id}})">
                                                 <option value="Delivered" {{$Deliver->delivery_status == 'Delivered'? 'selected' : ''}}>Delivered</option>
-                                                <option value="Delivered" {{$Deliver->delivery_status == 'Completed'? 'selected' : ''}}>Completed</option>
+                                                <option value="Completed" {{$Deliver->delivery_status == 'Completed'? 'selected' : ''}}>Completed</option>
                                                 <option value="Cancel" {{$Deliver->delivery_status == 'Cancel'? 'selected' : ''}}>Cancel</option>
                                             </select>
                                         </form>

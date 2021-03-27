@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Model\FlashDeal;
 use App\Model\Product;
+use App\Model\Review;
 use App\Model\Shop;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -138,5 +139,16 @@ class ProductController extends Controller
         else{
             return response()->json(['success'=>false,'response'=> 'Something went wrong!'], 404);
         }
+    }
+    public function allReviews($id){
+        $reviews = Review::where('product_id',$id)->latest()->get();
+        if (!empty($reviews))
+        {
+            return response()->json(['success'=>true,'response'=> $reviews], 200);
+        }
+        else{
+            return response()->json(['success'=>false,'response'=> 'Something went wrong!'], 404);
+        }
+
     }
 }

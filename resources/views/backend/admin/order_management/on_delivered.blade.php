@@ -58,7 +58,7 @@
                                             <select name="delivery_status" id="" onchange="deliveryStatusChange({{$ondel->id}})">
                                                 <option value="On delivered" {{$ondel->delivery_status == 'On delivered'? 'selected' : ''}}>On delivered</option>
                                                 <option value="Delivered" {{$ondel->delivery_status == 'Delivered'? 'selected' : ''}}>Delivered</option>
-                                                <option value="Delivered" {{$ondel->delivery_status == 'Completed'? 'selected' : ''}}>Completed</option>
+                                                <option value="Completed" {{$ondel->delivery_status == 'Completed'? 'selected' : ''}}>Completed</option>
                                                 <option value="Cancel" {{$ondel->delivery_status == 'Cancel'? 'selected' : ''}}>Cancel</option>
                                             </select>
                                         </form>

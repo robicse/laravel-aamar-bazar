@@ -59,7 +59,7 @@
                                                 <option value="On review" {{$review->delivery_status == 'On review'? 'selected' : ''}}>On review</option>
                                                 <option value="On delivered" {{$review->delivery_status == 'On delivered'? 'selected' : ''}}>On delivered</option>
                                                 <option value="Delivered" {{$review->delivery_status == 'Delivered'? 'selected' : ''}}>Delivered</option>
-                                                <option value="Delivered" {{$review->delivery_status == 'Completed'? 'selected' : ''}}>Completed</option>
+                                                <option value="Completed" {{$review->delivery_status == 'Completed'? 'selected' : ''}}>Completed</option>
                                                 <option value="Cancel" {{$review->delivery_status == 'Cancel'? 'selected' : ''}}>Cancel</option>
                                             </select>
                                         </form>

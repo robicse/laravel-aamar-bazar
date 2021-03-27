@@ -125,6 +125,11 @@
                                     </div>
                                 </div>
                             </div>
+                            @php
+                            $order = \App\Model\Order::where('user_id',Auth::id())->first();
+
+                            $offer = \App\Model\BusinessSetting::where('type','first_order_discount')->first();
+                            @endphp
                             <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12  ">
                                 <div class="ps-form__total">
                                     <h3 class="ps-form__heading">Your Order</h3>
@@ -141,13 +146,18 @@
                                                             <td><a href="#"> {{$product->name}} ×{{$product->qty}}</a>
                                                                 <p>Sold By:<strong>{{$product->options->shop_name}}</strong></p>
                                                             </td>
-                                                            <td>৳{{$product->subtotal()}}</td>
+                                                            <td>৳ {{$product->subtotal()}}</td>
                                                         </tr>
                                                     @endforeach
                                                     </tbody>
                                                 </table>
-                                                <h4 class="ps-block__title">Subtotal <span>৳{{Cart::subtotal()}}</span></h4>
-                                                <h3>Total <span>৳{{Cart::total()}}</span></h3>
+                                                <h4 class="ps-block__title">Subtotal <span>৳ {{Cart::subtotal()}}</span></h4>
+                                                @if(empty($order))
+                                                    <h4 class="ps-block__title">Discount <span>৳ {{$offer->value}}</span></h4>
+                                                    <h3>Total <span>৳ {{Cart::total() - $offer->value}}</span></h3>
+                                                @else
+                                                <h3>Total <span>৳ {{Cart::total()}}</span></h3>
+                                                @endif
                                             </div>
                                             <div class="row my-3" style="padding-top: 10px; padding-bottom: 10px;">
                                                 <div class="col-md-12 text-center">

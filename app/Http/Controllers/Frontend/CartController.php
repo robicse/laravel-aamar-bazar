@@ -231,7 +231,8 @@ class CartController extends Controller
            $shop_id = $content->options->shop_id;
            break;
         }
-//        dd($shop_id);
+        $check = Order::where('user_id',Auth::id())->first();
+        $discount = BusinessSetting::where('type','first_order_discount')->first();
         $order = new Order();
         $order->invoice_code = date('Ymd-his');
         $order->user_id = Auth::user()->id;
@@ -240,6 +241,9 @@ class CartController extends Controller
         $order->payment_type = $request->pay;
         $order->payment_status = $payment_status;
         $order->grand_total = Cart::total();
+        if (empty($check)) {
+            $order->discount = $discount->value;
+        }
         $order->delivery_cost = 0;
         $order->delivery_status = "Pending";
         $order->view = 0;
