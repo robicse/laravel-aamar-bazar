@@ -187,6 +187,19 @@
                                                 <option value="percent" {{$product->discount_type == 'percent' ? 'selected' : ''}}>Percent</option>
                                             </select>
                                         </div>
+                                        <div class="form-group col-md-7">
+                                            <label for="vat">VAT</label>
+                                            <input type="number" min="0" value="{{$product->vat}}" step="0.01" placeholder="VAT"
+                                                   name="vat" class="form-control" required="">
+                                        </div>
+                                        <div class="form-group col-md-5">
+                                            <label for="discount">VAT Type</label>
+                                            <select class="form-control " name="vat_type" tabindex="-1"
+                                                    aria-hidden="true">
+                                                <option value="amount" {{$product->vat_type == 'amount' ? 'selected' : ''}}>Flat</option>
+                                                <option value="percent" {{$product->vat_type == 'percent' ? 'selected' : ''}}>Percent</option>
+                                            </select>
+                                        </div>
                                     </div>
                                 </div>
 

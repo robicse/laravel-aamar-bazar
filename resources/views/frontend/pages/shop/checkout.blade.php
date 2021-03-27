@@ -136,13 +136,15 @@
                                             <div class="ps-block__content">
                                                 <table class="table ps-block__products">
                                                     <tbody>
-                                                    @php $vat = 0.00; @endphp
+                                                    @php $totalVat = 0.00; @endphp
                                                     @foreach(Cart::content() as $product)
-
+                                                        @php
+                                                            $totalVat +=  $product->options->vat * $product->qty;
+                                                        @endphp
                                                         <tr>
                                                             <td>
                                                                 <a href="#"> {{$product->name}} ×{{$product->qty}}</a>
-                                                                <p>VAT:<strong>{{$vat}}</strong></p>
+                                                                <p>VAT:<strong class="text-dark"> ৳{{$product->options->vat * $product->qty}}</strong></p>
                                                                 {{--<p>Sold By:<strong>{{$product->options->shop_name}}</strong></p>--}}
                                                                 <span class="ps-block__content"></span>
                                                             </td>
@@ -151,8 +153,9 @@
                                                     @endforeach
                                                     </tbody>
                                                 </table>
-                                                <h4 class="ps-block__title">Subtotal <span>৳{{Cart::subtotal()}}</span></h4>
-                                                <h3>Total <span>৳{{Cart::total()}}</span></h3>
+                                                <h4 class="ps-block__title">Total VAT: <span>৳{{$totalVat}}</span></h4>
+                                                <h4 class="ps-block__title">Subtotal: <span>৳{{Cart::subtotal()}}</span></h4>
+                                                <h3>Total: <span>৳{{Cart::total() + $totalVat}}</span></h3>
                                             </div>
                                             <div class="row my-3" style="padding-top: 10px; padding-bottom: 10px;">
                                                 <div class="col-md-12 text-center">

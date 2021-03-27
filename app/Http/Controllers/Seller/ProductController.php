@@ -121,6 +121,8 @@ class ProductController extends Controller
         //$product->tax_type = $request->tax_type;
         $product->discount = $request->discount;
         $product->discount_type = $request->discount_type;
+        $product->vat = $request->vat;
+        $product->vat_type = $request->vat_type;
         $product->meta_title = $request->meta_title;
         $product->meta_description = $request->meta_description;
         $product->slug = $request->slug.'-'.Str::random(5);
@@ -328,6 +330,8 @@ class ProductController extends Controller
         //$product->tax_type = $request->tax_type;
         $product->discount = $request->discount;
         $product->discount_type = $request->discount_type;
+        $product->vat = $request->vat;
+        $product->vat_type = $request->vat_type;
         $product->meta_title = $request->meta_title;
         $product->meta_description = $request->meta_description;
         $product->slug = $request->slug.'-'.Str::random(5);
