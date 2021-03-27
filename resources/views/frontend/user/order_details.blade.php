@@ -15,7 +15,7 @@
             <div class="container">
                 <div class="row">
                     @include('frontend.user.includes.user_sidebar')
-                    <div class="col-lg-8">
+                    <div class="col-lg-9">
                         <div class="ps-section__right">
                             <div class="ps-section--account-setting">
                                 <div class="ps-section__header">
@@ -31,7 +31,8 @@
                                                 <th>Image</th>
                                                 <th>Name</th>
                                                 <th>Quantity</th>
-                                                <th>Grand Total</th>
+                                                <th>Vat</th>
+                                                <th>Total (৳)</th>
                                                 <th>Review</th>
                                             </tr>
                                             </thead>
@@ -43,13 +44,14 @@
                                             <tr>
                                                 <td>{{ $key +1 }}</td>
                                                 <td>
-                                                    <img src="{{url($orderDetail->product->thumbnail_img)}}" alt="" width="100" height="100">
+                                                    <img src="{{url($orderDetail->product->thumbnail_img)}}" alt="" width="80" height="80">
                                                 </td>
                                                 <td>
                                                     {{$orderDetail->name}}
                                                 </td>
                                                 <td>{{$orderDetail->quantity}}</td>
-                                                <td><span><i>৳</i> {{$orderDetail->price}}</span></td>
+                                                <td>{{$orderDetail->vat}}</td>
+                                                <td><span>{{($orderDetail->price * $orderDetail->quantity) + $orderDetail->vat}}</span></td>
                                                 <td>
                                                     @if($order->delivery_status == 'Completed' && empty($review))
                                                         <a class="btn btn-default" data-toggle="modal" onclick="getProductId('{{$orderDetail->product_id}}')" data-target="#exampleModal" style="background: yellow;">

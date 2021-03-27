@@ -116,7 +116,7 @@
                                             <td>{{$orderDetail->quantity}}</td>
                                             <td>{{$orderDetail->price}}</td>
                                             <td>{{$orderDetail->vat}}</td>
-                                            <td>{{$orderDetail->price * $orderDetail->quantity }}</td>
+                                            <td>{{($orderDetail->price * $orderDetail->quantity) + $orderDetail->vat }}</td>
                                             <td>
                                                 <a href="{{ route('admin.invoice.print',encrypt($order->id)) }}" target="_blank" class="btn btn-default" style="background: green;"><i class="fa fa-print"></i></a>
                                             </td>

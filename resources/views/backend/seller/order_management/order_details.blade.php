@@ -98,7 +98,7 @@
                                             <th>Product Name</th>
                                             <th>Payment Type</th>
                                             <th>QTY</th>
-                                            <th>Price</th>
+                                            <th>Vat</th>
                                             <th>Total</th>
                                             <th>Print</th>
                                         </tr>
@@ -113,8 +113,8 @@
                                             <td>{{$orderDetail->name}}</td>
                                             <td>{{$orders->payment_status}}</td>
                                             <td>{{$orderDetail->quantity}}</td>
-                                            <td>{{$orderDetail->price}}</td>
-                                            <td>{{$orderDetail->price * $orderDetail->quantity }}</td>
+                                            <td>{{$orderDetail->vat}}</td>
+                                            <td>{{($orderDetail->price * $orderDetail->quantity) + $orderDetail->vat }}</td>
                                             <td>
                                                 <a href="{{ route('invoice.print',encrypt($orders->id)) }}" target="_blank" class="btn btn-default" style="background: green;"><i class="fa fa-print"></i></a>
                                             </td>
