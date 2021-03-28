@@ -26,6 +26,14 @@ Route::group(['as'=>'admin.','prefix' =>'admin','namespace'=>'Admin', 'middlewar
     Route::resource('sub-subcategories','SubSubcategoryController');
     Route::resource('products','ProductController');
     Route::resource('offers','OfferController');
+
+    Route::resource('flash_deals','FlashDealController');
+    Route::get('/flash_deals/shop/products/{id}', 'FlashDealController@shopProducts')->name('flash_deals.shop.products');
+    Route::post('/flash_deals/update_status', 'FlashDealController@update_status')->name('flash_deals.update_status');
+    Route::post('/flash_deals/update_featured', 'FlashDealController@update_featured')->name('flash_deals.update_featured');
+    Route::post('/flash_deals/product_discount', 'FlashDealController@product_discount')->name('flash_deals.product_discount');
+    Route::post('/flash_deals/product_discount_edit', 'FlashDealController@product_discount_edit')->name('flash_deals.product_discount_edit');
+
     Route::post('products/update2/{id}','ProductController@update2')->name('products.update2');
     Route::get('products/slug/{name}','ProductController@ajaxSlugMake')->name('products.slug');
     Route::post('products/get-subcategories-by-category','ProductController@ajaxSubCat')->name('products.get_subcategories_by_category');
@@ -63,6 +71,8 @@ Route::group(['as'=>'admin.','prefix' =>'admin','namespace'=>'Admin', 'middlewar
     Route::get('/sellers/ban/{id}','SellerController@banSeller')->name('sellers.ban');
     Route::get('/search/area', 'SellerController@search_area');
     Route::get('/seller/{area}','SellerController@areaWiseSeller')->name('area-wise.seller');
+
+
 
 // Admin Order Management
     Route::get('order/pending','OrderManagementController@pendingOrder')->name('order.pending');
