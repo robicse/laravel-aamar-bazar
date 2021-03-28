@@ -139,59 +139,48 @@
                         <form class="ps-form--account-setting" id="bk_address" action="{{route('user.address.store')}}" method="POST" enctype="multipart/form-data">
                             @csrf
                             <div class="modal-body">
-                                <div class="ps-form__content" style="padding-left: 50px; padding-top: 20px;">
+                                <div class="ps-form__content" >
 
-                                    <div class="form-group row">
-                                        <label for="bksearch" class="col-sm-2">Address</label>
-                                        <div class="col-sm-8">
-                                            <input type="text" onkeyup="getAddress()" name="address" class="form-control form-control-sm address">
-                                        </div>
-                                        <div class="col-sm-8">
-                                            <ol class="addList">
-
-                                            </ol>
-                                        </div>
+                                    <div class="form-group">
+                                        <label for="bksearch" class="">Address</label>
+                                        <input type="text" onkeyup="getAddress()" name="address" class="form-control form-control-sm address" autocomplete="off">
                                     </div>
-                                    <div class="form-group row">
+                                    <div class="">
+                                        <ul class="addList ist-group" style="padding: 0;">
+
+                                        </ul>
+                                    </div>
+                                    <div class="form-group">
                                         <input type="hidden" name="address">
                                         <input type="hidden" name="city">
                                         <input type="hidden" name="area">
                                         <input type="hidden" name="latitude">
                                         <input type="hidden" name="longitude">
                                     </div>
-                                    <div class="form-group row">
+                                    <div class="form-group ">
                                         <label for="country" class="col-sm-2">Country</label>
-                                        <div class="col-sm-8">
-                                            <input type="text" class="form-control form-control-sm" name="country" placeholder="Bangladesh" readonly>
-                                        </div>
-
+                                        <input type="text" class="form-control form-control-sm" name="country" placeholder="Bangladesh" readonly>
                                     </div>
 
-                                    <div class="form-group row">
-                                        <label for="postal_code" class="col-sm-2">Postal Code</label>
-                                        <div class="col-sm-8">
-                                            <input type="text" class="form-control form-control-sm" name="postal_code" placeholder="Your Postal Code">
-                                        </div>
+                                    <div class="form-group">
+                                        <label for="postal_code" class="">Postal Code</label>
+                                        <input type="text" class="form-control form-control-sm" name="postal_code" placeholder="Your Postal Code" readonly>
                                     </div>
-                                    <div class="form-group row">
-                                        <label for="phone" class="col-sm-2">Phone</label>
-                                        <div class="col-sm-8">
-                                            <input type="text" class="form-control form-control-sm" name="phone" placeholder="Your phone">
-                                        </div>
+                                    <div class="form-group">
+                                        <label for="phone" class="">Phone</label>
+                                        <input type="text" class="form-control form-control-sm" name="phone" placeholder="Your phone">
                                     </div>
-                                    <div class="form-group row">
-                                        <label for="phone" class="col-sm-2">Type</label>
-                                        <div class="col-sm-8">
-                                            <select name="type" id="type" class="form-control" required>
-                                                <option value="Home">Home</option>
-                                                <option value="Office">Office</option>
-                                                <option value="Others">Others</option>
-                                            </select>
-                                        </div>
+                                    <div class="form-group ">
+                                        <label for="phone" class="">Type</label>
+                                        <select name="type" id="type" class="form-control" required>
+                                            <option value="Home">Home</option>
+                                            <option value="Office">Office</option>
+                                            <option value="Others">Others</option>
+                                        </select>
                                     </div>
 
                                 </div>
-                                <div class="form-group submit" style="padding-left: 125px;" >
+                                <div class="form-group submit text-center">
                                     <button class="ps-btn">Save</button>
                                 </div>
                             </div>
@@ -228,9 +217,25 @@
                 .then(response => response.json())
                 .catch(error => console.error('Error:', error))
                 .then(response => {
-                    console.log(response);
-                    response.places.map((ad) => ($('.addList').append(`<p>${ad.address}</p>`)))
+                    response.places.forEach(result)
                 })
+        }
+
+        function result(item, index){
+            var $li = $("<li class='list-group-item'><a href='#' class='list-group-item bg-info'>" + item.address + "</a></li>");
+            $(".addList").append($li);
+            $li.on('click', getPlacesDetails.bind(this, item));
+        }
+        function getPlacesDetails(mapData)
+        {
+            $(".addList").empty();
+            $( "input[name='address']" ).val(mapData.address)
+            $( "input[name='city']" ).val(mapData.city)
+            $( "input[name='area']" ).val(mapData.area)
+            $( "input[name='latitude']" ).val(mapData.latitude)
+            $( "input[name='longitude']" ).val(mapData.longitude)
+            $( "input[name='postal_code']" ).val(mapData.postCode)
+            //console.log(mapData)
         }
 
     </script>
