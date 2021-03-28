@@ -116,7 +116,7 @@
                     @php
                         $new_orders = \App\Model\Order::where('delivery_status','Pending')->where('view',0)->count();
                     @endphp
-                    <li class="nav-item has-treeview {{(Request::is('admin/order*')) ? 'menu-open' : ''}}">
+                    <li class="nav-item has-treeview {{(Request::is('admin/order*')) || Request::is('admin/all-orders*') ? 'menu-open' : ''}}">
                         <a href="" class="nav-link {{Request::is('admin/order') ? 'active' : ''}}">
                             <i class="nav-icon fas fa-box"></i>
                             <p>
@@ -129,6 +129,15 @@
                         </a>
 
                         <ul class="nav nav-treeview">
+                            <li class="nav-item">
+                                <a href="{{route('admin.all.orders')}}"
+                                   class="nav-link {{Request::is('admin/all-orders*') || Request::is('admin/orders*') ? 'active' :''}}">
+                                    <i class="fa fa-{{Request::is('admin/all-orders*') || Request::is('admin/orders*') ? 'folder-open':'folder'}} nav-icon"></i>
+                                    <p>
+                                        All Orders
+                                    </p>
+                                </a>
+                            </li>
                             <li class="nav-item">
                                 <a href="{{route('admin.order.pending')}}"
                                    class="nav-link {{Request::is('admin/order/pending*') ? 'active' :''}}">

@@ -65,6 +65,7 @@ Route::group(['as'=>'admin.','prefix' =>'admin','namespace'=>'Admin', 'middlewar
     Route::get('/seller/{area}','SellerController@areaWiseSeller')->name('area-wise.seller');
 
 // Admin Order Management
+    Route::get('all-orders','OrderManagementController@index')->name('all.orders');
     Route::get('order/pending','OrderManagementController@pendingOrder')->name('order.pending');
     Route::get('order/on-reviewed','OrderManagementController@onReviewedOrder')->name('order.on-reviewed');
     Route::get('order/on-delivered','OrderManagementController@onDeliveredOrder')->name('order.on-delivered');
@@ -75,6 +76,8 @@ Route::group(['as'=>'admin.','prefix' =>'admin','namespace'=>'Admin', 'middlewar
     Route::get('order-details/{id}','OrderManagementController@orderDetails')->name('order-details');
     Route::get('order-details/invoice/print/{id}','OrderManagementController@orderInvoicePrint')->name('invoice.print');
     Route::get('order/daily-orders','OrderManagementController@dailyOrders')->name('daily-orders');
+    Route::get('order/search/area', 'OrderManagementController@search_area');
+    Route::get('/orders/{area}','OrderManagementController@areaWiseOrder');
 
     // Admin User Management
     Route::resource('customers','CustomerController');

@@ -15,10 +15,25 @@ use Illuminate\Support\Facades\DB;
 
 class OrderManagementController extends Controller
 {
+    public function index(){
+        $orders = Order::latest()->get();
+        $areaWiseOrders = null;
+        return view('backend.admin.order_management.all_orders',compact('orders','areaWiseOrders'));
+    }
+    public function search_area(Request $request){
+        $name = $request->get('q');
+        $area = Order::where('area', 'LIKE', '%'. $name. '%')->limit(5)->get();
+        return $area;
+    }
+    public function areaWiseOrder($area){
+        $areaWiseOrders = Order::where('area',$area)->latest()->get();
+        return view('backend.admin.order_management.all_orders', compact('areaWiseOrders'));
+    }
     public function pendingOrder() {
         $pending_order = Order::where('delivery_status','Pending')->latest()->get();
         return view('backend.admin.order_management.pending_order',compact('pending_order'));
     }
+
     public function onReviewedOrder() {
         $onReview = Order::where('delivery_status','On review')->latest()->get();
         return view('backend.admin.order_management.on_review',compact('onReview'));

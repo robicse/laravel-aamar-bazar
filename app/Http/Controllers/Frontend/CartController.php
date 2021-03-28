@@ -295,6 +295,9 @@ class CartController extends Controller
         $order->invoice_code = date('Ymd-his');
         $order->user_id = Auth::user()->id;
         $order->shop_id = $shop_id;
+        $order->area = $address->area;
+        $order->latitude = $address->latitude;
+        $order->longitude = $address->longitude;
         $order->shipping_address = $shipping_info;
         $order->payment_type = $request->pay;
         $order->payment_status = $payment_status;
