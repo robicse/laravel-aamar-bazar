@@ -29,12 +29,13 @@
                                         <table class="table ps-table ps-table--invoices">
                                             <thead>
                                             <tr>
-                                                <th>Id</th>
+                                                <th>#Id</th>
                                                 <th>Invoice</th>
                                                 <th>Date</th>
-                                                <th>Grand Total</th>
                                                 <th>Discount</th>
                                                 <th>Total Vat</th>
+                                                <th>Total Labour Cost</th>
+                                                <th>Grand Total</th>
                                                 <th>Payment Status</th>
                                                 <th>Delivery Status</th>
                                                 <th>Print</th>
@@ -50,9 +51,10 @@
                                                 <td>{{$key + 1}}</td>
                                                 <td>{{ $order->invoice_code }}</td>
                                                 <td>{{date('j-m-Y',strtotime($order->created_at))}}</td>
-                                                <td>{{ $order->grand_total }}</td>
                                                 <td>{{ $order->discount }}</td>
                                                 <td>{{ $order->total_vat }}</td>
+                                                <td>{{ $order->total_labour_cost }}</td>
+                                                <td>{{ $order->grand_total}}</td>
                                                 <td>{{ $order->payment_status }}</td>
                                                 <td>{{ $order->delivery_status }}</td>
                                                 <td>

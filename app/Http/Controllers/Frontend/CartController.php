@@ -344,7 +344,7 @@ class CartController extends Controller
         $orderUpdate->profit = $profit;
         $orderUpdate->total_vat = $totalVat;
         $orderUpdate->total_labour_cost = $totalLabourCost;
-        $orderUpdate->grand_total += $totalVat;
+        $orderUpdate->grand_total += $totalVat +$totalLabourCost;
         $orderUpdate->save();
 
         if ($request->pay == 'cod') {

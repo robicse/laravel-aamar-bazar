@@ -14,6 +14,7 @@
     <script src="https://unpkg.com/leaflet@1.4.0/dist/leaflet.js"
             integrity="sha512-QVftwZFqvtRNi0ZyCtsznlKSWOStnDORoefr1enyq5mVL4tmKB3S/EnC3rRJcxCPavG10IcrVGSmPh6Qw5lwrg=="
             crossorigin=""></script>
+    <link rel="stylesheet" href="{{asset('backend/plugins/select2/select2.min.css')}}">
 
 @endpush
 @section('content')
@@ -40,40 +41,40 @@
                                     <div class="row">
                                         @if(!empty($addresses))
                                             @foreach($addresses as $address)
-                                        <div class="col-md-6 col-12" style="padding-bottom: 15px;">
-                                            <div class="card" style="width: 40rem;">
-                                                <div class="text-right dropdown">
-                                                <button class="btn bg-black" type="button" id="dropdownMenuButton" data-toggle="dropdown" style="background: #f1f1f1;">
-                                                    <i class="fa fa-ellipsis-v"></i>
-                                                </button>
-                                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" style="font-size: 14px;">
-                                                        @if($address->set_default == 0)
-                                                            <form action="{{route('user.update.status',$address->id)}}" method="POST">
-                                                                @csrf
-                                                               <button class="btn btn-lg"> <a class="dropdown-item">Make Default</a></button>
-                                                            </form>
-                                                        @endif
-                                                            <form action="{{route('user.address.destroy',$address->id)}}" method="POST">
-                                                                @csrf
-                                                                @method('DELETE')
-                                                                <button class="btn btn-lg"><a class="dropdown-item"> Delete </a></button>
-                                                            </form>
+                                                <div class="col-md-6 col-12" style="padding-bottom: 15px;">
+                                                    <div class="card" style="width: 40rem;">
+                                                        <div class="text-right dropdown">
+                                                            <button class="btn bg-black" type="button" id="dropdownMenuButton" data-toggle="dropdown" style="background: #f1f1f1;">
+                                                                <i class="fa fa-ellipsis-v"></i>
+                                                            </button>
+                                                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" style="font-size: 14px;">
+                                                                @if($address->set_default == 0)
+                                                                    <form action="{{route('user.update.status',$address->id)}}" method="POST">
+                                                                        @csrf
+                                                                        <button class="btn btn-lg"> <a class="dropdown-item">Make Default</a></button>
+                                                                    </form>
+                                                                @endif
+                                                                <form action="{{route('user.address.destroy',$address->id)}}" method="POST">
+                                                                    @csrf
+                                                                    @method('DELETE')
+                                                                    <button class="btn btn-lg"><a class="dropdown-item"> Delete </a></button>
+                                                                </form>
+                                                            </div>
+                                                        </div>
+                                                        <div class="card-body">
+                                                            <div class="card-text">Address: <strong>{{$address->address}}</strong></div>
+                                                            <div class="card-text">Postal Code: <strong>{{$address->postal_code}}</strong></div>
+                                                            <div class="card-text">City: <strong>{{$address->city}}</strong></div>
+                                                            <div class="card-text">Country: <strong>{{$address->country}}</strong></div>
+                                                            <div class="card-text">Phone: <strong>{{$address->phone}}</strong></div>
+                                                            <div class="card-text">Type: <strong>{{$address->type}}</strong>
+                                                                @if($address->set_default == 1)
+                                                                    <a href="#" class="btn btn-primary" style="margin-left: 180px;">Default</a>
+                                                                @endif
+                                                            </div>
+                                                        </div>
                                                     </div>
                                                 </div>
-                                                <div class="card-body">
-                                                    <div class="card-text">Address: <strong>{{$address->address}}</strong></div>
-                                                    <div class="card-text">Postal Code: <strong>{{$address->postal_code}}</strong></div>
-                                                    <div class="card-text">City: <strong>{{$address->city}}</strong></div>
-                                                    <div class="card-text">Country: <strong>{{$address->country}}</strong></div>
-                                                    <div class="card-text">Phone: <strong>{{$address->phone}}</strong></div>
-                                                    <div class="card-text">Type: <strong>{{$address->type}}</strong>
-                                                    @if($address->set_default == 1)
-                                                    <a href="#" class="btn btn-primary" style="margin-left: 180px;">Default</a>
-                                                    @endif
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
                                             @endforeach
                                             <div class="col-md-6 col-12" style="padding-bottom: 15px;">
                                                 <div class="card" style="width: 40rem; height: 12rem;">
@@ -90,7 +91,7 @@
                                                 <div class="card" style="width: 40rem; height: 12rem;">
                                                     <div class="card-body">
                                                         <h3 class="text-center">
-                                                           <a data-toggle="modal" data-target="#exampleModal"> <i class="fa fa-plus"></i></a>
+                                                            <a data-toggle="modal" data-target="#exampleModal"> <i class="fa fa-plus"></i></a>
                                                             <p>Add new Address</p>
                                                         </h3>
                                                     </div>
@@ -98,27 +99,27 @@
                                             </div>
                                         @endif
                                     </div>
-{{--                                            <figure class="ps-block--address">--}}
-{{--                                                <figcaption>Customer address</figcaption>--}}
-{{--                                                @if(!empty(Auth::User()->address))--}}
-{{--                                                <div class="ps-block__content">--}}
-{{--                                                    <h4>{{Auth::User()->address}}</h4>--}}
-{{--                                                    <button class="ps-btn" style="padding: 7px 15px 7px 15px; font-size: 14px; margin-top: 10px;"><a href="#" data-toggle="modal" data-target="#exampleModal">Edit</a></button>--}}
-{{--                                                </div>--}}
-{{--                                                @else--}}
-{{--                                                    <div class="ps-block__content">--}}
-{{--                                                        <p>You haven't upload your address yet..</p><a href="#" data-toggle="modal" data-target="#exampleModal">Edit</a>--}}
-{{--                                                    </div>--}}
-{{--                                                @endif--}}
-{{--                                            </figure>--}}
-{{--                                        <div class="col-md-6 col-12">--}}
-{{--                                            <figure class="ps-block--address">--}}
-{{--                                                <figcaption>Shipping address</figcaption>--}}
-{{--                                                <div class="ps-block__content">--}}
-{{--                                                    <p>You Have Not Set Up This Type Of Address Yet.</p><a href="edit-address.html">Edit</a>--}}
-{{--                                                </div>--}}
-{{--                                            </figure>--}}
-{{--                                        </div>--}}
+                                    {{--                                            <figure class="ps-block--address">--}}
+                                    {{--                                                <figcaption>Customer address</figcaption>--}}
+                                    {{--                                                @if(!empty(Auth::User()->address))--}}
+                                    {{--                                                <div class="ps-block__content">--}}
+                                    {{--                                                    <h4>{{Auth::User()->address}}</h4>--}}
+                                    {{--                                                    <button class="ps-btn" style="padding: 7px 15px 7px 15px; font-size: 14px; margin-top: 10px;"><a href="#" data-toggle="modal" data-target="#exampleModal">Edit</a></button>--}}
+                                    {{--                                                </div>--}}
+                                    {{--                                                @else--}}
+                                    {{--                                                    <div class="ps-block__content">--}}
+                                    {{--                                                        <p>You haven't upload your address yet..</p><a href="#" data-toggle="modal" data-target="#exampleModal">Edit</a>--}}
+                                    {{--                                                    </div>--}}
+                                    {{--                                                @endif--}}
+                                    {{--                                            </figure>--}}
+                                    {{--                                        <div class="col-md-6 col-12">--}}
+                                    {{--                                            <figure class="ps-block--address">--}}
+                                    {{--                                                <figcaption>Shipping address</figcaption>--}}
+                                    {{--                                                <div class="ps-block__content">--}}
+                                    {{--                                                    <p>You Have Not Set Up This Type Of Address Yet.</p><a href="edit-address.html">Edit</a>--}}
+                                    {{--                                                </div>--}}
+                                    {{--                                            </figure>--}}
+                                    {{--                                        </div>--}}
 
                                 </div>
                             </div>
@@ -140,16 +141,14 @@
                             @csrf
                             <div class="modal-body">
                                 <div class="ps-form__content" >
-
-                                    <div class="form-group">
+                                    <div class="form-group" style="margin-bottom: 0;">
                                         <label for="bksearch" class="">Address</label>
-                                        <input type="text" onkeyup="getAddress()" name="address" class="form-control form-control-sm address" autocomplete="off">
+                                            <input type="text" onkeyup="getAddress()" name="address" class="form-control form-control-sm address" autocomplete="off">
+                                        </div>
                                     </div>
-                                    <div class="">
-                                        <ul class="addList ist-group" style="padding: 0;">
+                                    <ul class="list-group addList" style="padding: 0;">
 
-                                        </ul>
-                                    </div>
+                                    </ul>
                                     <div class="form-group">
                                         <input type="hidden" name="address">
                                         <input type="hidden" name="city">
@@ -158,7 +157,7 @@
                                         <input type="hidden" name="longitude">
                                     </div>
                                     <div class="form-group ">
-                                        <label for="country" class="col-sm-2">Country</label>
+                                        <label for="country" class="">Country</label>
                                         <input type="text" class="form-control form-control-sm" name="country" placeholder="Bangladesh" readonly>
                                     </div>
 
@@ -193,6 +192,14 @@
     </main>
 @endsection
 @push('js')
+    <script src="{{asset('backend/plugins/select2/select2.full.min.js')}}"></script>
+    <script>
+        //Initialize Select2 Elements
+        $('.select2').select2();
+        /*$('.textarea').wysihtml5({
+            toolbar: { fa: true }
+        })*/
+    </script>
     <script src="https://cdn.jsdelivr.net/gh/barikoi/barikoi-js@b6f6295467c19177a7d8b73ad4db136905e7cad6/dist/barikoi.min.js?key:MTg3NzpCRE5DQ01JSkgw"></script>
     <script>
         Bkoi.onSelect(function () {
@@ -211,6 +218,7 @@
         function getAddress() {
 
             let places=[];
+            let location=null;
             let add=$('.address').val();
             $('.addList').empty();
             fetch("https://barikoi.xyz/v1/api/search/autocomplete/MTg5ODpJUTVHV0RWVFZP/place?q="+add)
@@ -220,9 +228,8 @@
                     response.places.forEach(result)
                 })
         }
-
         function result(item, index){
-            var $li = $("<li class='list-group-item'><a href='#' class='list-group-item bg-info'>" + item.address + "</a></li>");
+            var $li = $("<li class='list-group-item'><a href='#' class='list-group-item bg-light'>" + item.address + "</a></li>");
             $(".addList").append($li);
             $li.on('click', getPlacesDetails.bind(this, item));
         }

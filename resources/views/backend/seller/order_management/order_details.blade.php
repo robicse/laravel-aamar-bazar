@@ -99,6 +99,7 @@
                                             <th>Payment Type</th>
                                             <th>QTY</th>
                                             <th>Vat</th>
+                                            <th>Labour Cost</th>
                                             <th>Total</th>
                                             <th>Print</th>
                                         </tr>
@@ -114,7 +115,8 @@
                                             <td>{{$orders->payment_status}}</td>
                                             <td>{{$orderDetail->quantity}}</td>
                                             <td>{{$orderDetail->vat}}</td>
-                                            <td>{{($orderDetail->price * $orderDetail->quantity) + $orderDetail->vat }}</td>
+                                            <td>{{$orderDetail->labour_cost}}</td>
+                                            <td>{{($orderDetail->price * $orderDetail->quantity) + $orderDetail->vat + $orderDetail->labour_cost }}</td>
                                             <td>
                                                 <a href="{{ route('invoice.print',encrypt($orders->id)) }}" target="_blank" class="btn btn-default" style="background: green;"><i class="fa fa-print"></i></a>
                                             </td>
@@ -134,14 +136,10 @@
                                 <div class="col-6">
                                     <div class="table-responsive">
                                         <table class="table">
-                                            <tr>
-                                                <th style="width:50%">Subtotal:</th>
-                                                <td>{{$orders->grand_total}}</td>
-                                            </tr>
-                                            {{--                                        <tr>--}}
-                                            {{--                                            <th>Tax (9.3%)</th>--}}
-                                            {{--                                            <td>$10.34</td>--}}
-                                            {{--                                        </tr>--}}
+{{--                                            <tr>--}}
+{{--                                                <th style="width:50%">Subtotal:</th>--}}
+{{--                                                <td>{{$orders->grand_total}}</td>--}}
+{{--                                            </tr>--}}
                                             <tr>
                                                 <th>Total Vat:</th>
                                                 <td>{{$orders->total_vat}}</td>
@@ -151,12 +149,16 @@
                                                 <td>{{$orders->delivery_cost}}</td>
                                             </tr>
                                             <tr>
+                                                <th>Total Labour Cost:</th>
+                                                <td>{{$orders->total_labour_cost}}</td>
+                                            </tr>
+                                            <tr>
                                                 <th>Discount:</th>
                                                 <td>{{$orders->discount}}</td>
                                             </tr>
                                             <tr>
                                                 <th>Total:</th>
-                                                <td>{{($orders->grand_total + $orders->delivery_cost + $orders->total_vat)- $orders->discount}}</td>
+                                                <td>{{$orders->grand_total}}</td>
                                             </tr>
                                         </table>
                                     </div>
