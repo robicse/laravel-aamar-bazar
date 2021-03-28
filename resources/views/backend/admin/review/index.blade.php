@@ -32,7 +32,7 @@
                 <div class="card card-info card-outline">
                     <div class="callout callout-info">
                         <div class="card card-info" style="padding: 20px 40px 40px 40px;">
-                            <form role="form" action="{{route('admin.review.details')}}" method="POST">
+                            <form role="form" action="{{route('admin.review.details')}}" method="POST" style="padding-left: 250px;">
                                 @csrf
                                 <div class="row">
                                     <div class="col-4">
@@ -45,7 +45,7 @@
                                                 <option value="1" {{$value == 1 ? 'selected' : ''}}>1</option>
                                         </select>
                                     </div>
-                                    <div class="col-4" style="margin-top: 30px">
+                                    <div class="col-4" style="margin-top: 30px;">
                                         <button type="submit" class="btn btn-primary">Submit</button>
                                     </div>
                                 </div>
@@ -196,6 +196,10 @@
 {{--            </div>--}}
 {{--        </div>--}}
 {{--    </section>--}}
+
+
+
+
 
 @stop
 @push('js')

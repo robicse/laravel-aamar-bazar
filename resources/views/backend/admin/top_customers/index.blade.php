@@ -1,5 +1,5 @@
 @extends('backend.layouts.master')
-@section("title","Top Rated Shop List")
+@section("title","Top Customers List")
 @push('css')
     <link rel="stylesheet" href="{{asset('backend/plugins/datatables/dataTables.bootstrap4.css')}}">
     <style>
@@ -13,12 +13,12 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>Top Rated Shop List</h1>
+                    <h1>Top Customers List</h1>
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
                         <li class="breadcrumb-item"><a href="{{route('admin.dashboard')}}">Home</a></li>
-                        <li class="breadcrumb-item active">Shop List</li>
+                        <li class="breadcrumb-item active">Customers List</li>
                     </ol>
                 </div>
             </div>
@@ -30,14 +30,8 @@
             <div class="col-12">
                 <div class="card card-info card-outline">
                     <div class="card-header">
-                        <h3 class="card-title float-left">Shop Lists</h3>
+                        <h3 class="card-title float-left">Customers Lists</h3>
                         <div class="float-right">
-{{--                            <a href="{{route('admin.categories.create')}}">--}}
-{{--                                <button class="btn btn-success">--}}
-{{--                                    <i class="fa fa-plus-circle"></i>--}}
-{{--                                    Add--}}
-{{--                                </button>--}}
-{{--                            </a>--}}
                         </div>
                     </div>
                     <!-- /.card-header -->
@@ -46,29 +40,19 @@
                             <thead>
                             <tr>
                                 <th>#Id</th>
-                                <th>Name</th>
-                                <th>Ratting</th>
+                                <th>Customer Name</th>
+                                <th>Total Orders</th>
                             </tr>
                             </thead>
                             <tbody>
-                            @foreach($reviews as $key => $review)
+                            @foreach($customers as $key => $customer)
                                 @php
-                                    $shop = \App\Model\Shop::where('id',$review->shop_id)->first();
-          $fiveStarRev = \App\Model\Review::where('shop_id',$shop->id)->where('rating',5)->where('status',1)->sum('rating');
-          $fourStarRev = \App\Model\Review::where('shop_id',$shop->id)->where('rating',4)->where('status',1)->sum('rating');
-          $threeStarRev = \App\Model\Review::where('shop_id',$shop->id)->where('rating',3)->where('status',1)->sum('rating');
-          $twoStarRev = \App\Model\Review::where('shop_id',$shop->id)->where('rating',2)->where('status',1)->sum('rating');
-          $oneStarRev = \App\Model\Review::where('shop_id',$shop->id)->where('rating',1)->where('status',1)->sum('rating');
-          $rating = (5*$fiveStarRev + 4*$fourStarRev + 3*$threeStarRev + 2*$twoStarRev + 1*$oneStarRev) / ($review->total_rating);
+                                    $user = \App\User::where('id',$customer->user_id)->first();
                                 @endphp
                                 <tr>
                                     <td>{{$key + 1}}</td>
-                                    <td>
-                                       <a href="{{route('shop.details',$shop->slug)}}">{{$shop->name}}</a>
-                                    </td>
-                                    <td>
-                                        {{$totalRatingCount = number_format((float)$rating, 1, '.', '')}}
-                                    </td>
+                                    <td>{{$user->name}}</td>
+                                    <td>{{$customer->total_orders}}</td>
                                 </tr>
                             @endforeach
                             </tbody>
@@ -76,7 +60,7 @@
                             <tr>
                                 <th>#Id</th>
                                 <th>Name</th>
-                                <th>Ratting</th>
+                                <th>Total Orders</th>
                             </tr>
                             </tfoot>
                         </table>

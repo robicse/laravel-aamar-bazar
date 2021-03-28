@@ -75,6 +75,7 @@ Route::group(['as'=>'admin.','prefix' =>'admin','namespace'=>'Admin', 'middlewar
 
 
 // Admin Order Management
+    Route::get('all-orders','OrderManagementController@index')->name('all.orders');
     Route::get('order/pending','OrderManagementController@pendingOrder')->name('order.pending');
     Route::get('order/on-reviewed','OrderManagementController@onReviewedOrder')->name('order.on-reviewed');
     Route::get('order/on-delivered','OrderManagementController@onDeliveredOrder')->name('order.on-delivered');
@@ -85,12 +86,16 @@ Route::group(['as'=>'admin.','prefix' =>'admin','namespace'=>'Admin', 'middlewar
     Route::get('order-details/{id}','OrderManagementController@orderDetails')->name('order-details');
     Route::get('order-details/invoice/print/{id}','OrderManagementController@orderInvoicePrint')->name('invoice.print');
     Route::get('order/daily-orders','OrderManagementController@dailyOrders')->name('daily-orders');
+    Route::get('order/search/area', 'OrderManagementController@search_area');
+    Route::get('/orders/{area}','OrderManagementController@areaWiseOrder');
 
     // Admin User Management
     Route::resource('customers','CustomerController');
     Route::get('customers/show/profile/{id}','CustomerController@profileShow')->name('customers.profile.show');
     Route::put('customers/update/profile/{id}','CustomerController@updateProfile')->name('customer.profile.update');
     Route::put('customers/password/update/{id}','CustomerController@updatePassword')->name('customer.password.update');
+    Route::get('/customer/search/area', 'CustomerController@search_area');
+    Route::get('/customer/{area}','CustomerController@areaWiseCustomer')->name('area-wise.customer');
 
     //review
     Route::get('review','ReviewController@index')->name('review.index');
@@ -138,5 +143,6 @@ Route::group(['as'=>'admin.','prefix' =>'admin','namespace'=>'Admin', 'middlewar
     Route::get('/site-optimize', 'SystemOptimize@Settings')->name('site.optimize');
 
     Route::get('top-rated-shop','VendorController@topRatedShop')->name('top-rated-shop');
+    Route::get('top-customers','CustomerController@topRatedCustomers')->name('top-customers');
 
 });
