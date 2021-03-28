@@ -90,7 +90,7 @@
                                     <td>{{$order->invoice_code}}</td>
                                     <td>{{$order->payment_type}}</td>
                                     <td>
-                                        <a class="btn btn-info waves-effect" href="{{route('admin.order-details',$order->id)}}">
+                                        <a class="btn btn-info waves-effect" href="{{route('admin.order-details',encrypt($order->id))}}">
                                             <i class="fa fa-eye"></i> View
                                         </a>
                                     </td>

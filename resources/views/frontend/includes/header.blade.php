@@ -6,7 +6,7 @@
     }
 </style>
 
-<header class="header header--1" data-sticky="true">
+<header class="header header--1" data-sticky="true" style="height: 100px;">
     <div class="header__top">
         <div class="ps-container">
             <div class="header__left">
@@ -150,7 +150,7 @@
                 {{--                <a class="ps-logo" href="{{url('/')}}"><img src="{{asset('frontend/img/logo_light.png')}}" alt=""></a>--}}
                 {{--                <a class="ps-logo" href="{{url('/')}}"><h2 class="font-weight-light">Mudi <span class="text-capitalize text-secondary">Hat</span></h2></a>--}}
 {{--                <a class="" href="{{url('/')}}"><h2 class="font-weight-light">Mudi <span class="text-capitalize text-secondary">Hat</span></h2></a>--}}
-                <a class="ps-logo" href="{{url('/')}}"><img src="{{asset('frontend/img/logo-mudi-hat-final.png')}}" alt="" width="200" height="90"></a>
+                <a class="ps-logo" href="{{url('/')}}"><img src="{{asset('frontend/img/logo-mudi-hat-final.png')}}" alt="" width="200" height="90" style="margin-top: -20px;"></a>
             </div>
             <div class="header__center">
                 <div class="ps-form--quick-search" >
