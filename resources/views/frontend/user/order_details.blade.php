@@ -32,6 +32,7 @@
                                                 <th>Name</th>
                                                 <th>Quantity</th>
                                                 <th>Vat</th>
+                                                <th>Labour Cost</th>
                                                 <th>Total (৳)</th>
                                                 <th>Review</th>
                                             </tr>
@@ -51,7 +52,8 @@
                                                 </td>
                                                 <td>{{$orderDetail->quantity}}</td>
                                                 <td>{{$orderDetail->vat}}</td>
-                                                <td><span>{{($orderDetail->price * $orderDetail->quantity) + $orderDetail->vat}}</span></td>
+                                                <td>{{$orderDetail->labour_cost}}</td>
+                                                <td><span>{{($orderDetail->price * $orderDetail->quantity) + $orderDetail->vat + $orderDetail->labour_cost}}</span></td>
                                                 <td>
                                                     @if($order->delivery_status == 'Completed' && empty($review))
                                                         <a class="btn btn-default" data-toggle="modal" onclick="getProductId('{{$orderDetail->product_id}}')" data-target="#exampleModal" style="background: yellow;">

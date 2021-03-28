@@ -87,6 +87,7 @@
                         <th>Payment Type</th>
                         <th>Qty</th>
                         <th>Vat</th>
+                        <th>Labour Cost</th>
                         <th>Grand Total</th>
                     </tr>
                     </thead>
@@ -111,7 +112,8 @@
                             <td>{{$orderDetail->order->payment_status}}</td>
                             <td>{{$orderDetail->quantity}}</td>
                             <td>{{$orderDetail->vat}}</td>
-                            <td>{{$orderDetail->price + $orderDetail->vat}}</td>
+                            <td>{{$orderDetail->labour_cost}}</td>
+                            <td>{{($orderDetail->price * $orderDetail->quantity) + $orderDetail->vat + $orderDetail->labour_cost}}</td>
                         </tr>
                     @endforeach
 
@@ -142,10 +144,6 @@
 
                 <div class="table-responsive">
                     <table class="table">
-                        <tr>
-                            <th style="width:50%">Subtotal:</th>
-                            <td>{{$order->grand_total}}</td>
-                        </tr>
 
                         <tr>
                             <th>Total Vat:</th>
@@ -156,12 +154,16 @@
                             <td>{{$order->delivery_cost}}</td>
                         </tr>
                         <tr>
+                            <th>Total Labour Cost:</th>
+                            <td>{{$order->total_labour_cost}}</td>
+                        </tr>
+                        <tr>
                             <th>Discount:</th>
                             <td>{{$order->discount}}</td>
                         </tr>
                         <tr>
                             <th>Total:</th>
-                            <td>{{($order->grand_total + $order->total_vat + $order->delivery_cost) - $order->discount}}</td>
+                            <td>{{$order->grand_total}}</td>
                         </tr>
                     </table>
                 </div>

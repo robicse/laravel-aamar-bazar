@@ -232,17 +232,17 @@ class ProductController extends Controller
         //check shop categories
         $shopId = Shop::where('user_id',Auth::id())->first();
 
-        $shopCategory = ShopCategory::where('shop_id',$shopId->id)->where('category_id',$request->category_id)->first();
+        $checkShopCategory = ShopCategory::where('shop_id',$shopId->id)->where('category_id',$request->category_id)->first();
 //        dd($shopId);
-        if(empty($shopCategory)){
+        if(empty($checkShopCategory)){
             $shopCategoryData = new ShopCategory();
             $shopCategoryData->shop_id = $shopId->id;
             $shopCategoryData->category_id = $request->category_id;
             //Toastr::success("Shop Category Inserted Successfully","Success");
             $shopCategoryData->save();
         }
-//        //check shop subcategories
 //        $shopSubcategory = ShopSubcategory::where('shop_id',$shopId->id)->first();
+        $shopCategory = ShopCategory::where('shop_id',$shopId->id)->where('category_id',$product->category_id)->first();
             $shopSubcategoryData = new ShopSubcategory();
             $shopSubcategoryData->shop_id = $shopId->id;
             $shopSubcategoryData->subcategory_id = $request->subcategory_id;
