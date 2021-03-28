@@ -26,9 +26,12 @@ class AddressController extends Controller
         if (empty($check)){
             $new_address = new Address();
             $new_address->user_id = Auth::id();
-            $new_address->address = $request->address;
             $new_address->country = 'Bangladesh';
+            $new_address->address = $request->address;
             $new_address->city = $request->city;
+            $new_address->area = $request->area;
+            $new_address->latitude = $request->latitude;
+            $new_address->longitude = $request->longitude;
             $new_address->postal_code = $request->postal_code;
             $new_address->phone = $request->phone;
             $new_address->type = $request->type;
@@ -44,9 +47,12 @@ class AddressController extends Controller
         }
         $address = new Address();
         $address->user_id = Auth::id();
-        $address->address = $request->address;
         $address->country = 'Bangladesh';
+        $address->address = $request->address;
         $address->city = $request->city;
+        $address->area = $request->area;
+        $address->latitude = $request->latitude;
+        $address->longitude = $request->longitude;
         $address->postal_code = $request->postal_code;
         $address->phone = $request->phone;
         $address->type = $request->type;

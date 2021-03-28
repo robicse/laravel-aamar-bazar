@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Model\Address;
 use App\User;
 use Brian2694\Toastr\Facades\Toastr;
 use Illuminate\Http\Request;
@@ -19,8 +20,18 @@ class CustomerController extends Controller
             ->where('verification_code','!=',null)
             ->latest('created_at')
             ->get();
+        $addresses = null;
 //        $customerInfos = User::where('user_type','customer')->latest()->get();
-        return view('backend.admin.customer.index',compact('customerInfos'));
+        return view('backend.admin.customer.index',compact('customerInfos','addresses'));
+    }
+    public function search_area(Request $request){
+        $name = $request->get('q');
+        $area = Address::where('area', 'LIKE', '%'. $name. '%')->limit(5)->get();
+        return $area;
+    }
+    public function areaWiseCustomer($area){
+        $addresses = Address::where('area',$area)->latest()->get();
+        return view('backend.admin.customer.index', compact('addresses'));
     }
 
     public function create()
@@ -88,5 +99,15 @@ class CustomerController extends Controller
         $user->save();
         Toastr::success('Customer Password Updated Successfully','Success');
         return redirect()->back();
+    }
+    public function topRatedCustomers(){
+        $customers = DB::table('users')
+            ->join('orders','users.id','=','orders.user_id')
+            ->select('orders.user_id',DB::raw('COUNT(orders.id) as total_orders'))
+            ->groupBy('orders.user_id')
+            ->orderBy('total_orders', 'DESC')
+            ->get();
+//        dd($customers);
+        return view('backend.admin.top_customers.index',compact('customers'));
     }
 }

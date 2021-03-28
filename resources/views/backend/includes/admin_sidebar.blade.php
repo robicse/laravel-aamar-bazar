@@ -303,7 +303,7 @@
                     @php
                         $new_customer = \App\User::where('user_type','customer')->where('view',0)->count();
                     @endphp
-                    <li class="nav-item has-treeview {{(Request::is('admin/customers*') ) ? 'menu-open' : ''}}">
+                    <li class="nav-item has-treeview {{(Request::is('admin/customer*') ) ? 'menu-open' : ''}}">
                         <a href="#" class="nav-link">
                             <i class="nav-icon fas fa-users"></i>
                             <p>
@@ -317,8 +317,8 @@
                         <ul class="nav nav-treeview">
                             <li class="nav-item">
                                 <a href="{{route('admin.customers.index')}}"
-                                   class="nav-link {{Request::is('admin/customers') ? 'active' :''}}">
-                                    <i class="fa fa-{{Request::is('admin/customers') ? 'folder-open':'folder'}} nav-icon"></i>
+                                   class="nav-link {{Request::is('admin/customer*') ? 'active' :''}}">
+                                    <i class="fa fa-{{Request::is('admin/customer*') ? 'folder-open':'folder'}} nav-icon"></i>
                                     <p>
                                         Customer List
                                         @if(!empty($new_customer))
@@ -421,11 +421,18 @@
                         </a>
                     </li>
                     <li class="nav-item ">
-
                         <a href="{{route('admin.top-rated-shop')}}" class="nav-link {{Request::is('admin/top-rated-shop*') ? 'active' : ''}}">
                             <i class="nav-icon fa fa-store"></i>
                             <p>
-                                Top Rated Shop
+                                Top Rated Shops
+                            </p>
+                        </a>
+                    </li>
+                    <li class="nav-item ">
+                        <a href="{{route('admin.top-customers')}}" class="nav-link {{Request::is('admin/top-customers*') ? 'active' : ''}}">
+                            <i class="nav-icon fa fa-user-shield"></i>
+                            <p>
+                                Top Customers
                             </p>
                         </a>
                     </li>

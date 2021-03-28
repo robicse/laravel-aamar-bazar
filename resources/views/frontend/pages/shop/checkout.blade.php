@@ -33,6 +33,15 @@
             color: #212121;
         }
     </style>
+    <link rel="stylesheet"
+          href="https://cdn.jsdelivr.net/gh/barikoi/barikoi-js@b6f6295467c19177a7d8b73ad4db136905e7cad6/dist/barikoi.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.4.0/dist/leaflet.css"
+          integrity="sha512-puBpdR0798OZvTTbP4A8Ix/l+A4dHDD0DGqYW6RQ+9jxkRFclaxxQb/SJAWZfWAkuyeQUytO7+7N4QKrDh+drA=="
+          crossorigin=""/>
+    <script src="https://unpkg.com/leaflet@1.4.0/dist/leaflet.js"
+            integrity="sha512-QVftwZFqvtRNi0ZyCtsznlKSWOStnDORoefr1enyq5mVL4tmKB3S/EnC3rRJcxCPavG10IcrVGSmPh6Qw5lwrg=="
+            crossorigin=""></script>
+    <link rel="stylesheet" href="{{asset('backend/plugins/select2/select2.min.css')}}">
 @endpush
 @section('content')
     <div class="ps-page--simple">
@@ -196,6 +205,7 @@
             </div>
         </div>
     </div>
+
     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -205,52 +215,168 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <form class="ps-form--account-setting" action="{{route('user.address.store')}}" method="POST" enctype="multipart/form-data">
+
+                <form class="ps-form--account-setting" id="bk_address" action="{{route('user.address.store')}}" method="POST" enctype="multipart/form-data">
                     @csrf
                     <div class="modal-body">
-                        <div class="ps-form__content" style="padding-left: 50px; padding-top: 20px;">
-                            {{--                                    <div class="form-group row">--}}
-                            {{--                                        <label class="col-md-2">Address</label>--}}
-                            {{--                                        <input class="form-control col-md-4" type="text" name="address" placeholder="Your Address">--}}
-                            {{--                                    </div>--}}
-                            <div class="form-group row">
-                                <label for="address" class="col-sm-2">Address</label>
-                                <div class="col-sm-8">
-                                    <input type="text" class="form-control form-control-sm" name="address" placeholder="Your Address">
-                                </div>
+                        <div class="ps-form__content" >
+                            <div class="form-group" style="margin-bottom: 0;">
+                                <label for="bksearch" class="">Address</label>
+                                <input type="text" onkeyup="getAddress()" name="address" class="form-control form-control-sm address" autocomplete="off">
                             </div>
-                            <div class="form-group row">
-                                <label for="country" class="col-sm-2">Country</label>
-                                <div class="col-sm-8">
-                                    <input type="text" class="form-control form-control-sm" name="country" placeholder="Bangladesh" {{'Bangladesh' ? 'readonly' : ''}}>
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <label for="city" class="col-sm-2">City</label>
-                                <div class="col-sm-8">
-                                    <input type="text" class="form-control form-control-sm" name="city" placeholder="Your City">
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <label for="postal_code" class="col-sm-2">Postal Code</label>
-                                <div class="col-sm-8">
-                                    <input type="text" class="form-control form-control-sm" name="postal_code" placeholder="Your Postal Code">
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <label for="phone" class="col-sm-2">Phone</label>
-                                <div class="col-sm-8">
-                                    <input type="text" class="form-control form-control-sm" name="phone" placeholder="Your phone">
-                                </div>
-                            </div>
+                        </div>
+                        <ul class="list-group addList" style="padding: 0;">
 
+                        </ul>
+                        <div class="form-group">
+                            <input type="hidden" name="address">
+                            <input type="hidden" name="city">
+                            <input type="hidden" name="area">
+                            <input type="hidden" name="latitude">
+                            <input type="hidden" name="longitude">
                         </div>
-                        <div class="form-group submit" style="padding-left: 125px;" >
-                            <button class="ps-btn">Save</button>
+                        <div class="form-group ">
+                            <label for="country" class="">Country</label>
+                            <input type="text" class="form-control form-control-sm" name="country" placeholder="Bangladesh" readonly>
                         </div>
+
+                        <div class="form-group">
+                            <label for="postal_code" class="">Postal Code</label>
+                            <input type="text" class="form-control form-control-sm" name="postal_code" placeholder="Your Postal Code" readonly>
+                        </div>
+                        <div class="form-group">
+                            <label for="phone" class="">Phone</label>
+                            <input type="text" class="form-control form-control-sm" name="phone" placeholder="Your phone">
+                        </div>
+                        <div class="form-group ">
+                            <label for="phone" class="">Type</label>
+                            <select name="type" id="type" class="form-control" required>
+                                <option value="Home">Home</option>
+                                <option value="Office">Office</option>
+                                <option value="Others">Others</option>
+                            </select>
+                        </div>
+
                     </div>
-                </form>
+                    <div class="form-group submit text-center">
+                        <button class="ps-btn">Save</button>
+                    </div>
             </div>
+            </form>
         </div>
     </div>
+    </div>
+
+
+
+
+{{--    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">--}}
+{{--        <div class="modal-dialog">--}}
+{{--            <div class="modal-content">--}}
+{{--                <div class="modal-header">--}}
+{{--                    <h5 class="modal-title" id="exampleModalLabel">Update Your Address</h5>--}}
+{{--                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">--}}
+{{--                        <span aria-hidden="true">&times;</span>--}}
+{{--                    </button>--}}
+{{--                </div>--}}
+{{--                <form class="ps-form--account-setting" action="{{route('user.address.store')}}" method="POST" enctype="multipart/form-data">--}}
+{{--                    @csrf--}}
+{{--                    <div class="modal-body">--}}
+{{--                        <div class="ps-form__content" style="padding-left: 50px; padding-top: 20px;">--}}
+{{--                            <div class="form-group row">--}}
+{{--                                <label for="address" class="col-sm-2">Address</label>--}}
+{{--                                <div class="col-sm-8">--}}
+{{--                                    <input type="text" class="form-control form-control-sm" name="address" placeholder="Your Address">--}}
+{{--                                </div>--}}
+{{--                            </div>--}}
+{{--                            <div class="form-group row">--}}
+{{--                                <label for="country" class="col-sm-2">Country</label>--}}
+{{--                                <div class="col-sm-8">--}}
+{{--                                    <input type="text" class="form-control form-control-sm" name="country" placeholder="Bangladesh" {{'Bangladesh' ? 'readonly' : ''}}>--}}
+{{--                                </div>--}}
+{{--                            </div>--}}
+{{--                            <div class="form-group row">--}}
+{{--                                <label for="city" class="col-sm-2">City</label>--}}
+{{--                                <div class="col-sm-8">--}}
+{{--                                    <input type="text" class="form-control form-control-sm" name="city" placeholder="Your City">--}}
+{{--                                </div>--}}
+{{--                            </div>--}}
+{{--                            <div class="form-group row">--}}
+{{--                                <label for="postal_code" class="col-sm-2">Postal Code</label>--}}
+{{--                                <div class="col-sm-8">--}}
+{{--                                    <input type="text" class="form-control form-control-sm" name="postal_code" placeholder="Your Postal Code">--}}
+{{--                                </div>--}}
+{{--                            </div>--}}
+{{--                            <div class="form-group row">--}}
+{{--                                <label for="phone" class="col-sm-2">Phone</label>--}}
+{{--                                <div class="col-sm-8">--}}
+{{--                                    <input type="text" class="form-control form-control-sm" name="phone" placeholder="Your phone">--}}
+{{--                                </div>--}}
+{{--                            </div>--}}
+
+{{--                        </div>--}}
+{{--                        <div class="form-group submit" style="padding-left: 125px;" >--}}
+{{--                            <button class="ps-btn">Save</button>--}}
+{{--                        </div>--}}
+{{--                    </div>--}}
+{{--                </form>--}}
+{{--            </div>--}}
+{{--        </div>--}}
+{{--    </div>--}}
 @endsection
+@push('js')
+    <script src="{{asset('backend/plugins/select2/select2.full.min.js')}}"></script>
+    <script>
+        //Initialize Select2 Elements
+        $('.select2').select2();
+        /*$('.textarea').wysihtml5({
+            toolbar: { fa: true }
+        })*/
+    </script>
+    <script src="https://cdn.jsdelivr.net/gh/barikoi/barikoi-js@b6f6295467c19177a7d8b73ad4db136905e7cad6/dist/barikoi.min.js?key:MTg3NzpCRE5DQ01JSkgw"></script>
+    <script>
+        Bkoi.onSelect(function () {
+            // get selected data from dropdown list
+            let selectedPlace = Bkoi.getSelectedData()
+            console.log(selectedPlace)
+            // center of the map
+            document.getElementsByName("address")[0].value = selectedPlace.address;
+            document.getElementsByName("city")[0].value = selectedPlace.city;
+            document.getElementsByName("area")[0].value = selectedPlace.area;
+            document.getElementsByName("latitude")[0].value = selectedPlace.latitude;
+            document.getElementsByName("longitude")[0].value = selectedPlace.longitude;
+
+        })
+
+        function getAddress() {
+
+            let places=[];
+            let location=null;
+            let add=$('.address').val();
+            $('.addList').empty();
+            fetch("https://barikoi.xyz/v1/api/search/autocomplete/MTg5ODpJUTVHV0RWVFZP/place?q="+add)
+                .then(response => response.json())
+                .catch(error => console.error('Error:', error))
+                .then(response => {
+                    response.places.forEach(result)
+                })
+        }
+        function result(item, index){
+            var $li = $("<li class='list-group-item'><a href='#' class='list-group-item bg-light'>" + item.address + "</a></li>");
+            $(".addList").append($li);
+            $li.on('click', getPlacesDetails.bind(this, item));
+        }
+        function getPlacesDetails(mapData)
+        {
+            $(".addList").empty();
+            $( "input[name='address']" ).val(mapData.address)
+            $( "input[name='city']" ).val(mapData.city)
+            $( "input[name='area']" ).val(mapData.area)
+            $( "input[name='latitude']" ).val(mapData.latitude)
+            $( "input[name='longitude']" ).val(mapData.longitude)
+            $( "input[name='postal_code']" ).val(mapData.postCode)
+            //console.log(mapData)
+        }
+
+    </script>
+@endpush

@@ -38,7 +38,7 @@
                             <form action="" method="get">
                                 @csrf
                                 <div class="input-group float-center rounded" style="padding-left: 200px;">
-                                    <input type="search" name="searchName" id="searchMain" class="form-control rounded" placeholder="Search Shop by Area" aria-label="Search"
+                                    <input type="search" name="searchName" id="searchMain" class="form-control rounded" placeholder="Search Seller by Area" aria-label="Search"
                                            aria-describedby="search-addon" />
 {{--                                    <span class="input-group-text border-0" id="searchMain">--}}
 {{--                                        <button class="submit" style="border: transparent;"> <i class="fas fa-search"></i> </button>--}}
