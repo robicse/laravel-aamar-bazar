@@ -174,8 +174,8 @@ class VendorController extends Controller
         $data2 = explode(',',$data);
         $data_min = (int) $data2[0];
         $data_max = (int) $data2[1];
-        $result_data = Product::where('user_id',$sellerId)->where('unit_price', '>=', $data_min)->where('unit_price', '<=', $data_max)->where('published',1)->where('featured',1)->get();
-
+        $result_data = Product::where('user_id',$sellerId)->where('unit_price', '>=', $data_min)->where('unit_price', '<=', $data_max)->where('published',1)->where('featured',1)->latest()->paginate(4);
+//dd($result_data);
         return $result_data;
     }
     public function FeaturedSubFilter($data,$id,$subId)
