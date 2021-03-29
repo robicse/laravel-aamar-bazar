@@ -35,6 +35,7 @@
                         || Request::is('admin/subcategories*')
                         || Request::is('admin/sub-subcategories*')
                         || Request::is('admin/products*')
+                        || Request::is('admin/flash_deals*')
                         || Request::is('admin/offers*')
                         || Request::is('admin/request/products*')
                         || Request::is('admin/all/seller/products*')
