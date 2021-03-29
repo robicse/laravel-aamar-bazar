@@ -33,19 +33,15 @@
                             <div class="ps-form__content">
                                 <h5>Register An Account</h5>
                                 <div class="form-group form_padding">
-                                    <label>Your Full Name</label>
-                                    <input class="form-control form_height" type="text" name="name" placeholder="Username">
+                                    <input class="form-control form_height" type="text" name="name" placeholder="Name">
                                 </div>
                                 <div class="form-group form_padding">
-                                    <label>Your Email</label>
-                                    <input class="form-control form_height" type="email" name="email" placeholder="Email address">
+                                    <input class="form-control form_height" type="email" name="email" placeholder="Email">
                                 </div>
                                 <div class="form-group form_padding">
-                                    <label>Your Phone Number</label>
-                                    <input class="form-control form_height" type="number" name="phone" placeholder="Phone Number">
+                                    <input class="form-control form_height" type="number" name="phone" placeholder="Phone">
                                 </div>
                                 <div class="form-group form_padding">
-                                    <label>Password</label>
                                     <input class="form-control form_height" type="password" minlength="6" name="password" placeholder="Password">
                                 </div>
                                 <div class="form-group form_padding">

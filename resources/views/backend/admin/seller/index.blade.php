@@ -73,135 +73,139 @@
                             </thead>
                             <tbody>
                             @if($shops == null)
-                            @foreach($sellerUserInfos as $key => $sellerUserInfo)
-                            <tr>
-                                <td>
-                                    {{$key + 1}}
-                                    @if($sellerUserInfo->view == 0)
-                                        <span class="right badge badge-danger">New</span>
-                                    @endif
-                                </td>
-                                <td>{{$sellerUserInfo->name}}</td>
-                                <td>{{$sellerUserInfo->phone}}</td>
-                                <td>{{$sellerUserInfo->email}}</td>
-                                <td>
-                                    @if(!empty($sellerUserInfo->shop->area))
-                                    {{$sellerUserInfo->shop->area}}
-                                    @endif
-                                </td>
-                                <td>
-                                    <div class="form-group col-md-2">
-                                        <label class="switch" style="margin-top:40px;">
-                                            <input onchange="verification_status(this)" value="{{$sellerUserInfo->seller->id }}" {{$sellerUserInfo->seller->verification_status == 1? 'checked':''}} type="checkbox" >
-                                            <span class="slider round"></span>
-                                        </label>
-                                    </div>
-                                </td>
-                                <td ><strong class="badge badge-info w-100">{{$sellerUserInfo->seller->commission}}%</strong></td>
-                                <td>{{$sellerUserInfo->products->count()}}</td>
-                                <td>{{$sellerUserInfo->seller->admin_to_pay}}</td>
-                                <td>{{$sellerUserInfo->seller->seller_will_pay_admin}}</td>
-                                <td>
-                                    <div class="dropdown">
-                                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                            Actions
-                                        </button>
-                                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                            <a class="bg-dark dropdown-item" href="{{route('admin.seller.profile.show',encrypt($sellerUserInfo->id))}}">
-                                                <i class="fa fa-user"></i> Profile
-                                            </a>
-                                            <a class="bg-success dropdown-item" onclick="show_seller_payment_modal('{{$sellerUserInfo->seller->id}}');" href="#">
-                                                <i class="fa fa-money"></i> Pay To Seller
-                                            </a>
-                                            <a class="bg-primary dropdown-item" onclick="show_admin_payment_modal('{{$sellerUserInfo->seller->id}}');" href="#">
-                                                <i class="fa fa-money"></i> Pay To Admin
-                                            </a>
-                                            <a class="bg-warning dropdown-item" onclick="show_seller_commission_modal('{{$sellerUserInfo->seller->id}}');" href="#">
-                                                <i class="fa fa-money-bill-wave"></i> Set Commission
-                                            </a>
-                                            <a class="bg-secondary dropdown-item" href="{{route('admin.payment.history',$sellerUserInfo->id)}}">
-                                                <i class="fa fa-history"></i> Payment History
-                                            </a>
-{{--                                            <a class="bg-info dropdown-item" href="{{route('admin.sellers.edit',$sellerUserInfo->id)}}">--}}
-{{--                                                <i class="fa fa-edit"></i> Edit--}}
-{{--                                            </a>--}}
-                                            <a class="bg-danger dropdown-item" href="{{route('admin.sellers.ban',$sellerUserInfo->id)}}">
-                                                <i class="fa fa-ban"></i> Ban this seller
-                                            </a>
+                                @foreach($sellerUserInfos as $key => $sellerUserInfo)
+                                    <tr>
+                                        <td>
+                                            {{$key + 1}}
+                                        </td>
+                                        <td>
+                                            {{$sellerUserInfo->name}}
+                                            @if($sellerUserInfo->view == 0)
+                                                <span class="right badge badge-danger">New</span>
+                                            @endif
+                                        </td>
+                                        <td>{{$sellerUserInfo->phone}}</td>
+                                        <td>{{$sellerUserInfo->email}}</td>
+                                        <td>
+                                            @if(!empty($sellerUserInfo->shop->area))
+                                                {{$sellerUserInfo->shop->area}}
+                                            @endif
+                                        </td>
+                                        <td>
+                                            <div class="form-group col-md-2">
+                                                <label class="switch" style="margin-top:40px;">
+                                                    <input onchange="verification_status(this)" value="{{$sellerUserInfo->seller->id }}" {{$sellerUserInfo->seller->verification_status == 1? 'checked':''}} type="checkbox" >
+                                                    <span class="slider round"></span>
+                                                </label>
+                                            </div>
+                                        </td>
+                                        <td ><strong class="badge badge-info w-100">{{$sellerUserInfo->seller->commission}}%</strong></td>
+                                        <td>{{$sellerUserInfo->products->count()}}</td>
+                                        <td>{{$sellerUserInfo->seller->admin_to_pay}}</td>
+                                        <td>{{$sellerUserInfo->seller->seller_will_pay_admin}}</td>
+                                        <td>
+                                            <div class="dropdown">
+                                                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                    Actions
+                                                </button>
+                                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                                    <a class="bg-dark dropdown-item" href="{{route('admin.seller.profile.show',encrypt($sellerUserInfo->id))}}">
+                                                        <i class="fa fa-user"></i> Profile
+                                                    </a>
+                                                    <a class="bg-success dropdown-item" onclick="show_seller_payment_modal('{{$sellerUserInfo->seller->id}}');" href="#">
+                                                        <i class="fa fa-money"></i> Pay To Seller
+                                                    </a>
+                                                    <a class="bg-primary dropdown-item" onclick="show_admin_payment_modal('{{$sellerUserInfo->seller->id}}');" href="#">
+                                                        <i class="fa fa-money"></i> Pay To Admin
+                                                    </a>
+                                                    <a class="bg-warning dropdown-item" onclick="show_seller_commission_modal('{{$sellerUserInfo->seller->id}}');" href="#">
+                                                        <i class="fa fa-money-bill-wave"></i> Set Commission
+                                                    </a>
+                                                    <a class="bg-secondary dropdown-item" href="{{route('admin.payment.history',$sellerUserInfo->id)}}">
+                                                        <i class="fa fa-history"></i> Payment History
+                                                    </a>
+                                                    {{--                                            <a class="bg-info dropdown-item" href="{{route('admin.sellers.edit',$sellerUserInfo->id)}}">--}}
+                                                    {{--                                                <i class="fa fa-edit"></i> Edit--}}
+                                                    {{--                                            </a>--}}
+                                                    <a class="bg-danger dropdown-item" href="{{route('admin.sellers.ban',$sellerUserInfo->id)}}">
+                                                        <i class="fa fa-ban"></i> Ban this seller
+                                                    </a>
 
-{{--                                            <button class="bg-danger dropdown-item" type="button"--}}
-{{--                                                    onclick="deleteProduct({{$sellerUserInfo->id}})">--}}
-{{--                                                <i class="fa fa-ban"></i> Ban this seller--}}
-{{--                                            </button>--}}
-{{--                                            <form id="delete-form-{{$sellerUserInfo->id}}" action="{{route('admin.sellers.destroy',$sellerUserInfo->id)}}" method="POST" style="display: none;">--}}
-{{--                                                @csrf--}}
-{{--                                                @method('DELETE')--}}
-{{--                                            </form>--}}
-                                        </div>
-                                    </div>
-                                </td>
-                            </tr>
-                            @endforeach
+                                                    {{--                                            <button class="bg-danger dropdown-item" type="button"--}}
+                                                    {{--                                                    onclick="deleteProduct({{$sellerUserInfo->id}})">--}}
+                                                    {{--                                                <i class="fa fa-ban"></i> Ban this seller--}}
+                                                    {{--                                            </button>--}}
+                                                    {{--                                            <form id="delete-form-{{$sellerUserInfo->id}}" action="{{route('admin.sellers.destroy',$sellerUserInfo->id)}}" method="POST" style="display: none;">--}}
+                                                    {{--                                                @csrf--}}
+                                                    {{--                                                @method('DELETE')--}}
+                                                    {{--                                            </form>--}}
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                @endforeach
                             @else
                                 @foreach($shops as $key => $shop)
                                     @php
                                         $sellerUserInfo = $shop->user;
                                     @endphp
-                                <tr>
-                                    <td>
-                                        {{$key + 1}}
-                                        @if($sellerUserInfo->view == 0)
-                                            <span class="right badge badge-danger">New</span>
-                                        @endif
-                                    </td>
-                                    <td>{{$sellerUserInfo->name}}</td>
-                                    <td>{{$sellerUserInfo->phone}}</td>
-                                    <td>{{$sellerUserInfo->email}}</td>
-                                    <td>
-                                        @if(!empty($sellerUserInfo->shop->area))
-                                            {{$sellerUserInfo->shop->area}}
-                                        @endif
-                                    </td>
-                                    <td>
-                                        <div class="form-group col-md-2">
-                                            <label class="switch" style="margin-top:40px;">
-                                                <input onchange="verification_status(this)" value="{{$sellerUserInfo->seller->id }}" {{$sellerUserInfo->seller->verification_status == 1? 'checked':''}} type="checkbox" >
-                                                <span class="slider round"></span>
-                                            </label>
-                                        </div>
-                                    </td>
-                                    <td ><strong class="badge badge-info w-100">{{$sellerUserInfo->seller->commission}}%</strong></td>
-                                    <td>{{$sellerUserInfo->products->count()}}</td>
-                                    <td>{{$sellerUserInfo->seller->admin_to_pay}}</td>
-                                    <td>{{$sellerUserInfo->seller->seller_will_pay_admin}}</td>
-                                    <td>
-                                        <div class="dropdown">
-                                            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                Actions
-                                            </button>
-                                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                                <a class="bg-dark dropdown-item" href="{{route('admin.seller.profile.show',encrypt($sellerUserInfo->id))}}">
-                                                    <i class="fa fa-user"></i> Profile
-                                                </a>
-                                                <a class="bg-success dropdown-item" onclick="show_seller_payment_modal('{{$sellerUserInfo->seller->id}}');" href="#">
-                                                    <i class="fa fa-money"></i> Pay To Seller
-                                                </a>
-                                                <a class="bg-primary dropdown-item" onclick="show_admin_payment_modal('{{$sellerUserInfo->seller->id}}');" href="#">
-                                                    <i class="fa fa-money"></i> Pay To Admin
-                                                </a>
-                                                <a class="bg-warning dropdown-item" onclick="show_seller_commission_modal('{{$sellerUserInfo->seller->id}}');" href="#">
-                                                    <i class="fa fa-money-bill-wave"></i> Set Commission
-                                                </a>
-                                                <a class="bg-secondary dropdown-item" href="{{route('admin.payment.history',$sellerUserInfo->id)}}">
-                                                    <i class="fa fa-history"></i> Payment History
-                                                </a>
-                                                <a class="bg-danger dropdown-item" href="{{route('admin.sellers.ban',$sellerUserInfo->id)}}">
-                                                    <i class="fa fa-ban"></i> Ban this seller
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </td>
-                                </tr>
+                                    @if($sellerUserInfo->verification_code != null)
+                                        <tr>
+                                            <td>{{$key + 1}}</td>
+                                            <td>
+                                                {{$sellerUserInfo->name}}
+                                                @if($sellerUserInfo->view == 0)
+                                                    <span class="right badge badge-danger">New</span>
+                                                @endif
+                                            </td>
+                                            <td>{{$sellerUserInfo->phone}}</td>
+                                            <td>{{$sellerUserInfo->email}}</td>
+                                            <td>
+                                                @if(!empty($sellerUserInfo->shop->area))
+                                                    {{$sellerUserInfo->shop->area}}
+                                                @endif
+                                            </td>
+                                            <td>
+                                                <div class="form-group col-md-2">
+                                                    <label class="switch" style="margin-top:40px;">
+                                                        <input onchange="verification_status(this)" value="{{$sellerUserInfo->seller->id }}" {{$sellerUserInfo->seller->verification_status == 1? 'checked':''}} type="checkbox" >
+                                                        <span class="slider round"></span>
+                                                    </label>
+                                                </div>
+                                            </td>
+                                            <td ><strong class="badge badge-info w-100">{{$sellerUserInfo->seller->commission}}%</strong></td>
+                                            <td>{{$sellerUserInfo->products->count()}}</td>
+                                            <td>{{$sellerUserInfo->seller->admin_to_pay}}</td>
+                                            <td>{{$sellerUserInfo->seller->seller_will_pay_admin}}</td>
+                                            <td>
+                                                <div class="dropdown">
+                                                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                        Actions
+                                                    </button>
+                                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                                        <a class="bg-dark dropdown-item" href="{{route('admin.seller.profile.show',encrypt($sellerUserInfo->id))}}">
+                                                            <i class="fa fa-user"></i> Profile
+                                                        </a>
+                                                        <a class="bg-success dropdown-item" onclick="show_seller_payment_modal('{{$sellerUserInfo->seller->id}}');" href="#">
+                                                            <i class="fa fa-money"></i> Pay To Seller
+                                                        </a>
+                                                        <a class="bg-primary dropdown-item" onclick="show_admin_payment_modal('{{$sellerUserInfo->seller->id}}');" href="#">
+                                                            <i class="fa fa-money"></i> Pay To Admin
+                                                        </a>
+                                                        <a class="bg-warning dropdown-item" onclick="show_seller_commission_modal('{{$sellerUserInfo->seller->id}}');" href="#">
+                                                            <i class="fa fa-money-bill-wave"></i> Set Commission
+                                                        </a>
+                                                        <a class="bg-secondary dropdown-item" href="{{route('admin.payment.history',$sellerUserInfo->id)}}">
+                                                            <i class="fa fa-history"></i> Payment History
+                                                        </a>
+                                                        <a class="bg-danger dropdown-item" href="{{route('admin.sellers.ban',$sellerUserInfo->id)}}">
+                                                            <i class="fa fa-ban"></i> Ban this seller
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    @endif
                                 @endforeach
                             @endif
                             </tbody>
@@ -226,7 +230,11 @@
             </div>
         </div>
 
-{{-- Modal html start--}}
+
+
+
+
+        {{-- Modal html start--}}
         <div class="modal fade" id="payment_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content" id="modal-content">
@@ -321,7 +329,7 @@
                             // '<div class="list-group search-results-dropdown"><div class="list-group-item custom-header">Product</div>'
                         ],
                         suggestion: function (data) {
-                               return '<a href="/admin/seller/'+data.area+'" class="list-group-item custom-list-group-item">'+data.area+'</a>'
+                            return '<a href="/admin/seller/'+data.area+'" class="list-group-item custom-list-group-item">'+data.area+'</a>'
                         }
                     }
                 },

@@ -68,13 +68,13 @@
                             @if($addresses == null)
                                 @foreach($customerInfos as $key => $customerInfo)
                                     <tr>
+                                        <td>{{$key + 1}}</td>
                                         <td>
-                                            {{$key + 1}}
+                                            {{$customerInfo->name}}
                                             @if($customerInfo->view == 0)
                                                 <span class="right badge badge-danger">New</span>
                                             @endif
                                         </td>
-                                        <td>{{$customerInfo->name}}</td>
                                         <td>{{$customerInfo->phone}}</td>
                                         <td>{{$customerInfo->email}}</td>
                                         <td>
