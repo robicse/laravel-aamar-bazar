@@ -91,6 +91,12 @@
                                 </a>
                             </li>
                             <li class="nav-item">
+                                <a href="{{route('admin.flash_deals.index')}}" class="nav-link {{Request::is('admin/flash_deals*') ? 'active' :''}}">
+                                    <i class="fa fa-{{Request::is('admin/flash_deals*') ? 'folder-open':'bolt'}} nav-icon"></i>
+                                    <p>Flash Deals</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
                                 <a href="{{route('admin.offers.index')}}"
                                    class="nav-link {{Request::is('admin/offers*') ? 'active' :''}}">
                                     <i class="fa fa-{{Request::is('admin/offers*') ? 'folder-open':'folder'}} nav-icon"></i>
