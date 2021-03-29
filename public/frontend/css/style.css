@@ -8342,6 +8342,7 @@ html:not([dir="rtl"]) .noUi-horizontal .noUi-handle {
 
 .ps-product:hover {
     border-color: silver;
+    margin-bottom: 70px!important;
 }
 
 .ps-product:hover .ps-product__thumbnail .ps-product__actions {
@@ -10929,7 +10930,7 @@ html:not([dir="rtl"]) .noUi-horizontal .noUi-handle {
 }
 
 .ps-table--faqs h4 {
-    color: #fff87a;
+    color: #fcb800;
 }
 
 .ps-table--faqs tr td {

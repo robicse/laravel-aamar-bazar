@@ -26,8 +26,8 @@ class ProductController extends Controller
         $colors=json_decode($productDetails->colors);
         $photos=json_decode($productDetails->photos);
 
-        $relatedBrands = Product::where('brand_id', $productDetails->brand_id)->latest()->take(3)->where('published',1)->get();
-        $categories = Product::where('category_id',$productDetails->category_id)->take(3)->where('published',1)->latest()->get();
+        $relatedBrands = Product::where('brand_id', $productDetails->brand_id)->where('added_by','seller')->latest()->take(3)->where('published',1)->get();
+        $categories = Product::where('category_id',$productDetails->category_id)->where('added_by','seller')->take(3)->where('published',1)->latest()->get();
         $reviews = Review::where('product_id',$productDetails->id)->where('status',1)->get();
         $reviewsComments = Review::where('product_id',$productDetails->id)->where('status',1)->latest()->paginate(5);
         $fiveStarRev = Review::where('product_id',$productDetails->id)->where('rating',5)->where('status',1)->get();
@@ -58,23 +58,23 @@ class ProductController extends Controller
         return view('frontend.pages.shop.product_details',
             compact('productDetails','attributes','options','colors','price',
                 'avilability','photos','relatedBrands','categories','reviews','fiveStarRev','fourStarRev',
-            'threeStarRev','twoStarRev','oneStarRev','reviewsComments')
+                'threeStarRev','twoStarRev','oneStarRev','reviewsComments')
         );
     }
 
     public function ProductVariantPrice(Request  $request) {
-      //dd($request->all());
+        //dd($request->all());
 
 
-      $c=count($request->variant);
-      $i=1;
-      $var=$request->variant;
-      $v=[];
-      for($i=1;$i<$c-1;$i++){
-          array_push($v,$var[$i]['value']);
-      }
-      //dd(implode("-", $v));
-      $variant=ProductStock::where('variant',implode("-", $v))->first();
+        $c=count($request->variant);
+        $i=1;
+        $var=$request->variant;
+        $v=[];
+        for($i=1;$i<$c-1;$i++){
+            array_push($v,$var[$i]['value']);
+        }
+        //dd(implode("-", $v));
+        $variant=ProductStock::where('variant',implode("-", $v))->first();
         //dd($variant);
         $product = Product::find($variant->product_id);
         if ($product->discount > 0){

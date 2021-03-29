@@ -59,7 +59,8 @@
                             <thead>
                             <tr>
                                 <th>#Id</th>
-                                <th>Name</th>
+                                <th>Seller Name</th>
+                                <th>Shop Name</th>
                                 <th>Phone</th>
                                 <th>Email</th>
                                 <th>Area</th>
@@ -84,6 +85,7 @@
                                                 <span class="right badge badge-danger">New</span>
                                             @endif
                                         </td>
+                                        <td>{{$sellerUserInfo->shop->name}}</td>
                                         <td>{{$sellerUserInfo->phone}}</td>
                                         <td>{{$sellerUserInfo->email}}</td>
                                         <td>
@@ -158,6 +160,7 @@
                                                     <span class="right badge badge-danger">New</span>
                                                 @endif
                                             </td>
+                                            <td>{{$shop->name}}</td>
                                             <td>{{$sellerUserInfo->phone}}</td>
                                             <td>{{$sellerUserInfo->email}}</td>
                                             <td>
@@ -212,7 +215,8 @@
                             <tfoot>
                             <tr>
                                 <th>#Id</th>
-                                <th>Name</th>
+                                <th>Seller Name</th>
+                                <th>Shop Name</th>
                                 <th>Phone</th>
                                 <th>Email</th>
                                 <th>Area</th>
