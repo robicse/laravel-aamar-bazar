@@ -70,12 +70,12 @@
                                 <tbody>
                                 @foreach($reviews as $key => $review)
                                     <tr>
-                                        <td>{{$key + 1}}
+                                        <td>{{$key + 1}}</td>
+                                        <td>
+                                            {{$review->user->name}}
                                             @if($review->viewed == 0)
                                                 <span class="right badge badge-danger">New</span>
-                                            @endif
-                                        </td>
-                                        <td>{{$review->user->name}}</td>
+                                            @endif</td>
                                         <td>
                                             @if($review->shop != null)
                                                 {{$review->shop->name}}

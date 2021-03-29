@@ -63,6 +63,7 @@
         document.execCommand("copy");
 
         /* Alert the copied text */
-        alert("Referral Link successfully copied ");
+        // alert("Referral Link successfully copied ");
+        toastr.success('Referral Link successfully copied');
     }
 </script>

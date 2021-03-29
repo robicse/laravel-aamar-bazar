@@ -24,7 +24,7 @@ class SellerController extends Controller
 {
     public function index()
     {
-        $sellerUserInfos = User::where('user_type','seller')->latest()->get();
+        $sellerUserInfos = User::where('user_type','seller')->where('verification_code','!=',null)->latest()->get();
         $shops = null;
         return view('backend.admin.seller.index', compact('sellerUserInfos','shops'));
     }

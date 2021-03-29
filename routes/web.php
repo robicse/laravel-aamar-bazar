@@ -31,6 +31,7 @@ Route::get('/add/wishlist/{id}', 'Frontend\WishlistController@wishlistAdd' )->na
 Route::get('/remove/wishlist/{id}', 'Frontend\WishlistController@wishlistRemove' )->name('remove.wishlist');
 Route::get('/add/favorite-shop/{id}', 'User\FavoriteShopController@favoriteShop')->name('add.favorite-shop');
 Route::get('/remove/favorite-shop/{id}', 'User\FavoriteShopController@removeFavoriteShop')->name('remove.favorite-shop');
+Route::get('/shops','Frontend\ShopController@index')->name('all.shops');
 
 //Search
 Route::get('/search/product', 'Frontend\VendorController@search_product');

@@ -64,8 +64,15 @@
                             <tbody>
                              @foreach($pending_order as $key => $pending)
                             <tr>
-                                <td>{{$key + 1}}</td>
-                                <td>{{date('j-m-Y',strtotime($pending->created_at))}}</td>
+                                <td>
+                                    {{$key + 1}}
+                                </td>
+                                <td>
+                                    {{date('j-m-Y',strtotime($pending->created_at))}}
+                                    @if($pending->view == 0)
+                                        <span class="right badge badge-danger">New</span>
+                                    @endif
+                                </td>
                                 <td>{{$pending->invoice_code}}</td>
                                 <td>{{$pending->payment_type}}</td>
                                 <td>{{$pending->grand_total }}</td>

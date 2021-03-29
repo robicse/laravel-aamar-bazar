@@ -30,7 +30,7 @@
           crossorigin="" />
     <link rel="stylesheet" href="{{asset('frontend/css/style.css')}}">
 
-    {{--toastr js--}}
+    {{--toastr css--}}
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css">
     <style>
         .twitter-typeahead{
@@ -92,6 +92,10 @@
     @endif
 
 </script>
+
+
+
+
 <!-- custom scripts-->
 
 </body>
