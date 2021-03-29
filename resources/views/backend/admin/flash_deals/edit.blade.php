@@ -1,4 +1,4 @@
-@extends('backend.seller.layouts.master')
+@extends('backend.layouts.master')
 @section("title","Edit Flash Deals")
 @push('css')
     <link rel="stylesheet" href="{{asset('backend/plugins/select2/select2.min.css')}}">
@@ -44,24 +44,24 @@
         </div><!-- /.container-fluid -->
     </section>
     <!-- Main content -->
-    <form role="form" id="choice_form" action="{{route('seller.flash_deals.update', $flash_deal->id)}}" method="post"
+    <form role="form" id="choice_form" action="{{route('admin.flash_deals.update', $flash_deal->id)}}" method="post"
           enctype="multipart/form-data">
         @csrf
         @method('PUT')
         <section class="content">
             <div class="row m-2">
-                <div class="col-md-12">
+                <div class="col-md-6 offset-md-3">
                     <!-- general form elements -->
                     <div class="card card-info card-outline">
                         <p class="pl-2 pb-0 mb-0 bg-info">Edit Flash Deals Info</p>
                         <div class="card-body">
                             <div class="row">
-                                <div class="form-group col-md-6">
+                                <div class="form-group col-md-12">
                                     <label for="name">Title</label>
                                     <input type="text" class="form-control " name="title" id="name" placeholder="Enter Flash sales title"
                                            required value="{{$flash_deal->title}}">
                                 </div>
-                                <div class="form-group col-md-6">
+                                <div class="form-group col-md-12">
                                     <div id="demo-dp-range">
                                         <label for="name">Select Date Range</label>
                                         <div class="input-daterange input-group" id="datepicker">
@@ -71,23 +71,6 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="form-group mb-3 col-sm-12">
-                                    <label class="control-label" for="products">Products</label>
-                                    <div class="">
-                                        <select name="products[]" id="products" class="form-control demo-select2" multiple required data-placeholder="Choose Products">
-                                            @foreach(\App\Model\Product::where('added_by','seller')->where('user_id',Auth::id())->get() as $product)
-                                                @php
-                                                    $flash_deal_product = \App\Model\FlashDealProduct::where('flash_deal_id', $flash_deal->id)->where('product_id', $product->id)->first();
-                                                @endphp
-                                                <option value="{{$product->id}}" <?php if($flash_deal_product != null) echo "selected";?> >{{$product->name}}</option>
-                                            @endforeach
-                                        </select>
-                                    </div>
-                                </div>
-                                <br>
-                            </div>
-                            <div class="form-group" id="discount_table">
-
                             </div>
                             <div>
                                 <button class="btn btn-success float-right">Save</button>

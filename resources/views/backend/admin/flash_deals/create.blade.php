@@ -49,18 +49,18 @@
         @csrf
         <section class="content">
             <div class="row m-2">
-                <div class="col-md-12">
+                <div class="col-md-6 offset-md-3">
                     <!-- general form elements -->
                     <div class="card card-info card-outline">
-                        <p class="pl-2 pb-0 mb-0 bg-info">Flash Deals Info <ssss></ssss></p>
+                        <p class="pl-2 pb-0 mb-0 bg-info">Flash Deals Info</p>
                         <div class="card-body">
                             <div class="row">
-                                <div class="form-group col-md-6">
+                                <div class="form-group col-md-12">
                                     <label for="name">Title</label>
                                     <input type="text" class="form-control " name="title" id="name" placeholder="Enter Flash sales title"
                                            required>
                                 </div>
-                                <div class="form-group col-md-6">
+                                <div class="form-group col-md-12">
                                     <div id="demo-dp-range">
                                         <label for="name">Select Date Range</label>
                                         <div class="input-daterange input-group" id="datepicker">
@@ -70,28 +70,6 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="form-group mb-3 col-sm-12">
-                                    <label class="control-label" for="shop">Shop</label>
-                                    <div class="">
-                                        <select name="shop" id="shop" class="form-control demo-select2"  data-placeholder="Shop">
-                                            <option >Please select one shop</option>
-                                            @foreach(\App\Model\Shop::get() as $shop)
-                                                <option value="{{$shop->user_id}}">{{$shop->name}} ({{$shop->user->name}})</option>
-                                            @endforeach
-                                        </select>
-                                    </div>
-                                </div>
-
-                                <div class="form-group mb-3 col-sm-12">
-                                    <label class="control-label" for="products">Products</label>
-                                    <div class="" id="productsDiv">
-
-                                    </div>
-                                </div>
-                                <br>
-                            </div>
-                            <div class="form-group" id="discount_table">
-
                             </div>
                             <div>
                                 <button class="btn btn-success float-right">Save</button>
@@ -111,23 +89,6 @@
     <script src="//cdn.ckeditor.com/4.15.1/standard/ckeditor.js"></script>
     <script src="{{asset('backend/plugins/ckeditor/ckeditor.js')}}"></script>
     <script>
-        $('#shop').on('change', function() {
-            $('#productsDiv').find('ul').remove();
-            $('#productsDiv').html(`<select name="products[]" id="products" class="form-control demo-select2 products" multiple required data-placeholder="Choose Products"></select>`)
-            //alert( this.value );
-            $.ajax({
-                url: "{{url('admin/flash_deals/shop/products')}}/"+this.value,
-                type: 'GET',
-                success: function(data) {
-                    $('.demo-select2').select2();
-                    //console.log(data.response);
-                    $('#discount_table').html(null);
-                    data.response.map((product) => $('.products').append(`<option value="${product.id}">${product.name}</option>`))
-                    productListGet()
-
-                }
-            });
-        });
         $('.demo-select2').select2();
         $("#demo-dp-range .input-daterange").datepicker({
             startDate: "-0d",
@@ -135,25 +96,6 @@
             autoclose: true,
             todayHighlight: true,
         });
-        $(document).ready(function(){
-
-        });
-        function productListGet(){
-            $('#products').on('change', function(){
-                //alert('inside ')
-                var product_ids = $('.products').val();
-                console.log(product_ids);
-                if(product_ids.length > 0){
-                    $.post('{{ route('admin.flash_deals.product_discount') }}', {_token:'{{ csrf_token() }}', product_ids:product_ids}, function(data){
-                    $('#discount_table').html(data);
-                    $('.demo-select2').select2();
-                });
-            }
-            else{
-                $('#discount_table').html(null);
-            }
-            });
-        }
 
 
 

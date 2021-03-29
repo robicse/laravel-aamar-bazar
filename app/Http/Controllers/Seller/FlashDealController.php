@@ -19,7 +19,7 @@ class FlashDealController extends Controller
      */
     public function index()
     {
-        $fashDeals = FlashDeal::latest()->get();
+        $fashDeals = FlashDeal::where('user_id',Auth::id())->where('user_type','admin')->latest()->get();
         return view('backend.seller.flash_deals.index', compact('fashDeals'));
     }
 

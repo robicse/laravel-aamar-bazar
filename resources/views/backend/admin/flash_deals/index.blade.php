@@ -1,4 +1,4 @@
-@extends('backend.seller.layouts.master')
+@extends('backend.layouts.master')
 @section("title","Flash Deals Product")
 @push('css')
     <link rel="stylesheet" href="{{asset('backend/plugins/datatables/dataTables.bootstrap4.css')}}">
@@ -27,7 +27,7 @@
                     <div class="card-header">
                         <h3 class="card-title float-left">Flash Deals Product List</h3>
                         <div class="float-right">
-                            <a href="{{route('seller.flash_deals.create')}}">
+                            <a href="{{route('admin.flash_deals.create')}}">
                                 <button class="btn btn-success">
                                     <i class="fa fa-plus-circle"></i>
                                     Add
@@ -74,14 +74,17 @@
                                                 Actions
                                             </button>
                                             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                                <a class="bg-info dropdown-item" href="{{route('seller.flash_deals.edit',encrypt($fashDeal->id))}}">
+                                                <a class="bg-info dropdown-item" href="{{route('admin.flash_deals.edit',encrypt($fashDeal->id))}}">
                                                     <i class="fa fa-edit"></i> Edit
+                                                </a>
+                                                <a class="bg-warning dropdown-item" href="{{route('admin.flash_deals.products.edit',encrypt($fashDeal->id))}}">
+                                                    <i class="fas fa-edit"></i> Products Edit
                                                 </a>
                                                {{-- <button class="bg-danger dropdown-item" type="button"
                                                         onclick="deleteProduct({{$fashDeal->id}})">
                                                     <i class="fa fa-trash"></i> Delete
                                                 </button>--}}
-                                                <form id="delete-form-{{$fashDeal->id}}" action="{{route('seller.products.destroy',$fashDeal->id)}}" method="POST" style="display: none;">
+                                                <form id="delete-form-{{$fashDeal->id}}" action="{{route('admin.products.destroy',$fashDeal->id)}}" method="POST" style="display: none;">
                                                     @csrf
                                                     @method('DELETE')
                                                 </form>
@@ -165,7 +168,7 @@
             else{
                 var status = 0;
             }
-            $.post('{{ route('seller.flash_deals.update_status') }}', {_token:'{{ csrf_token() }}', id:el.value, status:status}, function(data){
+            $.post('{{ route('admin.flash_deals.update_status') }}', {_token:'{{ csrf_token() }}', id:el.value, status:status}, function(data){
                 if(data == 1){
                     location.reload();
                 }
@@ -181,7 +184,7 @@
             else{
                 var featured = 0;
             }
-            $.post('{{ route('seller.flash_deals.update_featured') }}', {_token:'{{ csrf_token() }}', id:el.value, featured:featured}, function(data){
+            $.post('{{ route('admin.flash_deals.update_featured') }}', {_token:'{{ csrf_token() }}', id:el.value, featured:featured}, function(data){
                 if(data == 1){
                     location.reload();
                 }

@@ -26,14 +26,19 @@ Route::group(['as'=>'admin.','prefix' =>'admin','namespace'=>'Admin', 'middlewar
     Route::resource('sub-subcategories','SubSubcategoryController');
     Route::resource('products','ProductController');
     Route::resource('offers','OfferController');
-
+//flash sales start
     Route::resource('flash_deals','FlashDealController');
+    Route::get('/flash_deals/products/add/{flush_id}', 'FlashDealController@productsAdd')->name('flash_deals.products.add');
+    Route::get('/flash_deals/products/edit/{flush_id}', 'FlashDealController@productsEdit')->name('flash_deals.products.edit');
+    Route::post('/flash_deals/products/store', 'FlashDealController@flashDealProductsStore')->name('flash_deals.products.store');
     Route::get('/flash_deals/shop/products/{id}', 'FlashDealController@shopProducts')->name('flash_deals.shop.products');
+    Route::get('/flash_deals/shop/products/edit/{id}/{flush_id}', 'FlashDealController@shopProductsEdit')->name('flash_deals.shop.products.edit');
     Route::post('/flash_deals/update_status', 'FlashDealController@update_status')->name('flash_deals.update_status');
     Route::post('/flash_deals/update_featured', 'FlashDealController@update_featured')->name('flash_deals.update_featured');
     Route::post('/flash_deals/product_discount', 'FlashDealController@product_discount')->name('flash_deals.product_discount');
     Route::post('/flash_deals/product_discount_edit', 'FlashDealController@product_discount_edit')->name('flash_deals.product_discount_edit');
-
+    Route::post('/flash_deals/shop/wise/update', 'FlashDealController@flashDealProductsUpdate')->name('flash_deals.shop.wise.products.update');
+//flash sales end
     Route::post('products/update2/{id}','ProductController@update2')->name('products.update2');
     Route::get('products/slug/{name}','ProductController@ajaxSlugMake')->name('products.slug');
     Route::post('products/get-subcategories-by-category','ProductController@ajaxSubCat')->name('products.get_subcategories_by_category');
