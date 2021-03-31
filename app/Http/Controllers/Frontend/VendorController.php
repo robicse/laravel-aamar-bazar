@@ -193,8 +193,8 @@ class VendorController extends Controller
     }
     public function flashdeal($slug) {
         $flashDeal = FlashDeal::where('slug',$slug)->where('status',1)->where('featured',1)->first();
-        $shop = Shop::where('user_id',$flashDeal->user_id)->first();
-        $flashDealProducts = FlashDealProduct::where('flash_deal_id',$flashDeal->id)->where('user_id',$shop->user_id)->latest()->get();
+//        $shop = Shop::where('user_id',$flashDeal->user_id)->first();
+        $flashDealProducts = FlashDealProduct::where('flash_deal_id',$flashDeal->id)->latest()->get();
         return view('frontend.pages.shop.flash_deals_products',compact('flashDealProducts','flashDeal','shop'));
     }
     public function todaysDeal($slug) {

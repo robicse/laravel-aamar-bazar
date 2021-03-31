@@ -5,7 +5,6 @@
         <div class="ps-container">
             <ul class="breadcrumb">
                 <li><a href="{{url('/')}}">Home</a></li>
-                <li><a href="{{route('shop.details',$shop->slug)}}">{{$shop->name}}</a></li>
                 <li>{{$flashDeal->title}}</li>
             </ul>
         </div>

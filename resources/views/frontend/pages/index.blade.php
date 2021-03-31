@@ -73,7 +73,7 @@
                                 </ul>
                             </figure>
                         </div>
-                    </div><a href="#">View all</a>
+                    </div><a href="{{route('flash-deals',$flashDeal->slug)}}">View all</a>
                 </div>
                 <div class="ps-section__content">
                     <div class="ps-carousel--nav owl-slider" data-owl-auto="false" data-owl-loop="false" data-owl-speed="10000" data-owl-gap="30" data-owl-nav="true" data-owl-dots="true" data-owl-item="7" data-owl-item-xs="2" data-owl-item-sm="3" data-owl-item-md="4" data-owl-item-lg="5" data-owl-item-xl="6" data-owl-duration="1000" data-owl-mousedrag="on">
@@ -82,8 +82,8 @@
                         <div class="ps-product ps-product--inner">
                             <div class="ps-product__thumbnail"><a href="{{route('product-details',$flashDealProduct->product->slug)}}"><img src="{{asset($flashDealProduct->product->thumbnail_img)}}" alt="" width="153" height="171"></a>
                                 <ul class="ps-product__actions">
-                                    <li><a href="{{route('product-details',$flashDealProduct->product->slug)}}" data-toggle="tooltip" data-placement="top" title="Read More"><i class="icon-bag2"></i></a></li>
-                                    <li><a href="{{route('product-details',$flashDealProduct->product->slug)}}" data-placement="top" title="Quick View" data-toggle="modal" data-target="#product-quickview"><i class="icon-eye"></i></a></li>
+                                    <li><a href="{{route('product-details',$flashDealProduct->product->slug)}}" data-toggle="tooltip" data-placement="top" title="Add To Cart"><i class="icon-bag2"></i></a></li>
+                                    <li><a href="{{route('product-details',$flashDealProduct->product->slug)}}" data-placement="top" title="Show Details" data-toggle="tooltip" ><i class="icon-eye"></i></a></li>
                                     <li><a href="{{route('add.wishlist',$flashDealProduct->product->id)}}" data-toggle="tooltip" data-placement="top" title="Add to Whishlist"><i class="icon-heart"></i></a></li>
                                 </ul>
                             </div>
