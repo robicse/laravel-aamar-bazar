@@ -429,18 +429,20 @@
                     </div>
                     </li>
                 @endif
-                <li class="menu-item-has-children"><a href="{{url('/')}}"><i class="icon-home"></i> Home </a>
-                </li>
-                <li class="menu-item-has-children"><a href="{{route('user.dashboard')}}"><i class="icon-user"></i> User Dashboard </a>
-                </li>
-                <li class="menu-item-has-children"><a href="{{route('user.order.history')}}"><i class="icon-store"></i> Order History </a>
-                </li>
-                <li class="menu-item-has-children"><a href="{{route('user.wishlist')}}"><i class="icon-heart"></i> Wishlist </a>
-                </li>
-                <li class="menu-item-has-children"><a href="{{route('user.edit-password')}}"><i class="icon-alarm-ringing"></i> Edit Password </a>
-                </li>
-                <li class="menu-item-has-children"><a href="{{route('user.address.index')}}"><i class="icon-map-marker"></i> Address </a>
-                </li>
+                    <li class="menu-item-has-children"><a href="{{url('/')}}"><i class="icon-home"></i> Home </a>
+                    </li>
+                    <li class="menu-item-has-children"><a href="{{route('user.dashboard')}}"><i class="icon-list"></i> User Dashboard </a>
+                    </li>
+                    <li class="menu-item-has-children"><a href="{{route('user.edit-profile')}}"><i class="icon-user"></i> Edit Profile </a>
+                    </li>
+                    <li class="menu-item-has-children"><a href="{{route('user.edit-password')}}"><i class="icon-alarm-ringing"></i> Edit Password </a>
+                    </li>
+                    <li class="menu-item-has-children"><a href="{{route('user.order.history')}}"><i class="icon-store"></i> Order History </a>
+                    </li>
+                    <li class="menu-item-has-children"><a href="{{route('user.wishlist')}}"><i class="icon-heart"></i> Wishlist </a>
+                    </li>
+                    <li class="menu-item-has-children"><a href="{{route('user.address.index')}}"><i class="icon-map-marker"></i> Address </a>
+                    </li>
                 <li class="menu-item-has-children">
                     <form action = "{{route('logout')}}" method="post">
                         @csrf
