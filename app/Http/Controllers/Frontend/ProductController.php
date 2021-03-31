@@ -93,14 +93,14 @@ class ProductController extends Controller
 
         return response()->json(['success'=> true, 'response'=>$variant]);
     }
-    public function productList($slug) {
+    public function featuredProductList($slug) {
         $shop = Shop::where('slug',$slug)->first();
         $categories = ShopCategory::where('shop_id',$shop->id)->latest()->get();
         $shopBrands = ShopBrand::where('shop_id',$shop->id)->latest()->get();
 
-        $products = Product::where('added_by','seller')->where('user_id',$shop->id)->where('published',1)->where('featured',1)->latest()->paginate(4);
+        $products = Product::where('added_by','seller')->where('user_id',$shop->id)->where('published',1)->where('featured',1)->latest()->paginate(24);
 //        $products = Product::where('added_by','seller')->where('user_id',$shop->user_id)->where('published',1)->latest()->paginate(24);
-        return view('frontend.pages.shop.product_list',compact('shop','categories','shopBrands','products'));
+        return view('frontend.pages.shop.featured_product_list',compact('shop','categories','shopBrands','products'));
     }
     public function productSubCategory($name,$slug,$sub) {
 //        dd('sffk');

@@ -174,7 +174,7 @@ class VendorController extends Controller
         $data2 = explode(',',$data);
         $data_min = (int) $data2[0];
         $data_max = (int) $data2[1];
-        $result_data = Product::where('user_id',$sellerId)->where('unit_price', '>=', $data_min)->where('unit_price', '<=', $data_max)->where('published',1)->where('featured',1)->latest()->paginate(4);
+        $result_data = Product::where('user_id',$sellerId)->where('unit_price', '>=', $data_min)->where('unit_price', '<=', $data_max)->where('published',1)->where('featured',1)->latest()->take(24)->get();
 //dd($result_data);
         return $result_data;
     }
@@ -187,7 +187,7 @@ class VendorController extends Controller
         $data2 = explode(',',$data);
         $data_min = (int) $data2[0];
         $data_max = (int) $data2[1];
-        $result_data = Product::where('user_id',$shop->user_id)->where('subcategory_id',$subcategory->id)->where('unit_price', '>=', $data_min)->where('unit_price', '<=', $data_max)->where('published',1)->where('featured',1)->get();
+        $result_data = Product::where('user_id',$shop->user_id)->where('subcategory_id',$subcategory->id)->where('unit_price', '>=', $data_min)->where('unit_price', '<=', $data_max)->where('published',1)->where('featured',1)->latest()->take(24)->get();
 
         return $result_data;
     }
@@ -222,7 +222,7 @@ class VendorController extends Controller
         $data2 = explode(',',$data);
         $data_min = (int) $data2[0];
         $data_max = (int) $data2[1];
-        $result_data = Product::where('user_id',$sellerId)->where('unit_price', '>=', $data_min)->where('unit_price', '<=', $data_max)->where('published',1)->where('todays_deal',1)->get();
+        $result_data = Product::where('user_id',$sellerId)->where('unit_price', '>=', $data_min)->where('unit_price', '<=', $data_max)->where('published',1)->where('todays_deal',1)->latest()->take(24)->get();
 
         return $result_data;
     }
@@ -235,7 +235,7 @@ class VendorController extends Controller
         $data2 = explode(',',$data);
         $data_min = (int) $data2[0];
         $data_max = (int) $data2[1];
-        $result_data = Product::where('user_id',$shop->user_id)->where('subcategory_id',$subcategory->id)->where('unit_price', '>=', $data_min)->where('unit_price', '<=', $data_max)->where('published',1)->where('todays_deal',1)->get();
+        $result_data = Product::where('user_id',$shop->user_id)->where('subcategory_id',$subcategory->id)->where('unit_price', '>=', $data_min)->where('unit_price', '<=', $data_max)->where('published',1)->where('todays_deal',1)->latest()->take(24)->get();
 
         return $result_data;
     }
@@ -263,7 +263,7 @@ class VendorController extends Controller
         $data2 = explode(',',$data);
         $data_min = (int) $data2[0];
         $data_max = (int) $data2[1];
-        $result_data = Product::where('user_id',$sellerId)->where('unit_price', '>=', $data_min)->where('unit_price', '<=', $data_max)->where('published',1)->where('num_of_sale', '>',0)->get();
+        $result_data = Product::where('user_id',$sellerId)->where('unit_price', '>=', $data_min)->where('unit_price', '<=', $data_max)->where('published',1)->where('num_of_sale', '>',0)->latest()->take(24)->get();
 
         return $result_data;
     }
@@ -276,7 +276,7 @@ class VendorController extends Controller
         $data2 = explode(',',$data);
         $data_min = (int) $data2[0];
         $data_max = (int) $data2[1];
-        $result_data = Product::where('user_id',$shop->user_id)->where('subcategory_id',$subcategory->id)->where('unit_price', '>=', $data_min)->where('unit_price', '<=', $data_max)->where('published',1)->where('num_of_sale', '>',0)->get();
+        $result_data = Product::where('user_id',$shop->user_id)->where('subcategory_id',$subcategory->id)->where('unit_price', '>=', $data_min)->where('unit_price', '<=', $data_max)->where('published',1)->where('num_of_sale', '>',0)->latest()->take(24)->get();
 
         return $result_data;
     }
@@ -289,7 +289,7 @@ class VendorController extends Controller
         $data2 = explode(',',$data);
         $data_min = (int) $data2[0];
         $data_max = (int) $data2[1];
-        $result_data = Product::where('user_id',$shop->user_id)->where('brand_id',$brand->id)->where('unit_price', '>=', $data_min)->where('unit_price', '<=', $data_max)->where('published',1)->get();
+        $result_data = Product::where('user_id',$shop->user_id)->where('brand_id',$brand->id)->where('unit_price', '>=', $data_min)->where('unit_price', '<=', $data_max)->where('published',1)->latest()->take(24)->get();
 
         return $result_data;
     }

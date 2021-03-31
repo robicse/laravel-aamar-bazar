@@ -208,7 +208,7 @@
                                         <p>Featured Products</p>
                                         <div class="ps-shopping__actions">
                                             <div class="ps-shopping__view">
-                                                <div><a href="{{route('product.list', $shop->slug)}}">View All</a></div>
+                                                <div><a href="{{route('featured-product.list', $shop->slug)}}">View All</a></div>
                                             </div>
                                         </div>
                                     </div>

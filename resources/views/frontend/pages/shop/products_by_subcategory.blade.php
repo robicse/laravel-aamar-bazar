@@ -110,7 +110,7 @@
                                         @endforeach
                                     </div>
                                 </div>
-                                <div class="ps-pagination">
+                                <div class="ps-pagination" style="padding-left: 300px;">
                                     <ul class="ps-content-pagination ps-theme">
                                         {{$products->links()}}
                                     </ul>

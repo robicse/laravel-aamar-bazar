@@ -1,5 +1,5 @@
 @extends('frontend.layouts.master')
-@section('title','Product List')
+@section('title','Featured Product List')
 @section('content')
     <div class="ps-breadcrumb">
         <div class="ps-container">
@@ -103,7 +103,7 @@
                                         @endforeach
                                     </div>
                                 </div>
-                                <div class="ps-pagination">
+                                <div class="ps-pagination" style="padding-left: 300px;">
                                     <ul class="ps-content-pagination ps-theme">
                                         {{$products->links()}}
                                     </ul>
