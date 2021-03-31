@@ -95,7 +95,8 @@ Route::post('/new-password/update/{id}','Frontend\FrontendController@passwordUpd
 Route::group(['middleware' => ['auth', 'user']], function () {
     //this route only for with out resource controller
     Route::get('/user/dashboard', 'User\DashboardController@index')->name('user.dashboard');
-    Route::post('/user/dashboard/update', 'User\DashboardController@update')->name('user.profile-update');
+    Route::get('/user/edit-profile', 'User\DashboardController@editProfile')->name('user.edit-profile');
+    Route::post('/user/profile/update', 'User\DashboardController@updateProfile')->name('user.profile-update');
     Route::get('/user/edit-password', 'User\DashboardController@editPassword')->name('user.edit-password');
     Route::post('/user/password/update', 'User\DashboardController@updatePassword')->name('user.password-update');
     Route::get('/user/invoices', 'User\DashboardController@invoices')->name('user.invoices');
