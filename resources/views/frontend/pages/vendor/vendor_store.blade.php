@@ -124,7 +124,8 @@
                                     </div>
                                 </div>
                             @endif
-                            @if( !empty($flashDeal) && $flashDeal->featured == 1  && strtotime(date('d-m-Y')) >= $flashDeal->start_date && strtotime(date('d-m-Y')) <= $flashDeal->end_date)
+
+                            @if( !empty($flashDeal) && $flashDeal->featured == 1  && strtotime(date('d-m-Y')) >= $flashDeal->start_date && strtotime(date('d-m-Y')) <= $flashDeal->end_date && $flashDealProducts->count() >0)
                                 <div class="ps-deal-of-day" style="padding-top: 10px;">
                                     <div class="ps-container">
                                         <div class="ps-section__header">
@@ -200,6 +201,7 @@
                                     </div>
                                 </div>
                             @endif
+
 
                             {{--                        @if($shopCat->count() > 0)--}}
                             {{--                        <div class="ps-vendor-best-seller">--}}
