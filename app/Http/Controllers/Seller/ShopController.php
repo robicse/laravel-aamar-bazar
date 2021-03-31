@@ -35,6 +35,7 @@ class ShopController extends Controller
         //dd($request->all());
         $shop = Shop::where('user_id',Auth::id())->first();
         $shop->about = $request->about;
+        $shop->shipping_time = $request->shipping_time;
         $shop->facebook = $request->facebook;
         $shop->google = $request->google;
         $shop->twitter = $request->twitter;

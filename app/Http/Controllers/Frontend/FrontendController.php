@@ -7,6 +7,7 @@ use App\Model\Category;
 use App\Model\FlashDeal;
 use App\Model\FlashDealProduct;
 use App\Model\Offer;
+use App\Model\Order;
 use App\Model\Product;
 use App\Model\Seller;
 use App\Model\Shop;

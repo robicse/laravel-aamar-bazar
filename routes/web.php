@@ -118,3 +118,4 @@ Route::group(['middleware' => ['auth', 'user']], function () {
 });
 //Route::get('/vendor/dashboard', 'Vendor\DashboardController@index')->name('vendor.dashboard');
 
+

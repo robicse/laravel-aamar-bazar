@@ -365,7 +365,7 @@ class CartController extends Controller
 
             Toastr::success('Order Successfully done! ');
             Cart::destroy();
-            return redirect()->route('index');
+            return view('frontend.pages.shop.order_confirmation',compact('order'));
         }else {
 //            Session::put('order_id',$order->id);
 //            return redirect()->route('pay');
