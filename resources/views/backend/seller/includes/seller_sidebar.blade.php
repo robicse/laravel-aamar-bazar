@@ -55,12 +55,12 @@
                                     <p>Admin Inserted Products</p>
                                 </a>
                             </li>
-                            <li class="nav-item">
-                                <a href="{{route('seller.flash_deals.index')}}" class="nav-link {{Request::is('seller/seller/flash_deals*') ? 'active' :''}}">
-                                    <i class="fa fa-{{Request::is('seller/flash_deals*') ? 'folder-open':'bolt'}} nav-icon"></i>
-                                    <p>Flash Deals</p>
-                                </a>
-                            </li>
+{{--                            <li class="nav-item">--}}
+{{--                                <a href="{{route('seller.flash_deals.index')}}" class="nav-link {{Request::is('seller/seller/flash_deals*') ? 'active' :''}}">--}}
+{{--                                    <i class="fa fa-{{Request::is('seller/flash_deals*') ? 'folder-open':'bolt'}} nav-icon"></i>--}}
+{{--                                    <p>Flash Deals</p>--}}
+{{--                                </a>--}}
+{{--                            </li>--}}
                         </ul>
                     </li>
                         @php
