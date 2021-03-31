@@ -25,6 +25,7 @@
                     @include('frontend.user.includes.user_sidebar')
                     <div class="col-lg-9">
                         <div class="ps-section__right">
+                            <h3 style="margin-bottom: 30px;">Dashboard</h3>
                             <div class="row">
                                 <div class="col-md-3 col-sm-6">
                                     <div class="card bg-success mb-4 card_style">
@@ -47,21 +48,21 @@
                                     </div>
                                 </div>
                                 <div class="col-md-3 col-sm-6">
-                                    <div class="card bg-info mb-4 card_style">
-                                        <div class="card-body">
-                                            <div class="text-center text-white py-4 mb-2" >
-                                                <h1 class="h3 text-white mb-3"> {{$totalOrder}} Order(s)</h1>
-                                                <p class="text-white">You ordered</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-3 col-sm-6">
                                     <div class="card bg-warning mb-4 card_style">
                                         <div class="card-body">
                                             <div class="text-center text-white py-4 mb-2" >
                                                 <h1 class="h3 text-white mb-3"> {{$totalWishlist}} Product(s)</h1>
                                                 <p class="text-white">In Your Wishlist</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-3 col-sm-6">
+                                    <div class="card bg-info mb-4 card_style">
+                                        <div class="card-body">
+                                            <div class="text-center text-white py-4 mb-2" >
+                                                <h1 class="h3 text-white mb-3"> {{$totalOrder}} Order(s)</h1>
+                                                <p class="text-white">You ordered</p>
                                             </div>
                                         </div>
                                     </div>
