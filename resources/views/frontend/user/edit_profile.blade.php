@@ -23,11 +23,13 @@
                                     <h3> User Information</h3>
                                 </div>
                                 <div class="ps-form__content">
-                                    <div class="form-group">
-                                        <label>Name</label>
-                                        <input class="form-control" type="text" name="name" value="{{ Auth::User()->name }}" placeholder="Please enter your name...">
-                                    </div>
                                     <div class="row">
+                                        <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <label>Name</label>
+                                            <input class="form-control" type="text" name="name" value="{{ Auth::User()->name }}" placeholder="Please enter your name...">
+                                        </div>
+                                        </div>
                                         <div class="col-sm-6">
                                             <div class="form-group">
                                                 <label>Phone Number</label>
