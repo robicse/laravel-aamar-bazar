@@ -17,6 +17,7 @@
         "laravel/framework": "^7.24",
         "laravel/passport": "^9.4",
         "laravel/tinker": "^2.0",
+        "maatwebsite/excel": "^3.1",
         "nesbot/carbon": "^2.45",
         "olimortimer/laravelshoppingcart": "^4.0",
         "spatie/laravel-permission": "^3.17"

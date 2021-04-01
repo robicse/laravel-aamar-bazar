@@ -26,6 +26,11 @@
                 <div class="card card-info card-outline">
                     <div class="card-header">
                         <h3 class="card-title float-left">All Seller Products</h3>
+                        <div>
+                            <a href="{{route('admin.seller-product-excel.export')}}">
+                                <button class="btn btn-info text-center" style="margin-left: 250px;">Excel Export</button>
+                            </a>
+                        </div>
                         <div class="float-right">
                             <a href="{{route('admin.products.create')}}">
                                 <button class="btn btn-success">
