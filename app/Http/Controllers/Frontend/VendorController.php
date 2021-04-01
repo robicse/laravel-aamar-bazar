@@ -169,13 +169,14 @@ class VendorController extends Controller
     }
     public function productFilter($data,$sellerId)
     {
-        //$shops = Shop::find($sellerId);
+        $shop = Shop::find($sellerId);
 //        dd($shops);
         $data2 = explode(',',$data);
         $data_min = (int) $data2[0];
         $data_max = (int) $data2[1];
-        $result_data = Product::where('user_id',$sellerId)->where('unit_price', '>=', $data_min)->where('unit_price', '<=', $data_max)->where('published',1)->where('featured',1)->latest()->take(24)->get();
-        dd($result_data);
+        $products = Product::where('user_id',$sellerId)->where('unit_price', '>=', $data_min)->where('unit_price', '<=', $data_max)->where('published',1)->where('featured',1)->latest()->take(24)->get();
+        //dd($result_data);
+        return view('frontend.pages.shop.products_filter_dataset', compact('products','shop'));
         return $result_data;
     }
     public function FeaturedSubFilter($data,$id,$subId)
