@@ -46,11 +46,14 @@ Route::get('/best-selling/subcategories/filter/{data}/sellerId/{id}/sub/{subId}'
 Route::get('/brand/product/filter/{data}/sellerId/{id}/brnd/{brndId}', 'Frontend\VendorController@brandFilter');
 
 
+
 Route::post('/registration','Frontend\FrontendController@register')->name('user.register');
 Route::get('/get-verification-code/{id}', 'Frontend\VerificationController@getVerificationCode')->name('get-verification-code');
 Route::post('/get-verification-code-store', 'Frontend\VerificationController@verification')->name('get-verification-code.store');
 Route::get('/check-verification-code', 'Frontend\VerificationController@CheckVerificationCode')->name('check-verification-code');
 Route::get('refer/{code}','Frontend\FrontendController@referCode')->name('registration.refer.code');
+Route::get('popup-dataset','Frontend\FrontendController@popupDataSet')->name('popup-dataset');
+Route::get('popup-destroy','Frontend\FrontendController@popupDataDestroy')->name('popup-destroy');
 
 
 //product
