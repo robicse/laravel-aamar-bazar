@@ -28,9 +28,8 @@
         </div>
     </div>
 @empty
-
     <div class="col-md-12 text-center" >
         <h2 class="p-0 m-0">Data Not found!!</h2>
-        <img c src="{{asset('frontend/img/loader/nodata.png')}}"  class="img-fluid p-0 m-0" width="50%">
+        <img src="{{asset('frontend/img/loader/nodata.png')}}"  class="img-fluid p-0 m-0" width="50%">
     </div>
 @endforelse

@@ -123,12 +123,11 @@
 @push('js')
     <script>
         var timeout = 0;
-        var update = function (values) {
+        function  update(values) {
             clearTimeout(timeout);
             timeout = setTimeout(function () {
-                $("#loader").show()
                 $('.filterdata').empty();
-
+                $("#loader").show()
                $.get("{{url('/product/filter/')}}/"+values+'/sellerId/'+{{$shop->user_id}},
                     function(data){
 
