@@ -65,7 +65,7 @@ class OrderExport implements FromCollection, WithMapping, WithHeadings
             $order->total_vat,
             $order->total_labour_cost,
             $order->profit,
-            $order->commission_calculated,
+            $order->commission_calculated,a
             $order->delivery_cost,
             $order->delivery_status,
             $order->view,

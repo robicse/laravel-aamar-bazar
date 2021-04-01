@@ -37,11 +37,11 @@ Route::get('/shops','Frontend\ShopController@index')->name('all.shops');
 Route::get('/search/product', 'Frontend\VendorController@search_product');
 Route::get('/search/category/product', 'Frontend\VendorController@search_category_product');
 Route::get('/search/subcategory/product', 'Frontend\VendorController@search_subcategory_product');
-Route::get('/product/filter/{data}/sellerId/{sellerId}', 'Frontend\VendorController@productFilter');
+Route::get('/product/filter/{data}/shopId/{shopId}', 'Frontend\VendorController@productFilter');
 Route::get('/featured-product/subcategories/filter/{data}/sellerId/{id}/sub/{subId}', 'Frontend\VendorController@FeaturedSubFilter');
-Route::get('/todays-deal/product/filter/{data}/sellerId/{sellerId}', 'Frontend\VendorController@todaysDealFilter');
+Route::get('/todays-deal/product/filter/{data}/shopId/{shopId}', 'Frontend\VendorController@todaysDealFilter');
 Route::get('/todays-deal/subcategories/filter/{data}/sellerId/{id}/sub/{subId}', 'Frontend\VendorController@todaysDealSubFilter');
-Route::get('/best-selling/product/filter/{data}/sellerId/{sellerId}', 'Frontend\VendorController@bestSellingFilter');
+Route::get('/best-selling/product/filter/{data}/shopId/{shopId}', 'Frontend\VendorController@bestSellingFilter');
 Route::get('/best-selling/subcategories/filter/{data}/sellerId/{id}/sub/{subId}', 'Frontend\VendorController@bestSellingSubFilter');
 Route::get('/brand/product/filter/{data}/sellerId/{id}/brnd/{brndId}', 'Frontend\VendorController@brandFilter');
 
@@ -51,6 +51,9 @@ Route::get('/get-verification-code/{id}', 'Frontend\VerificationController@getVe
 Route::post('/get-verification-code-store', 'Frontend\VerificationController@verification')->name('get-verification-code.store');
 Route::get('/check-verification-code', 'Frontend\VerificationController@CheckVerificationCode')->name('check-verification-code');
 Route::get('refer/{code}','Frontend\FrontendController@referCode')->name('registration.refer.code');
+
+
+
 
 
 //product
