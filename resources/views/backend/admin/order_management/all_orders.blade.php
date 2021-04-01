@@ -34,24 +34,26 @@
             <div class="col-12">
                 <div class="card card-info card-outline">
                     <div class="card-header">
-                        <h3 class="card-title float-left">All Orders</h3>
                         <div class="row">
-                            <form action="" method="get">
-                                @csrf
-                                <div class="input-group float-center rounded" style="padding-left: 200px;">
-                                    <input type="search" name="searchName" id="searchMain" class="form-control rounded" placeholder="Search Orders by Area" aria-label="Search"
-                                           aria-describedby="search-addon" />
+                            <div class="col-md-4">
+                                <h3 class="card-title float-left">All Orders</h3>
+                            </div>
+                            <div class="col-md-4">
+                                <form action="" method="get">
+                                    @csrf
+                                    <div class="input-group float-center rounded" style="">
+                                        <input type="search" name="searchName" id="searchMain" class="form-control rounded" placeholder="Search Orders by Area" aria-label="Search"
+                                               aria-describedby="search-addon" />
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="col-md-4">
+                                <div>
+                                    <a href="{{route('admin.all-order-excel.export')}}">
+                                        <button class="btn btn-info text-center" style="margin-left: 100px;">Excel Export</button>
+                                    </a>
                                 </div>
-                            </form>
-                        </div>
-
-                        <div class="float-right">
-                            {{--<a href="{{route('admin.p.create')}}">
-                                <button class="btn btn-success">
-                                    <i class="fa fa-plus-circle"></i>
-                                    Add
-                                </button>
-                            </a>--}}
+                            </div>
                         </div>
                     </div>
                     <!-- /.card-header -->

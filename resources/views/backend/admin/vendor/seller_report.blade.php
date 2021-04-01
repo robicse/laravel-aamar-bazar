@@ -45,7 +45,9 @@
                                         <label>Seller List</label>
                                         <select name="seller_id" id="" class="form-control select2">
                                             @foreach($sellers as $seller)
-                                            <option value="{{$seller->id}}" {{$sellerId == $seller->id ? 'selected' : ''}}>{{$seller->name}}</option>
+                                                @if($seller->seller->verification_status == 1)
+                                                    <option value="{{$seller->id}}" {{$sellerId == $seller->id ? 'selected' : ''}}>{{$seller->name}}</option>
+                                                @endif
                                             @endforeach
                                         </select>
                                         {{--                                            <input type="text" class="form-control" placeholder="First name">--}}
