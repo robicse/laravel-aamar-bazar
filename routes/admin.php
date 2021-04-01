@@ -98,6 +98,8 @@ Route::group(['as'=>'admin.','prefix' =>'admin','namespace'=>'Admin', 'middlewar
     //Admin Excel Export
     Route::get('/seller-product-export','ExportExcelController@exportSellerProducts')->name('seller-product-excel.export');
     Route::get('/all-order-export','ExportExcelController@exportOrders')->name('all-order-excel.export');
+    Route::get('/all-seller-export','ExportExcelController@exportSeller')->name('all-seller-excel.export');
+    Route::get('/all-customer-export','ExportExcelController@exportCustomer')->name('all-customer-excel.export');
 
     // Admin User Management
     Route::resource('customers','CustomerController');
