@@ -16,10 +16,10 @@
                     <aside class="widget widget_shop">
                         <h4 class="widget-title">Categories</h4>
                         <ul class="ps-list--categories">
-                            @foreach($shopCat as $Cat)
+                            @foreach($shopCategories as $Cat)
                                 <li class="current-menu-item menu-item-has-children"><a href="#"> {{$Cat->category->name}} </a><span class="sub-toggle"><i class="fa fa-angle-down"></i></span>
                                     @php
-                                        $shop_subcategories = \App\Model\ShopSubcategory::where('category_id',$Cat->id)->latest()->get();
+                                        $shop_subcategories = \App\Model\ShopSubcategory::where('category_id',$Cat->category_id)->where('shop_id',$shop->id)->latest()->get();
                                     @endphp
                                     <ul class="sub-menu">
                                         @foreach($shop_subcategories as $subCat)
@@ -64,23 +64,7 @@
                 <div class="ps-layout__right">
                     <div class="ps-shopping ps-tab-root">
                         <div class="ps-shopping__header">
-                            <p><strong>{{ count($products) }}</strong> Products found</p>
-                            {{--                            <div class="ps-shopping__actions">--}}
-                            {{--                                <select class="ps-select" data-placeholder="Sort Items">--}}
-                            {{--                                    <option>Sort by latest</option>--}}
-                            {{--                                    <option>Sort by popularity</option>--}}
-                            {{--                                    <option>Sort by average rating</option>--}}
-                            {{--                                    <option>Sort by price: low to high</option>--}}
-                            {{--                                    <option>Sort by price: high to low</option>--}}
-                            {{--                                </select>--}}
-                            {{--                                <div class="ps-shopping__view">--}}
-                            {{--                                    <p>View</p>--}}
-                            {{--                                    <ul class="ps-tab-list">--}}
-                            {{--                                        <li class="active"><a href="#tab-1"><i class="icon-grid"></i></a></li>--}}
-                            {{--                                        <li><a href="#tab-2"><i class="icon-list4"></i></a></li>--}}
-                            {{--                                    </ul>--}}
-                            {{--                                </div>--}}
-                            {{--                            </div>--}}
+                            <p>Products Found</p>
                         </div>
                         <div class="ps-tabs">
                             <div class="ps-tab active" id="tab-1">
@@ -99,18 +83,28 @@
                                                     </div>
                                                     <div class="ps-product__container"><a class="ps-product__vendor" href="{{route('shop.details',$shop->slug)}}">{{ $shop->name }}</a>
                                                         <div class="ps-product__content"><a class="ps-product__title" href="{{route('product-details',$product->slug)}}">{{$product->name}}</a>
-                                                            <p class="ps-product__price">৳ {{$product->unit_price}}</p>
+                                                            Price: ৳ {{home_discounted_base_price($product->id)}}
+                                                            @if(home_base_price($product->id) != home_discounted_base_price($product->id))
+                                                                <del>৳ {{home_base_price($product->id)}}</del>
+                                                            @endif
                                                         </div>
                                                         <div class="ps-product__content hover"><a class="ps-product__title" href="{{route('product-details',$product->slug)}}">{{$product->name}}</a>
-                                                            <p class="ps-product__price">৳ {{$product->unit_price}}</p>
+                                                            Price: ৳ {{home_discounted_base_price($product->id)}}
+                                                            @if(home_base_price($product->id) != home_discounted_base_price($product->id))
+                                                                <del>৳ {{home_base_price($product->id)}}</del>
+                                                            @endif
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
                                         @endforeach
+                                            <div class="filter_result" id="products"></div>
+                                    </div>
+                                    <div class="col-md-12 text-center" id="loader" style="display: none;">
+                                        <img  src="{{asset('frontend/img/loader/loding3.gif')}}"  class="img-fluid " width="10%">
                                     </div>
                                 </div>
-                                <div class="ps-pagination">
+                                <div class="ps-pagination" style="padding-left: 300px;">
                                     <ul class="ps-content-pagination ps-theme">
                                         {{$products->links()}}
                                     </ul>
@@ -129,46 +123,56 @@
         var update = function (values) {
             clearTimeout(timeout);
             timeout = setTimeout(function () {
-                $.ajax({
-                    type: 'GET', //THIS NEEDS TO BE GET
-                    url: '/featured-product/subcategories/filter/'+values+'/sellerId/'+'{{$shop->id}}'+'/sub/'+{{$subcategory->id}},
-                    dataType: 'json',
-                    success: function (data) {
-                        console.log(data);
-                        $('.found_product').empty();
-                        if(data.length==0){
-                            $('.found_product').append('<h3 class="ml-5">Nothing Found</h3>');
-                            $('.found_product_length').html(data.length);
-                        }else{
-                            $('.found_product_length').html(data.length);
-                            var i=0;
-                            for(i=0;i<data.length;i++){
-                                $('.found_product').append(`<div class="col-xl-3 col-lg-4 col-md-4 col-sm-6 col-6 ">
-                                                <div class="ps-product">
-                                                    <div class="ps-product__thumbnail"><a href="/product/${data[i].slug}"><img src="{{url('/')}}/${data[i].thumbnail_img}" alt="" width="153" height="171"></a>
-                                                        <ul class="ps-product__actions">
-                                                            <li><a href="/product/${data[i].slug}" data-toggle="tooltip" data-placement="top" title="Add To Cart"><i class="icon-bag2"></i></a></li>
-                                                            <li><a href="/product/${data[i].slug}" data-placement="top" title="Quick View" data-toggle="modal" data-target="#product-quickview"><i class="icon-eye"></i></a></li>
-                                                            <li><a href="/add/wishlist/${data[i].id}" data-toggle="tooltip" data-placement="top" title="Add to Whishlist"><i class="icon-heart"></i></a></li>
-                                                                                                                    <li><a href="#" data-toggle="tooltip" data-placement="top" title="Compare"><i class="icon-chart-bars"></i></a></li>
-                                </ul>
-                            </div>
-                            <div class="ps-product__container">
-                                                        <div class="ps-product__content"><a class="ps-product__title" href="/product/${data[i].slug}">${data[i].name}</a>
-                                                            <p class="ps-product__price">৳ ${data[i].unit_price}</p>
-                                                        </div>
-                                                        <div class="ps-product__content hover"><a class="ps-product__title" href="/product/${data[i].slug}">${data[i].name}</a>
-                                                            <p class="ps-product__price">৳ ${data[i].unit_price}</p>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>`);
-                            }
-                        }
-                    },error:function(){
-                        console.log(data);
-                    }
-                });
+                $('.filterdata').empty();
+                $("#loader").show()
+                $.get("{{url('/featured-product/subcategories/filter/')}}/"+values+'/sellerId/'+'{{$shop->id}}'+'/sub/'+{{$subcategory->id}},
+                    function(data){
+
+                        console.log(data)
+                        $("#loader").hide()
+                        $('.found_product').html(data);
+
+                    });
+                {{--$.ajax({--}}
+                {{--    type: 'GET', //THIS NEEDS TO BE GET--}}
+                {{--    url: '/featured-product/subcategories/filter/'+values+'/sellerId/'+'{{$shop->id}}'+'/sub/'+{{$subcategory->id}},--}}
+                {{--    dataType: 'json',--}}
+                {{--    success: function (data) {--}}
+                {{--        console.log(data);--}}
+                {{--        $('.found_product').empty();--}}
+                {{--        if(data.length==0){--}}
+                {{--            $('.found_product').append('<h3 class="ml-5">Nothing Found</h3>');--}}
+                {{--            $('.found_product_length').html(data.length);--}}
+                {{--        }else{--}}
+                {{--            $('.found_product_length').html(data.length);--}}
+                {{--            var i=0;--}}
+                {{--            for(i=0;i<data.length;i++){--}}
+                {{--                $('.found_product').append(`<div class="col-xl-3 col-lg-4 col-md-4 col-sm-6 col-6 ">--}}
+                {{--                                <div class="ps-product">--}}
+                {{--                                    <div class="ps-product__thumbnail"><a href="/product/${data[i].slug}"><img src="{{url('/')}}/${data[i].thumbnail_img}" alt="" width="153" height="171"></a>--}}
+                {{--                                        <ul class="ps-product__actions">--}}
+                {{--                                            <li><a href="/product/${data[i].slug}" data-toggle="tooltip" data-placement="top" title="Add To Cart"><i class="icon-bag2"></i></a></li>--}}
+                {{--                                            <li><a href="/product/${data[i].slug}" data-placement="top" title="Quick View" data-toggle="modal" data-target="#product-quickview"><i class="icon-eye"></i></a></li>--}}
+                {{--                                            <li><a href="/add/wishlist/${data[i].id}" data-toggle="tooltip" data-placement="top" title="Add to Whishlist"><i class="icon-heart"></i></a></li>--}}
+                {{--                                                                                                    <li><a href="#" data-toggle="tooltip" data-placement="top" title="Compare"><i class="icon-chart-bars"></i></a></li>--}}
+                {{--                </ul>--}}
+                {{--            </div>--}}
+                {{--            <div class="ps-product__container">--}}
+                {{--                                        <div class="ps-product__content"><a class="ps-product__title" href="/product/${data[i].slug}">${data[i].name}</a>--}}
+                {{--                                            <p class="ps-product__price">৳ ${data[i].unit_price}</p>--}}
+                {{--                                        </div>--}}
+                {{--                                        <div class="ps-product__content hover"><a class="ps-product__title" href="/product/${data[i].slug}">${data[i].name}</a>--}}
+                {{--                                            <p class="ps-product__price">৳ ${data[i].unit_price}</p>--}}
+                {{--                                        </div>--}}
+                {{--                                    </div>--}}
+                {{--                                </div>--}}
+                {{--                            </div>`);--}}
+                {{--            }--}}
+                {{--        }--}}
+                {{--    },error:function(){--}}
+                {{--        console.log(data);--}}
+                {{--    }--}}
+                {{--});--}}
             }, 1000);
         };
         function filterSlider() {

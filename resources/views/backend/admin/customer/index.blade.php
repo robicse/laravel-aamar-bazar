@@ -2,6 +2,14 @@
 @section("title","Customer List")
 @push('css')
     <link rel="stylesheet" href="{{asset('backend/plugins/datatables/dataTables.bootstrap4.css')}}">
+    <style>
+        .twitter-typeahead{
+            width: 100% !important;
+        }
+        .tt-menu{
+            width: 100% !important;
+        }
+    </style>
 @endpush
 @section('content')
     <section class="content-header">
@@ -25,14 +33,26 @@
             <div class="col-12">
                 <div class="card card-info card-outline">
                     <div class="card-header">
-                        <h3 class="card-title float-left">Customer Lists</h3>
-                        <div class="float-right">
-                            {{--<a href="{{route('admin.sellers.index.create')}}">
-                                <button class="btn btn-success" >
-                                    <i class="fa fa-plus-circle"></i>
-                                    Add
-                                </button>
-                            </a>--}}
+                        <div class="row">
+                            <div class="col-md-4">
+                                <h3 class="card-title float-left">Customer Lists</h3>
+                            </div>
+                            <div class="col-md-4">
+                                <form action="" method="get">
+                                    @csrf
+                                    <div class="input-group float-center rounded">
+                                        <input type="search" name="searchName" id="searchMain" class="form-control rounded" placeholder="Search Customer by Area" aria-label="Search"
+                                               aria-describedby="search-addon" />
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="col-md-4">
+                                <div>
+                                    <a href="{{route('admin.all-customer-excel.export')}}">
+                                        <button class="btn btn-info text-center" style="margin-left: 100px;">Excel Export</button>
+                                    </a>
+                                </div>
+                            </div>
                         </div>
                     </div>
                     <!-- /.card-header -->
@@ -48,7 +68,46 @@
                             </tr>
                             </thead>
                             <tbody>
-                            @foreach($customerInfos as $key => $customerInfo)
+                            @if($addresses == null)
+                                @foreach($customerInfos as $key => $customerInfo)
+                                    <tr>
+                                        <td>{{$key + 1}}</td>
+                                        <td>
+                                            {{$customerInfo->name}}
+                                            @if($customerInfo->view == 0)
+                                                <span class="right badge badge-danger">New</span>
+                                            @endif
+                                        </td>
+                                        <td>{{$customerInfo->phone}}</td>
+                                        <td>{{$customerInfo->email}}</td>
+                                        <td>
+                                            <div class="dropdown">
+                                                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                    Actions
+                                                </button>
+                                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                                    <a class="bg-dark dropdown-item" href="{{route('admin.customers.profile.show',encrypt($customerInfo->id))}}">
+                                                        <i class="fa fa-user"></i> Profile
+                                                    </a>
+                                                    <button class="bg-danger dropdown-item" type="button"
+                                                            onclick="deleteProduct({{$customerInfo->id}})">
+                                                        <i class="fa fa-ban"></i> Ban this Customer
+                                                    </button>
+                                                    <form id="delete-form-{{$customerInfo->id}}" action="{{route('admin.customers.destroy',$customerInfo->id)}}" method="POST" style="display: none;">
+                                                        @csrf
+                                                        @method('DELETE')
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                @endforeach
+                            @else
+                                @foreach($addresses as $key => $address)
+                                    @php
+                                        $customerInfos = \App\User::where('id',$address->user_id)->latest()->get();
+                                    @endphp
+                                    @foreach($customerInfos as $key => $customerInfo)
                                     <tr>
                                         <td>
                                             {{$key + 1}}
@@ -80,7 +139,9 @@
                                             </div>
                                         </td>
                                     </tr>
-                            @endforeach
+                                @endforeach
+                                @endforeach
+                            @endif
                             </tbody>
                             <tfoot>
                             <tr>
@@ -88,10 +149,6 @@
                                 <th>Name</th>
                                 <th>Phone</th>
                                 <th>Email</th>
-                                {{--                                <th>Approval</th>--}}
-                                {{--                                <th>Commission</th>--}}
-                                {{--                                <th>Num. of Products</th>--}}
-                                {{--                                <th>Due to seller</th>--}}
                                 <th>Action</th>
                             </tr>
                             </tfoot>
@@ -116,6 +173,7 @@
     <script src="{{asset('backend/plugins/datatables/jquery.dataTables.js')}}"></script>
     <script src="{{asset('backend/plugins/datatables/dataTables.bootstrap4.js')}}"></script>
     <script src="https://unpkg.com/sweetalert2@7.19.1/dist/sweetalert2.all.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/typeahead.js/0.11.1/typeahead.bundle.min.js"></script>
     <script>
         $(function () {
             $("#example1").DataTable();
@@ -129,67 +187,40 @@
             });
         });
 
-        //sweet alert
-        function deleteBrand(id) {
-            swal({
-                title: 'Are you sure?',
-                text: "You won't be able to revert this!",
-                type: 'warning',
-                showCancelButton: true,
-                confirmButtonColor: '#3085d6',
-                cancelButtonColor: '#d33',
-                confirmButtonText: 'Yes, delete it!',
-                cancelButtonText: 'No, cancel!',
-                confirmButtonClass: 'btn btn-success',
-                cancelButtonClass: 'btn btn-danger',
-                buttonsStyling: true,
-                reverseButtons: true
-            }).then((result) => {
-                if (result.value) {
-                    document.getElementById('delete-form-'+id).submit();
-                } else if (
-                    // Read more about handling dismissals
-                    result.dismiss === swal.DismissReason.cancel
-                ) {
-                    swal(
-                        'Cancelled',
-                        'Your Data is save :)',
-                        'error'
-                    )
-                }
-            })
-        }
-
-        function verification_status(el){
-            if(el.checked){
-                var status = 1;
-            }
-            else{
-                var status = 0;
-            }
-            $.post('{{ route('admin.seller.verification') }}', {_token:'{{ csrf_token() }}', id:el.value, status:status}, function(data){
-                if(data == 1){
-                    //toastr.success('success', 'Todays Deal updated successfully');
-                }
-                else{
-                    //toastr.danger('danger', 'Something went wrong');
-                }
+        jQuery(document).ready(function($) {
+            var shop = new Bloodhound({
+                remote: {
+                    url: '/admin/customer/search/area?q=%QUERY%',
+                    wildcard: '%QUERY%'
+                },
+                datumTokenizer: Bloodhound.tokenizers.whitespace('searchName'),
+                queryTokenizer: Bloodhound.tokenizers.whitespace
             });
-        }
-        function show_seller_payment_modal(id){
-            $.post('{{ route('admin.sellers.payment_modal') }}',{_token:'{{ @csrf_token() }}', id:id}, function(data){
-                $('#payment_modal #modal-content').html(data);
-                $('#payment_modal').modal('show', {backdrop: 'static'});
 
-            });
-        }
-        function show_seller_commission_modal(id){
-            $.post('{{ route('admin.sellers.commission_modal') }}',{_token:'{{ @csrf_token() }}', id:id}, function(data){
-                $('#payment_modal #modal-content').html(data);
-                $('#payment_modal').modal('show', {backdrop: 'static'});
-
-            });
-        }
+            $("#searchMain").typeahead({
+                    hint: true,
+                    highlight: true,
+                    minLength: 1
+                }, {
+                    source: shop.ttAdapter(),
+                    // This will be appended to "tt-dataset-" to form the class name of the suggestion menu.
+                    name: 'areaList',
+                    display: 'area',
+                    // the key from the array we want to display (name,id,email,etc...)
+                    templates: {
+                        empty: [
+                            '<div class="list-group search-results-dropdown"><div class="list-group-item">Sorry,We could not find any Area.</div></div>'
+                        ],
+                        header: [
+                            // '<div class="list-group search-results-dropdown"><div class="list-group-item custom-header">Product</div>'
+                        ],
+                        suggestion: function (data) {
+                            return '<a href="/admin/customer/'+data.area+'" class="list-group-item custom-list-group-item">'+data.area+'</a>'
+                        }
+                    }
+                },
+            );
+        });
 
     </script>
 @endpush

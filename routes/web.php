@@ -31,18 +31,20 @@ Route::get('/add/wishlist/{id}', 'Frontend\WishlistController@wishlistAdd' )->na
 Route::get('/remove/wishlist/{id}', 'Frontend\WishlistController@wishlistRemove' )->name('remove.wishlist');
 Route::get('/add/favorite-shop/{id}', 'User\FavoriteShopController@favoriteShop')->name('add.favorite-shop');
 Route::get('/remove/favorite-shop/{id}', 'User\FavoriteShopController@removeFavoriteShop')->name('remove.favorite-shop');
+Route::get('/shops','Frontend\ShopController@index')->name('all.shops');
 
 //Search
 Route::get('/search/product', 'Frontend\VendorController@search_product');
 Route::get('/search/category/product', 'Frontend\VendorController@search_category_product');
 Route::get('/search/subcategory/product', 'Frontend\VendorController@search_subcategory_product');
-Route::get('/product/filter/{data}/sellerId/{sellerId}', 'Frontend\VendorController@productFilter');
+Route::get('/product/filter/{data}/shopId/{shopId}', 'Frontend\VendorController@productFilter');
 Route::get('/featured-product/subcategories/filter/{data}/sellerId/{id}/sub/{subId}', 'Frontend\VendorController@FeaturedSubFilter');
-Route::get('/todays-deal/product/filter/{data}/sellerId/{sellerId}', 'Frontend\VendorController@todaysDealFilter');
+Route::get('/todays-deal/product/filter/{data}/shopId/{shopId}', 'Frontend\VendorController@todaysDealFilter');
 Route::get('/todays-deal/subcategories/filter/{data}/sellerId/{id}/sub/{subId}', 'Frontend\VendorController@todaysDealSubFilter');
-Route::get('/best-selling/product/filter/{data}/sellerId/{sellerId}', 'Frontend\VendorController@bestSellingFilter');
+Route::get('/best-selling/product/filter/{data}/shopId/{shopId}', 'Frontend\VendorController@bestSellingFilter');
 Route::get('/best-selling/subcategories/filter/{data}/sellerId/{id}/sub/{subId}', 'Frontend\VendorController@bestSellingSubFilter');
-Route::get('/brand/product/filter/{data}/sellerId/{id}/brnd/{brndId}', 'Frontend\VendorController@brandFilter');
+Route::get('/brand/product/filter/{data}/shopId/{id}/brand/{brndId}', 'Frontend\VendorController@brandFilter');
+
 
 
 Route::post('/registration','Frontend\FrontendController@register')->name('user.register');
@@ -50,12 +52,17 @@ Route::get('/get-verification-code/{id}', 'Frontend\VerificationController@getVe
 Route::post('/get-verification-code-store', 'Frontend\VerificationController@verification')->name('get-verification-code.store');
 Route::get('/check-verification-code', 'Frontend\VerificationController@CheckVerificationCode')->name('check-verification-code');
 Route::get('refer/{code}','Frontend\FrontendController@referCode')->name('registration.refer.code');
+Route::get('popup-dataset','Frontend\FrontendController@popupDataSet')->name('popup-dataset');
+Route::get('popup-destroy','Frontend\FrontendController@popupDataDestroy')->name('popup-destroy');
+
+
+
 
 
 //product
 Route::get('/product/{slug}', 'Frontend\ProductController@ProductDetails')->name('product-details');
 Route::post('/products/get/variant/price', 'Frontend\ProductController@ProductVariantPrice')->name('product.variant.price');
-Route::get('/products/{slug}', 'Frontend\ProductController@productList')->name('product.list');
+Route::get('/featured-products/{slug}', 'Frontend\ProductController@featuredProductList')->name('featured-product.list');
 Route::get('/products/{name}/{slug}/{sub}', 'Frontend\ProductController@productSubCategory')->name('product.by.subcategory');
 Route::get('/products/{name}/{slug}', 'Frontend\ProductController@productByBrand')->name('product.by.brand');
 Route::post('/products/ajax/addtocart', 'Frontend\CartController@ProductAddCart')->name('product.add.cart');
@@ -94,7 +101,8 @@ Route::post('/new-password/update/{id}','Frontend\FrontendController@passwordUpd
 Route::group(['middleware' => ['auth', 'user']], function () {
     //this route only for with out resource controller
     Route::get('/user/dashboard', 'User\DashboardController@index')->name('user.dashboard');
-    Route::post('/user/dashboard/update', 'User\DashboardController@update')->name('user.profile-update');
+    Route::get('/user/edit-profile', 'User\DashboardController@editProfile')->name('user.edit-profile');
+    Route::post('/user/profile/update', 'User\DashboardController@updateProfile')->name('user.profile-update');
     Route::get('/user/edit-password', 'User\DashboardController@editPassword')->name('user.edit-password');
     Route::post('/user/password/update', 'User\DashboardController@updatePassword')->name('user.password-update');
     Route::get('/user/invoices', 'User\DashboardController@invoices')->name('user.invoices');
@@ -116,4 +124,5 @@ Route::group(['middleware' => ['auth', 'user']], function () {
     Route::post('/user/address-status/update/{id}', 'User\AddressController@updateStatus')->name('user.update.status');
 });
 //Route::get('/vendor/dashboard', 'Vendor\DashboardController@index')->name('vendor.dashboard');
+
 

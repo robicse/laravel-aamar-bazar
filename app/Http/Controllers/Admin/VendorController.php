@@ -52,10 +52,11 @@ public function topRatedShop()
     $reviews = DB::table('reviews')
         //->where('stock_transfer_id', $stock_transfer_id)
         ->join('shops','shops.id','=','reviews.shop_id')
-        ->select('reviews.shop_id',DB::raw('SUM(reviews.rating) / 5 as total_rating'))
+        ->select('reviews.shop_id',DB::raw('SUM(reviews.rating) as total_rating'))
         ->groupBy('reviews.shop_id')
         ->orderBy('total_rating', 'DESC')
         ->get();
+//    dd($reviews);
     return view('backend.admin.Top_rated_shop.index',compact('reviews'));
 }
 

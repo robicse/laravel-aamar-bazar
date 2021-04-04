@@ -295,6 +295,9 @@ class CartController extends Controller
         $order->invoice_code = date('Ymd-his');
         $order->user_id = Auth::user()->id;
         $order->shop_id = $shop_id;
+        $order->area = $address->area;
+        $order->latitude = $address->latitude;
+        $order->longitude = $address->longitude;
         $order->shipping_address = $shipping_info;
         $order->payment_type = $request->pay;
         $order->payment_status = $payment_status;
@@ -362,7 +365,7 @@ class CartController extends Controller
 
             Toastr::success('Order Successfully done! ');
             Cart::destroy();
-            return redirect()->route('index');
+            return view('frontend.pages.shop.order_confirmation',compact('order'));
         }else {
 //            Session::put('order_id',$order->id);
 //            return redirect()->route('pay');

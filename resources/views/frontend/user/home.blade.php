@@ -1,5 +1,13 @@
 @extends('frontend.layouts.master')
 @section('title', 'User Dashboard')
+@push('css')
+    <style>
+        .card_style{
+            max-width: 24rem;
+            color: white;
+        }
+    </style>
+@endpush
 @section('content')
     <main class="ps-page--my-account">
         <div class="ps-breadcrumb">
@@ -8,73 +16,58 @@
                     <li><a href="{{url('/')}}">Home</a></li>
                     <li>User Information</li>
                 </ul>
-{{--                <div class="text-right">Logout</div>--}}
+                {{--                <div class="text-right">Logout</div>--}}
             </div>
         </div>
         <section class="ps-section--account">
             <div class="container">
                 <div class="row">
                     @include('frontend.user.includes.user_sidebar')
-                    <div class="col-lg-8">
+                    <div class="col-lg-9">
                         <div class="ps-section__right">
-                            <form class="ps-form--account-setting" action="{{route('user.profile-update')}}" method="POST" enctype="multipart/form-data">
-                                @csrf
-                                <div class="ps-form__header">
-                                    <h3> User Information</h3>
-                                </div>
-                                <div class="ps-form__content">
-                                    <div class="form-group">
-                                        <label>Name</label>
-                                        <input class="form-control" type="text" name="name" value="{{ Auth::User()->name }}" placeholder="Please enter your name...">
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-sm-6">
-                                            <div class="form-group">
-                                                <label>Phone Number</label>
-                                                <input class="form-control" type="number" name="phone" value="{{ Auth::User()->phone }}" placeholder="Please enter phone number..." readonly>
+                            <h3 style="margin-bottom: 30px;">Dashboard</h3>
+                            <div class="row">
+                                <div class="col-md-3 col-sm-6">
+                                    <div class="card bg-success mb-4 card_style">
+                                        <div class="card-body">
+                                            <div class="text-center text-white py-4 mb-2" >
+                                            <h3 class="card-title text-white mb-3">{{Auth::User()->balance}} Tk</h3>
+                                                <p class="text-white">Balance</p>
                                             </div>
                                         </div>
-                                        <div class="col-sm-6">
-                                            <div class="form-group">
-                                                <label>Email</label>
-                                                <input class="form-control" type="email" name="email" value="{{ Auth::User()->email }}" placeholder="Please enter your email...">
-                                            </div>
-                                        </div>
-                                        <div class="col-sm-6">
-                                            <div class="form-group">
-                                                <label>Profile Image </label>
-                                                <input type="file"  name="avatar_original" class="form-control"  >
-                                                {{--  <input class="form-control" type="email" name="email" value="{{ Auth::User()->email }}" placeholder="Please enter your email...">--}}
-                                            </div>
-                                        </div>
-{{--                                        <div class="form-group row">--}}
-{{--                                            <label for="avatar_original" class="col-sm-2 col-form-label">Profile Image <small class="text-danger">(Photo size: 300x300 and below 100kb)</small></label>--}}
-{{--                                            <div class="col-sm-10">--}}
-{{--                                                <input type="file"  name="avatar_original" class="form-control"  >--}}
-{{--                                            </div>--}}
-{{--                                        </div>--}}
-{{--                                        <div class="col-sm-6">--}}
-{{--                                            <div class="form-group">--}}
-{{--                                                <label>Birthday</label>--}}
-{{--                                                <input class="form-control" type="text" placeholder="Please enter your birthday...">--}}
-{{--                                            </div>--}}
-{{--                                        </div>--}}
-{{--                                        <div class="col-sm-6">--}}
-{{--                                            <div class="form-group">--}}
-{{--                                                <label>Gender</label>--}}
-{{--                                                <select class="form-control">--}}
-{{--                                                    <option value="1">Male</option>--}}
-{{--                                                    <option value="2">Female</option>--}}
-{{--                                                    <option value="3">Other</option>--}}
-{{--                                                </select>--}}
-{{--                                            </div>--}}
-{{--                                        </div>--}}
                                     </div>
                                 </div>
-                                <div class="form-group submit">
-                                    <button class="ps-btn">Update</button>
+                                <div class="col-md-3 col-sm-6">
+                                    <div class="card bg-danger mb-4 card_style">
+                                        <div class="card-body">
+                                            <div class="text-center text-white py-4 mb-2" >
+                                                <h1 class="h3 text-white mb-3">{{\Gloudemans\Shoppingcart\Facades\Cart::count()}} Product(s)</h1>
+                                                <p class="text-white">In your Cart</p>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
-                            </form>
+                                <div class="col-md-3 col-sm-6">
+                                    <div class="card bg-warning mb-4 card_style">
+                                        <div class="card-body">
+                                            <div class="text-center text-white py-4 mb-2" >
+                                                <h1 class="h3 text-white mb-3"> {{$totalWishlist}} Product(s)</h1>
+                                                <p class="text-white">In Your Wishlist</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-3 col-sm-6">
+                                    <div class="card bg-info mb-4 card_style">
+                                        <div class="card-body">
+                                            <div class="text-center text-white py-4 mb-2" >
+                                                <h1 class="h3 text-white mb-3"> {{$totalOrder}} Order(s)</h1>
+                                                <p class="text-white">You ordered</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>

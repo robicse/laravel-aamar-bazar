@@ -45,7 +45,9 @@
                                         <label>Seller List</label>
                                         <select name="seller_id" id="" class="form-control select2">
                                             @foreach($sellers as $seller)
-                                            <option value="{{$seller->id}}" {{$sellerId == $seller->id ? 'selected' : ''}}>{{$seller->name}}</option>
+                                                @if($seller->seller->verification_status == 1)
+                                                    <option value="{{$seller->id}}" {{$sellerId == $seller->id ? 'selected' : ''}}>{{$seller->name}}</option>
+                                                @endif
                                             @endforeach
                                         </select>
                                         {{--                                            <input type="text" class="form-control" placeholder="First name">--}}
@@ -90,7 +92,7 @@
                                     <td>{{$order->invoice_code}}</td>
                                     <td>{{$order->payment_type}}</td>
                                     <td>
-                                        <a class="btn btn-info waves-effect" href="{{route('admin.order-details',$order->id)}}">
+                                        <a class="btn btn-info waves-effect" href="{{route('admin.order-details',encrypt($order->id))}}">
                                             <i class="fa fa-eye"></i> View
                                         </a>
                                     </td>

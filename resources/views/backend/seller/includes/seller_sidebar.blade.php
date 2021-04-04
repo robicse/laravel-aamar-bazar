@@ -55,19 +55,26 @@
                                     <p>Admin Inserted Products</p>
                                 </a>
                             </li>
-                            <li class="nav-item">
-                                <a href="{{route('seller.flash_deals.index')}}" class="nav-link {{Request::is('seller/seller/flash_deals*') ? 'active' :''}}">
-                                    <i class="fa fa-{{Request::is('seller/flash_deals*') ? 'folder-open':'bolt'}} nav-icon"></i>
-                                    <p>Flash Deals</p>
-                                </a>
-                            </li>
+{{--                            <li class="nav-item">--}}
+{{--                                <a href="{{route('seller.flash_deals.index')}}" class="nav-link {{Request::is('seller/seller/flash_deals*') ? 'active' :''}}">--}}
+{{--                                    <i class="fa fa-{{Request::is('seller/flash_deals*') ? 'folder-open':'bolt'}} nav-icon"></i>--}}
+{{--                                    <p>Flash Deals</p>--}}
+{{--                                </a>--}}
+{{--                            </li>--}}
                         </ul>
                     </li>
+                        @php
+                            $shop = \App\Model\Shop::where('user_id',Auth::id())->first();
+                            $new_orders = \App\Model\Order::where('shop_id',$shop->id)->where('delivery_status','Pending')->where('view',0)->count();
+                        @endphp
                     <li class="nav-item has-treeview {{(Request::is('seller/order*')) ? 'menu-open' : ''}}">
                         <a href="" class="nav-link">
                             <i class="nav-icon fas fa-box"></i>
                             <p>
                                 Order Management
+                                @if(!empty($new_orders))
+                                    <span class="badge badge-danger"> {{$new_orders}} New</span>
+                                @endif
                                 <i class="right fa fa-angle-left"></i>
                             </p>
                         </a>
@@ -75,7 +82,12 @@
                             <li class="nav-item">
                                 <a href="{{route('seller.order.pending')}}" class="nav-link {{Request::is('seller/order/pending*') ? 'active' :''}}">
                                     <i class="fa fa-{{Request::is('seller/order/pending*') ? 'folder-open':'folder'}} nav-icon"></i>
-                                    <p>Pending Order</p>
+                                    <p>
+                                        Pending Order
+                                        @if(!empty($new_orders))
+                                            <span class="right badge badge-danger">New ({{$new_orders}})</span>
+                                        @endif
+                                    </p>
                                 </a>
                             </li>
                             <li class="nav-item">

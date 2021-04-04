@@ -19,7 +19,7 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>Add Products</h1>
+                    <h1>Edit Products</h1>
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
@@ -80,7 +80,7 @@
                                 <label for="brand">Brand</label>
                                 <select name="brand_id" id="brand" class="form-control demo-select2" required>
                                     @foreach($brands as $brand)
-                                        <option value="{{$brand->id}}">{{$brand->name}}</option>
+                                        <option value="{{$brand->id}}" {{$product->brand_id == $brand->id ? 'selected' : ''}}>{{$brand->name}}</option>
                                     @endforeach
                                 </select>
                             </div>
@@ -109,7 +109,7 @@
                                             <div class="col-md-4 col-sm-4 col-xs-6">
                                                 <div class="img-upload-preview">
                                                     <img loading="lazy"  src="{{url($photo)}}" alt="" class="img-responsive">
-                                                    <input type="hidden" name="previous_photos[]" value="{{url($photo)}}">
+                                                    <input type="hidden" name="previous_photos[]" value="{{$photo}}">
                                                     <button type="button" class="btn btn-danger close-btn remove-files"><i class="fa fa-times"></i></button>
                                                 </div>
                                             </div>
@@ -128,7 +128,7 @@
                                         <div class="col-md-4 col-sm-4 col-xs-6">
                                             <div class="img-upload-preview">
                                                 <img loading="lazy"  src="{{ url($product->thumbnail_img) }}" alt="" class="img-responsive">
-                                                <input type="hidden" name="previous_thumbnail_img" value="{{ url($product->thumbnail_img) }}">
+                                                <input type="hidden" name="previous_thumbnail_img" value="{{ $product->thumbnail_img }}">
                                                 <button type="button" class="btn btn-danger close-btn remove-files"><i class="fa fa-times"></i></button>
                                             </div>
                                         </div>
@@ -186,6 +186,24 @@
                                                 <option value="amount" {{$product->discount_type == 'amount' ? 'selected' : ''}}>Flat</option>
                                                 <option value="percent" {{$product->discount_type == 'percent' ? 'selected' : ''}}>Percent</option>
                                             </select>
+                                        </div>
+                                        <div class="form-group col-md-3">
+                                            <label for="vat">VAT</label>
+                                            <input type="number" min="0" value="{{$product->vat}}" step="0.01" placeholder="VAT"
+                                                   name="vat" class="form-control" required="">
+                                        </div>
+                                        <div class="form-group col-md-5">
+                                            <label for="discount">VAT Type</label>
+                                            <select class="form-control " name="vat_type" tabindex="-1"
+                                                    aria-hidden="true">
+                                                <option value="amount" {{$product->vat_type == 'amount' ? 'selected' : ''}}>Flat</option>
+                                                <option value="percent" {{$product->vat_type == 'percent' ? 'selected' : ''}}>Percent</option>
+                                            </select>
+                                        </div>
+                                        <div class="form-group col-md-4">
+                                            <label for="vat">Labour cost</label>
+                                            <input type="number" min="0" value="{{$product->labour_cost}}" step="0.01" placeholder="Labour cost"
+                                                   name="labour_cost" class="form-control" required="">
                                         </div>
                                     </div>
                                 </div>

@@ -35,6 +35,7 @@
                         || Request::is('admin/subcategories*')
                         || Request::is('admin/sub-subcategories*')
                         || Request::is('admin/products*')
+                        || Request::is('admin/flash_deals*')
                         || Request::is('admin/offers*')
                         || Request::is('admin/request/products*')
                         || Request::is('admin/all/seller/products*')
@@ -91,6 +92,12 @@
                                 </a>
                             </li>
                             <li class="nav-item">
+                                <a href="{{route('admin.flash_deals.index')}}" class="nav-link {{Request::is('admin/flash_deals*') ? 'active' :''}}">
+                                    <i class="fa fa-{{Request::is('admin/flash_deals*') ? 'folder-open':'bolt'}} nav-icon"></i>
+                                    <p>Flash Deals</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
                                 <a href="{{route('admin.offers.index')}}"
                                    class="nav-link {{Request::is('admin/offers*') ? 'active' :''}}">
                                     <i class="fa fa-{{Request::is('admin/offers*') ? 'folder-open':'folder'}} nav-icon"></i>
@@ -116,7 +123,7 @@
                     @php
                         $new_orders = \App\Model\Order::where('delivery_status','Pending')->where('view',0)->count();
                     @endphp
-                    <li class="nav-item has-treeview {{(Request::is('admin/order*')) ? 'menu-open' : ''}}">
+                    <li class="nav-item has-treeview {{(Request::is('admin/order*')) || Request::is('admin/all-orders*') ? 'menu-open' : ''}}">
                         <a href="" class="nav-link {{Request::is('admin/order') ? 'active' : ''}}">
                             <i class="nav-icon fas fa-box"></i>
                             <p>
@@ -129,6 +136,15 @@
                         </a>
 
                         <ul class="nav nav-treeview">
+                            <li class="nav-item">
+                                <a href="{{route('admin.all.orders')}}"
+                                   class="nav-link {{Request::is('admin/all-orders*') || Request::is('admin/orders*') ? 'active' :''}}">
+                                    <i class="fa fa-{{Request::is('admin/all-orders*') || Request::is('admin/orders*') ? 'folder-open':'folder'}} nav-icon"></i>
+                                    <p>
+                                        All Orders
+                                    </p>
+                                </a>
+                            </li>
                             <li class="nav-item">
                                 <a href="{{route('admin.order.pending')}}"
                                    class="nav-link {{Request::is('admin/order/pending*') ? 'active' :''}}">
@@ -238,7 +254,7 @@
                         </ul>
                     </li>
                     @php
-                        $new_seller = \App\User::where('user_type','seller')->where('view',0)->count();
+                        $new_seller = \App\User::where('user_type','seller')->where('verification_code','!=',null)->where('view',0)->count();
                     @endphp
                     <li class="nav-item has-treeview {{(Request::is('admin/sellers*') || Request::is('admin/due-to-seller*') || Request::is('admin/due-to-admin*') ) ? 'menu-open' : ''}}">
                         <a href="#" class="nav-link">
@@ -301,9 +317,9 @@
                         </ul>
                     </li>
                     @php
-                        $new_customer = \App\User::where('user_type','customer')->where('view',0)->count();
+                        $new_customer = \App\User::where('user_type','customer')->where('verification_code','!=',null)->where('view',0)->count();
                     @endphp
-                    <li class="nav-item has-treeview {{(Request::is('admin/customers*') ) ? 'menu-open' : ''}}">
+                    <li class="nav-item has-treeview {{(Request::is('admin/customer*') ) ? 'menu-open' : ''}}">
                         <a href="#" class="nav-link">
                             <i class="nav-icon fas fa-users"></i>
                             <p>
@@ -317,8 +333,8 @@
                         <ul class="nav nav-treeview">
                             <li class="nav-item">
                                 <a href="{{route('admin.customers.index')}}"
-                                   class="nav-link {{Request::is('admin/customers') ? 'active' :''}}">
-                                    <i class="fa fa-{{Request::is('admin/customers') ? 'folder-open':'folder'}} nav-icon"></i>
+                                   class="nav-link {{Request::is('admin/customer*') ? 'active' :''}}">
+                                    <i class="fa fa-{{Request::is('admin/customer*') ? 'folder-open':'folder'}} nav-icon"></i>
                                     <p>
                                         Customer List
                                         @if(!empty($new_customer))
@@ -421,11 +437,18 @@
                         </a>
                     </li>
                     <li class="nav-item ">
-
                         <a href="{{route('admin.top-rated-shop')}}" class="nav-link {{Request::is('admin/top-rated-shop*') ? 'active' : ''}}">
                             <i class="nav-icon fa fa-store"></i>
                             <p>
-                                Top Rated Shop
+                                Top Rated Shops
+                            </p>
+                        </a>
+                    </li>
+                    <li class="nav-item ">
+                        <a href="{{route('admin.top-customers')}}" class="nav-link {{Request::is('admin/top-customers*') ? 'active' : ''}}">
+                            <i class="nav-icon fa fa-user-shield"></i>
+                            <p>
+                                Top Customers
                             </p>
                         </a>
                     </li>

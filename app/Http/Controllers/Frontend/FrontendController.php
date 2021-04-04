@@ -4,7 +4,10 @@ namespace App\Http\Controllers\Frontend;
 use App\Helpers\UserInfo;
 use App\Model\BusinessSetting;
 use App\Model\Category;
+use App\Model\FlashDeal;
+use App\Model\FlashDealProduct;
 use App\Model\Offer;
+use App\Model\Order;
 use App\Model\Product;
 use App\Model\Seller;
 use App\Model\Shop;
@@ -36,8 +39,14 @@ class FrontendController extends Controller
             ->orderBy('total_amount', 'DESC')
             ->take(8)
             ->get();
+        $flashDeal = FlashDeal::where('status',1)->where('user_type','admin')->where('featured',1)->first();
+        if(!empty($flashDeal)){
+            $flashDealProducts = FlashDealProduct::where('flash_deal_id',$flashDeal->id)->latest()->take(10)->get();
+        }else{
+            $flashDealProducts = null;
+        }
 
-        return view('frontend.pages.index', compact('categories','products','all_products','orders','best_sales_products','offers'));
+        return view('frontend.pages.index', compact('categories','products','all_products','orders','best_sales_products','offers','flashDeal','flashDealProducts'));
     }
     public function register(Request $request) {
         $this->validate($request, [
@@ -148,6 +157,17 @@ class FrontendController extends Controller
         $refferal_by = User::where('referral_code',$code)->first();
 //        $referralCode = $code;
        return view('auth.register_with_refferal_code',compact('refferal_by'));
+    }
+
+    public function popupDataSet()
+    {
+        Session::put('popup', 1);
+        return 1;
+    }
+    public function popupDataDestroy()
+    {
+        Session::forget('popup');
+        return 1;
     }
 
 }

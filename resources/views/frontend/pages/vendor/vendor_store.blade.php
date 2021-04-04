@@ -124,44 +124,45 @@
                                     </div>
                                 </div>
                             @endif
-                            @if( !empty($flashDeal) && $flashDeal->featured == 1  && strtotime(date('d-m-Y')) >= $flashDeal->start_date && strtotime(date('d-m-Y')) <= $flashDeal->end_date)
-                                <div class="ps-deal-of-day" style="padding-top: 10px;">
-                                    <div class="ps-container">
-                                        <div class="ps-section__header">
-                                            <div class="ps-block--countdown-deal">
-                                                <div class="ps-block__left">
-                                                    <h3>{{$flashDeal->title}}</h3>
-                                                </div>
-                                                <div class="ps-block__right">
-                                                    <figure>
-                                                        <figcaption>End in:</figcaption>
-                                                        <ul class="ps-countdown" data-time="{{date('m/d/Y', $flashDeal->end_date)}}">
-                                                            <li><span class="days"></span></li>
-                                                            <li><span class="hours"></span></li>
-                                                            <li><span class="minutes"></span></li>
-                                                            <li><span class="seconds"></span></li>
-                                                        </ul>
-                                                    </figure>
-                                                </div>
-                                            </div><a href="{{route('flash-deals',$flashDeal->slug)}}">View all</a>
-                                        </div>
 
-                                        <div class="ps-tabs">
-                                            <div class="ps-tab active" id="tab-1">
-                                                <div class="row">
-                                                    @foreach($flashDealProducts as $flashDealProduct)
-                                                        <div class="col-xl-3 col-lg-4 col-md-4 col-sm-6 ">
-                                                            <div class="ps-product">
-                                                                <div class="ps-product__thumbnail"><a href="{{route('product-details',$flashDealProduct->product->slug)}}"><img src="{{asset($flashDealProduct->product->thumbnail_img)}}" alt="" width="153" height="171"></a>
-                                                                    {{--                                                        <div class="ps-product__badge">11%</div>--}}
-                                                                    <ul class="ps-product__actions">
-                                                                        <li><a href="{{route('product-details',$flashDealProduct->product->slug)}}" data-toggle="tooltip" data-placement="top" title="Add To Cart"><i class="icon-bag2"></i></a></li>
-                                                                        <li><a href="{{route('product-details',$flashDealProduct->product->slug)}}" data-placement="top" title="Quick View"><i class="icon-eye"></i></a></li>
-                                                                        <li><a href="{{route('add.wishlist',$flashDealProduct->product->id)}}" data-toggle="tooltip" data-placement="top" title="Add to Whishlist"><i class="icon-heart"></i></a></li>
-                                                                    </ul>
-                                                                </div>
-                                                                <div class="ps-product__container"><a class="ps-product__vendor" href="{{route('product-details',$flashDealProduct->product->slug)}}"></a>
-                                                                    <div class="ps-product__content"><a class="ps-product__title" href="">{{$flashDealProduct->product->name}}</a>
+{{--                            @if( !empty($flashDeal) && $flashDeal->featured == 1  && strtotime(date('d-m-Y')) >= $flashDeal->start_date && strtotime(date('d-m-Y')) <= $flashDeal->end_date && $flashDealProducts->count() >0)--}}
+{{--                                <div class="ps-deal-of-day" style="padding-top: 10px;">--}}
+{{--                                    <div class="ps-container">--}}
+{{--                                        <div class="ps-section__header">--}}
+{{--                                            <div class="ps-block--countdown-deal">--}}
+{{--                                                <div class="ps-block__left">--}}
+{{--                                                    <h3>{{$flashDeal->title}}</h3>--}}
+{{--                                                </div>--}}
+{{--                                                <div class="ps-block__right">--}}
+{{--                                                    <figure>--}}
+{{--                                                        <figcaption>End in:</figcaption>--}}
+{{--                                                        <ul class="ps-countdown" data-time="{{date('m/d/Y', $flashDeal->end_date)}}">--}}
+{{--                                                            <li><span class="days"></span></li>--}}
+{{--                                                            <li><span class="hours"></span></li>--}}
+{{--                                                            <li><span class="minutes"></span></li>--}}
+{{--                                                            <li><span class="seconds"></span></li>--}}
+{{--                                                        </ul>--}}
+{{--                                                    </figure>--}}
+{{--                                                </div>--}}
+{{--                                            </div><a href="{{route('flash-deals',$flashDeal->slug)}}">View all</a>--}}
+{{--                                        </div>--}}
+
+{{--                                        <div class="ps-tabs">--}}
+{{--                                            <div class="ps-tab active" id="tab-1">--}}
+{{--                                                <div class="row">--}}
+{{--                                                    @foreach($flashDealProducts as $flashDealProduct)--}}
+{{--                                                        <div class="col-xl-3 col-lg-4 col-md-4 col-sm-6">--}}
+{{--                                                            <div class="ps-product">--}}
+{{--                                                                <div class="ps-product__thumbnail"><a href="{{route('product-details',$flashDealProduct->product->slug)}}"><img src="{{asset($flashDealProduct->product->thumbnail_img)}}" alt="" width="153" height="171"></a>--}}
+{{--                                                                    --}}{{--                                                        <div class="ps-product__badge">11%</div>--}}
+{{--                                                                    <ul class="ps-product__actions">--}}
+{{--                                                                        <li><a href="{{route('product-details',$flashDealProduct->product->slug)}}" data-toggle="tooltip" data-placement="top" title="Add To Cart"><i class="icon-bag2"></i></a></li>--}}
+{{--                                                                        <li><a href="{{route('product-details',$flashDealProduct->product->slug)}}" data-placement="top" title="Quick View"><i class="icon-eye"></i></a></li>--}}
+{{--                                                                        <li><a href="{{route('add.wishlist',$flashDealProduct->product->id)}}" data-toggle="tooltip" data-placement="top" title="Add to Whishlist"><i class="icon-heart"></i></a></li>--}}
+{{--                                                                    </ul>--}}
+{{--                                                                </div>--}}
+{{--                                                                <div class="ps-product__container"><a class="ps-product__vendor" href="{{route('product-details',$flashDealProduct->product->slug)}}"></a>--}}
+{{--                                                                    <div class="ps-product__content"><a class="ps-product__title" href="">{{$flashDealProduct->product->name}}</a>--}}
 {{--                                                                        <div class="ps-product__rating">--}}
 {{--                                                                            <select class="ps-rating" data-read-only="true">--}}
 {{--                                                                                <option value="1">1</option>--}}
@@ -171,67 +172,43 @@
 {{--                                                                                <option value="2">5</option>--}}
 {{--                                                                            </select><span>01</span>--}}
 {{--                                                                        </div>--}}
-                                                                        <p class="ps-product__price sale">
-                                                                            ৳{{home_discounted_base_price($flashDealProduct->product_id)}}
-                                                                            @if(home_base_price($flashDealProduct->product_id) != home_discounted_base_price($flashDealProduct->product_id))
-                                                                                <del>৳{{home_base_price($flashDealProduct->product_id)}}</del>
-                                                                            @else
-                                                                                ৳{{home_discounted_base_price($flashDealProduct->product_id)}}
-                                                                            @endif
-                                                                        </p>
-                                                                    </div>
-                                                                    <div class="ps-product__content hover"><a class="ps-product__title" href="{{route('product-details',$flashDealProduct->product->slug)}}">{{$flashDealProduct->product->name}}</a>
-                                                                        <p class="ps-product__price sale">
-                                                                            ৳{{home_discounted_base_price($flashDealProduct->product_id)}}
-                                                                            @if(home_base_price($flashDealProduct->product_id) != home_discounted_base_price($flashDealProduct->product_id))
-                                                                                <del>৳{{home_base_price($flashDealProduct->product_id)}}</del>
-                                                                            @else
-                                                                                ৳{{home_discounted_base_price($flashDealProduct->product_id)}}
-                                                                            @endif
-                                                                        </p>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    @endforeach
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            @endif
+{{--                                                                        <p class="ps-product__price sale">--}}
+{{--                                                                            ৳{{home_discounted_base_price($flashDealProduct->product_id)}}--}}
+{{--                                                                            @if(home_base_price($flashDealProduct->product_id) != home_discounted_base_price($flashDealProduct->product_id))--}}
+{{--                                                                                <del>৳{{home_base_price($flashDealProduct->product_id)}}</del>--}}
+{{--                                                                            @else--}}
+{{--                                                                                ৳{{home_discounted_base_price($flashDealProduct->product_id)}}--}}
+{{--                                                                            @endif--}}
+{{--                                                                        </p>--}}
+{{--                                                                    </div>--}}
+{{--                                                                    <div class="ps-product__content hover"><a class="ps-product__title" href="{{route('product-details',$flashDealProduct->product->slug)}}">{{$flashDealProduct->product->name}}</a>--}}
+{{--                                                                        <p class="ps-product__price sale">--}}
+{{--                                                                            ৳{{home_discounted_base_price($flashDealProduct->product_id)}}--}}
+{{--                                                                            @if(home_base_price($flashDealProduct->product_id) != home_discounted_base_price($flashDealProduct->product_id))--}}
+{{--                                                                                <del>৳{{home_base_price($flashDealProduct->product_id)}}</del>--}}
+{{--                                                                            @else--}}
+{{--                                                                                ৳{{home_discounted_base_price($flashDealProduct->product_id)}}--}}
+{{--                                                                            @endif--}}
+{{--                                                                        </p>--}}
+{{--                                                                    </div>--}}
+{{--                                                                </div>--}}
+{{--                                                            </div>--}}
+{{--                                                        </div>--}}
+{{--                                                    @endforeach--}}
+{{--                                                </div>--}}
+{{--                                            </div>--}}
+{{--                                        </div>--}}
+{{--                                    </div>--}}
+{{--                                </div>--}}
+{{--                            @endif--}}
 
-                            {{--                        @if($shopCat->count() > 0)--}}
-                            {{--                        <div class="ps-vendor-best-seller">--}}
-                            {{--                            <div class="ps-section__header">--}}
-                            {{--                                <h3>Featured Categories</h3>--}}
-                            {{--                                <div class="ps-section__nav"><a class="ps-carousel__prev" href="#vendor-bestseller"><i class="icon-chevron-left"></i></a><a class="ps-carousel__next" href="#vendor-bestseller"><i class="icon-chevron-right"></i></a></div>--}}
-                            {{--                            </div>--}}
-                            {{--                            <div class="ps-section__content" style="padding-bottom: 20px;">--}}
-                            {{--                                <div class="owl-slider" id="vendor-bestseller" data-owl-auto="true" data-owl-loop="true" data-owl-speed="5000" data-owl-gap="0" data-owl-nav="false" data-owl-dots="false" data-owl-item="4" data-owl-item-xs="2" data-owl-item-sm="3" data-owl-item-md="3" data-owl-item-lg="4" data-owl-duration="1000" data-owl-mousedrag="on">--}}
-                            {{--                                    <div class="row">--}}
-                            {{--                                        @foreach($shopCat as $cat)--}}
-                            {{--                                            <div class="col-lg-2 col-md-6">--}}
-                            {{--                                                <div class="text-center">--}}
-                            {{--                                                    <a href="{{url('/shop/'.$shop->slug.'/'.$cat->category->slug)}}"> <img src="{{asset('uploads/categories/'.$cat->category->icon)}}" class="rounded-circle" alt="" width="80" height="80"></a>--}}
-                            {{--                                                    <div class="item-content text-center">--}}
-                            {{--                                                        <h4 class="item-title"><a href="{{url('/shop/'.$shop->slug.'/'.$cat->category->slug)}}" style="color: #06c;" data-toggle="tooltip" title="{{$cat->category->name}}">{!! Str::limit($cat->category->name,7) !!}</h4></a>--}}
-                            {{--                                                    </div>--}}
-                            {{--                                                </div>--}}
-                            {{--                                            </div>--}}
-                            {{--                                        @endforeach--}}
-                            {{--                                    </div>--}}
-                            {{--                                </div>--}}
-                            {{--                            </div>--}}
-                            {{--                        </div>--}}
-                            {{--                        @endif--}}
                             @if($products->count() > 0)
                                 <div class="ps-shopping ps-tab-root" style="padding-top: 20px;">
                                     <div class="ps-shopping__header">
                                         <p>Featured Products</p>
                                         <div class="ps-shopping__actions">
                                             <div class="ps-shopping__view">
-                                                <div><a href="{{route('product.list', $shop->slug)}}">View All</a></div>
+                                                <div><a href="{{route('featured-product.list', $shop->slug)}}">View All</a></div>
                                             </div>
                                         </div>
                                     </div>

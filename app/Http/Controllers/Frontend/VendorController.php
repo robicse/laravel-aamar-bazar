@@ -31,9 +31,9 @@ class VendorController extends Controller
         $seller = Seller::where('user_id',$shop->user_id)->first();
         $user = User::where('id',$shop->user_id)->first();
         $products=Product::where('added_by','seller')->where('user_id',$shop->user_id)->where('published',1)->where('featured',1)->latest()->take(8)->get();
-        $best_sales_products=Product::where('added_by','seller')->where('user_id',$shop->user_id)->where('published',1)->where('num_of_sale', '>',0)->limit(8)->get();
+        $best_sales_products=Product::where('added_by','seller')->where('user_id',$shop->user_id)->where('published',1)->where('num_of_sale', '>',0)->orderBy('num_of_sale', 'DESC')->limit(8)->get();
         $todaysDeal = Product::where('added_by','seller')->where('user_id',$shop->user_id)->where('published',1)->where('todays_deal',1)->latest()->take(8)->get();
-        $flashDeal = FlashDeal::where('status',1)->where('user_id',$shop->user_id)->where('user_type','seller')->where('featured',1)->first();
+        $flashDeal = FlashDeal::where('status',1)->where('user_type','admin')->where('featured',1)->first();
         if(!empty($flashDeal)){
             $flashDealProducts = FlashDealProduct::where('user_id',$shop->user_id)->where('flash_deal_id',$flashDeal->id)->latest()->take(7)->get();
         }else{
@@ -167,16 +167,17 @@ class VendorController extends Controller
         $product = Product::where('name', 'LIKE', '%'. $name. '%')->where('user_id',$shop->user_id)->where('category_id',$category->id)->where('subcategory_id',$subcategory->id)->where('added_by','seller')->where('published',1)->orWhere('tags', 'like', '%'.$name.'%')->limit(5)->get();
         return $product;
     }
-    public function productFilter($data,$sellerId)
+    public function productFilter($data, $shopId)
     {
-        //$shops = Shop::find($sellerId);
-//        dd($shops);
+        $shop = Shop::find($shopId);
+//        dd($shop);
         $data2 = explode(',',$data);
         $data_min = (int) $data2[0];
         $data_max = (int) $data2[1];
-        $result_data = Product::where('user_id',$sellerId)->where('unit_price', '>=', $data_min)->where('unit_price', '<=', $data_max)->where('published',1)->where('featured',1)->get();
-
-        return $result_data;
+        $products = Product::where('user_id',$shop->user_id)->where('unit_price', '>=', $data_min)->where('unit_price', '<=', $data_max)->where('published',1)->where('featured',1)->latest()->take(24)->get();
+        //dd($result_data);
+        return view('frontend.pages.shop.products_filter_dataset', compact('products','shop'));
+//        return $result_data;
     }
     public function FeaturedSubFilter($data,$id,$subId)
     {
@@ -187,21 +188,20 @@ class VendorController extends Controller
         $data2 = explode(',',$data);
         $data_min = (int) $data2[0];
         $data_max = (int) $data2[1];
-        $result_data = Product::where('user_id',$shop->user_id)->where('subcategory_id',$subcategory->id)->where('unit_price', '>=', $data_min)->where('unit_price', '<=', $data_max)->where('published',1)->where('featured',1)->get();
-
-        return $result_data;
+        $products = Product::where('user_id',$shop->user_id)->where('subcategory_id',$subcategory->id)->where('unit_price', '>=', $data_min)->where('unit_price', '<=', $data_max)->where('published',1)->where('featured',1)->latest()->take(24)->get();
+        return view('frontend.pages.shop.products_filter_dataset', compact('products','shop'));
     }
     public function flashdeal($slug) {
         $flashDeal = FlashDeal::where('slug',$slug)->where('status',1)->where('featured',1)->first();
-        $shop = Shop::where('user_id',$flashDeal->user_id)->first();
-        $flashDealProducts = FlashDealProduct::where('flash_deal_id',$flashDeal->id)->where('user_id',$shop->user_id)->latest()->get();
+//        $shop = Shop::where('user_id',$flashDeal->user_id)->first();
+        $flashDealProducts = FlashDealProduct::where('flash_deal_id',$flashDeal->id)->latest()->get();
         return view('frontend.pages.shop.flash_deals_products',compact('flashDealProducts','flashDeal','shop'));
     }
     public function todaysDeal($slug) {
         $shop = Shop::where('slug',$slug)->first();
         $shopCategories = ShopCategory::where('shop_id',$shop->id)->latest()->get();
         $shopBrands = ShopBrand::where('shop_id',$shop->id)->latest()->get();
-        $products = Product::where('added_by','seller')->where('user_id',$shop->id)->where('published',1)->where('todays_deal',1)->latest()->paginate(24);
+        $products = Product::where('added_by','seller')->where('user_id',$shop->user_id)->where('published',1)->where('todays_deal',1)->latest()->paginate(24);
         return view('frontend.pages.shop.todays_deal_products',compact('shop','shopCategories','shopBrands','products'));
     }
     public function todaysDealSubCategory($name,$slug,$sub) {
@@ -215,16 +215,16 @@ class VendorController extends Controller
 //        dd($products);
         return view('frontend.pages.shop.todays_deal_by_subcategory',compact('shop','category','subcategory','shopBrand','shopCat','products'));
     }
-    public function todaysDealFilter($data,$sellerId)
+    public function todaysDealFilter($data,$shopId)
     {
-        //$shops = Shop::find($sellerId);
-//        dd($shops);
+        $shop = Shop::find($shopId);
+//        dd($shop);
         $data2 = explode(',',$data);
         $data_min = (int) $data2[0];
         $data_max = (int) $data2[1];
-        $result_data = Product::where('user_id',$sellerId)->where('unit_price', '>=', $data_min)->where('unit_price', '<=', $data_max)->where('published',1)->where('todays_deal',1)->get();
-
-        return $result_data;
+        $products = Product::where('user_id',$shop->user_id)->where('unit_price', '>=', $data_min)->where('unit_price', '<=', $data_max)->where('published',1)->where('todays_deal',1)->latest()->take(24)->get();
+        return view('frontend.pages.shop.products_filter_dataset', compact('products','shop'));
+//        return $result_data;
     }
     public function todaysDealSubFilter($data,$id,$subId)
     {
@@ -235,15 +235,15 @@ class VendorController extends Controller
         $data2 = explode(',',$data);
         $data_min = (int) $data2[0];
         $data_max = (int) $data2[1];
-        $result_data = Product::where('user_id',$shop->user_id)->where('subcategory_id',$subcategory->id)->where('unit_price', '>=', $data_min)->where('unit_price', '<=', $data_max)->where('published',1)->where('todays_deal',1)->get();
-
-        return $result_data;
+        $products = Product::where('user_id',$shop->user_id)->where('subcategory_id',$subcategory->id)->where('unit_price', '>=', $data_min)->where('unit_price', '<=', $data_max)->where('published',1)->where('todays_deal',1)->latest()->take(24)->get();
+        return view('frontend.pages.shop.products_filter_dataset', compact('products','shop'));
+//        return $result_data;
     }
     public function bestSelling($slug) {
         $shop = Shop::where('slug',$slug)->first();
         $shopCategories = ShopCategory::where('shop_id',$shop->id)->latest()->get();
         $shopBrands = ShopBrand::where('shop_id',$shop->id)->latest()->get();
-        $products = Product::where('added_by','seller')->where('user_id',$shop->id)->where('published',1)->where('num_of_sale', '>',0)->latest()->paginate(24);
+        $products = Product::where('added_by','seller')->where('user_id',$shop->id)->where('published',1)->where('num_of_sale', '>',0)->orderBy('num_of_sale', 'DESC')->latest()->paginate(24);
         return view('frontend.pages.shop.best_selling_products',compact('shop','shopCategories','shopBrands','products'));
     }
     public function bestSellingSubCategory($name,$slug,$sub) {
@@ -253,19 +253,19 @@ class VendorController extends Controller
         $subcategory = Subcategory::where('slug',$sub)->first();
         $shopCat = ShopCategory::where('shop_id',$shop->id)->latest()->get();
         $shopBrand = ShopBrand::where('shop_id',$shop->id)->latest()->get();
-        $products = Product::where('category_id',$category->id)->where('subcategory_id',$subcategory->id)->where('user_id',$shop->user_id)->where('published',1)->where('num_of_sale', '>',0)->latest()->paginate(24);
+        $products = Product::where('category_id',$category->id)->where('subcategory_id',$subcategory->id)->where('user_id',$shop->user_id)->where('published',1)->where('num_of_sale', '>',0)->orderBy('num_of_sale', 'DESC')->latest()->paginate(24);
         return view('frontend.pages.shop.best_selling_by_subcategory',compact('shop','category','subcategory','shopBrand','shopCat','products'));
     }
-    public function bestSellingFilter($data,$sellerId)
+    public function bestSellingFilter($data,$shopId)
     {
-        //$shops = Shop::find($sellerId);
+        $shop = Shop::find($shopId);
 //        dd($shops);
         $data2 = explode(',',$data);
         $data_min = (int) $data2[0];
         $data_max = (int) $data2[1];
-        $result_data = Product::where('user_id',$sellerId)->where('unit_price', '>=', $data_min)->where('unit_price', '<=', $data_max)->where('published',1)->where('num_of_sale', '>',0)->get();
-
-        return $result_data;
+        $products = Product::where('user_id',$shop->user_id)->where('unit_price', '>=', $data_min)->where('unit_price', '<=', $data_max)->where('published',1)->where('num_of_sale', '>',0)->orderBy('num_of_sale', 'DESC')->latest()->take(24)->get();
+        return view('frontend.pages.shop.products_filter_dataset', compact('products','shop'));
+//        return $result_data;
     }
     public function bestSellingSubFilter($data,$id,$subId)
     {
@@ -276,21 +276,19 @@ class VendorController extends Controller
         $data2 = explode(',',$data);
         $data_min = (int) $data2[0];
         $data_max = (int) $data2[1];
-        $result_data = Product::where('user_id',$shop->user_id)->where('subcategory_id',$subcategory->id)->where('unit_price', '>=', $data_min)->where('unit_price', '<=', $data_max)->where('published',1)->where('num_of_sale', '>',0)->get();
-
-        return $result_data;
+        $products = Product::where('user_id',$shop->user_id)->where('subcategory_id',$subcategory->id)->where('unit_price', '>=', $data_min)->where('unit_price', '<=', $data_max)->where('published',1)->where('num_of_sale', '>',0)->orderBy('num_of_sale', 'DESC')->latest()->take(24)->get();
+        return view('frontend.pages.shop.products_filter_dataset', compact('products','shop'));
+//        return $result_data;
     }
     public function brandFilter($data,$id,$brndId)
     {
         $shop = Shop::find($id);
         $brand = Brand::find($brndId);
-//        $shopSubcategory = ShopSubcategory::where('');
-//        dd($shops);
         $data2 = explode(',',$data);
         $data_min = (int) $data2[0];
         $data_max = (int) $data2[1];
-        $result_data = Product::where('user_id',$shop->user_id)->where('brand_id',$brand->id)->where('unit_price', '>=', $data_min)->where('unit_price', '<=', $data_max)->where('published',1)->get();
-
-        return $result_data;
+        $products = Product::where('user_id',$shop->user_id)->where('brand_id',$brand->id)->where('unit_price', '>=', $data_min)->where('unit_price', '<=', $data_max)->where('published',1)->latest()->take(24)->get();
+        return view('frontend.pages.shop.products_filter_dataset', compact('products','shop'));
+//        return $products;
     }
 }

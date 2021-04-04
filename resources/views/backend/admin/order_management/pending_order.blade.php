@@ -1,20 +1,28 @@
 @extends('backend.layouts.master')
-@section("title","Pending Order")
+@section("title","Pending Orders")
 @push('css')
     <link rel="stylesheet" href="{{asset('backend/plugins/datatables/dataTables.bootstrap4.css')}}">
     <link rel="stylesheet" href="https://cdn.datatables.net/select/1.3.1/css/select.dataTables.min.css">
+    <style>
+        .twitter-typeahead{
+            width: 100% !important;
+        }
+        .tt-menu{
+            width: 100% !important;
+        }
+    </style>
 @endpush
 @section('content')
     <section class="content-header">
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>Pending Order</h1>
+                    <h1>Pending Orders</h1>
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
                         <li class="breadcrumb-item"><a href="{{route('admin.dashboard')}}">Home</a></li>
-                        <li class="breadcrumb-item active">Pending Order</li>
+                        <li class="breadcrumb-item active">Pending Orders</li>
                     </ol>
                 </div>
             </div>
@@ -53,16 +61,19 @@
                             </tr>
                             </thead>
                             <tbody>
-
+                            @php $i = 0; @endphp
                             @foreach($pending_order as $key=>$pending)
+                                @php $i++; @endphp
                                 <tr>
                                     <td>
-                                        {{$key + 1}}
+                                        {{$i }}
+                                    </td>
+                                    <td>
+                                        {{date('j-m-Y',strtotime($pending->created_at))}}
                                         @if($pending->view == 0)
                                             <span class="right badge badge-danger">New</span>
-                                        @endif
-                                    </td>
-                                    <td>{{date('j-m-Y',strtotime($pending->created_at))}}</td>
+                                        @endif</td>
+{{--                                    <td>aa</td>--}}
                                     <td>{{$pending->invoice_code}}</td>
                                     <td>{{$pending->payment_type}}</td>
                                     <td>{{$pending->grand_total }}</td>

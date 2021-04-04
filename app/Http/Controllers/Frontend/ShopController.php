@@ -9,6 +9,15 @@ use Illuminate\Support\Facades\DB;
 
 class ShopController extends Controller
 {
+    public function index(){
+        $shops = DB::table('shops')
+            ->join('sellers','shops.seller_id','=','sellers.id')
+            ->where('sellers.verification_status','=',1)
+            ->select('shops.*')
+            ->latest()
+            ->get();
+        return view('frontend.pages.shop.shop_lists',compact('shops'));
+    }
     public function nearestshop(Request $request) {
         //dd($request->all());
         $lat=$request->lat;

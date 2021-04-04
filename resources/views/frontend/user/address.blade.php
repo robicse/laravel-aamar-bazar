@@ -140,62 +140,46 @@
                         <form class="ps-form--account-setting" id="bk_address" action="{{route('user.address.store')}}" method="POST" enctype="multipart/form-data">
                             @csrf
                             <div class="modal-body">
-                                <div class="ps-form__content" style="padding-left: 50px; padding-top: 20px;">
-
-                                    <div class="form-group row">
-                                        <label for="bksearch" class="col-sm-2">Address</label>
-                                        <div class="col-sm-8">
+                                <div class="ps-form__content" >
+                                    <div class="form-group" style="margin-bottom: 0;">
+                                        <label for="bksearch" class="">Address</label>
                                             <input type="text" onkeyup="getAddress()" name="address" class="form-control form-control-sm address" autocomplete="off">
                                         </div>
-                                        <div class="col-sm-12">
-                                            <ul class="list-group addList">
-
-                                            </ul>
-                                        </div>
-                                        {{--                                        <select onchange="getAddress()" name="sub_category_id" id="sub_category_id" class="form-control select2" style="width: 100%">--}}
-                                        {{--                                            <option value="1">1</option>--}}
-                                        {{--                                            <option value="2">2</option>--}}
-                                        {{--                                        </select>--}}
                                     </div>
-                                    <div class="form-group row">
+                                    <ul class="list-group addList" style="padding: 0;">
+
+                                    </ul>
+                                    <div class="form-group">
                                         <input type="hidden" name="address">
                                         <input type="hidden" name="city">
                                         <input type="hidden" name="area">
                                         <input type="hidden" name="latitude">
                                         <input type="hidden" name="longitude">
                                     </div>
-                                    <div class="form-group row">
-                                        <label for="country" class="col-sm-2">Country</label>
-                                        <div class="col-sm-8">
-                                            <input type="text" class="form-control form-control-sm" name="country" placeholder="Bangladesh" readonly>
-                                        </div>
+                                    <div class="form-group ">
+                                        <label for="country" class="">Country</label>
+                                        <input type="text" class="form-control form-control-sm" name="country" placeholder="Bangladesh" readonly>
                                     </div>
 
-                                    <div class="form-group row">
-                                        <label for="postal_code" class="col-sm-2">Postal Code</label>
-                                        <div class="col-sm-8">
-                                            <input type="text" class="form-control form-control-sm" name="postal_code" placeholder="Your Postal Code">
-                                        </div>
+                                    <div class="form-group">
+                                        <label for="postal_code" class="">Postal Code</label>
+                                        <input type="text" class="form-control form-control-sm" name="postal_code" placeholder="Your Postal Code" readonly>
                                     </div>
-                                    <div class="form-group row">
-                                        <label for="phone" class="col-sm-2">Phone</label>
-                                        <div class="col-sm-8">
-                                            <input type="text" class="form-control form-control-sm" name="phone" placeholder="Your phone">
-                                        </div>
+                                    <div class="form-group">
+                                        <label for="phone" class="">Phone</label>
+                                        <input type="text" class="form-control form-control-sm" name="phone" placeholder="Your phone">
                                     </div>
-                                    <div class="form-group row">
-                                        <label for="phone" class="col-sm-2">Type</label>
-                                        <div class="col-sm-8">
-                                            <select name="type" id="type" class="form-control" required>
-                                                <option value="Home">Home</option>
-                                                <option value="Office">Office</option>
-                                                <option value="Others">Others</option>
-                                            </select>
-                                        </div>
+                                    <div class="form-group ">
+                                        <label for="phone" class="">Type</label>
+                                        <select name="type" id="type" class="form-control" required>
+                                            <option value="Home">Home</option>
+                                            <option value="Office">Office</option>
+                                            <option value="Others">Others</option>
+                                        </select>
                                     </div>
 
                                 </div>
-                                <div class="form-group submit" style="padding-left: 125px;" >
+                                <div class="form-group submit text-center">
                                     <button class="ps-btn">Save</button>
                                 </div>
                             </div>
@@ -241,14 +225,24 @@
                 .then(response => response.json())
                 .catch(error => console.error('Error:', error))
                 .then(response => {
-                    location=response.places;
-                    console.log(response);
-                    response.places.map((ad) => ($('.addList').append(`<li style="font-size:13px" class="list-group-item">${ad.address}</li>`)))
+                    response.places.forEach(result)
                 })
         }
-        ('ul').find('li').on('click', () => setLoc(location));
-        function setLoc(addr) {
-            console.log(addr);
+        function result(item, index){
+            var $li = $("<li class='list-group-item'><a href='#' class='list-group-item bg-light'>" + item.address + "</a></li>");
+            $(".addList").append($li);
+            $li.on('click', getPlacesDetails.bind(this, item));
+        }
+        function getPlacesDetails(mapData)
+        {
+            $(".addList").empty();
+            $( "input[name='address']" ).val(mapData.address)
+            $( "input[name='city']" ).val(mapData.city)
+            $( "input[name='area']" ).val(mapData.area)
+            $( "input[name='latitude']" ).val(mapData.latitude)
+            $( "input[name='longitude']" ).val(mapData.longitude)
+            $( "input[name='postal_code']" ).val(mapData.postCode)
+            //console.log(mapData)
         }
 
     </script>

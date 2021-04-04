@@ -53,12 +53,22 @@
                             <tbody>
                             @foreach($reviews as $key => $review)
                                 @php
-                                  $shop = \App\Model\Shop::where('id',$review->shop_id)->first();
+                                    $shop = \App\Model\Shop::where('id',$review->shop_id)->first();
+          $fiveStarRev = \App\Model\Review::where('shop_id',$shop->id)->where('rating',5)->where('status',1)->sum('rating');
+          $fourStarRev = \App\Model\Review::where('shop_id',$shop->id)->where('rating',4)->where('status',1)->sum('rating');
+          $threeStarRev = \App\Model\Review::where('shop_id',$shop->id)->where('rating',3)->where('status',1)->sum('rating');
+          $twoStarRev = \App\Model\Review::where('shop_id',$shop->id)->where('rating',2)->where('status',1)->sum('rating');
+          $oneStarRev = \App\Model\Review::where('shop_id',$shop->id)->where('rating',1)->where('status',1)->sum('rating');
+          $rating = (5*$fiveStarRev + 4*$fourStarRev + 3*$threeStarRev + 2*$twoStarRev + 1*$oneStarRev) / ($review->total_rating);
                                 @endphp
                                 <tr>
                                     <td>{{$key + 1}}</td>
-                                    <td>{{$shop->name}}</td>
-                                    <td>{{$total_rating = number_format((float)$review->total_rating, 1, '.', '')}}</td>
+                                    <td>
+                                       <a href="{{route('shop.details',$shop->slug)}}">{{$shop->name}}</a>
+                                    </td>
+                                    <td>
+                                        {{$totalRatingCount = number_format((float)$rating, 1, '.', '')}}
+                                    </td>
                                 </tr>
                             @endforeach
                             </tbody>

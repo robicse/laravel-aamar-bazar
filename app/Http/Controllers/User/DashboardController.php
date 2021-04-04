@@ -6,6 +6,8 @@ use App\Model\Address;
 use App\Model\FavoriteShop;
 use App\Model\Order;
 use App\Model\OrderDetails;
+use App\Model\Product;
+use App\Model\Wishlist;
 use App\User;
 use Brian2694\Toastr\Facades\Toastr;
 use Illuminate\Http\Request;
@@ -17,7 +19,10 @@ class DashboardController extends Controller
 {
     public function index()
     {
-        return view('frontend.user.home');
+        $totalOrder = Order::where('user_id',Auth::id())->count();
+        $totalWishlist = Wishlist::where('user_id',Auth::id())->count();
+//        $totalPrduct = Product::
+        return view('frontend.user.home',compact('totalOrder','totalWishlist'));
     }
     public function invoices()
     {
@@ -56,7 +61,10 @@ class DashboardController extends Controller
     {
         return view('frontend.user.wishlist');
     }
-    public function update(Request $request) {
+    public function editProfile(){
+        return view('frontend.user.edit_profile');
+    }
+    public function updateProfile(Request $request) {
 //        dd('saf');
         $this->validate($request, [
             'name' => 'required',

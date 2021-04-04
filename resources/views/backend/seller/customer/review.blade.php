@@ -49,11 +49,13 @@
                                 <tr>
                                     <td>
                                         {{$key + 1}}
+                                    </td>
+                                    <td>
+                                        {{$review->user->name}}
                                         @if($review->viewed == 0)
                                             <span class="badge badge-danger">New</span>
                                         @endif
                                     </td>
-                                    <td>{{$review->user->name}}</td>
                                     <td>{{$review->product->name}}</td>
                                     <td>{{$review->rating}}</td>
                                     <td>{{$review->comment}}</td>

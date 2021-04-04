@@ -26,8 +26,8 @@ class ProductController extends Controller
         $colors=json_decode($productDetails->colors);
         $photos=json_decode($productDetails->photos);
 
-        $relatedBrands = Product::where('brand_id', $productDetails->brand_id)->latest()->take(3)->where('published',1)->get();
-        $categories = Product::where('category_id',$productDetails->category_id)->take(3)->where('published',1)->latest()->get();
+        $relatedBrands = Product::where('brand_id', $productDetails->brand_id)->where('added_by','seller')->latest()->take(3)->where('published',1)->get();
+        $categories = Product::where('category_id',$productDetails->category_id)->where('added_by','seller')->take(3)->where('published',1)->latest()->get();
         $reviews = Review::where('product_id',$productDetails->id)->where('status',1)->get();
         $reviewsComments = Review::where('product_id',$productDetails->id)->where('status',1)->latest()->paginate(5);
         $fiveStarRev = Review::where('product_id',$productDetails->id)->where('rating',5)->where('status',1)->get();
@@ -58,23 +58,23 @@ class ProductController extends Controller
         return view('frontend.pages.shop.product_details',
             compact('productDetails','attributes','options','colors','price',
                 'avilability','photos','relatedBrands','categories','reviews','fiveStarRev','fourStarRev',
-            'threeStarRev','twoStarRev','oneStarRev','reviewsComments')
+                'threeStarRev','twoStarRev','oneStarRev','reviewsComments')
         );
     }
 
     public function ProductVariantPrice(Request  $request) {
-      //dd($request->all());
+        //dd($request->all());
 
 
-      $c=count($request->variant);
-      $i=1;
-      $var=$request->variant;
-      $v=[];
-      for($i=1;$i<$c-1;$i++){
-          array_push($v,$var[$i]['value']);
-      }
-      //dd(implode("-", $v));
-      $variant=ProductStock::where('variant',implode("-", $v))->first();
+        $c=count($request->variant);
+        $i=1;
+        $var=$request->variant;
+        $v=[];
+        for($i=1;$i<$c-1;$i++){
+            array_push($v,$var[$i]['value']);
+        }
+        //dd(implode("-", $v));
+        $variant=ProductStock::where('variant',implode("-", $v))->first();
         //dd($variant);
         $product = Product::find($variant->product_id);
         if ($product->discount > 0){
@@ -93,34 +93,31 @@ class ProductController extends Controller
 
         return response()->json(['success'=> true, 'response'=>$variant]);
     }
-    public function productList($slug) {
+    public function featuredProductList($slug) {
         $shop = Shop::where('slug',$slug)->first();
         $categories = ShopCategory::where('shop_id',$shop->id)->latest()->get();
         $shopBrands = ShopBrand::where('shop_id',$shop->id)->latest()->get();
 
         $products = Product::where('added_by','seller')->where('user_id',$shop->id)->where('published',1)->where('featured',1)->latest()->paginate(24);
 //        $products = Product::where('added_by','seller')->where('user_id',$shop->user_id)->where('published',1)->latest()->paginate(24);
-        return view('frontend.pages.shop.product_list',compact('shop','categories','shopBrands','products'));
+        return view('frontend.pages.shop.featured_product_list',compact('shop','categories','shopBrands','products'));
     }
     public function productSubCategory($name,$slug,$sub) {
-//        dd('sffk');
         $shop = Shop::where('slug',$name)->first();
         $category= Category::where('slug',$slug)->first();
         $subcategory = Subcategory::where('slug',$sub)->first();
-        $shopCat = ShopCategory::where('shop_id',$shop->id)->latest()->get();
+        $shopCategories = ShopCategory::where('shop_id',$shop->id)->latest()->get();
         $shopBrand = ShopBrand::where('shop_id',$shop->id)->latest()->get();
         $products = Product::where('category_id',$category->id)->where('subcategory_id',$subcategory->id)->where('user_id',$shop->user_id)->where('published',1)->where('featured',1)->latest()->paginate(24);
-//        dd($products);
-        return view('frontend.pages.shop.products_by_subcategory',compact('shop','category','subcategory','shopBrand','shopCat','products'));
+        return view('frontend.pages.shop.products_by_subcategory',compact('shop','category','subcategory','shopBrand','shopCategories','products'));
     }
     public function productByBrand($name,$slug) {
         $shop = Shop::where('slug',$name)->first();
         $brand = Brand::where('slug',$slug)->first();
         $shopCat = ShopCategory::where('shop_id',$shop->id)->latest()->get();
-        $shopBrand = ShopBrand::where('shop_id',$shop->id)->latest()->get();
+        $shopBrands = ShopBrand::where('shop_id',$shop->id)->latest()->get();
         $products = Product::where('brand_id',$brand->id)->where('user_id',$shop->user_id)->where('published',1)->latest()->paginate(24);
-//        dd($products);
-        return view('frontend.pages.shop.products_by_brands',compact('shop','brand','shopCat','shopBrand','products'));
+        return view('frontend.pages.shop.products_by_brands',compact('shop','brand','shopCat','shopBrands','products'));
     }
     public function bestSellsProducts() {
 
