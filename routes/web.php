@@ -43,7 +43,7 @@ Route::get('/todays-deal/product/filter/{data}/shopId/{shopId}', 'Frontend\Vendo
 Route::get('/todays-deal/subcategories/filter/{data}/sellerId/{id}/sub/{subId}', 'Frontend\VendorController@todaysDealSubFilter');
 Route::get('/best-selling/product/filter/{data}/shopId/{shopId}', 'Frontend\VendorController@bestSellingFilter');
 Route::get('/best-selling/subcategories/filter/{data}/sellerId/{id}/sub/{subId}', 'Frontend\VendorController@bestSellingSubFilter');
-Route::get('/brand/product/filter/{data}/sellerId/{id}/brnd/{brndId}', 'Frontend\VendorController@brandFilter');
+Route::get('/brand/product/filter/{data}/shopId/{id}/brand/{brndId}', 'Frontend\VendorController@brandFilter');
 
 
 

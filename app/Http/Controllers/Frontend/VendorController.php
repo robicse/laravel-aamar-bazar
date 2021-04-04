@@ -284,13 +284,11 @@ class VendorController extends Controller
     {
         $shop = Shop::find($id);
         $brand = Brand::find($brndId);
-//        $shopSubcategory = ShopSubcategory::where('');
-//        dd($shops);
         $data2 = explode(',',$data);
         $data_min = (int) $data2[0];
         $data_max = (int) $data2[1];
         $products = Product::where('user_id',$shop->user_id)->where('brand_id',$brand->id)->where('unit_price', '>=', $data_min)->where('unit_price', '<=', $data_max)->where('published',1)->latest()->take(24)->get();
         return view('frontend.pages.shop.products_filter_dataset', compact('products','shop'));
-//        return $result_data;
+//        return $products;
     }
 }

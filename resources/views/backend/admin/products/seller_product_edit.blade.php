@@ -80,7 +80,7 @@
                                 <label for="brand">Brand</label>
                                 <select name="brand_id" id="brand" class="form-control demo-select2" required>
                                     @foreach($brands as $brand)
-                                        <option value="{{$brand->id}}">{{$brand->name}}</option>
+                                        <option value="{{$brand->id}}" {{$product->brand_id == $brand->id ? 'selected' : ''}}>{{$brand->name}}</option>
                                     @endforeach
                                 </select>
                             </div>

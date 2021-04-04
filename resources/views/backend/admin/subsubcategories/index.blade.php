@@ -41,7 +41,8 @@
                             <thead>
                             <tr>
                                 <th>#Id</th>
-                                <th>Name</th>
+                                <th>SubSubcategory Name</th>
+                                <th>Subcategory Name</th>
                                 <th>Category Name</th>
                                 <th>Action</th>
                             </tr>
@@ -52,6 +53,7 @@
                                 <td>{{$key + 1}}</td>
                                 <td>{{$subsubcategory->name}}</td>
                                 <td>{{$subsubcategory->subcategory->name}}</td>
+                                <td>{{$subsubcategory->subcategory->category->name}}</td>
                                 <td>
                                     <a class="btn btn-info waves-effect" href="{{route('admin.sub-subcategories.edit',$subsubcategory->id)}}">
                                         <i class="fa fa-edit"></i>

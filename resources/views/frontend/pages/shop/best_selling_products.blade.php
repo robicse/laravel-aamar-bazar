@@ -19,11 +19,10 @@
                             @foreach($shopCategories as $Cat)
                                 <li class="current-menu-item menu-item-has-children"><a href="#"> {{$Cat->category->name}} </a><span class="sub-toggle"><i class="fa fa-angle-down"></i></span>
                                     @php
-                                        $subcategories = \App\Model\ShopSubcategory::where('category_id',$Cat->id)->latest()->get();
+                                        $subcategories = \App\Model\ShopSubcategory::where('category_id',$Cat->category_id)->where('shop_id',$shop->id)->latest()->get();
                                     @endphp
                                     <ul class="sub-menu">
                                         @foreach($subcategories as $subCat)
-                                            {{--                                        @dd($subCat->subcategory)--}}
                                             <li class="current-menu-item "><a href="{{url('/best-selling/'.$shop->slug.'/'.$Cat->category->slug.'/'.$subCat->subcategory->slug)}}">{{$subCat->subcategory->name}}</a>
                                             </li>
                                         @endforeach

@@ -19,11 +19,10 @@
                             @foreach($shopCategories as $Cat)
                                 <li class="current-menu-item menu-item-has-children"><a href="#"> {{$Cat->category->name}} </a><span class="sub-toggle"><i class="fa fa-angle-down"></i></span>
                                     @php
-                                        $subcategories = \App\Model\ShopSubcategory::where('category_id',$Cat->id)->latest()->get();
+                                        $subcategories = \App\Model\ShopSubcategory::where('category_id',$Cat->category_id)->where('shop_id',$shop->id)->latest()->get();
                                     @endphp
                                     <ul class="sub-menu">
                                         @foreach($subcategories as $subCat)
-                                            {{--                                        @dd($subCat->subcategory)--}}
                                             <li class="current-menu-item "><a href="{{url('/todays-deal/'.$shop->slug.'/'.$Cat->category->slug.'/'.$subCat->subcategory->slug)}}">{{$subCat->subcategory->name}}</a>
                                             </li>
                                         @endforeach
@@ -42,19 +41,6 @@
                         </ul>
                     </aside>
                     <aside class="widget widget_shop">
-{{--                        <h4 class="widget-title">BY BRANDS</h4>--}}
-{{--                        <form class="ps-form--widget-search" action="http://nouthemes.net/html/martfury/do_action" method="get">--}}
-{{--                            <input class="form-control" type="text" placeholder="">--}}
-{{--                            <button><i class="icon-magnifier"></i></button>--}}
-{{--                        </form>--}}
-{{--                        <figure class="ps-custom-scrollbar" data-height="250">--}}
-{{--                            @foreach($shopBrands as $brand)--}}
-{{--                                <div class="ps-checkbox">--}}
-{{--                                    <input class="form-control" type="checkbox" id="{{$brand->brand_id}}" name="brand">--}}
-{{--                                    <label for="{{$brand->brand_id}}">{{ $brand->brand->name }}</label>--}}
-{{--                                </div>--}}
-{{--                            @endforeach--}}
-{{--                        </figure>--}}
                         <figure>
                             <h4 class="widget-title">By Price</h4>
                             <div id="nonlinear"></div>
@@ -65,7 +51,7 @@
                 <div class="ps-layout__right">
                     <div class="ps-shopping ps-tab-root">
                         <div class="ps-shopping__header">
-                            <p><strong>{{ count($products) }}</strong> Products found</p>
+                            <p>Products found</p>
                         </div>
                         <div class="ps-tabs">
                             <div class="ps-tab active" id="tab-1">

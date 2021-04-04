@@ -19,7 +19,7 @@
                             @foreach($shopCat as $Cat)
                                 <li class="current-menu-item menu-item-has-children"><a href="#"> {{$Cat->category->name}} </a><span class="sub-toggle"><i class="fa fa-angle-down"></i></span>
                                     @php
-                                        $subcategories = \App\Model\ShopSubcategory::where('category_id',$Cat->id)->latest()->get();
+                                        $subcategories = \App\Model\ShopSubcategory::where('category_id',$Cat->category_id)->where('shop_id',$shop->id)->latest()->get();
                                     @endphp
                                     <ul class="sub-menu">
                                         @foreach($subcategories as $subCat)
@@ -35,8 +35,8 @@
                     <aside class="widget widget_shop">
                         <h4 class="widget-title">BY BRANDS</h4>
                         <ul class="ps-list--categories">
-                            @foreach($shopBrand as $brand)
-                                <li class="current-menu-item menu-item-has-children"><a href="{{url('/products/'.$shop->slug.'/'.$brand->brand->slug)}}"> {{ $brand->brand->name }} </a>
+                            @foreach($shopBrands as $shopBrand)
+                                <li class="current-menu-item menu-item-has-children"><a href="{{url('/products/'.$shop->slug.'/'.$shopBrand->brand->slug)}}"> {{ $shopBrand->brand->name }} </a>
                                 </li>
                             @endforeach
                         </ul>
@@ -107,7 +107,7 @@
             timeout = setTimeout(function () {
                 $('.filterdata').empty();
                 $("#loader").show()
-                $.get("{{url('/product/filter/')}}/"+values+'/shopId/'+'{{$shop->id}}'+'/brnd/'+{{$brand->id}},
+                $.get("{{url('/brand/product/filter/')}}/"+values+'/shopId/'+'{{$shop->id}}'+'/brand/'+{{$brand->id}},
                     function(data){
 
                         console.log(data)
@@ -163,18 +163,21 @@
                 noUiSlider.create(nonLinearSlider, {
                     connect: true,
                     behaviour: 'tap',
-                    start: [0, 1000],
+                    start: [0, 100000],
                     range: {
                         min: 0,
-                        '10%': 100,
-                        '20%': 200,
-                        '30%': 300,
-                        '40%': 400,
-                        '50%': 500,
-                        '60%': 600,
-                        '70%': 700,
-                        '80%': 800,
-                        '90%': 900,
+                        '2%': 200,
+                        '3%': 500,
+                        '5%': 1500,
+                        '10%': 10000,
+                        '20%': 20000,
+                        '30%': 30000,
+                        '40%': 40000,
+                        '50%': 50000,
+                        '60%': 60000,
+                        '70%': 70000,
+                        '80%': 80000,
+                        '90%': 90000,
                         max: 100000,
                     },
                 });

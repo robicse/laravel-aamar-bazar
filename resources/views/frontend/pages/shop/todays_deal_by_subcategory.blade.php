@@ -19,7 +19,7 @@
                             @foreach($shopCat as $Cat)
                                 <li class="current-menu-item menu-item-has-children"><a href="#"> {{$Cat->category->name}} </a><span class="sub-toggle"><i class="fa fa-angle-down"></i></span>
                                     @php
-                                        $shop_subcategories = \App\Model\ShopSubcategory::where('category_id',$Cat->id)->latest()->get();
+                                        $shop_subcategories = \App\Model\ShopSubcategory::where('category_id',$Cat->category_id)->where('shop_id',$shop->id)->latest()->get();
                                     @endphp
                                     <ul class="sub-menu">
                                         @foreach($shop_subcategories as $subCat)
@@ -64,7 +64,7 @@
                 <div class="ps-layout__right">
                     <div class="ps-shopping ps-tab-root">
                         <div class="ps-shopping__header">
-                            <p><strong>{{ count($products) }}</strong> Products found</p>
+                            <p>Products found</p>
                         </div>
                         <div class="ps-tabs">
                             <div class="ps-tab active" id="tab-1">
