@@ -93,8 +93,8 @@ class VendorController extends Controller
         $shop = Shop::where('slug',$name)->first();
         $user = User::where('id',$shop->user_id)->first();
         $category = Category::where('slug',$slug)->first();
-        $shopCat = ShopCategory::where('shop_id',$shop->id)->where('category_id',$category->id)->first();
-        $shopSubcategories = ShopSubcategory::where('shop_id',$shop->id)->where('category_id',$shopCat->id)->latest()->get();
+//        $shopCat = ShopCategory::where('shop_id',$shop->id)->where('category_id',$category->id)->first();
+        $shopSubcategories = ShopSubcategory::where('shop_id',$shop->id)->where('category_id',$category->id)->latest()->get();
 
         $featuredProducts = Product::where('category_id',$category->id)->where('user_id',$shop->user_id)->where('published',1)->where('featured',1)->latest()->take(8)->get();
         $products = Product::where('category_id',$category->id)->where('user_id',$shop->user_id)->where('published',1)->latest()->paginate(36);
