@@ -1,7 +1,8 @@
-
 @php
     $quote = \App\Model\Quote::first();
 @endphp
+
+
 @if(Auth::check() && Auth::user()->user_type == 'customer' && Session::get('popup') != 1)
 <div class="ps-popup" id="subscribe" data-time="500">
     <div class="ps-popup__content bg--cover" data-background="{{url($quote->image)}}" ><a class="ps-popup__close" href="#"><i class="icon-cross"></i></a>
