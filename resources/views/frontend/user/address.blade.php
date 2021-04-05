@@ -99,28 +99,6 @@
                                             </div>
                                         @endif
                                     </div>
-                                    {{--                                            <figure class="ps-block--address">--}}
-                                    {{--                                                <figcaption>Customer address</figcaption>--}}
-                                    {{--                                                @if(!empty(Auth::User()->address))--}}
-                                    {{--                                                <div class="ps-block__content">--}}
-                                    {{--                                                    <h4>{{Auth::User()->address}}</h4>--}}
-                                    {{--                                                    <button class="ps-btn" style="padding: 7px 15px 7px 15px; font-size: 14px; margin-top: 10px;"><a href="#" data-toggle="modal" data-target="#exampleModal">Edit</a></button>--}}
-                                    {{--                                                </div>--}}
-                                    {{--                                                @else--}}
-                                    {{--                                                    <div class="ps-block__content">--}}
-                                    {{--                                                        <p>You haven't upload your address yet..</p><a href="#" data-toggle="modal" data-target="#exampleModal">Edit</a>--}}
-                                    {{--                                                    </div>--}}
-                                    {{--                                                @endif--}}
-                                    {{--                                            </figure>--}}
-                                    {{--                                        <div class="col-md-6 col-12">--}}
-                                    {{--                                            <figure class="ps-block--address">--}}
-                                    {{--                                                <figcaption>Shipping address</figcaption>--}}
-                                    {{--                                                <div class="ps-block__content">--}}
-                                    {{--                                                    <p>You Have Not Set Up This Type Of Address Yet.</p><a href="edit-address.html">Edit</a>--}}
-                                    {{--                                                </div>--}}
-                                    {{--                                            </figure>--}}
-                                    {{--                                        </div>--}}
-
                                 </div>
                             </div>
                         </div>
@@ -140,52 +118,57 @@
                         <form class="ps-form--account-setting" id="bk_address" action="{{route('user.address.store')}}" method="POST" enctype="multipart/form-data">
                             @csrf
                             <div class="modal-body">
-                                <div class="ps-form__content" >
-                                    <div class="form-group" style="margin-bottom: 0;">
-                                        <label for="bksearch" class="">Address</label>
-                                            <input type="text" onkeyup="getAddress()" name="address" class="form-control form-control-sm address" autocomplete="off">
-                                        </div>
+                                <div class="ps-form__content " >
+                                    <div class="form-group " style="margin-bottom: 0;">
+                                        <label for="bksearch" class="">Area</label>
+                                        <input type="text" onkeyup="getAddress()" placeholder="Search Your Area" class="form-control form_height form-control-sm address" autocomplete="off">
                                     </div>
-                                    <ul class="list-group addList" style="padding: 0;">
-
-                                    </ul>
-                                    <div class="form-group">
-                                        <input type="hidden" name="address">
-                                        <input type="hidden" name="city">
-                                        <input type="hidden" name="area">
-                                        <input type="hidden" name="latitude">
-                                        <input type="hidden" name="longitude">
-                                    </div>
-                                    <div class="form-group ">
-                                        <label for="country" class="">Country</label>
-                                        <input type="text" class="form-control form-control-sm" name="country" placeholder="Bangladesh" readonly>
-                                    </div>
-
-                                    <div class="form-group">
-                                        <label for="postal_code" class="">Postal Code</label>
-                                        <input type="text" class="form-control form-control-sm" name="postal_code" placeholder="Your Postal Code" readonly>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="phone" class="">Phone</label>
-                                        <input type="text" class="form-control form-control-sm" name="phone" placeholder="Your phone">
-                                    </div>
-                                    <div class="form-group ">
-                                        <label for="phone" class="">Type</label>
-                                        <select name="type" id="type" class="form-control" required>
-                                            <option value="Home">Home</option>
-                                            <option value="Office">Office</option>
-                                            <option value="Others">Others</option>
-                                        </select>
-                                    </div>
-
                                 </div>
-                                <div class="form-group submit text-center">
-                                    <button class="ps-btn">Save</button>
+                                <ul class="list-group addList" style="padding: 0;">
+
+                                </ul>
+                                <div class="form-group">
+                                    <input type="hidden" name="city">
+                                    <input type="hidden" name="area">
+                                    <input type="hidden" name="postal_code">
+                                    <input type="hidden" name="latitude">
+                                    <input type="hidden" name="longitude">
                                 </div>
+                                <div class="form-group ">
+                                    <label for="country" class="">Country</label>
+                                    <input type="text" class="form-control form_height form-control-sm" name="country" placeholder="Bangladesh" readonly>
+                                </div>
+
+{{--                                <div class="form-group">--}}
+{{--                                    <label for="postal_code" class="">Postal Code</label>--}}
+{{--                                    <input type="text" class="form-control form_height form-control-sm" name="postal_code" placeholder="Your Postal Code" readonly>--}}
+{{--                                </div>--}}
+                                <div class="form-group">
+                                    <label for="phone" class="">Phone</label>
+                                    <input type="text" class="form-control form_height form-control-sm" name="phone" placeholder="Your phone">
+                                </div>
+                                <div class="form-group">
+                                    <label for="phone" class="">Address</label>
+                                    <textarea name="address" id="address" rows="3" placeholder="Enter Your Address (e.g. 4th Floor, BBTOA Building,9 No South, Mirpur Rd )"  class="form-control"></textarea>
+                                </div>
+                                <div class="form-group ">
+                                    <label for="phone" class="">Type</label>
+                                    <select name="type" id="type" class="form-control form_height" required>
+                                        <option value="Home">Home</option>
+                                        <option value="Office">Office</option>
+                                        <option value="Others">Others</option>
+                                    </select>
+                                </div>
+
                             </div>
-                        </form>
+                            <div class="form-group submit text-center">
+                                <button class="ps-btn">Save</button>
+                            </div>
+
+                    </form>
                     </div>
                 </div>
+            </div>
             </div>
         </section>
 
@@ -207,7 +190,6 @@
             let selectedPlace = Bkoi.getSelectedData()
             console.log(selectedPlace)
             // center of the map
-            document.getElementsByName("address")[0].value = selectedPlace.address;
             document.getElementsByName("city")[0].value = selectedPlace.city;
             document.getElementsByName("area")[0].value = selectedPlace.area;
             document.getElementsByName("latitude")[0].value = selectedPlace.latitude;
@@ -236,7 +218,6 @@
         function getPlacesDetails(mapData)
         {
             $(".addList").empty();
-            $( "input[name='address']" ).val(mapData.address)
             $( "input[name='city']" ).val(mapData.city)
             $( "input[name='area']" ).val(mapData.area)
             $( "input[name='latitude']" ).val(mapData.latitude)

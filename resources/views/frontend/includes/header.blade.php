@@ -424,7 +424,7 @@
                     <div class="input-group mb-3">
                         <input type="text" class="form-control" placeholder="" value="{{route('registration.refer.code',Auth::user()->referral_code)}}" data-toggle="tooltip" title="Click here to copy link!" aria-label="Recipient's username" aria-describedby="basic-addon2" style="height: 35px; padding: 0 10px">
                         <div class="input-group-append">
-                            <span class="input-group-text bg-info" style="color: #ffffff"><a href="{{route('registration.refer.code',Auth::user()->referral_code)}}">Share</a></span>
+                            <span class="input-group-text bg-info" style="color: #ffffff"><a href="{{route('registration.refer.code',Auth::user()->referral_code)}}">Copy</a></span>
                         </div>
                     </div>
                     </li>
@@ -437,11 +437,13 @@
                     </li>
                     <li class="menu-item-has-children"><a href="{{route('user.edit-password')}}"><i class="icon-alarm-ringing"></i> Edit Password </a>
                     </li>
-                    <li class="menu-item-has-children"><a href="{{route('user.order.history')}}"><i class="icon-store"></i> Order History </a>
+                    <li class="menu-item-has-children"><a href="{{route('user.order.history')}}"><i class="icon-list"></i> Order History </a>
                     </li>
                     <li class="menu-item-has-children"><a href="{{route('user.wishlist')}}"><i class="icon-heart"></i> Wishlist </a>
                     </li>
                     <li class="menu-item-has-children"><a href="{{route('user.address.index')}}"><i class="icon-map-marker"></i> Address </a>
+                    </li>
+                    <li class="menu-item-has-children"><a href="{{route('user.favorite.shop')}}"><i class="icon-store"></i>Favorite Shop</a>
                     </li>
                 <li class="menu-item-has-children">
                     <form action = "{{route('logout')}}" method="post">

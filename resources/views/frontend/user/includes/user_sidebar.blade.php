@@ -26,7 +26,7 @@
             <div class="input-group mb-3">
                 <input type="text" class="form-control" placeholder="" value="{{route('registration.refer.code',Auth::user()->referral_code)}}" id="myInput" aria-label="Recipient's username" aria-describedby="basic-addon2" data-toggle="tooltip" title="Click here to copy link!" style="height: 35px; padding: 0 10px">
                 <div class="input-group-append">
-                    <button class="btn btn-info" onclick="copyToClipboard()">Share</button>
+                    <button class="btn btn-info" onclick="copyToClipboard()">Copy</button>
 {{--                    <span class="input-group-text bg-info" style="color: #ffffff"><a onclick="copyToClipboard()">Share</a></span>--}}
                 </div>
             </div>

@@ -2,6 +2,11 @@
 @section('title', 'Checkout')
 @push('css')
     <style>
+        .form_height{
+            height: 40px;
+        }
+    </style>
+    <style>
         [type=radio] {
             position: absolute;
             opacity: 0;
@@ -223,36 +228,40 @@
                     <div class="modal-body">
                         <div class="ps-form__content" >
                             <div class="form-group" style="margin-bottom: 0;">
-                                <label for="bksearch" class="">Address</label>
-                                <input type="text" onkeyup="getAddress()" name="address" class="form-control form-control-sm address" autocomplete="off">
+                                <label for="bksearch" class="">Area</label>
+                                <input type="text" onkeyup="getAddress()" placeholder="Search Your Area" class="form-control form_height form-control-sm address" autocomplete="off">
                             </div>
                         </div>
                         <ul class="list-group addList" style="padding: 0;">
 
                         </ul>
                         <div class="form-group">
-                            <input type="hidden" name="address">
                             <input type="hidden" name="city">
                             <input type="hidden" name="area">
+                            <input type="hidden" name="postal_code">
                             <input type="hidden" name="latitude">
                             <input type="hidden" name="longitude">
                         </div>
                         <div class="form-group ">
                             <label for="country" class="">Country</label>
-                            <input type="text" class="form-control form-control-sm" name="country" placeholder="Bangladesh" readonly>
+                            <input type="text" class="form-control form_height form-control-sm" name="country" placeholder="Bangladesh" readonly>
                         </div>
 
-                        <div class="form-group">
-                            <label for="postal_code" class="">Postal Code</label>
-                            <input type="text" class="form-control form-control-sm" name="postal_code" placeholder="Your Postal Code" readonly>
-                        </div>
+{{--                        <div class="form-group">--}}
+{{--                            <label for="postal_code" class="">Postal Code</label>--}}
+{{--                            <input type="text" class="form-control form-control-sm" name="postal_code" placeholder="Your Postal Code" readonly>--}}
+{{--                        </div>--}}
                         <div class="form-group">
                             <label for="phone" class="">Phone</label>
-                            <input type="text" class="form-control form-control-sm" name="phone" placeholder="Your phone">
+                            <input type="text" class="form-control form_height form-control-sm" name="phone" placeholder="Your phone">
+                        </div>
+                        <div class="form-group">
+                            <label for="phone" class="">Address</label>
+                            <textarea name="address" id="address" rows="3" placeholder="Enter Your Address (e.g. 4th Floor, BBTOA Building,9 No South, Mirpur Rd )"  class="form-control"></textarea>
                         </div>
                         <div class="form-group ">
                             <label for="phone" class="">Type</label>
-                            <select name="type" id="type" class="form-control" required>
+                            <select name="type" id="type" class="form_height form-control" required>
                                 <option value="Home">Home</option>
                                 <option value="Office">Office</option>
                                 <option value="Others">Others</option>
@@ -269,62 +278,6 @@
     </div>
     </div>
 
-
-
-
-{{--    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">--}}
-{{--        <div class="modal-dialog">--}}
-{{--            <div class="modal-content">--}}
-{{--                <div class="modal-header">--}}
-{{--                    <h5 class="modal-title" id="exampleModalLabel">Update Your Address</h5>--}}
-{{--                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">--}}
-{{--                        <span aria-hidden="true">&times;</span>--}}
-{{--                    </button>--}}
-{{--                </div>--}}
-{{--                <form class="ps-form--account-setting" action="{{route('user.address.store')}}" method="POST" enctype="multipart/form-data">--}}
-{{--                    @csrf--}}
-{{--                    <div class="modal-body">--}}
-{{--                        <div class="ps-form__content" style="padding-left: 50px; padding-top: 20px;">--}}
-{{--                            <div class="form-group row">--}}
-{{--                                <label for="address" class="col-sm-2">Address</label>--}}
-{{--                                <div class="col-sm-8">--}}
-{{--                                    <input type="text" class="form-control form-control-sm" name="address" placeholder="Your Address">--}}
-{{--                                </div>--}}
-{{--                            </div>--}}
-{{--                            <div class="form-group row">--}}
-{{--                                <label for="country" class="col-sm-2">Country</label>--}}
-{{--                                <div class="col-sm-8">--}}
-{{--                                    <input type="text" class="form-control form-control-sm" name="country" placeholder="Bangladesh" {{'Bangladesh' ? 'readonly' : ''}}>--}}
-{{--                                </div>--}}
-{{--                            </div>--}}
-{{--                            <div class="form-group row">--}}
-{{--                                <label for="city" class="col-sm-2">City</label>--}}
-{{--                                <div class="col-sm-8">--}}
-{{--                                    <input type="text" class="form-control form-control-sm" name="city" placeholder="Your City">--}}
-{{--                                </div>--}}
-{{--                            </div>--}}
-{{--                            <div class="form-group row">--}}
-{{--                                <label for="postal_code" class="col-sm-2">Postal Code</label>--}}
-{{--                                <div class="col-sm-8">--}}
-{{--                                    <input type="text" class="form-control form-control-sm" name="postal_code" placeholder="Your Postal Code">--}}
-{{--                                </div>--}}
-{{--                            </div>--}}
-{{--                            <div class="form-group row">--}}
-{{--                                <label for="phone" class="col-sm-2">Phone</label>--}}
-{{--                                <div class="col-sm-8">--}}
-{{--                                    <input type="text" class="form-control form-control-sm" name="phone" placeholder="Your phone">--}}
-{{--                                </div>--}}
-{{--                            </div>--}}
-
-{{--                        </div>--}}
-{{--                        <div class="form-group submit" style="padding-left: 125px;" >--}}
-{{--                            <button class="ps-btn">Save</button>--}}
-{{--                        </div>--}}
-{{--                    </div>--}}
-{{--                </form>--}}
-{{--            </div>--}}
-{{--        </div>--}}
-{{--    </div>--}}
 @endsection
 @push('js')
     <script src="{{asset('backend/plugins/select2/select2.full.min.js')}}"></script>
@@ -371,7 +324,6 @@
         function getPlacesDetails(mapData)
         {
             $(".addList").empty();
-            $( "input[name='address']" ).val(mapData.address)
             $( "input[name='city']" ).val(mapData.city)
             $( "input[name='area']" ).val(mapData.area)
             $( "input[name='latitude']" ).val(mapData.latitude)
