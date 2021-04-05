@@ -16,7 +16,7 @@
                 </div>
             </div>
         </div>
-        <div class="ps-home-ads" style="padding-top: 20px;">
+        <div class="ps-home-ads" style="padding-top: 20px; padding-bottom: 20px;">
             <div class="ps-container">
                 <div class="row">
                     @foreach($offers as $offer)
@@ -27,35 +27,8 @@
             </div>
         </div>
 
-        <div class="ps-download-app">
-            <div class="ps-container">
-                <div class="ps-block--download-app">
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12 ">
-                                <div class="ps-block__thumbnail"><img src="{{asset('frontend/img/application.png')}}" alt=""></div>
-                            </div>
-                            <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12 ">
-                                <div class="ps-block__content">
-                                    <h3>Download Mudi Hat App Now!</h3>
-                                    <p>Shopping fastly and easily more with our app. Get a link to download the app on your phone</p>
-                                    <form class="ps-form--download-app" action="http://nouthemes.net/html/martfury/do_action" method="post">
-{{--                                        <div class="form-group--nest">--}}
-{{--                                            <input class="form-control" type="Email" placeholder="Email Address">--}}
-{{--                                            <button class="ps-btn">Subscribe</button>--}}
-{{--                                        </div>--}}
-                                    </form>
-                                    <p class="download-link"><a href="https://play.google.com/store/apps/details?id=com.starit.mudihat"><img src="{{asset('frontend/img/google-play.png')}}" alt=""></a></p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
         @if( !empty($flashDeal) && $flashDeal->featured == 1  && strtotime(date('d-m-Y')) >= $flashDeal->start_date && strtotime(date('d-m-Y')) <= $flashDeal->end_date)
-        <div class="ps-deal-of-day">
+        <div class="ps-deal-of-day" style="padding-top: 40px;">
             <div class="ps-container">
                 <div class="ps-section__header">
                     <div class="ps-block--countdown-deal">
@@ -118,7 +91,7 @@
         </div>
         @endif
 
-        <div class="ps-product-list ps-new-arrivals">
+        <div class="ps-product-list ps-new-arrivals" style="padding-bottom: 20px;">
             <div class="ps-container">
                 <div class="ps-section__header">
                     <h3>Best Selling Product</h3>
@@ -145,67 +118,7 @@
                 </div>
             </div>
         </div>
-{{--        <div class="ps-product-list ps-clothings">--}}
-{{--            <div class="ps-container">--}}
-{{--                <div class="ps-section__header">--}}
-{{--                    <h3>Best Selling Product</h3>--}}
-{{--                    <ul class="ps-section__links">--}}
-{{--                        <li>Top 20</li>--}}
-{{--                    </ul>--}}
-{{--                </div>--}}
-{{--                <div class="ps-section__content" style="padding-top: 20px;">--}}
-{{--                    <div class="ps-carousel--nav owl-slider" data-owl-auto="false" data-owl-loop="false" data-owl-speed="10000" data-owl-gap="0" data-owl-nav="true" data-owl-dots="true" data-owl-item="7" data-owl-item-xs="2" data-owl-item-sm="2" data-owl-item-md="3" data-owl-item-lg="4" data-owl-item-xl="6" data-owl-duration="1000" data-owl-mousedrag="on">--}}
-{{--                       @foreach($best_sales_products as $product)--}}
-{{--                        <div class="ps-product">--}}
-{{--                            <div class="ps-product__thumbnail"><a href="{{route('product-details',$product->slug)}}"><img src="{{url($product->thumbnail_img)}}" alt="" width="153" height="171"></a>--}}
-{{--                                <ul class="ps-product__actions">--}}
-{{--                                    <li><a href="{{route('product-details',$product->slug)}}" data-toggle="tooltip" data-placement="top" title="Add To Cart"><i class="icon-bag2"></i></a></li>--}}
-{{--                                    <li><a href="{{route('product-details',$product->slug)}}" data-placement="top" title="Quick View"><i class="icon-eye"></i></a></li>--}}
-{{--                                    <li><a href="{{route('add.wishlist',$product->id)}}" data-toggle="tooltip" data-placement="top" title="Add to Whishlist"><i class="icon-heart"></i></a></li>--}}
-{{--                                    <li><a href="#" data-toggle="tooltip" data-placement="top" title="Compare"><i class="icon-chart-bars"></i></a></li>--}}
-{{--                                </ul>--}}
-{{--                            </div>--}}
-{{--                            <div class="ps-product__container">--}}
-{{--                                <div class="ps-product__content"><a class="ps-product__title" href="{{route('product-details',$product->slug)}}">{{$product->name}}</a>--}}
-{{--                                    <p class="ps-product__price sale">৳{{$product->unit_price}} <del>৳{{$product->purchase_price}} </del></p>--}}
-{{--                                </div>--}}
-{{--                                <div class="ps-product__content hover"><a class="ps-product__title" href="{{route('product-details',$product->slug)}}">{{$product->name}}</a>--}}
-{{--                                    <p class="ps-product__price sale">৳{{$product->unit_price}} <del>৳{{$product->purchase_price}} </del></p>--}}
-{{--                                </div>--}}
-{{--                            </div>--}}
-{{--                        </div>--}}
-{{--                            @php--}}
-{{--                                $shop = \App\Model\Shop::where('user_id',$product->user_id)->first();--}}
-{{--                            @endphp--}}
-{{--                            <div class="ps-product">--}}
-{{--                                <div class="ps-product__thumbnail"><a href="{{route('product-details',$product->slug)}}"><img src="{{url($product->thumbnail_img)}}" alt="" width="153" height="171"></a>--}}
-{{--                                    <ul class="ps-product__actions">--}}
-{{--                                        <li><a href="{{route('product-details',$product->slug)}}" data-toggle="tooltip" data-placement="top" title="Add To Cart"><i class="icon-bag2"></i></a></li>--}}
-{{--                                        <li><a href="{{route('product-details',$product->slug)}}" data-placement="top" title="Quick View" data-toggle="modal" data-target="#product-quickview"><i class="icon-eye"></i></a></li>--}}
-{{--                                        <li><a href="#" data-toggle="tooltip" data-placement="top" title="Add to Whishlist"><i class="icon-heart"></i></a></li>--}}
-{{--                                    </ul>--}}
-{{--                                </div>--}}
-{{--                                <div class="ps-product__container"><a class="ps-product__vendor" href="{{route('shop.details',$shop->slug)}}">{{$shop->name}}</a>--}}
-{{--                                    <div class="ps-product__content"><a class="ps-product__title" href="{{route('product-details',$product->slug)}}">{{$product->name}}</a>--}}
-{{--                                        Price: ৳ {{home_discounted_base_price($product->id)}}--}}
-{{--                                        @if(home_base_price($product->id) != home_discounted_base_price($product->id))--}}
-{{--                                            <del>৳ {{home_base_price($product->id)}}</del>--}}
-{{--                                        @endif--}}
-{{--                                    </div>--}}
-{{--                                    <div class="ps-product__content hover"><a class="ps-product__title" href="{{route('product-details',$product->slug)}}">{{$product->name}}</a>--}}
-{{--                                        Price: ৳ {{home_discounted_base_price($product->id)}}--}}
-{{--                                        @if(home_base_price($product->id) != home_discounted_base_price($product->id))--}}
-{{--                                            <del>৳ {{home_base_price($product->id)}}</del>--}}
-{{--                                        @endif--}}
-{{--                                    </div>--}}
-{{--                                </div>--}}
-{{--                            </div>--}}
-{{--                        @endforeach--}}
-{{--                    </div>--}}
-{{--                </div>--}}
-{{--            </div>--}}
-{{--        </div>--}}
-        <div class="ps-product-list ps-new-arrivals">
+        <div class="ps-product-list ps-new-arrivals" style="padding-bottom: 20px;">
             <div class="ps-container">
                 <div class="ps-section__header">
                     <h3>Best Sellers</h3>
@@ -232,6 +145,33 @@
                                     </div>
                                 </div>
                         @endforeach
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="ps-download-app" style="margin-top: -10px;">
+            <div class="ps-container">
+                <div class="ps-block--download-app">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12 ">
+                                <div class="ps-block__thumbnail"><img src="{{asset('frontend/img/application.png')}}" alt=""></div>
+                            </div>
+                            <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12 ">
+                                <div class="ps-block__content">
+                                    <h3>Download Mudi Hat App Now!</h3>
+                                    <p>Shopping fastly and easily more with our app. Get a link to download the app on your phone</p>
+                                    <form class="ps-form--download-app" action="http://nouthemes.net/html/martfury/do_action" method="post">
+                                        {{--                                        <div class="form-group--nest">--}}
+                                        {{--                                            <input class="form-control" type="Email" placeholder="Email Address">--}}
+                                        {{--                                            <button class="ps-btn">Subscribe</button>--}}
+                                        {{--                                        </div>--}}
+                                    </form>
+                                    <p class="download-link"><a href="https://play.google.com/store/apps/details?id=com.starit.mudihat"><img src="{{asset('frontend/img/google-play.png')}}" alt=""></a></p>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

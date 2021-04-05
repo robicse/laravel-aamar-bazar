@@ -104,11 +104,19 @@
                                     <p>Offer</p>
                                 </a>
                             </li>
+                            @php
+                                $products = \App\Model\Product::where('added_by','seller')->where('admin_permission',0)->count();
+                            @endphp
                             <li class="nav-item">
                                 <a href="{{route('admin.products.request.form.seller')}}"
                                    class="nav-link {{Request::is('admin/request/products/from/seller*') ? 'active' :''}}">
                                     <i class="fa fa-{{Request::is('admin/request/products/from/seller*') ? 'folder-open':'folder'}} nav-icon"></i>
-                                    <p>Seller Req Products</p>
+                                    <p>
+                                        Seller Req Products
+                                        @if($products > 0)
+                                            <span class="badge badge-danger"> {{$products}} New</span>
+                                        @endif
+                                    </p>
                                 </a>
                             </li>
                             <li class="nav-item">

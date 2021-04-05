@@ -107,15 +107,17 @@
                                     @php
                                         $customerInfos = \App\User::where('id',$address->user_id)->latest()->get();
                                     @endphp
-                                    @foreach($customerInfos as $key => $customerInfo)
+                                    @foreach($customerInfos as $customerInfo)
                                     <tr>
                                         <td>
                                             {{$key + 1}}
+                                        </td>
+                                        <td>
+                                            {{$customerInfo->name}}
                                             @if($customerInfo->view == 0)
                                                 <span class="right badge badge-danger">New</span>
                                             @endif
                                         </td>
-                                        <td>{{$customerInfo->name}}</td>
                                         <td>{{$customerInfo->phone}}</td>
                                         <td>{{$customerInfo->email}}</td>
                                         <td>
