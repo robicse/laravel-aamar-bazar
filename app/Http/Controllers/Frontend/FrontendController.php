@@ -159,6 +159,8 @@ class FrontendController extends Controller
        return view('auth.register_with_refferal_code',compact('refferal_by'));
     }
 
+
+
     public function popupDataSet()
     {
         Session::put('popup', 1);
