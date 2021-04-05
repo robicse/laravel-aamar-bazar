@@ -160,7 +160,9 @@
                                                             <td>
                                                                 <a href="#"> {{$product->name}} ×{{$product->qty}}</a>
                                                                 <div>VAT:<strong class="text-dark"> ৳{{$product->options->vat * $product->qty}}</strong></div>
+                                                                @if($totalLabourCost > 0)
                                                                 <div>Labour Cost:<strong class="text-dark"> ৳{{$product->options->labour_cost * $product->qty}}</strong></div>
+                                                                @endif
                                                                 {{--<p>Sold By:<strong>{{$product->options->shop_name}}</strong></p>--}}
 
                                                             </td>

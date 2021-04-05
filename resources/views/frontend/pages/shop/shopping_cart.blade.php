@@ -1,5 +1,7 @@
 @extends('frontend.layouts.master')
 @section('title', 'Shopping Cart')
+@push('css')
+@endpush
 @section('content')
     <div class="ps-page--simple">
         <div class="ps-breadcrumb">
@@ -20,6 +22,7 @@
                         <table class="table ps-table--shopping-cart">
                             <thead>
                             <tr>
+                                <th>Product Image</th>
                                 <th>Product name</th>
                                 <th>PRICE</th>
                                 <th>QUANTITY</th>
@@ -31,8 +34,10 @@
                             @foreach(Cart::content() as $product)
                                 <tr>
                                     <td>
+                                        <div class="ps-product__thumbnail"><a href="product-default.html"><img src="/{{$product->options->image}}" alt="" width="100" height="100" ></a></div>
+                                    </td>
+                                    <td>
                                         <div class="ps-product--cart">
-                                            <div class="ps-product__thumbnail"><a href="product-default.html"><img src="/{{$product->options->image}}" alt=""></a></div>
                                             <div class="ps-product__content"><a href="product-default.html">{{$product->name}}</a>
                                                 <p>Sold By:<strong> {{$product->options->shop_name}}</strong></p>
                                             </div>
