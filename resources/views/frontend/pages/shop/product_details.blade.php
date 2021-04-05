@@ -96,7 +96,11 @@
                                         </select><span>({{$reviews->count()}} review)</span>
                                     </div>
                                 </div>
-                                <h4 class="ps-product__price">৳ <span class="price ps-product__price">{{ $price }}</span>/{{ $productDetails->unit }}</h4>
+                                <h4 class="ps-product__price">৳ <span class="price ps-product__price">{{ $price }}</span></h4>
+                                <div class="ps-product__price">
+                                    <p class="">Unit: <strong>{{ $productDetails->unit }}</strong> </p>
+                                </div>
+
                                 <div class="ps-product__desc">
 
                                     <p>Sold By:<a href="{{route('shop.details',$shop->slug)}}"><strong> {{ $shop->name }}</strong></a></p>

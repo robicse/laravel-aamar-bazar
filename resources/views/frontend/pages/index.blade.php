@@ -16,13 +16,40 @@
                 </div>
             </div>
         </div>
-        <div class="ps-home-ads" style="padding-top: 20px; padding-bottom: 20px;">
+        <div class="ps-home-ads" style="padding-top: 20px; padding-bottom: 20px; background-color: #f3f3f3">
             <div class="ps-container">
                 <div class="row">
                     @foreach($offers as $offer)
                     <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12 "><a class="ps-collection" href="#"><img src="{{url($offer->image)}}" alt=""></a>
                     </div>
                     @endforeach
+                </div>
+            </div>
+        </div>
+
+        <div class="ps-home-ads" style="padding-top: 20px; padding-bottom: 20px;">
+            <div class="ps-container">
+                <div class="row">
+                    <div class="col-md-6">
+                      <img src="{{asset('frontend/img/list.jpg')}}" >
+                    </div>
+                    <div class="col-md-1">
+                    </div>
+                    <div class="col-md-5" style="padding-top: 20px;">
+                        @php
+                        $total_seller = \App\User::where('user_type','seller')->count();
+                        $total_customer = \App\User::where('user_type','customer')->count();
+                        $total_order = \App\Model\Order::where('delivery_status','Completed')->count();
+                        @endphp
+                        <div class="card" style="background-color: #f3f3f3">
+                            <div class="card-body" style="padding: 50px;">
+                                <h3 ><span >Total Seller:</span> {{$total_seller + 200}}</h3>
+                                <h3 ><span >Total Customer:</span> {{$total_customer + 500}}</h3>
+                                <h3 ><span >Total Successful Order:</span> {{$total_order + 250}}</h3>
+                            </div>
+                        </div>
+
+                    </div>
                 </div>
             </div>
         </div>
