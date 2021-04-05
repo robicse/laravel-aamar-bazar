@@ -16,6 +16,7 @@ use App\Model\ShopBrand;
 use App\Model\ShopCategory;
 use App\Model\ShopSubcategory;
 use App\Model\Subcategory;
+use App\Model\SubSubcategory;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -120,6 +121,8 @@ class VendorController extends Controller
         $user = User::where('id',$shop->user_id)->first();
         $category = Category::where('slug',$cat)->first();
         $subCategory = Subcategory::where('slug',$sub)->first();
+        $subSubCategories = SubSubcategory::where('sub_category_id',$subCategory->id)->latest()->get();
+
         $featuredProducts = Product::where('subcategory_id',$subCategory->id)->where('user_id',$shop->user_id)->where('featured',1)->where('published',1)->latest()->take(8)->get();
         $products = Product::where('subcategory_id',$subCategory->id)->where('user_id',$shop->user_id)->where('published',1)->latest()->paginate(36);
         $fiveStarRev = Review::where('shop_id',$shop->id)->where('rating',5)->where('status',1)->sum('rating');
@@ -136,7 +139,7 @@ class VendorController extends Controller
         }
 
         $favoriteShop = FavoriteShop::where('user_id', Auth::id())->where('shop_id', $shop->id)->first();
-        return view('frontend.pages.vendor.subcategory_by_products',compact('shop','user','category','subCategory','featuredProducts','products','totalRatingCount','favoriteShop'));
+        return view('frontend.pages.vendor.subcategory_by_products',compact('shop','user','category','subCategory','subSubCategories','featuredProducts','products','totalRatingCount','favoriteShop'));
 
     }
     public function search_product(Request $request){

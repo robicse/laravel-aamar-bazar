@@ -1,7 +1,11 @@
 @extends('frontend.layouts.master')
 @section('title', $subCategory->name)
 @push('css')
-
+    <style>
+        a:hover {
+            color: #fff;
+        }
+    </style>
 @endpush
 @section('content')
     <div class="ps-page--single">
@@ -83,6 +87,36 @@
                                     <input type="hidden" name="subcategory_id" value="{{ $subCategory->id }}">
                                     <input  class="form-control" id="searchMain" name="searchName" type="search" placeholder="Search in this shop" autocomplete="off">
                                 </form>
+                            </div>
+                        </div>
+                        <div class="ps-deal-of-day">
+                            <div class="ps-container">
+                                <div class="ps-section__header">
+                                    <div class="ps-block--countdown-deal">
+                                        <div class="ps-block__left">
+                                            <h4>Featured Sub-child Category</h4>
+                                        </div>
+                                        <div class="ps-block__right">
+                                        </div>
+                                    </div>
+                                    {{--                                    <a href="">View all</a>--}}
+                                </div>
+                                <div class="ps-section__content mb-5" style="margin-top: -30px">
+                                    <div class="ps-carousel--nav owl-slider" data-owl-auto="false" data-owl-loop="false" data-owl-speed="10000" data-owl-gap="30" data-owl-nav="true" data-owl-dots="true" data-owl-item="7" data-owl-item-xs="2" data-owl-item-sm="3" data-owl-item-md="4" data-owl-item-lg="5" data-owl-item-xl="6" data-owl-duration="1000" data-owl-mousedrag="on">
+                                        @foreach($subSubCategories as $subSubCategory)
+                                            <div class="ps-product--inner" style=" margin-bottom: 40px;">
+                                                <div class="card rounded-circle" style=" width:100px; height:100px; background: #fcb800;">
+                                                    <div class="card-body text-center">
+                                                        <h5 class="card-title text-center" style="margin-top: 20px" data-toggle="tooltip" title="{{$subSubCategory->name}}">
+                                                            <a href="#"> {{$subSubCategory->name}}</a>
+                                                            {{--                                                           <a href="{{route('subcategory.products/'.$shop->slug.'/'.$category->slug.'/'.$shopSubcategory->subcategory->slug)}}"> {!! Str::limit($shopSubcategory->subcategory->name,9) !!}</a>--}}
+                                                        </h5>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        @endforeach
+                                    </div>
+                                </div>
                             </div>
                         </div>
                         @if($featuredProducts->count() > 1)

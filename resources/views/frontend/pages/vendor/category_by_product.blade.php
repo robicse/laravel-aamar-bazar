@@ -99,10 +99,10 @@
                                     </div>
 {{--                                    <a href="">View all</a>--}}
                                 </div>
-                                <div class="ps-section__content mb-5">
+                                <div class="ps-section__content mb-5" style="margin-top: -30px">
                                     <div class="ps-carousel--nav owl-slider" data-owl-auto="false" data-owl-loop="false" data-owl-speed="10000" data-owl-gap="30" data-owl-nav="true" data-owl-dots="true" data-owl-item="7" data-owl-item-xs="2" data-owl-item-sm="3" data-owl-item-md="4" data-owl-item-lg="5" data-owl-item-xl="6" data-owl-duration="1000" data-owl-mousedrag="on">
                                         @foreach($shopSubcategories as $shopSubcategory)
-                                            <div class="ps-product--inner" style="margin-top: -40px; margin-bottom: 40px;">
+                                            <div class="ps-product--inner" style=" margin-bottom: 40px;">
                                                 <div class="card rounded-circle" style=" width:100px; height:100px; background: #fcb800;">
                                                     <div class="card-body text-center">
                                                         <h5 class="card-title text-center" style="margin-top: 30px" data-toggle="tooltip" title="{{$shopSubcategory->subcategory->name}}">
