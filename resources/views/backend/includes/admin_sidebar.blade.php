@@ -104,11 +104,19 @@
                                     <p>Offer</p>
                                 </a>
                             </li>
+                            @php
+                                $products = \App\Model\Product::where('added_by','seller')->where('admin_permission',0)->count();
+                            @endphp
                             <li class="nav-item">
                                 <a href="{{route('admin.products.request.form.seller')}}"
                                    class="nav-link {{Request::is('admin/request/products/from/seller*') ? 'active' :''}}">
                                     <i class="fa fa-{{Request::is('admin/request/products/from/seller*') ? 'folder-open':'folder'}} nav-icon"></i>
-                                    <p>Seller Req Products</p>
+                                    <p>
+                                        Seller Req Products
+                                        @if($products > 0)
+                                            <span class="badge badge-danger"> {{$products}} New</span>
+                                        @endif
+                                    </p>
                                 </a>
                             </li>
                             <li class="nav-item">
@@ -254,7 +262,7 @@
                         </ul>
                     </li>
                     @php
-                        $new_seller = \App\User::where('user_type','seller')->where('view',0)->count();
+                        $new_seller = \App\User::where('user_type','seller')->where('verification_code','!=',null)->where('view',0)->count();
                     @endphp
                     <li class="nav-item has-treeview {{(Request::is('admin/sellers*') || Request::is('admin/due-to-seller*') || Request::is('admin/due-to-admin*') ) ? 'menu-open' : ''}}">
                         <a href="#" class="nav-link">
@@ -317,7 +325,7 @@
                         </ul>
                     </li>
                     @php
-                        $new_customer = \App\User::where('user_type','customer')->where('view',0)->count();
+                        $new_customer = \App\User::where('user_type','customer')->where('verification_code','!=',null)->where('view',0)->count();
                     @endphp
                     <li class="nav-item has-treeview {{(Request::is('admin/customer*') ) ? 'menu-open' : ''}}">
                         <a href="#" class="nav-link">

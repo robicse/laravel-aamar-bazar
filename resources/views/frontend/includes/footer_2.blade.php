@@ -109,9 +109,9 @@
                     success: function(data) {
                         document.location.reload();
                     },
-                    error: function() {
-                        alert('it broke');
-                    },
+                    // error: function() {
+                    //     alert('it broke');
+                    // },
 
                 });
 

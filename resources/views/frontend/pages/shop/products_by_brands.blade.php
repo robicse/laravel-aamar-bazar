@@ -19,7 +19,7 @@
                             @foreach($shopCat as $Cat)
                                 <li class="current-menu-item menu-item-has-children"><a href="#"> {{$Cat->category->name}} </a><span class="sub-toggle"><i class="fa fa-angle-down"></i></span>
                                     @php
-                                        $subcategories = \App\Model\ShopSubcategory::where('category_id',$Cat->id)->latest()->get();
+                                        $subcategories = \App\Model\ShopSubcategory::where('category_id',$Cat->category_id)->where('shop_id',$shop->id)->latest()->get();
                                     @endphp
                                     <ul class="sub-menu">
                                         @foreach($subcategories as $subCat)
@@ -35,26 +35,13 @@
                     <aside class="widget widget_shop">
                         <h4 class="widget-title">BY BRANDS</h4>
                         <ul class="ps-list--categories">
-                            @foreach($shopBrand as $brand)
-                                <li class="current-menu-item menu-item-has-children"><a href="{{url('/products/'.$shop->slug.'/'.$brand->brand->slug)}}"> {{ $brand->brand->name }} </a>
+                            @foreach($shopBrands as $shopBrand)
+                                <li class="current-menu-item menu-item-has-children"><a href="{{url('/products/'.$shop->slug.'/'.$shopBrand->brand->slug)}}"> {{ $shopBrand->brand->name }} </a>
                                 </li>
                             @endforeach
                         </ul>
                     </aside>
                     <aside class="widget widget_shop">
-{{--                        <h4 class="widget-title">BY BRANDS</h4>--}}
-{{--                        <form class="ps-form--widget-search" action="http://nouthemes.net/html/martfury/do_action" method="get">--}}
-{{--                            <input class="form-control" type="text" placeholder="">--}}
-{{--                            <button><i class="icon-magnifier"></i></button>--}}
-{{--                        </form>--}}
-{{--                        <figure class="ps-custom-scrollbar" data-height="250">--}}
-{{--                            @foreach($shopBrand as $Brand)--}}
-{{--                                <div class="ps-checkbox">--}}
-{{--                                    <input class="form-control" type="checkbox" id="{{$Brand->brand_id}}" name="brand">--}}
-{{--                                    <label for="{{$Brand->brand_id}}">{{$Brand->brand->name}}</label>--}}
-{{--                                </div>--}}
-{{--                            @endforeach--}}
-{{--                        </figure>--}}
                         <figure>
                             <h4 class="widget-title">By Price</h4>
                             <div id="nonlinear"></div>
@@ -65,7 +52,7 @@
                 <div class="ps-layout__right">
                     <div class="ps-shopping ps-tab-root">
                         <div class="ps-shopping__header">
-                            <p><strong class="found_product_length">{{ count($products) }}</strong> Products found</p>
+                            <p>Products found</p>
                         </div>
                         <div class="ps-tabs">
                             <div class="ps-tab active" id="tab-1">
@@ -93,6 +80,10 @@
                                                 </div>
                                             </div>
                                         @endforeach
+                                            <div class="filter_result" id="products"></div>
+                                    </div>
+                                    <div class="col-md-12 text-center" id="loader" style="display: none;">
+                                        <img  src="{{asset('frontend/img/loader/loding3.gif')}}"  class="img-fluid " width="10%">
                                     </div>
                                 </div>
                                 <div class="ps-pagination" style="padding-left: 300px;">
@@ -114,46 +105,56 @@
         var update = function (values) {
             clearTimeout(timeout);
             timeout = setTimeout(function () {
-                $.ajax({
-                    type: 'GET', //THIS NEEDS TO BE GET
-                    url: '/product/filter/'+values+'/sellerId/'+'{{$shop->id}}'+'/brnd/'+{{$brand->id}},
-                    dataType: 'json',
-                    success: function (data) {
-                        console.log(data);
-                        $('.found_product').empty();
-                        if(data.length==0){
-                            $('.found_product').append('<h3 class="ml-5">Nothing Found</h3>');
-                            $('.found_product_length').html(data.length);
-                        }else{
-                            $('.found_product_length').html(data.length);
-                            var i=0;
-                            for(i=0;i<data.length;i++){
-                                $('.found_product').append(`<div class="col-xl-3 col-lg-4 col-md-4 col-sm-6 col-6 ">
-                                                <div class="ps-product">
-                                                    <div class="ps-product__thumbnail"><a href="/product/${data[i].slug}"><img src="{{url('/')}}/${data[i].thumbnail_img}" alt="" width="153" height="171"></a>
-                                                        <ul class="ps-product__actions">
-                                                            <li><a href="/product/${data[i].slug}" data-toggle="tooltip" data-placement="top" title="Add To Cart"><i class="icon-bag2"></i></a></li>
-                                                            <li><a href="/product/${data[i].slug}" data-placement="top" title="Quick View" data-toggle="modal" data-target="#product-quickview"><i class="icon-eye"></i></a></li>
-                                                            <li><a href="/add/wishlist/${data[i].id}" data-toggle="tooltip" data-placement="top" title="Add to Whishlist"><i class="icon-heart"></i></a></li>
-                                                            {{--                                                        <li><a href="#" data-toggle="tooltip" data-placement="top" title="Compare"><i class="icon-chart-bars"></i></a></li>--}}
-                                </ul>
-                            </div>
-                            <div class="ps-product__container">
-                                                        <div class="ps-product__content"><a class="ps-product__title" href="/product/${data[i].slug}">${data[i].name}</a>
-                                                            <p class="ps-product__price">৳ ${data[i].unit_price}</p>
-                                                        </div>
-                                                        <div class="ps-product__content hover"><a class="ps-product__title" href="/product/${data[i].slug}">${data[i].name}</a>
-                                                            <p class="ps-product__price">৳ ${data[i].unit_price}</p>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>`);
-                            }
-                        }
-                    },error:function(){
-                        console.log(data);
-                    }
-                });
+                $('.filterdata').empty();
+                $("#loader").show()
+                $.get("{{url('/brand/product/filter/')}}/"+values+'/shopId/'+'{{$shop->id}}'+'/brand/'+{{$brand->id}},
+                    function(data){
+
+                        console.log(data)
+                        $("#loader").hide()
+                        $('.found_product').html(data);
+
+                    });
+                {{--$.ajax({--}}
+                {{--    type: 'GET', //THIS NEEDS TO BE GET--}}
+                {{--    url: '/product/filter/'+values+'/sellerId/'+'{{$shop->id}}'+'/brnd/'+{{$brand->id}},--}}
+                {{--    dataType: 'json',--}}
+                {{--    success: function (data) {--}}
+                {{--        console.log(data);--}}
+                {{--        $('.found_product').empty();--}}
+                {{--        if(data.length==0){--}}
+                {{--            $('.found_product').append('<h3 class="ml-5">Nothing Found</h3>');--}}
+                {{--            $('.found_product_length').html(data.length);--}}
+                {{--        }else{--}}
+                {{--            $('.found_product_length').html(data.length);--}}
+                {{--            var i=0;--}}
+                {{--            for(i=0;i<data.length;i++){--}}
+                {{--                $('.found_product').append(`<div class="col-xl-3 col-lg-4 col-md-4 col-sm-6 col-6 ">--}}
+                {{--                                <div class="ps-product">--}}
+                {{--                                    <div class="ps-product__thumbnail"><a href="/product/${data[i].slug}"><img src="{{url('/')}}/${data[i].thumbnail_img}" alt="" width="153" height="171"></a>--}}
+                {{--                                        <ul class="ps-product__actions">--}}
+                {{--                                            <li><a href="/product/${data[i].slug}" data-toggle="tooltip" data-placement="top" title="Add To Cart"><i class="icon-bag2"></i></a></li>--}}
+                {{--                                            <li><a href="/product/${data[i].slug}" data-placement="top" title="Quick View" data-toggle="modal" data-target="#product-quickview"><i class="icon-eye"></i></a></li>--}}
+                {{--                                            <li><a href="/add/wishlist/${data[i].id}" data-toggle="tooltip" data-placement="top" title="Add to Whishlist"><i class="icon-heart"></i></a></li>--}}
+                {{--                                            --}}{{--                                                        <li><a href="#" data-toggle="tooltip" data-placement="top" title="Compare"><i class="icon-chart-bars"></i></a></li>--}}
+                {{--                </ul>--}}
+                {{--            </div>--}}
+                {{--            <div class="ps-product__container">--}}
+                {{--                                        <div class="ps-product__content"><a class="ps-product__title" href="/product/${data[i].slug}">${data[i].name}</a>--}}
+                {{--                                            <p class="ps-product__price">৳ ${data[i].unit_price}</p>--}}
+                {{--                                        </div>--}}
+                {{--                                        <div class="ps-product__content hover"><a class="ps-product__title" href="/product/${data[i].slug}">${data[i].name}</a>--}}
+                {{--                                            <p class="ps-product__price">৳ ${data[i].unit_price}</p>--}}
+                {{--                                        </div>--}}
+                {{--                                    </div>--}}
+                {{--                                </div>--}}
+                {{--                            </div>`);--}}
+                {{--            }--}}
+                {{--        }--}}
+                {{--    },error:function(){--}}
+                {{--        console.log(data);--}}
+                {{--    }--}}
+                {{--});--}}
             }, 1000);
         };
         function filterSlider() {
@@ -162,18 +163,21 @@
                 noUiSlider.create(nonLinearSlider, {
                     connect: true,
                     behaviour: 'tap',
-                    start: [0, 1000],
+                    start: [0, 100000],
                     range: {
                         min: 0,
-                        '10%': 100,
-                        '20%': 200,
-                        '30%': 300,
-                        '40%': 400,
-                        '50%': 500,
-                        '60%': 600,
-                        '70%': 700,
-                        '80%': 800,
-                        '90%': 900,
+                        '2%': 200,
+                        '3%': 500,
+                        '5%': 1500,
+                        '10%': 10000,
+                        '20%': 20000,
+                        '30%': 30000,
+                        '40%': 40000,
+                        '50%': 50000,
+                        '60%': 60000,
+                        '70%': 70000,
+                        '80%': 80000,
+                        '90%': 90000,
                         max: 100000,
                     },
                 });

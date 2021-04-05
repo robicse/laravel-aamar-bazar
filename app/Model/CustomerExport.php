@@ -12,7 +12,7 @@ class CustomerExport implements FromCollection, WithMapping, WithHeadings
 {
     public function collection()
     {
-        return User::where('user_type','customer')->latest()->get();
+        return User::where('user_type','customer')->where('verification_code','!=',null)->get();
     }
 
     public function headings(): array

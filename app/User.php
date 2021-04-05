@@ -91,7 +91,7 @@ class User extends Authenticatable
     {
         return $this->hasMany('App\Model\Product','user_id');
     }
-    public function addresses()
+    public function address()
     {
         return $this->hasMany('App\Model\Address','user_id');
     }

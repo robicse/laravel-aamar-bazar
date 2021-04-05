@@ -79,11 +79,13 @@
                                 <tr>
                                     <td>
                                         {{$key + 1}}
+                                    </td>
+                                    <td>
+                                        {{date('j-m-Y',strtotime($order->created_at))}}
                                         @if($order->view == 0)
                                             <span class="right badge badge-danger">New</span>
                                         @endif
                                     </td>
-                                    <td>{{date('j-m-Y',strtotime($order->created_at))}}</td>
                                     <td>{{$order->invoice_code}}</td>
                                     <td>{{$order->area}}</td>
                                     <td>{{$order->payment_type}}</td>

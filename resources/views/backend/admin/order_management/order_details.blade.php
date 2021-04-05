@@ -2,6 +2,7 @@
 @section("title","Order Details")
 @push('css')
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/select/1.3.1/css/select.dataTables.min.css">
 @endpush
 
 @section('content')
@@ -36,8 +37,19 @@
                                         <input type="text" value="{{$order->payment_status}}" class="form-control" id="inputName" readonly>
                                     </div>
                                     <div class="col-4">
-                                        <label>Delivery Status</label>
-                                        <input type="text" value="{{$order->delivery_status}}" class="form-control" id="inputName" readonly>
+                                            <form id="status-form-{{$order->id}}" action="{{route('admin.order-product.status',$order->id)}}">
+                                                <label for="delivery_status">Change Delivery Status</label>
+                                                <select name="delivery_status" class="form-control" onchange="deliveryStatusChange({{$order->id}})">
+                                                    <option value="Pending" {{$order->delivery_status == 'Pending'? 'selected' : ''}}>Pending</option>
+                                                    <option value="On review" {{$order->delivery_status == 'On review'? 'selected' : ''}}>On review</option>
+                                                    <option value="On delivered" {{$order->delivery_status == 'On delivered'? 'selected' : ''}}>On delivered</option>
+                                                    <option value="Delivered" {{$order->delivery_status == 'Delivered'? 'selected' : ''}}>Delivered</option>
+                                                    <option value="Completed" {{$order->delivery_status == 'Completed'? 'selected' : ''}}>Completed</option>
+                                                    <option value="Cancel" {{$order->delivery_status == 'Cancel'? 'selected' : ''}}>Cancel</option>
+                                                </select>
+                                            </form>
+{{--                                        <label>Delivery Status</label>--}}
+{{--                                        <input type="text" value="{{$order->delivery_status}}" class="form-control" id="inputName" readonly>--}}
                                     </div>
                                 </div>
                             </form>
@@ -189,6 +201,8 @@
 @push('js')
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://unpkg.com/sweetalert2@7.19.1/dist/sweetalert2.all.js"></script>
+    <script src="https://cdn.datatables.net/select/1.3.1/js/dataTables.select.min.js"></script>
     <script>
         $('#printInvoice').click(function(){
             Popup($('.invoice')[0].outerHTML);
@@ -198,5 +212,36 @@
                 return true;
             }
         });
+
+        //sweet alert
+        function deliveryStatusChange(id) {
+            swal({
+                title: 'Are you sure to change Delivery Status?',
+                text: "You won't be able to revert this!",
+                type: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, Change it!',
+                cancelButtonText: 'No, cancel!',
+                confirmButtonClass: 'btn btn-success',
+                cancelButtonClass: 'btn btn-danger',
+                buttonsStyling: true,
+                reverseButtons: true
+            }).then((result) => {
+                if (result.value) {
+                    document.getElementById('status-form-'+id).submit();
+                } else if (
+                    // Read more about handling dismissals
+                    result.dismiss === swal.DismissReason.cancel
+                ) {
+                    swal(
+                        'Cancelled',
+                        'Your Data is save :)',
+                        'error'
+                    )
+                }
+            })
+        }
     </script>
 @endpush

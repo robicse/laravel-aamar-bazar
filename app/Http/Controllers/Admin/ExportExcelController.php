@@ -24,4 +24,8 @@ class ExportExcelController extends Controller
     public function exportCustomer(){
         return Excel::download(new CustomerExport(), 'all_customers.xlsx');
     }
+
+
+
+
 }

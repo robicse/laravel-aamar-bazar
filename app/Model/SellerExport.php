@@ -12,7 +12,7 @@ class SellerExport implements FromCollection, WithMapping, WithHeadings
 {
     public function collection()
     {
-        return User::where('user_type','seller')->latest()->get();
+        return User::where('user_type','seller')->where('verification_code','!=',null)->get();
     }
 
     public function headings(): array
