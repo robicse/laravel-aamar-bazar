@@ -10,146 +10,6 @@
     <div class="header__top">
         <div class="ps-container">
             <div class="header__left">
-{{--                <div class="menu--toggle">--}}
-{{--                <div class=""><a class="ps-logo" href="{{url('/')}}"><img src="{{asset('frontend/img/logo-mudi-hat.png')}}" alt=""></a></div>--}}
-{{--                </div>--}}
-{{--                                <div class="menu--product-categories">--}}
-{{--                                    <div class="navigation__left"><a class="ps-logo" href="{{url('/')}}"><img src="{{asset('frontend/img/logo-mudi-hat.png')}}" alt=""></a></div>--}}
-{{--                                </div>--}}
-                {{--                    <div class="menu__toggle"><i class="icon-menu"></i><span> Shop by Department</span></div>--}}
-                {{--                    <div class="menu__content">--}}
-                {{--                        @php--}}
-                {{--                            $categories = \App\Model\Category::where('is_home',1)->latest()->get();--}}
-                {{--                        @endphp--}}
-                {{--                        <ul class="menu--dropdown">--}}
-                {{--                            --}}{{--                            <li class="current-menu-item "><a href="#"><i class="icon-star"></i> Hot Promotions</a>--}}
-                {{--                            --}}{{--                            </li>--}}
-                {{--                            @foreach($categories as $cat)--}}
-                {{--                                <li class="current-menu-item menu-item-has-children has-mega-menu"><a href="#"><i class="icon">--}}
-                {{--                                            <img src="{{ asset('uploads/categories/'.$cat->icon) }}">--}}
-                {{--                                        </i>{{ $cat->name }}</a>--}}
-                {{--                                    <div class="mega-menu">--}}
-                {{--                                        <div class="mega-menu__column">--}}
-                {{--                                            <h4>{{ $cat->name }}<span class="sub-toggle"></span></h4>--}}
-                {{--                                            @php--}}
-                {{--                                                $subcategories = \App\Model\Subcategory::all();--}}
-                {{--                                            @endphp--}}
-                {{--                                            <ul class="mega-menu__list">--}}
-                {{--                                                @foreach($subcategories as $subCat)--}}
-                {{--                                                    <li class="current-menu-item "><a href="#">{{$subCat->name}}</a>--}}
-                {{--                                                    </li>--}}
-                {{--                                                @endforeach--}}
-                {{--                                            </ul>--}}
-                {{--                                        </div>--}}
-                {{--                                        --}}{{--                                    <div class="mega-menu__column">--}}
-                {{--                                        --}}{{--                                        <h4>Accessories &amp; Parts<span class="sub-toggle"></span></h4>--}}
-                {{--                                        --}}{{--                                        <ul class="mega-menu__list">--}}
-                {{--                                        --}}{{--                                            <li class="current-menu-item "><a href="#">Digital Cables</a>--}}
-                {{--                                        --}}{{--                                            </li>--}}
-                {{--                                        --}}{{--                                            <li class="current-menu-item "><a href="#">Audio &amp; Video Cables</a>--}}
-                {{--                                        --}}{{--                                            </li>--}}
-                {{--                                        --}}{{--                                            <li class="current-menu-item "><a href="#">Batteries</a>--}}
-                {{--                                        --}}{{--                                            </li>--}}
-                {{--                                        --}}{{--                                        </ul>--}}
-                {{--                                        --}}{{--                                    </div>--}}
-                {{--                                    </div>--}}
-                {{--                                </li>--}}
-                {{--                        @endforeach--}}
-                {{--                    </div>--}}
-                {{--                </div>--}}
-                {{--                <a class="ps-logo" href="{{url('/')}}"><img src="{{asset('frontend/img/logo_light.png')}}" alt=""></a>--}}
-                {{--                <a class="ps-logo" href="{{url('/')}}"><h2 class="font-weight-light">Mudi <span class="text-capitalize text-secondary">Hat</span></h2></a>--}}
-
-                {{--               <div class="menu--product-categories">--}}
-                {{--                    <div class="menu__toggle"><i class="icon-menu"></i><span> Shop by Department</span></div>--}}
-                {{--                    <div class="menu__content">--}}
-                {{--                        @php--}}
-                {{--                            $categories = \App\Model\Category::where('is_home',1)->latest()->get();--}}
-                {{--                        @endphp--}}
-                {{--                        <ul class="menu--dropdown">--}}
-                {{--                            --}}{{--                            <li class="current-menu-item "><a href="#"><i class="icon-star"></i> Hot Promotions</a>--}}
-                {{--                            --}}{{--                            </li>--}}
-
-                {{--                            @foreach($categories as $cat)--}}
-                {{--                                <li class="current-menu-item menu-item-has-children has-mega-menu"><a href="#"><i class="icon">--}}
-                {{--                                            <img src="{{ asset('uploads/categories/'.$cat->icon) }}">--}}
-                {{--                                        </i>{{ $cat->name }}</a>--}}
-                {{--                                    <div class="mega-menu">--}}
-                {{--                                        <div class="mega-menu__column">--}}
-                {{--                                            <h4>{{ $cat->name }}<span class="sub-toggle"></span></h4>--}}
-                {{--                                            @php--}}
-                {{--                                                $subcategories = \App\Model\Subcategory::where('category_id',$cat->id)->latest()->get();--}}
-                {{--                                            @endphp--}}
-                {{--                                            <ul class="mega-menu__list">--}}
-                {{--                                                @foreach($subcategories as $subCat)--}}
-                {{--                                                    <li class="current-menu-item "><a href="#">{{$subCat->name}}</a>--}}
-                {{--                                                    </li>--}}
-                {{--                                                @endforeach--}}
-                {{--                                            </ul>--}}
-                {{--                                        </div>--}}
-                {{--                                        --}}{{--                                    <div class="mega-menu__column">--}}
-                {{--                                        --}}{{--                                        <h4>Accessories &amp; Parts<span class="sub-toggle"></span></h4>--}}
-                {{--                                        --}}{{--                                        <ul class="mega-menu__list">--}}
-                {{--                                        --}}{{--                                            <li class="current-menu-item "><a href="#">Digital Cables</a>--}}
-                {{--                                        --}}{{--                                            </li>--}}
-                {{--                                        --}}{{--                                            <li class="current-menu-item "><a href="#">Audio &amp; Video Cables</a>--}}
-                {{--                                        --}}{{--                                            </li>--}}
-                {{--                                        --}}{{--                                            <li class="current-menu-item "><a href="#">Batteries</a>--}}
-                {{--                                        --}}{{--                                            </li>--}}
-                {{--                                        --}}{{--                                        </ul>--}}
-                {{--                                        --}}{{--                                    </div>--}}
-                {{--                                    </div>--}}
-                {{--                                </li>--}}
-                {{--                        @endforeach--}}
-                {{--                    </div>--}}
-                {{--                </div>--}}
-                {{--                <a class="ps-logo" href="{{url('/')}}"><img src="{{asset('frontend/img/logo_light.png')}}" alt=""></a>--}}
-                {{--                <a class="ps-logo" href="{{url('/')}}"><h2 class="font-weight-light">Mudi <span class="text-capitalize text-secondary">Hat</span></h2></a>--}}
-                {{--                <div class="menu--product-categories">--}}
-                {{--                    <div class="menu__toggle"><i class="icon-menu"></i><span> Shop by Department</span></div>--}}
-                {{--                    <div class="menu__content">--}}
-                {{--                        @php--}}
-                {{--                            $categories = \App\Model\Category::where('is_home',1)->latest()->get();--}}
-                {{--                        @endphp--}}
-                {{--                        <ul class="menu--dropdown">--}}
-                {{--                            --}}{{--                            <li class="current-menu-item "><a href="#"><i class="icon-star"></i> Hot Promotions</a>--}}
-                {{--                            --}}{{--                            </li>--}}
-                {{--                            @foreach($categories as $cat)--}}
-                {{--                                <li class="current-menu-item menu-item-has-children has-mega-menu"><a href="#"><i class="icon">--}}
-                {{--                                            <img src="{{ asset('uploads/categories/'.$cat->icon) }}">--}}
-                {{--                                        </i>{{ $cat->name }}</a>--}}
-                {{--                                    <div class="mega-menu">--}}
-                {{--                                        <div class="mega-menu__column">--}}
-                {{--                                            <h4>{{ $cat->name }}<span class="sub-toggle"></span></h4>--}}
-                {{--                                            @php--}}
-                {{--                                                $subcategories = \App\Model\Subcategory::all();--}}
-                {{--                                            @endphp--}}
-                {{--                                            <ul class="mega-menu__list">--}}
-                {{--                                                @foreach($subcategories as $subCat)--}}
-                {{--                                                    <li class="current-menu-item "><a href="#">{{$subCat->name}}</a>--}}
-                {{--                                                    </li>--}}
-                {{--                                                @endforeach--}}
-                {{--                                            </ul>--}}
-                {{--                                        </div>--}}
-                {{--                                        --}}{{--                                    <div class="mega-menu__column">--}}
-                {{--                                        --}}{{--                                        <h4>Accessories &amp; Parts<span class="sub-toggle"></span></h4>--}}
-                {{--                                        --}}{{--                                        <ul class="mega-menu__list">--}}
-                {{--                                        --}}{{--                                            <li class="current-menu-item "><a href="#">Digital Cables</a>--}}
-                {{--                                        --}}{{--                                            </li>--}}
-                {{--                                        --}}{{--                                            <li class="current-menu-item "><a href="#">Audio &amp; Video Cables</a>--}}
-                {{--                                        --}}{{--                                            </li>--}}
-                {{--                                        --}}{{--                                            <li class="current-menu-item "><a href="#">Batteries</a>--}}
-                {{--                                        --}}{{--                                            </li>--}}
-                {{--                                        --}}{{--                                        </ul>--}}
-                {{--                                        --}}{{--                                    </div>--}}
-                {{--                                    </div>--}}
-                {{--                                </li>--}}
-                {{--                        @endforeach--}}
-                {{--                    </div>--}}
-                {{--                </div>--}}
-                {{--                <a class="ps-logo" href="{{url('/')}}"><img src="{{asset('frontend/img/logo_light.png')}}" alt=""></a>--}}
-                {{--                <a class="ps-logo" href="{{url('/')}}"><h2 class="font-weight-light">Mudi <span class="text-capitalize text-secondary">Hat</span></h2></a>--}}
-{{--                <a class="" href="{{url('/')}}"><h2 class="font-weight-light">Mudi <span class="text-capitalize text-secondary">Hat</span></h2></a>--}}
                 <a class="ps-logo" href="{{url('/')}}"><img src="{{asset('frontend/img/logo-mudi-hat-final.png')}}" alt="" width="200" height="90" style="margin-top: -20px;"></a>
             </div>
             <div class="header__center">
@@ -284,38 +144,10 @@
                         </div>
                     </div>
                 </div>
-{{--                @if(Auth::guest())--}}
-{{--                <div class="ps-block--user-header">--}}
-{{--                    <div class="ps-block__left"><i class="icon-user"></i></div>--}}
-{{--                    <div class="ps-block__right"><a href="{{route('login')}}">Login</a><a href="{{route('register')}}">Register</a></div>--}}
-{{--                </div>--}}
-{{--                @else--}}
-{{--                    <div class="ps-block--user-header">--}}
-{{--                        <div class="ps-block__left">--}}
-{{--                            @if(is_null(Auth::user()->avatar_original))--}}
-{{--                                <a href="{{route('login')}}">  <img src="{{asset('uploads/profile/default.png')}}" alt="" class="ps-widget-img rounded-circle" width="40" height="40"></a>--}}
-{{--                            @else--}}
-{{--                                <a href="{{route('login')}}">  <img src="{{url(Auth::user()->avatar_original)}}" alt="" class="ps-widget-img rounded-circle" width="40" height="40"></a>--}}
-{{--                            @endif--}}
-{{--                        </div>--}}
-{{--                        <div class="ps-block__right"><a href="{{route('login')}}" data-toggle="tooltip" title="{{Auth::user()->name}}">{!! Str::limit(Auth::user()->name,10) !!}</a>--}}
-{{--                            <form action = "{{route('logout')}}" method="post">--}}
-{{--                                @csrf--}}
-{{--                                <button type="submit" class="btn btn-lg btn-bold p-0">Logout</button>--}}
-{{--                            </form>--}}
-{{--                        </div>--}}
-{{--                    </div>--}}
-{{--                @endif--}}
             </div>
         </div>
     </div>
     <div class="ps-search--mobile" style="background: #fcb800;">
-{{--        <form class="ps-form--search-mobile" action="http://nouthemes.net/html/martfury/index.html" method="get">--}}
-{{--            <div class="form-group--nest">--}}
-{{--                <input class="form-control" type="text" placeholder="Search something...">--}}
-{{--                <button><i class="icon-magnifier"></i></button>--}}
-{{--            </div>--}}
-{{--        </form>--}}
         <div class="ps-form--quick-search" >
             {{--                    <input type="text" class=" bksearch">--}}
             {{--                    <div class="bklist">--}}
@@ -380,17 +212,6 @@
 <div class="navigation--list">
     <div class="navigation__content"><a class="navigation__item ps-toggle--sidebar" href="#menu-mobile"><i class="icon-menu"></i><span> Menu</span></a><a class="navigation__item ps-toggle--sidebar" href="#navigation-mobile"><i class="icon-list4"></i><span> Shops</span></a><a class="navigation__item ps-toggle--sidebar" href="#cart-mobile"><i class="icon-bag2"></i><span> Cart</span></a></div>
 </div>
-{{--<div class="ps-panel--sidebar" id="search-sidebar">--}}
-{{--    <div class="ps-panel__header">--}}
-{{--        <form class="ps-form--search-mobile" action="http://nouthemes.net/html/martfury/index.html" method="get">--}}
-{{--            <div class="form-group--nest">--}}
-{{--                <input class="form-control" type="text" placeholder="Search something...">--}}
-{{--                <button><i class="icon-magnifier"></i></button>--}}
-{{--            </div>--}}
-{{--        </form>--}}
-{{--    </div>--}}
-{{--    <div class="navigation__content"></div>--}}
-{{--</div>--}}
 <div class="ps-panel--sidebar" id="menu-mobile">
     <div class="ps-panel__header" style="padding-bottom: 50px;">
         <div class="float-left">
