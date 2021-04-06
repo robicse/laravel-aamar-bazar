@@ -62,7 +62,9 @@
                                         <select name="shop" id="shop" class="form-control demo-select2"  data-placeholder="Shop">
                                             <option >Please select one shop</option>
                                             @foreach(\App\Model\Shop::get() as $shop)
+                                                @if($shop->seller->verification_status == 1)
                                                 <option value="{{$shop->user_id}}">{{$shop->name}} ({{$shop->user->name}})</option>
+                                                @endif
                                             @endforeach
                                         </select>
                                     </div>
