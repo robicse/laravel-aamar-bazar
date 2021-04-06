@@ -92,12 +92,16 @@ Route::get('/flash-deals-products/{id}','Api\ProductController@getFlashDeals');
 Route::get('/related-products/{id}','Api\ProductController@getRelatedProducts');
 Route::post('/search/product', 'Api\ProductController@search_product');
 
-Route::get('/category/featured-products/{id}', 'Api\CategoryController@categoryProducts');
+Route::get('/category/featured-products/{id}', 'Api\CategoryController@featuredProducts');
 Route::get('/category/all-products/{id}', 'Api\CategoryController@categoryAllProducts');
+//Route::get('/shop-subcategory', 'Api\CategoryController@categoryProducts');
 
 //Shop Subcategory
-Route::get('/shop-subcategories','Api\ShopSubcategoryController@getShopSubcategories');
+Route::post('/shop-subcategories','Api\ShopSubcategoryController@getShopSubcategories');
 Route::get('/shop-total-ratings/{id}','Api\ShopController@getShopRatings');
+
+//Shop Subcategory
+Route::post('/shop-subsubcategories','Api\ShopSubSubCategoryController@getShopSubSubcategories');
 
 
 Route::get('/favorite-shops', 'Api\CustomerController@getFavoriteShop' );

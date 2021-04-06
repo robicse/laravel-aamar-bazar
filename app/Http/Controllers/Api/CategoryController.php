@@ -22,8 +22,8 @@ class CategoryController extends Controller
             return response()->json(['success'=>false,'response'=> 'Something went wrong!'], 404);
         }
     }
-    public function categoryProducts($id) {
-        $shopCategory = ShopCategory::find($id);
+    public function featuredProducts($id) {
+        $shopCategory = ShopCategory::where('category_id',$id)->first();
         $shop = Shop::where('id',$shopCategory->shop_id)->first();
         $featuredProducts = DB::table('products')
             ->join('categories','products.category_id','=','categories.id')

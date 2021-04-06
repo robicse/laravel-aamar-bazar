@@ -25,7 +25,7 @@ class ShopCategoryController extends Controller
         $shopCats = DB::table('shop_categories')
             ->Join('categories','shop_categories.category_id','=','categories.id')
             ->where('shop_categories.shop_id',$id)
-            ->select('shop_categories.id as category_id','shop_categories.shop_id','categories.name as category_name','categories.icon as category_image')
+            ->select('shop_categories.category_id as category_id','shop_categories.shop_id','categories.name as category_name','categories.icon as category_image')
             ->get();
         if (!empty($shopCats))
         {
