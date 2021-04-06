@@ -1,0 +1,27 @@
+<?php
+
+namespace App\Http\Controllers\Api;
+
+use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+
+class ShopSubSubCategoryController extends Controller
+{
+    public function getShopSubSubcategories(Request $request) {
+        $shopSubSubcategories = DB::table('shop_sub_subcategories')
+            ->Join('sub_subcategories','shop_sub_subcategories.subsubcategory_id','=','sub_subcategories.id')
+            ->where('shop_sub_subcategories.shop_id',$request->shop_id)
+            ->where('shop_sub_subcategories.category_id',$request->category_id)
+            ->where('shop_sub_subcategories.subcategory_id',$request->subcategory_id)
+            ->select('shop_sub_subcategories.subsubcategory_id as subsubcategory_id','shop_sub_subcategories.shop_id','shop_sub_subcategories.category_id as category_id','shop_sub_subcategories.subcategory_id as subcategory_id','sub_subcategories.name as subsubcategory_name')
+            ->get();
+        if (!empty($shopSubSubcategories))
+        {
+            return response()->json(['success'=>true,'response'=> $shopSubSubcategories], 200);
+        }
+        else{
+            return response()->json(['success'=>false,'response'=> 'Something went wrong!'], 404);
+        }
+    }
+}
