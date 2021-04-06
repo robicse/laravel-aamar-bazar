@@ -272,8 +272,8 @@
                     <div class="form-group submit text-center">
                         <button class="ps-btn">Save</button>
                     </div>
-            </div>
             </form>
+            </div>
         </div>
     </div>
     </div>
