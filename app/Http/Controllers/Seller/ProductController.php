@@ -238,17 +238,17 @@ class ProductController extends Controller
             $shopSubcategoryData = new ShopSubcategory();
             $shopSubcategoryData->shop_id = $shopId->id;
             $shopSubcategoryData->subcategory_id = $request->subcategory_id;
-            $shopSubcategoryData->category_id = $product->category_id;
+            $shopSubcategoryData->category_id = $request->category_id;
             $shopSubcategoryData->save();
         }
 
-        $checkShopSubSubCategory = ShopSubSubcategory::where('shop_id',$shopId->id)->where('subsubcategory_id',$product_new->subsubcategory_id)->where('subcategory_id',$product_new->subcategory_id)->where('category_id',$product_new->subcategory_id)->first();
+        $checkShopSubSubCategory = ShopSubSubcategory::where('shop_id',$shopId->id)->where('subsubcategory_id',$request->subsubcategory_id)->where('subcategory_id',$request->subcategory_id)->where('category_id',$request->subcategory_id)->first();
         if (empty($checkShopSubSubCategory)) {
             $shopSub_SubcategoryData = new ShopSubSubcategory();
             $shopSub_SubcategoryData->shop_id = $shopId->id;
-            $shopSub_SubcategoryData->subsubcategory_id = $product_new->subsubcategory_id;
-            $shopSub_SubcategoryData->subcategory_id = $product_new->subcategory_id;
-            $shopSub_SubcategoryData->category_id = $product_new->category_id;
+            $shopSub_SubcategoryData->subsubcategory_id = $request->subsubcategory_id;
+            $shopSub_SubcategoryData->subcategory_id = $request->subcategory_id;
+            $shopSub_SubcategoryData->category_id = $request->category_id;
             $shopSub_SubcategoryData->save();
         }
 
