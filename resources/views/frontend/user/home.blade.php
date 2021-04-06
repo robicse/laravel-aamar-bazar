@@ -6,6 +6,9 @@
             max-width: 24rem;
             color: white;
         }
+        a:hover {
+            color: #333;
+        }
     </style>
 @endpush
 @section('content')
@@ -32,7 +35,7 @@
                                         <div class="card-body">
                                             <div class="text-center text-white py-4 mb-2" >
                                             <h3 class="card-title text-white mb-3">{{Auth::User()->balance}} Tk</h3>
-                                                <p class="text-white">Balance</p>
+                                                <p class="text-white"><a href="{{url('/')}}">Balance</a></p>
                                             </div>
                                         </div>
                                     </div>
@@ -42,7 +45,7 @@
                                         <div class="card-body">
                                             <div class="text-center text-white py-4 mb-2" >
                                                 <h1 class="h3 text-white mb-3">{{\Gloudemans\Shoppingcart\Facades\Cart::count()}} Product(s)</h1>
-                                                <p class="text-white">In your Cart</p>
+                                                <p class="text-white"><a href="{{route('shopping-cart')}}">In your Cart</a></p>
                                             </div>
                                         </div>
                                     </div>
@@ -52,7 +55,7 @@
                                         <div class="card-body">
                                             <div class="text-center text-white py-4 mb-2" >
                                                 <h1 class="h3 text-white mb-3"> {{$totalWishlist}} Product(s)</h1>
-                                                <p class="text-white">In Your Wishlist</p>
+                                                <p class="text-white"><a href="{{route('user.wishlist')}}">In Your Wishlist</a></p>
                                             </div>
                                         </div>
                                     </div>
@@ -62,7 +65,7 @@
                                         <div class="card-body">
                                             <div class="text-center text-white py-4 mb-2" >
                                                 <h1 class="h3 text-white mb-3"> {{$totalOrder}} Order(s)</h1>
-                                                <p class="text-white">You ordered</p>
+                                                <p class="text-white"><a href="{{route('user.order.history')}}">You ordered</a></p>
                                             </div>
                                         </div>
                                     </div>
