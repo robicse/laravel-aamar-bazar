@@ -284,19 +284,19 @@
 <div class="modal fade mapModalShow" id="product-quickview" tabindex="-1" role="dialog" aria-labelledby="product-quickview" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
-            <div class="mr-4">
+            <div class="mr-4 mt-5">
                 <span class="modal-close" data-dismiss="modal"><i class="icon-cross2"></i></span>
-                <div class="row mb-3">
-                    <div class="col-md-9">
+                <div class="row mb-3 ml-1">
+                    <div class="" style="width: 70%">
                         <input class="form-control bksearch2 m-0" type="text" placeholder="Enter your full address" id="input-search-map" style="border-radius: 4px;" autocomplete="off" value="">
                     </div>
-                    <div class="col-md-3">
+                    <div  style="width: 30%">
                         <button class="p-3 bg-dark find" style="border-radius: 4px; color: #fff;" id="find2">Find Shop</button>
                     </div>
                 </div>
                 <div class="bklist2 "></div>
-                <input class="latval" id="txtLat" type="text" style="color:red" value="" />
-                <input class="lngval" id="txtLng" type="text" style="color:red" value="" />
+                <input class="latval" id="txtLat" type="hidden" style="color:red" value="" />
+                <input class="lngval" id="txtLng" type="hidden" style="color:red" value="" />
                 <div id="map_canvas" style="width: auto; height: 400px;"> </div>
             </div>
         </div>
