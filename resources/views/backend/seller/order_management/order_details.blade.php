@@ -29,9 +29,7 @@
                     <div class="col-12">
                         <div class="callout callout-info">
                             <div class="card card-info" style="padding: 20px 40px 40px 40px;">
-                                <form role="form" action="" method="">
-                                    @csrf
-                                    <div class="row">
+                                <div class="row">
                                         <div class="col-4">
                                             <label>Payment Status</label>
                                                 <input type="text" value="{{$order->payment_status}}" class="form-control" id="inputName" readonly>
@@ -52,7 +50,6 @@
 {{--                                            <input type="text" value="{{$order->delivery_status}}" class="form-control" id="inputName" readonly>--}}
                                         </div>
                                     </div>
-                                </form>
                             </div>
                         </div>
 
