@@ -14,6 +14,10 @@ Bkoi.onSelect(function () {
 })
 
 $(document).ready(function(){
+    //seach placeholder change
+    $('.bksearch').attr("placeholder", "Search your delivery location");
+
+
     var latval = sessionStorage.getItem("latitude");
     var lngval = sessionStorage.getItem("longitude");
     if(latval==null){
