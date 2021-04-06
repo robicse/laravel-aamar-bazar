@@ -13,6 +13,7 @@ use App\Model\Shop;
 use App\Model\ShopBrand;
 use App\Model\ShopCategory;
 use App\Model\ShopSubcategory;
+use App\Model\ShopSubSubcategory;
 use App\Model\Subcategory;
 use App\Model\SubSubcategory;
 use Brian2694\Toastr\Facades\Toastr;
@@ -240,6 +241,17 @@ class ProductController extends Controller
             $shopSubcategoryData->category_id = $product->category_id;
             $shopSubcategoryData->save();
         }
+
+        $checkShopSubSubCategory = ShopSubSubcategory::where('shop_id',$shopId->id)->where('subsubcategory_id',$product_new->subsubcategory_id)->where('subcategory_id',$product_new->subcategory_id)->where('category_id',$product_new->subcategory_id)->first();
+        if (empty($checkShopSubSubCategory)) {
+            $shopSub_SubcategoryData = new ShopSubSubcategory();
+            $shopSub_SubcategoryData->shop_id = $shopId->id;
+            $shopSub_SubcategoryData->subsubcategory_id = $product_new->subsubcategory_id;
+            $shopSub_SubcategoryData->subcategory_id = $product_new->subcategory_id;
+            $shopSub_SubcategoryData->category_id = $product_new->category_id;
+            $shopSub_SubcategoryData->save();
+        }
+
         $shopBrand = ShopBrand::where('shop_id',$shopId->id)->where('brand_id',$request->brand_id)->first();
         if(empty($shopBrand)){
             $shopBrandData = new ShopBrand();
@@ -521,8 +533,19 @@ class ProductController extends Controller
                 $shopSubcategoryData = new ShopSubcategory();
                 $shopSubcategoryData->shop_id = $shopId->id;
                 $shopSubcategoryData->subcategory_id = $product_new->subcategory_id;
-                $shopSubcategoryData->category_id = $product_new->subcategory_id;
+                $shopSubcategoryData->category_id = $product_new->category_id;
                 $shopSubcategoryData->save();
+            }
+
+            //check shop sub sub_categories
+            $checkShopSubSubCategory = ShopSubSubcategory::where('shop_id',$shopId->id)->where('subsubcategory_id',$product_new->subsubcategory_id)->where('subcategory_id',$product_new->subcategory_id)->where('category_id',$product_new->subcategory_id)->first();
+            if (empty($checkShopSubSubCategory)) {
+                $shopSub_SubcategoryData = new ShopSubSubcategory();
+                $shopSub_SubcategoryData->shop_id = $shopId->id;
+                $shopSub_SubcategoryData->subsubcategory_id = $product_new->subsubcategory_id;
+                $shopSub_SubcategoryData->subcategory_id = $product_new->subcategory_id;
+                $shopSub_SubcategoryData->category_id = $product_new->category_id;
+                $shopSub_SubcategoryData->save();
             }
 
             $shopBrand = ShopBrand::where('shop_id',$shopId->id)->where('brand_id',$product_new->brand_id)->first();
