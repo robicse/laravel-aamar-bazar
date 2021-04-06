@@ -79,6 +79,7 @@ Route::post('/shop/nearest/list', 'Frontend\ShopController@nearestshop')->name('
 Route::get('/become-a-vendor', 'Frontend\VendorController@index')->name('become-vendor');
 Route::get('/shop/{name}/{slug}', 'Frontend\VendorController@categoryProducts')->name('category.products');
 Route::get('/shop/{slug}/{cat}/{sub}', 'Frontend\VendorController@subCategoryProducts')->name('subcategory.products');
+Route::get('/shop/{shop}/{cat}/{sub}/{subsub}', 'Frontend\VendorController@subSubCategoryProducts');
 Route::get('/shop/{slug}', 'Frontend\VendorController@singleshop')->name('shop.details');
 Route::get('/categories/{slug}', 'Frontend\VendorController@allCategories')->name('view.all.categories');
 Route::get('/best-seller-shop/list', 'Frontend\ShopController@bestSellerShopList')->name('best-seller.shop-list');
