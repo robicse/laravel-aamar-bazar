@@ -93,7 +93,7 @@
                             <div class="ps-block--vendor-filter">
                                 <div class="ps-block__left">
                                     <ul>
-                                        <li class="active"><a href="#">Products</a></li>
+{{--                                        <li class="active"><a href="#">Products</a></li>--}}
                                         {{--                                    <li><a href="#">Reviews</a></li>--}}
                                         {{--                                    <li><a href="#">About</a></li>--}}
                                     </ul>
