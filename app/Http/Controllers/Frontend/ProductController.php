@@ -118,6 +118,7 @@ class ProductController extends Controller
         $shopBrands = ShopBrand::where('shop_id',$shop->id)->latest()->get();
         $products = Product::where('brand_id',$brand->id)->where('user_id',$shop->user_id)->where('published',1)->latest()->paginate(24);
         return view('frontend.pages.shop.products_by_brands',compact('shop','brand','shopCat','shopBrands','products'));
+
     }
     public function bestSellsProducts() {
 

@@ -5,6 +5,16 @@
         a:hover {
             color: #fff;
         }
+        @media only screen and (max-width: 700px) {
+            .mobile_view{
+                display: none;
+            }
+        }
+        @media only screen and (min-width: 600px) {
+            .web_view{
+                display: none;
+            }
+        }
     </style>
 @endpush
 @section('content')
@@ -21,7 +31,7 @@
             <div class="container">
                 <div class="ps-section__container">
 
-                    <div class="ps-section__left">
+                    <div class="ps-section__left mobile_view">
                         <div class="ps-block--vendor">
                             <div class="ps-block__thumbnail"><img src="{{asset($shop->logo)}}" alt="" width="300" height="225"></div>
                             <div class="ps-block__container">
@@ -210,6 +220,57 @@
                                     {{--                                            <li><a href="#">Next Page<i class="icon-chevron-right"></i></a></li>--}}
                                     {{--                                        </ul>--}}
                                     {{--                                    </div>--}}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="ps-section__left web_view" style="padding-top: 20px;">
+                        <div class="ps-block--vendor">
+                            <div class="ps-block__thumbnail"><img src="{{asset($shop->logo)}}" alt="" width="300" height="225"></div>
+                            <div class="ps-block__container">
+                                <div class="ps-block__header">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <h4><a href="{{route('shop.details',$shop->slug)}}">{{$shop->name}} </a></h4>
+                                        </div>
+                                        @if(empty($favoriteShop))
+                                            <div class="col-md-6 pull-right">
+                                                <button class="ps-btn" style="padding: 7px 20px 7px 20px; font-size: 14px;"><a href="{{route('add.favorite-shop',$shop->id)}}">Follow</a></button>
+                                            </div>
+                                        @else
+                                            <div class="col-md-6 pull-right">
+                                                <button class="ps-btn" style="padding: 7px 20px 7px 20px; font-size: 14px;"><a href="{{route('remove.favorite-shop',$shop->id)}}">Unfollow</a></button>
+                                            </div>
+                                        @endif
+                                    </div>
+                                    <div class="mt-4">
+                                        <p class="float-left pr-2">Rating: <strong style="font-size: 30px;">{{$totalRatingCount}}</strong></p>
+                                        <div class="">
+                                            <select class="ps-rating" data-read-only="true" style="margin-top: 7px;">
+                                                @for ($i=0; $i < round($totalRatingCount); $i++)
+                                                    <option value="1">{{$i}}</option>
+                                                @endfor
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                </div><span class="ps-block__divider"></span>
+                                <div class="ps-block__content">
+                                    <p><strong>{{$shop->name}}</strong>, {{$shop->about}}</p><span class="ps-block__divider"></span>
+                                    <p><strong>Address</strong> {{$shop->address}}</p>
+                                    <figure>
+                                        <figcaption>Folow us on social</figcaption>
+                                        <ul class="ps-list--social-color">
+                                            <li><a class="facebook" href="{{$shop->facebook}}"><i class="fa fa-facebook"></i></a></li>
+                                            <li><a class="twitter" href="{{$shop->twitter}}"><i class="fa fa-twitter"></i></a></li>
+                                            <li><a class="linkedin" href="{{$shop->google}}"><i class="fa fa-google-plus"></i></a></li>
+                                            <li><a class="feed" href="{{$shop->youtube}}"><i class="fa fa-youtube"></i></a></li>
+                                        </ul>
+                                    </figure>
+                                </div>
+                                <div class="ps-block__footer">
+                                    <p>Call us directly<strong><a href="tel:{{$user->phone}}">{{$user->phone}}</a></strong></p>
+                                    <p>or Or if you have any question</p><a class="ps-btn ps-btn--fullwidth" href="tel:{{$user->phone}}">Contact Seller</a>
                                 </div>
                             </div>
                         </div>
