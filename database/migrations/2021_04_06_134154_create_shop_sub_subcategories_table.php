@@ -18,7 +18,7 @@ class CreateShopSubSubcategoriesTable extends Migration
             $table->bigInteger('shop_id');
             $table->bigInteger('category_id');
             $table->bigInteger('subcategory_id');
-            $table->bigInteger('sub_subcategory_id');
+            $table->bigInteger('subsubcategory_id');
             $table->timestamps();
         });
     }

@@ -1,5 +1,5 @@
 @extends('frontend.layouts.master')
-@section('title', $subCategory->name)
+@section('title', $subsubCategory->name)
 @push('css')
     <style>
         a:hover {
@@ -86,12 +86,12 @@
                         <div class="ps-block--vendor-filter">
                             <div class="ps-block__left">
                                 <ul>
-                                    <li class="active"><a href="#">{{$subCategory->name}}</a></li>
+                                    <li class="active"><a href="#">{{$subsubCategory->name}}</a></li>
                                 </ul>
                             </div>
                             <div class="ps-block__right">
                                 <form class="ps-form--search text-right" action="" method="get">
-{{--                                    <input class="form-control" type="text" placeholder="Search in this shop">--}}
+                                    {{--                                    <input class="form-control" type="text" placeholder="Search in this shop">--}}
                                     <input type="hidden" name="shop_id" value="{{ $shop->id }}">
                                     <input type="hidden" name="category_id" value="{{ $category->id }}">
                                     <input type="hidden" name="subcategory_id" value="{{ $subCategory->id }}">
@@ -99,38 +99,36 @@
                                 </form>
                             </div>
                         </div>
-                        @if($subSubCategories->count() > 0)
-                        <div class="ps-deal-of-day">
-                            <div class="ps-container">
-                                <div class="ps-section__header">
-                                    <div class="ps-block--countdown-deal">
-                                        <div class="ps-block__left">
-                                            <h4>Featured Sub-child Category</h4>
-                                        </div>
-                                        <div class="ps-block__right">
-                                        </div>
-                                    </div>
-                                    {{--                                    <a href="">View all</a>--}}
-                                </div>
-                                <div class="ps-section__content mb-5" style="margin-top: -30px">
-                                    <div class="ps-carousel--nav owl-slider" data-owl-auto="false" data-owl-loop="false" data-owl-speed="10000" data-owl-gap="30" data-owl-nav="true" data-owl-dots="true" data-owl-item="7" data-owl-item-xs="2" data-owl-item-sm="3" data-owl-item-md="4" data-owl-item-lg="5" data-owl-item-xl="6" data-owl-duration="1000" data-owl-mousedrag="on">
-                                        @foreach($subSubCategories as $subSubCategory)
-                                            <div class="ps-product--inner" style=" margin-bottom: 40px;">
-                                                <div class="card rounded-circle" style=" width:100px; height:100px; background: #fcb800;">
-                                                    <div class="card-body text-center">
-                                                        <h5 class="card-title text-center" style="margin-top: 20px" data-toggle="tooltip" title="{{$subSubCategory->subsubcategory->name}}">
-                                                            <a href="{{url('/shop'.'/'.$shop->slug.'/'.$category->slug.'/'.$subCategory->slug.'/'.$subSubCategory->subsubcategory->slug)}}"> {{$subSubCategory->subsubcategory->name}}</a>
-                                                            {{--                                                           <a href="{{route('subcategory.products/'.$shop->slug.'/'.$category->slug.'/'.$shopSubcategory->subcategory->slug)}}"> {!! Str::limit($shopSubcategory->subcategory->name,9) !!}</a>--}}
-                                                        </h5>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        @endforeach
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        @endif
+{{--                        <div class="ps-deal-of-day">--}}
+{{--                            <div class="ps-container">--}}
+{{--                                <div class="ps-section__header">--}}
+{{--                                    <div class="ps-block--countdown-deal">--}}
+{{--                                        <div class="ps-block__left">--}}
+{{--                                            <h4>Featured Sub-child Category</h4>--}}
+{{--                                        </div>--}}
+{{--                                        <div class="ps-block__right">--}}
+{{--                                        </div>--}}
+{{--                                    </div>--}}
+{{--                                    --}}{{--                                    <a href="">View all</a>--}}
+{{--                                </div>--}}
+{{--                                <div class="ps-section__content mb-5" style="margin-top: -30px">--}}
+{{--                                    <div class="ps-carousel--nav owl-slider" data-owl-auto="false" data-owl-loop="false" data-owl-speed="10000" data-owl-gap="30" data-owl-nav="true" data-owl-dots="true" data-owl-item="7" data-owl-item-xs="2" data-owl-item-sm="3" data-owl-item-md="4" data-owl-item-lg="5" data-owl-item-xl="6" data-owl-duration="1000" data-owl-mousedrag="on">--}}
+{{--                                        @foreach($subSubCategories as $subSubCategory)--}}
+{{--                                            <div class="ps-product--inner" style=" margin-bottom: 40px;">--}}
+{{--                                                <div class="card rounded-circle" style=" width:100px; height:100px; background: #fcb800;">--}}
+{{--                                                    <div class="card-body text-center">--}}
+{{--                                                        <h5 class="card-title text-center" style="margin-top: 20px" data-toggle="tooltip" title="{{$subSubCategory->subsubcategory->name}}">--}}
+{{--                                                            <a href="{{url('/shop'.'/'.$shop->slug.'/'.$category->slug.'/'.$subCategory->slug.'/'.$subSubCategory->subsubcategory->slug)}}"> {{$subSubCategory->subsubcategory->name}}</a>--}}
+{{--                                                            --}}{{--                                                           <a href="{{route('subcategory.products/'.$shop->slug.'/'.$category->slug.'/'.$shopSubcategory->subcategory->slug)}}"> {!! Str::limit($shopSubcategory->subcategory->name,9) !!}</a>--}}
+{{--                                                        </h5>--}}
+{{--                                                    </div>--}}
+{{--                                                </div>--}}
+{{--                                            </div>--}}
+{{--                                        @endforeach--}}
+{{--                                    </div>--}}
+{{--                                </div>--}}
+{{--                            </div>--}}
+{{--                        </div>--}}
                         @if($featuredProducts->count() > 1)
                             <div class="ps-vendor-best-seller">
                                 <div class="ps-section__header">
@@ -183,7 +181,7 @@
                             <div class="ps-tabs">
                                 <div class="ps-tab active" id="tab-1">
                                     <div class="row">
-                                        @foreach($products as $product)
+                                        @forelse($products as $product)
                                             <div class="col-xl-3 col-lg-4 col-md-4 col-sm-6 col-6 ">
                                                 <div class="ps-product">
                                                     <div class="ps-product__thumbnail"><a href="{{route('product-details',$product->slug)}}"><img src="{{asset($product->thumbnail_img)}}" alt="" width="153" height="171"></a>
@@ -212,7 +210,12 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                        @endforeach
+                                        @empty
+                                            <div class="col-md-12 text-center" >
+                                                <h2 class="p-0 m-0">Product Not Available!!</h2>
+                                                <img src="{{asset('frontend/img/loader/nodata.png')}}"  class="img-fluid p-0 m-0" width="50%">
+                                            </div>
+                                        @endforelse
                                     </div>
                                     {{--                                    <div class="ps-pagination">--}}
                                     {{--                                        <ul class="pagination">--}}
