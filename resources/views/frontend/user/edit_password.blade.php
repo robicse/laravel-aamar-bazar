@@ -15,7 +15,7 @@
             <div class="container">
                 <div class="row">
                     @include('frontend.user.includes.user_sidebar')
-                    <div class="col-lg-8">
+                    <div class="col-lg-9" >
                         <div class="ps-section__right">
                             <form class="ps-form--account-setting" action="{{route('user.password-update')}}" method="POST" enctype="multipart/form-data">
                                 @csrf
@@ -24,13 +24,13 @@
                                 </div>
                                 <div class="ps-form__content">
                                     <div class="row">
-                                        <div class="col-sm-6">
+                                        <div class="col-sm-4">
                                             <div class="form-group">
                                                 <label>Old Password</label>
                                                 <input class="form-control" type="password" name="old_password" placeholder="Please enter Old Password...">
                                             </div>
                                         </div>
-                                        <div class="col-sm-6">
+                                        <div class="col-sm-4">
                                             <div class="form-group">
                                                 <label>New Password</label>
                                                 <input class="form-control" type="password" name="password" placeholder="Please enter New Password...">

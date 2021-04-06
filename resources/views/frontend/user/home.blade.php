@@ -35,7 +35,7 @@
                                         <div class="card-body">
                                             <div class="text-center text-white py-4 mb-2" >
                                             <h3 class="card-title text-white mb-3">{{Auth::User()->balance}} Tk</h3>
-                                                <p class="text-white"><a href="{{url('/')}}">Balance</a></p>
+                                                <p class="text-white"><a href="#">Balance</a></p>
                                             </div>
                                         </div>
                                     </div>
