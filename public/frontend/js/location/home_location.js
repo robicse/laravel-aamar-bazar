@@ -121,6 +121,7 @@ function searchShops(lat,lng){
                     var gname=data.response[i].name;
                     var slug=data.response[i].slug;
                     var imag=data.response[i].logo;
+                    var address=data.response[i].address;
                     var base_url =  window.location.origin;
                     var imgPath = base_url+'/'+imag;
                     // fetch('https://barikoi.xyz/v1/api/distance/API_KEY/90.39534587,23.86448886/90.3673,23.8340')
@@ -132,7 +133,9 @@ function searchShops(lat,lng){
                         <a class="city-tile" data-gtm-cta="findRestaurant_dhaka" href="/shop/${slug}"><picture>
                                 <div class="city-picture b-lazy b-loaded" data-src="https://images.deliveryhero.io/image/fd-bd/city-title/city-title-Dhaka.jpg?width=720" style="background-image: url(&quot;${imgPath}">
                                     &nbsp;</div>
-                            </picture> <figcaption class="city-info"> <span class="city-name"> ${gname} </span> <span class="city-letter">30 meter away</span> <span class="city-cta button city__called-action js-ripple"> <svg class="svg-stroke-container mr-4" height="18" viewBox="0 0 20 18" width="20" xmlns="http://www.w3.org/2000/svg"> <g fill="none" fill-rule="evenodd" stroke="#FFFFFF" stroke-linecap="round" stroke-width="2" transform="translate(1 1)"> <path d="M0,8 L17.5,8"></path> <polyline points="4.338 13.628 15.628 13.628 15.628 2.338" stroke-linejoin="round" transform="rotate(-45 9.983 7.983)"></polyline> </g> </svg> </span> </figcaption> </a></figure>
+                            </picture> <figcaption class="city-info"> <span class="city-name"> ${gname} </span> <br>
+                            <span class=""> ${address} </span>
+                            <span class="city-letter">30 METER AWAY</span> <span class="city-cta button city__called-action js-ripple"> <svg class="svg-stroke-container mr-4" height="18" viewBox="0 0 20 18" width="20" xmlns="http://www.w3.org/2000/svg"> <g fill="none" fill-rule="evenodd" stroke="#FFFFFF" stroke-linecap="round" stroke-width="2" transform="translate(1 1)"> <path d="M0,8 L17.5,8"></path> <polyline points="4.338 13.628 15.628 13.628 15.628 2.338" stroke-linejoin="round" transform="rotate(-45 9.983 7.983)"></polyline> </g> </svg> </span> </figcaption> </a></figure>
                 </div>`);
                     //For list
                 }
