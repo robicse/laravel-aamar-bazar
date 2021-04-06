@@ -63,11 +63,16 @@ function success(position) {
         .then(response => response.json())
         .catch(error => console.error('Error:', error))
         .then(response => $('#input-search-map').val(response.place.address))
+
+    fetch(`https://barikoi.xyz/v1/api/search/reverse/MTg3NzpCRE5DQ01JSkgw/geocode?longitude=${lngval}&latitude=${latval}&district=true&post_code=true&country=true&sub_district=true&union=false&pauroshova=false&location_type=true&division=true`)
+        .then(response => response.json())
+        .catch(error => console.error('Error:', error))
+        .then(response => $('.address').val(response.place.address))
 }
 function fail() {
     alert("Please Allow Location For Purchase");
 }
-$('#find').click(function (){
+$('.find').click(function (){
     var latval = sessionStorage.getItem("latitude");
     var lngval = sessionStorage.getItem("longitude");
     if(latval==null){

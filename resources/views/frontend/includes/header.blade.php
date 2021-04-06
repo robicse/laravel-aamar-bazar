@@ -23,7 +23,7 @@
                         <input class="form-control bksearch m-0" type="text" placeholder="Enter your full address" id="input-search" style="border-radius: 4px;" autocomplete="off" value="">
                     @endif
                     <button class="ml-2 mr-1" style="border-radius: 4px;" onclick="geoLocationInit()"><i class="fa fa-map-marker" aria-hidden="true"></i></button>
-                    <button class="mx-1" style="border-radius: 4px;" id="find">Find</button>
+                    <button class="mx-1 find" style="border-radius: 4px;" id="find">Find</button>
                     <button class="mx-1" style="border-radius: 4px;"  title="Find in map" onclick="mapModalClick()"><i class="fa fa-map"></i></button>
                     <div class="ps-panel--search-result bklist ">
                     </div>
@@ -156,13 +156,17 @@
             @if(Request::is('be-a-seller'))
                 <input class="form-control m-0" type="text" placeholder="Enter your full address" id="input-search" style="border-radius: 4px;" autocomplete="off" value="">
             @else
-                <input class="form-control bksearch m-0" type="text" placeholder="Enter your full address" id="input-search" style="border-radius: 4px;" autocomplete="off" value="">
+                {{--<input class="form-control bksearch m-0" type="text" placeholder="Enter your full address" id="input-search" style="border-radius: 4px;" autocomplete="off" value="">--}}
+                <input type="text" onkeyup="getAddress()" id="mobile_search" placeholder="Search Your Area" class="form-control form_height form-control-sm address" autocomplete="off">
             @endif
             <button class="ml-2 mr-1" style="border-radius: 4px;" onclick="geoLocationInit()"><i class="fa fa-map-marker" aria-hidden="true"></i></button>
-            <button class="mx-1" style="border-radius: 4px;" id="find">Find</button>
+            <button class="mx-1 find" style="border-radius: 4px;" id="find">Find</button>
             <div class="ps-panel--search-result bklist ">
             </div>
         </div>
+        <ul class="list-group addList" style="padding: 0;">
+
+        </ul>
     </div>
 </header>
 <div class="ps-panel--sidebar" id="cart-mobile">
@@ -287,7 +291,7 @@
                         <input class="form-control bksearch2 m-0" type="text" placeholder="Enter your full address" id="input-search-map" style="border-radius: 4px;" autocomplete="off" value="">
                     </div>
                     <div class="col-md-3">
-                        <button class="p-3 bg-dark" style="border-radius: 4px; color: #fff;" id="find2">Find Shop</button>
+                        <button class="p-3 bg-dark find" style="border-radius: 4px; color: #fff;" id="find2">Find Shop</button>
                     </div>
                 </div>
                 <div class="bklist2 "></div>
@@ -301,5 +305,51 @@
 
 @push('js')
 
+    <script src="https://cdn.jsdelivr.net/gh/barikoi/barikoi-js@b6f6295467c19177a7d8b73ad4db136905e7cad6/dist/barikoi.min.js?key:MTg3NzpCRE5DQ01JSkgw"></script>
+    <script>
+        Bkoi.onSelect(function () {
+            // get selected data from dropdown list
+            let selectedPlace = Bkoi.getSelectedData()
+            console.log(selectedPlace)
+            // center of the map
+            document.getElementsByName("city")[0].value = selectedPlace.city;
+            document.getElementsByName("area")[0].value = selectedPlace.area;
+            document.getElementsByName("latitude")[0].value = selectedPlace.latitude;
+            document.getElementsByName("longitude")[0].value = selectedPlace.longitude;
 
+        })
+
+        function getAddress() {
+
+            let places=[];
+            let location=null;
+            let add=$('.address').val();
+            $('.addList').empty();
+            fetch("https://barikoi.xyz/v1/api/search/autocomplete/MTg5ODpJUTVHV0RWVFZP/place?q="+add)
+                .then(response => response.json())
+                .catch(error => console.error('Error:', error))
+                .then(response => {
+                    response.places.forEach(result)
+                })
+        }
+        function result(item, index){
+            var $li = $("<li class='list-group-item'><a href='#' class='list-group-item bg-light'>" + item.address + "</a></li>");
+            $(".addList").append($li);
+            $li.on('click', getPlacesDetails.bind(this, item));
+        }
+        function getPlacesDetails(mapData)
+        {
+            searchShops(mapData.latitude,mapData.longitude)
+            $("#mobile_search").val(mapData.address)
+            $(".addList").empty();
+
+            /*$( "input[name='city']" ).val(mapData.city)
+            $( "input[name='area']" ).val(mapData.area)
+            $( "input[name='latitude']" ).val(mapData.latitude)
+            $( "input[name='longitude']" ).val(mapData.longitude)
+            $( "input[name='postal_code']" ).val(mapData.postCode)*/
+            //console.log(mapData)
+        }
+
+    </script>
 @endpush
