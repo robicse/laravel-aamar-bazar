@@ -3,7 +3,11 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Http\Resources\ProductDetailCollection;
+use App\Http\Resources\ProductsListCollection;
+use App\Model\Color;
 use App\Model\FlashDeal;
+use App\Model\FlashDealProduct;
 use App\Model\Product;
 use App\Model\Review;
 use App\Model\Shop;
@@ -14,7 +18,9 @@ use Illuminate\Support\Facades\DB;
 class ProductController extends Controller
 {
     public function getFeaturedProducts($id) {
+        //return 'featured products';
         $shop = Shop::where('id',$id)->first();
+        return new ProductsListCollection(Product::where('featured', 1)->where('user_id', $shop->user_id)->where('published',1)->latest()->get());
         $products = DB::table('products')
             ->join('categories','products.category_id','=','categories.id')
             ->join('subcategories','products.subcategory_id','=','subcategories.id')
@@ -156,5 +162,73 @@ class ProductController extends Controller
             return response()->json(['success'=>false,'response'=> 'Something went wrong!'], 404);
         }
 
+    }
+    public function productDetails($id)
+    {
+        return new ProductDetailCollection(Product::where('id',$id)->get());
+    }
+    public function variantPrice(Request $request)
+    {
+        $product = Product::findOrFail($request->id);
+        $str = '';
+        $tax = 0;
+
+        if ($request->has('color')) {
+            $data['color'] = $request['color'];
+            $str = Color::where('code', $request['color'])->first()->name;
+        }
+
+        foreach (json_decode($request->choice) as $option) {
+            $str .= $str != '' ?  '-'.str_replace(' ', '', $option->name) : str_replace(' ', '', $option->name);
+        }
+
+        if($str != null && $product->variant_product){
+            $product_stock = $product->stocks->where('variant', $str)->first();
+            $price = $product_stock->price;
+            $stockQuantity = $product_stock->qty;
+        }
+        else{
+            $price = $product->unit_price;
+            $stockQuantity = $product->current_stock;
+        }
+
+        //discount calculation
+        $flash_deals = FlashDeal::where('status', 1)->get();
+        $inFlashDeal = false;
+        foreach ($flash_deals as $key => $flash_deal) {
+            if ($flash_deal != null && $flash_deal->status == 1 && strtotime(date('d-m-Y')) >= $flash_deal->start_date && strtotime(date('d-m-Y')) <= $flash_deal->end_date && FlashDealProduct::where('flash_deal_id', $flash_deal->id)->where('product_id', $product->id)->first() != null) {
+                $flash_deal_product = FlashDealProduct::where('flash_deal_id', $flash_deal->id)->where('product_id', $product->id)->first();
+                if($flash_deal_product->discount_type == 'percent'){
+                    $price -= ($price*$flash_deal_product->discount)/100;
+                }
+                elseif($flash_deal_product->discount_type == 'amount'){
+                    $price -= $flash_deal_product->discount;
+                }
+                $inFlashDeal = true;
+                break;
+            }
+        }
+        if (!$inFlashDeal) {
+            if($product->discount_type == 'percent'){
+                $price -= ($price*$product->discount)/100;
+            }
+            elseif($product->discount_type == 'amount'){
+                $price -= $product->discount;
+            }
+        }
+
+       /* if ($product->tax_type == 'percent') {
+            $price += ($price*$product->tax) / 100;
+        }
+        elseif ($product->tax_type == 'amount') {
+            $price += $product->tax;
+        }*/
+
+        return response()->json([
+            'product_id' => $product->id,
+            'variant' => $str,
+            'price' => (double) $price,
+            'in_stock' => $stockQuantity < 1 ? false : true
+        ]);
     }
 }

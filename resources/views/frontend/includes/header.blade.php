@@ -5,7 +5,6 @@
         border: 0px;
     }
 </style>
-
 <header class="header header--1" data-sticky="true" style="height: 100px;">
     <div class="header__top">
         <div class="ps-container">

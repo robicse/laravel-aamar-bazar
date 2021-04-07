@@ -21,9 +21,18 @@ class Product extends Model
         return $this->belongsTo('App\Model\Brand','brand_id');
 
     }
+
     public function category()
     {
         return $this->belongsTo('App\Model\Category', 'category_id');
+    }
+    public function subCategory()
+    {
+        return $this->belongsTo('App\Model\Subcategory', 'subcategory_id');
+    }
+    public function subSubCategory()
+    {
+        return $this->belongsTo('App\Model\SubSubcategory', 'subsubcategory_id');
     }
     public function stocks(){
         return $this->hasMany("App\Model\ProductStock",'product_id');
