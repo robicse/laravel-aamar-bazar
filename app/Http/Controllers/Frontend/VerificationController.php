@@ -47,7 +47,7 @@ class VerificationController extends Controller
                 /*return redirect('login');*/
                 $credentials = [
                     'phone' => Session::get('phone'),
-                    'password' => '123456',
+                    'password' => Session::get('password'),
                     'user_type' => Session::get('user_type'),
                 ];
 
