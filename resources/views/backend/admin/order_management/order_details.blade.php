@@ -29,8 +29,7 @@
                 <div class="col-12">
                     <div class="callout callout-info">
                         <div class="card card-info" style="padding: 20px 40px 40px 40px;">
-                            <form role="form" action="" method="">
-                                @csrf
+
                                 <div class="row">
                                     <div class="col-4">
                                         <label>Payment Status</label>
@@ -52,7 +51,6 @@
 {{--                                        <input type="text" value="{{$order->delivery_status}}" class="form-control" id="inputName" readonly>--}}
                                     </div>
                                 </div>
-                            </form>
                         </div>
 
                     </div>
@@ -89,11 +87,10 @@
                             </div>
                             <!-- /.col -->
                             <div class="col-sm-4 invoice-col">
-                                <b>Invoice {{$order->invoice_code}}</b><br>
-                                <br>
-                                <b>Order ID:</b> {{$order->id}}<br>
-                                <b>Payment Due:</b> {{date('j-m-Y',strtotime($order->created_at))}}<br>
-                                <b>Transaction ID:</b> {{$order->transaction_id}}
+                                <b>Invoice Info</b><br>
+                                <b>Invoice Code:</b> {{$order->invoice_code}}<br>
+                                <b>Date of Order:</b> {{date('jS F Y',strtotime($order->created_at))}}<br>
+
                             </div>
                             <!-- /.col -->
                         </div>

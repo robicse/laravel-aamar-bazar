@@ -83,7 +83,7 @@ class FrontendController extends Controller
 
 
         Session::put('phone',$request->phone);
-        Session::put('password','123456');
+        Session::put('password',$request->password);
         Session::put('user_type','customer');
 
 
