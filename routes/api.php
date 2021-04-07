@@ -94,8 +94,8 @@ Route::get('/flash-deals-products/{id}','Api\ProductController@getFlashDeals');
 Route::get('/related-products/{id}','Api\ProductController@getRelatedProducts');
 Route::post('/search/product', 'Api\ProductController@search_product');
 
-Route::get('/category/featured-products/{id}', 'Api\CategoryController@featuredProducts');
-Route::get('/category/all-products/{id}', 'Api\CategoryController@categoryAllProducts');
+Route::post('/category/featured-products', 'Api\CategoryController@featuredProducts');
+Route::post('/category/all-products', 'Api\CategoryController@categoryAllProducts');
 //Route::get('/shop-subcategory', 'Api\CategoryController@categoryProducts');
 
 //Shop Subcategory
