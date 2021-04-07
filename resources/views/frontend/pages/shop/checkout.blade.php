@@ -64,6 +64,13 @@
                     <form class="ps-form--checkout" action="{{route('checkout.order.submit')}}" method="post">
                         @csrf
                         <div class="row">
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="name" class="">Name <small class="text-danger">(You can change delivery name)</small></label>
+                                    <input type="text" class="form-control form_height form-control-sm" name="name" value="{{Auth::user()->name}}">
+                            </div>
+                        </div>
+                        <div class="row">
                             <div class="col-xl-8 col-lg-8 col-md-12 col-sm-12  ">
                                 <div class="ps-form__billing-info">
                                     <h3 class="ps-form__heading">Shipping Details</h3>

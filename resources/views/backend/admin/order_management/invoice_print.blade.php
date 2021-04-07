@@ -63,9 +63,8 @@
             <div class="col-sm-4 invoice-col">
                 <b>Invoice Info</b><br>
                 <b>Invoice Code:</b> {{$order->invoice_code}}<br>
-                <b>Order ID:</b> {{$order->id}}<br>
-                <b>Payment Due:</b> {{date('j-m-Y',strtotime($order->created_at))}}<br>
-                <b>Transaction ID:</b> {{$order->transaction_id}}
+                <b>Date of Order:</b> {{date('jS F Y',strtotime($order->created_at))}}<br>
+{{--                <b>Transaction ID:</b> {{$order->transaction_id}}--}}
             </div>
             <!-- /.col -->
         </div>
