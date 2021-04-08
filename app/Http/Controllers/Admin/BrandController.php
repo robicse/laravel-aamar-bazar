@@ -13,6 +13,13 @@ use Intervention\Image\Facades\Image;
 
 class BrandController extends Controller
 {
+    function __construct()
+    {
+        $this->middleware('permission:brands-list|brands-create|brands-edit|brands-delete', ['only' => ['index','store']]);
+        $this->middleware('permission:brands-create', ['only' => ['create','store']]);
+        $this->middleware('permission:brands-edit', ['only' => ['edit','update']]);
+        $this->middleware('permission:brands-delete', ['only' => ['destroy']]);
+    }
     /**
      * Display a listing of the resource.
      *

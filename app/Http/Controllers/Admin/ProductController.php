@@ -20,6 +20,15 @@ use Illuminate\Support\Str;
 
 class ProductController extends Controller
 {
+    function __construct()
+    {
+        $this->middleware('permission:products-list|products-create|products-edit|products-delete', ['only' => ['index','store']]);
+        $this->middleware('permission:products-create', ['only' => ['create','store']]);
+        $this->middleware('permission:products-edit', ['only' => ['edit','update']]);
+        $this->middleware('permission:products-delete', ['only' => ['destroy']]);
+        /*$this->middleware('permission:products-publish', ['only' => ['updatePublished']]);*/
+    }
+
     /**
      * Display a listing of the resource.
      *
