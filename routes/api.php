@@ -94,16 +94,22 @@ Route::get('/flash-deals-products/{id}','Api\ProductController@getFlashDeals');
 Route::get('/related-products/{id}','Api\ProductController@getRelatedProducts');
 Route::post('/search/product', 'Api\ProductController@search_product');
 
-Route::get('/category/featured-products/{id}', 'Api\CategoryController@featuredProducts');
-Route::get('/category/all-products/{id}', 'Api\CategoryController@categoryAllProducts');
+Route::post('/category/featured-products', 'Api\CategoryController@featuredProducts');
+Route::post('/category/all-products', 'Api\CategoryController@categoryAllProducts');
 //Route::get('/shop-subcategory', 'Api\CategoryController@categoryProducts');
 
 //Shop Subcategory
 Route::post('/shop-subcategories','Api\ShopSubcategoryController@getShopSubcategories');
+Route::post('/shop-subcategories/featured-products','Api\ShopSubcategoryController@getFeaturedProducts');
+Route::post('/shop-subcategories/all-products','Api\ShopSubcategoryController@getAllProducts');
+
+// Shop Ratings
 Route::get('/shop-total-ratings/{id}','Api\ShopController@getShopRatings');
 
 //Shop Subcategory
 Route::post('/shop-subsubcategories','Api\ShopSubSubCategoryController@getShopSubSubcategories');
+Route::post('/shop-subsubcategories/featured-products','Api\ShopSubSubCategoryController@getFeaturedProducts');
+Route::post('/shop-subsubcategories/all-products','Api\ShopSubSubCategoryController@getAllProducts');
 
 
 Route::get('/favorite-shops', 'Api\CustomerController@getFavoriteShop' );

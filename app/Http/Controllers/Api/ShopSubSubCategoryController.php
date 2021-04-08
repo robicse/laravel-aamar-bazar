@@ -3,6 +3,11 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Http\Resources\ProductsListCollection;
+use App\Model\Product;
+use App\Model\Shop;
+use App\Model\ShopSubcategory;
+use App\Model\ShopSubSubcategory;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -23,5 +28,15 @@ class ShopSubSubCategoryController extends Controller
         else{
             return response()->json(['success'=>false,'response'=> 'Something went wrong!'], 404);
         }
+    }
+    public function getFeaturedProducts(Request $request) {
+        $shop = Shop::find($request->shop_id);
+        $shopSubSubcategories = ShopSubSubcategory::where('subsubcategory_id',$request->subsubcategory_id)->where('shop_id',$shop->id)->first();
+        return new ProductsListCollection(Product::where('published',1)->where('featured',1)->where('subsubcategory_id',$shopSubSubcategories->subsubcategory_id)->where('user_id',$shop->user_id)->latest()->get());
+    }
+    public function getAllProducts(Request $request) {
+        $shop = Shop::find($request->shop_id);
+        $shopSubSubcategories = ShopSubSubcategory::where('subsubcategory_id',$request->subsubcategory_id)->where('shop_id',$shop->id)->first();
+        return new ProductsListCollection(Product::where('published',1)->where('subsubcategory_id',$shopSubSubcategories->subsubcategory_id)->where('user_id',$shop->user_id)->latest()->get());
     }
 }
