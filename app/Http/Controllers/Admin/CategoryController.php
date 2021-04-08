@@ -14,11 +14,14 @@ use Intervention\Image\Facades\Image;
 
 class CategoryController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    function __construct()
+    {
+        $this->middleware('permission:categories-list|categories-create|categories-edit', ['only' => ['index','store']]);
+        $this->middleware('permission:categories-create', ['only' => ['create','store']]);
+        $this->middleware('permission:categories-edit', ['only' => ['edit','update']]);
+        $this->middleware('permission:categories-delete', ['only' => ['destroy']]);
+    }
+
     public function index()
     {
         $categories = Category::all();

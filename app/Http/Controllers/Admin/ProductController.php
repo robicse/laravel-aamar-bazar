@@ -25,7 +25,12 @@ class ProductController extends Controller
         $this->middleware('permission:products-list|products-create|products-edit|products-delete', ['only' => ['index','store']]);
         $this->middleware('permission:products-create', ['only' => ['create','store']]);
         $this->middleware('permission:products-edit', ['only' => ['edit','update']]);
-        $this->middleware('permission:products-delete', ['only' => ['destroy']]);
+        $this->middleware('permission:products-todays-deal-update', ['only' => ['updateTodaysDeal']]);
+        $this->middleware('permission:products-published-update', ['only' => ['updatePublished']]);
+        $this->middleware('permission:products-featured-update', ['only' => ['updateFeatured']]);
+        $this->middleware('permission:seller-requested-product-list', ['only' => ['sellerReqList']]);
+        $this->middleware('permission:all-sellers-product-list', ['only' => ['sellerProductList']]);
+//        $this->middleware('permission:products-delete', ['only' => ['destroy']]);
         /*$this->middleware('permission:products-publish', ['only' => ['updatePublished']]);*/
     }
 

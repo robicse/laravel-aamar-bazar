@@ -11,6 +11,13 @@ use Illuminate\Support\Str;
 
 class SubSubcategoryController extends Controller
 {
+    function __construct()
+    {
+        $this->middleware('permission:subsubcategories-list|subsubcategories-create|subsubcategories-edit', ['only' => ['index','store']]);
+        $this->middleware('permission:subsubcategories-create', ['only' => ['create','store']]);
+        $this->middleware('permission:subsubcategories-edit', ['only' => ['edit','update']]);
+    }
+
     /**
      * Display a listing of the resource.
      *

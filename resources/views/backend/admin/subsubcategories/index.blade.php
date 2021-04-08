@@ -58,14 +58,14 @@
                                     <a class="btn btn-info waves-effect" href="{{route('admin.sub-subcategories.edit',$subsubcategory->id)}}">
                                         <i class="fa fa-edit"></i>
                                     </a>
-                                    <button class="btn btn-danger waves-effect" type="button"
-                                            onclick="deleteSubCategory({{$subsubcategory->id}})">
-                                        <i class="fa fa-trash"></i>
-                                    </button>
-                                    <form id="delete-form-{{$subsubcategory->id}}" action="{{route('admin.sub-subcategories.destroy',$subsubcategory->id)}}" method="POST" style="display: none;">
-                                        @csrf
-                                        @method('DELETE')
-                                    </form>
+{{--                                    <button class="btn btn-danger waves-effect" type="button"--}}
+{{--                                            onclick="deleteSubCategory({{$subsubcategory->id}})">--}}
+{{--                                        <i class="fa fa-trash"></i>--}}
+{{--                                    </button>--}}
+{{--                                    <form id="delete-form-{{$subsubcategory->id}}" action="{{route('admin.sub-subcategories.destroy',$subsubcategory->id)}}" method="POST" style="display: none;">--}}
+{{--                                        @csrf--}}
+{{--                                        @method('DELETE')--}}
+{{--                                    </form>--}}
                                 </td>
                             </tr>
                             @endforeach

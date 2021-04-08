@@ -14,6 +14,15 @@ use Illuminate\Support\Str;
 
 class FlashDealController extends Controller
 {
+    function __construct()
+    {
+        $this->middleware('permission:flash_deals-list|flash_deals-create|flash_deals-edit', ['only' => ['index','store']]);
+        $this->middleware('permission:flash_deals-create', ['only' => ['create','store']]);
+        $this->middleware('permission:flash_deals-edit', ['only' => ['edit','update']]);
+        $this->middleware('permission:flash_deals-product-create', ['only' => ['productsAdd','flashDealProductsStore']]);
+        $this->middleware('permission:flash_deals-product-edit', ['only' => ['productsEdit','flashDealProductsUpdate']]);
+    }
+
     /**
      * Display a listing of the resource.
      *

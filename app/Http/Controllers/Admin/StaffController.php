@@ -14,10 +14,10 @@ class StaffController extends Controller
 {
     function __construct()
     {
-        $this->middleware('permission:staff-list|staff-create|staff-edit|staff-delete', ['only' => ['index','store']]);
-        $this->middleware('permission:staff-create', ['only' => ['create','store']]);
-        $this->middleware('permission:staff-edit', ['only' => ['edit','update']]);
-        $this->middleware('permission:staff-delete', ['only' => ['destroy']]);
+        $this->middleware('permission:staffs-list|staffs-create|staffs-edit|staffs-delete', ['only' => ['index','store']]);
+        $this->middleware('permission:staffs-create', ['only' => ['create','store']]);
+        $this->middleware('permission:staffs-edit', ['only' => ['edit','update']]);
+        $this->middleware('permission:staffs-delete', ['only' => ['destroy']]);
     }
     /**
      * Display a listing of the resource.

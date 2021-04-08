@@ -14,6 +14,14 @@ use Intervention\Image\Facades\Image;
 
 class SubcategoryController extends Controller
 {
+
+    function __construct()
+    {
+        $this->middleware('permission:subcategories-list|subcategories-create|subcategories-edit', ['only' => ['index','store']]);
+        $this->middleware('permission:subcategories-create', ['only' => ['create','store']]);
+        $this->middleware('permission:subcategories-edit', ['only' => ['edit','update']]);
+    }
+
     /**
      * Display a listing of the resource.
      *

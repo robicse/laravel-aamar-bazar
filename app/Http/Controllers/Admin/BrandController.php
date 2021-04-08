@@ -15,10 +15,10 @@ class BrandController extends Controller
 {
     function __construct()
     {
-        $this->middleware('permission:brands-list|brands-create|brands-edit|brands-delete', ['only' => ['index','store']]);
+        $this->middleware('permission:brands-list|brands-create|brands-edit', ['only' => ['index','store']]);
         $this->middleware('permission:brands-create', ['only' => ['create','store']]);
         $this->middleware('permission:brands-edit', ['only' => ['edit','update']]);
-        $this->middleware('permission:brands-delete', ['only' => ['destroy']]);
+
     }
     /**
      * Display a listing of the resource.
@@ -148,15 +148,15 @@ class BrandController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
-    {
-        $brand = Brand::find($id);
-        if(Storage::disk('public')->exists('uploads/brands/'.$brand->logo))
-        {
-            Storage::disk('public')->delete('uploads/brands/'.$brand->logo);
-        }
-        $brand->delete();
-        Toastr::success('Brand deleted successfully','Success');
-        return back();
-    }
+//    public function destroy($id)
+//    {
+//        $brand = Brand::find($id);
+//        if(Storage::disk('public')->exists('uploads/brands/'.$brand->logo))
+//        {
+//            Storage::disk('public')->delete('uploads/brands/'.$brand->logo);
+//        }
+//        $brand->delete();
+//        Toastr::success('Brand deleted successfully','Success');
+//        return back();
+//    }
 }

@@ -12,6 +12,13 @@ use Intervention\Image\Facades\Image;
 
 class OfferController extends Controller
 {
+    function __construct()
+    {
+        $this->middleware('permission:offers-list|offers-create|offers-edit', ['only' => ['index','store']]);
+        $this->middleware('permission:offers-create', ['only' => ['create','store']]);
+        $this->middleware('permission:offers-edit', ['only' => ['edit','update']]);
+
+    }
     public function index()
     {
         $offers = Offer::all();
