@@ -100,10 +100,16 @@ Route::post('/category/all-products', 'Api\CategoryController@categoryAllProduct
 
 //Shop Subcategory
 Route::post('/shop-subcategories','Api\ShopSubcategoryController@getShopSubcategories');
+Route::post('/shop-subcategories/featured-products','Api\ShopSubcategoryController@getFeaturedProducts');
+Route::post('/shop-subcategories/all-products','Api\ShopSubcategoryController@getAllProducts');
+
+// Shop Ratings
 Route::get('/shop-total-ratings/{id}','Api\ShopController@getShopRatings');
 
 //Shop Subcategory
 Route::post('/shop-subsubcategories','Api\ShopSubSubCategoryController@getShopSubSubcategories');
+Route::post('/shop-subsubcategories/featured-products','Api\ShopSubSubCategoryController@getFeaturedProducts');
+Route::post('/shop-subsubcategories/all-products','Api\ShopSubSubCategoryController@getAllProducts');
 
 
 Route::get('/favorite-shops', 'Api\CustomerController@getFavoriteShop' );

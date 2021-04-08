@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Http\Resources\ProductsListCollection;
+use App\Model\Product;
 use App\Model\Shop;
 use App\Model\ShopCategory;
 use App\Model\ShopSubcategory;
@@ -26,5 +28,15 @@ class ShopSubcategoryController extends Controller
         else{
             return response()->json(['success'=>false,'response'=> 'Something went wrong!'], 404);
         }
+    }
+    public function getFeaturedProducts(Request $request){
+        $shop = Shop::find($request->shop_id);
+        $shopCategory = ShopSubcategory::where('subcategory_id',$request->subcategory_id)->where('shop_id',$shop->id)->first();
+        return new ProductsListCollection(Product::where('published',1)->where('featured',1)->where('subcategory_id',$shopCategory->subcategory_id)->where('user_id',$shop->user_id)->latest()->get());
+    }
+    public function getAllProducts(Request $request){
+        $shop = Shop::find($request->shop_id);
+        $shopCategory = ShopSubcategory::where('subcategory_id',$request->subcategory_id)->where('shop_id',$shop->id)->first();
+        return new ProductsListCollection(Product::where('published',1)->where('subcategory_id',$shopCategory->subcategory_id)->where('user_id',$shop->user_id)->latest()->get());
     }
 }
