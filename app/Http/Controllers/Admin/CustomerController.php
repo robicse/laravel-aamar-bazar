@@ -13,6 +13,13 @@ use Illuminate\Support\Facades\Hash;
 
 class CustomerController extends Controller
 {
+    function __construct()
+    {
+        $this->middleware('permission:customer-list', ['only' => ['index']]);
+        $this->middleware('permission:customer-edit', ['only' => ['profileShow','updateProfile','updatePassword']]);
+        $this->middleware('permission:top-customer-list', ['only' => ['topRatedCustomers']]);
+
+    }
     public function index()
     {
         $customerInfos = DB::table('users')

@@ -10,6 +10,13 @@ use Illuminate\Http\Request;
 
 class PaymentController extends Controller
 {
+    function __construct()
+    {
+        $this->middleware('permission:due-to-seller', ['only' => ['dueToSeller','dueToSellerDetails']]);
+        $this->middleware('permission:due-to-admin', ['only' => ['dueToAdmin','dueToAdminDetails']]);
+
+
+    }
     public function dueToSeller(){
         $sellers = User::where('user_type','seller')->get();
         $sellerInfo = null;

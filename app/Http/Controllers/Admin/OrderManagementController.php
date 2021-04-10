@@ -15,6 +15,22 @@ use Illuminate\Support\Facades\DB;
 
 class OrderManagementController extends Controller
 {
+    function __construct()
+    {
+        $this->middleware('permission:all-order-list', ['only' => ['index']]);
+        $this->middleware('permission:pending-order-list', ['only' => ['pendingOrder']]);
+        $this->middleware('permission:on-review-order-list', ['only' => ['onReviewedOrder']]);
+        $this->middleware('permission:on-delivered-order-list', ['only' => ['onDeliveredOrder']]);
+        $this->middleware('permission:delivered-order-list', ['only' => ['deliveredOrder']]);
+        $this->middleware('permission:completed-order-list', ['only' => ['completedOrder']]);
+        $this->middleware('permission:canceled-order-list', ['only' => ['canceledOrder']]);
+        $this->middleware('permission:order-details', ['only' => ['orderDetails']]);
+        $this->middleware('permission:order-status-change', ['only' => ['OrderProductChangeStatus']]);
+        $this->middleware('permission:order-invoice-print', ['only' => ['orderInvoicePrint']]);
+        $this->middleware('permission:daily-order-list', ['only' => ['dailyOrders']]);
+
+    }
+
     public function index(){
         $orders = Order::latest()->get();
         $areaWiseOrders = null;

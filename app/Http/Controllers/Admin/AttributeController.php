@@ -9,11 +9,13 @@ use Illuminate\Http\Request;
 
 class AttributeController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    function __construct()
+    {
+        $this->middleware('permission:attribute-list|attribute-create|attribute-edit', ['only' => ['index','store']]);
+        $this->middleware('permission:attribute-create', ['only' => ['create','store']]);
+        $this->middleware('permission:attribute-edit', ['only' => ['edit','update']]);
+
+    }
     public function index()
     {
         $attributes = Attribute::all();

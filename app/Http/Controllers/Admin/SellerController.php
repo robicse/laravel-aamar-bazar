@@ -22,6 +22,21 @@ use Illuminate\Support\Facades\Session;
 
 class SellerController extends Controller
 {
+    function __construct()
+    {
+        $this->middleware('permission:seller-list', ['only' => ['index']]);
+        $this->middleware('permission:seller-verification', ['only' => ['verification']]);
+        $this->middleware('permission:seller-commission-set', ['only' => ['commissionForm','commissionStore']]);
+        $this->middleware('permission:admin-payment-history', ['only' => ['adminPaymentHistory']]);
+        $this->middleware('permission:admin-payment-report', ['only' => ['adminPaymentReport']]);
+        $this->middleware('permission:seller-profile', ['only' => ['profileShow','updateProfile','updatePassword','updateAddress','bankInfoUpdate']]);
+        $this->middleware('permission:pay-to-seller', ['only' => ['payment_modal','pay_to_seller_commission']]);
+        $this->middleware('permission:pay-to-admin', ['only' => ['admin_payment_modal','admin_withdraw_store']]);
+        $this->middleware('permission:seller-payment-history', ['only' => ['paymentHistory']]);
+        $this->middleware('permission:ban-seller', ['only' => ['banSeller']]);
+
+
+    }
     public function index()
     {
         $sellerUserInfos = User::where('user_type','seller')->where('verification_code','!=',null)->latest()->get();

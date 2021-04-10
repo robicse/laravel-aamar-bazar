@@ -13,6 +13,12 @@ use Illuminate\Support\Facades\Session;
 
 class VendorController extends Controller
 {
+    function __construct()
+    {
+        $this->middleware('permission:get-all-vendors', ['only' => ['index']]);
+        $this->middleware('permission:seller-order-report', ['only' => ['sellerReport','sellerOrderDetails']]);
+        $this->middleware('permission:top-ratted-shop', ['only' => ['topRatedShop']]);
+    }
     public function index() {
        //echo "Hello";
         return view('backend.admin.vendor.index');

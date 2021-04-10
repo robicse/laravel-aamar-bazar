@@ -9,6 +9,13 @@ use Illuminate\Http\Request;
 
 class QuoteController extends Controller
 {
+    function __construct()
+    {
+        $this->middleware('permission:quotes-list|quotes-create|quotes-edit', ['only' => ['index','store']]);
+        $this->middleware('permission:quotes-create', ['only' => ['create','store']]);
+        $this->middleware('permission:quotes-edit', ['only' => ['edit','update']]);
+
+    }
     public function index()
     {
         $quotes = Quote::all();

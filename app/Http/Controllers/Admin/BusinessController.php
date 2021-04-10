@@ -9,6 +9,11 @@ use Illuminate\Http\Request;
 
 class BusinessController extends Controller
 {
+    function __construct()
+    {
+        $this->middleware('permission:business-settings', ['only' => ['index','commissionUpdate','refferalValueUpdate','firstOrderValueUpdate']]);
+
+    }
     public function index(){
         $sellerCommission = BusinessSetting::where('type','seller_commission')->first();
         $refferalValue = BusinessSetting::where('type','refferal_value')->first();

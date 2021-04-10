@@ -9,6 +9,14 @@ use Illuminate\Http\Request;
 
 class ReviewController extends Controller
 {
+    function __construct()
+    {
+        $this->middleware('permission:review-list', ['only' => ['index','reviewDetails']]);
+        $this->middleware('permission:review-show', ['only' => ['view','updateStatus']]);
+        $this->middleware('permission:review-update', ['only' => ['reviewUpdate']]);
+
+
+    }
     public function index() {
         $value = null;
         $reviews = null;

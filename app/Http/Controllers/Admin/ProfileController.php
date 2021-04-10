@@ -10,6 +10,13 @@ use Illuminate\Support\Facades\Hash;
 
 class ProfileController extends Controller
 {
+    function __construct()
+    {
+        $this->middleware('permission:admin-profile-view', ['only' => ['index']]);
+        $this->middleware('permission:admin-profile-update', ['only' => ['update']]);
+        $this->middleware('permission:admin-password-update', ['only' => ['updatePassword']]);
+
+    }
     public function index()
     {
         return view('backend.admin.profile.index');

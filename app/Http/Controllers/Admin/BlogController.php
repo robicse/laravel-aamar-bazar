@@ -14,7 +14,14 @@ use Intervention\Image\Facades\Image;
 
 class BlogController extends Controller
 {
+    function __construct()
+    {
+        $this->middleware('permission:blog-list', ['only' => ['index','store']]);
+        $this->middleware('permission:blog-create', ['only' => ['create','store']]);
+        $this->middleware('permission:blog-edit', ['only' => ['edit','update']]);
+        $this->middleware('permission:blog-delete', ['only' => ['destroy']]);
 
+    }
     public function index()
     {
         $blogs = Blog::all();
