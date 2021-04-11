@@ -97,12 +97,16 @@
                                             @endif
                                         </td>
                                         <td>
-                                            <div class="form-group col-md-2">
-                                                <label class="switch" style="margin-top:40px;">
-                                                    <input onchange="verification_status(this)" value="{{$sellerUserInfo->seller->id }}" {{$sellerUserInfo->seller->verification_status == 1? 'checked':''}} type="checkbox" >
-                                                    <span class="slider round"></span>
-                                                </label>
-                                            </div>
+                                            @if($sellerUserInfo->banned == 0)
+                                                <div class="form-group col-md-2">
+                                                    <label class="switch" style="margin-top:40px;">
+                                                        <input onchange="verification_status(this)" value="{{$sellerUserInfo->seller->id }}" {{$sellerUserInfo->seller->verification_status == 1? 'checked':''}} type="checkbox" >
+                                                        <span class="slider round"></span>
+                                                    </label>
+                                                </div>
+                                            @else
+                                                <strong class="badge badge-danger w-100">Banned</strong>
+                                            @endif
                                         </td>
                                         <td ><strong class="badge badge-info w-100">{{$sellerUserInfo->seller->commission}}%</strong></td>
                                         <td>{{$sellerUserInfo->products->count()}}</td>
@@ -172,12 +176,16 @@
                                                 @endif
                                             </td>
                                             <td>
-                                                <div class="form-group col-md-2">
-                                                    <label class="switch" style="margin-top:40px;">
-                                                        <input onchange="verification_status(this)" value="{{$sellerUserInfo->seller->id }}" {{$sellerUserInfo->seller->verification_status == 1? 'checked':''}} type="checkbox" >
-                                                        <span class="slider round"></span>
-                                                    </label>
-                                                </div>
+                                                @if($sellerUserInfo->banned == 0)
+                                                    <div class="form-group col-md-2">
+                                                        <label class="switch" style="margin-top:40px;">
+                                                            <input onchange="verification_status(this)" value="{{$sellerUserInfo->seller->id }}" {{$sellerUserInfo->seller->verification_status == 1? 'checked':''}} type="checkbox" >
+                                                            <span class="slider round"></span>
+                                                        </label>
+                                                    </div>
+                                                @else
+                                                    <strong class="badge badge-danger w-100">Banned</strong>
+                                                @endif
                                             </td>
                                             <td ><strong class="badge badge-info w-100">{{$sellerUserInfo->seller->commission}}%</strong></td>
                                             <td>{{$sellerUserInfo->products->count()}}</td>
