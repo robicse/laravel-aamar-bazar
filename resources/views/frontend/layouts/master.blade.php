@@ -80,6 +80,7 @@
         src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCqEEDdypCvLeSVWqN2JGlQ2pMvCCQKG24&libraries=places">
 </script>
 @stack('js')
+
 {!! Toastr::message() !!}
 <script>
     @if($errors->any())
@@ -90,7 +91,6 @@
     });
     @endforeach
     @endif
-
 </script>
 
 
