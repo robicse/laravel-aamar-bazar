@@ -29,14 +29,14 @@ class VendorController extends Controller
     }
 
     public function sellerReport() {
-        $sellers = User::where('user_type','seller')->get();
+        $sellers = User::where('user_type','seller')->where('verification_code','!=',null)->latest()->get();
         $orders = null;
         $sellerId = null;
         $deliveryStatus = null;
         return view('backend.admin.vendor.seller_report',compact('sellers','orders','sellerId','deliveryStatus'));
     }
     public function sellerOrderDetails(Request $request) {
-        $sellers = User::where('user_type','seller')->get();
+        $sellers = User::where('user_type','seller')->where('verification_code','!=',null)->latest()->get();
         if (!empty($request->seller_id && $request->delivery_status)){
             $sellerId = $request->seller_id;
             $shop = Shop::where('user_id',$sellerId)->first();

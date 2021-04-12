@@ -34,7 +34,7 @@
                                         <label>Seller List</label>
                                         <select name="seller_id" id="" class="form-control select2">
                                             @foreach($sellers as $seller)
-                                                <option value="{{$seller->id}}" {{$sellerId == $seller->id ? 'selected' : ''}}>{{$seller->name}}</option>
+                                                <option value="{{$seller->id}}" {{$sellerId == $seller->id ? 'selected' : ''}}>{{$seller->name}} ({{$seller->shop->name}})</option>
                                             @endforeach
                                         </select>
                                     </div>

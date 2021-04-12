@@ -59,7 +59,7 @@
                                                         @endif
                                                 </td>
                                                 <td>
-                                                    <a class="ps-btn text-center" style="padding: 7px 12px 7px 12px; font-size: 14px;" href="#" id="add_to_cart">Cart</a>
+                                                    <a class="ps-btn text-center" style="padding: 7px 12px 7px 12px; font-size: 14px;" href="{{route('product-details',$wishlist->product->slug)}}">Cart</a>
                                                     <a class="ps-btn text-center" style="padding: 7px 12px 7px 12px; font-size: 14px;" href="{{route('remove.wishlist',$wishlist->id)}}" id="add_to_cart">Remove</a>
                                                 </td>
                                             </tr>

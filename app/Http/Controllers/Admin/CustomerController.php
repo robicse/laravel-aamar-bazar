@@ -117,4 +117,11 @@ class CustomerController extends Controller
 //        dd($customers);
         return view('backend.admin.top_customers.index',compact('customers'));
     }
+    public function banCustomer($id) {
+        $customer = User::findOrFail($id);
+        $customer->banned = 1;
+        $customer->save();
+        Toastr::success('This Customer has been Baned', 'Success');
+        return redirect()->back();
+    }
 }
