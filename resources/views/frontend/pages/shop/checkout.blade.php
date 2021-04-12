@@ -236,10 +236,10 @@
                         <div class="ps-form__content" >
                             <div class="form-group" style="margin-bottom: 0;">
                                 <label for="bksearch" class="">Area</label>
-                                <input type="text" onkeyup="getAddress()" placeholder="Search Your Area" class="form-control form_height form-control-sm address" autocomplete="off">
+                                <input type="text" onkeyup="getAddress3()" placeholder="Search Your Area" class="form-control form_height form-control-sm address3" autocomplete="off">
                             </div>
                         </div>
-                        <ul class="list-group addList" style="padding: 0;">
+                        <ul class="list-group addList3" style="padding: 0;">
 
                         </ul>
                         <div class="form-group">
@@ -310,27 +310,28 @@
 
         })
 
-        function getAddress() {
-
+        function getAddress3() {
             let places=[];
             let location=null;
-            let add=$('.address').val();
-            $('.addList').empty();
+            let add=$('.address3').val();
+            console.log(add);
+            $('.addList3').empty();
             fetch("https://barikoi.xyz/v1/api/search/autocomplete/MTg5ODpJUTVHV0RWVFZP/place?q="+add)
                 .then(response => response.json())
                 .catch(error => console.error('Error:', error))
                 .then(response => {
-                    response.places.forEach(result)
+                    response.places.forEach(result3)
                 })
         }
-        function result(item, index){
+        function result3(item, index){
             var $li = $("<li class='list-group-item'><a href='#' class='list-group-item bg-light'>" + item.address + "</a></li>");
-            $(".addList").append($li);
-            $li.on('click', getPlacesDetails.bind(this, item));
+            $(".addList3").append($li);
+            $li.on('click', getPlacesDetails3.bind(this, item));
         }
-        function getPlacesDetails(mapData)
+        function getPlacesDetails3(mapData)
         {
-            $(".addList").empty();
+            $(".addList3").empty();
+            $( ".address3" ).val(mapData.address)
             $( "input[name='city']" ).val(mapData.city)
             $( "input[name='area']" ).val(mapData.area)
             $( "input[name='latitude']" ).val(mapData.latitude)
