@@ -26,7 +26,7 @@ class WishlistController extends Controller
                 return redirect()->back();
 
             }else{
-                Toastr::warning('This product is not added in your wishlist');
+                Toastr::warning('This product already added in your wishlist');
                 return redirect()->back();
             }
         }else{
