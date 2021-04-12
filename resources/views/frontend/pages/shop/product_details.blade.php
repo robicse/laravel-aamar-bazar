@@ -64,8 +64,6 @@
                                             @foreach($photos as $key => $photo)
                                             <div class="item"><a href="{{url($photo)}}"><img src="{{url($photo)}}" alt=""></a></div>
                                             @endforeach
-                                            <div class="item"><a href="{{asset('frontend/img/products/detail/fullwidth/2.jpg')}}"><img src="{{asset('frontend/img/products/detail/fullwidth/2.jpg')}}" alt=""></a></div>
-                                            <div class="item"><a href="{{asset('frontend/img/products/detail/fullwidth/3.jpg')}}"><img src="{{asset('frontend/img/products/detail/fullwidth/3.jpg')}}" alt=""></a></div>
                                         </div>
                                     </div>
                                 </figure>
@@ -342,7 +340,7 @@
                                         <li><a href="{{route('add.wishlist',$product->id)}}" data-toggle="tooltip" data-placement="top" title="Add to Whishlist"><i class="icon-heart"></i></a></li>
                                     </ul>
                                 </div>
-                                <div class="ps-product__container"><a class="ps-product__vendor" href="{{route('shop.details',$shop->slug)}}">{{ $shop->name }}</a>
+                                <div class="ps-product__container"><a class="ps-product__vendor" href="{{url('/products/'.$shop->slug.'/'.$product->brand->slug)}}">{{ $product->brand->name }}</a>
                                     <div class="ps-product__content"><a class="ps-product__title" href="{{route('product-details',$product->slug)}}">{{$product->name}}</a>
                                         Price: ৳ {{home_discounted_base_price($product->id)}}
                                         @if(home_base_price($product->id) != home_discounted_base_price($product->id))

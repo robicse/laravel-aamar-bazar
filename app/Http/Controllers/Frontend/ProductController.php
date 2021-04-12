@@ -26,8 +26,8 @@ class ProductController extends Controller
         $colors=json_decode($productDetails->colors);
         $photos=json_decode($productDetails->photos);
 
-        $relatedBrands = Product::where('brand_id', $productDetails->brand_id)->where('added_by','seller')->latest()->take(3)->where('published',1)->get();
-        $categories = Product::where('category_id',$productDetails->category_id)->where('added_by','seller')->take(3)->where('published',1)->latest()->get();
+        $relatedBrands = Product::where('brand_id', $productDetails->brand_id)->where('user_id',$productDetails->user_id)->where('added_by','seller')->latest()->take(3)->where('published',1)->get();
+        $categories = Product::where('category_id',$productDetails->category_id)->where('user_id',$productDetails->user_id)->where('added_by','seller')->where('published',1)->latest()->take(7)->get();
         $reviews = Review::where('product_id',$productDetails->id)->where('status',1)->get();
         $reviewsComments = Review::where('product_id',$productDetails->id)->where('status',1)->latest()->paginate(5);
         $fiveStarRev = Review::where('product_id',$productDetails->id)->where('rating',5)->where('status',1)->get();
