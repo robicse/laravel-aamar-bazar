@@ -75,7 +75,9 @@
                                         <td>
                                             {{$customerInfo->name}}
                                             @if($customerInfo->view == 0)
-                                                <span class="right badge badge-danger">New</span>
+                                                <span class="right badge badge-info">New</span>
+                                            @elseif($customerInfo->banned == 1)
+                                                <span class="right badge badge-danger">Banned</span>
                                             @endif
                                         </td>
                                         <td>{{$customerInfo->phone}}</td>
@@ -89,14 +91,9 @@
                                                     <a class="bg-dark dropdown-item" href="{{route('admin.customers.profile.show',encrypt($customerInfo->id))}}">
                                                         <i class="fa fa-user"></i> Profile
                                                     </a>
-                                                    <button class="bg-danger dropdown-item" type="button"
-                                                            onclick="deleteProduct({{$customerInfo->id}})">
+                                                    <a class="bg-danger dropdown-item" href="{{route('admin.customers.ban',$customerInfo->id)}}">
                                                         <i class="fa fa-ban"></i> Ban this Customer
-                                                    </button>
-                                                    <form id="delete-form-{{$customerInfo->id}}" action="{{route('admin.customers.destroy',$customerInfo->id)}}" method="POST" style="display: none;">
-                                                        @csrf
-                                                        @method('DELETE')
-                                                    </form>
+                                                    </a>
                                                 </div>
                                             </div>
                                         </td>
@@ -115,7 +112,9 @@
                                         <td>
                                             {{$customerInfo->name}}
                                             @if($customerInfo->view == 0)
-                                                <span class="right badge badge-danger">New</span>
+                                                <span class="right badge badge-info">New</span>
+                                            @elseif($customerInfo->banned == 1)
+                                                <span class="right badge badge-danger">Banned</span>
                                             @endif
                                         </td>
                                         <td>{{$customerInfo->phone}}</td>
@@ -129,14 +128,9 @@
                                                     <a class="bg-dark dropdown-item" href="{{route('admin.customers.profile.show',encrypt($customerInfo->id))}}">
                                                         <i class="fa fa-user"></i> Profile
                                                     </a>
-                                                    <button class="bg-danger dropdown-item" type="button"
-                                                            onclick="deleteProduct({{$customerInfo->id}})">
+                                                    <a class="bg-danger dropdown-item" href="{{route('admin.customers.ban',$customerInfo->id)}}">
                                                         <i class="fa fa-ban"></i> Ban this Customer
-                                                    </button>
-                                                    <form id="delete-form-{{$customerInfo->id}}" action="{{route('admin.customers.destroy',$customerInfo->id)}}" method="POST" style="display: none;">
-                                                        @csrf
-                                                        @method('DELETE')
-                                                    </form>
+                                                    </a>
                                                 </div>
                                             </div>
                                         </td>

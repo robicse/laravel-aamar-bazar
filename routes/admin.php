@@ -111,6 +111,7 @@ Route::group(['as'=>'admin.','prefix' =>'admin','namespace'=>'Admin', 'middlewar
     Route::put('customers/password/update/{id}','CustomerController@updatePassword')->name('customer.password.update');
     Route::get('/customer/search/area', 'CustomerController@search_area');
     Route::get('/customer/{area}','CustomerController@areaWiseCustomer')->name('area-wise.customer');
+    Route::get('/customer/ban/{id}','CustomerController@banCustomer')->name('customers.ban');
 
     //review
     Route::get('review','ReviewController@index')->name('review.index');
