@@ -91,6 +91,11 @@
     });
     @endforeach
     @endif
+
+    $(document).ready(function() {
+        //seach placeholder change
+        $('.bksearch').attr("placeholder", "Search your delivery location");
+    })
 </script>
 
 
