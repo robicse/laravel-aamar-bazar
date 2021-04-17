@@ -36,7 +36,7 @@
                                 @csrf
                                 <div class="row">
                                     <div class="col-4">
-                                        <label>Rattings</label>
+                                        <label>Ratings</label>
                                         <select name="rating" id="" class="form-control select2">
                                                 <option value="5" {{$value == 5 ? 'selected' : ''}}>5</option>
                                                 <option value="4" {{$value == 4 ? 'selected' : ''}}>4</option>
@@ -113,7 +113,7 @@
                             </table>
                         @else
                             <div class="text-center ">
-                                <h2><i class="fa fa-info-circle text-info"></i> Please Select Ratting!!!</h2>
+                                <h2><i class="fa fa-info-circle text-info"></i> Please Select Rating!!!</h2>
                             </div>
                         @endif
                     </div>
