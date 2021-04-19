@@ -42,7 +42,7 @@ class LoginController extends Controller
         if (Auth::check() && Auth::user()->user_type == 'customer') {
             //dd('okk');
             //Toastr::success('Successfully Logged In',"Success");
-            return $this->redirectTo = route('user.dashboard');
+            return $this->redirectTo = route('index');
         }
         elseif (Auth::check() && Auth::user()->user_type == 'seller') {
             Toastr::success('Successfully Logged In',"Success");

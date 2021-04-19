@@ -19,7 +19,7 @@
                     @if(Request::is('be-a-seller'))
                         <input class="form-control m-0" type="text" placeholder="Enter your full address" id="input-search" style="border-radius: 4px;" autocomplete="off" value="">
                     @else
-                        <input class="form-control bksearch m-0" type="text" placeholder="Enter your full address" id="input-search" style="border-radius: 4px;" autocomplete="off" value="">
+                        <input class="form-control bksearch input-search-map m-0" type="text" placeholder="Enter your full address" id="input-search" style="border-radius: 4px;" autocomplete="off" value="">
                     @endif
                     <button class="ml-2 mr-1" style="border-radius: 4px;" onclick="geoLocationInit()"><i class="fa fa-map-marker" aria-hidden="true"></i></button>
                     <button class="mx-1 find" style="border-radius: 4px;" id="find">Find</button>
@@ -82,14 +82,14 @@
                                 <div class="ps-widget__header">
                                     <div class="ps-block__left">
                                         @if(is_null(Auth::user()->avatar_original))
-                                          <a href="{{route('login')}}">  <img src="{{asset('uploads/profile/default.png')}}" alt="" class="ps-widget-img rounded-circle" width="50" height="50"></a>
+                                          <a href="{{route('user.dashboard')}}">  <img src="{{asset('uploads/profile/default.png')}}" alt="" class="ps-widget-img rounded-circle" width="50" height="50"></a>
                                         @else
-                                           <a href="{{route('login')}}"> <img src="{{url(Auth::user()->avatar_original)}}" alt="" class="ps-widget-img rounded-circle" width="50" height="50"></a>
+                                           <a href="{{route('user.dashboard')}}"> <img src="{{url(Auth::user()->avatar_original)}}" alt="" class="ps-widget-img rounded-circle" width="50" height="50"></a>
                                         @endif
 {{--                                            @php--}}
 {{--                                                $values = explode(" ",Auth::user()->name);--}}
 {{--                                            @endphp--}}
-                                            <div class="ps-block__right"><a href="{{route('login')}}" data-toggle="tooltip" title="{{Auth::user()->name}}">{!! Str::limit(Auth::user()->name,7) !!}</a>
+                                            <div class="ps-block__right"><a href="{{route('user.dashboard')}}" data-toggle="tooltip" title="{{Auth::user()->name}}">{!! Str::limit(Auth::user()->name,7) !!}</a>
                                                 <form action = "{{route('logout')}}" method="post">
                                                     @csrf
                                                     <button type="submit" class="btn btn-lg btn-bold p-0">Logout</button>
@@ -223,10 +223,10 @@
             <a href="{{route('login')}}"><strong>Login</strong></a> | <a href="{{route('register')}}"><strong>Register</strong></a>
             @else
                 @if(is_null(Auth::user()->avatar_original))
-                    <a href="{{route('login')}}">  <img src="{{asset('uploads/profile/default.png')}}" alt="" class="ps-widget-img rounded-circle" width="40" height="40"> {{Auth::user()->name}}</a>
+                    <a href="{{route('user.dashboard')}}">  <img src="{{asset('uploads/profile/default.png')}}" alt="" class="ps-widget-img rounded-circle" width="40" height="40"> {{Auth::user()->name}}</a>
                     <p>Refarral Code: <strong>{{Auth::user()->referral_code}}</strong></p>
                 @else
-                    <a href="{{route('login')}}" style="margin-top: -10px;" class="small">  <img src="{{url(Auth::user()->avatar_original)}}" alt="" class="ps-widget-img rounded-circle" width="30" height="30">{{Auth::user()->name}} </a>
+                    <a href="{{route('user.dashboard')}}" style="margin-top: -10px;" class="small">  <img src="{{url(Auth::user()->avatar_original)}}" alt="" class="ps-widget-img rounded-circle" width="30" height="30">{{Auth::user()->name}} </a>
                     <p style="color: #0c0c0c; padding-left: 25px;">Refarral Code: <strong>{{Auth::user()->referral_code}}</strong></p>
                 @endif
 
@@ -287,7 +287,7 @@
                 <span class="modal-close" data-dismiss="modal"><i class="icon-cross2"></i></span>
                 <div class="row mb-3 ml-1">
                     <div class="" style="width: 70%">
-                        <input class="form-control bksearch2 m-0" type="text" placeholder="Enter your full address" id="input-search-map" style="border-radius: 4px;" autocomplete="off" value="">
+                        <input class="form-control bksearch2 input-search-map m-0" type="text" placeholder="Enter your full address" id="input-search-map" style="border-radius: 4px;" autocomplete="off" value="">
                     </div>
                     <div  style="width: 30%">
                         <button class="p-3 bg-dark find" style="border-radius: 4px; color: #fff;" id="find2">Find Shop</button>

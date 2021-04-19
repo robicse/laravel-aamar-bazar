@@ -49,7 +49,7 @@
                         <div class="form-group">
                             <h3>Permissions</h3>
                             <p class="bg-info pl-3">
-                                <input type="checkbox" id="checkAll"> By a click you can select all
+                                    <input type="checkbox" id="checkAll"> By a click you can select all
                             </p>
                             <ul style="height: 415px; overflow-y: scroll;">
                                 @foreach($permission as $per)

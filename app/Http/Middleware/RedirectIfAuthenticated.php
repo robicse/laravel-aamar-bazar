@@ -22,7 +22,7 @@ class RedirectIfAuthenticated
             return redirect('admin/dashboard');
         }
         elseif (Auth::guard($guard)->check() && Auth::user()->user_type == 'customer'){
-            return redirect('user/dashboard');
+            return redirect('/');
         }elseif (Auth::guard($guard)->check() && Auth::user()->user_type == 'seller'){
             return redirect('seller/dashboard');
         }else{
