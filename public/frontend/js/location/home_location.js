@@ -191,12 +191,12 @@ function initializeForMap(lat, lng) {
 }
 
 function BarikoiPlaceFetch(lngval, latval){
-    //alert(latval+' : '+lngval )
+   // alert(latval+' : '+lngval )
     fetch(`https://barikoi.xyz/v1/api/search/reverse/MTg3NzpCRE5DQ01JSkgw/geocode?longitude=${lngval}&latitude=${latval}&district=true&post_code=true&country=true&sub_district=true&union=false&pauroshova=false&location_type=true&division=true`)
         .then(response => response.json())
         .catch(error => console.error('Error:', error))
         //.then(response => alert(response.place.address))
-        .then(response => $('#input-search-map').val(response.place.address))
+        .then(response => $('.input-search-map').val(response.place.address))
 }
 
 

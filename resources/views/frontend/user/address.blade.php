@@ -150,6 +150,7 @@
                                 <div class="form-group">
                                     <label for="phone" class="">Address</label>
                                     <textarea name="address" id="address" rows="3" placeholder="Enter Your Address (e.g. 4th Floor, BBTOA Building,9 No South, Mirpur Rd )"  class="form-control"></textarea>
+                                    <small class="text-info"><i class="fa fa-info-circle"></i> e.g. 4th Floor, BBTOA Building,9 No South, Mirpur Rd</small>
                                 </div>
                                 <div class="form-group ">
                                     <label for="phone" class="">Type</label>

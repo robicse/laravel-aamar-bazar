@@ -91,17 +91,17 @@
                     @if($seller->verification_status == 1)
                         <div class="ps-section__right">
                             <div class="ps-block--vendor-filter">
-                                <div class="ps-block__left">
+                                {{--<div class="ps-block__left">
                                     <ul>
-{{--                                        <li class="active"><a href="#">Products</a></li>--}}
-                                        {{--                                    <li><a href="#">Reviews</a></li>--}}
-                                        {{--                                    <li><a href="#">About</a></li>--}}
+--}}{{--                                        <li class="active"><a href="#">Products</a></li>--}}{{--
+                                        --}}{{--                                    <li><a href="#">Reviews</a></li>--}}{{--
+                                        --}}{{--                                    <li><a href="#">About</a></li>--}}{{--
                                     </ul>
-                                </div>
-                                <div class="ps-block__right">
+                                </div>--}}
+                                <div class="">
                                     <form class="ps-form--search text-right" action="" method="get">
                                         <input type="hidden" name="shop_id" value="{{ $shop->id }}">
-                                        <input  class="form-control" id="searchMain" name="searchName" type="search" placeholder="Search in this shop" autocomplete="off">
+                                        <input  class="form-control" id="searchMain" name="searchName" type="search" placeholder="Search products in this shop" autocomplete="off">
 
                                     </form>
                                 </div>
