@@ -22,7 +22,7 @@ class ShopController extends Controller
         //dd($request->all());
         $lat=$request->lat;
         $lng=$request->lng;
-        $shops=Shop::whereBetween('latitude',[$lat-0.02,$lat+0.02])->whereBetween('longitude',[$lng-0.02,$lng+0.02])->get();
+        $shops=Shop::whereBetween('latitude',[$lat-0.01,$lat+0.01])->whereBetween('longitude',[$lng-0.01,$lng+0.01])->get();
         return response()->json(['success'=> true, 'response'=>$shops]);
     }
     public function bestSellerShopList() {

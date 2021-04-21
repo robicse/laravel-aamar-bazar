@@ -16,16 +16,18 @@
                     {{--                    <input type="text" class=" bksearch">--}}
                     {{--                    <div class="bklist">--}}
                     {{--                    </div>--}}
+                @if(Request::is('/'))
                     @if(Request::is('be-a-seller'))
                         <input class="form-control m-0" type="text" placeholder="Enter your full address" id="input-search" style="border-radius: 4px;" autocomplete="off" value="">
                     @else
                         <input class="form-control bksearch input-search-map m-0" type="text" placeholder="Enter your full address" id="input-search" style="border-radius: 4px;" autocomplete="off" value="">
                     @endif
-                    <button class="ml-2 mr-1" style="border-radius: 4px;" onclick="geoLocationInit()"><i class="fa fa-map-marker" aria-hidden="true"></i></button>
-                    <button class="mx-1 find" style="border-radius: 4px;" id="find">Find</button>
-                    <button class="mx-1" style="border-radius: 4px;"  title="Find in map" onclick="mapModalClick()"><i class="fa fa-map"></i></button>
+                    <button class="ml-2 mr-1" data-toggle="tooltip" title="Current Location Nearest Shops" style="border-radius: 4px;" onclick="geoLocationInit()"><i class="fa fa-map-marker" aria-hidden="true"></i></button>
+                    {{--<button class="mx-1 find" style="border-radius: 4px;" id="find">Find</button>--}}
+                    <button class="mx-1" data-toggle="tooltip" title="Shops Search In Map"  style="border-radius: 4px;"  title="Find in map" onclick="mapModalClick()"><i class="fa fa-map"></i></button>
                     <div class="ps-panel--search-result bklist ">
                     </div>
+                @endif
                 </div>
             </div>
             <div class="header__right">
@@ -151,17 +153,19 @@
             {{--                    <input type="text" class=" bksearch">--}}
             {{--                    <div class="bklist">--}}
             {{--                    </div>--}}
-            <button class="mx-1" style=""  title="Find in map" onclick="mapModalClick()"><i class="fa fa-map"></i></button>
+            @if(Request::is('/'))
+            <button class="mx-1" style=""  data-toggle="tooltip" title="Current Location Nearest Shops." onclick="mapModalClick()"><i class="fa fa-map"></i></button>
             @if(Request::is('be-a-seller'))
                 <input class="form-control m-0" type="text" placeholder="Enter your full address" id="input-search" style="border-radius: 4px;" autocomplete="off" value="">
             @else
                 {{--<input class="form-control bksearch m-0" type="text" placeholder="Enter your full address" id="input-search" style="border-radius: 4px;" autocomplete="off" value="">--}}
-                <input type="text" onkeyup="getAddress()" id="mobile_search" placeholder="Search Your Area" class="form-control form_height form-control-sm address" autocomplete="off">
+                <input type="text" onkeyup="getAddress()" id="mobile_search" placeholder="Search Your Area" class="form-control form_height form-control-sm address input-search-map" autocomplete="off">
             @endif
-            <button class="ml-2 mr-1" style="border-radius: 4px;" onclick="geoLocationInit()"><i class="fa fa-map-marker" aria-hidden="true"></i></button>
-            <button class="mx-1 find" style="border-radius: 4px;" id="find">Find</button>
+            <button data-toggle="tooltip" title="Search Shops In Map." class="ml-2 mr-1"  style="border-radius: 4px;" onclick="geoLocationInit()"><i class="fa fa-map-marker" aria-hidden="true"></i></button>
+           {{-- <button class="mx-1 find" style="border-radius: 4px;" id="find">Find</button>--}}
             <div class="ps-panel--search-result bklist ">
             </div>
+            @endif
         </div>
         <ul class="list-group addList" style="padding: 0;">
 
@@ -297,7 +301,7 @@
                 <span class="modal-close" data-dismiss="modal"><i class="icon-cross2"></i></span>
                 <div class="row mb-3 ml-1">
                     <div class="" style="width: 70%">
-                        <input class="form-control bksearch2 input-search-map m-0" type="text" placeholder="Enter your full address" id="input-search-map" style="border-radius: 4px;" autocomplete="off" value="">
+                        <input class="form-control bksearch2 input-search-map m-0" type="text" placeholder="Enter your full address" id="" style="border-radius: 4px;" autocomplete="off" value="">
                     </div>
                     <div  style="width: 30%">
                         <button class="p-3 bg-dark find" style="border-radius: 4px; color: #fff;" id="find2">Find Shop</button>
@@ -313,9 +317,9 @@
 </div>
 
 @push('js')
-
     <script src="https://cdn.jsdelivr.net/gh/barikoi/barikoi-js@b6f6295467c19177a7d8b73ad4db136905e7cad6/dist/barikoi.min.js?key:MTg3NzpCRE5DQ01JSkgw"></script>
     <script>
+        $('[data-toggle="tooltip"]').tooltip();
         Bkoi.onSelect(function () {
             // get selected data from dropdown list
             let selectedPlace = Bkoi.getSelectedData()

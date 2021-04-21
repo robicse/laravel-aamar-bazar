@@ -12,7 +12,7 @@ Bkoi.onSelect(function () {
 
 
 })
-
+/*
 $(document).ready(function(){
     //seach placeholder change
     $('.bksearch').attr("placeholder", "Search your delivery location");
@@ -25,7 +25,7 @@ $(document).ready(function(){
     }else{
         searchShops(latval,lngval);
     }
-});
+});*/
 
 function geoLocationInit() {
     var check_session = sessionStorage.getItem("latitude");
@@ -42,7 +42,9 @@ function geoLocationInit() {
                 longitude:sessionStorage.getItem("longitude"),
             },
         };
+        //alert()
         success(sessionPos);
+        searchShops(sessionStorage.getItem("latitude"),sessionStorage.getItem("longitude"))
     }
 }
 
@@ -72,7 +74,7 @@ function success(position) {
 function fail() {
     alert("Please Allow Location For Purchase");
 }
-$('.find').click(function (){
+/*$('.find').click(function (){
     var latval = sessionStorage.getItem("latitude");
     var lngval = sessionStorage.getItem("longitude");
     if(latval==null){
@@ -81,7 +83,7 @@ $('.find').click(function (){
         searchShops(latval,lngval);
     }
 
-})
+})*/
 
 
 $('#find2').click(function (){
@@ -118,7 +120,8 @@ function searchShops(lat,lng){
             if (data.response.length==0){
                 $('.shop_list').empty();
                 $('.shop_list').html(`<div class="col-md-12 py-2 px-4 text-center">
-                    <img src = "http://127.0.0.1:8000/frontend/img/shop/shop-not-found.png" alt = "">
+                    <h1 class="mt-5 text-danger">No Shop Found!</h1>
+                    <img src = "https://icon-library.com/images/found-icon/found-icon-20.jpg" alt = "">
                 </div>`);
             }
             else{
