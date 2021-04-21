@@ -471,13 +471,14 @@ class ProductController extends Controller
     public function getAdminProductAjax()
     {
         $sellerP = Product::where('added_by','seller')->where('user_id',Auth::id())->select('aPId_to_seller')->get();
-        $products = Product::where('added_by','admin')->latest()->select('id','name','unit_price')->latest()->get();
+        $products = Product::where('added_by','admin')->latest()->select('id','name','unit_price','thumbnail_img')->latest()->get();
         $arr = array();
         $check2 = array();
         foreach ($products as $product){
             $data = $sellerP->contains('aPId_to_seller', $product->id);
            if (!$data){
                 $check2['id'] = $product->id;
+                $check2['image'] = $product->thumbnail_img;
                 $check2['name'] = $product->name;
                 $check2['unit_price'] = $product->unit_price;
                 array_push($arr, $check2);
@@ -488,6 +489,7 @@ class ProductController extends Controller
         foreach($arr as $single){
             $alldata[] = array(
                 (string)$single['id'],
+                '<img src="'.url($single['image']).'" alt="Girl in a jacket" width="50" height="40">',
                 $single['name'],
                 (string)$single['unit_price']
             );

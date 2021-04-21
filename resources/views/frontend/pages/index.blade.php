@@ -176,7 +176,7 @@
                                 <div class="ps-block__content">
                                     <h3>Download Mudi Hat App Now!</h3>
                                     <p>Shopping fastly and easily more with our app. Get a link to download the app on your phone</p>
-                                    <form class="ps-form--download-app" action="http://nouthemes.net/html/martfury/do_action" method="post">
+                                    <form class="ps-form--download-app" action="/" method="post">
                                         {{--                                        <div class="form-group--nest">--}}
                                         {{--                                            <input class="form-control" type="Email" placeholder="Email Address">--}}
                                         {{--                                            <button class="ps-btn">Subscribe</button>--}}

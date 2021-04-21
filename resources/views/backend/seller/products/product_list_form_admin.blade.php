@@ -45,6 +45,7 @@
                                 <thead>
                                 <tr>
                                     <th>ID</th>
+                                    <th>Image</th>
                                     <th>Name</th>
                                     <th>Price</th>
                                 </tr>
@@ -52,6 +53,7 @@
                                 <tfoot>
                                 <tr>
                                     <th>ID</th>
+                                    <th>Image</th>
                                     <th>Name</th>
                                     <th>Price</th>
                                 </tr>
