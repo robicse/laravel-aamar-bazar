@@ -44,7 +44,7 @@
                 <h4 class="widget-title">Bussiness</h4>
                 <ul class="ps-list--link">
                     <li><a href="{{route('checkout')}}">Checkout</a></li>
-                    <li><a href="{{route('login')}}">My account</a></li>
+                    <li><a href="h">My account</a></li>
                     <li><a href="{{route('all.shops')}}">Shops</a></li>
                 </ul>
                 <div class="widget widget_footer" style="padding-top: 30px;">
