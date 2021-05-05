@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Model\FavoriteShop;
+use App\Model\Order;
 use App\Model\Shop;
 use App\Model\Wishlist;
 use App\User;
@@ -15,6 +16,23 @@ use Illuminate\Support\Facades\Hash;
 
 class CustomerController extends Controller
 {
+    public function index(){
+        $totalOrder = Order::where('user_id',Auth::id())->count();
+        $totalWishlist = Wishlist::where('user_id',Auth::id())->count();
+        $data= [
+            'Balance'=>Auth::User()->balance,
+            'Cart'=>\Gloudemans\Shoppingcart\Facades\Cart::count(),
+            'wishlist'=>$totalWishlist,
+            'order'=>$totalOrder,
+        ];
+        if (!empty($data))
+        {
+            return response()->json(['success'=>true,'response'=> $data], 200);
+        }
+        else{
+            return response()->json(['success'=>false,'response'=> 'Something went wrong!'], 404);
+        }
+    }
     public function profileInfo(){
         $user = User::find(Auth::id());
         if (!empty($user))

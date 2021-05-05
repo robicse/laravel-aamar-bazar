@@ -31,7 +31,7 @@
             </div>
         </form>
     </div>
-    </div>
+
     {!! Toastr::message() !!}
 @stop
 @push('js')
