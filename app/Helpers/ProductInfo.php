@@ -9,6 +9,8 @@ use App\Model\FlashDeal;
 use App\Model\FlashDealProduct;
 use App\Model\Product;
 use App\Model\ProductStock;
+use App\Model\Review;
+use App\Model\Shop;
 
 
 function homeDiscountedPrice($id)
@@ -116,4 +118,26 @@ function homeDiscountedPrice($id)
         return $price;
     }
 
+     function getShopRatings($id){
+        $shop = Shop::find($id);
+        $fiveStarRev = Review::where('shop_id',$shop->id)->where('rating',5)->where('status',1)->sum('rating');
+        $fourStarRev = Review::where('shop_id',$shop->id)->where('rating',4)->where('status',1)->sum('rating');
+        $threeStarRev = Review::where('shop_id',$shop->id)->where('rating',3)->where('status',1)->sum('rating');
+        $twoStarRev = Review::where('shop_id',$shop->id)->where('rating',2)->where('status',1)->sum('rating');
+        $oneStarRev = Review::where('shop_id',$shop->id)->where('rating',1)->where('status',1)->sum('rating');
+        $totalRating = Review::where('shop_id',$shop->id)->sum('rating');
+
+        //dd($fiveStarRev);
+        if ($totalRating > 0){
+            $rating = (5*$fiveStarRev + 4*$fourStarRev + 3*$threeStarRev + 2*$twoStarRev + 1*$oneStarRev) / ($totalRating);
+            $totalRatingCount = number_format((float)$rating, 1, '.', '');
+        }else{
+            $totalRatingCount =number_format((float)0, 1, '.', '');
+        }
+        if (!empty($totalRatingCount)){
+            return $totalRatingCount;
+        }else{
+            return 'Something went wrong!';
+        }
+    }
 

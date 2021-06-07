@@ -17,6 +17,7 @@ class ProductDetailCollection extends ResourceCollection
                     'id' => (integer) $data->id,
                     'name' => $data->name,
                     'added_by' => $data->added_by,
+                    'reviews' => $data->reviews,
 
                     /*'category' => [
                         'name' => $data->category->name,

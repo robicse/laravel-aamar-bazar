@@ -44,5 +44,8 @@ class Product extends Model
     public function productStock() {
         return $this->hasMany('App\Model\ProductStock', 'product_id');
     }
+    public function reviews() {
+        return $this->hasMany('App\Model\Review', 'product_id')->orderBy('id','desc');
+    }
 
 }

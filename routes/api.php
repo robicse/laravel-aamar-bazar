@@ -91,7 +91,9 @@ Route::post('product/variant/price', 'Api\ProductController@variantPrice');
 Route::get('/shop-categories/{id}','Api\ShopCategoryController@getShopCategory');
 Route::get('/todays-deal-products/{id}','Api\ProductController@getTodaysDeal');
 Route::get('/best-sales-products/{id}','Api\ProductController@getBestSales');
-Route::get('/flash-deals-products/{id}','Api\ProductController@getFlashDeals');
+
+
+Route::get('/flash-deals-products','Api\ProductController@getFlashDeals');
 Route::get('/related-products/{id}','Api\ProductController@getRelatedProducts');
 Route::post('/search/product', 'Api\ProductController@search_product');
 
