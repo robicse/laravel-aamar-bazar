@@ -9,7 +9,7 @@
     <div class="header__top">
         <div class="ps-container">
             <div class="header__left">
-                <a class="ps-logo" href="{{url('/')}}"><img src="{{asset('frontend/img/logo-mudi-hat-final.png')}}" alt="" width="200" height="90" style="margin-top: -20px;"></a>
+                <a class="ps-logo" href="{{url('/')}}"><img src="{{asset('frontend/img/logo-mudi-hat-final.png')}}" alt="logo" ></a>
             </div>
             <div class="header__center">
                 <div class="ps-form--quick-search" >
