@@ -3,13 +3,14 @@
         <div class="ps-footer__widgets">
             <aside class="widget widget_footer widget_contact-us">
                 <div class="widget-title">
-                <a class="ps-logo" href="{{url('/')}}"><img src="{{asset('frontend/img/logo-footer.png')}}" alt=""></a>
+                <a class="ps-logo" href="{{url('/')}}"><img src="{{asset('frontend/img/logo-mudi-hat-final.png')}}" alt=""></a>
                 </div>
 {{--                <h4 class="widget-title">Contact us</h4>--}}
-                <div class="widget_content" style="margin-top: -20px;">
-                    <p>Call us 24/7</p>
+                <div class="widget_content mt-4">
+                    {{--<p>Call us 24/7</p>--}}
                     <h3>01689-063954</h3>
-                    <p>5th Floor (Lift Button-4), BBTOA Building, 9 No South, Mirpur Rd, Dhaka 1207 <br><a href=""><span class="__cf_email__" data-cfemail="7714181903161403371a1605031102050e591418"></span></a></p>
+                    <p>5th Floor (Lift Button-4), BBTOA Building,</p>
+                    <p> 9 No South, Mirpur Rd, Dhaka 1207</p>
                 </div>
             </aside>
             <aside class="widget widget_footer">
@@ -47,7 +48,7 @@
                     <li><a href="h">My account</a></li>
                     <li><a href="{{route('all.shops')}}">Shops</a></li>
                 </ul>
-                <div class="widget widget_footer" style="padding-top: 30px;">
+                <div class="widget widget_footer">
                     <h4 class="" style="color: #cacacc!important;">BE A SELLER</h4>
                     <button type="submit" class="btn btn-lg btn-success"><a href="{{route('seller.registration')}}"> Apply Now</a></button>
                 </div>
