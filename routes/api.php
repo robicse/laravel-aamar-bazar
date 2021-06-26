@@ -53,6 +53,7 @@ Route::group(['middleware' => ['auth:api']], function () {
     Route::post('/seller/products/todays_deal-update', 'Api\SellerController@updateTodaysDeal');
     Route::post('/seller/products/published-update', 'Api\SellerController@updatePublished');
     Route::post('/seller/products/featured-update', 'Api\SellerController@updateFeatured');
+    Route::get('/seller/products/add-to-my-shop/{sellerId}', 'Api\SellerController@productAddToMyShop');
 
     //Seller Order Details
     Route::get('/seller/orders', 'Api\SellerController@getOrders');
