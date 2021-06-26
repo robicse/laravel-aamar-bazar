@@ -25,7 +25,7 @@ class OrderController extends Controller
         $orders = DB::table('orders')
             ->join('shops','orders.shop_id','=','shops.id')
             ->where('orders.user_id','=', Auth::id())
-            ->select('shops.logo as shop_logo','orders.*')
+            ->select('shops.logo as shop_logo','shops.name as shop_name','orders.*')
             ->latest('orders.created_at')
             ->get();
 
