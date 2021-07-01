@@ -97,6 +97,7 @@ class OrderController extends Controller
             $orderDetails->name = $content["name"];
             $orderDetails->price = $content["price"];
             $orderDetails->quantity = $content["qty"];
+            $orderDetails->variant = $content["variant"];
             $orderDetails->save();
             $product = Product::find($content["product_id"]);
             $product->num_of_sale++;

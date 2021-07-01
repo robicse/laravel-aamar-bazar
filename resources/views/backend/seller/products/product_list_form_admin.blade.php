@@ -44,7 +44,7 @@
                             <table id="example" class="display" cellspacing="0" width="100%">
                                 <thead>
                                 <tr>
-                                    <th>ID</th>
+                                    <th>id</th>
                                     <th>Image</th>
                                     <th>Name</th>
                                     <th>Price</th>
@@ -52,7 +52,7 @@
                                 </thead>
                                 <tfoot>
                                 <tr>
-                                    <th>ID</th>
+                                    <th>id</th>
                                     <th>Image</th>
                                     <th>Name</th>
                                     <th>Price</th>

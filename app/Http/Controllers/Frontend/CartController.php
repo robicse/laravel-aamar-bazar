@@ -179,7 +179,7 @@ class CartController extends Controller
                 $data['countCart'] = Cart::count();
                 $data['subtotal'] = Cart::subtotal();
 //            $data['rowid'] = Cart::rowId;
-                //dd(Cart::content());
+                dd(Cart::content());
                 return response()->json(['success'=> true, 'response'=>$data]);
             }else{
                 $c=count($request->variant);
@@ -321,7 +321,7 @@ class CartController extends Controller
 
             $orderDetails = new OrderDetails();
             $orderDetails->order_id = $order->id;
-            $orderDetails->variation_id = $content->options->variant_id;
+            $orderDetails->variant = $content->options->variant;
             $orderDetails->product_id = $content->id;
             $orderDetails->name = $content->name;
             $orderDetails->price = $content->price;

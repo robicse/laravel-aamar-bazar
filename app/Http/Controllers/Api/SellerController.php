@@ -10,12 +10,18 @@ use App\Model\Order;
 use App\Model\OrderDetails;
 use App\Model\OrderTempCommission;
 use App\Model\Product;
+use App\Model\ProductStock;
 use App\Model\Seller;
 use App\Model\Shop;
+use App\Model\ShopBrand;
+use App\Model\ShopCategory;
+use App\Model\ShopSubcategory;
+use App\Model\ShopSubSubcategory;
 use App\Model\Subcategory;
 use App\Model\SubSubcategory;
 use App\User;
 use Brian2694\Toastr\Facades\Toastr;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -349,4 +355,84 @@ class SellerController extends Controller
             return response()->json(['success'=>false,'response'=> 'Order is empty'], 404);
         }
     }
+    public function productAddToMyShop($sellerId)
+    {
+        $sellerP = Product::where('added_by','seller')->where('user_id',$sellerId)->select('aPId_to_seller')->get();
+        $products = Product::where('added_by','admin')->latest()->select('id','name','unit_price','thumbnail_img')->latest()->get();
+        $arr = array();
+        $check2 = array();
+        foreach ($products as $product){
+            $data = $sellerP->contains('aPId_to_seller', $product->id);
+            if (!$data){
+                $check2['id'] = $product->id;
+                $check2['image'] = $product->thumbnail_img;
+                $check2['name'] = $product->name;
+                $check2['unit_price'] = $product->unit_price;
+                array_push($arr, $check2);
+            }
+        }
+        $Response = array('data' => $arr );
+        return response()->json($Response);
+    }
+    public function productAddToMyShopStore(Request $request)
+    {
+        //dd($request->all());
+        foreach ($request->product_id as $data){
+            $product = Product::find($data);
+            $product_new = $product->replicate();
+            $product_new->added_by = 'seller';
+            $product_new->user_id = $request->seller_id;
+            $product_new->aPId_to_seller = $product->id;
+            $product_new->slug = substr($product_new->slug, 0, -5).Str::random(5);
+            $product_new->save();
+            if($product->variant_product == 1){
+                $stockProducts = ProductStock::where('product_id', $product->id)->get();
+                foreach ($stockProducts as $stockProduct){
+                    $new_stockProduct = $stockProduct->replicate();
+                    $new_stockProduct->product_id = $product_new->id;
+                    $new_stockProduct->save();
+                }
+            }
+
+            //check shop categories
+            $shopId = Shop::where('user_id',$request->seller_id)->first();
+            $checkShopCategory = ShopCategory::where('shop_id',$shopId->id)->where('category_id',$product_new->category_id)->first();
+            if(empty($checkShopCategory)){
+                $shopCategoryData = new ShopCategory();
+                $shopCategoryData->shop_id = $shopId->id;
+                $shopCategoryData->category_id = $product_new->category_id;
+                $shopCategoryData->save();
+            }
+            $shopSubcategory = ShopSubcategory::where('shop_id',$shopId->id)->where('subcategory_id',$product_new->subcategory_id)->where('category_id',$product_new->subcategory_id)->first();
+//            $shopCategory = ShopCategory::where('shop_id',$shopId->id)->where('category_id',$product_new->category_id)->first();
+            if (empty($shopSubcategory)) {
+                $shopSubcategoryData = new ShopSubcategory();
+                $shopSubcategoryData->shop_id = $shopId->id;
+                $shopSubcategoryData->subcategory_id = $product_new->subcategory_id;
+                $shopSubcategoryData->category_id = $product_new->category_id;
+                $shopSubcategoryData->save();
+            }
+
+            //check shop sub sub_categories
+            $checkShopSubSubCategory = ShopSubSubcategory::where('shop_id',$shopId->id)->where('subsubcategory_id',$product_new->subsubcategory_id)->where('subcategory_id',$product_new->subcategory_id)->where('category_id',$product_new->subcategory_id)->first();
+            if (empty($checkShopSubSubCategory)) {
+                $shopSub_SubcategoryData = new ShopSubSubcategory();
+                $shopSub_SubcategoryData->shop_id = $shopId->id;
+                $shopSub_SubcategoryData->subsubcategory_id = $product_new->subsubcategory_id ? $product_new->subsubcategory_id : null ;
+                $shopSub_SubcategoryData->subcategory_id = $product_new->subcategory_id;
+                $shopSub_SubcategoryData->category_id = $product_new->category_id;
+                $shopSub_SubcategoryData->save();
+            }
+
+            $shopBrand = ShopBrand::where('shop_id',$shopId->id)->where('brand_id',$product_new->brand_id)->first();
+            if(empty($shopBrand)){
+                $shopBrandData = new ShopBrand();
+                $shopBrandData->shop_id = $shopId->id;
+                $shopBrandData->brand_id = $product_new->brand_id;
+                $shopBrandData->save();
+            }
+        }
+        return response()->json("Product successfully added to my shop!");
+    }
+
 }

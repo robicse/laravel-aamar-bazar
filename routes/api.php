@@ -53,6 +53,8 @@ Route::group(['middleware' => ['auth:api']], function () {
     Route::post('/seller/products/todays_deal-update', 'Api\SellerController@updateTodaysDeal');
     Route::post('/seller/products/published-update', 'Api\SellerController@updatePublished');
     Route::post('/seller/products/featured-update', 'Api\SellerController@updateFeatured');
+    Route::post('/seller/products/store/add-to-my-shop', 'Api\SellerController@productAddToMyShopStore');
+    Route::get('/seller/products/add-to-my-shop/{sellerId}', 'Api\SellerController@productAddToMyShop');
 
     //Seller Order Details
     Route::get('/seller/orders', 'Api\SellerController@getOrders');
@@ -91,7 +93,9 @@ Route::post('product/variant/price', 'Api\ProductController@variantPrice');
 Route::get('/shop-categories/{id}','Api\ShopCategoryController@getShopCategory');
 Route::get('/todays-deal-products/{id}','Api\ProductController@getTodaysDeal');
 Route::get('/best-sales-products/{id}','Api\ProductController@getBestSales');
-Route::get('/flash-deals-products/{id}','Api\ProductController@getFlashDeals');
+
+
+Route::get('/flash-deals-products','Api\ProductController@getFlashDeals');
 Route::get('/related-products/{id}','Api\ProductController@getRelatedProducts');
 Route::post('/search/product', 'Api\ProductController@search_product');
 
@@ -130,5 +134,9 @@ Route::post('/new-password/update','Api\AuthController@passwordUpdate');
 
 //Customer Api
 //Route::post('/user/profile/update', 'Api\CustomerController@profileUpdate')->middleware('auth:api');
+
+
+
+
 
 

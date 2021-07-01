@@ -109,10 +109,32 @@ class CustomerController extends Controller
             ->where('wishlists.user_id', Auth::user()->id)
             ->select('wishlists.id','wishlists.product_id','products.name','products.current_stock','products.unit_price','products.thumbnail_img')
             ->get();
-//        return $wishlists;
+
             if (!empty($wishlists))
             {
-                return response()->json(['success'=>true,'response'=> $wishlists], 200);
+                $nested_data = [];
+                foreach ($wishlists as $wishlist){
+                    $data['id'] = $wishlist->id;
+                    $data['product_id'] = $wishlist->product_id;
+                    $data['name'] = $wishlist->name;
+                    $data['current_stock'] = $wishlist->current_stock;
+                    $data['unit_price'] = $wishlist->unit_price;
+                    $data['thumbnail_img'] = $wishlist->thumbnail_img;
+
+                    $shop = DB::table('shops')
+                        ->join('products','shops.user_id','products.user_id')
+                        ->where('products.id',$wishlist->product_id)
+                        ->select('shops.*')
+                        ->first();
+                    if($shop){
+                        $data['shop'] = $shop;
+                    }
+
+                    array_push($nested_data,$data);
+                }
+
+                $shop = Shop::where('user_id',Auth::user()->id)->first();
+                return response()->json(['success'=>true,'response'=> $nested_data], 200);
             }
             else{
                 return response()->json(['success'=>false,'response'=> 'Wishlist is empty!'], 404);
