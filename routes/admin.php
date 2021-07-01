@@ -49,6 +49,12 @@ Route::group(['as'=>'admin.','prefix' =>'admin','namespace'=>'Admin', 'middlewar
     Route::post('products/published/update', 'ProductController@updatePublished')->name('products.published');
     Route::post('products/featured/update', 'ProductController@updateFeatured')->name('products.featured');
     Route::get('/request/products/from/seller', 'ProductController@sellerReqList')->name('products.request.form.seller');
+
+    //App requested products
+    Route::get('/request/products/from/apps', 'ProductController@appsReqList')->name('products.request.form.apps');
+    Route::post('/apps-requested-products/status/update', 'ProductController@updateAppsProductStatus')->name('apps.requested-products.status');
+    Route::get('/apps-requested-products/show/{id}', 'ProductController@appRqProductShow')->name('apps-requested-products.show');
+
     Route::get('/all/seller/products/', 'ProductController@sellerProductList')->name('all.seller.products');
     Route::get('/all/seller/products/edit/{id}', 'ProductController@sellerProductEdit')->name('edit.seller.products');
     Route::post('/all/seller/products/update/{id}', 'ProductController@sellerProductUpdate')->name('update.seller.products');

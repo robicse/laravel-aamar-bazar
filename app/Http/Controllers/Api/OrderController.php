@@ -21,7 +21,6 @@ class OrderController extends Controller
 {
     public function order_get()
     {
-//        $orders=Order::where('user_id',Auth::id())->latest('created_at')->get();
         $orders = DB::table('orders')
             ->join('shops','orders.shop_id','=','shops.id')
             ->where('orders.user_id','=', Auth::id())

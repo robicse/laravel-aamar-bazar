@@ -10,10 +10,12 @@ use App\Model\Color;
 use App\Model\FlashDeal;
 use App\Model\FlashDealProduct;
 use App\Model\Product;
+use App\Model\RequestedProduct;
 use App\Model\Review;
 use App\Model\Shop;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class ProductController extends Controller
@@ -226,5 +228,24 @@ class ProductController extends Controller
             'price' => (double) $price,
             'in_stock' => $stockQuantity < 1 ? false : true
         ]);
+    }
+    public function requestedProductStore(Request $request){
+        $rq_product = new RequestedProduct();
+        $rq_product->user_id = Auth::id();
+        $rq_product->name = $request->name;
+        if($request->hasFile('images')){
+            $rq_product->images = $request->images->store('uploads/products/thumbnail');
+            //ImageOptimizer::optimize(base_path('public/').$product->thumbnail_img);
+        }
+        $rq_product->description = $request->description;
+        $rq_product->price = $request->price;
+        $rq_product->save();
+        if (!empty($rq_product))
+        {
+            return response()->json(['success'=>true,'response'=> $rq_product], 200);
+        }
+        else{
+            return response()->json(['success'=>false,'response'=> 'Something went wrong'], 404);
+        }
     }
 }

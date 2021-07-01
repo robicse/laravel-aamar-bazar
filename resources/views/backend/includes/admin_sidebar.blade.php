@@ -120,6 +120,15 @@
                                 </a>
                             </li>
                             <li class="nav-item">
+                                <a href="{{route('admin.products.request.form.apps')}}"
+                                   class="nav-link {{Request::is('admin/request/products/from/apps*') ? 'active' :''}}">
+                                    <i class="fa fa-{{Request::is('admin/request/products/from/apps*') ? 'folder-open':'folder'}} nav-icon"></i>
+                                    <p>
+                                        Apps Requested Products
+                                    </p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
                                 <a href="{{route('admin.all.seller.products')}}"
                                    class="nav-link {{Request::is('admin/all/seller/products*') ? 'active' :''}}">
                                     <i class="fa fa-{{Request::is('admin/all/seller/products*') ? 'folder-open':'folder'}} nav-icon"></i>
