@@ -32,7 +32,9 @@
                             <h3 class="d-inline-block d-sm-none">{{$rq_product->name}}</h3>
                             <div class="col-6">
                                 <img src="{{url($rq_product->images)}}" class="" alt="Product Image" width="450" height="400">
+                                <a href="{{url($rq_product->images)}}" class="btn btn-info"><i class="fa fa-download"></i></a>
                             </div>
+
 {{--                            <div class="col-12 product-image-thumbs">--}}
 {{--                                <div class="product-image-thumb active"><img src="../../dist/img/prod-1.jpg" alt="Product Image"></div>--}}
 {{--                                <div class="product-image-thumb" ><img src="../../dist/img/prod-2.jpg" alt="Product Image"></div>--}}
