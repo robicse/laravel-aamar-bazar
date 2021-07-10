@@ -114,12 +114,14 @@ class CustomerController extends Controller
             {
                 $nested_data = [];
                 foreach ($wishlists as $wishlist){
-                    $data['id'] = $wishlist->id;
-                    $data['product_id'] = $wishlist->product_id;
+                    $data['id'] = (integer) $wishlist->id;
+                    $data['product_id'] = (integer) $wishlist->product_id;
                     $data['name'] = $wishlist->name;
-                    $data['current_stock'] = $wishlist->current_stock;
-                    $data['unit_price'] = $wishlist->unit_price;
+                    $data['current_stock'] = (integer) $wishlist->current_stock;
+                    //$data['unit_price'] = $wishlist->unit_price;
                     $data['thumbnail_img'] = $wishlist->thumbnail_img;
+                    $data['base_price'] = (double) $wishlist->unit_price;
+                    $data['base_discounted_price'] = (double) home_discounted_base_price($wishlist->product_id);
 
                     $shop = DB::table('shops')
                         ->join('products','shops.user_id','products.user_id')
@@ -127,7 +129,7 @@ class CustomerController extends Controller
                         ->select('shops.*')
                         ->first();
                     if($shop){
-                        $data['shop'] = $shop;
+                        $data['shop_id'] = (integer) $shop->id;
                     }
 
                     array_push($nested_data,$data);
