@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Http\Resources\OrderDetailsCollection;
 use App\Model\Attribute;
 use App\Model\Brand;
 use App\Model\Category;
@@ -346,14 +347,7 @@ class SellerController extends Controller
         }
     }
     public function getOrderDetails($id){
-        $order_details=OrderDetails::where('order_id',$id)->get();
-        if (!empty($order_details))
-        {
-            return response()->json(['success'=>true,'response'=> $order_details], 200);
-        }
-        else{
-            return response()->json(['success'=>false,'response'=> 'Order is empty'], 404);
-        }
+        return new OrderDetailsCollection(OrderDetails::where('order_id', $id)->latest()->get());
     }
     public function productAddToMyShop($sellerId)
     {
