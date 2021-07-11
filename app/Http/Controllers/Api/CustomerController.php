@@ -119,7 +119,7 @@ class CustomerController extends Controller
                     $data['name'] = $wishlist->name;
                     $data['current_stock'] = (integer) $wishlist->current_stock;
                     //$data['unit_price'] = $wishlist->unit_price;
-                    $data['thumbnail_img'] = $wishlist->thumbnail_img;
+                    $data['thumbnail_image'] = $wishlist->thumbnail_img;
                     $data['base_price'] = (double) $wishlist->unit_price;
                     $data['base_discounted_price'] = (double) home_discounted_base_price($wishlist->product_id);
 
