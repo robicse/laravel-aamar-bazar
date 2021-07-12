@@ -99,6 +99,15 @@ class AuthController extends Controller
 
     public function sellerRegister(Request $request)
     {
+        $userEmailCheck = User::where('email',$request->email)->first();
+        $userPhoneCheck = User::where('phone',$request->phone)->first();
+
+        if (!empty($userEmailCheck)){
+            return response()->json(['success'=>true,'response' =>"This email already exist!"], 405);
+        }
+        if (!empty($userPhoneCheck)){
+            return response()->json(['success'=>true,'response' =>"This number already exist!"], 405);
+        }
         $sellerReg = new User();
         $sellerReg->name = $request->name;
         $sellerReg->email = $request->email;

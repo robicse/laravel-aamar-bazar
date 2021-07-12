@@ -92,6 +92,7 @@ class ProductController extends Controller
 
 
                             $nested_data['id']= $data->id;
+                            $nested_data['shop_id']= (integer) $shopId;
                             $nested_data['name']= $data->name;
                             $nested_data['photos'] = json_decode($data->photos);
                             $nested_data['thumbnail_image'] = $data->thumbnail_img;

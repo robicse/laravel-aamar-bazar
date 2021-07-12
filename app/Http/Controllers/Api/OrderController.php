@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Http\Resources\OrderDetailsCollection;
 use App\Model\Address;
 use App\Model\Order;
 use App\Model\OrderDetails;
@@ -38,20 +39,21 @@ class OrderController extends Controller
     }
     public function order_details_get($id)
     {
-        $order_details = DB::table('order_details')
-            ->join('orders','order_details.order_id','=','orders.id')
-            ->join('shops','orders.shop_id','=','shops.id')
-            ->join('products','order_details.product_id','=','products.id')
-            ->where('orders.id','=',$id)
-            ->select('products.thumbnail_img as product_image','order_details.*','orders.grand_total as Subtotal','orders.delivery_cost as delivery_cost','shops.logo')
-            ->get();
-        if (!empty($order_details))
-        {
-            return response()->json(['success'=>true,'response'=> $order_details], 200);
-        }
-        else{
-            return response()->json(['success'=>false,'response'=> 'Order is empty'], 404);
-        }
+        return new OrderDetailsCollection(OrderDetails::where('order_id', $id)->latest()->get());
+//        $order_details = DB::table('order_details')
+//            ->join('orders','order_details.order_id','=','orders.id')
+//            ->join('shops','orders.shop_id','=','shops.id')
+//            ->join('products','order_details.product_id','=','products.id')
+//            ->where('orders.id','=',$id)
+//            ->select('products.thumbnail_img as product_image','order_details.*','orders.grand_total as Subtotal','orders.delivery_cost as delivery_cost','shops.logo')
+//            ->get();
+//        if (!empty($order_details))
+//        {
+//            return response()->json(['success'=>true,'response'=> $order_details], 200);
+//        }
+//        else{
+//            return response()->json(['success'=>false,'response'=> 'Order is empty'], 404);
+//        }
     }
 
 

@@ -50,6 +50,7 @@
                                     <td>{{$product->name}}</td>
 {{--                                    <td class="{{$product->current_stock == 0 ? 'badge badge-danger' : 'badge badge-success'}}">{{$product->current_stock == 0 ? 'Not Available': 'Available'}}</td>--}}
                                     <td>{{$product->price}}</td>
+                                    @if($product->status == 0)
                                     <td>
                                         <div class="form-group col-md-2">
                                             <label class="switch" >
@@ -58,6 +59,9 @@
                                             </label>
                                         </div>
                                     </td>
+                                    @else
+                                        <td class="badge badge-success">Done</td>
+                                    @endif
 
                                     <td>
                                         <a class="btn btn-secondary bg-info" href="{{route('admin.apps-requested-products.show',encrypt($product->id))}}">
