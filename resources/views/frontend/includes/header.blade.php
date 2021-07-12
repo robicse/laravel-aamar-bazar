@@ -118,7 +118,7 @@
             <div class="navigation__right">
 </header>
 <header class="header header--mobile" data-sticky="true">
-    <div class="navigation--mobile" style="background: #fcb800;">
+    <div class="navigation--mobile" style="background: #000000;">
         <div class="navigation__left"><a class="ps-logo" href="{{url('/')}}"><img src="{{asset('frontend/img/logo-mudi-hat-final.png')}}" alt="" width="156" height="45"></a></div>
         <div class="navigation__right">
             <div class="header__actions" style="margin-left: -100px;">
@@ -148,7 +148,7 @@
             </div>
         </div>
     </div>
-    <div class="ps-search--mobile" style="background: #fcb800;">
+    <div class="ps-search--mobile" style="background: #000000;">
         <div class="ps-form--quick-search" >
             {{--                    <input type="text" class=" bksearch">--}}
             {{--                    <div class="bklist">--}}
@@ -303,8 +303,8 @@
                     <div class="" style="width: 70%">
                         <input class="form-control bksearch2 input-search-map m-0" type="text" placeholder="Enter your full address" id="" style="border-radius: 4px;" autocomplete="off" value="">
                     </div>
-                    <div  style="width: 30%">
-                        <button class="p-3 bg-dark find" style="border-radius: 4px; color: #fff;" id="find2">Find Shop</button>
+                    <div >
+                        <button class="p-3 bg-dark find" style="border-radius: 4px; color: #fff;" id="find2"><i class="fa fa-search"></i></button>
                     </div>
                 </div>
                 <div class="bklist2 "></div>
