@@ -471,7 +471,7 @@ class ProductController extends Controller
     public function getAdminProductAjax()
     {
         $sellerP = Product::where('added_by','seller')->where('user_id',Auth::id())->select('aPId_to_seller')->get();
-        $products = Product::where('added_by','admin')->latest()->select('id','name','unit_price','thumbnail_img')->latest()->get();
+        $products = Product::where('added_by','admin')->latest()->select('id','name','unit','unit_price','thumbnail_img')->latest()->get();
         $arr = array();
         $check2 = array();
         foreach ($products as $product){
@@ -480,18 +480,21 @@ class ProductController extends Controller
                 $check2['id'] = $product->id;
                 $check2['image'] = $product->thumbnail_img;
                 $check2['name'] = $product->name;
+                $check2['unit'] = $product->unit;
                 $check2['unit_price'] = $product->unit_price;
                 array_push($arr, $check2);
            }
         }
-        //return $arr;
+//        return $arr;
         $alldata = array();
         foreach($arr as $single){
             $alldata[] = array(
                 (string)$single['id'],
                 '<img src="'.url($single['image']).'" alt="Girl in a jacket" width="50" height="40">',
                 $single['name'],
-                (string)$single['unit_price']
+                $single['unit'],
+                (string)$single['unit_price'],
+
             );
         }
         $Response = array('data' => $alldata );
