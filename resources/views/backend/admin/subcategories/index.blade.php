@@ -43,6 +43,7 @@
                                 <th>#Id</th>
                                 <th>Name</th>
                                 <th>Category Name</th>
+                                <th>Published</th>
                                 <th>Action</th>
                             </tr>
                             </thead>
@@ -52,6 +53,14 @@
                                 <td>{{$key + 1}}</td>
                                 <td>{{$subcategory->name}}</td>
                                 <td>{{$subcategory->category->name}}</td>
+                                <td>
+                                    <div class="form-group col-md-2">
+                                        <label class="switch" style="margin-top:40px;">
+                                            <input onchange="update_status(this)" value="{{ $subcategory->id }}" {{$subcategory->status == 1? 'checked':''}} type="checkbox" >
+                                            <span class="slider round"></span>
+                                        </label>
+                                    </div>
+                                </td>
                                 <td>
                                     <a class="btn btn-info waves-effect" href="{{route('admin.subcategories.edit',$subcategory->id)}}">
                                         <i class="fa fa-edit"></i>
@@ -73,6 +82,7 @@
                                 <th>#Id</th>
                                 <th>Name</th>
                                 <th>Category Name</th>
+                                <th>Published</th>
                                 <th>Action</th>
                             </tr>
                             </tfoot>
@@ -102,35 +112,21 @@
             });
         });
 
-        //sweet alert
-        function deleteSubCategory(id) {
-            swal({
-                title: 'Are you sure?',
-                text: "You won't be able to revert this!",
-                type: 'warning',
-                showCancelButton: true,
-                confirmButtonColor: '#3085d6',
-                cancelButtonColor: '#d33',
-                confirmButtonText: 'Yes, delete it!',
-                cancelButtonText: 'No, cancel!',
-                confirmButtonClass: 'btn btn-success',
-                cancelButtonClass: 'btn btn-danger',
-                buttonsStyling: false,
-                reverseButtons: true
-            }).then((result) => {
-                if (result.value) {
-                    document.getElementById('delete-form-'+id).submit();
-                } else if (
-                    // Read more about handling dismissals
-                    result.dismiss === swal.DismissReason.cancel
-                ) {
-                    swal(
-                        'Cancelled',
-                        'Your Data is save :)',
-                        'error'
-                    )
+        function update_status(el){
+            if(el.checked){
+                var status = 1;
+            }
+            else{
+                var status = 0;
+            }
+            $.post('{{ route('admin.subcategories.status-update') }}', {_token:'{{ csrf_token() }}', id:el.value, status:status}, function(data){
+                if(data == 1){
+                    toastr.success('success', 'Subcategory Published updated successfully');
                 }
-            })
+                else{
+                    toastr.danger('danger', 'Something went wrong');
+                }
+            });
         }
     </script>
 @endpush

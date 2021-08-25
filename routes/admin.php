@@ -23,7 +23,9 @@ Route::group(['as'=>'admin.','prefix' =>'admin','namespace'=>'Admin', 'middlewar
     Route::post('categories/is_home', 'CategoryController@updateIsHome')->name('categories.is_home');
     Route::resource('attributes','AttributeController');
     Route::resource('subcategories','SubcategoryController');
+    Route::post('subcategories/status-update', 'SubcategoryController@updateStatus')->name('subcategories.status-update');
     Route::resource('sub-subcategories','SubSubcategoryController');
+    Route::post('subsubcategories/status-update', 'SubSubcategoryController@updateStatus')->name('subsubcategories.status-update');
     Route::resource('products','ProductController');
     Route::resource('offers','OfferController');
 //flash sales start

@@ -149,7 +149,7 @@
                 }
             })
         }
-        //today's deals
+        //Is Home
         function update_is_home(el){
             if(el.checked){
                 var status = 1;
