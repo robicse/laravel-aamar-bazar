@@ -118,7 +118,7 @@
             <div class="navigation__right">
 </header>
 <header class="header header--mobile" data-sticky="true">
-    <div class="navigation--mobile" style="background: #fcb800;">
+    <div class="navigation--mobile" style="background: #000000;">
         <div class="navigation__left"><a class="ps-logo" href="{{url('/')}}"><img src="{{asset('frontend/img/logo-mudi-hat-final.png')}}" alt="" width="156" height="45"></a></div>
         <div class="navigation__right">
             <div class="header__actions" style="margin-left: -100px;">
@@ -148,7 +148,7 @@
             </div>
         </div>
     </div>
-    <div class="ps-search--mobile" style="background: #fcb800;">
+    <div class="ps-search--mobile" style="background: #000000;">
         <div class="ps-form--quick-search" >
             {{--                    <input type="text" class=" bksearch">--}}
             {{--                    <div class="bklist">--}}
@@ -303,8 +303,8 @@
                     <div class="" style="width: 70%">
                         <input class="form-control bksearch2 input-search-map m-0" type="text" placeholder="Enter your full address" id="" style="border-radius: 4px;" autocomplete="off" value="">
                     </div>
-                    <div  style="width: 30%">
-                        <button class="p-3 bg-dark find" style="border-radius: 4px; color: #fff;" id="find2">Find Shop</button>
+                    <div >
+                        <button class="p-3 bg-dark find" style="border-radius: 4px; color: #fff;" id="find2"><i class="fa fa-search"></i></button>
                     </div>
                 </div>
                 <div class="bklist2 "></div>
@@ -317,7 +317,7 @@
 </div>
 
 @push('js')
-    <script src="https://cdn.jsdelivr.net/gh/barikoi/barikoi-js@b6f6295467c19177a7d8b73ad4db136905e7cad6/dist/barikoi.min.js?key:MTg3NzpCRE5DQ01JSkgw"></script>
+    <script src="https://cdn.jsdelivr.net/gh/barikoi/barikoi-js@b6f6295467c19177a7d8b73ad4db136905e7cad6/dist/barikoi.min.js?key:MjMzNTpTWlBLSkRHUTRZ"></script>
     <script>
         $('[data-toggle="tooltip"]').tooltip();
         Bkoi.onSelect(function () {
@@ -338,7 +338,7 @@
             let location=null;
             let add=$('.address').val();
             $('.addList').empty();
-            fetch("https://barikoi.xyz/v1/api/search/autocomplete/MTg5ODpJUTVHV0RWVFZP/place?q="+add)
+            fetch("https://barikoi.xyz/v1/api/search/autocomplete/MjMzNTpTWlBLSkRHUTRZ/place?q="+add)
                 .then(response => response.json())
                 .catch(error => console.error('Error:', error))
                 .then(response => {

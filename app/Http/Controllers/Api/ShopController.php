@@ -25,7 +25,7 @@ class ShopController extends Controller
     }
     public function getShopByLatLng($lat, $lng)
     {
-        $shops=Shop::whereBetween('latitude',[$lat-0.02,$lat+0.02])->whereBetween('longitude',[$lng-0.02,$lng+0.02])->get();
+        $shops=Shop::whereBetween('latitude',[$lat-0.01,$lat+0.01])->whereBetween('longitude',[$lng-0.01,$lng+0.01])->get();
         if (!empty($shops)){
             return response()->json(['success'=> true, 'response'=>$shops],200);
         }else{
