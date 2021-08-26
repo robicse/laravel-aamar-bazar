@@ -10,7 +10,7 @@
         <!-- Sidebar user panel (optional) -->
         <div class="user-panel mt-3 pb-2 pl-2 mb-2 d-flex">
             <div class="">
-                <img src="{{asset('frontend/img/logo-mudi-hat.png')}}" class="" alt="User Image" width="100%">
+                <img src="{{asset('frontend/img/logo-mudi-hat-final.png')}}" class="" alt="User Image" width="100%">
             </div>
         </div>
 

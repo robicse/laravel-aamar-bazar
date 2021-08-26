@@ -301,15 +301,19 @@ class SellerController extends Controller
 
     }
     public function banSeller($id) {
-        //dd($id);
+
         $user = User::findOrFail($id);
         $seller = Seller::where('user_id',$user->id)->first();
-        //dd($seller);
-        $seller->verification_status = 0;
-        $seller->save();
-        $user->banned = 1;
+        if($user->banned == 1) {
+            $user->banned = 0;
+        } else {
+            $user->banned = 1;
+            $seller->verification_status = 0;
+            $seller->save();
+            $user->banned = 1;
+        }
         $user->save();
-        Toastr::success('Seller Baned ', 'Success');
-        return redirect()->back();
+
+        return back();
     }
 }

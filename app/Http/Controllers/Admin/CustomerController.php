@@ -118,10 +118,14 @@ class CustomerController extends Controller
         return view('backend.admin.top_customers.index',compact('customers'));
     }
     public function banCustomer($id) {
-        $customer = User::findOrFail($id);
-        $customer->banned = 1;
-        $customer->save();
-        Toastr::success('This Customer has been Baned', 'Success');
-        return redirect()->back();
+        $user = User::findOrFail($id);
+        if($user->banned == 1) {
+            $user->banned = 0;
+        } else {
+            $user->banned = 1;
+            $user->banned = 1;
+        }
+        $user->save();
+        return back();
     }
 }
