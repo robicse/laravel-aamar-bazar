@@ -41,11 +41,6 @@
                         </div>
                     </div>
                     <!-- /.card-header -->
-
-
-
-
-
                     <div class="card-body table-responsive">
                         <table id="example1" class="table table-bordered table-striped">
                             <thead>
@@ -55,6 +50,7 @@
                                 <th>Shop Name</th>
                                 <th>Name</th>
                                 <th>Total Stock</th>
+                                <th>Unit</th>
                                 <th>Base Price</th>
                                 <th>Today's Deal</th>
                                 <th>Published</th>
@@ -65,7 +61,6 @@
 
                             <tbody>
                             @foreach($products as $key => $product)
-{{--                                @dd($product->user->name)--}}
                                 @php
                                     $shop = \App\Model\Shop::where('user_id',$product->user->id)->first();
                                 @endphp
@@ -81,6 +76,7 @@
                                     </td>
                                     <td>{{$product->name}}</td>
                                     <td>{{$product->current_stock}}</td>
+                                    <td>{{$product->unit}}</td>
                                     <td>{{$product->unit_price}}</td>
                                     <td>
                                         <div class="form-group col-md-2">
@@ -116,16 +112,7 @@
                                                 <a class="bg-info dropdown-item" href="{{route('admin.edit.seller.products',encrypt($product->id))}}">
                                                     <i class="fa fa-edit"></i> Edit
                                                 </a>
-                                                {{--<button class="bg-danger dropdown-item" type="button"
-                                                        onclick="deleteProduct({{$product->id}})">
-                                                    <i class="fa fa-trash"></i> Delete
-                                                </button>--}}
-{{--                                                <form id="delete-form-{{$product->id}}" action="{{route('admin.products.destroy',$product->id)}}" method="POST" style="display: none;">--}}
-{{--                                                    @csrf--}}
-{{--                                                    @method('DELETE')--}}
-{{--                                                </form>--}}
                                             </div>
-                                        </div>
                                     </td>
                                 </tr>
                             @endforeach
@@ -137,6 +124,7 @@
                                 <th>Shop Name</th>
                                 <th>Name</th>
                                 <th>Total Stock</th>
+                                <th>Unit</th>
                                 <th>Base Price</th>
                                 <th>Today's Deal</th>
                                 <th>Published</th>

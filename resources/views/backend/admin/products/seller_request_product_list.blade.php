@@ -44,6 +44,7 @@
                                 <th>Icon</th>
                                 <th>Name</th>
                                 <th>Total Stock</th>
+                                <th>Unit</th>
                                 <th>Base Price</th>
                                 <th>Today's Deal</th>
                                 <th>Published</th>
@@ -60,6 +61,7 @@
                                     </td>
                                     <td>{{$product->name}}</td>
                                     <td>{{$product->current_stock}}</td>
+                                    <td>{{$product->unit}}</td>
                                     <td>{{$product->unit_price}}</td>
                                     <td>
                                         <div class="form-group col-md-2">
@@ -85,26 +87,6 @@
                                             </label>
                                         </div>
                                     </td>
-                                    {{--<td>
-                                        <div class="dropdown">
-                                           --}}{{-- <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                Actions
-                                            </button>--}}{{--
-                                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                                <a class="bg-info dropdown-item" href="{{route('admin.products.edit',$product->id)}}">
-                                                    <i class="fa fa-edit"></i> Edit
-                                                </a>
-                                                --}}{{--<button class="bg-danger dropdown-item" type="button"
-                                                        onclick="deleteProduct({{$product->id}})">
-                                                    <i class="fa fa-trash"></i> Delete
-                                                </button>--}}{{--
-                                                <form id="delete-form-{{$product->id}}" action="{{route('admin.products.destroy',$product->id)}}" method="POST" style="display: none;">
-                                                    @csrf
-                                                    @method('DELETE')
-                                                </form>
-                                            </div>
-                                        </div>
-                                    </td>--}}
                                 </tr>
                             @endforeach
                             </tbody>
@@ -114,6 +96,7 @@
                                 <th>Icon</th>
                                 <th>Name</th>
                                 <th>Total Stock</th>
+                                <th>Unit</th>
                                 <th>Base Price</th>
                                 <th>Today's Deal</th>
                                 <th>Published</th>
