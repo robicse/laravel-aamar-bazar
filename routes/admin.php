@@ -19,6 +19,7 @@ Route::group(['as'=>'admin.','prefix' =>'admin','namespace'=>'Admin', 'middlewar
     Route::post('/roles/permission','RoleController@create_permission');
     Route::resource('staffs','StaffController');
     Route::resource('brands','BrandController');
+    Route::post('brands/status-update', 'BrandController@updateStatus')->name('brands.status-update');
     Route::resource('categories','CategoryController');
     Route::post('categories/is_home', 'CategoryController@updateIsHome')->name('categories.is_home');
     Route::resource('attributes','AttributeController');

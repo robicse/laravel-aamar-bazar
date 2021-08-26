@@ -124,7 +124,7 @@
             }
             $.post('{{ route('admin.subsubcategories.status-update') }}', {_token:'{{ csrf_token() }}', id:el.value, status:status}, function(data){
                 if(data == 1){
-                    toastr.success('success', 'Subcategory Published updated successfully');
+                    toastr.success('success', 'Subsubcategory Published updated successfully');
                 }
                 else{
                     toastr.danger('danger', 'Something went wrong');
