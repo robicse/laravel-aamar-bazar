@@ -30,21 +30,8 @@
                                 </div><span class="ps-block__divider"></span>
                                 <div class="ps-block__content">
                                     <p><strong>{{$shop->name}}</strong>, Bangladesh’s no.1 online retailer was established in May 2019 with the aim and vision to become the one-stop shop for retail in New York with implementation of best practices both online</p><span class="ps-block__divider"></span>
-                                    <p><strong>Address</strong> {{$shop->address}}</p>
-                                    <figure>
-                                        <figcaption>Foloow us on social</figcaption>
-                                        <ul class="ps-list--social-color">
-                                            <li><a class="facebook" href="{{$shop->facebook}}"><i class="fa fa-facebook"></i></a></li>
-                                            <li><a class="twitter" href="{{$shop->twitter}}"><i class="fa fa-twitter"></i></a></li>
-                                            <li><a class="linkedin" href="{{$shop->google}}"><i class="fa fa-google-plus"></i></a></li>
-                                            <li><a class="feed" href="{{$shop->youtube}}"><i class="fa fa-youtube"></i></a></li>
-                                        </ul>
-                                    </figure>
                                 </div>
-                                <div class="ps-block__footer">
-                                    <p>Call us directly<strong>(+880) 1771123456</strong></p>
-                                    <p>or Or if you have any question</p><a class="ps-btn ps-btn--fullwidth" href="#">Contact Seller</a>
-                                </div>
+
                             </div>
                         </div>
                     </div>
