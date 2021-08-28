@@ -43,6 +43,7 @@
                                 <th>#Id</th>
                                 <th>Icon</th>
                                 <th>Name</th>
+                                <th>Variant</th>
                                 <th>Stock</th>
                                 <th>Unit</th>
                                 <th>Base Price</th>
@@ -60,7 +61,17 @@
                                         <img src="{{url($product->thumbnail_img)}}" width="32" height="32" alt="">
                                     </td>
                                     <td>{{$product->name}}</td>
-                                    <td class="{{$product->current_stock == 0 ? 'badge badge-danger' : 'badge badge-success'}}">{{$product->current_stock == 0 ? 'Not Available': 'Available'}}</td>
+                                    <td class="{{$product->variant_product == 0 ? 'badge badge-danger' : 'badge badge-success'}}" id="{{$product->id}}">
+                                        {{$product->variant_product == 0 ? 'No': 'Yes'}}
+                                    </td>
+                                    <td>
+                                        @if($product->current_stock == 0)
+                                            <span class="badge badge-danger">Not Available</span>
+                                        @else
+                                            <span class="badge badge-success">Available</span>
+                                        @endif
+                                    </td>
+{{--                                    <td class="{{$product->current_stock == 0 ? 'badge badge-danger' : 'badge badge-success'}}">{{$product->current_stock == 0 ? 'Not Available': 'Available'}}</td>--}}
                                     <td>{{$product->unit}}</td>
                                     <td>{{$product->unit_price}}</td>
                                     <td>
@@ -119,6 +130,7 @@
                                 <th>#Id</th>
                                 <th>Icon</th>
                                 <th>Name</th>
+                                <th>Variant</th>
                                 <th>Stock</th>
                                 <th>Unit</th>
                                 <th>Base Price</th>
