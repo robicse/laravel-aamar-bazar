@@ -147,48 +147,7 @@
                                             <div class="ps-tab active" id="tab-1">
                                                 <div class="row" style="margin-top: -30px;">
                                                     @foreach($flashDealProducts as $flashDealProduct)
-                                                        <div class="col-xl-3 col-lg-4 col-md-4 col-sm-6">
-                                                            <div class="ps-product">
-                                                                <div class="ps-product__thumbnail"><a href="{{route('product-details',$flashDealProduct->product->slug)}}"><img src="{{asset($flashDealProduct->product->thumbnail_img)}}" alt="" width="153" height="171"></a>
-                                                                    <ul class="ps-product__actions">
-                                                                        <li><a href="{{route('product-details',$flashDealProduct->product->slug)}}" data-toggle="tooltip" data-placement="top" title="Add To Cart"><i class="icon-bag2"></i></a></li>
-                                                                        <li><a href="{{route('product-details',$flashDealProduct->product->slug)}}" data-placement="top" title="Quick View"><i class="icon-eye"></i></a></li>
-                                                                        <li><a href="{{route('add.wishlist',$flashDealProduct->product->id)}}" data-toggle="tooltip" data-placement="top" title="Add to Whishlist"><i class="icon-heart"></i></a></li>
-                                                                    </ul>
-                                                                </div>
-                                                                <div class="ps-product__container"><a class="ps-product__vendor" href="{{route('product-details',$flashDealProduct->product->slug)}}"></a>
-                                                                    <div class="ps-product__content"><a class="ps-product__title" href="">{{$flashDealProduct->product->name}}</a>
-{{--                                                                        <div class="ps-product__rating">--}}
-{{--                                                                            <select class="ps-rating" data-read-only="true">--}}
-{{--                                                                                <option value="1">1</option>--}}
-{{--                                                                                <option value="1">2</option>--}}
-{{--                                                                                <option value="1">3</option>--}}
-{{--                                                                                <option value="1">4</option>--}}
-{{--                                                                                <option value="2">5</option>--}}
-{{--                                                                            </select><span>01</span>--}}
-{{--                                                                        </div>--}}
-                                                                        <p class="ps-product__price sale">
-                                                                            ৳{{home_discounted_base_price($flashDealProduct->product_id)}}
-                                                                            @if(home_base_price($flashDealProduct->product_id) != home_discounted_base_price($flashDealProduct->product_id))
-                                                                                <del>৳{{home_base_price($flashDealProduct->product_id)}}</del>
-                                                                            @else
-                                                                                ৳{{home_discounted_base_price($flashDealProduct->product_id)}}
-                                                                            @endif
-                                                                        </p>
-                                                                    </div>
-                                                                    <div class="ps-product__content hover"><a class="ps-product__title" href="{{route('product-details',$flashDealProduct->product->slug)}}">{{$flashDealProduct->product->name}}</a>
-                                                                        <p class="ps-product__price sale">
-                                                                            ৳{{home_discounted_base_price($flashDealProduct->product_id)}}
-                                                                            @if(home_base_price($flashDealProduct->product_id) != home_discounted_base_price($flashDealProduct->product_id))
-                                                                                <del>৳{{home_base_price($flashDealProduct->product_id)}}</del>
-                                                                            @else
-                                                                                ৳{{home_discounted_base_price($flashDealProduct->product_id)}}
-                                                                            @endif
-                                                                        </p>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
+                                                        {{FlashDealComponent($flashDealProduct)}}
                                                     @endforeach
                                                 </div>
                                             </div>
@@ -211,45 +170,7 @@
                                         <div class="ps-tab active" id="tab-1">
                                             <div class="row">
                                                 @foreach($products as $product)
-                                                    <div class="col-xl-3 col-lg-4 col-md-4 col-sm-6 col-6 ">
-                                                        <div class="ps-product">
-                                                            <div class="ps-product__thumbnail"><a href="{{route('product-details',$product->slug)}}"><img src="{{asset($product->thumbnail_img)}}" alt="" width="153" height="171"></a>
-                                                                {{--                                                        <div class="ps-product__badge">11%</div>--}}
-                                                                <ul class="ps-product__actions">
-                                                                    <li><a href="{{route('product-details',$product->slug)}}" data-toggle="tooltip" data-placement="top" title="Add To Cart"><i class="icon-bag2"></i></a></li>
-                                                                    <li><a href="{{route('product-details',$product->slug)}}" data-placement="top" title="Quick View"><i class="icon-eye"></i></a></li>
-                                                                    <li><a href="{{route('add.wishlist',$product->id)}}" data-toggle="tooltip" data-placement="top" title="Add to Whishlist"><i class="icon-heart"></i></a></li>
-                                                                </ul>
-                                                            </div>
-                                                            <div class="ps-product__container"><a class="ps-product__vendor" href="{{route('product-details',$product->slug)}}"></a>
-                                                                <div class="ps-product__content"><a class="ps-product__title" href="">{{$product->name}}</a>
-                                                                    {{--<div class="ps-product__rating">
-                                                                        <select class="ps-rating" data-read-only="true">
-                                                                            <option value="1">1</option>
-                                                                            <option value="1">2</option>
-                                                                            <option value="1">3</option>
-                                                                            <option value="1">4</option>
-                                                                            <option value="2">5</option>
-                                                                        </select><span>01</span>
-                                                                    </div>--}}
-                                                                    {{--<p class="ps-product__price sale">৳{{$product->unit_price}} <del>৳{{$product->purchase_price}}</del></p>--}}
-                                                                   Price: ৳ {{home_discounted_base_price($product->id)}}
-                                                                    @if(home_base_price($product->id) != home_discounted_base_price($product->id))
-                                                                        <del>৳ {{home_base_price($product->id)}}</del>
-                                                                    @endif
-                                                                    {{--৳ {{home_discounted_base_price($product->id)}}--}}
-
-                                                                </div>
-                                                                <div class="ps-product__content hover"><a class="ps-product__title" href="{{route('product-details',$product->slug)}}">{{$product->name}}</a>
-                                                                    {{--<p class="ps-product__price sale">৳{{$product->unit_price}} <del>৳{{$product->purchase_price}}</del></p>--}}
-                                                                    Price: ৳ {{home_discounted_base_price($product->id)}}
-                                                                    @if(home_base_price($product->id) != home_discounted_base_price($product->id))
-                                                                        <del>৳ {{home_base_price($product->id)}}</del>
-                                                                    @endif
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
+                                                    {{ProductComponent($product)}}
                                                 @endforeach
                                             </div>
                                         </div>
@@ -274,32 +195,7 @@
                                         <div class="ps-tab active" id="tab-1">
                                             <div class="row">
                                                 @foreach($todaysDeal as $product)
-                                                    <div class="col-xl-3 col-lg-4 col-md-4 col-sm-6 col-6 ">
-                                                        <div class="ps-product">
-                                                            <div class="ps-product__thumbnail"><a href="{{route('product-details',$product->slug)}}"><img src="{{asset($product->thumbnail_img)}}" alt="" width="153" height="171"></a>
-                                                                {{--                                                        <div class="ps-product__badge">11%</div>--}}
-                                                                <ul class="ps-product__actions">
-                                                                    <li><a href="{{route('product-details',$product->slug)}}" data-toggle="tooltip" data-placement="top" title="Add To Cart"><i class="icon-bag2"></i></a></li>
-                                                                    <li><a href="{{route('product-details',$product->slug)}}" data-placement="top" title="Quick View"><i class="icon-eye"></i></a></li>
-                                                                    <li><a href="{{route('add.wishlist',$product->id)}}" data-toggle="tooltip" data-placement="top" title="Add to Whishlist"><i class="icon-heart"></i></a></li>
-                                                                </ul>
-                                                            </div>
-                                                            <div class="ps-product__container"><a class="ps-product__vendor" href="{{route('product-details',$product->slug)}}"></a>
-                                                                <div class="ps-product__content"><a class="ps-product__title" href="">{{$product->name}}</a>
-                                                                    Price: ৳ {{home_discounted_base_price($product->id)}}
-                                                                    @if(home_base_price($product->id) != home_discounted_base_price($product->id))
-                                                                        <del>৳ {{home_base_price($product->id)}}</del>
-                                                                    @endif
-                                                                </div>
-                                                                <div class="ps-product__content hover"><a class="ps-product__title" href="{{route('product-details',$product->slug)}}">{{$product->name}}</a>
-                                                                    Price: ৳ {{home_discounted_base_price($product->id)}}
-                                                                    @if(home_base_price($product->id) != home_discounted_base_price($product->id))
-                                                                        <del>৳ {{home_base_price($product->id)}}</del>
-                                                                    @endif
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
+                                                    {{ProductComponent($product)}}
                                                 @endforeach
                                             </div>
                                         </div>
@@ -320,41 +216,7 @@
                                         <div class="ps-tab active" id="tab-1">
                                             <div class="row">
                                                 @foreach($best_sales_products as $product)
-                                                    <div class="col-xl-3 col-lg-4 col-md-4 col-sm-6 col-6 ">
-                                                        <div class="ps-product">
-                                                            <div class="ps-product__thumbnail"><a href="{{route('product-details',$product->slug)}}"><img src="{{asset($product->thumbnail_img)}}" alt="" width="153" height="171"></a>
-                                                                {{--                                                        <div class="ps-product__badge">11%</div>--}}
-                                                                <ul class="ps-product__actions">
-                                                                    <li><a href="{{route('product-details',$product->slug)}}" data-toggle="tooltip" data-placement="top" title="Add To Cart"><i class="icon-bag2"></i></a></li>
-                                                                    <li><a href="{{route('product-details',$product->slug)}}" data-placement="top" title="Quick View"><i class="icon-eye"></i></a></li>
-                                                                    <li><a href="{{route('add.wishlist',$product->id)}}" data-toggle="tooltip" data-placement="top" title="Add to Whishlist"><i class="icon-heart"></i></a></li>
-                                                                </ul>
-                                                            </div>
-                                                            <div class="ps-product__container"><a class="ps-product__vendor" href="{{route('product-details',$product->slug)}}"></a>
-                                                                <div class="ps-product__content"><a class="ps-product__title" href="">{{$product->name}}</a>
-                                                                    {{--<div class="ps-product__rating">
-                                                                        <select class="ps-rating" data-read-only="true">
-                                                                            <option value="1">1</option>
-                                                                            <option value="1">2</option>
-                                                                            <option value="1">3</option>
-                                                                            <option value="1">4</option>
-                                                                            <option value="2">5</option>
-                                                                        </select><span>01</span>
-                                                                    </div>--}}
-                                                                    Price: ৳ {{home_discounted_base_price($product->id)}}
-                                                                    @if(home_base_price($product->id) != home_discounted_base_price($product->id))
-                                                                        <del>৳ {{home_base_price($product->id)}}</del>
-                                                                    @endif
-                                                                </div>
-                                                                <div class="ps-product__content hover"><a class="ps-product__title" href="{{route('product-details',$product->slug)}}">{{$product->name}}</a>
-                                                                    Price: ৳ {{home_discounted_base_price($product->id)}}
-                                                                    @if(home_base_price($product->id) != home_discounted_base_price($product->id))
-                                                                        <del>৳ {{home_base_price($product->id)}}</del>
-                                                                    @endif
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
+                                                    {{ProductComponent($product)}}
                                                 @endforeach
                                             </div>
                                         </div>

@@ -449,7 +449,7 @@
         $('#add_to_cart').on('click', function(e){
             e.preventDefault();
             //getVariantPrice($('#option-choice-form').serializeArray());
-            addtocart($('#option-choice-form').serializeArray());
+            productAddtocart($('#option-choice-form').serializeArray());
         });
 
         $('.up').on('click', function(event){
@@ -501,7 +501,7 @@
                 }
             });
         }
-        function addtocart(array){
+        function productAddtocart(array){
             //console.log(array);
             $.ajaxSetup({
                 headers: {

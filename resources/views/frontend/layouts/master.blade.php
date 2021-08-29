@@ -96,6 +96,27 @@
         //seach placeholder change
         $('.bksearch').attr("placeholder", "Search your delivery location");
     })
+
+    function addToCart(id,variant){
+
+        $.post('{{ route('product.add-to-cart-new') }}', {
+            _token: '{{ csrf_token() }}',
+            product_id: id,
+            variant: variant,
+        }, function (data) {
+
+            console.log(data.response)
+            $('.cart_count').html(data.response.countCart);
+            $('.cart_item').append(`<div class="ps-product--cart-mobile">
+                                            <div class="ps-product__thumbnail"><a href="#"><img src="/${data.response['options'].image}" alt=""></a></div>
+                                            <div class="ps-product__content"><a class="ps-product__remove" href=""><i class="icon-cross"></i></a><a href="#">${data.response.name}</a>
+                                                <p><small>${data.response.qty} x ${data.response.price}</small>
+                                            </div>
+                                        </div>`);
+            $('.subTotal').html(data.response.subtotal);
+        });
+    }
+
 </script>
 
 

@@ -140,4 +140,10 @@ function homeDiscountedPrice($id)
             return 'Something went wrong!';
         }
     }
+    function FlashDealComponent($product){
+        return view('frontend.pages.partials.flashDealComponent', compact('product'));
+    }
+    function ProductComponent($product){
+        return view('frontend.pages.partials.productComponent', compact('product'));
+    }
 

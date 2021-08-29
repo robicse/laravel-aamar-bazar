@@ -68,6 +68,7 @@ Route::get('/featured-products/{slug}', 'Frontend\ProductController@featuredProd
 Route::get('/products/{name}/{slug}/{sub}', 'Frontend\ProductController@productSubCategory')->name('product.by.subcategory');
 Route::get('/products/{name}/{slug}', 'Frontend\ProductController@productByBrand')->name('product.by.brand');
 Route::post('/products/ajax/addtocart', 'Frontend\CartController@ProductAddCart')->name('product.add.cart');
+Route::post('/product/add-to-cart/new', 'Frontend\CartController@productAddToCartNew')->name('product.add-to-cart-new');
 Route::get('/product/clear/cart', 'Frontend\CartController@clearCart')->name('product.clear.cart');
 Route::get('/product/remove/cart/{id}', 'Frontend\CartController@cartRemove')->name('product.cart.remove');
 Route::post('/cart/quantity_update', 'Frontend\CartController@quantityUpdate')->name('qty.update');

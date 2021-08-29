@@ -25,11 +25,26 @@ class CartController extends Controller
         return view('frontend.pages.shop.shopping_cart');
     }
 
+    public function productAddToCartNew(Request $request){
+        $product=Product::find($request->product_id);
+        $data = array();
+        $data['id'] = $product->id;
+        $data['name'] = $product->name;
+        $data['qty'] = 1;
+        $data['price'] = home_discounted_base_price($product->id);
+        $data['options']['image'] = $product->thumbnail_img;
+        $data['options']['variant_id'] = null;
+        $data['options']['variant'] = null;
+        $data['options']['cart_type'] = "product";
+        Cart::add($data);
+        $data['countCart'] = Cart::count();
+        return response()->json(['success'=> true, 'response'=>$data]);
+    }
+
 
 
 
     public function ProductAddCart(Request  $request) {
-        //dd('add to cart');
         $var=$request->variant;
         $product=Product::find($request->product_id);
         if(Cart::count()!=0){
@@ -41,10 +56,8 @@ class CartController extends Controller
             }
         }
         $flashSales =  $flashSales = FlashDealProduct::where('product_id',$product->id)->first();
-        //dd($flashSales->count());
         $shop=\App\Model\Shop::where('user_id',$product->user_id)->first();
         if($product->variant_product== 0 && $product->discount == 0 ){
-//            dd("no");
             if (!empty($flashSales)){
                 $qty=$var[count($var)-1]['value'];
                 $data = array();
@@ -105,11 +118,9 @@ class CartController extends Controller
 
             Cart::add($data);
             $data['countCart'] = Cart::count();
-            //dd(Cart::content());
-//            dd("not flash sales");
             return response()->json(['success'=> true, 'response'=>$data]);
         }elseif(!empty($flashSales)){
-            //dd("flash sales");
+
             $qty=$var[count($var)-1]['value'];
             $data = array();
             $data['id'] = $product->id;
@@ -141,7 +152,6 @@ class CartController extends Controller
             //dd(Cart::content());
             return response()->json(['success'=> true, 'response'=>$data]);
         }else{
-//            dd("no");
             if ($product->discount > 0){
                 $c=count($request->variant);
                 $i=1;
@@ -183,7 +193,6 @@ class CartController extends Controller
 //                dd(Cart::content());
                 return response()->json(['success'=> true, 'response'=>$data]);
             }else{
-//                dd('hi');
                 $c=count($request->variant);
                 $i=1;
                 $v=[];
@@ -192,7 +201,7 @@ class CartController extends Controller
                 }
                 $implode=implode("-", $v);
                 $variant=ProductStock::where('variant',$implode)->first();
-                dd($variant);
+//                dd($variant);
                 $qty=$var[count($var)-1]['value'];
                 $data = array();
                 $data['id'] = $product->id;
