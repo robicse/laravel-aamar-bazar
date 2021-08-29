@@ -63,7 +63,7 @@ Route::get('popup-destroy','Frontend\FrontendController@popupDataDestroy')->name
 
 //product
 Route::get('/product/{slug}', 'Frontend\ProductController@ProductDetails')->name('product-details');
-Route::post('/products/get/variant/price', 'Frontend\ProductController@ProductVariantPrice')->name('product.variant.price');
+//Route::post('/products/get/variant/price', 'Frontend\ProductController@ProductVariantPrice')->name('product.variant.price');
 Route::get('/featured-products/{slug}', 'Frontend\ProductController@featuredProductList')->name('featured-product.list');
 Route::get('/products/{name}/{slug}/{sub}', 'Frontend\ProductController@productSubCategory')->name('product.by.subcategory');
 Route::get('/products/{name}/{slug}', 'Frontend\ProductController@productByBrand')->name('product.by.brand');
@@ -73,6 +73,9 @@ Route::get('/product/clear/cart', 'Frontend\CartController@clearCart')->name('pr
 Route::get('/product/remove/cart/{id}', 'Frontend\CartController@cartRemove')->name('product.cart.remove');
 Route::post('/cart/quantity_update', 'Frontend\CartController@quantityUpdate')->name('qty.update');
 Route::get('/best-sells/products','Frontend\ProductController@bestSellsProducts')->name('best-sells-all-products');
+Route::post('/product/variant_price', 'Frontend\ProductController@variant_price')->name('products.variant_price');
+
+
 //Shop/Vendor
 Route::post('/shop/nearest/list', 'Frontend\ShopController@nearestshop')->name('shop.nearest');
 

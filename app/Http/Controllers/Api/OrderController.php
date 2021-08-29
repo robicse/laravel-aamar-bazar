@@ -108,9 +108,7 @@ class OrderController extends Controller
         if ($request->pay == 'cod') {
             $getSellerId = Shop::find($shop_id);
             $getSellerData = Seller::where('user_id',$getSellerId->user_id)->first();
-            //dd($getSellerData);
             $grandTotal = $order->grand_total;
-            //dd($grandTotal);
             $adminCommission = new OrderTempCommission();
             $adminCommission->order_id = $order->id;
             $adminCommission->shop_id = $shop_id;
