@@ -527,6 +527,7 @@
                                             </div>
                                         </div>`);
                     $('.subTotal').html(data.response.subtotal);
+                    toastr.success('success', 'Product added to your cart.');
                     // $('.base_price').val(data.response.price);
                     // $('.aval').html(data.response.qty+" available");
                     // $('.qtty').val(1);

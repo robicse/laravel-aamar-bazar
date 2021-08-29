@@ -193,6 +193,7 @@ class CartController extends Controller
 //                dd(Cart::content());
                 return response()->json(['success'=> true, 'response'=>$data]);
             }else{
+
                 $c=count($request->variant);
                 $i=1;
                 $v=[];

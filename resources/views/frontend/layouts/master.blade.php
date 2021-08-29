@@ -114,6 +114,7 @@
                                             </div>
                                         </div>`);
             $('.subTotal').html(data.response.subtotal);
+            toastr.success('success', 'Product added to your cart.');
         });
     }
 

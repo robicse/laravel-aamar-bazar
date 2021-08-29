@@ -63,20 +63,22 @@ class ProductController extends Controller
     }
 
     public function ProductVariantPrice(Request  $request) {
-        //dd($request->all());
+//        dd($request->all());
 
 
         $c=count($request->variant);
         $i=1;
         $var=$request->variant;
+//        dd($var);
         $v=[];
         for($i=1;$i<$c-1;$i++){
             array_push($v,$var[$i]['value']);
         }
-        //dd(implode("-", $v));
-        $variant=ProductStock::where('variant',implode("-", $v))->first();
+//        dd(implode("-",$v));
+        $variant=ProductStock::where('variant',implode("-",$v))->first();
         //dd($variant);
         $product = Product::find($variant->product_id);
+//        dd($product);
         if ($product->discount > 0){
             $price = $variant->price;
             if($product->discount_type == 'percent'){
