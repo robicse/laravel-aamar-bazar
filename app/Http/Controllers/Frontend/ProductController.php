@@ -22,41 +22,38 @@ class ProductController extends Controller
 {
     public function ProductDetails($slug) {
         $productDetails = Product::where('slug',$slug)->first();
-        $attributes=json_decode($productDetails->attributes);
-        $options=json_decode($productDetails->choice_options);
-        $colors=json_decode($productDetails->colors);
+//        $attributes=json_decode($productDetails->attributes);
+//        $options=json_decode($productDetails->choice_options);
+//        $colors=json_decode($productDetails->colors);
         $photos=json_decode($productDetails->photos);
 
-        $relatedBrands = Product::where('brand_id', $productDetails->brand_id)->where('user_id',$productDetails->user_id)->where('added_by','seller')->latest()->take(3)->where('published',1)->get();
-        $categories = Product::where('category_id',$productDetails->category_id)->where('user_id',$productDetails->user_id)->where('added_by','seller')->where('published',1)->latest()->take(7)->get();
-        $reviews = Review::where('product_id',$productDetails->id)->where('status',1)->get();
-        $reviewsComments = Review::where('product_id',$productDetails->id)->where('status',1)->latest()->paginate(5);
-        $fiveStarRev = Review::where('product_id',$productDetails->id)->where('rating',5)->where('status',1)->get();
-        $fourStarRev = Review::where('product_id',$productDetails->id)->where('rating',4)->where('status',1)->get();
-        $threeStarRev = Review::where('product_id',$productDetails->id)->where('rating',3)->where('status',1)->get();
-        $twoStarRev = Review::where('product_id',$productDetails->id)->where('rating',2)->where('status',1)->get();
-        $oneStarRev = Review::where('product_id',$productDetails->id)->where('rating',1)->where('status',1)->get();
-//dd($colors);
-        $flashSales =  $flashSales = FlashDealProduct::where('product_id',$productDetails->id)->first();
-        $variant=ProductStock::where('product_id',$productDetails->id)->first();
-        if(!empty($variant)){
-            $price = home_discounted_base_price($productDetails->id);
-            /*$price=$variant->price;*/
-            $avilability=$variant->qty;
-        }elseif(!empty($flashSales)){
-            $price = home_discounted_base_price($productDetails->id);
-            /*$price=$variant->price;*/
-            $avilability = $productDetails->current_stock;
-        }elseif ($productDetails->discount > 0){
-            $price = home_discounted_base_price($productDetails->id);
-            /*$price=$variant->price;*/
-            $avilability = $productDetails->current_stock;
-        }
-        else{
-            $price = $productDetails->unit_price;
-            $avilability = $productDetails->current_stock;
-        }
-        return view('frontend.pages.shop.product_details',
+//        $relatedBrands = Product::where('brand_id', $productDetails->brand_id)->where('user_id',$productDetails->user_id)->where('added_by','seller')->latest()->take(3)->where('published',1)->get();
+//        $categories = Product::where('category_id',$productDetails->category_id)->where('user_id',$productDetails->user_id)->where('added_by','seller')->where('published',1)->latest()->take(7)->get();
+//        $reviews = Review::where('product_id',$productDetails->id)->where('status',1)->get();
+//        $reviewsComments = Review::where('product_id',$productDetails->id)->where('status',1)->latest()->paginate(5);
+//        $fiveStarRev = Review::where('product_id',$productDetails->id)->where('rating',5)->where('status',1)->get();
+//        $fourStarRev = Review::where('product_id',$productDetails->id)->where('rating',4)->where('status',1)->get();
+//        $threeStarRev = Review::where('product_id',$productDetails->id)->where('rating',3)->where('status',1)->get();
+//        $twoStarRev = Review::where('product_id',$productDetails->id)->where('rating',2)->where('status',1)->get();
+//        $oneStarRev = Review::where('product_id',$productDetails->id)->where('rating',1)->where('status',1)->get();
+////dd($colors);
+//        $flashSales =  $flashSales = FlashDealProduct::where('product_id',$productDetails->id)->first();
+//        $variant=ProductStock::where('product_id',$productDetails->id)->first();
+//        if(!empty($variant)){
+//            $price = home_discounted_base_price($productDetails->id);
+//            $avilability=$variant->qty;
+//        }elseif(!empty($flashSales)){
+//            $price = home_discounted_base_price($productDetails->id);
+//            $avilability = $productDetails->current_stock;
+//        }elseif ($productDetails->discount > 0){
+//            $price = home_discounted_base_price($productDetails->id);
+//            $avilability = $productDetails->current_stock;
+//        }
+//        else{
+//            $price = $productDetails->unit_price;
+//            $avilability = $productDetails->current_stock;
+//        }
+        return view('frontend.pages.shop.product_details2',
             compact('productDetails','attributes','options','colors','price',
                 'avilability','photos','relatedBrands','categories','reviews','fiveStarRev','fourStarRev',
                 'threeStarRev','twoStarRev','oneStarRev','reviewsComments')
@@ -144,10 +141,9 @@ class ProductController extends Controller
                 }
                 else{
                     $str .= str_replace(' ', '', $request['attribute_id_'.$choice->attribute_id]);
-                    dd($str);
+
                 }
             }
-//            dd($str);
         }
 
         if($str != null && $product->variant_product){

@@ -366,30 +366,30 @@
             productAddtocart($('#option-choice-form').serializeArray());
         });
 
-{{--        $('.up').on('click', function(event){--}}
-{{--            event.preventDefault();--}}
-{{--            var val=$('.qtty').val();--}}
-{{--            var price=$('.price').html();--}}
-{{--            var base_price=$('.base_price').val();--}}
-{{--            var base_qty=$('.base_qty').val();--}}
-{{--            // console.log(typeof base_qty);--}}
-{{--            // console.log(typeof val);--}}
-{{--            if(parseInt(val)<parseInt(base_qty)){--}}
-{{--                $('.qtty').val(parseInt(val)+1);--}}
-{{--                $('.price').html(parseInt(base_price)*(parseInt(val)+1));--}}
-{{--            }--}}
+        $('.up').on('click', function(event){
+            event.preventDefault();
+            var val=$('.qtty').val();
+            var price=$('.price').html();
+            var base_price=$('.base_price').val();
+            var base_qty=$('.base_qty').val();
+            // console.log(typeof base_qty);
+            // console.log(typeof val);
+            if(parseInt(val)<parseInt(base_qty)){
+                $('.qtty').val(parseInt(val)+1);
+                $('.price').html(parseInt(base_price)*(parseInt(val)+1));
+            }
 
-{{--        });--}}
-{{--        $('.down').on('click', function(event){--}}
-{{--            event.preventDefault();--}}
-{{--            var val=$('.qtty').val();--}}
-{{--            var price=$('.price').html();--}}
-{{--            var base_price=$('.base_price').val();--}}
-{{--            if(parseInt(val)>1){--}}
-{{--                $('.qtty').val(parseInt(val)-1);--}}
-{{--                $('.price').html(parseInt(price)-parseInt(base_price));--}}
-{{--            }--}}
-{{--        });--}}
+        });
+        $('.down').on('click', function(event){
+            event.preventDefault();
+            var val=$('.qtty').val();
+            var price=$('.price').html();
+            var base_price=$('.base_price').val();
+            if(parseInt(val)>1){
+                $('.qtty').val(parseInt(val)-1);
+                $('.price').html(parseInt(price)-parseInt(base_price));
+            }
+        });
 
 {{--        function getVariantPrice(array){--}}
 {{--            console.log(array);--}}
