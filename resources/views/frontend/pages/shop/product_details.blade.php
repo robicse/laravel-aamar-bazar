@@ -1,6 +1,7 @@
 @extends('frontend.layouts.master')
 @section('title', $productDetails->name)
 @push('css')
+
     <style>
         [type=radio] {
             position: absolute;

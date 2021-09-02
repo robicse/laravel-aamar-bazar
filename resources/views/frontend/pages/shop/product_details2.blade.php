@@ -1,18 +1,38 @@
 @extends('frontend.layouts.master')
 @section('title', $productDetails->name)
 @push('css')
+    <style>
+        [type=radio] {
+            position: absolute;
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+        [type=radio] + label {
+            cursor: pointer;
+            padding: 10px 10px;
+            background-color: #fff87a;
+            color: #000000;
+            border-radius: 6px;
+        }
+        [type=radio]:checked + label {
+            border: 4px solid #282727;
+            color: #212121;
+        }
+    </style>
 @endpush
 @section('content')
     <div class="ps-breadcrumb">
         <div class="ps-container">
             <ul class="breadcrumb">
-                <li><a href="">Home</a></li>
-                <li><a href="">Consumer Electrics</a></li>
-                <li><a href="">Refrigerators</a></li>
-                <li>Marshall Kilburn Portable Wireless Speaker</li>
+                <li><a href="{{url('/')}}">Home</a></li>
+                <li>{{$productDetails->name}}</li>
             </ul>
         </div>
     </div>
+    @php
+        $shop=\App\Model\Shop::where('user_id',$productDetails->user_id)->first();
+    @endphp
     <div class="ps-page--product">
         <div class="ps-container">
             <div class="ps-page__container">
@@ -40,15 +60,17 @@
                             <div class="ps-product__info">
                                 <h1>{{ $productDetails->name }}</h1>
                                 <div class="ps-product__meta">
-                                    <p>Brand:<a href="shop-default.html">Sony</a></p>
+                                    <p>Brand:<a href="{{url('/products/'.$shop->slug.'/'.$productDetails->brand->slug)}}">{{ $productDetails->brand->name }}</a></p>
+                                    <p class="categories">
+                                        <strong> Categories:</strong>
+                                        <a href="{{url('/shop/'.$shop->slug.'/'.$productDetails->category->slug)}}">{{$productDetails->category->name}}</a>
+                                    </p>
                                     <div class="ps-product__rating">
                                         <select class="ps-rating" data-read-only="true">
-                                            <option value="1">1</option>
-                                            <option value="1">2</option>
-                                            <option value="1">3</option>
-                                            <option value="1">4</option>
-                                            <option value="2">5</option>
-                                        </select><span>(1 review)</span>
+                                            @for ($i=0; $i < round($productDetails->rating); $i++)
+                                                <option value="1">{{$i}}</option>
+                                            @endfor
+                                        </select><span>({{$reviews->count()}} review)</span>
                                     </div>
                                 </div>
                                 @if(home_price($productDetails->id) != home_discounted_price($productDetails->id))
@@ -60,7 +82,7 @@
                                     <h4 class="ps-product__price">৳{{ home_discounted_price($productDetails->id) }}</h4>
                                 @endif
                                 <div class="ps-product__desc">
-                                    <p>Sold By:<a href="shop-default.html"><strong> Go Pro</strong></a></p>
+                                    <p>Sold By:<a href="{{route('shop.details',$shop->slug)}}"><strong> {{ $shop->name }}</strong></a></p>
                                 </div>
                                 @php
                                     $colors = json_decode($productDetails->colors);
@@ -103,7 +125,8 @@
                                         <div class="product-description-label">{{ __('Total Price')}}:</div>
                                     </div>
                                     <div class="col-8">
-                                        <div class="ps-product__price">
+                                        <div class="ps-product__price price">
+                                            <span class="text-bold">৳</span>
                                             <strong id="chosen_price">
 
                                             </strong>
@@ -113,13 +136,18 @@
                                 <div class="ps-product__shopping">
                                     <figure>
                                         <figcaption>Quantity</figcaption>
-                                        <div class="form-group--number quantity">
-{{--                                            <button class="up"><i class="fa fa-plus"></i></button>--}}
-{{--                                            <button class="down"><i class="fa fa-minus"></i></button>--}}
-                                            <input type="number" min="1" max="9" step="1" value="1" name="quantity"
-                                                   data-field="quantity">
+                                        <div class="form-group--number">
+                                            <button class="up"><i class="fa fa-plus"></i></button>
+                                            <button class="down"><i class="fa fa-minus"></i></button>
+                                            <input class="form-control qtty" name="quantity" type="text" placeholder="1" value="1" autocomplete="off">
                                         </div>
-                                    </figure><a class="ps-btn ps-btn--black" href="#">Add to cart</a><a class="ps-btn" href="#">Buy Now</a>
+                                    </figure>
+                                    <p class="aval">{{$avilability}} available</p>
+                                    @if($productDetails->current_stock > 0)
+                                        <a class="ps-btn ps-btn--black" href="#" onclick="addToCartGlobal()">Add to cart</a>
+                                    @else
+                                        <a class="ps-btn ps-btn--danger bg-danger" href="#" disabled="disabled">Stock Out</a>
+                                    @endif
                                 </div>
                                 </form>
                             </div>
@@ -127,696 +155,240 @@
                         <div class="ps-product__content ps-tab-root">
                             <ul class="ps-tab-list">
                                 <li class="active"><a href="#tab-1">Description</a></li>
-                                <li><a href="#tab-2">Specification</a></li>
-                                <li><a href="#tab-3">Vendor</a></li>
-                                <li><a href="#tab-4">Reviews (1)</a></li>
-                                <li><a href="#tab-5">Questions and Answers</a></li>
-                                <li><a href="#tab-6">More Offers</a></li>
+                                <li><a href="#tab-3">Shop</a></li>
+                                <li><a href="#tab-4">Reviews</a></li>
                             </ul>
                             <div class="ps-tabs">
                                 <div class="ps-tab active" id="tab-1">
                                     <div class="ps-document">
-                                        <h5>Embodying the Raw, Wayward Spirit of Rock 'N' Roll</h5>
-                                        <p>Embodying the raw, wayward spirit of rock ‘n’ roll, the Kilburn portable active stereo speaker takes the unmistakable look and sound of Marshall, unplugs the chords, and takes the show on the road.</p>
-                                        <p>Weighing in under 7 pounds, the Kilburn is a lightweight piece of vintage styled engineering. Setting the bar as one of the loudest speakers in its class, the Kilburn is a compact, stout-hearted hero with a well-balanced audio which boasts a clear midrange and extended highs for a sound that is both articulate and pronounced. The analogue knobs allow you to fine tune the controls to your personal preferences while the guitar-influenced leather strap enables easy and stylish travel.</p><img class="mb-30" src="img/products/detail/content/description.jpg" alt="">
-                                        <h5>What do you get</h5>
-                                        <p>Sound of Marshall, unplugs the chords, and takes the show on the road.</p>
-                                        <p>Weighing in under 7 pounds, the Kilburn is a lightweight piece of vintage styled engineering. Setting the bar as one of the loudest speakers in its class, the Kilburn is a compact, stout-hearted hero with a well-balanced audio which boasts a clear midrange and extended highs for a sound that is both articulate and pronounced. The analogue knobs allow you to fine tune the controls to your personal preferences while the guitar-influenced leather strap enables easy and stylish travel.</p>
-                                        <p>The FM radio is perhaps gone for good, the assumption apparently being that the jury has ruled in favor of streaming over the internet. The IR blaster is another feature due for retirement – the S6 had it, then the Note5 didn’t, and now with the S7 the trend is clear.</p>
-                                        <h5>Perfectly Done</h5>
-                                        <p>Meanwhile, the IP68 water resistance has improved from the S5, allowing submersion of up to five feet for 30 minutes, plus there’s no annoying flap covering the charging port</p>
-                                        <ul class="pl-0">
-                                            <li>No FM radio (except for T-Mobile units in the US, so far)</li>
-                                            <li>No IR blaster</li>
-                                            <li>No stereo speakers</li>
-                                        </ul>
-                                        <p>If you’ve taken the phone for a plunge in the bath, you’ll need to dry the charging port before plugging in. Samsung hasn’t reinvented the wheel with the design of the Galaxy S7, but it didn’t need to. The Gala S6 was an excellently styled device, and the S7 has managed to improve on that.</p>
-                                    </div>
-                                </div>
-                                <div class="ps-tab" id="tab-2">
-                                    <div class="table-responsive">
-                                        <table class="table table-bordered ps-table ps-table--specification">
-                                            <tbody>
-                                            <tr>
-                                                <td>Color</td>
-                                                <td>Black, Gray</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Style</td>
-                                                <td>Ear Hook</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Wireless</td>
-                                                <td>Yes</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Dimensions</td>
-                                                <td>5.5 x 5.5 x 9.5 inches</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Weight</td>
-                                                <td>6.61 pounds</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Battery Life</td>
-                                                <td>20 hours</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Bluetooth</td>
-                                                <td>Yes</td>
-                                            </tr>
-                                            </tbody>
-                                        </table>
+                                        <p>{!! $productDetails->description !!} </p>
                                     </div>
                                 </div>
                                 <div class="ps-tab" id="tab-3">
-                                    <h4>GoPro</h4>
-                                    <p>Digiworld US, New York’s no.1 online retailer was established in May 2012 with the aim and vision to become the one-stop shop for retail in New York with implementation of best practices both online</p><a href="#">More Products from gopro</a>
+                                    <h4>{{ $shop->name }}</h4>
+                                    <div class="address">Address: {{ $shop->address }}</div>
+                                    <div>Email: {{ $shop->email }}</div>
+                                    <div>Phone: {{ $shop->phone }}</div>
+                                    <form action="{{route('shop.details',$shop->slug)}}" method="POST" style="padding-top: 10px">
+                                        @csrf
+                                        <a href="{{route('shop.details',$shop->slug)}}"> <button type="button" class="btn btn-lg btn-info">Go To Shop</button></a>
+                                    </form>
                                 </div>
                                 <div class="ps-tab" id="tab-4">
                                     <div class="row">
                                         <div class="col-xl-5 col-lg-5 col-md-12 col-sm-12 col-12 ">
                                             <div class="ps-block--average-rating">
                                                 <div class="ps-block__header">
-                                                    <h3>4.00</h3>
+                                                    <h3>{{number_format((float)$productDetails->rating, 1, '.', '')}}</h3>
                                                     <select class="ps-rating" data-read-only="true">
-                                                        <option value="1">1</option>
-                                                        <option value="1">2</option>
-                                                        <option value="1">3</option>
-                                                        <option value="1">4</option>
-                                                        <option value="2">5</option>
-                                                    </select><span>1 Review</span>
+                                                        @for ($i=0; $i < round($productDetails->rating); $i++)
+                                                            <option value="1">{{$i}}</option>
+                                                        @endfor
+                                                        @foreach($reviews as $review)
+                                                        @endforeach
+                                                    </select><span>{{$reviews->count()}} Review</span>
                                                 </div>
                                                 <div class="ps-block__star"><span>5 Star</span>
-                                                    <div class="ps-progress" data-value="100"><span></span></div><span>100%</span>
+                                                    <div class="ps-progress" data-value="{{$fiveStarRev->count()}}"><span></span></div><span>{{$fiveStarRev->count()}}</span>
                                                 </div>
                                                 <div class="ps-block__star"><span>4 Star</span>
-                                                    <div class="ps-progress" data-value="0"><span></span></div><span>0</span>
+                                                    <div class="ps-progress" data-value="{{$fourStarRev->count()}}"><span></span></div><span>{{$fourStarRev->count()}}</span>
                                                 </div>
                                                 <div class="ps-block__star"><span>3 Star</span>
-                                                    <div class="ps-progress" data-value="0"><span></span></div><span>0</span>
+                                                    <div class="ps-progress" data-value="{{$threeStarRev->count()}}"><span></span></div><span>{{$threeStarRev->count()}}</span>
                                                 </div>
                                                 <div class="ps-block__star"><span>2 Star</span>
-                                                    <div class="ps-progress" data-value="0"><span></span></div><span>0</span>
+                                                    <div class="ps-progress" data-value="{{$twoStarRev->count()}}"><span></span></div><span>{{$twoStarRev->count()}}</span>
                                                 </div>
                                                 <div class="ps-block__star"><span>1 Star</span>
-                                                    <div class="ps-progress" data-value="0"><span></span></div><span>0</span>
+                                                    <div class="ps-progress " data-value="{{$oneStarRev->count()}}"><span></span></div><span>{{$oneStarRev->count()}}</span>
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="col-xl-7 col-lg-7 col-md-12 col-sm-12 col-12 ">
-                                            <form class="ps-form--review" action="http://nouthemes.net/html/martfury/index.html" method="get">
-                                                <h4>Submit Your Review</h4>
-                                                <p>Your email address will not be published. Required fields are marked<sup>*</sup></p>
-                                                <div class="form-group form-group__rating">
-                                                    <label>Your rating of this product</label>
-                                                    <select class="ps-rating" data-read-only="false">
-                                                        <option value="0">0</option>
-                                                        <option value="1">1</option>
-                                                        <option value="2">2</option>
-                                                        <option value="3">3</option>
-                                                        <option value="4">4</option>
-                                                        <option value="5">5</option>
-                                                    </select>
-                                                </div>
-                                                <div class="form-group">
-                                                    <textarea class="form-control" rows="6" placeholder="Write your review here"></textarea>
-                                                </div>
+                                            @forelse($reviewsComments as $reviews)
+                                                @php
+                                                    $userData = App\User::find($reviews->user_id)
+                                                @endphp
                                                 <div class="row">
-                                                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12  ">
-                                                        <div class="form-group">
-                                                            <input class="form-control" type="text" placeholder="Your Name">
+                                                    <div class="col-md-1 p-0 m-0">
+                                                        <div class="ps-widget__header">
+                                                            <img src="{{url($userData->avatar_original)}}" alt="" width="60">
                                                         </div>
                                                     </div>
-                                                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12  ">
-                                                        <div class="form-group">
-                                                            <input class="form-control" type="email" placeholder="Your Email">
-                                                        </div>
+                                                    <div class="col-md-2"><figcaption>{{$userData->name}}</figcaption></div>
+                                                    <div class="col-md-6">
+                                                        <p>{{$reviews->comment}}</p>
+                                                    </div>
+                                                    <div class="col-md-2">
+                                                        <select class="ps-rating" data-read-only="true">
+                                                            @for ($i=0; $i < round($reviews->rating); $i++)
+                                                                <option value="1">{{$i}}</option>
+                                                            @endfor
+                                                        </select>
+                                                        <span style="font-size: 12px; font-style: italic;">{{$reviews->updated_at->diffForHumans()}}</span>
                                                     </div>
                                                 </div>
-                                                <div class="form-group submit">
-                                                    <button class="ps-btn">Submit Review</button>
+                                                <hr>
+                                            @empty
+                                                <div>
+                                                    <h3 class="text-info">No review yet!!</h3>
                                                 </div>
-                                            </form>
+                                            @endforelse
+                                            <div class="float-right">
+                                                {{$reviewsComments->links()}}
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="ps-tab" id="tab-5">
-                                    <div class="ps-block--questions-answers">
-                                        <h3>Questions and Answers</h3>
-                                        <div class="form-group">
-                                            <input class="form-control" type="text" placeholder="Have a question? Search for answer?">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="ps-tab active" id="tab-6">
-                                    <p>Sorry no more offers available</p>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="ps-page__right">
-                    <aside class="widget widget_product widget_features">
-                        <p><i class="icon-network"></i> Shipping worldwide</p>
-                        <p><i class="icon-3d-rotate"></i> Free 7-day return if eligible, so easy</p>
-                        <p><i class="icon-receipt"></i> Supplier give bills for this product.</p>
-                        <p><i class="icon-credit-card"></i> Pay online or when receiving goods</p>
-                    </aside>
-                    <aside class="widget widget_sell-on-site">
-                        <p><i class="icon-store"></i> Sell on Martfury?<a href="#"> Register Now !</a></p>
-                    </aside>
-                    <aside class="widget widget_ads"><a href="#"><img src="img/ads/product-ads.png" alt=""></a></aside>
+
+
+
                     <aside class="widget widget_same-brand">
                         <h3>Same Brand</h3>
+                        @php
+                        $related_brands_products = $relatedBrands = \App\Model\Product::where('brand_id', $productDetails->brand_id)->where('user_id',$productDetails->user_id)->where('added_by','seller')->latest()->take(3)->where('published',1)->get();
+                        @endphp
                         <div class="widget__content">
-                            <div class="ps-product">
-                                <div class="ps-product__thumbnail"><a href="product-default.html"><img src="img/products/shop/5.jpg" alt=""></a>
-                                    <div class="ps-product__badge">-37%</div>
+                            @foreach($related_brands_products as $product)
+                            <div class="ps-product" style="margin-top: -20px;">
+                                <div class="ps-product__thumbnail">
+                                    <a href="{{route('product-details',$product->slug)}}">
+                                        <img src="{{url($product->thumbnail_img)}}" alt="" width="206" height="206">
+                                    </a>
                                     <ul class="ps-product__actions">
                                         <li><a href="#" data-toggle="tooltip" data-placement="top" title="Add To Cart"><i class="icon-bag2"></i></a></li>
                                         <li><a href="#" data-placement="top" title="Quick View" data-toggle="modal" data-target="#product-quickview"><i class="icon-eye"></i></a></li>
-                                        <li><a href="#" data-toggle="tooltip" data-placement="top" title="Add to Whishlist"><i class="icon-heart"></i></a></li>
-                                        <li><a href="#" data-toggle="tooltip" data-placement="top" title="Compare"><i class="icon-chart-bars"></i></a></li>
+                                        <li><a href="{{route('add.wishlist',$product->id)}}" data-toggle="tooltip" data-placement="top" title="Add to Whishlist"><i class="icon-heart"></i></a></li>
                                     </ul>
                                 </div>
-                                <div class="ps-product__container"><a class="ps-product__vendor" href="#">Robert's Store</a>
-                                    <div class="ps-product__content"><a class="ps-product__title" href="product-default.html">Grand Slam Indoor Of Show Jumping Novel</a>
-                                        <div class="ps-product__rating">
-                                            <select class="ps-rating" data-read-only="true">
-                                                <option value="1">1</option>
-                                                <option value="1">2</option>
-                                                <option value="1">3</option>
-                                                <option value="1">4</option>
-                                                <option value="2">5</option>
-                                            </select><span>01</span>
-                                        </div>
-                                        <p class="ps-product__price sale">$32.99 <del>$41.00 </del></p>
+                                <div class="ps-product__container"><a class="ps-product__vendor" href="{{url('/products/'.$product->user->shop->slug.'/'.$product->brand->slug)}}">{{ $product->brand->name }}</a>
+                                    <div class="ps-product__content"><a class="ps-product__title" href="{{route('product-details',$product->slug)}}">{{$product->name}}</a>
+                                        Price: ৳ {{home_discounted_base_price($product->id)}}
+                                        @if(home_base_price($product->id) != home_discounted_base_price($product->id))
+                                            <del>৳ {{home_base_price($product->id)}}</del>
+                                        @endif
                                     </div>
-                                    <div class="ps-product__content hover"><a class="ps-product__title" href="product-default.html">Grand Slam Indoor Of Show Jumping Novel</a>
-                                        <p class="ps-product__price sale">$32.99 <del>$41.00 </del></p>
+                                    <div class="ps-product__content hover"><a class="ps-product__title" href="{{route('product-details',$product->slug)}}">{{$product->name}}</a>
+                                        Price: ৳ {{home_discounted_base_price($product->id)}}
+                                        @if(home_base_price($product->id) != home_discounted_base_price($product->id))
+                                            <del>৳ {{home_base_price($product->id)}}</del>
+                                        @endif
                                     </div>
                                 </div>
                             </div>
-                            <div class="ps-product">
-                                <div class="ps-product__thumbnail"><a href="product-default.html"><img src="img/products/shop/6.jpg" alt=""></a>
-                                    <div class="ps-product__badge">-5%</div>
-                                    <ul class="ps-product__actions">
-                                        <li><a href="#" data-toggle="tooltip" data-placement="top" title="Add To Cart"><i class="icon-bag2"></i></a></li>
-                                        <li><a href="#" data-placement="top" title="Quick View" data-toggle="modal" data-target="#product-quickview"><i class="icon-eye"></i></a></li>
-                                        <li><a href="#" data-toggle="tooltip" data-placement="top" title="Add to Whishlist"><i class="icon-heart"></i></a></li>
-                                        <li><a href="#" data-toggle="tooltip" data-placement="top" title="Compare"><i class="icon-chart-bars"></i></a></li>
-                                    </ul>
-                                </div>
-                                <div class="ps-product__container"><a class="ps-product__vendor" href="#">Youngshop</a>
-                                    <div class="ps-product__content"><a class="ps-product__title" href="product-default.html">Sound Intone I65 Earphone White Version</a>
-                                        <div class="ps-product__rating">
-                                            <select class="ps-rating" data-read-only="true">
-                                                <option value="1">1</option>
-                                                <option value="1">2</option>
-                                                <option value="1">3</option>
-                                                <option value="1">4</option>
-                                                <option value="2">5</option>
-                                            </select><span>01</span>
-                                        </div>
-                                        <p class="ps-product__price sale">$100.99 <del>$106.00 </del></p>
-                                    </div>
-                                    <div class="ps-product__content hover"><a class="ps-product__title" href="product-default.html">Sound Intone I65 Earphone White Version</a>
-                                        <p class="ps-product__price sale">$100.99 <del>$106.00 </del></p>
-                                    </div>
-                                </div>
-                            </div>
+                            @endforeach
                         </div>
                     </aside>
                 </div>
             </div>
-            <div class="ps-section--default ps-customer-bought">
-                <div class="ps-section__header">
-                    <h3>Customers who bought this item also bought</h3>
-                </div>
-                <div class="ps-section__content">
-                    <div class="row">
-                        <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6 col-6 ">
-                            <div class="ps-product">
-                                <div class="ps-product__thumbnail"><a href="product-default.html"><img src="img/products/shop/4.jpg" alt=""></a>
-                                    <div class="ps-product__badge hot">hot</div>
-                                    <ul class="ps-product__actions">
-                                        <li><a href="#" data-toggle="tooltip" data-placement="top" title="Add To Cart"><i class="icon-bag2"></i></a></li>
-                                        <li><a href="#" data-placement="top" title="Quick View" data-toggle="modal" data-target="#product-quickview"><i class="icon-eye"></i></a></li>
-                                        <li><a href="#" data-toggle="tooltip" data-placement="top" title="Add to Whishlist"><i class="icon-heart"></i></a></li>
-                                        <li><a href="#" data-toggle="tooltip" data-placement="top" title="Compare"><i class="icon-chart-bars"></i></a></li>
-                                    </ul>
-                                </div>
-                                <div class="ps-product__container"><a class="ps-product__vendor" href="#">Global Office</a>
-                                    <div class="ps-product__content"><a class="ps-product__title" href="product-default.html">Xbox One Wireless Controller Black Color</a>
-                                        <div class="ps-product__rating">
-                                            <select class="ps-rating" data-read-only="true">
-                                                <option value="1">1</option>
-                                                <option value="1">2</option>
-                                                <option value="1">3</option>
-                                                <option value="1">4</option>
-                                                <option value="2">5</option>
-                                            </select><span>01</span>
-                                        </div>
-                                        <p class="ps-product__price">$55.99</p>
-                                    </div>
-                                    <div class="ps-product__content hover"><a class="ps-product__title" href="product-default.html">Xbox One Wireless Controller Black Color</a>
-                                        <p class="ps-product__price">$55.99</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6 col-6 ">
-                            <div class="ps-product">
-                                <div class="ps-product__thumbnail"><a href="product-default.html"><img src="img/products/shop/5.jpg" alt=""></a>
-                                    <div class="ps-product__badge">-37%</div>
-                                    <ul class="ps-product__actions">
-                                        <li><a href="#" data-toggle="tooltip" data-placement="top" title="Add To Cart"><i class="icon-bag2"></i></a></li>
-                                        <li><a href="#" data-placement="top" title="Quick View" data-toggle="modal" data-target="#product-quickview"><i class="icon-eye"></i></a></li>
-                                        <li><a href="#" data-toggle="tooltip" data-placement="top" title="Add to Whishlist"><i class="icon-heart"></i></a></li>
-                                        <li><a href="#" data-toggle="tooltip" data-placement="top" title="Compare"><i class="icon-chart-bars"></i></a></li>
-                                    </ul>
-                                </div>
-                                <div class="ps-product__container"><a class="ps-product__vendor" href="#">Robert's Store</a>
-                                    <div class="ps-product__content"><a class="ps-product__title" href="product-default.html">Grand Slam Indoor Of Show Jumping Novel</a>
-                                        <div class="ps-product__rating">
-                                            <select class="ps-rating" data-read-only="true">
-                                                <option value="1">1</option>
-                                                <option value="1">2</option>
-                                                <option value="1">3</option>
-                                                <option value="1">4</option>
-                                                <option value="2">5</option>
-                                            </select><span>01</span>
-                                        </div>
-                                        <p class="ps-product__price sale">$32.99 <del>$41.00 </del></p>
-                                    </div>
-                                    <div class="ps-product__content hover"><a class="ps-product__title" href="product-default.html">Grand Slam Indoor Of Show Jumping Novel</a>
-                                        <p class="ps-product__price sale">$32.99 <del>$41.00 </del></p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6 col-6 ">
-                            <div class="ps-product">
-                                <div class="ps-product__thumbnail"><a href="product-default.html"><img src="img/products/shop/6.jpg" alt=""></a>
-                                    <div class="ps-product__badge">-5%</div>
-                                    <ul class="ps-product__actions">
-                                        <li><a href="#" data-toggle="tooltip" data-placement="top" title="Add To Cart"><i class="icon-bag2"></i></a></li>
-                                        <li><a href="#" data-placement="top" title="Quick View" data-toggle="modal" data-target="#product-quickview"><i class="icon-eye"></i></a></li>
-                                        <li><a href="#" data-toggle="tooltip" data-placement="top" title="Add to Whishlist"><i class="icon-heart"></i></a></li>
-                                        <li><a href="#" data-toggle="tooltip" data-placement="top" title="Compare"><i class="icon-chart-bars"></i></a></li>
-                                    </ul>
-                                </div>
-                                <div class="ps-product__container"><a class="ps-product__vendor" href="#">Youngshop</a>
-                                    <div class="ps-product__content"><a class="ps-product__title" href="product-default.html">Sound Intone I65 Earphone White Version</a>
-                                        <div class="ps-product__rating">
-                                            <select class="ps-rating" data-read-only="true">
-                                                <option value="1">1</option>
-                                                <option value="1">2</option>
-                                                <option value="1">3</option>
-                                                <option value="1">4</option>
-                                                <option value="2">5</option>
-                                            </select><span>01</span>
-                                        </div>
-                                        <p class="ps-product__price sale">$100.99 <del>$106.00 </del></p>
-                                    </div>
-                                    <div class="ps-product__content hover"><a class="ps-product__title" href="product-default.html">Sound Intone I65 Earphone White Version</a>
-                                        <p class="ps-product__price sale">$100.99 <del>$106.00 </del></p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6 col-6 ">
-                            <div class="ps-product">
-                                <div class="ps-product__thumbnail"><a href="product-default.html"><img src="img/products/shop/7.jpg" alt=""></a>
-                                    <div class="ps-product__badge">-16%</div>
-                                    <ul class="ps-product__actions">
-                                        <li><a href="#" data-toggle="tooltip" data-placement="top" title="Add To Cart"><i class="icon-bag2"></i></a></li>
-                                        <li><a href="#" data-placement="top" title="Quick View" data-toggle="modal" data-target="#product-quickview"><i class="icon-eye"></i></a></li>
-                                        <li><a href="#" data-toggle="tooltip" data-placement="top" title="Add to Whishlist"><i class="icon-heart"></i></a></li>
-                                        <li><a href="#" data-toggle="tooltip" data-placement="top" title="Compare"><i class="icon-chart-bars"></i></a></li>
-                                    </ul>
-                                </div>
-                                <div class="ps-product__container"><a class="ps-product__vendor" href="#">Youngshop</a>
-                                    <div class="ps-product__content"><a class="ps-product__title" href="product-default.html">Korea Long Sofa Fabric In Blue Navy Color</a>
-                                        <div class="ps-product__rating">
-                                            <select class="ps-rating" data-read-only="true">
-                                                <option value="1">1</option>
-                                                <option value="1">2</option>
-                                                <option value="1">3</option>
-                                                <option value="1">4</option>
-                                                <option value="2">5</option>
-                                            </select><span>01</span>
-                                        </div>
-                                        <p class="ps-product__price sale">$567.89 <del>$670.20 </del></p>
-                                    </div>
-                                    <div class="ps-product__content hover"><a class="ps-product__title" href="product-default.html">Korea Long Sofa Fabric In Blue Navy Color</a>
-                                        <p class="ps-product__price sale">$567.89 <del>$670.20 </del></p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6 col-6 ">
-                            <div class="ps-product">
-                                <div class="ps-product__thumbnail"><a href="product-default.html"><img src="img/products/shop/8.jpg" alt=""></a>
-                                    <div class="ps-product__badge">-16%</div>
-                                    <ul class="ps-product__actions">
-                                        <li><a href="#" data-toggle="tooltip" data-placement="top" title="Add To Cart"><i class="icon-bag2"></i></a></li>
-                                        <li><a href="#" data-placement="top" title="Quick View" data-toggle="modal" data-target="#product-quickview"><i class="icon-eye"></i></a></li>
-                                        <li><a href="#" data-toggle="tooltip" data-placement="top" title="Add to Whishlist"><i class="icon-heart"></i></a></li>
-                                        <li><a href="#" data-toggle="tooltip" data-placement="top" title="Compare"><i class="icon-chart-bars"></i></a></li>
-                                    </ul>
-                                </div>
-                                <div class="ps-product__container"><a class="ps-product__vendor" href="#">Young shop</a>
-                                    <div class="ps-product__content"><a class="ps-product__title" href="product-default.html">Unero Military Classical Backpack</a>
-                                        <div class="ps-product__rating">
-                                            <select class="ps-rating" data-read-only="true">
-                                                <option value="1">1</option>
-                                                <option value="1">2</option>
-                                                <option value="1">3</option>
-                                                <option value="1">4</option>
-                                                <option value="2">5</option>
-                                            </select><span>02</span>
-                                        </div>
-                                        <p class="ps-product__price sale">$35.89 <del>$42.20 </del></p>
-                                    </div>
-                                    <div class="ps-product__content hover"><a class="ps-product__title" href="product-default.html">Unero Military Classical Backpack</a>
-                                        <p class="ps-product__price sale">$35.89 <del>$42.20 </del></p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6 col-6 ">
-                            <div class="ps-product">
-                                <div class="ps-product__thumbnail"><a href="product-default.html"><img src="img/products/shop/9.jpg" alt=""></a>
-                                    <ul class="ps-product__actions">
-                                        <li><a href="#" data-toggle="tooltip" data-placement="top" title="Add To Cart"><i class="icon-bag2"></i></a></li>
-                                        <li><a href="#" data-placement="top" title="Quick View" data-toggle="modal" data-target="#product-quickview"><i class="icon-eye"></i></a></li>
-                                        <li><a href="#" data-toggle="tooltip" data-placement="top" title="Add to Whishlist"><i class="icon-heart"></i></a></li>
-                                        <li><a href="#" data-toggle="tooltip" data-placement="top" title="Compare"><i class="icon-chart-bars"></i></a></li>
-                                    </ul>
-                                </div>
-                                <div class="ps-product__container"><a class="ps-product__vendor" href="#">Young shop</a>
-                                    <div class="ps-product__content"><a class="ps-product__title" href="product-default.html">Rayban Rounded Sunglass Brown Color</a>
-                                        <div class="ps-product__rating">
-                                            <select class="ps-rating" data-read-only="true">
-                                                <option value="1">1</option>
-                                                <option value="1">2</option>
-                                                <option value="1">3</option>
-                                                <option value="1">4</option>
-                                                <option value="2">5</option>
-                                            </select><span>02</span>
-                                        </div>
-                                        <p class="ps-product__price">$35.89</p>
-                                    </div>
-                                    <div class="ps-product__content hover"><a class="ps-product__title" href="product-default.html">Rayban Rounded Sunglass Brown Color</a>
-                                        <p class="ps-product__price">$35.89</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            @php
+            $related_category_products = \App\Model\Product::where('category_id',$productDetails->category_id)->where('user_id',$productDetails->user_id)->where('added_by','seller')->where('published',1)->latest()->take(7)->get();
+            @endphp
+            @if($related_category_products->count() > 1)
+
             <div class="ps-section--default">
                 <div class="ps-section__header">
                     <h3>Related products</h3>
                 </div>
                 <div class="ps-section__content">
                     <div class="ps-carousel--nav owl-slider" data-owl-auto="true" data-owl-loop="true" data-owl-speed="10000" data-owl-gap="30" data-owl-nav="true" data-owl-dots="true" data-owl-item="6" data-owl-item-xs="2" data-owl-item-sm="2" data-owl-item-md="3" data-owl-item-lg="4" data-owl-item-xl="5" data-owl-duration="1000" data-owl-mousedrag="on">
-                        <div class="ps-product">
-                            <div class="ps-product__thumbnail"><a href="product-default.html"><img src="img/products/shop/11.jpg" alt=""></a>
-                                <ul class="ps-product__actions">
-                                    <li><a href="#" data-toggle="tooltip" data-placement="top" title="Add To Cart"><i class="icon-bag2"></i></a></li>
-                                    <li><a href="#" data-placement="top" title="Quick View" data-toggle="modal" data-target="#product-quickview"><i class="icon-eye"></i></a></li>
-                                    <li><a href="#" data-toggle="tooltip" data-placement="top" title="Add to Whishlist"><i class="icon-heart"></i></a></li>
-                                    <li><a href="#" data-toggle="tooltip" data-placement="top" title="Compare"><i class="icon-chart-bars"></i></a></li>
-                                </ul>
-                            </div>
-                            <div class="ps-product__container"><a class="ps-product__vendor" href="#">Robert's Store</a>
-                                <div class="ps-product__content"><a class="ps-product__title" href="product-default.html">Men’s Sports Runnning Swim Board Shorts</a>
-                                    <div class="ps-product__rating">
-                                        <select class="ps-rating" data-read-only="true">
-                                            <option value="1">1</option>
-                                            <option value="1">2</option>
-                                            <option value="1">3</option>
-                                            <option value="1">4</option>
-                                            <option value="2">5</option>
-                                        </select><span>01</span>
+                        @foreach($related_category_products as $product)
+                            <div class="ps-product" style="margin-bottom: 20px;">
+                                <div class="ps-product__thumbnail"><a href="{{route('product-details',$product->slug)}}"><img src="{{url($product->thumbnail_img)}}" alt="" width="191" height="198"></a>
+                                    <ul class="ps-product__actions">
+                                        <li><a href="#" data-toggle="tooltip" data-placement="top" title="Add To Cart"><i class="icon-bag2"></i></a></li>
+                                        <li><a href="#" data-placement="top" title="Quick View" data-toggle="modal" data-target="#product-quickview"><i class="icon-eye"></i></a></li>
+                                        <li><a href="{{route('add.wishlist',$product->id)}}" data-toggle="tooltip" data-placement="top" title="Add to Whishlist"><i class="icon-heart"></i></a></li>
+                                    </ul>
+                                </div>
+                                <div class="ps-product__container"><a class="ps-product__vendor" href="{{route('shop.details',$shop->slug)}}">{{$shop->name}}</a>
+                                    <div class="ps-product__content"><a class="ps-product__title" href="{{route('product-details',$product->slug)}}">{{$product->name}}</a>
+                                        Price: ৳ {{home_discounted_base_price($product->id)}}
+                                        @if(home_base_price($product->id) != home_discounted_base_price($product->id))
+                                            <del>৳ {{home_base_price($product->id)}}</del>
+                                        @endif
                                     </div>
-                                    <p class="ps-product__price">$13.43</p>
-                                </div>
-                                <div class="ps-product__content hover"><a class="ps-product__title" href="product-default.html">Men’s Sports Runnning Swim Board Shorts</a>
-                                    <p class="ps-product__price">$13.43</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="ps-product">
-                            <div class="ps-product__thumbnail"><a href="product-default.html"><img src="img/products/shop/12.jpg" alt=""></a>
-                                <ul class="ps-product__actions">
-                                    <li><a href="#" data-toggle="tooltip" data-placement="top" title="Add To Cart"><i class="icon-bag2"></i></a></li>
-                                    <li><a href="#" data-placement="top" title="Quick View" data-toggle="modal" data-target="#product-quickview"><i class="icon-eye"></i></a></li>
-                                    <li><a href="#" data-toggle="tooltip" data-placement="top" title="Add to Whishlist"><i class="icon-heart"></i></a></li>
-                                    <li><a href="#" data-toggle="tooltip" data-placement="top" title="Compare"><i class="icon-chart-bars"></i></a></li>
-                                </ul>
-                            </div>
-                            <div class="ps-product__container"><a class="ps-product__vendor" href="#">Global Office</a>
-                                <div class="ps-product__content"><a class="ps-product__title" href="product-default.html">Paul’s Smith Sneaker InWhite Color</a>
-                                    <div class="ps-product__rating">
-                                        <select class="ps-rating" data-read-only="true">
-                                            <option value="1">1</option>
-                                            <option value="1">2</option>
-                                            <option value="1">3</option>
-                                            <option value="1">4</option>
-                                            <option value="2">5</option>
-                                        </select><span>01</span>
+                                    <div class="ps-product__content hover"><a class="ps-product__title" href="{{route('product-details',$product->slug)}}">{{$product->name}}</a>
+                                        Price: ৳ {{home_discounted_base_price($product->id)}}
+                                        @if(home_base_price($product->id) != home_discounted_base_price($product->id))
+                                            <del>৳ {{home_base_price($product->id)}}</del>
+                                        @endif
                                     </div>
-                                    <p class="ps-product__price">$75.44</p>
-                                </div>
-                                <div class="ps-product__content hover"><a class="ps-product__title" href="product-default.html">Paul’s Smith Sneaker InWhite Color</a>
-                                    <p class="ps-product__price">$75.44</p>
                                 </div>
                             </div>
-                        </div>
-                        <div class="ps-product">
-                            <div class="ps-product__thumbnail"><a href="product-default.html"><img src="img/products/shop/13.jpg" alt=""></a>
-                                <div class="ps-product__badge">-7%</div>
-                                <ul class="ps-product__actions">
-                                    <li><a href="#" data-toggle="tooltip" data-placement="top" title="Add To Cart"><i class="icon-bag2"></i></a></li>
-                                    <li><a href="#" data-placement="top" title="Quick View" data-toggle="modal" data-target="#product-quickview"><i class="icon-eye"></i></a></li>
-                                    <li><a href="#" data-toggle="tooltip" data-placement="top" title="Add to Whishlist"><i class="icon-heart"></i></a></li>
-                                    <li><a href="#" data-toggle="tooltip" data-placement="top" title="Compare"><i class="icon-chart-bars"></i></a></li>
-                                </ul>
-                            </div>
-                            <div class="ps-product__container"><a class="ps-product__vendor" href="#">Young Shop</a>
-                                <div class="ps-product__content"><a class="ps-product__title" href="product-default.html">MVMTH Classical Leather Watch In Black</a>
-                                    <div class="ps-product__rating">
-                                        <select class="ps-rating" data-read-only="true">
-                                            <option value="1">1</option>
-                                            <option value="1">2</option>
-                                            <option value="1">3</option>
-                                            <option value="1">4</option>
-                                            <option value="2">5</option>
-                                        </select><span>01</span>
-                                    </div>
-                                    <p class="ps-product__price sale">$57.99 <del>$62.99 </del></p>
-                                </div>
-                                <div class="ps-product__content hover"><a class="ps-product__title" href="product-default.html">MVMTH Classical Leather Watch In Black</a>
-                                    <p class="ps-product__price sale">$57.99 <del>$62.99 </del></p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="ps-product">
-                            <div class="ps-product__thumbnail"><a href="product-default.html"><img src="img/products/shop/14.jpg" alt=""></a>
-                                <div class="ps-product__badge">-7%</div>
-                                <ul class="ps-product__actions">
-                                    <li><a href="#" data-toggle="tooltip" data-placement="top" title="Add To Cart"><i class="icon-bag2"></i></a></li>
-                                    <li><a href="#" data-placement="top" title="Quick View" data-toggle="modal" data-target="#product-quickview"><i class="icon-eye"></i></a></li>
-                                    <li><a href="#" data-toggle="tooltip" data-placement="top" title="Add to Whishlist"><i class="icon-heart"></i></a></li>
-                                    <li><a href="#" data-toggle="tooltip" data-placement="top" title="Compare"><i class="icon-chart-bars"></i></a></li>
-                                </ul>
-                            </div>
-                            <div class="ps-product__container"><a class="ps-product__vendor" href="#">Global Office</a>
-                                <div class="ps-product__content"><a class="ps-product__title" href="product-default.html">Beat Spill 2.0 Wireless Speaker – White</a>
-                                    <div class="ps-product__rating">
-                                        <select class="ps-rating" data-read-only="true">
-                                            <option value="1">1</option>
-                                            <option value="1">2</option>
-                                            <option value="1">3</option>
-                                            <option value="1">4</option>
-                                            <option value="2">5</option>
-                                        </select><span>01</span>
-                                    </div>
-                                    <p class="ps-product__price sale">$57.99 <del>$62.99 </del></p>
-                                </div>
-                                <div class="ps-product__content hover"><a class="ps-product__title" href="product-default.html">Beat Spill 2.0 Wireless Speaker – White</a>
-                                    <p class="ps-product__price sale">$57.99 <del>$62.99 </del></p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="ps-product">
-                            <div class="ps-product__thumbnail"><a href="product-default.html"><img src="img/products/shop/15.jpg" alt=""></a>
-                                <ul class="ps-product__actions">
-                                    <li><a href="#" data-toggle="tooltip" data-placement="top" title="Add To Cart"><i class="icon-bag2"></i></a></li>
-                                    <li><a href="#" data-placement="top" title="Quick View" data-toggle="modal" data-target="#product-quickview"><i class="icon-eye"></i></a></li>
-                                    <li><a href="#" data-toggle="tooltip" data-placement="top" title="Add to Whishlist"><i class="icon-heart"></i></a></li>
-                                    <li><a href="#" data-toggle="tooltip" data-placement="top" title="Compare"><i class="icon-chart-bars"></i></a></li>
-                                </ul>
-                            </div>
-                            <div class="ps-product__container"><a class="ps-product__vendor" href="#">Young Shop</a>
-                                <div class="ps-product__content"><a class="ps-product__title" href="product-default.html">ASUS Chromebook Flip – 10.2 Inch</a>
-                                    <div class="ps-product__rating">
-                                        <select class="ps-rating" data-read-only="true">
-                                            <option value="1">1</option>
-                                            <option value="1">2</option>
-                                            <option value="1">3</option>
-                                            <option value="1">4</option>
-                                            <option value="2">5</option>
-                                        </select><span>01</span>
-                                    </div>
-                                    <p class="ps-product__price sale">$332.38</p>
-                                </div>
-                                <div class="ps-product__content hover"><a class="ps-product__title" href="product-default.html">ASUS Chromebook Flip – 10.2 Inch</a>
-                                    <p class="ps-product__price sale">$332.38</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="ps-product">
-                            <div class="ps-product__thumbnail"><a href="product-default.html"><img src="img/products/shop/16.jpg" alt=""></a>
-                                <div class="ps-product__badge">-7%</div>
-                                <ul class="ps-product__actions">
-                                    <li><a href="#" data-toggle="tooltip" data-placement="top" title="Add To Cart"><i class="icon-bag2"></i></a></li>
-                                    <li><a href="#" data-placement="top" title="Quick View" data-toggle="modal" data-target="#product-quickview"><i class="icon-eye"></i></a></li>
-                                    <li><a href="#" data-toggle="tooltip" data-placement="top" title="Add to Whishlist"><i class="icon-heart"></i></a></li>
-                                    <li><a href="#" data-toggle="tooltip" data-placement="top" title="Compare"><i class="icon-chart-bars"></i></a></li>
-                                </ul>
-                            </div>
-                            <div class="ps-product__container"><a class="ps-product__vendor" href="#">Young Shop</a>
-                                <div class="ps-product__content"><a class="ps-product__title" href="product-default.html">Apple Macbook Retina Display 12&quot;</a>
-                                    <div class="ps-product__rating">
-                                        <select class="ps-rating" data-read-only="true">
-                                            <option value="1">1</option>
-                                            <option value="1">2</option>
-                                            <option value="1">3</option>
-                                            <option value="1">4</option>
-                                            <option value="2">5</option>
-                                        </select><span>01</span>
-                                    </div>
-                                    <p class="ps-product__price sale">$1200.00 <del>$1362.99 </del></p>
-                                </div>
-                                <div class="ps-product__content hover"><a class="ps-product__title" href="product-default.html">Apple Macbook Retina Display 12&quot;</a>
-                                    <p class="ps-product__price sale">$1200.00 <del>$1362.99 </del></p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="ps-product">
-                            <div class="ps-product__thumbnail"><a href="product-default.html"><img src="img/products/shop/17.jpg" alt=""></a>
-                                <ul class="ps-product__actions">
-                                    <li><a href="#" data-toggle="tooltip" data-placement="top" title="Add To Cart"><i class="icon-bag2"></i></a></li>
-                                    <li><a href="#" data-placement="top" title="Quick View" data-toggle="modal" data-target="#product-quickview"><i class="icon-eye"></i></a></li>
-                                    <li><a href="#" data-toggle="tooltip" data-placement="top" title="Add to Whishlist"><i class="icon-heart"></i></a></li>
-                                    <li><a href="#" data-toggle="tooltip" data-placement="top" title="Compare"><i class="icon-chart-bars"></i></a></li>
-                                </ul>
-                            </div>
-                            <div class="ps-product__container"><a class="ps-product__vendor" href="#">Robert's Store</a>
-                                <div class="ps-product__content"><a class="ps-product__title" href="product-default.html">Samsung UHD TV 24inch</a>
-                                    <div class="ps-product__rating">
-                                        <select class="ps-rating" data-read-only="true">
-                                            <option value="1">1</option>
-                                            <option value="1">2</option>
-                                            <option value="1">3</option>
-                                            <option value="1">4</option>
-                                            <option value="2">5</option>
-                                        </select><span>01</span>
-                                    </div>
-                                    <p class="ps-product__price">$599.00</p>
-                                </div>
-                                <div class="ps-product__content hover"><a class="ps-product__title" href="product-default.html">Samsung UHD TV 24inch</a>
-                                    <p class="ps-product__price">$599.00</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="ps-product">
-                            <div class="ps-product__thumbnail"><a href="product-default.html"><img src="img/products/shop/18.jpg" alt=""></a>
-                                <ul class="ps-product__actions">
-                                    <li><a href="#" data-toggle="tooltip" data-placement="top" title="Add To Cart"><i class="icon-bag2"></i></a></li>
-                                    <li><a href="#" data-placement="top" title="Quick View" data-toggle="modal" data-target="#product-quickview"><i class="icon-eye"></i></a></li>
-                                    <li><a href="#" data-toggle="tooltip" data-placement="top" title="Add to Whishlist"><i class="icon-heart"></i></a></li>
-                                    <li><a href="#" data-toggle="tooltip" data-placement="top" title="Compare"><i class="icon-chart-bars"></i></a></li>
-                                </ul>
-                            </div>
-                            <div class="ps-product__container"><a class="ps-product__vendor" href="#">Robert's Store</a>
-                                <div class="ps-product__content"><a class="ps-product__title" href="product-default.html">EPSION Plaster Printer</a>
-                                    <div class="ps-product__rating">
-                                        <select class="ps-rating" data-read-only="true">
-                                            <option value="1">1</option>
-                                            <option value="1">2</option>
-                                            <option value="1">3</option>
-                                            <option value="1">4</option>
-                                            <option value="2">5</option>
-                                        </select><span>01</span>
-                                    </div>
-                                    <p class="ps-product__price">$233.28</p>
-                                </div>
-                                <div class="ps-product__content hover"><a class="ps-product__title" href="product-default.html">EPSION Plaster Printer</a>
-                                    <p class="ps-product__price">$233.28</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="ps-product">
-                            <div class="ps-product__thumbnail"><a href="product-default.html"><img src="img/products/shop/19.jpg" alt=""></a>
-                                <ul class="ps-product__actions">
-                                    <li><a href="#" data-toggle="tooltip" data-placement="top" title="Add To Cart"><i class="icon-bag2"></i></a></li>
-                                    <li><a href="#" data-placement="top" title="Quick View" data-toggle="modal" data-target="#product-quickview"><i class="icon-eye"></i></a></li>
-                                    <li><a href="#" data-toggle="tooltip" data-placement="top" title="Add to Whishlist"><i class="icon-heart"></i></a></li>
-                                    <li><a href="#" data-toggle="tooltip" data-placement="top" title="Compare"><i class="icon-chart-bars"></i></a></li>
-                                </ul>
-                            </div>
-                            <div class="ps-product__container"><a class="ps-product__vendor" href="#">Robert's Store</a>
-                                <div class="ps-product__content"><a class="ps-product__title" href="product-default.html">EPSION Plaster Printer</a>
-                                    <div class="ps-product__rating">
-                                        <select class="ps-rating" data-read-only="true">
-                                            <option value="1">1</option>
-                                            <option value="1">2</option>
-                                            <option value="1">3</option>
-                                            <option value="1">4</option>
-                                            <option value="2">5</option>
-                                        </select><span>01</span>
-                                    </div>
-                                    <p class="ps-product__price">$233.28</p>
-                                </div>
-                                <div class="ps-product__content hover"><a class="ps-product__title" href="product-default.html">EPSION Plaster Printer</a>
-                                    <p class="ps-product__price">$233.28</p>
-                                </div>
-                            </div>
-                        </div>
+                        @endforeach
                     </div>
                 </div>
             </div>
+            @endif
         </div>
     </div>
+    <input type = "hidden" class="base_price" id="basePrice" value="">
+    <input type = "hidden" class="base_qty" value="{{$avilability}}" autocomplete="off">
 @endsection
 @push('js')
     <script>
+        function checkAddToCartValidity() {
+            var names = {};
+            $('#option-choice-form input:radio').each(function () { // find unique names
+                names[$(this).attr('name')] = true;
+            });
+            var count = 0;
+            $.each(names, function () { // then count them
+                count++;
+            });
+
+            if ($('#option-choice-form input:radio:checked').length == count) {
+                return true;
+            }
+
+            return false;
+        }
         $(document).ready(function () {
             getVariantPrice();
 
-            function checkAddToCartValidity() {
-                var names = {};
-                $('#option-choice-form input:radio').each(function () { // find unique names
-                    names[$(this).attr('name')] = true;
-                });
-                var count = 0;
-                $.each(names, function () { // then count them
-                    count++;
-                });
+            $('#option-choice-form input').on('change', function(){
+                getVariantPrice();
+            });
 
-                if ($('#option-choice-form input:radio:checked').length == count) {
-                    return true;
+
+            $('.up').on('click', function(event){
+
+                event.preventDefault();
+                var val=$('.qtty').val();
+
+                // var price=$('.price').html();
+                var base_price=$('.base_price').val();
+                var base_qty=$('.base_qty').val();
+                // console.log(base_price);
+                // console.log(typeof val);
+                if(parseInt(val)<parseInt(base_qty)){
+                    $('.qtty').val(parseInt(val)+1);
+                    $('#chosen_price').html(parseInt(base_price)*(parseInt(val)+1));
+                    // console.log(chosen_price);
                 }
 
-                return false;
-            }
+            });
+            $('.down').on('click', function(event){
+                event.preventDefault();
+                var val=$('.qtty').val();
+                var price=$('#chosen_price').html();
+                console.log(price);
+                // alert('Hi')
+                var base_price=$('.base_price').val();
+
+                if(parseInt(val)>1){
+                    $('.qtty').val(parseInt(val)-1);
+                    $('#chosen_price').html(parseInt(price)-parseInt(base_price));
+                    // console.log(chosen_price);
+                }
+            });
 
             function getVariantPrice(){
                 //alert('oh no!!')
@@ -826,12 +398,13 @@
                         url: '{{ route('products.variant_price') }}',
                         data: $('#option-choice-form').serializeArray(),
                         success: function(data){
-                            console.log(data.response.price)
+                            // console.log(data.response.price)
                             $('#option-choice-form #chosen_price_div').removeClass('d-none');
-                            $('#option-choice-form #chosen_price_div #chosen_price').html('৳ ' +data.response.price);
+                            $('#option-choice-form #chosen_price_div #chosen_price').html(data.response.price);
                             $('#available-quantity').html(data.quantity);
+                            $('#basePrice').val(data.response.price);
                             $('.input-number').prop('max', data.quantity);
-                            console.log(data.quantity);
+                            // console.log(data.quantity);
                             if(parseInt(data.quantity) < 1 && data.digital  != 1){
                                 $('.buy-now').hide();
                                 $('.add-to-cart').hide();
@@ -843,7 +416,37 @@
                         }
                     });
                 }
+
             }
+
         });
+
+        function addToCartGlobal(){
+            if(checkAddToCartValidity()) {
+
+                $.ajax({
+                    type:"POST",
+                    url: '{{ route('product.global.addToCart') }}',
+                    data: $('#option-choice-form').serializeArray(),
+                    success: function(data){
+                        console.log(data.response)
+                        $('.cart_count').html(data.response.countCart);
+                        $('.cart_item').append(`<div class="ps-product--cart-mobile">
+                                            <div class="ps-product__thumbnail"><a href="#"><img src="/${data.response['options'].image}" alt=""></a></div>
+                                            <div class="ps-product__content"><a class="ps-product__remove" href=""><i class="icon-cross"></i></a><a href="#">${data.response.name}</a>
+                                                <p><small>${data.response.qty} x ${data.response.price}</small>
+                                            </div>
+                                        </div>`);
+                        $('.subTotal').html(data.response.subtotal);
+                        toastr.success('success', 'Product added to your cart.');
+                        location.reload();
+                    }
+                });
+            }
+            else{
+                showFrontendAlert('warning', 'Please choose all the options');
+            }
+        }
+
     </script>
 @endpush

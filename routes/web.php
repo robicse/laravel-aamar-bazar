@@ -75,6 +75,9 @@ Route::post('/cart/quantity_update', 'Frontend\CartController@quantityUpdate')->
 Route::get('/best-sells/products','Frontend\ProductController@bestSellsProducts')->name('best-sells-all-products');
 Route::post('/product/variant_price', 'Frontend\ProductController@variant_price')->name('products.variant_price');
 
+Route::post('/products/global/addtocart', 'Frontend\CartController@globalAddToCart')->name('product.global.addToCart');
+Route::post('/products/ajax/buy', 'Frontend\CartController@ProductBuy')->name('product.direct.buy');
+
 
 //Shop/Vendor
 Route::post('/shop/nearest/list', 'Frontend\ShopController@nearestshop')->name('shop.nearest');
