@@ -70,7 +70,7 @@
                     @csrf
                     <ul class="ps-tab-list">
                         <li class="active"><a href="#register">Be A Seller</a></li>
-{{--                        <li><a href="#register">Register</a></li>--}}
+                        {{--                        <li><a href="#register">Register</a></li>--}}
                     </ul>
                     <div class="ps-tabs">
                         <div class="ps-tab active" id="register">
@@ -174,33 +174,29 @@
                                         <input type="hidden" id="latitude_h" name="latitude">
                                         <input type="hidden" id="longitude_h" name="longitude">
                                     </div>
-                                    <div class="row">
-                                        <div class="col-12">
-                                            <div class="form-group">
-                                                <label for="logo">Shop Logo</label>
-                                                <div class="input-group" >
-                                                    <input type="file" class="form-control-file {{ $errors->has('logo') ? ' is-invalid' : '' }}" value="{{ old('logo') }}" placeholder="Enter Your Shop logo" name="logo">
-                                                </div>
-                                            </div>
-                                        </div>
+                                    <div class="form-group">
+                                        <label for="logo">Shop Logo</label>
+                                        <input type="file" class="form-control-file {{ $errors->has('logo') ? ' is-invalid' : '' }}" value="{{ old('logo') }}" placeholder="Enter Your Shop logo" name="logo">
                                     </div>
-
                                 </div>
-
+                                <div class="form-group row">
+                                    <input class="ps-checkbox" type="checkbox" required style="margin-left: 10px;">
+                                    <label for="" style="margin-left: 10px; margin-top: 3px;">I agree with the <a href="{{route('terms-condition')}}" class="btn-link text-bold" style="color:green;">Terms and Conditions</a></label>
+                                </div>
                                 <div class="form-group submtit ">
                                     <button class="ps-btn ps-btn--fullwidth mb-5">Save</button>
                                 </div>
 
                             </div>
-                           {{-- <div class="ps-form__footer">
-                                <p>Connect with:</p>
-                                <ul class="ps-list--social">
-                                    <li><a class="facebook" href="#"><i class="fa fa-facebook"></i></a></li>
-                                    <li><a class="google" href="#"><i class="fa fa-google-plus"></i></a></li>
-                                    <li><a class="twitter" href="#"><i class="fa fa-twitter"></i></a></li>
-                                    <li><a class="instagram" href="#"><i class="fa fa-instagram"></i></a></li>
-                                </ul>
-                            </div>--}}
+                            {{-- <div class="ps-form__footer">
+                                 <p>Connect with:</p>
+                                 <ul class="ps-list--social">
+                                     <li><a class="facebook" href="#"><i class="fa fa-facebook"></i></a></li>
+                                     <li><a class="google" href="#"><i class="fa fa-google-plus"></i></a></li>
+                                     <li><a class="twitter" href="#"><i class="fa fa-twitter"></i></a></li>
+                                     <li><a class="instagram" href="#"><i class="fa fa-instagram"></i></a></li>
+                                 </ul>
+                             </div>--}}
                         </div>
                     </div>
                 </form>

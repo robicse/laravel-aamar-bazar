@@ -25,25 +25,29 @@
                         <li class="active"><a href="#register">Register</a></li>
 {{--                        <li><a href="#register">Register</a></li>--}}
                     </ul>
-                    <div class="ps-tabs">
-                        <div class="ps-tab active" id="register">
+                    <div class="ps-tabs"  style="margin-bottom: 20PX;">
+                        <div class="ps-tab active">
                             <div class="ps-form__content">
                                 <h5>Create An Account</h5>
                                 <div class="form-group">
-                                    <input class="form-control form_height" type="text" name="name" placeholder="Name" autocomplete="off">
+                                    <input class="form-control form_height" type="text" name="name" placeholder="Name" autocomplete="off" required>
                                 </div>
                                 <div class="form-group">
-                                    <input class="form-control form_height" type="email" name="email" placeholder="Email" autocomplete="off">
+                                    <input class="form-control form_height" type="email" name="email" placeholder="Email" autocomplete="off" required>
                                 </div>
                                 <div class="form-group">
-                                    <input class="form-control form_height" type="number" name="phone" placeholder="Phone" autocomplete="off">
+                                    <input class="form-control form_height" type="number" name="phone" placeholder="Phone" autocomplete="off" required>
                                 </div>
                                 <div class="form-group">
-                                    <input class="form-control form_height" type="password" minlength="6" name="password" placeholder="Password">
+                                    <input class="form-control form_height" type="password" minlength="6" name="password" placeholder="Password" required>
                                 </div>
                                 <div class="form-group">
                                     <label>Referral Code <span class="small" style="color: green;">(Enter your friend's referral code)</span></label>
                                     <input class="form-control form_height" type="number" name="referred_by" placeholder="Referral code (Optional)">
+                                </div>
+                                <div class="form-group row">
+                                    <input class="ps-checkbox" type="checkbox" required style="margin-left: 10px;">
+                                    <label for="" style="margin-left: 10px; margin-top: 3px;">I agree with the <a href="{{route('terms-condition')}}" class="btn-link text-bold" style="color:green;">Terms and Conditions</a></label>
                                 </div>
                                 <div class="form-group submtit" style="padding-bottom: 40px;">
                                     <button class="ps-btn ps-btn--fullwidth">Create Account</button>
