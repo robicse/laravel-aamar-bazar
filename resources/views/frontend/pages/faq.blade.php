@@ -1,5 +1,12 @@
 @extends('frontend.layouts.master')
 @section('title','FAQ')
+@push('css')
+    <style>
+        p{
+            color: black;
+        }
+    </style>
+@endpush
 @section('content')
     <div class="ps-page--single">
         <div class="ps-breadcrumb">
@@ -12,62 +19,123 @@
         </div>
         <div class="ps-faqs">
             <div class="container">
-                <div class="ps-section__header">
-                    <h1>Frequently Asked Questions</h1>
+                <div class="text-center">
+                    <h3>Frequently Asked Questions</h3>
                 </div>
-                <div class="ps-section__content">
-                    <div class="table-responsive">
-                        <table class="table ps-table--faqs">
-                            <tbody>
-                            <tr>
-                                <td class="heading" rowspan="3">
-                                    <h4>SHIPPING</h4>
-                                </td>
-                                <td class="question"> What Shipping Methods Are Available?</td>
-                                <td>Ex Portland Pitchfork irure mustache. Eutra fap before they sold out literally. Aliquip ugh bicycle rights actually mlkshk, seitan squid craft beer tempor.</td>
-                            </tr>
-                            <tr>
-                                <td class="question">Do You Ship Internationally?</td>
-                                <td>Hoodie tote bag mixtape tofu. Typewriter jean shorts wolf quinoa, messenger bag organic freegan cray.</td>
-                            </tr>
-                            <tr>
-                                <td class="question">How Long Will It Take To Get My Package?</td>
-                                <td>Swag slow-carb quinoa VHS typewriter pork belly brunch, paleo single-origin coffee Wes Anderson. Flexitarian Pitchfork forage, literally paleo fap pour-over. Wes Anderson Pinterest YOLO fanny pack meggings, deep v XOXO chambray sustainable slow-carb raw denim church-key fap chillwave Etsy. +1 typewriter kitsch, American Apparel tofu Banksy Vice.</td>
-                            </tr>
-                            <tr>
-                                <td class="heading" rowspan="2">
-                                    <h4>PAYMENT</h4>
-                                </td>
-                                <td class="question"> What Payment Methods Are Accepted?</td>
-                                <td>Fashion axe DIY jean shorts, swag kale chips meh polaroid kogi butcher Wes Anderson chambray next level semiotics gentrify yr. Voluptate photo booth fugiat Vice. Austin sed Williamsburg, ea labore raw denim voluptate cred proident mixtape excepteur mustache. Twee chia photo booth readymade food truck, hoodie roof party swag keytar PBR DIY.</td>
-                            </tr>
-                            <tr>
-                                <td class="question">Is Buying On-Line Safe?</td>
-                                <td>Art party authentic freegan semiotics jean shorts chia cred. Neutra Austin roof party Brooklyn, synth Thundercats swag 8-bit photo booth. Plaid letterpress leggings craft beer meh ethical Pinterest.</td>
-                            </tr>
-                            <tr>
-                                <td class="heading" rowspan="5">
-                                    <h4>Order & Retunrs</h4>
-                                </td>
-                                <td class="question"> How do I place an Order?</td>
-                                <td>Keytar cray slow-carb, Godard banh mi salvia pour-over. Slow-carb Odd Future seitan normcore. Master cleanse American Apparel gentrify flexitarian beard slow-carb next level. Raw denim polaroid paleo farm-to-table, put a bird on it lo-fi tattooed Wes Anderson Pinterest letterpress. Fingerstache McSweeney’s pour-over, letterpress Schlitz photo booth master cleanse bespoke hashtag chillwave gentrify.</td>
-                            </tr>
-                            <tr>
-                                <td class="question">How Can I Cancel Or Change My Order?</td>
-                                <td>Plaid letterpress leggings craft beer meh ethical Pinterest. Art party authentic freegan semiotics jean shorts chia cred. Neutra Austin roof party Brooklyn, synth Thundercats swag 8-bit photo booth.</td>
-                            </tr>
-                            <tr>
-                                <td class="question">Do I need an account to place an order?</td>
-                                <td>Thundercats swag 8-bit photo booth. Plaid letterpress leggings craft beer meh ethical Pinterest. Twee chia photo booth readymade food truck, hoodie roof party swag keytar PBR DIY. Cray ugh 3 wolf moon fap, fashion axe irony butcher cornhole typewriter chambray VHS banjo street art.</td>
-                            </tr>
-                            <tr>
-                                <td class="question">How Do I Track My Order?</td>
-                                <td>Kale chips Truffaut Williamsburg, hashtag fixie Pinterest raw denim c hambray drinking vinegar Carles street art Bushwick gastropub. Wolf Tumblr paleo church-key. Plaid food truck Echo Park YOLO bitters hella, direct trade Thundercats leggings quinoa before they sold out. You probably haven’t heard of them wayfarers authentic umami drinking vinegar Pinterest Cosby sweater, fingerstache fap High Life.</td>
-                            </tr>
-                            </tbody>
-                        </table>
+                <div class="text-justify m-5">
+                    <h2 style="color:#09c;">ORDER</h2>
+                    <div>
+                        <h4>Q. How can I order </h4>
+                        <p>
+                            A. You can select your delivery address by using our map to find your nearest grocery stores. You can browse the nearest store or use our search engine to find your desired products. You can then add them to cart and click on place order. You let us know your delivery detail address.  A representative of store will deliver your order right to your delivery address.
+                        </p>
+                    </div>
+                    <div>
+                        <h4>Q. Is there a minimum order value?</h4>
+                        <p>
+                            A. Yes. Our minimum order value is BDT 300.
+                        </p>
+                    </div>
+                    <div>
+                        <h4>Q. Can I place an order for someone else?</h4>
+                        <p>
+                            A. Yes. During checkout, just update the name and delivery detail address of the person you’re ordering for.
+                        </p>
+                    </div>
+                    <div>
+                        <h4>Q. Can I order from multiple stores in the same order?</h4>
+                        <p>
+                            A. Unfortunately, you can’t order from multiple stores in the same order. However, you can place a separate order from a different store while your current order is being prepared and delivered.
+                        </p>
+                    </div>
+                    <div>
+                        <h4>Q. If I not found my expected product in a store. What can I do?</h4>
+                        <p>
+                            A. Unfortunately, you can't find your expected product, you may select another nearest store.
+                        </p>
+                    </div>
+                    <div>
+                        <h4>Q. How can I contact with you?</h4>
+                        <p>
+                            A. You can always call +880-182-0001-999 (10 am-8 pm) or mail us at support@mudihat.com.
+                        </p>
+                    </div>
+                    <div>
+                        <h4>Q. My order is wrong. What do I do?</h4>
+                        <p>
+                            A. Please Immediately call +880-182-0001-999  (10 am-8 pm) and let us know the problem.
+                        </p>
+                    </div>
+                    <div>
+                        <h4>Q. What about the prices? </h4>
+                        <p>
+                            A. Our prices are MRP but we try our best to offer them to you at or below market prices. If you feel that any product price is unfairly, please let us know.
+                        </p>
+                    </div>
+                    <div>
+                        <h4>Q. What about quality?</h4>
+                        <p>
+                            A. We try our best to maintain quality items for you but if you are dissatisfied, you can always send them back with the delivery person. If you forget to do that, you can call us within 1 hour and store will replace the item for free.
+                        </p>
                     </div>
                 </div>
+                <div class="text-justify m-5">
+                    <h2 style="color:#09c;">DELIVERY</h2>
+                    <div>
+                        <h4>Q. My order expected delivery time? </h4>
+                        <p>
+                            A. A representative of store are try to deliver your product as quickly as possible. They can usually deliver between 15 to 30 minutes from when you place the order. Our target is fastest delivery the products to you.
+                        </p>
+                    </div>
+                    <div>
+                        <h4>Q. How much do deliveries cost?</h4>
+                        <p>
+                            A. There is a FREE delivery fee.
+                        </p>
+                    </div>
+                    <div>
+                        <h4>Q. What are your delivery hours?</h4>
+                        <p>
+                            A. We deliver from 8 am to 10 pm of every day. You can choose from available slots to find something that is convenient to you.
+                        </p>
+                    </div>
+                    <div>
+                        <h4>Q. Should I tip the delivery representative? </h4>
+                        <p>
+                            A. Tips are not required. But representatives of store appreciate recognition for their hard work.
+                        </p>
+                    </div>
+                </div>
+                <div class="text-justify m-5">
+                    <h2 style="color:#09c;">PAYMENT</h2>
+                    <div>
+                        <h4>Q. How do I pay?  </h4>
+                        <p>
+                            A. We accept cash on delivery. Don’t worry, A representative of store should always carry enough change.
+                        </p>
+                    </div>
+                    <div>
+                        <h4>Q. Do you accept online payment?</h4>
+                        <p>
+                            A. Sorry! We don’t accept online payment right now. We will integrate online payment very soon. Now we accept cash on delivery only.
+                        </p>
+                    </div>
+                </div>
+{{--                <div class="text-justify m-5">--}}
+{{--                    <h2 style="color:#09c;">RETURN POLICY</h2>--}}
+{{--                    <div>--}}
+{{--                        <h4>Q. What is your policy on return?</h4>--}}
+{{--                        <p>--}}
+{{--                            --}}
+{{--                        </p>--}}
+{{--                    </div>--}}
+{{--                    <div>--}}
+{{--                        <h4>Q. What is your policy on refund?</h4>--}}
+{{--                        <p>--}}
+{{--                            --}}
+{{--                        </p>--}}
+{{--                    </div>--}}
+{{--                </div>--}}
             </div>
         </div>
     </div>
