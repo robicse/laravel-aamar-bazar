@@ -64,19 +64,19 @@ class ProductController extends Controller
     }
     public function ajaxSubCat (Request $request)
     {
-        $subcategories = Subcategory::where('category_id', $request->category_id)->get();
+        $subcategories = Subcategory::where('category_id', $request->category_id)->where('status',1)->get();
         return $subcategories;
     }
     public function ajaxSubSubCat(Request $request)
     {
-        $subsubcategories = SubSubcategory::where('sub_category_id', $request->subcategory_id)->get();
+        $subsubcategories = SubSubcategory::where('sub_category_id', $request->subcategory_id)->where('status',1)->get();
         return $subsubcategories;
     }
 
     public function create()
     {
-        $categories = Category::all();
-        $brands = Brand::all();
+        $categories = Category::where('status',1)->get();
+        $brands = Brand::where('status',1)->get();
         return view('backend.admin.products.create',compact('categories','brands'));
     }
     public function sku_combination(Request $request)
@@ -296,8 +296,8 @@ class ProductController extends Controller
     public function edit($id)
     {
         //dd($id);
-        $categories = Category::all();
-        $brands = Brand::all();
+        $categories = Category::where('status',1)->get();
+        $brands = Brand::where('status',1)->get();
         $product = Product::find(decrypt($id));
         $tags = json_decode($product->tags);
         //dd($product);

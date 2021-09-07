@@ -55,9 +55,7 @@ class CategoryController extends Controller
         $category->slug = Str::slug($request->name);
         $category->meta_title = $request->meta_title;
         $category->meta_description = $request->meta_description;
-        $category->featured = 0;
-        $category->top = 0;
-        $category->is_home = 0;
+        $category->status = 1;
         $image = $request->file('icon');
         if (isset($image)) {
             //make unique name for image
@@ -117,9 +115,7 @@ class CategoryController extends Controller
         $category->slug = Str::slug($request->name);
         $category->meta_title = $request->meta_title;
         $category->meta_description = $request->meta_description;
-        $category->featured = 0;
-        $category->top = 0;
-        $category->is_home = 0;
+
         $image = $request->file('icon');
         if (isset($image)) {
             //make unique name for image
@@ -163,7 +159,7 @@ class CategoryController extends Controller
     public function updateIsHome(Request $request)
     {
         $category = Category::findOrFail($request->id);
-        $category->is_home = $request->status;
+        $category->status = $request->status;
         if($category->save()){
             return 1;
         }

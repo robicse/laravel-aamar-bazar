@@ -86,36 +86,7 @@
                                 </form>
                             </div>
                         </div>
-{{--                        <div class="ps-deal-of-day">--}}
-{{--                            <div class="ps-container">--}}
-{{--                                <div class="ps-section__header">--}}
-{{--                                    <div class="ps-block--countdown-deal">--}}
-{{--                                        <div class="ps-block__left">--}}
-{{--                                            <h4>Featured Sub-child Category</h4>--}}
-{{--                                        </div>--}}
-{{--                                        <div class="ps-block__right">--}}
-{{--                                        </div>--}}
-{{--                                    </div>--}}
-{{--                                    --}}{{--                                    <a href="">View all</a>--}}
-{{--                                </div>--}}
-{{--                                <div class="ps-section__content mb-5" style="margin-top: -30px">--}}
-{{--                                    <div class="ps-carousel--nav owl-slider" data-owl-auto="false" data-owl-loop="false" data-owl-speed="10000" data-owl-gap="30" data-owl-nav="true" data-owl-dots="true" data-owl-item="7" data-owl-item-xs="2" data-owl-item-sm="3" data-owl-item-md="4" data-owl-item-lg="5" data-owl-item-xl="6" data-owl-duration="1000" data-owl-mousedrag="on">--}}
-{{--                                        @foreach($subSubCategories as $subSubCategory)--}}
-{{--                                            <div class="ps-product--inner" style=" margin-bottom: 40px;">--}}
-{{--                                                <div class="card rounded-circle" style=" width:100px; height:100px; background: #fcb800;">--}}
-{{--                                                    <div class="card-body text-center">--}}
-{{--                                                        <h5 class="card-title text-center" style="margin-top: 20px" data-toggle="tooltip" title="{{$subSubCategory->subsubcategory->name}}">--}}
-{{--                                                            <a href="{{url('/shop'.'/'.$shop->slug.'/'.$category->slug.'/'.$subCategory->slug.'/'.$subSubCategory->subsubcategory->slug)}}"> {{$subSubCategory->subsubcategory->name}}</a>--}}
-{{--                                                            --}}{{--                                                           <a href="{{route('subcategory.products/'.$shop->slug.'/'.$category->slug.'/'.$shopSubcategory->subcategory->slug)}}"> {!! Str::limit($shopSubcategory->subcategory->name,9) !!}</a>--}}
-{{--                                                        </h5>--}}
-{{--                                                    </div>--}}
-{{--                                                </div>--}}
-{{--                                            </div>--}}
-{{--                                        @endforeach--}}
-{{--                                    </div>--}}
-{{--                                </div>--}}
-{{--                            </div>--}}
-{{--                        </div>--}}
+
                         @if($featuredProducts->count() > 1)
                             <div class="ps-vendor-best-seller">
                                 <div class="ps-section__header">
@@ -169,34 +140,37 @@
                                 <div class="ps-tab active" id="tab-1">
                                     <div class="row">
                                         @forelse($products as $product)
-                                            <div class="col-xl-3 col-lg-4 col-md-4 col-sm-6 col-6 ">
-                                                <div class="ps-product">
-                                                    <div class="ps-product__thumbnail"><a href="{{route('product-details',$product->slug)}}"><img src="{{asset($product->thumbnail_img)}}" alt="" width="153" height="171"></a>
-                                                        {{--                                                        <div class="ps-product__badge">11%</div>--}}
-                                                        <ul class="ps-product__actions">
-                                                            <li><a href="{{route('product-details',$product->slug)}}" data-toggle="tooltip" data-placement="top" title="Add To Cart"><i class="icon-bag2"></i></a></li>
-                                                            <li><a href="{{route('product-details',$product->slug)}}" data-placement="top" title="Quick View"><i class="icon-eye"></i></a></li>
-                                                            <li><a href="#" data-toggle="tooltip" data-placement="top" title="Add to Whishlist"><i class="icon-heart"></i></a></li>
-                                                            {{--                                                            <li><a href="#" data-toggle="tooltip" data-placement="top" title="Compare"><i class="icon-chart-bars"></i></a></li>--}}
-                                                        </ul>
-                                                    </div>
-                                                    <div class="ps-product__container"><a class="ps-product__vendor" href="{{route('product-details',$product->slug)}}"></a>
-                                                        <div class="ps-product__content"><a class="ps-product__title" href="">{{$product->name}}</a>
+                                            @if( $product->subCategory->status)
+                                            {{ProductComponent($product)}}
+                                            @endif
+{{--                                            <div class="col-xl-3 col-lg-4 col-md-4 col-sm-6 col-6 ">--}}
+{{--                                                <div class="ps-product">--}}
+{{--                                                    <div class="ps-product__thumbnail"><a href="{{route('product-details',$product->slug)}}"><img src="{{asset($product->thumbnail_img)}}" alt="" width="153" height="171"></a>--}}
+{{--                                                        --}}{{--                                                        <div class="ps-product__badge">11%</div>--}}
+{{--                                                        <ul class="ps-product__actions">--}}
+{{--                                                            <li><a href="{{route('product-details',$product->slug)}}" data-toggle="tooltip" data-placement="top" title="Add To Cart"><i class="icon-bag2"></i></a></li>--}}
+{{--                                                            <li><a href="{{route('product-details',$product->slug)}}" data-placement="top" title="Quick View"><i class="icon-eye"></i></a></li>--}}
+{{--                                                            <li><a href="#" data-toggle="tooltip" data-placement="top" title="Add to Whishlist"><i class="icon-heart"></i></a></li>--}}
+{{--                                                            --}}{{--                                                            <li><a href="#" data-toggle="tooltip" data-placement="top" title="Compare"><i class="icon-chart-bars"></i></a></li>--}}
+{{--                                                        </ul>--}}
+{{--                                                    </div>--}}
+{{--                                                    <div class="ps-product__container"><a class="ps-product__vendor" href="{{route('product-details',$product->slug)}}"></a>--}}
+{{--                                                        <div class="ps-product__content"><a class="ps-product__title" href="">{{$product->name}}</a>--}}
 
-                                                            Price: ৳ {{home_discounted_base_price($product->id)}}
-                                                            @if(home_base_price($product->id) != home_discounted_base_price($product->id))
-                                                                <del>৳ {{home_base_price($product->id)}}</del>
-                                                            @endif
-                                                        </div>
-                                                        <div class="ps-product__content hover"><a class="ps-product__title" href="{{route('product-details',$product->slug)}}">{{$product->name}}</a>
-                                                            Price: ৳ {{home_discounted_base_price($product->id)}}
-                                                            @if(home_base_price($product->id) != home_discounted_base_price($product->id))
-                                                                <del>৳ {{home_base_price($product->id)}}</del>
-                                                            @endif
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
+{{--                                                            Price: ৳ {{home_discounted_base_price($product->id)}}--}}
+{{--                                                            @if(home_base_price($product->id) != home_discounted_base_price($product->id))--}}
+{{--                                                                <del>৳ {{home_base_price($product->id)}}</del>--}}
+{{--                                                            @endif--}}
+{{--                                                        </div>--}}
+{{--                                                        <div class="ps-product__content hover"><a class="ps-product__title" href="{{route('product-details',$product->slug)}}">{{$product->name}}</a>--}}
+{{--                                                            Price: ৳ {{home_discounted_base_price($product->id)}}--}}
+{{--                                                            @if(home_base_price($product->id) != home_discounted_base_price($product->id))--}}
+{{--                                                                <del>৳ {{home_base_price($product->id)}}</del>--}}
+{{--                                                            @endif--}}
+{{--                                                        </div>--}}
+{{--                                                    </div>--}}
+{{--                                                </div>--}}
+{{--                                            </div>--}}
                                         @empty
                                             <div class="col-md-12 text-center" >
                                                 <h2 class="p-0 m-0">Product Not Available!!</h2>
@@ -204,14 +178,7 @@
                                             </div>
                                         @endforelse
                                     </div>
-                                    {{--                                    <div class="ps-pagination">--}}
-                                    {{--                                        <ul class="pagination">--}}
-                                    {{--                                            <li class="active"><a href="#">1</a></li>--}}
-                                    {{--                                            <li><a href="#">2</a></li>--}}
-                                    {{--                                            <li><a href="#">3</a></li>--}}
-                                    {{--                                            <li><a href="#">Next Page<i class="icon-chevron-right"></i></a></li>--}}
-                                    {{--                                        </ul>--}}
-                                    {{--                                    </div>--}}
+
                                 </div>
                             </div>
                         </div>
@@ -250,20 +217,8 @@
                                 <div class="ps-block__content">
                                     <p><strong>{{$shop->name}}</strong>, {{$shop->about}}</p><span class="ps-block__divider"></span>
                                     <p><strong>Address</strong> {{$shop->address}}</p>
-                                    <figure>
-                                        <figcaption>Folow us on social</figcaption>
-                                        <ul class="ps-list--social-color">
-                                            <li><a class="facebook" href="{{$shop->facebook}}"><i class="fa fa-facebook"></i></a></li>
-                                            <li><a class="twitter" href="{{$shop->twitter}}"><i class="fa fa-twitter"></i></a></li>
-                                            <li><a class="linkedin" href="{{$shop->google}}"><i class="fa fa-google-plus"></i></a></li>
-                                            <li><a class="feed" href="{{$shop->youtube}}"><i class="fa fa-youtube"></i></a></li>
-                                        </ul>
-                                    </figure>
                                 </div>
-                                <div class="ps-block__footer">
-                                    <p>Call us directly<strong><a href="tel:{{$user->phone}}">{{$user->phone}}</a></strong></p>
-                                    <p>or Or if you have any question</p><a class="ps-btn ps-btn--fullwidth" href="tel:{{$user->phone}}">Contact Seller</a>
-                                </div>
+
                             </div>
                         </div>
                     </div>

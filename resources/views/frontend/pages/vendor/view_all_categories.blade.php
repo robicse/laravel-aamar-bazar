@@ -60,6 +60,7 @@
                                 </div><span class="ps-block__divider"></span>
                                 <div class="ps-block__content">
                                     <p><strong>{{$shop->name}}</strong>, {{$shop->about}}</p><span class="ps-block__divider"></span>
+                                    <p><strong>Address</strong> {{$shop->address}}</p>
                                 </div>
 
                             </div>
@@ -89,16 +90,10 @@
                                 <div class="ps-tab active" id="tab-1">
                                     <div class="row">
                                         @foreach($shopCategories as $shopCategory)
+                                            @if($shopCategory->category->status !=0)
                                             <div class="col-xl-3 col-lg-4 col-md-4 col-sm-6 col-6 ">
                                                 <div class="ps-product">
                                                     <div class="ps-product__thumbnail"><a href="{{url('/shop/'.$shop->slug.'/'.$shopCategory->category->slug)}}"><img src="{{asset('uploads/categories/'.$shopCategory->category->icon)}}" alt="" width="153" height="171"></a>
-                                                        {{--                                                        <div class="ps-product__badge">11%</div>--}}
-{{--                                                        <ul class="ps-product__actions">--}}
-{{--                                                            <li><a href="" data-toggle="tooltip" data-placement="top" title="Add To Cart"><i class="icon-bag2"></i></a></li>--}}
-{{--                                                            <li><a href="" data-placement="top" title="Quick View"><i class="icon-eye"></i></a></li>--}}
-{{--                                                            <li><a href="#" data-toggle="tooltip" data-placement="top" title="Add to Whishlist"><i class="icon-heart"></i></a></li>--}}
-{{--                                                            --}}{{--                                                            <li><a href="#" data-toggle="tooltip" data-placement="top" title="Compare"><i class="icon-chart-bars"></i></a></li>--}}
-{{--                                                        </ul>--}}
                                                     </div>
                                                     <div class="ps-product__container"><a class="ps-product__vendor" href=""></a>
                                                         <div class="ps-product__content"><a class="ps-product__title" href="{{url('/shop/'.$shop->slug.'/'.$shopCategory->category->slug)}}">{{$shopCategory->category->name}}</a>
@@ -109,6 +104,7 @@
                                                     </div>
                                                 </div>
                                             </div>
+                                            @endif
                                         @endforeach
                                     </div>
 
@@ -150,19 +146,6 @@
                                 <div class="ps-block__content">
                                     <p><strong>{{$shop->name}}</strong>, {{$shop->about}}</p><span class="ps-block__divider"></span>
                                     <p><strong>Address</strong> {{$shop->address}}</p>
-                                    <figure>
-                                        <figcaption>Foloow us on social</figcaption>
-                                        <ul class="ps-list--social-color">
-                                            <li><a class="facebook" href="{{$shop->facebook}}"><i class="fa fa-facebook"></i></a></li>
-                                            <li><a class="twitter" href="{{$shop->twitter}}"><i class="fa fa-twitter"></i></a></li>
-                                            <li><a class="linkedin" href="{{$shop->google}}"><i class="fa fa-google-plus"></i></a></li>
-                                            <li><a class="feed" href="{{$shop->youtube}}"><i class="fa fa-youtube"></i></a></li>
-                                        </ul>
-                                    </figure>
-                                </div>
-                                <div class="ps-block__footer">
-                                    <p>Call us directly<strong><a href="tel:{{$user->phone}}">{{$user->phone}}</a></strong></p>
-                                    <p>or Or if you have any question</p><a class="ps-btn ps-btn--fullwidth" href="tel:{{$user->phone}}">Contact Seller</a>
                                 </div>
                             </div>
                         </div>

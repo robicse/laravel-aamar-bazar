@@ -48,7 +48,7 @@
                                 <th>#Id</th>
                                 <th>Name</th>
                                 <th>Icon</th>
-                                <th>Is_home</th>
+                                <th>Published</th>
                                 <th>Action</th>
                             </tr>
                             </thead>
@@ -63,7 +63,7 @@
                                 <td>
                                     <div class="form-group col-md-2">
                                         <label class="switch" style="margin-top:40px;">
-                                            <input onchange="update_is_home(this)" value="{{ $category->id }}" {{$category->is_home == 1? 'checked':''}} type="checkbox" >
+                                            <input onchange="updateStatus(this)" value="{{ $category->id }}" {{$category->status == 1? 'checked':''}} type="checkbox" >
                                             <span class="slider round"></span>
                                         </label>
                                     </div>
@@ -89,7 +89,7 @@
                                 <th>#Id</th>
                                 <th>Name</th>
                                 <th>Icon</th>
-                                <th>Is_home</th>
+                                <th>Published</th>
                                 <th>Action</th>
                             </tr>
                             </tfoot>
@@ -150,7 +150,7 @@
             })
         }
         //Is Home
-        function update_is_home(el){
+        function updateStatus(el){
             if(el.checked){
                 var status = 1;
             }
@@ -159,7 +159,7 @@
             }
             $.post('{{ route('admin.categories.is_home') }}', {_token:'{{ csrf_token() }}', id:el.value, status:status}, function(data){
                 if(data == 1){
-                    toastr.success('success', 'Is Home updated successfully');
+                    toastr.success('success', 'Published updated successfully');
                 }
                 else{
                     toastr.danger('danger', 'Something went wrong');

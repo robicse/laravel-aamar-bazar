@@ -22,6 +22,7 @@
     </style>
 @endpush
 @section('content')
+
     <div class="ps-breadcrumb">
         <div class="ps-container">
             <ul class="breadcrumb">
@@ -57,6 +58,7 @@
                                     @endforeach
                                 </div>
                             </div>
+
                             <div class="ps-product__info">
                                 <h1>{{ $productDetails->name }}</h1>
                                 <div class="ps-product__meta">
@@ -65,6 +67,7 @@
                                         <strong> Categories:</strong>
                                         <a href="{{url('/shop/'.$shop->slug.'/'.$productDetails->category->slug)}}">{{$productDetails->category->name}}</a>
                                     </p>
+
                                     <div class="ps-product__rating">
                                         <select class="ps-rating" data-read-only="true">
                                             @for ($i=0; $i < round($productDetails->rating); $i++)
@@ -72,11 +75,13 @@
                                             @endfor
                                         </select><span>({{$reviews->count()}} review)</span>
                                     </div>
+
                                 </div>
                                 @if(home_price($productDetails->id) != home_discounted_price($productDetails->id))
+
                                     <h4 class="ps-product__price">
-                                        ৳{{ home_discounted_price($detailedProduct->id) }}
-                                        <del>৳{{home_price($flashDealProduct->product_id)}}</del>
+                                        ৳{{ home_discounted_price($productDetails->id) }}
+                                        <del>৳{{home_price($productDetails->id)}}</del>
                                     </h4>
                                 @else
                                     <h4 class="ps-product__price">৳{{ home_discounted_price($productDetails->id) }}</h4>
@@ -84,26 +89,27 @@
                                 <div class="ps-product__desc">
                                     <p>Sold By:<a href="{{route('shop.details',$shop->slug)}}"><strong> {{ $shop->name }}</strong></a></p>
                                 </div>
+
                                 @php
                                     $colors = json_decode($productDetails->colors);
                                 @endphp
                                 <form id="option-choice-form">
                                     @csrf
                                     <input type="hidden" name="id" value="{{ $productDetails->id }}">
-                                <div class="ps-product__variations">
-                                    @if (count(json_decode($productDetails->colors)) > 0)
-                                        <figure>
-                                            <figcaption>Color</figcaption>
-                                            @foreach (json_decode($productDetails->colors) as $key => $color)
-                                                <div class="form-check form-check-inline mr-0">
-                                                    <input class="form-check-input" type="radio" name="color" id="{{ $productDetails->id }}-color-{{ $key }}" value="{{ $color->code }}"  @if($key == 0) checked @endif autocomplete="off">
-                                                    <label class="form-check-label ps-variant ps-variant--color" for="{{ $productDetails->id }}-color-{{ $key }}" style="background-color: {{$color->code}}; border-radius: 50%;">
-                                                        <span class="ps-variant__tooltip">{{$color->name}}</span>
-                                                    </label>
-                                                </div>
-                                            @endforeach
-                                        </figure>
-                                    @endif
+                                    <div class="ps-product__variations">
+                                        @if (count(json_decode($productDetails->colors)) > 0)
+                                            <figure>
+                                                <figcaption>Color</figcaption>
+                                                @foreach (json_decode($productDetails->colors) as $key => $color)
+                                                    <div class="form-check form-check-inline mr-0">
+                                                        <input class="form-check-input" type="radio" name="color" id="{{ $productDetails->id }}-color-{{ $key }}" value="{{ $color->code }}"  @if($key == 0) checked @endif autocomplete="off">
+                                                        <label class="form-check-label ps-variant ps-variant--color" for="{{ $productDetails->id }}-color-{{ $key }}" style="background-color: {{$color->code}}; border-radius: 50%;">
+                                                            <span class="ps-variant__tooltip">{{$color->name}}</span>
+                                                        </label>
+                                                    </div>
+                                                @endforeach
+                                            </figure>
+                                        @endif
                                         @if ($productDetails->choice_options != null)
                                             @foreach (json_decode($productDetails->choice_options) as $key => $choice)
                                                 <figure>
@@ -119,36 +125,36 @@
                                                 </figure>
                                             @endforeach
                                         @endif
-                                </div>
-                                <div class="row ps-product__price d-none" id="chosen_price_div">
-                                    <div class="col-4">
-                                        <div class="product-description-label">{{ __('Total Price')}}:</div>
                                     </div>
-                                    <div class="col-8">
-                                        <div class="ps-product__price price">
-                                            <span class="text-bold">৳</span>
-                                            <strong id="chosen_price">
+                                    <div class="row ps-product__price d-none" id="chosen_price_div">
+                                        <div class="col-4">
+                                            <div class="product-description-label">{{ __('Total Price')}}:</div>
+                                        </div>
+                                        <div class="col-8">
+                                            <div class="ps-product__price price">
+                                                <span class="text-bold">৳</span>
+                                                <strong id="chosen_price">
 
-                                            </strong>
+                                                </strong>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="ps-product__shopping">
-                                    <figure>
-                                        <figcaption>Quantity</figcaption>
-                                        <div class="form-group--number">
-                                            <button class="up"><i class="fa fa-plus"></i></button>
-                                            <button class="down"><i class="fa fa-minus"></i></button>
-                                            <input class="form-control qtty" name="quantity" type="text" placeholder="1" value="1" autocomplete="off">
-                                        </div>
-                                    </figure>
-                                    <p class="aval">{{$avilability}} available</p>
-                                    @if($productDetails->current_stock > 0)
-                                        <a class="ps-btn ps-btn--black" href="#" onclick="addToCartGlobal()">Add to cart</a>
-                                    @else
-                                        <a class="ps-btn ps-btn--danger bg-danger" href="#" disabled="disabled">Stock Out</a>
-                                    @endif
-                                </div>
+                                    <div class="ps-product__shopping">
+                                        <figure>
+                                            <figcaption>Quantity</figcaption>
+                                            <div class="form-group--number">
+                                                <button class="up"><i class="fa fa-plus"></i></button>
+                                                <button class="down"><i class="fa fa-minus"></i></button>
+                                                <input class="form-control qtty" name="quantity" type="text" placeholder="1" value="1" autocomplete="off">
+                                            </div>
+                                        </figure>
+                                        <p class="aval">{{$avilability}} available</p>
+                                        @if($productDetails->current_stock > 0)
+                                            <a class="ps-btn ps-btn--black" href="#" onclick="addToCartGlobal()">Add to cart</a>
+                                        @else
+                                            <a class="ps-btn ps-btn--danger bg-danger" href="#" disabled="disabled">Stock Out</a>
+                                        @endif
+                                    </div>
                                 </form>
                             </div>
                         </div>
@@ -251,84 +257,94 @@
 
                     <aside class="widget widget_same-brand">
                         <h3>Same Brand</h3>
+
                         @php
-                        $related_brands_products = $relatedBrands = \App\Model\Product::where('brand_id', $productDetails->brand_id)->where('user_id',$productDetails->user_id)->where('added_by','seller')->latest()->take(3)->where('published',1)->get();
+                            $related_brands_products = \App\Model\Product::where('brand_id', $productDetails->brand_id)->where('user_id',$productDetails->user_id)->where('added_by','seller')->latest()->take(3)->where('published',1)->get();
                         @endphp
                         <div class="widget__content">
                             @foreach($related_brands_products as $product)
-                            <div class="ps-product" style="margin-top: -20px;">
-                                <div class="ps-product__thumbnail">
-                                    <a href="{{route('product-details',$product->slug)}}">
-                                        <img src="{{url($product->thumbnail_img)}}" alt="" width="206" height="206">
-                                    </a>
-                                    <ul class="ps-product__actions">
-                                        <li><a href="#" data-toggle="tooltip" data-placement="top" title="Add To Cart"><i class="icon-bag2"></i></a></li>
-                                        <li><a href="#" data-placement="top" title="Quick View" data-toggle="modal" data-target="#product-quickview"><i class="icon-eye"></i></a></li>
-                                        <li><a href="{{route('add.wishlist',$product->id)}}" data-toggle="tooltip" data-placement="top" title="Add to Whishlist"><i class="icon-heart"></i></a></li>
-                                    </ul>
-                                </div>
-                                <div class="ps-product__container"><a class="ps-product__vendor" href="{{url('/products/'.$product->user->shop->slug.'/'.$product->brand->slug)}}">{{ $product->brand->name }}</a>
-                                    <div class="ps-product__content"><a class="ps-product__title" href="{{route('product-details',$product->slug)}}">{{$product->name}}</a>
-                                        Price: ৳ {{home_discounted_base_price($product->id)}}
-                                        @if(home_base_price($product->id) != home_discounted_base_price($product->id))
-                                            <del>৳ {{home_base_price($product->id)}}</del>
-                                        @endif
+                                <div class="ps-product" style="margin-top: -20px;">
+                                    <div class="ps-product__thumbnail">
+                                        <a href="{{route('product-details',$product->slug)}}">
+                                            <img src="{{url($product->thumbnail_img)}}" alt="" width="206" height="206">
+                                        </a>
+                                        <ul class="ps-product__actions">
+                                            @if($product->variant_product != 0)
+                                                <li><a href="{{route('product-details',$product->slug)}}" data-toggle="tooltip" data-placement="top" title="Add To Cart"><i class="icon-bag2"></i></a></li>
+                                            @else
+                                                <li><a data-toggle="tooltip" data-placement="top" title="Add To Cart" onclick="addToCart('{{$product->id}}',0)"><i class="icon-bag2"></i></a></li>
+                                            @endif
+                                            <li><a href="{{route('product-details',$product->slug)}}" data-placement="top" title="Quick View"><i class="icon-eye"></i></a></li>
+                                            <li><a href="{{route('add.wishlist',$product->id)}}" data-toggle="tooltip" data-placement="top" title="Add to Whishlist"><i class="icon-heart"></i></a></li>
+                                        </ul>
                                     </div>
-                                    <div class="ps-product__content hover"><a class="ps-product__title" href="{{route('product-details',$product->slug)}}">{{$product->name}}</a>
-                                        Price: ৳ {{home_discounted_base_price($product->id)}}
-                                        @if(home_base_price($product->id) != home_discounted_base_price($product->id))
-                                            <del>৳ {{home_base_price($product->id)}}</del>
-                                        @endif
+                                    <div class="ps-product__container"><a class="ps-product__vendor" href="{{url('/products/'.$product->user->shop->slug.'/'.$product->brand->slug)}}">{{ $product->brand->name }}</a>
+                                        <div class="ps-product__content"><a class="ps-product__title" href="{{route('product-details',$product->slug)}}">{{$product->name}}</a>
+                                            Price: ৳ {{home_discounted_base_price($product->id)}}
+                                            @if(home_base_price($product->id) != home_discounted_base_price($product->id))
+                                                <del>৳ {{home_base_price($product->id)}}</del>
+                                            @endif
+                                        </div>
+                                        <div class="ps-product__content hover"><a class="ps-product__title" href="{{route('product-details',$product->slug)}}">{{$product->name}}</a>
+                                            Price: ৳ {{home_discounted_base_price($product->id)}}
+                                            @if(home_base_price($product->id) != home_discounted_base_price($product->id))
+                                                <del>৳ {{home_base_price($product->id)}}</del>
+                                            @endif
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
                             @endforeach
                         </div>
                     </aside>
                 </div>
             </div>
             @php
-            $related_category_products = \App\Model\Product::where('category_id',$productDetails->category_id)->where('user_id',$productDetails->user_id)->where('added_by','seller')->where('published',1)->latest()->take(7)->get();
+                $related_category_products = \App\Model\Product::where('category_id',$productDetails->category_id)->where('user_id',$productDetails->user_id)->where('added_by','seller')->where('published',1)->latest()->take(7)->get();
             @endphp
             @if($related_category_products->count() > 1)
 
-            <div class="ps-section--default">
-                <div class="ps-section__header">
-                    <h3>Related products</h3>
-                </div>
-                <div class="ps-section__content">
-                    <div class="ps-carousel--nav owl-slider" data-owl-auto="true" data-owl-loop="true" data-owl-speed="10000" data-owl-gap="30" data-owl-nav="true" data-owl-dots="true" data-owl-item="6" data-owl-item-xs="2" data-owl-item-sm="2" data-owl-item-md="3" data-owl-item-lg="4" data-owl-item-xl="5" data-owl-duration="1000" data-owl-mousedrag="on">
-                        @foreach($related_category_products as $product)
-                            <div class="ps-product" style="margin-bottom: 20px;">
-                                <div class="ps-product__thumbnail"><a href="{{route('product-details',$product->slug)}}"><img src="{{url($product->thumbnail_img)}}" alt="" width="191" height="198"></a>
-                                    <ul class="ps-product__actions">
-                                        <li><a href="#" data-toggle="tooltip" data-placement="top" title="Add To Cart"><i class="icon-bag2"></i></a></li>
-                                        <li><a href="#" data-placement="top" title="Quick View" data-toggle="modal" data-target="#product-quickview"><i class="icon-eye"></i></a></li>
-                                        <li><a href="{{route('add.wishlist',$product->id)}}" data-toggle="tooltip" data-placement="top" title="Add to Whishlist"><i class="icon-heart"></i></a></li>
-                                    </ul>
-                                </div>
-                                <div class="ps-product__container"><a class="ps-product__vendor" href="{{route('shop.details',$shop->slug)}}">{{$shop->name}}</a>
-                                    <div class="ps-product__content"><a class="ps-product__title" href="{{route('product-details',$product->slug)}}">{{$product->name}}</a>
-                                        Price: ৳ {{home_discounted_base_price($product->id)}}
-                                        @if(home_base_price($product->id) != home_discounted_base_price($product->id))
-                                            <del>৳ {{home_base_price($product->id)}}</del>
-                                        @endif
+                <div class="ps-section--default">
+                    <div class="ps-section__header">
+                        <h3>Related products</h3>
+                    </div>
+                    <div class="ps-section__content">
+                        <div class="ps-carousel--nav owl-slider" data-owl-auto="true" data-owl-loop="true" data-owl-speed="10000" data-owl-gap="30" data-owl-nav="true" data-owl-dots="true" data-owl-item="6" data-owl-item-xs="2" data-owl-item-sm="2" data-owl-item-md="3" data-owl-item-lg="4" data-owl-item-xl="5" data-owl-duration="1000" data-owl-mousedrag="on">
+                            @foreach($related_category_products as $product)
+                                <div class="ps-product" style="margin-bottom: 20px;">
+                                    <div class="ps-product__thumbnail"><a href="{{route('product-details',$product->slug)}}"><img src="{{url($product->thumbnail_img)}}" alt="" width="191" height="198"></a>
+                                        <ul class="ps-product__actions">
+                                            @if($product->variant_product != 0)
+                                                <li><a href="{{route('product-details',$product->slug)}}" data-toggle="tooltip" data-placement="top" title="Add To Cart"><i class="icon-bag2"></i></a></li>
+                                            @else
+                                                <li><a data-toggle="tooltip" data-placement="top" title="Add To Cart" onclick="addToCart('{{$product->id}}',0)"><i class="icon-bag2"></i></a></li>
+                                            @endif
+                                            <li><a href="{{route('product-details',$product->slug)}}" data-placement="top" title="Quick View"><i class="icon-eye"></i></a></li>
+                                            <li><a href="{{route('add.wishlist',$product->id)}}" data-toggle="tooltip" data-placement="top" title="Add to Whishlist"><i class="icon-heart"></i></a></li>
+                                        </ul>
                                     </div>
-                                    <div class="ps-product__content hover"><a class="ps-product__title" href="{{route('product-details',$product->slug)}}">{{$product->name}}</a>
-                                        Price: ৳ {{home_discounted_base_price($product->id)}}
-                                        @if(home_base_price($product->id) != home_discounted_base_price($product->id))
-                                            <del>৳ {{home_base_price($product->id)}}</del>
-                                        @endif
+                                    <div class="ps-product__container"><a class="ps-product__vendor" href="{{route('shop.details',$shop->slug)}}">{{$shop->name}}</a>
+                                        <div class="ps-product__content"><a class="ps-product__title" href="{{route('product-details',$product->slug)}}">{{$product->name}}</a>
+                                            Price: ৳ {{home_discounted_base_price($product->id)}}
+                                            @if(home_base_price($product->id) != home_discounted_base_price($product->id))
+                                                <del>৳ {{home_base_price($product->id)}}</del>
+                                            @endif
+                                        </div>
+                                        <div class="ps-product__content hover"><a class="ps-product__title" href="{{route('product-details',$product->slug)}}">{{$product->name}}</a>
+                                            Price: ৳ {{home_discounted_base_price($product->id)}}
+                                            @if(home_base_price($product->id) != home_discounted_base_price($product->id))
+                                                <del>৳ {{home_base_price($product->id)}}</del>
+                                            @endif
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                        @endforeach
+                            @endforeach
+                        </div>
                     </div>
                 </div>
-            </div>
             @endif
         </div>
     </div>
+
     <input type = "hidden" class="base_price" id="basePrice" value="">
     <input type = "hidden" class="base_qty" value="{{$avilability}}" autocomplete="off">
 @endsection

@@ -70,6 +70,7 @@
                                 </div><span class="ps-block__divider"></span>
                                 <div class="ps-block__content">
                                     <p><strong>{{$shop->name}}</strong>, {{$shop->about}}</p><span class="ps-block__divider"></span>
+                                    <p><strong>Address</strong> {{$shop->address}}</p>
                                 </div>
                             </div>
                         </div>
@@ -77,13 +78,6 @@
                     @if($seller->verification_status == 1)
                         <div class="ps-section__right">
                             <div class="ps-block--vendor-filter">
-                                {{--<div class="ps-block__left">
-                                    <ul>
---}}{{--                                        <li class="active"><a href="#">Products</a></li>--}}{{--
-                                        --}}{{--                                    <li><a href="#">Reviews</a></li>--}}{{--
-                                        --}}{{--                                    <li><a href="#">About</a></li>--}}{{--
-                                    </ul>
-                                </div>--}}
                                 <div class="">
                                     <form class="ps-form--search text-right" action="" method="get">
                                         <input type="hidden" name="shop_id" value="{{ $shop->id }}">
@@ -107,6 +101,7 @@
                                         <div class="ps-section__content mb-5">
                                             <div class="ps-carousel--nav owl-slider" data-owl-auto="false" data-owl-loop="false" data-owl-speed="10000" data-owl-gap="30" data-owl-nav="true" data-owl-dots="true" data-owl-item="7" data-owl-item-xs="2" data-owl-item-sm="3" data-owl-item-md="4" data-owl-item-lg="5" data-owl-item-xl="6" data-owl-duration="1000" data-owl-mousedrag="on">
                                                 @foreach($shopCat as $cat)
+                                                    @if($cat->category->status !=0)
                                                     <div class="ps-product--inner" style="margin-left: 10px;">
                                                         <div class="text-center"><a href="{{url('/shop/'.$shop->slug.'/'.$cat->category->slug)}}"><img src="{{asset('uploads/categories/'.$cat->category->icon)}}" alt="" class="rounded-circle" alt="" width="80" height="80"></a>
                                                             <div class="item-content text-center" style="padding-top: 5px;">
@@ -114,6 +109,7 @@
                                                             </div>
                                                         </div>
                                                     </div>
+                                                    @endif
                                                 @endforeach
                                             </div>
                                         </div>
@@ -147,7 +143,9 @@
                                             <div class="ps-tab active" id="tab-1">
                                                 <div class="row" style="margin-top: -30px;">
                                                     @foreach($flashDealProducts as $flashDealProduct)
+                                                        @if($flashDealProduct->category->status !=0)
                                                         {{FlashDealComponent($flashDealProduct)}}
+                                                        @endif
                                                     @endforeach
                                                 </div>
                                             </div>
@@ -170,6 +168,7 @@
                                         <div class="ps-tab active" id="tab-1">
                                             <div class="row">
                                                 @foreach($products as $product)
+
                                                     {{ProductComponent($product)}}
                                                 @endforeach
                                             </div>
@@ -267,19 +266,6 @@
                                 <div class="ps-block__content">
                                     <p><strong>{{$shop->name}}</strong>, {{$shop->about}}</p><span class="ps-block__divider"></span>
                                     <p><strong>Address</strong> {{$shop->address}}</p>
-                                    <figure>
-                                        <figcaption>Folow us on social</figcaption>
-                                        <ul class="ps-list--social-color">
-                                            <li><a class="facebook" href="{{$shop->facebook}}"><i class="fa fa-facebook"></i></a></li>
-                                            <li><a class="twitter" href="{{$shop->twitter}}"><i class="fa fa-twitter"></i></a></li>
-                                            <li><a class="linkedin" href="{{$shop->google}}"><i class="fa fa-google-plus"></i></a></li>
-                                            <li><a class="feed" href="{{$shop->youtube}}"><i class="fa fa-youtube"></i></a></li>
-                                        </ul>
-                                    </figure>
-                                </div>
-                                <div class="ps-block__footer">
-                                    <p>Call us directly<strong><a href="tel:{{$user->phone}}">{{$user->phone}}</a></strong></p>
-                                    <p>or Or if you have any question</p><a class="ps-btn ps-btn--fullwidth" href="tel:{{$user->phone}}">Contact Seller</a>
                                 </div>
                             </div>
                         </div>
