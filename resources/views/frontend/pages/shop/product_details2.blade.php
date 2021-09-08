@@ -278,14 +278,22 @@
                                             <li><a href="{{route('add.wishlist',$product->id)}}" data-toggle="tooltip" data-placement="top" title="Add to Whishlist"><i class="icon-heart"></i></a></li>
                                         </ul>
                                     </div>
+
                                     <div class="ps-product__container"><a class="ps-product__vendor" href="{{url('/products/'.$product->user->shop->slug.'/'.$product->brand->slug)}}">{{ $product->brand->name }}</a>
+
                                         <div class="ps-product__content"><a class="ps-product__title" href="{{route('product-details',$product->slug)}}">{{$product->name}}</a>
+                                            <div>
+                                                Unit: {{ProductUnit($product->id)}}
+                                            </div>
                                             Price: ৳ {{home_discounted_base_price($product->id)}}
                                             @if(home_base_price($product->id) != home_discounted_base_price($product->id))
                                                 <del>৳ {{home_base_price($product->id)}}</del>
                                             @endif
                                         </div>
                                         <div class="ps-product__content hover"><a class="ps-product__title" href="{{route('product-details',$product->slug)}}">{{$product->name}}</a>
+                                            <div>
+                                                Unit: {{ProductUnit($product->id)}}
+                                            </div>
                                             Price: ৳ {{home_discounted_base_price($product->id)}}
                                             @if(home_base_price($product->id) != home_discounted_base_price($product->id))
                                                 <del>৳ {{home_base_price($product->id)}}</del>
@@ -324,12 +332,18 @@
                                     </div>
                                     <div class="ps-product__container"><a class="ps-product__vendor" href="{{route('shop.details',$shop->slug)}}">{{$shop->name}}</a>
                                         <div class="ps-product__content"><a class="ps-product__title" href="{{route('product-details',$product->slug)}}">{{$product->name}}</a>
+                                            <div>
+                                                Unit: {{ProductUnit($product->id)}}
+                                            </div>
                                             Price: ৳ {{home_discounted_base_price($product->id)}}
                                             @if(home_base_price($product->id) != home_discounted_base_price($product->id))
                                                 <del>৳ {{home_base_price($product->id)}}</del>
                                             @endif
                                         </div>
                                         <div class="ps-product__content hover"><a class="ps-product__title" href="{{route('product-details',$product->slug)}}">{{$product->name}}</a>
+                                            <div>
+                                                Unit: {{ProductUnit($product->id)}}
+                                            </div>
                                             Price: ৳ {{home_discounted_base_price($product->id)}}
                                             @if(home_base_price($product->id) != home_discounted_base_price($product->id))
                                                 <del>৳ {{home_base_price($product->id)}}</del>

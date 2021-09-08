@@ -55,69 +55,36 @@ class ProductController extends Controller
         }
         return view('frontend.pages.shop.product_details2',
             compact('productDetails','attributes','options','colors','price',
-                'avilability','photos','relatedBrands','categories','reviews','fiveStarRev','fourStarRev',
+                'avilability','photos','reviews','fiveStarRev','fourStarRev',
                 'threeStarRev','twoStarRev','oneStarRev','reviewsComments')
         );
     }
 
-//    public function ProductVariantPrice(Request  $request) {
-////        dd($request->all());
-//
-//
-//        $c=count($request->variant);
-//        $i=1;
-//        $var=$request->variant;
-////        dd($var);
-//        $v=[];
-//        for($i=1;$i<$c-1;$i++){
-//            array_push($v,$var[$i]['value']);
-//        }
-////        dd(implode("-",$v));
-//        $variant=ProductStock::where('variant',implode("-",$v))->first();
-//        //dd($variant);
-//        $product = Product::find($variant->product_id);
-////        dd($product);
-//        if ($product->discount > 0){
-//            $price = $variant->price;
-//            if($product->discount_type == 'percent'){
-//
-//                $price -= ($variant->price*$product->discount)/100;
-//            }
-//            elseif($product->discount_type == 'amount'){
-//                $price -= $product->discount;
-//            }
-//            $variant['price'] = $price;
-//        }else{
-//            $variant=ProductStock::where('variant',implode("-", $v))->first();
-//        }
-//
-//        return response()->json(['success'=> true, 'response'=>$variant]);
-//    }
     public function featuredProductList($slug) {
         $shop = Shop::where('slug',$slug)->first();
-        $categories = ShopCategory::where('shop_id',$shop->id)->latest()->get();
+        $shopCategories = ShopCategory::where('shop_id',$shop->id)->latest()->get();
         $shopBrands = ShopBrand::where('shop_id',$shop->id)->latest()->get();
 
         $products = Product::where('added_by','seller')->where('user_id',$shop->id)->where('published',1)->where('featured',1)->latest()->paginate(24);
 //        $products = Product::where('added_by','seller')->where('user_id',$shop->user_id)->where('published',1)->latest()->paginate(24);
-        return view('frontend.pages.shop.featured_product_list',compact('shop','categories','shopBrands','products'));
+        return view('frontend.pages.shop.featured_product_list',compact('shop','shopCategories','shopBrands','products'));
     }
     public function productSubCategory($name,$slug,$sub) {
         $shop = Shop::where('slug',$name)->first();
         $category= Category::where('slug',$slug)->first();
         $subcategory = Subcategory::where('slug',$sub)->first();
         $shopCategories = ShopCategory::where('shop_id',$shop->id)->latest()->get();
-        $shopBrand = ShopBrand::where('shop_id',$shop->id)->latest()->get();
+        $shopBrands = ShopBrand::where('shop_id',$shop->id)->latest()->get();
         $products = Product::where('category_id',$category->id)->where('subcategory_id',$subcategory->id)->where('user_id',$shop->user_id)->where('published',1)->where('featured',1)->latest()->paginate(24);
-        return view('frontend.pages.shop.products_by_subcategory',compact('shop','category','subcategory','shopBrand','shopCategories','products'));
+        return view('frontend.pages.shop.products_by_subcategory',compact('shop','category','subcategory','shopBrands','shopCategories','products'));
     }
     public function productByBrand($name,$slug) {
         $shop = Shop::where('slug',$name)->first();
         $brand = Brand::where('slug',$slug)->first();
-        $shopCat = ShopCategory::where('shop_id',$shop->id)->latest()->get();
+        $shopCategories = ShopCategory::where('shop_id',$shop->id)->latest()->get();
         $shopBrands = ShopBrand::where('shop_id',$shop->id)->latest()->get();
         $products = Product::where('brand_id',$brand->id)->where('user_id',$shop->user_id)->where('published',1)->latest()->paginate(24);
-        return view('frontend.pages.shop.products_by_brands',compact('shop','brand','shopCat','shopBrands','products'));
+        return view('frontend.pages.shop.products_by_brands',compact('shop','brand','shopCategories','shopBrands','products'));
 
     }
 

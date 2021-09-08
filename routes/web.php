@@ -22,6 +22,7 @@ Route::get('/', 'Frontend\FrontendController@index')->name('index');
 Route::get('/shopping-cart', 'Frontend\CartController@viewCart')->name('shopping-cart');
 Route::get('/about-us', 'Frontend\AboutController@About')->name('about-us');
 Route::get('/contact', 'Frontend\AboutController@contact')->name('contact');
+Route::post('/contact-store', 'Frontend\AboutController@store' )->name('contact.store');
 Route::get('/faqs', 'Frontend\AboutController@faqs')->name('faqs');
 Route::get('/our-policy', 'Frontend\AboutController@policy')->name('policy');
 Route::get('/terms-and-conditions', 'Frontend\AboutController@terms')->name('terms-condition');
@@ -104,8 +105,6 @@ Route::get('/reset-password','Frontend\FrontendController@getPhoneNumber')->name
 Route::post('/otp-store','Frontend\FrontendController@checkPhoneNumber')->name('phone.check');
 Route::post('/change-password','Frontend\FrontendController@otpStore')->name('otp.store');
 Route::post('/new-password/update/{id}','Frontend\FrontendController@passwordUpdate')->name('reset.password.update');
-//Route::post('/reset-password', '\App\Http\Controllers\Auth\LoginController@reset_pass_check_mobile')->name('reset.pass.mobile');
-//Route::post('/reset-password/send', '\App\Http\Controllers\Auth\LoginController@reset_pass')->name('reset.pass');
 
 
 Route::group(['middleware' => ['auth', 'user']], function () {
@@ -117,8 +116,6 @@ Route::group(['middleware' => ['auth', 'user']], function () {
     Route::post('/user/password/update', 'User\DashboardController@updatePassword')->name('user.password-update');
     Route::get('/user/invoices', 'User\DashboardController@invoices')->name('user.invoices');
     Route::get('/user/notifications', 'User\DashboardController@notification')->name('user.notification');
-//    Route::get('/user/address', 'User\DashboardController@address')->name('user.address');
-//    Route::post('/user/address/update', 'User\DashboardController@updateAddress')->name('user.address-update');
     Route::get('/user/order/history', 'User\OrderManagementController@orderHistory')->name('user.order.history');
     Route::get('/user/order/details/{id}', 'User\OrderManagementController@orderDetails')->name('user.order.details');
     Route::post('/user/order/review', 'User\OrderManagementController@reviewStore')->name('user.order.review.store');
@@ -133,6 +130,5 @@ Route::group(['middleware' => ['auth', 'user']], function () {
     });
     Route::post('/user/address-status/update/{id}', 'User\AddressController@updateStatus')->name('user.update.status');
 });
-//Route::get('/vendor/dashboard', 'Vendor\DashboardController@index')->name('vendor.dashboard');
 
 

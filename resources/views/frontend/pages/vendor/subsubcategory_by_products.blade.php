@@ -140,9 +140,7 @@
                                 <div class="ps-tab active" id="tab-1">
                                     <div class="row">
                                         @forelse($products as $product)
-                                            @if( $product->subCategory->status)
                                             {{ProductComponent($product)}}
-                                            @endif
 {{--                                            <div class="col-xl-3 col-lg-4 col-md-4 col-sm-6 col-6 ">--}}
 {{--                                                <div class="ps-product">--}}
 {{--                                                    <div class="ps-product__thumbnail"><a href="{{route('product-details',$product->slug)}}"><img src="{{asset($product->thumbnail_img)}}" alt="" width="153" height="171"></a>--}}

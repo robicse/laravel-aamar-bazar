@@ -5,7 +5,7 @@
 
 @if(Auth::check() && Auth::user()->user_type == 'customer' && Session::get('popup') != 1)
 <div class="ps-popup" id="subscribe" data-time="500">
-    <div class="ps-popup__content bg--cover" data-background="{{url($quote->image)}}" ><a class="ps-popup__close" href="{{url('/popup-dataset')}}"><i class="icon-cross"></i></a>
+    <div class="ps-popup__content bg--cover" data-background="{{url($quote->image)}}" ><a class="ps-popup__close" href="#" onclick="notShowPopup()"><i class="icon-cross"></i></a>
         <form class="ps-form--subscribe-popup" action="" method="get">
             <div class="ps-form__content">
                 <h4>Today's Quote</h4>
@@ -73,6 +73,17 @@
             }
         });
 
+        function notShowPopup(){
+                $.ajax({
+                    type: "GET",
+                    url: '{{url('/popup-dataset')}}',
+
+                    success: function(data) {
+                        document.location.reload();
+                    },
+                });
+        }
+
         //popup destroy
         $(window).unload(function(){
             $.ajax({
@@ -84,6 +95,8 @@
                 }
             });
         });
+
+
     </script>
 
 @endpush

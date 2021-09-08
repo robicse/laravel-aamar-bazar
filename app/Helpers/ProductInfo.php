@@ -254,4 +254,25 @@ if (! function_exists('home_discounted_price')) {
     function ProductComponent($product){
         return view('frontend.pages.partials.productComponent', compact('product'));
     }
+function ProductComponentTwo($product){
+    return view('frontend.pages.partials.productComponentTwo', compact('product'));
+}
+    function ProductUnit($id){
+    $product = Product::find($id);
+    if ($product->variant_product != 0){
+        $productVariant = ProductStock::where('product_id',$id)->first();
+        $unit = $productVariant->variant;
+
+    }else{
+        $unit = $product->unit;
+    }
+    return $unit;
+
+    }
+    function VariantPrice($id){
+        $productVariant = ProductStock::where('product_id',$id)->first();
+        $price = $productVariant->price;
+        return $price;
+
+    }
 

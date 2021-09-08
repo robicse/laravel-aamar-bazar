@@ -295,8 +295,8 @@ class CartController extends Controller
             Toastr::error('Nothing fount in cart');
             return back();
         }
+
         $addresses = Address::where('user_id', Auth::id())->get();
-//        dd($address);
         return view('frontend.pages.shop.checkout',compact('addresses'));
     }
 

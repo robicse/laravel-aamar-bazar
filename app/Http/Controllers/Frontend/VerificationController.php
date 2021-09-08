@@ -60,7 +60,15 @@ class VerificationController extends Controller
                     }
                     elseif (Session::get('user_type') == 'customer')
                     {
-                        return redirect()->route('user.dashboard');
+                        dd(url()->previous());
+                        if (url()->previous() == url('/checkout')){
+                            return redirect()->route('checkout');
+                        }elseif(url()->previous() == url('/login')){
+                            return redirect()->route('checkout');
+                        }else{
+                            return redirect()->route('user.dashboard');
+                        }
+
                     }
 
                 }else{

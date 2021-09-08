@@ -67,9 +67,9 @@
                                            <a href="{{route('user.dashboard')}}"> <img src="{{url(Auth::user()->avatar_original)}}" alt="" class="ps-widget-img rounded-circle" width="50" height="50"></a>
                                         @endif
                                             <div class="ps-block__right"><a href="{{route('user.dashboard')}}" data-toggle="tooltip" title="{{Auth::user()->name}}">{!! Str::limit(Auth::user()->name,7) !!}</a>
-                                                <form action = "{{route('logout')}}" method="post">
+                                                <form action = "{{route('logout')}}" method="post" >
                                                     @csrf
-                                                    <button type="submit" class="btn btn-lg btn-bold p-0">Logout</button>
+                                                    <button type="submit" class="btn btn-lg p-0" style="background: #7B0F17!important; font-size: 1.5rem;">Logout</button>
                                                 </form>
                                             </div>
 

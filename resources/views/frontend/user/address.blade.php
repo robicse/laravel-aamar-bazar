@@ -1,5 +1,5 @@
 @extends('frontend.layouts.master')
-@section('title', 'User Address')
+@section('title', 'Customer Address')
 @push('css')
     <style>
         .form_height{

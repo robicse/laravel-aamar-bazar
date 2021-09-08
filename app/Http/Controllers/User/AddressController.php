@@ -78,7 +78,18 @@ class AddressController extends Controller
 
     public function update(Request $request, $id)
     {
-        //
+        $address = Address::find($id);
+        $address->address = $request->address;
+        $address->city = $request->city;
+        $address->area = $request->area;
+        $address->latitude = $request->latitude;
+        $address->longitude = $request->longitude;
+        $address->postal_code = $request->postal_code;
+        $address->phone = $request->phone;
+        $address->type = $request->type;
+        $address->save();
+        Toastr::success('Address Updated Successfully');
+        return redirect()->back();
     }
 
     public function destroy($id)
