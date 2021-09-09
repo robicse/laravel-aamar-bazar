@@ -18,6 +18,7 @@ use Illuminate\Support\Facades\Route;
 //});
 
 
+
 Route::get('/', 'Frontend\FrontendController@index')->name('index');
 Route::get('/shopping-cart', 'Frontend\CartController@viewCart')->name('shopping-cart');
 Route::get('/about-us', 'Frontend\AboutController@About')->name('about-us');
