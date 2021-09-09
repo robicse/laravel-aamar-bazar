@@ -178,7 +178,6 @@ if (! function_exists('home_discounted_price')) {
 
     function home_discounted_base_price($id)
     {
-
         $product = Product::findOrFail($id);
         $price = $product->unit_price;
 
@@ -198,12 +197,13 @@ if (! function_exists('home_discounted_price')) {
             }
         }
 
-        if (!$inFlashDeal) {
+        if ($inFlashDeal != true) {
             if($product->discount_type == 'percent'){
                 $price -= ($price*$product->discount)/100;
             }
             elseif($product->discount_type == 'amount'){
                 $price -= $product->discount;
+
             }
         }
        //dd($price);
@@ -248,14 +248,23 @@ if (! function_exists('home_discounted_price')) {
             return 'Something went wrong!';
         }
     }
-    function FlashDealComponent($product){
-        return view('frontend.pages.partials.flashDealComponent', compact('product'));
+    function FlashDealComponent($flashDealProduct){
+        return view('frontend.pages.partials.flashDealComponent', compact('flashDealProduct'));
     }
     function ProductComponent($product){
         return view('frontend.pages.partials.productComponent', compact('product'));
     }
 function ProductComponentTwo($product){
     return view('frontend.pages.partials.productComponentTwo', compact('product'));
+}
+function RelatedProductComponent($product){
+    return view('frontend.pages.partials.relatedProductComponent', compact('product'));
+}
+function RelatedBrandProductComponent($product){
+    return view('frontend.pages.partials.relatedBrandProductComponent', compact('product'));
+}
+function CarouselProductComponent($product){
+    return view('frontend.pages.partials.carouselProductComponent', compact('product'));
 }
     function ProductUnit($id){
     $product = Product::find($id);

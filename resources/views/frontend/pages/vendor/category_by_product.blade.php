@@ -123,43 +123,7 @@
                                 <div class="ps-section__content" style="">
                                     <div class="owl-slider" id="vendor-bestseller" data-owl-auto="true" data-owl-loop="true" data-owl-speed="5000" data-owl-gap="0" data-owl-nav="false" data-owl-dots="false" data-owl-item="4" data-owl-item-xs="2" data-owl-item-sm="3" data-owl-item-md="3" data-owl-item-lg="4" data-owl-duration="1000" data-owl-mousedrag="on">
                                         @foreach($featuredProducts as $featuredProduct)
-                                            @if( $product->category->status =! 0)
-                                                <div class="ps-product">
-                                                    <div class="ps-product__thumbnail"><a href="{{route('product-details',$featuredProduct->slug)}}"><img src="{{asset($featuredProduct->thumbnail_img)}}" alt="" width="153" height="171"></a>
-
-                                                        <ul class="ps-product__actions">
-                                                            @if($featuredProduct->variant_product != 0)
-                                                                <li><a href="{{route('product-details',$featuredProduct->slug)}}" data-toggle="tooltip" data-placement="top" title="Add To Cart"><i class="icon-bag2"></i></a></li>
-                                                            @else
-                                                                <li><a data-toggle="tooltip" data-placement="top" title="Add To Cart" onclick="addToCart('{{$featuredProduct->id}}',0)"><i class="icon-bag2"></i></a></li>
-                                                            @endif
-                                                            {{--                                                    <li><a href="{{route('product-details',$featuredProduct->slug)}}" data-toggle="tooltip" data-placement="top" title="Add To Cart"><i class="icon-bag2"></i></a></li>--}}
-                                                            <li><a href="{{route('product-details',$featuredProduct->slug)}}" data-placement="top" title="Quick View" data-toggle="modal" data-target="#product-quickview"><i class="icon-eye"></i></a></li>
-                                                            <li><a href="{{route('add.wishlist',$featuredProduct->id)}}" data-toggle="tooltip" data-placement="top" title="Add to Whishlist"><i class="icon-heart"></i></a></li>
-                                                        </ul>
-                                                    </div>
-                                                    <div class="ps-product__container"><a class="ps-product__vendor" href="#"></a>
-                                                        <div class="ps-product__content"><a class="ps-product__title" href="{{route('product-details',$featuredProduct->slug)}}">{{$featuredProduct->name}}</a>
-                                                            Price: ৳ {{home_discounted_base_price($featuredProduct->id)}}
-                                                            @if(home_base_price($featuredProduct->id) != home_discounted_base_price($featuredProduct->id))
-                                                                <del>৳ {{home_base_price($featuredProduct->id)}}</del>
-                                                            @endif
-
-                                                            <div class="ps-product__rating">
-                                                                <select class="ps-rating" data-read-only="true">
-                                                                </select>
-                                                            </div>
-
-                                                        </div>
-                                                        <div class="ps-product__content hover"><a class="ps-product__title" href="{{route('product-details',$featuredProduct->slug)}}">{{$featuredProduct->name}}</a>
-                                                            Price: ৳ {{home_discounted_base_price($featuredProduct->id)}}
-                                                            @if(home_base_price($featuredProduct->id) != home_discounted_base_price($featuredProduct->id))
-                                                                <del>৳ {{home_base_price($featuredProduct->id)}}</del>
-                                                            @endif
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            @endif
+                                            {{CarouselProductComponent($featuredProduct)}}
                                         @endforeach
                                     </div>
                                 </div>
@@ -179,14 +143,6 @@
                                             {{ProductComponent($product)}}
                                         @endforeach
                                     </div>
-                                    {{--                                    <div class="ps-pagination">--}}
-                                    {{--                                        <ul class="pagination">--}}
-                                    {{--                                            <li class="active"><a href="#">1</a></li>--}}
-                                    {{--                                            <li><a href="#">2</a></li>--}}
-                                    {{--                                            <li><a href="#">3</a></li>--}}
-                                    {{--                                            <li><a href="#">Next Page<i class="icon-chevron-right"></i></a></li>--}}
-                                    {{--                                        </ul>--}}
-                                    {{--                                    </div>--}}
                                 </div>
                             </div>
                         </div>

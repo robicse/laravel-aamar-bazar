@@ -88,46 +88,7 @@
                         </div>
 
                         @if($featuredProducts->count() > 1)
-                            <div class="ps-vendor-best-seller">
-                                <div class="ps-section__header">
-                                    <h3>Featured Products</h3>
-                                    <div class="ps-section__nav"><a class="ps-carousel__prev" href="#vendor-bestseller"><i class="icon-chevron-left"></i></a><a class="ps-carousel__next" href="#vendor-bestseller"><i class="icon-chevron-right"></i></a></div>
-                                </div>
-                                <div class="ps-section__content">
-                                    <div class="owl-slider" id="vendor-bestseller" data-owl-auto="true" data-owl-loop="true" data-owl-speed="5000" data-owl-gap="0" data-owl-nav="false" data-owl-dots="false" data-owl-item="4" data-owl-item-xs="2" data-owl-item-sm="3" data-owl-item-md="3" data-owl-item-lg="4" data-owl-duration="1000" data-owl-mousedrag="on">
-                                        @foreach($featuredProducts as $featuredProduct)
-                                            <div class="ps-product">
-                                                <div class="ps-product__thumbnail"><a href="{{route('product-details',$featuredProduct->slug)}}"><img src="{{asset($featuredProduct->thumbnail_img)}}" alt="" width="153" height="171"></a>
-                                                    {{--                                                <div class="ps-product__badge">11%</div>--}}
-                                                    <ul class="ps-product__actions">
-                                                        <li><a href="{{route('product-details',$featuredProduct->slug)}}" data-toggle="tooltip" data-placement="top" title="Add To Cart"><i class="icon-bag2"></i></a></li>
-                                                        <li><a href="{{route('product-details',$featuredProduct->slug)}}" data-placement="top" title="Quick View" data-toggle="modal" data-target="#product-quickview"><i class="icon-eye"></i></a></li>
-                                                        <li><a href="{{route('add.wishlist',$featuredProduct->id)}}" data-toggle="tooltip" data-placement="top" title="Add to Whishlist"><i class="icon-heart"></i></a></li>
-                                                    </ul>
-                                                </div>
-                                                <div class="ps-product__container"><a class="ps-product__vendor" href="#"></a>
-                                                    <div class="ps-product__content"><a class="ps-product__title" href="{{route('product-details',$featuredProduct->slug)}}">{{$featuredProduct->name}}</a>
-                                                        Price: ৳ {{home_discounted_base_price($featuredProduct->id)}}
-                                                        @if(home_base_price($featuredProduct->id) != home_discounted_base_price($featuredProduct->id))
-                                                            <del>৳ {{home_base_price($featuredProduct->id)}}</del>
-                                                        @endif
-                                                        <div class="ps-product__rating">
-                                                            <select class="ps-rating" data-read-only="true">
-                                                            </select>
-                                                        </div>
-                                                    </div>
-                                                    <div class="ps-product__content hover"><a class="ps-product__title" href="{{route('product-details',$featuredProduct->slug)}}">{{$featuredProduct->name}}</a>
-                                                        Price: ৳ {{home_discounted_base_price($featuredProduct->id)}}
-                                                        @if(home_base_price($featuredProduct->id) != home_discounted_base_price($featuredProduct->id))
-                                                            <del>৳ {{home_base_price($featuredProduct->id)}}</del>
-                                                        @endif
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        @endforeach
-                                    </div>
-                                </div>
-                            </div>
+                            {{CarouselProductComponent($featuredProduct)}}
                         @endif
 
                         <div class="ps-shopping ps-tab-root">
@@ -141,34 +102,6 @@
                                     <div class="row">
                                         @forelse($products as $product)
                                             {{ProductComponent($product)}}
-{{--                                            <div class="col-xl-3 col-lg-4 col-md-4 col-sm-6 col-6 ">--}}
-{{--                                                <div class="ps-product">--}}
-{{--                                                    <div class="ps-product__thumbnail"><a href="{{route('product-details',$product->slug)}}"><img src="{{asset($product->thumbnail_img)}}" alt="" width="153" height="171"></a>--}}
-{{--                                                        --}}{{--                                                        <div class="ps-product__badge">11%</div>--}}
-{{--                                                        <ul class="ps-product__actions">--}}
-{{--                                                            <li><a href="{{route('product-details',$product->slug)}}" data-toggle="tooltip" data-placement="top" title="Add To Cart"><i class="icon-bag2"></i></a></li>--}}
-{{--                                                            <li><a href="{{route('product-details',$product->slug)}}" data-placement="top" title="Quick View"><i class="icon-eye"></i></a></li>--}}
-{{--                                                            <li><a href="#" data-toggle="tooltip" data-placement="top" title="Add to Whishlist"><i class="icon-heart"></i></a></li>--}}
-{{--                                                            --}}{{--                                                            <li><a href="#" data-toggle="tooltip" data-placement="top" title="Compare"><i class="icon-chart-bars"></i></a></li>--}}
-{{--                                                        </ul>--}}
-{{--                                                    </div>--}}
-{{--                                                    <div class="ps-product__container"><a class="ps-product__vendor" href="{{route('product-details',$product->slug)}}"></a>--}}
-{{--                                                        <div class="ps-product__content"><a class="ps-product__title" href="">{{$product->name}}</a>--}}
-
-{{--                                                            Price: ৳ {{home_discounted_base_price($product->id)}}--}}
-{{--                                                            @if(home_base_price($product->id) != home_discounted_base_price($product->id))--}}
-{{--                                                                <del>৳ {{home_base_price($product->id)}}</del>--}}
-{{--                                                            @endif--}}
-{{--                                                        </div>--}}
-{{--                                                        <div class="ps-product__content hover"><a class="ps-product__title" href="{{route('product-details',$product->slug)}}">{{$product->name}}</a>--}}
-{{--                                                            Price: ৳ {{home_discounted_base_price($product->id)}}--}}
-{{--                                                            @if(home_base_price($product->id) != home_discounted_base_price($product->id))--}}
-{{--                                                                <del>৳ {{home_base_price($product->id)}}</del>--}}
-{{--                                                            @endif--}}
-{{--                                                        </div>--}}
-{{--                                                    </div>--}}
-{{--                                                </div>--}}
-{{--                                            </div>--}}
                                         @empty
                                             <div class="col-md-12 text-center" >
                                                 <h2 class="p-0 m-0">Product Not Available!!</h2>

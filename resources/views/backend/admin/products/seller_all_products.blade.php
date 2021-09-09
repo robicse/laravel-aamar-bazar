@@ -52,7 +52,8 @@
                                 <th>Variant</th>
                                 <th>Total Stock</th>
                                 <th>Unit</th>
-                                <th>Base Price</th>
+                                <th>Base Price (Tk)</th>
+                                <th>Discount (Tk)</th>
                                 <th>Today's Deal</th>
                                 <th>Published</th>
                                 <th>Featured</th>
@@ -86,9 +87,9 @@
                                             <span class="badge badge-success">Available</span>
                                         @endif
                                     </td>
-{{--                                    <td>{{$product->current_stock}}</td>--}}
                                     <td>{{$product->unit}}</td>
                                     <td>{{$product->unit_price}}</td>
+                                    <td>{{$product->discount}}</td>
                                     <td>
                                         <div class="form-group col-md-2">
                                             <label class="switch" style="margin-top:40px;">
@@ -137,7 +138,8 @@
                                 <th>Variant</th>
                                 <th>Total Stock</th>
                                 <th>Unit</th>
-                                <th>Base Price</th>
+                                <th>Base Price (Tk)</th>
+                                <th>Discount (Tk)</th>
                                 <th>Today's Deal</th>
                                 <th>Published</th>
                                 <th>Featured</th>

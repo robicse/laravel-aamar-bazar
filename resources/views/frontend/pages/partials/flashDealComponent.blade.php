@@ -9,6 +9,9 @@
         </div>
         <div class="ps-product__container"><a class="ps-product__vendor" href="{{route('product-details',$flashDealProduct->product->slug)}}"></a>
             <div class="ps-product__content"><a class="ps-product__title" href="">{{$flashDealProduct->product->name}}</a>
+                <div>
+                    Unit: {{ProductUnit($flashDealProduct->product->id)}}
+                </div>
                 <p class="ps-product__price sale">
                     ৳{{home_discounted_base_price($flashDealProduct->product_id)}}
                     @if(home_base_price($flashDealProduct->product_id) != home_discounted_base_price($flashDealProduct->product_id))
@@ -19,6 +22,9 @@
                 </p>
             </div>
             <div class="ps-product__content hover"><a class="ps-product__title" href="{{route('product-details',$flashDealProduct->product->slug)}}">{{$flashDealProduct->product->name}}</a>
+                <div>
+                    Unit: {{ProductUnit($flashDealProduct->product->id)}}
+                </div>
                 <p class="ps-product__price sale">
                     ৳{{home_discounted_base_price($flashDealProduct->product_id)}}
                     @if(home_base_price($flashDealProduct->product_id) != home_discounted_base_price($flashDealProduct->product_id))

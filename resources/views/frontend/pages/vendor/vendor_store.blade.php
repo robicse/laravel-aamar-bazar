@@ -143,9 +143,7 @@
                                             <div class="ps-tab active" id="tab-1">
                                                 <div class="row" style="margin-top: -30px;">
                                                     @foreach($flashDealProducts as $flashDealProduct)
-                                                        @if($flashDealProduct->category->status !=0)
                                                         {{FlashDealComponent($flashDealProduct)}}
-                                                        @endif
                                                     @endforeach
                                                 </div>
                                             </div>

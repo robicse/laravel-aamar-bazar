@@ -336,6 +336,7 @@ class ProductController extends Controller
         $product->slug = $request->slug.'-'.Str::random(5);
 
         $shopId = Shop::where('user_id',Auth::id())->first();
+
         $checkShopCategory = ShopCategory::where('shop_id',$shopId->id)->where('category_id',$request->category_id)->first();
         if(empty($checkShopCategory)){
             $shopCategoryData = new ShopCategory();
@@ -352,15 +353,18 @@ class ProductController extends Controller
             $shopSubcategoryData->save();
         }
 
-        $checkShopSubSubCategory = ShopSubSubcategory::where('shop_id',$shopId->id)->where('subsubcategory_id',$request->subsubcategory_id)->where('subcategory_id',$request->subcategory_id)->where('category_id',$request->category_id)->first();
-        if (empty($checkShopSubSubCategory)) {
-            $shopSub_SubcategoryData = new ShopSubSubcategory();
-            $shopSub_SubcategoryData->shop_id = $shopId->id;
-            $shopSub_SubcategoryData->subsubcategory_id = $request->subsubcategory_id;
-            $shopSub_SubcategoryData->subcategory_id = $request->subcategory_id;
-            $shopSub_SubcategoryData->category_id = $request->category_id;
-            $shopSub_SubcategoryData->save();
+        if ($request->subsubcategory_id != null){
+            $checkShopSubSubCategory = ShopSubSubcategory::where('shop_id',$shopId->id)->where('subsubcategory_id',$request->subsubcategory_id)->where('subcategory_id',$request->subcategory_id)->where('category_id',$request->category_id)->first();
+            if (empty($checkShopSubSubCategory)) {
+                $shopSub_SubcategoryData = new ShopSubSubcategory();
+                $shopSub_SubcategoryData->shop_id = $shopId->id;
+                $shopSub_SubcategoryData->subsubcategory_id = $request->subsubcategory_id;
+                $shopSub_SubcategoryData->subcategory_id = $request->subcategory_id;
+                $shopSub_SubcategoryData->category_id = $request->category_id;
+                $shopSub_SubcategoryData->save();
+            }
         }
+
         $shopBrand = ShopBrand::where('shop_id',$shopId->id)->where('brand_id',$request->brand_id)->first();
         if(empty($shopBrand)){
             $shopBrandData = new ShopBrand();
