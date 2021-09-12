@@ -19,14 +19,18 @@ Route::group(['as'=>'admin.','prefix' =>'admin','namespace'=>'Admin', 'middlewar
     Route::post('/roles/permission','RoleController@create_permission');
     Route::resource('staffs','StaffController');
     Route::resource('brands','BrandController');
+    Route::post('brands/status-update', 'BrandController@updateStatus')->name('brands.status-update');
     Route::resource('categories','CategoryController');
     Route::post('categories/is_home', 'CategoryController@updateIsHome')->name('categories.is_home');
     Route::resource('attributes','AttributeController');
     Route::resource('subcategories','SubcategoryController');
+    Route::post('subcategories/status-update', 'SubcategoryController@updateStatus')->name('subcategories.status-update');
     Route::resource('sub-subcategories','SubSubcategoryController');
+    Route::post('subsubcategories/status-update', 'SubSubcategoryController@updateStatus')->name('subsubcategories.status-update');
     Route::resource('products','ProductController');
     Route::resource('offers','OfferController');
-//flash sales start
+
+    //flash sales start
     Route::resource('flash_deals','FlashDealController');
     Route::get('/flash_deals/products/add/{flush_id}', 'FlashDealController@productsAdd')->name('flash_deals.products.add');
     Route::get('/flash_deals/products/edit/{flush_id}', 'FlashDealController@productsEdit')->name('flash_deals.products.edit');
@@ -38,7 +42,8 @@ Route::group(['as'=>'admin.','prefix' =>'admin','namespace'=>'Admin', 'middlewar
     Route::post('/flash_deals/product_discount', 'FlashDealController@product_discount')->name('flash_deals.product_discount');
     Route::post('/flash_deals/product_discount_edit', 'FlashDealController@product_discount_edit')->name('flash_deals.product_discount_edit');
     Route::post('/flash_deals/shop/wise/update', 'FlashDealController@flashDealProductsUpdate')->name('flash_deals.shop.wise.products.update');
-//flash sales end
+    //flash sales end
+
     Route::post('products/update2/{id}','ProductController@update2')->name('products.update2');
     Route::get('products/slug/{name}','ProductController@ajaxSlugMake')->name('products.slug');
     Route::post('products/get-subcategories-by-category','ProductController@ajaxSubCat')->name('products.get_subcategories_by_category');
@@ -49,6 +54,12 @@ Route::group(['as'=>'admin.','prefix' =>'admin','namespace'=>'Admin', 'middlewar
     Route::post('products/published/update', 'ProductController@updatePublished')->name('products.published');
     Route::post('products/featured/update', 'ProductController@updateFeatured')->name('products.featured');
     Route::get('/request/products/from/seller', 'ProductController@sellerReqList')->name('products.request.form.seller');
+
+    //App requested products
+    Route::get('/request/products/from/apps', 'ProductController@appsReqList')->name('products.request.form.apps');
+    Route::post('/apps-requested-products/status/update', 'ProductController@updateAppsProductStatus')->name('apps.requested-products.status');
+    Route::get('/apps-requested-products/show/{id}', 'ProductController@appRqProductShow')->name('apps-requested-products.show');
+
     Route::get('/all/seller/products/', 'ProductController@sellerProductList')->name('all.seller.products');
     Route::get('/all/seller/products/edit/{id}', 'ProductController@sellerProductEdit')->name('edit.seller.products');
     Route::post('/all/seller/products/update/{id}', 'ProductController@sellerProductUpdate')->name('update.seller.products');
@@ -94,6 +105,9 @@ Route::group(['as'=>'admin.','prefix' =>'admin','namespace'=>'Admin', 'middlewar
     Route::get('order/search/area', 'OrderManagementController@search_area');
     Route::get('/orders/{area}','OrderManagementController@areaWiseOrder');
 
+    //Shipping Address Infos
+    Route::resource('districts','DistrictController');
+    Route::get('districts-areas','DistrictController@create')->name('districts-areas');
 
     //Admin Excel Export
     Route::get('/seller-product-export','ExportExcelController@exportSellerProducts')->name('seller-product-excel.export');

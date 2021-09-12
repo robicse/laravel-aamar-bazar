@@ -133,21 +133,17 @@
                                                     <a class="bg-secondary dropdown-item" href="{{route('admin.seller.payment.history',$sellerUserInfo->id)}}">
                                                         <i class="fa fa-history"></i> Payment History
                                                     </a>
-                                                    {{--                                            <a class="bg-info dropdown-item" href="{{route('admin.sellers.edit',$sellerUserInfo->id)}}">--}}
-                                                    {{--                                                <i class="fa fa-edit"></i> Edit--}}
-                                                    {{--                                            </a>--}}
-                                                    <a class="bg-danger dropdown-item" href="{{route('admin.sellers.ban',$sellerUserInfo->id)}}">
-                                                        <i class="fa fa-ban"></i> Ban this seller
-                                                    </a>
 
-                                                    {{--                                            <button class="bg-danger dropdown-item" type="button"--}}
-                                                    {{--                                                    onclick="deleteProduct({{$sellerUserInfo->id}})">--}}
-                                                    {{--                                                <i class="fa fa-ban"></i> Ban this seller--}}
-                                                    {{--                                            </button>--}}
-                                                    {{--                                            <form id="delete-form-{{$sellerUserInfo->id}}" action="{{route('admin.sellers.destroy',$sellerUserInfo->id)}}" method="POST" style="display: none;">--}}
-                                                    {{--                                                @csrf--}}
-                                                    {{--                                                @method('DELETE')--}}
-                                                    {{--                                            </form>--}}
+                                                    @if($sellerUserInfo->banned != 1)
+                                                        <a class="bg-danger dropdown-item" onclick="confirm_ban('{{route('admin.sellers.ban', $sellerUserInfo->id)}}');">
+                                                            <i class="fa fa-ban"></i> Ban this seller
+                                                        </a>
+                                                    @else
+                                                        <a class="bg-info dropdown-item" onclick="confirm_unban('{{route('admin.sellers.ban', $sellerUserInfo->id)}}');">
+                                                            <i class="fa fa-check"></i> Unban this seller
+                                                        </a>
+                                                    @endif
+
                                                 </div>
                                             </div>
                                         </td>
@@ -212,9 +208,15 @@
                                                         <a class="bg-secondary dropdown-item" href="{{route('admin.seller.payment.history',$sellerUserInfo->id)}}">
                                                             <i class="fa fa-history"></i> Payment History
                                                         </a>
-                                                        <a class="bg-danger dropdown-item" href="{{route('admin.sellers.ban',$sellerUserInfo->id)}}">
+                                                        @if($sellerUserInfo->banned != 1)
+                                                        <a class="bg-danger dropdown-item" onclick="confirm_ban('{{route('admin.sellers.ban', $sellerUserInfo->id)}}');">
                                                             <i class="fa fa-ban"></i> Ban this seller
                                                         </a>
+                                                        @else
+                                                            <a class="bg-info dropdown-item" onclick="confirm_unban('{{route('admin.sellers.ban', $sellerUserInfo->id)}}');">
+                                                                <i class="fa fa-check"></i> Unban this seller
+                                                            </a>
+                                                        @endif
                                                     </div>
                                                 </div>
                                             </td>
@@ -254,6 +256,45 @@
             <div class="modal-dialog">
                 <div class="modal-content" id="modal-content">
 
+                </div>
+            </div>
+        </div>
+
+        <div class="modal fade" id="confirm-ban" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header" style="background-color: #BB2027;">
+                        <h5 class="modal-title" id="exampleModalLabel" style="color:#F8EF18;">Ban</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <p>Do you really want to ban this seller?</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <a id="confirmation" class="btn btn-primary btn-ok">Proceed</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal fade" id="confirm-unban" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header" style="background-color: #BB2027;">
+                        <h5 class="modal-title" id="exampleModalLabel" style="color:#F8EF18;">Unban</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <p>Do you really want to unban this seller?</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <a id="confirmationunban" class="btn btn-primary btn-ok">Proceed</a>
+                    </div>
                 </div>
             </div>
         </div>
@@ -350,6 +391,18 @@
                 },
             );
         });
+
+        function confirm_ban(url)
+        {
+            $('#confirm-ban').modal('show', {backdrop: 'static'});
+            document.getElementById('confirmation').setAttribute('href' , url);
+        }
+
+        function confirm_unban(url)
+        {
+            $('#confirm-unban').modal('show', {backdrop: 'static'});
+            document.getElementById('confirmationunban').setAttribute('href' , url);
+        }
 
     </script>
 @endpush

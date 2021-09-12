@@ -9,6 +9,7 @@ use App\Http\Helpers;
 use App\Model\Brand;
 use App\Model\Category;
 use App\Model\Color;
+use App\Model\RequestedProduct;
 use App\Model\Subcategory;
 use App\Model\SubSubcategory;
 use App\Model\Product;
@@ -63,19 +64,19 @@ class ProductController extends Controller
     }
     public function ajaxSubCat (Request $request)
     {
-        $subcategories = Subcategory::where('category_id', $request->category_id)->get();
+        $subcategories = Subcategory::where('category_id', $request->category_id)->where('status',1)->get();
         return $subcategories;
     }
     public function ajaxSubSubCat(Request $request)
     {
-        $subsubcategories = SubSubcategory::where('sub_category_id', $request->subcategory_id)->get();
+        $subsubcategories = SubSubcategory::where('sub_category_id', $request->subcategory_id)->where('status',1)->get();
         return $subsubcategories;
     }
 
     public function create()
     {
-        $categories = Category::all();
-        $brands = Brand::all();
+        $categories = Category::where('status',1)->get();
+        $brands = Brand::where('status',1)->get();
         return view('backend.admin.products.create',compact('categories','brands'));
     }
     public function sku_combination(Request $request)
@@ -295,8 +296,8 @@ class ProductController extends Controller
     public function edit($id)
     {
         //dd($id);
-        $categories = Category::all();
-        $brands = Brand::all();
+        $categories = Category::where('status',1)->get();
+        $brands = Brand::where('status',1)->get();
         $product = Product::find(decrypt($id));
         $tags = json_decode($product->tags);
         //dd($product);
@@ -715,5 +716,21 @@ class ProductController extends Controller
         return redirect()->route('admin.all.seller.products');
     }
 
+    public function appsReqList(){
+        $rq_products = RequestedProduct::latest()->get();
+        return view('backend.admin.apps_requested_products.index',compact('rq_products'));
+    }
+    public function updateAppsProductStatus(Request $request){
+        $rq_product = RequestedProduct::find($request->id);
+        $rq_product->status = $request->status;
+        if($rq_product->save()){
+            return 1;
+        }
+        return 0;
+    }
+    public function appRqProductShow($id){
+        $rq_product = RequestedProduct::find(decrypt($id));
+        return view('backend.admin.apps_requested_products.view',compact('rq_product'));
+    }
 
 }

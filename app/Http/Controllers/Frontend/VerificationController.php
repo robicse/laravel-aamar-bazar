@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Model\VerificationCode;
 use App\User;
 use Brian2694\Toastr\Facades\Toastr;
+use Gloudemans\Shoppingcart\Facades\Cart;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
@@ -60,6 +61,9 @@ class VerificationController extends Controller
                     }
                     elseif (Session::get('user_type') == 'customer')
                     {
+                        if(Cart::count()!=0){
+                            return redirect()->route('checkout');
+                        }
                         return redirect()->route('user.dashboard');
                     }
 

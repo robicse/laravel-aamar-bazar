@@ -10,7 +10,7 @@
         <!-- Sidebar user panel (optional) -->
         <div class="user-panel mt-3 pb-2 pl-2 mb-2 d-flex">
             <div class="">
-                <img src="{{asset('frontend/img/logo-mudi-hat.png')}}" class="" alt="User Image" width="100%">
+                <img src="{{asset('frontend/img/logo-mudi-hat-final.png')}}" class="" alt="User Image" width="100%">
             </div>
         </div>
 
@@ -116,6 +116,15 @@
                                         @if($products > 0)
                                             <span class="badge badge-danger"> {{$products}} New</span>
                                         @endif
+                                    </p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{{route('admin.products.request.form.apps')}}"
+                                   class="nav-link {{Request::is('admin/request/products/from/apps*') ? 'active' :''}}">
+                                    <i class="fa fa-{{Request::is('admin/request/products/from/apps*') ? 'folder-open':'folder'}} nav-icon"></i>
+                                    <p>
+                                        Apps Requested Products
                                     </p>
                                 </a>
                             </li>
@@ -348,6 +357,35 @@
                                         @if(!empty($new_customer))
                                             <span class="right badge badge-danger">New {{$new_customer}} </span>
                                         @endif
+                                    </p>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="nav-item has-treeview {{(Request::is('admin/districts*') ) ? 'menu-open' : ''}}">
+                        <a href="#" class="nav-link">
+                            <i class="nav-icon fas fa-map-marker-alt"></i>
+                            <p>
+                                Shipping Address
+                                <i class="right fa fa-angle-left"></i>
+                            </p>
+                        </a>
+                        <ul class="nav nav-treeview">
+                            <li class="nav-item">
+                                <a href="{{route('admin.districts.index')}}"
+                                   class="nav-link {{Request::is('admin/districts*') ? 'active' :''}}">
+                                    <i class="fa fa-{{Request::is('admin/districts*') ? 'folder-open':'folder'}} nav-icon"></i>
+                                    <p>
+                                        District
+                                    </p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{{route('admin.customers.index')}}"
+                                   class="nav-link {{Request::is('admin/customer*') ? 'active' :''}}">
+                                    <i class="fa fa-{{Request::is('admin/customer*') ? 'folder-open':'folder'}} nav-icon"></i>
+                                    <p>
+                                        Area
                                     </p>
                                 </a>
                             </li>

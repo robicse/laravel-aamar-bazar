@@ -72,10 +72,11 @@
 <script src="{{asset('frontend/plugins/sticky-sidebar/dist/sticky-sidebar.min.js')}}"></script>
 <script src="{{asset('frontend/plugins/select2/dist/js/select2.full.min.js')}}"></script>
 <script src="{{asset('frontend/plugins/gmap3.min.js')}}"></script>
+<script src="{{asset('frontend/js/custom.js')}}"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
 <script src="https://unpkg.com/leaflet@1.4.0/dist/leaflet.js" integrity="sha512-QVftwZFqvtRNi0ZyCtsznlKSWOStnDORoefr1enyq5mVL4tmKB3S/EnC3rRJcxCPavG10IcrVGSmPh6Qw5lwrg=="
         crossorigin=""></script>
-<script src="https://cdn.jsdelivr.net/gh/barikoi/barikoi-js@b6f6295467c19177a7d8b73ad4db136905e7cad6/dist/barikoi.min.js?key:MTg3NzpCRE5DQ01JSkgw"></script>
+<script src="https://cdn.jsdelivr.net/gh/barikoi/barikoi-js@b6f6295467c19177a7d8b73ad4db136905e7cad6/dist/barikoi.min.js?key:MjMzNTpTWlBLSkRHUTRZ"></script>
 <script type="text/javascript"
         src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCqEEDdypCvLeSVWqN2JGlQ2pMvCCQKG24&libraries=places">
 </script>
@@ -96,6 +97,28 @@
         //seach placeholder change
         $('.bksearch').attr("placeholder", "Search your delivery location");
     })
+
+    function addToCart(id,variant){
+
+        $.post('{{ route('product.add-to-cart-new') }}', {
+            _token: '{{ csrf_token() }}',
+            product_id: id,
+            variant: variant,
+        }, function (data) {
+
+            console.log(data.response)
+            $('.cart_count').html(data.response.countCart);
+            $('.cart_item').append(`<div class="ps-product--cart-mobile">
+                                            <div class="ps-product__thumbnail"><a href="#"><img src="/${data.response['options'].image}" alt=""></a></div>
+                                            <div class="ps-product__content"><a class="ps-product__remove" href=""><i class="icon-cross"></i></a><a href="#">${data.response.name}</a>
+                                                <p><small>${data.response.qty} x ${data.response.price}</small>
+                                            </div>
+                                        </div>`);
+            $('.subTotal').html(data.response.subtotal);
+            toastr.success('success', 'Product added to your cart.');
+        });
+    }
+
 </script>
 
 

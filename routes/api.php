@@ -74,6 +74,9 @@ Route::group(['middleware' => ['auth:api']], function () {
     Route::get('/seller/payment-history', 'Api\SellerPaymentController@paymentHistory');
     Route::get('/seller/payment-report', 'Api\SellerPaymentController@paymentReport');
 
+    // Requested Products
+    Route::post('/seller/requested-products/store','Api\ProductController@requestedProductStore');
+
 
 });
 

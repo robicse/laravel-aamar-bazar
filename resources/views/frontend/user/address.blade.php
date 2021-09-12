@@ -1,5 +1,5 @@
 @extends('frontend.layouts.master')
-@section('title', 'User Address')
+@section('title', 'Customer Address')
 @push('css')
     <style>
         .form_height{
@@ -184,7 +184,7 @@
             toolbar: { fa: true }
         })*/
     </script>
-    <script src="https://cdn.jsdelivr.net/gh/barikoi/barikoi-js@b6f6295467c19177a7d8b73ad4db136905e7cad6/dist/barikoi.min.js?key:MTg3NzpCRE5DQ01JSkgw"></script>
+    <script src="https://cdn.jsdelivr.net/gh/barikoi/barikoi-js@b6f6295467c19177a7d8b73ad4db136905e7cad6/dist/barikoi.min.js?key:MjMzNTpTWlBLSkRHUTRZ"></script>
     <script>
         Bkoi.onSelect(function () {
             // get selected data from dropdown list
@@ -204,7 +204,7 @@
             let add=$('.address2').val();
             console.log(add)
             $('.addList2').empty();
-            fetch("https://barikoi.xyz/v1/api/search/autocomplete/MTg5ODpJUTVHV0RWVFZP/place?q="+add)
+            fetch("https://barikoi.xyz/v1/api/search/autocomplete/MjMzNTpTWlBLSkRHUTRZ/place?q="+add)
                 .then(response => response.json())
                 .catch(error => console.error('Error:', error))
                 .then(response => {

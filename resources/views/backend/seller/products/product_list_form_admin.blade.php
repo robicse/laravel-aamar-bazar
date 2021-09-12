@@ -47,6 +47,7 @@
                                     <th>id</th>
                                     <th>Image</th>
                                     <th>Name</th>
+                                    <th>Unit</th>
                                     <th>Price</th>
                                 </tr>
                                 </thead>
@@ -55,6 +56,7 @@
                                     <th>id</th>
                                     <th>Image</th>
                                     <th>Name</th>
+                                    <th>Unit</th>
                                     <th>Price</th>
                                 </tr>
                                 </tfoot>

@@ -13,9 +13,7 @@
             </div>
             <div class="header__center">
                 <div class="ps-form--quick-search" >
-                    {{--                    <input type="text" class=" bksearch">--}}
-                    {{--                    <div class="bklist">--}}
-                    {{--                    </div>--}}
+
                 @if(Request::is('/'))
                     @if(Request::is('be-a-seller'))
                         <input class="form-control m-0" type="text" placeholder="Enter your full address" id="input-search" style="border-radius: 4px;" autocomplete="off" value="">
@@ -35,23 +33,6 @@
                         <div class="ps-cart--mini"><a class="header__extra" href="#"><i class="icon-bag2"></i><span><i class="cart_count">{{Cart::count()}}</i></span></a>
                             <div class="ps-cart__content">
                                 <div class="ps-cart__items cart_item">
-                                    {{--                                    @forelse(Cart::content() as $product)--}}
-                                    {{--                                        <div class="ps-product--cart-mobile">--}}
-                                    {{--                                            <div class="ps-product__thumbnail"><a href="#"><img src="{{asset($product->options->image)}}" alt=""></a></div>--}}
-                                    {{--                                            <div class="ps-product__content"><a class="ps-product__remove" href="{{route('product.cart.remove',$product->rowId)}}"><i class="icon-cross"></i></a><a href="#">{{$product->name}}</a>--}}
-                                    {{--                                                <p><small>{{$product->qty}} x {{$product->price}}</small>--}}
-                                    {{--                                            </div>--}}
-                                    {{--                                        </div>--}}
-                                    {{--                                    @empty--}}
-                                    {{--                                        <div class="ps-product--cart-mobile text-center text-danger">--}}
-                                    {{--                                            <div class="row">--}}
-                                    {{--                                                <div class="col-md-12">--}}
-                                    {{--                                                    <i class="fa fa-shopping-basket fa-4x mb-2" aria-hidden="true"></i>--}}
-                                    {{--                                                    <h3>Empty Cart</h3>--}}
-                                    {{--                                                </div>--}}
-                                    {{--                                            </div>--}}
-                                    {{--                                        </div>--}}
-                                    {{--                                    @endforelse--}}
                                     @foreach(Cart::content() as $product)
                                         <div class="ps-product--cart-mobile">
                                             <div class="ps-product__thumbnail"><a href="#"><img src="{{url($product->options->image)}}" alt=""></a></div>
@@ -70,10 +51,7 @@
 
                             </div>
                         </div>
-                        {{--                        <div class="ps-block--user-header">--}}
-                        {{--                            <div class="ps-block__left"><i class="icon-user"></i></div>--}}
-                        {{--                            <div class="ps-block__right"><a href="{{ route('login') }}">Login</a><a href="{{ route('register') }}">Register</a></div>--}}
-                        {{--                        </div>--}}
+
                         @if(Auth::guest())
                             <div class="ps-block--user-header">
                                 <div class="ps-block__left"><i class="icon-user"></i></div>
@@ -88,24 +66,14 @@
                                         @else
                                            <a href="{{route('user.dashboard')}}"> <img src="{{url(Auth::user()->avatar_original)}}" alt="" class="ps-widget-img rounded-circle" width="50" height="50"></a>
                                         @endif
-{{--                                            @php--}}
-{{--                                                $values = explode(" ",Auth::user()->name);--}}
-{{--                                            @endphp--}}
                                             <div class="ps-block__right"><a href="{{route('user.dashboard')}}" data-toggle="tooltip" title="{{Auth::user()->name}}">{!! Str::limit(Auth::user()->name,7) !!}</a>
-                                                <form action = "{{route('logout')}}" method="post">
+                                                <form action = "{{route('logout')}}" method="post" >
                                                     @csrf
-                                                    <button type="submit" class="btn btn-lg btn-bold p-0">Logout</button>
+                                                    <button type="submit" class="btn btn-lg p-0" style="background: #7B0F17!important; font-size: 1.5rem;">Logout</button>
                                                 </form>
                                             </div>
 
                                     </div>
-                                    {{--                                    <img src="{{url(Auth::user()->avatar)}}" alt="User Image" class="ps-avatar-img ps-rounded-circle">--}}
-{{--                                    <div class="ps-block__right">--}}
-{{--                                        <a href="{{ route('login') }}">{{Auth::user()->name}}</a>--}}
-{{--                                    </div>--}}
-{{--                                    <div class="ps-block__right">--}}
-{{--                                        <a href="">Logout</a>--}}
-{{--                                    </div>--}}
                                 </div>
                             </div>
                     @endif
@@ -135,10 +103,7 @@
                                 </div>
                             @endforeach
                         </div>
-{{--                        <div class="ps-cart__footer">--}}
-{{--                            <h3>Sub Total:<strong>$59.99</strong></h3>--}}
-{{--                            <figure><a class="ps-btn" href="shopping-cart.html">View Cart</a><a class="ps-btn" href="checkout.html">Checkout</a></figure>--}}
-{{--                        </div>--}}
+
                         <div class="ps-cart__footer">
                             <h3>Sub Total:<strong class="subTotal">{{Cart::subtotal()}}</strong></h3>
                             <figure><a class="ps-btn" href="{{route('shopping-cart')}}">Cart</a><a class="ps-btn" href="{{route('checkout')}}">Checkout</a><a class="ps-btn" href="{{route('product.clear.cart')}}">Clear</a></figure>
@@ -148,11 +113,8 @@
             </div>
         </div>
     </div>
-    <div class="ps-search--mobile" style="background: #fcb800;">
+    <div class="ps-search--mobile" style="background: #000000;">
         <div class="ps-form--quick-search" >
-            {{--                    <input type="text" class=" bksearch">--}}
-            {{--                    <div class="bklist">--}}
-            {{--                    </div>--}}
             @if(Request::is('/'))
             <button class="mx-1" style=""  data-toggle="tooltip" title="Current Location Nearest Shops." onclick="mapModalClick()"><i class="fa fa-map"></i></button>
             @if(Request::is('be-a-seller'))
@@ -162,7 +124,7 @@
                 <input type="text" onkeyup="getAddress()" id="mobile_search" placeholder="Search Your Area" class="form-control form_height form-control-sm address input-search-map" autocomplete="off">
             @endif
             <button data-toggle="tooltip" title="Search Shops In Map." class="ml-2 mr-1"  style="border-radius: 4px;" onclick="geoLocationInit()"><i class="fa fa-map-marker" aria-hidden="true"></i></button>
-           {{-- <button class="mx-1 find" style="border-radius: 4px;" id="find">Find</button>--}}
+
             <div class="ps-panel--search-result bklist ">
             </div>
             @endif
@@ -303,8 +265,8 @@
                     <div class="" style="width: 70%">
                         <input class="form-control bksearch2 input-search-map m-0" type="text" placeholder="Enter your full address" id="" style="border-radius: 4px;" autocomplete="off" value="">
                     </div>
-                    <div  style="width: 30%">
-                        <button class="p-3 bg-dark find" style="border-radius: 4px; color: #fff;" id="find2">Find Shop</button>
+                    <div >
+                        <button class="p-3 bg-dark find" style="border-radius: 4px; color: #fff;" id="find2"><i class="fa fa-search"></i></button>
                     </div>
                 </div>
                 <div class="bklist2 "></div>
@@ -317,7 +279,7 @@
 </div>
 
 @push('js')
-    <script src="https://cdn.jsdelivr.net/gh/barikoi/barikoi-js@b6f6295467c19177a7d8b73ad4db136905e7cad6/dist/barikoi.min.js?key:MTg3NzpCRE5DQ01JSkgw"></script>
+    <script src="https://cdn.jsdelivr.net/gh/barikoi/barikoi-js@b6f6295467c19177a7d8b73ad4db136905e7cad6/dist/barikoi.min.js?key:MjMzNTpTWlBLSkRHUTRZ"></script>
     <script>
         $('[data-toggle="tooltip"]').tooltip();
         Bkoi.onSelect(function () {
@@ -338,7 +300,7 @@
             let location=null;
             let add=$('.address').val();
             $('.addList').empty();
-            fetch("https://barikoi.xyz/v1/api/search/autocomplete/MTg5ODpJUTVHV0RWVFZP/place?q="+add)
+            fetch("https://barikoi.xyz/v1/api/search/autocomplete/MjMzNTpTWlBLSkRHUTRZ/place?q="+add)
                 .then(response => response.json())
                 .catch(error => console.error('Error:', error))
                 .then(response => {

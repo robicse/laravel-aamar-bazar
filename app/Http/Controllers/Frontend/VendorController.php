@@ -235,39 +235,34 @@ class VendorController extends Controller
         return view('frontend.pages.shop.todays_deal_products',compact('shop','shopCategories','shopBrands','products'));
     }
     public function todaysDealSubCategory($name,$slug,$sub) {
-//        dd('sffk');
         $shop = Shop::where('slug',$name)->first();
         $category= Category::where('slug',$slug)->first();
         $subcategory = Subcategory::where('slug',$sub)->first();
-        $shopCat = ShopCategory::where('shop_id',$shop->id)->latest()->get();
-        $shopBrand = ShopBrand::where('shop_id',$shop->id)->latest()->get();
+        $shopCategories = ShopCategory::where('shop_id',$shop->id)->latest()->get();
+        $shopBrands = ShopBrand::where('shop_id',$shop->id)->latest()->get();
         $products = Product::where('category_id',$category->id)->where('subcategory_id',$subcategory->id)->where('user_id',$shop->user_id)->where('published',1)->where('todays_deal',1)->latest()->paginate(24);
-//        dd($products);
-        return view('frontend.pages.shop.todays_deal_by_subcategory',compact('shop','category','subcategory','shopBrand','shopCat','products'));
+        return view('frontend.pages.shop.todays_deal_by_subcategory',compact('shop','category','subcategory','shopBrands','shopCategories','products'));
     }
     public function todaysDealFilter($data,$shopId)
     {
         $shop = Shop::find($shopId);
-//        dd($shop);
         $data2 = explode(',',$data);
         $data_min = (int) $data2[0];
         $data_max = (int) $data2[1];
         $products = Product::where('user_id',$shop->user_id)->where('unit_price', '>=', $data_min)->where('unit_price', '<=', $data_max)->where('published',1)->where('todays_deal',1)->latest()->take(24)->get();
         return view('frontend.pages.shop.products_filter_dataset', compact('products','shop'));
-//        return $result_data;
     }
     public function todaysDealSubFilter($data,$id,$subId)
     {
         $shop = Shop::find($id);
         $subcategory = Subcategory::find($subId);
-//        $shopSubcategory = ShopSubcategory::where('');
-//        dd($shops);
+
         $data2 = explode(',',$data);
         $data_min = (int) $data2[0];
         $data_max = (int) $data2[1];
         $products = Product::where('user_id',$shop->user_id)->where('subcategory_id',$subcategory->id)->where('unit_price', '>=', $data_min)->where('unit_price', '<=', $data_max)->where('published',1)->where('todays_deal',1)->latest()->take(24)->get();
         return view('frontend.pages.shop.products_filter_dataset', compact('products','shop'));
-//        return $result_data;
+
     }
     public function bestSelling($slug) {
         $shop = Shop::where('slug',$slug)->first();
@@ -277,14 +272,13 @@ class VendorController extends Controller
         return view('frontend.pages.shop.best_selling_products',compact('shop','shopCategories','shopBrands','products'));
     }
     public function bestSellingSubCategory($name,$slug,$sub) {
-//dd('hhj');
         $shop = Shop::where('slug',$name)->first();
         $category= Category::where('slug',$slug)->first();
         $subcategory = Subcategory::where('slug',$sub)->first();
-        $shopCat = ShopCategory::where('shop_id',$shop->id)->latest()->get();
-        $shopBrand = ShopBrand::where('shop_id',$shop->id)->latest()->get();
+        $shopCategories = ShopCategory::where('shop_id',$shop->id)->latest()->get();
+        $shopBrands = ShopBrand::where('shop_id',$shop->id)->latest()->get();
         $products = Product::where('category_id',$category->id)->where('subcategory_id',$subcategory->id)->where('user_id',$shop->user_id)->where('published',1)->where('num_of_sale', '>',0)->orderBy('num_of_sale', 'DESC')->latest()->paginate(24);
-        return view('frontend.pages.shop.best_selling_by_subcategory',compact('shop','category','subcategory','shopBrand','shopCat','products'));
+        return view('frontend.pages.shop.best_selling_by_subcategory',compact('shop','category','subcategory','shopBrands','shopCategories','products'));
     }
     public function bestSellingFilter($data,$shopId)
     {

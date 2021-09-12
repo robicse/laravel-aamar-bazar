@@ -1,6 +1,7 @@
 @extends('frontend.layouts.master')
 @section('title', $productDetails->name)
 @push('css')
+
     <style>
         [type=radio] {
             position: absolute;
@@ -8,10 +9,6 @@
             width: 0;
             height: 0;
         }
-        /* IMAGE STYLES */
-        /*[type=radio] + img {*/
-        /*    cursor: pointer;*/
-        /*}*/
         [type=radio] + label {
             cursor: pointer;
             padding: 10px 10px;
@@ -19,13 +16,6 @@
             color: #000000;
             border-radius: 6px;
         }
-
-        /* CHECKED STYLES */
-        /*[type=radio]:checked + img {*/
-        /*    background-color: #f00;*/
-        /*    outline: 2px solid #f00;*/
-        /*    border-radius: 10px;*/
-        /*}*/
         [type=radio]:checked + label {
             border: 4px solid #282727;
             color: #212121;
@@ -38,8 +28,6 @@
         <div class="ps-container">
             <ul class="breadcrumb">
                 <li><a href="{{url('/')}}">Home</a></li>
-                {{--                <li><a href="shop-default.html">Consumer Electrics</a></li>--}}
-                {{--                <li><a href="shop-default.html">Refrigerators</a></li>--}}
                 <li>{{$productDetails->name}}</li>
             </ul>
         </div>
@@ -73,8 +61,6 @@
                                     @foreach($photos as $pht)
                                     <div class="item"><img src="{{url($pht)}}" alt=""></div>
                                     @endforeach
-{{--                                    <div class="item"><img src="{{asset('frontend/img/products/detail/fullwidth/2.jpg')}}" alt=""></div>--}}
-{{--                                    <div class="item"><img src="{{asset('frontend/img/products/detail/fullwidth/3.jpg')}}" alt=""></div>--}}
                                 </div>
 
                             </div>
@@ -100,19 +86,11 @@
                                 </div>
 
                                 <div class="ps-product__desc">
-
                                     <p>Sold By:<a href="{{route('shop.details',$shop->slug)}}"><strong> {{ $shop->name }}</strong></a></p>
-
-                                   {{-- <ul class="ps-list--dot">
-                                        <li>  {!!  Str::limit($productDetails->description, 60)!!}</li>
---}}{{--                                        <li> Free from the confines of wires and chords</li>--}}{{--
-                                        --}}{{--                                        <li> 20 hours of portable capabilities</li>--}}{{--
-                                        --}}{{--                                        <li> Double-ended Coil Cord with 3.5mm Stereo Plugs Included</li>--}}{{--
-                                        --}}{{--                                        <li> 3/4″ Dome Tweeters: 2X and 4″ Woofer: 1X</li>--}}{{--
-                                    </ul>--}}
                                 </div>
                                 <form id="option-choice-form">
                                     @csrf
+                                    <input type="hidden" name="id" value="{{ $productDetails->id }}">
                                     <div class="ps-product__variations">
                                         @if(count($colors)!=0)
                                             <figure>
@@ -123,11 +101,8 @@
                                                         <label class="form-check-label ps-variant ps-variant--color" for="{{$col->code}}" style="background-color: {{$col->code}}; border-radius: 50%;">
                                                             <span class="ps-variant__tooltip">{{$col->name}}</span>
                                                         </label>
-                                                        {{--<div class="ps-variant ps-variant--color color--2"><span class="ps-variant__tooltip"> Gray</span></div>--}}
                                                     </div>
                                                 @endforeach
-                                                {{--                                            <div class="ps-variant ps-variant--color color--1"><span class="ps-variant__tooltip">Black</span></div>--}}
-                                                {{--                                            <div class="ps-variant ps-variant--color color--2"><span class="ps-variant__tooltip"> Gray</span></div>--}}
                                             </figure>
                                         @endif
                                         @if(count($attributes)!=0)
@@ -165,23 +140,13 @@
                                         @else
                                             <a class="ps-btn ps-btn--danger bg-danger" href="#" disabled="disabled">Stock Out</a>
                                         @endif
-
-
-                                        {{--                                        <a class="ps-btn" href="#">Buy Now</a>--}}
-                                        {{--                                        <div class="ps-product__actions"><a href="#"><i class="icon-heart"></i></a><a href="#"><i class="icon-chart-bars"></i></a></div>--}}
                                     </div>
                                 </form>
-{{--                                <div class="ps-product__specification"><a class="report" href="#">Report Abuse</a>--}}
-{{--                                    <p><strong>SKU:</strong> SF1133569600-1</p>--}}
-{{--                                    --}}{{--<p class="tags"><strong> Tags</strong><a href="#">sofa</a>,<a href="#">technologies</a>,<a href="#">wireless</a></p>--}}
-{{--                                </div>--}}
-{{--                                <div class="ps-product__sharing"><a class="facebook" href="#"><i class="fa fa-facebook"></i></a><a class="twitter" href="#"><i class="fa fa-twitter"></i></a><a class="google" href="#"><i class="fa fa-google-plus"></i></a><a class="linkedin" href="#"><i class="fa fa-linkedin"></i></a><a class="instagram" href="#"><i class="fa fa-instagram"></i></a></div>--}}
                             </div>
                         </div>
                         <div class="ps-product__content ps-tab-root">
                             <ul class="ps-tab-list">
                                 <li class="active"><a href="#tab-1">Description</a></li>
-{{--                                <li><a href="#tab-2">Specification</a></li>--}}
                                 <li><a href="#tab-3">Shop</a></li>
                                 <li><a href="#tab-4">Reviews</a></li>
                             </ul>
@@ -201,7 +166,6 @@
                                         @csrf
                                         <a href="{{route('shop.details',$shop->slug)}}"> <button type="button" class="btn btn-lg btn-info">Go To Shop</button></a>
                                     </form>
-                                    {{--                                    <a href="#">More Products from gopro</a>--}}
                                 </div>
                                 <div class="ps-tab" id="tab-4">
                                     <div class="row">
@@ -214,34 +178,7 @@
                                                             <option value="1">{{$i}}</option>
                                                         @endfor
                                                         @foreach($reviews as $review)
-
                                                         @endforeach
-                                                        {{--@for ($i=0; $i < 5-$productDetails->rating; $i++)
-                                                                <option value="{{$i}}">{{$i}}</option>
-                                                        @endfor--}}
-                                                        {{--@if($productDetails->rating >= 1)
-                                                            <option value="1">1</option>
-                                                        @else
-                                                        @
-                                                        @elseif($productDetails->rating >= 2 )
-                                                            <option value="1">1</option>
-                                                            <option value="1">2</option>
-                                                        @elseif($productDetails->rating >= 3 )
-                                                            <option value="1">1</option>
-                                                            <option value="1">2</option>
-                                                            <option value="1">3</option>
-                                                        @elseif($productDetails->rating >= 4 )
-                                                            <option value="1">1</option>
-                                                            <option value="1">2</option>
-                                                            <option value="1">3</option>
-                                                            <option value="1">4</option>
-                                                        @elseif($productDetails->rating >= 5 )
-                                                            <option value="1">1</option>
-                                                            <option value="1">2</option>
-                                                            <option value="1">3</option>
-                                                            <option value="1">4</option>
-                                                            <option value="1">5</option>
-                                                        @endif--}}
                                                     </select><span>{{$reviews->count()}} Review</span>
                                                 </div>
                                                 <div class="ps-block__star"><span>5 Star</span>
@@ -297,33 +234,11 @@
                                         </div>
                                     </div>
                                 </div>
-{{--                                <div class="ps-tab" id="tab-5">--}}
-{{--                                    <div class="ps-block--questions-answers">--}}
-{{--                                        <h3>Questions and Answers</h3>--}}
-{{--                                        <div class="form-group">--}}
-{{--                                            <input class="form-control" type="text" placeholder="Have a question? Search for answer?">--}}
-{{--                                        </div>--}}
-{{--                                    </div>--}}
-{{--                                </div>--}}
-{{--                                <div class="ps-tab active" id="tab-6">--}}
-{{--                                    <p>Sorry no more offers available</p>--}}
-{{--                                </div>--}}
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="ps-page__right">
-{{--                    <aside class="widget widget_product widget_features">--}}
-{{--                        <p><i class="icon-network"></i> Shipping worldwide</p>--}}
-{{--                        <p><i class="icon-3d-rotate"></i> Free 7-day return if eligible, so easy</p>--}}
-{{--                        <p><i class="icon-receipt"></i> Supplier give bills for this product.</p>--}}
-{{--                        <p><i class="icon-credit-card"></i> Pay online or when receiving goods</p>--}}
-{{--                    </aside>--}}
-                    {{--                    <aside class="widget widget_sell-on-site">--}}
-                    {{--                        <p><i class="icon-store"></i> Sell on Martfury?<a href="#"> Register Now !</a></p>--}}
-                    {{--                    </aside>--}}
-{{--                    <aside class="widget widget_ads"><a href="#"><img src="{{asset('frontend/img/ads/product-ads.png')}}" alt=""></a></aside>--}}
-
                     <aside class="widget widget_same-brand">
                         <h3>Same Brand</h3>
                         <div class="widget__content">
@@ -333,7 +248,6 @@
                                     <a href="{{route('product-details',$product->slug)}}">
                                         <img src="{{url($product->thumbnail_img)}}" alt="" width="206" height="206">
                                     </a>
-{{--                                    <div class="ps-product__badge">-37%</div>--}}
                                     <ul class="ps-product__actions">
                                         <li><a href="#" data-toggle="tooltip" data-placement="top" title="Add To Cart"><i class="icon-bag2"></i></a></li>
                                         <li><a href="#" data-placement="top" title="Quick View" data-toggle="modal" data-target="#product-quickview"><i class="icon-eye"></i></a></li>
@@ -375,20 +289,10 @@
                                             <li><a href="#" data-toggle="tooltip" data-placement="top" title="Add To Cart"><i class="icon-bag2"></i></a></li>
                                             <li><a href="#" data-placement="top" title="Quick View" data-toggle="modal" data-target="#product-quickview"><i class="icon-eye"></i></a></li>
                                             <li><a href="{{route('add.wishlist',$product->id)}}" data-toggle="tooltip" data-placement="top" title="Add to Whishlist"><i class="icon-heart"></i></a></li>
-{{--                                            <li><a href="#" data-toggle="tooltip" data-placement="top" title="Compare"><i class="icon-chart-bars"></i></a></li>--}}
                                         </ul>
                                     </div>
                                     <div class="ps-product__container"><a class="ps-product__vendor" href="{{route('shop.details',$shop->slug)}}">{{$shop->name}}</a>
                                         <div class="ps-product__content"><a class="ps-product__title" href="{{route('product-details',$product->slug)}}">{{$product->name}}</a>
-{{--                                            <div class="ps-product__rating">--}}
-{{--                                                <select class="ps-rating" data-read-only="true">--}}
-{{--                                                    <option value="1"></option>--}}
-{{--                                                    <option value="1"></option>--}}
-{{--                                                    <option value="1"></option>--}}
-{{--                                                    <option value="1"></option>--}}
-{{--                                                    <option value="2"></option>--}}
-{{--                                                </select><span></span>--}}
-{{--                                            </div>--}}
                                             Price: ৳ {{home_discounted_base_price($product->id)}}
                                             @if(home_base_price($product->id) != home_discounted_base_price($product->id))
                                                 <del>৳ {{home_base_price($product->id)}}</del>
@@ -403,33 +307,6 @@
                                     </div>
                                 </div>
                         @endforeach
-{{--                        <div class="ps-product">--}}
-{{--                            <div class="ps-product__thumbnail"><a href="product-default.html"><img src="{{asset('frontend/img/products/shop/19.jpg')}}" alt=""></a>--}}
-{{--                                <ul class="ps-product__actions">--}}
-{{--                                    <li><a href="#" data-toggle="tooltip" data-placement="top" title="Add To Cart"><i class="icon-bag2"></i></a></li>--}}
-{{--                                    <li><a href="#" data-placement="top" title="Quick View" data-toggle="modal" data-target="#product-quickview"><i class="icon-eye"></i></a></li>--}}
-{{--                                    <li><a href="#" data-toggle="tooltip" data-placement="top" title="Add to Whishlist"><i class="icon-heart"></i></a></li>--}}
-{{--                                    <li><a href="#" data-toggle="tooltip" data-placement="top" title="Compare"><i class="icon-chart-bars"></i></a></li>--}}
-{{--                                </ul>--}}
-{{--                            </div>--}}
-{{--                            <div class="ps-product__container"><a class="ps-product__vendor" href="#">Robert's Store</a>--}}
-{{--                                <div class="ps-product__content"><a class="ps-product__title" href="product-default.html">EPSION Plaster Printer</a>--}}
-{{--                                    <div class="ps-product__rating">--}}
-{{--                                        <select class="ps-rating" data-read-only="true">--}}
-{{--                                            <option value="1">1</option>--}}
-{{--                                            <option value="1">2</option>--}}
-{{--                                            <option value="1">3</option>--}}
-{{--                                            <option value="1">4</option>--}}
-{{--                                            <option value="2">5</option>--}}
-{{--                                        </select><span>01</span>--}}
-{{--                                    </div>--}}
-{{--                                    <p class="ps-product__price">$233.28</p>--}}
-{{--                                </div>--}}
-{{--                                <div class="ps-product__content hover"><a class="ps-product__title" href="product-default.html">EPSION Plaster Printer</a>--}}
-{{--                                    <p class="ps-product__price">$233.28</p>--}}
-{{--                                </div>--}}
-{{--                            </div>--}}
-{{--                        </div>--}}
                     </div>
                 </div>
             </div>
@@ -441,15 +318,53 @@
 @endsection
 @push('js')
     <script>
-        $('.qtty').val(1);
         $('#option-choice-form input').on('change', function(){
-            getVariantPrice($('#option-choice-form').serializeArray());
-            console.log($('#option-choice-form').serializeArray());
+            getVariantPrice();
         });
+
+        function getVariantPrice(){
+            //alert('oh no!!')
+            if($('#option-choice-form input[name=quantity]').val()){
+                $.ajax({
+                    type:"POST",
+                    url: '{{ route('products.variant_price') }}',
+                    data: $('#option-choice-form').serializeArray(),
+                    success: function(data){
+                        console.log(data.response.price)
+                        $('.price').html(data.response.price);
+                        $('.base_price').val(data.response.price);
+                        $('.aval').html(data.response.qty+" available");
+                        $('.qtty').val(1);
+                        $('.base_qty').val(data.response.qty);
+
+                        // $('#option-choice-form #chosen_price_div').removeClass('d-none');
+                        // $('#option-choice-form #chosen_price_div #chosen_price').html('৳ ' +data.price);
+                        // $('#available-quantity').html(data.quantity);
+                        // $('.input-number').prop('max', data.quantity);
+                        console.log(data.quantity);
+                        if(parseInt(data.quantity) < 1 && data.digital  != 1){
+                            $('.buy-now').hide();
+                            $('.add-to-cart').hide();
+                        }
+                        else{
+                            $('.buy-now').show();
+                            $('.add-to-cart').show();
+                        }
+                    }
+                });
+            }
+        }
+    </script>
+    <script>
+{{--        $('.qtty').val(1);--}}
+{{--        $('#option-choice-form input').on('change', function(){--}}
+{{--            getVariantPrice($('#option-choice-form').serializeArray());--}}
+{{--            console.log($('#option-choice-form').serializeArray());--}}
+{{--        });--}}
         $('#add_to_cart').on('click', function(e){
             e.preventDefault();
             //getVariantPrice($('#option-choice-form').serializeArray());
-            addtocart($('#option-choice-form').serializeArray());
+            productAddtocart($('#option-choice-form').serializeArray());
         });
 
         $('.up').on('click', function(event){
@@ -477,31 +392,32 @@
             }
         });
 
-        function getVariantPrice(array){
-            console.log(array);
-            $.ajaxSetup({
-                headers: {
-                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                }
-            });
-            $.ajax({
-                url: "{{route('product.variant.price')}}",
-                method: "post",
-                data:{
-                    variant:array,
-                },
-                success: function(data){
-                    console.log(data.response.price)
-                    $('.price').html(data.response.price);
-                    $('.base_price').val(data.response.price);
-                    $('.aval').html(data.response.qty+" available");
-                    $('.qtty').val(1);
-                    $('.base_qty').val(data.response.qty);
-                    //toastr.success('Lab Test added in your cart <span style="font-size: 25px;">&#10084;&#65039;</span>');
-                }
-            });
-        }
-        function addtocart(array){
+{{--        function getVariantPrice(array){--}}
+{{--            console.log(array);--}}
+{{--            $.ajaxSetup({--}}
+{{--                headers: {--}}
+{{--                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')--}}
+{{--                }--}}
+{{--            });--}}
+{{--            $.ajax({--}}
+{{--                url: "{{route('product.variant.price')}}",--}}
+{{--                method: "post",--}}
+{{--                data:{--}}
+{{--                    variant:array,--}}
+{{--                },--}}
+{{--                success: function(data){--}}
+{{--                    console.log(data.response.price)--}}
+{{--                    $('.price').html(data.response.price);--}}
+{{--                    $('.base_price').val(data.response.price);--}}
+{{--                    $('.aval').html(data.response.qty+" available");--}}
+{{--                    $('.qtty').val(1);--}}
+{{--                    $('.base_qty').val(data.response.qty);--}}
+{{--                    //toastr.success('Lab Test added in your cart <span style="font-size: 25px;">&#10084;&#65039;</span>');--}}
+{{--                }--}}
+{{--            });--}}
+{{--        }--}}
+
+        function productAddtocart(array){
             //console.log(array);
             $.ajaxSetup({
                 headers: {
@@ -527,6 +443,7 @@
                                             </div>
                                         </div>`);
                     $('.subTotal').html(data.response.subtotal);
+                    toastr.success('success', 'Product added to your cart.');
                     // $('.base_price').val(data.response.price);
                     // $('.aval').html(data.response.qty+" available");
                     // $('.qtty').val(1);
@@ -535,6 +452,7 @@
                 }
             });
         }
-
     </script>
+
+{{--    </script>--}}
 @endpush

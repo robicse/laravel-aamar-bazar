@@ -41,11 +41,6 @@
                         </div>
                     </div>
                     <!-- /.card-header -->
-
-
-
-
-
                     <div class="card-body table-responsive">
                         <table id="example1" class="table table-bordered table-striped">
                             <thead>
@@ -54,8 +49,11 @@
                                 <th>Icon</th>
                                 <th>Shop Name</th>
                                 <th>Name</th>
+                                <th>Variant</th>
                                 <th>Total Stock</th>
-                                <th>Base Price</th>
+                                <th>Unit</th>
+                                <th>Base Price (Tk)</th>
+                                <th>Discount (Tk)</th>
                                 <th>Today's Deal</th>
                                 <th>Published</th>
                                 <th>Featured</th>
@@ -65,7 +63,6 @@
 
                             <tbody>
                             @foreach($products as $key => $product)
-{{--                                @dd($product->user->name)--}}
                                 @php
                                     $shop = \App\Model\Shop::where('user_id',$product->user->id)->first();
                                 @endphp
@@ -80,8 +77,19 @@
                                         </a>
                                     </td>
                                     <td>{{$product->name}}</td>
-                                    <td>{{$product->current_stock}}</td>
+                                    <td class="{{$product->variant_product == 0 ? 'badge badge-danger' : 'badge badge-success'}}" id="{{$product->id}}">
+                                        {{$product->variant_product == 0 ? 'No': 'Yes'}}
+                                    </td>
+                                    <td>
+                                        @if($product->current_stock == 0)
+                                            <span class="badge badge-danger">Not Available</span>
+                                        @else
+                                            <span class="badge badge-success">Available</span>
+                                        @endif
+                                    </td>
+                                    <td>{{$product->unit}}</td>
                                     <td>{{$product->unit_price}}</td>
+                                    <td>{{$product->discount}}</td>
                                     <td>
                                         <div class="form-group col-md-2">
                                             <label class="switch" style="margin-top:40px;">
@@ -116,16 +124,7 @@
                                                 <a class="bg-info dropdown-item" href="{{route('admin.edit.seller.products',encrypt($product->id))}}">
                                                     <i class="fa fa-edit"></i> Edit
                                                 </a>
-                                                {{--<button class="bg-danger dropdown-item" type="button"
-                                                        onclick="deleteProduct({{$product->id}})">
-                                                    <i class="fa fa-trash"></i> Delete
-                                                </button>--}}
-{{--                                                <form id="delete-form-{{$product->id}}" action="{{route('admin.products.destroy',$product->id)}}" method="POST" style="display: none;">--}}
-{{--                                                    @csrf--}}
-{{--                                                    @method('DELETE')--}}
-{{--                                                </form>--}}
                                             </div>
-                                        </div>
                                     </td>
                                 </tr>
                             @endforeach
@@ -136,8 +135,11 @@
                                 <th>Icon</th>
                                 <th>Shop Name</th>
                                 <th>Name</th>
+                                <th>Variant</th>
                                 <th>Total Stock</th>
-                                <th>Base Price</th>
+                                <th>Unit</th>
+                                <th>Base Price (Tk)</th>
+                                <th>Discount (Tk)</th>
                                 <th>Today's Deal</th>
                                 <th>Published</th>
                                 <th>Featured</th>

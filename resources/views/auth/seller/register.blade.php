@@ -70,7 +70,7 @@
                     @csrf
                     <ul class="ps-tab-list">
                         <li class="active"><a href="#register">Be A Seller</a></li>
-{{--                        <li><a href="#register">Register</a></li>--}}
+                        {{--                        <li><a href="#register">Register</a></li>--}}
                     </ul>
                     <div class="ps-tabs">
                         <div class="ps-tab active" id="register">
@@ -157,46 +157,46 @@
                                             <div class="form-input-group input-group--style-1">
                                                 <label for="bksearch">Shop Address</label>
                                                 <div class="input-group input-group--style-1">
-                                                    <input type="text" class="form-control bksearch {{ $errors->has('bksearch') ? ' is-invalid' : '' }}" value="{{ old('bksearch') }}" placeholder="Enter Your Shop Address" name="bksearch">
+                                                    {{--<input type="text" class="form-control bksearch {{ $errors->has('bksearch') ? ' is-invalid' : '' }}" value="{{ old('bksearch') }}" placeholder="Enter Your Shop Address" name="bksearch">--}}
+                                                    <input type="text" onkeyup="getAddress2()" placeholder="Search Your Area" class="form-control form_height form-control-sm address2" autocomplete="off">
                                                 </div>
-                                                <div class="bklist"></div>
+                                                {{--<div class="bklist"></div>--}}
+                                                <ul class="list-group addList2" style="padding: 0px; position: absolute; z-index: 999; overflow-y: scroll;">
+
+                                                </ul>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="form-group col-md-6">
-                                        <input type="hidden" name="address">
-                                        <input type="hidden" name="city">
-                                        <input type="hidden" name="area">
-                                        <input type="hidden" name="latitude">
-                                        <input type="hidden" name="longitude">
+                                        <input type="hidden" id="address_h" name="address">
+                                        <input type="hidden" id="city_h" name="city">
+                                        <input type="hidden" id="area_h" name="area">
+                                        <input type="hidden" id="latitude_h" name="latitude">
+                                        <input type="hidden" id="longitude_h" name="longitude">
                                     </div>
-                                    <div class="row">
-                                        <div class="col-12">
-                                            <div class="form-group">
-                                                <label for="logo">Shop Logo</label>
-                                                <div class="input-group" >
-                                                    <input type="file" class="form-control-file {{ $errors->has('logo') ? ' is-invalid' : '' }}" value="{{ old('logo') }}" placeholder="Enter Your Shop logo" name="logo">
-                                                </div>
-                                            </div>
-                                        </div>
+                                    <div class="form-group">
+                                        <label for="logo">Shop Logo</label>
+                                        <input type="file" class="form-control-file {{ $errors->has('logo') ? ' is-invalid' : '' }}" value="{{ old('logo') }}" placeholder="Enter Your Shop logo" name="logo">
                                     </div>
-
                                 </div>
-
+                                <div class="form-group row">
+                                    <input class="ps-checkbox" type="checkbox" required style="margin-left: 10px;">
+                                    <label for="" style="margin-left: 10px; margin-top: 3px;">I agree with the <a href="{{route('terms-condition')}}" class="btn-link text-bold" style="color:green;">Terms and Conditions</a></label>
+                                </div>
                                 <div class="form-group submtit ">
                                     <button class="ps-btn ps-btn--fullwidth mb-5">Save</button>
                                 </div>
 
                             </div>
-                           {{-- <div class="ps-form__footer">
-                                <p>Connect with:</p>
-                                <ul class="ps-list--social">
-                                    <li><a class="facebook" href="#"><i class="fa fa-facebook"></i></a></li>
-                                    <li><a class="google" href="#"><i class="fa fa-google-plus"></i></a></li>
-                                    <li><a class="twitter" href="#"><i class="fa fa-twitter"></i></a></li>
-                                    <li><a class="instagram" href="#"><i class="fa fa-instagram"></i></a></li>
-                                </ul>
-                            </div>--}}
+                            {{-- <div class="ps-form__footer">
+                                 <p>Connect with:</p>
+                                 <ul class="ps-list--social">
+                                     <li><a class="facebook" href="#"><i class="fa fa-facebook"></i></a></li>
+                                     <li><a class="google" href="#"><i class="fa fa-google-plus"></i></a></li>
+                                     <li><a class="twitter" href="#"><i class="fa fa-twitter"></i></a></li>
+                                     <li><a class="instagram" href="#"><i class="fa fa-instagram"></i></a></li>
+                                 </ul>
+                             </div>--}}
                         </div>
                     </div>
                 </form>
@@ -205,20 +205,51 @@
     </div>
 @endsection
 @push('js')
-    <script src="https://cdn.jsdelivr.net/gh/barikoi/barikoi-js@b6f6295467c19177a7d8b73ad4db136905e7cad6/dist/barikoi.min.js?key:MTg3NzpCRE5DQ01JSkgw"></script>
+    <script src="https://cdn.jsdelivr.net/gh/barikoi/barikoi-js@b6f6295467c19177a7d8b73ad4db136905e7cad6/dist/barikoi.min.js?key:MjMzNTpTWlBLSkRHUTRZ"></script>
     <script>
         Bkoi.onSelect(function () {
             // get selected data from dropdown list
             let selectedPlace = Bkoi.getSelectedData()
             console.log(selectedPlace)
             // center of the map
-            document.getElementsByName("address")[0].value = selectedPlace.address;
-            document.getElementsByName("city")[0].value = selectedPlace.city;
-            document.getElementsByName("area")[0].value = selectedPlace.area;
-            document.getElementsByName("latitude")[0].value = selectedPlace.latitude;
-            document.getElementsByName("longitude")[0].value = selectedPlace.longitude;
+            document.getElementById("address_h")[0].value = selectedPlace.address;
+            document.getElementById("city_h")[0].value = selectedPlace.city;
+            document.getElementById("area_h")[0].value = selectedPlace.area;
+            document.getElementById("latitude_h")[0].value = selectedPlace.latitude;
+            document.getElementById("longitude_h")[0].value = selectedPlace.longitude;
 
         })
+
+        function getAddress2() {
+            let places=[];
+            let location=null;
+            let add=$('.address2').val();
+            console.log(add)
+            $('.addList2').empty();
+            fetch("https://barikoi.xyz/v1/api/search/autocomplete/MjMzNTpTWlBLSkRHUTRZ/place?q="+add)
+                .then(response => response.json())
+                .catch(error => console.error('Error:', error))
+                .then(response => {
+                    response.places.forEach(result2)
+                })
+        }
+        function result2(item, index){
+            var $li = $("<li class='list-group-item'><a href='#' class='list-group-item bg-light'>" + item.address + "</a></li>");
+            $(".addList2").append($li);
+            $li.on('click', getPlacesDetails2.bind(this, item));
+        }
+        function getPlacesDetails2(mapData)
+        {
+            $(".addList2").empty();
+            $( ".address2" ).val(mapData.address)
+            $( "input[name='address']" ).val(mapData.address)
+            $( "input[name='city']" ).val(mapData.city)
+            $( "input[name='area']" ).val(mapData.area)
+            $( "input[name='latitude']" ).val(mapData.latitude)
+            $( "input[name='longitude']" ).val(mapData.longitude)
+            $( "input[name='postal_code']" ).val(mapData.postCode)
+            console.log(mapData)
+        }
 
     </script>
 @endpush

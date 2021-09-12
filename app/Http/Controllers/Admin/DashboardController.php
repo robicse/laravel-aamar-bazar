@@ -17,7 +17,7 @@ class DashboardController extends Controller
     public function index()
     {
         $totalStaffs = User::where('user_type','staff')->count();
-        $totalUsers = User::where('user_type','customer')->count();
+        $totalUsers = User::where('user_type','customer')->where('verification_code','!=',null)->count();
         $totalCategories = Category::count();
         $totalSubCategories = Subcategory::count();
         $totalSubSubCategories = SubSubcategory::count();

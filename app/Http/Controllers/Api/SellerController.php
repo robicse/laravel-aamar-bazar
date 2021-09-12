@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Http\Resources\OrderDetailsCollection;
 use App\Model\Attribute;
 use App\Model\Brand;
 use App\Model\Category;
@@ -346,14 +347,7 @@ class SellerController extends Controller
         }
     }
     public function getOrderDetails($id){
-        $order_details=OrderDetails::where('order_id',$id)->get();
-        if (!empty($order_details))
-        {
-            return response()->json(['success'=>true,'response'=> $order_details], 200);
-        }
-        else{
-            return response()->json(['success'=>false,'response'=> 'Order is empty'], 404);
-        }
+        return new OrderDetailsCollection(OrderDetails::where('order_id', $id)->latest()->get());
     }
     public function productAddToMyShop($sellerId)
     {
@@ -381,7 +375,7 @@ class SellerController extends Controller
             $product = Product::find($data);
             $product_new = $product->replicate();
             $product_new->added_by = 'seller';
-            $product_new->user_id = $request->seller_id;
+            $product_new->user_id = $request->user_id;
             $product_new->aPId_to_seller = $product->id;
             $product_new->slug = substr($product_new->slug, 0, -5).Str::random(5);
             $product_new->save();
@@ -395,7 +389,7 @@ class SellerController extends Controller
             }
 
             //check shop categories
-            $shopId = Shop::where('user_id',$request->seller_id)->first();
+            $shopId = Shop::where('user_id',$request->user_id)->first();
             $checkShopCategory = ShopCategory::where('shop_id',$shopId->id)->where('category_id',$product_new->category_id)->first();
             if(empty($checkShopCategory)){
                 $shopCategoryData = new ShopCategory();
@@ -418,7 +412,7 @@ class SellerController extends Controller
             if (empty($checkShopSubSubCategory)) {
                 $shopSub_SubcategoryData = new ShopSubSubcategory();
                 $shopSub_SubcategoryData->shop_id = $shopId->id;
-                $shopSub_SubcategoryData->subsubcategory_id = $product_new->subsubcategory_id ? $product_new->subsubcategory_id : null ;
+                $shopSub_SubcategoryData->subsubcategory_id = $product_new->subsubcategory_id;
                 $shopSub_SubcategoryData->subcategory_id = $product_new->subcategory_id;
                 $shopSub_SubcategoryData->category_id = $product_new->category_id;
                 $shopSub_SubcategoryData->save();

@@ -43,6 +43,7 @@
                                 <th>#Id</th>
                                 <th>Name</th>
                                 <th>Logo</th>
+                                <th>Published</th>
                                 <th>Action</th>
                             </tr>
                             </thead>
@@ -55,17 +56,17 @@
                                     <img src="{{asset('uploads/brands/'.$brand->logo)}}" width="80" height="50" alt="">
                                 </td>
                                 <td>
+                                    <div class="form-group col-md-2">
+                                        <label class="switch" style="margin-top:40px;">
+                                            <input onchange="update_status(this)" value="{{ $brand->id }}" {{$brand->status == 1? 'checked':''}} type="checkbox" >
+                                            <span class="slider round"></span>
+                                        </label>
+                                    </div>
+                                </td>
+                                <td>
                                     <a class="btn btn-info waves-effect" href="{{route('admin.brands.edit',$brand->id)}}">
                                         <i class="fa fa-edit"></i>
                                     </a>
-{{--                                    <button class="btn btn-danger waves-effect" type="button"--}}
-{{--                                            onclick="deleteBrand({{$brand->id}})">--}}
-{{--                                        <i class="fa fa-trash"></i>--}}
-{{--                                    </button>--}}
-{{--                                    <form id="delete-form-{{$brand->id}}" action="{{route('admin.brands.destroy',$brand->id)}}" method="POST" style="display: none;">--}}
-{{--                                        @csrf--}}
-{{--                                        @method('DELETE')--}}
-{{--                                    </form>--}}
                                 </td>
                             </tr>
                             @endforeach
@@ -75,6 +76,7 @@
                                 <th>#Id</th>
                                 <th>Name</th>
                                 <th>Logo</th>
+                                <th>Published</th>
                                 <th>Action</th>
                             </tr>
                             </tfoot>
@@ -104,35 +106,22 @@
             });
         });
 
-        //sweet alert
-        function deleteBrand(id) {
-            swal({
-                title: 'Are you sure?',
-                text: "You won't be able to revert this!",
-                type: 'warning',
-                showCancelButton: true,
-                confirmButtonColor: '#3085d6',
-                cancelButtonColor: '#d33',
-                confirmButtonText: 'Yes, delete it!',
-                cancelButtonText: 'No, cancel!',
-                confirmButtonClass: 'btn btn-success',
-                cancelButtonClass: 'btn btn-danger',
-                buttonsStyling: false,
-                reverseButtons: true
-            }).then((result) => {
-                if (result.value) {
-                    document.getElementById('delete-form-'+id).submit();
-                } else if (
-                    // Read more about handling dismissals
-                    result.dismiss === swal.DismissReason.cancel
-                ) {
-                    swal(
-                        'Cancelled',
-                        'Your Data is save :)',
-                        'error'
-                    )
+        function update_status(el){
+            if(el.checked){
+                var status = 1;
+            }
+            else{
+                var status = 0;
+            }
+            $.post('{{ route('admin.brands.status-update') }}', {_token:'{{ csrf_token() }}', id:el.value, status:status}, function(data){
+                console.log(data)
+                if(data == 1){
+                    toastr.success('success', 'Brand Published updated successfully');
                 }
-            })
+                else{
+                    toastr.danger('danger', 'Something went wrong');
+                }
+            });
         }
     </script>
 @endpush

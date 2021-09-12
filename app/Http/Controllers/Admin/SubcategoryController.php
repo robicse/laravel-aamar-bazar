@@ -127,4 +127,12 @@ class SubcategoryController extends Controller
         Toastr::success('SubCategories Deleted Successfully');
         return back();
     }
+    public function updateStatus(Request $request){
+        $subcategory = Subcategory::findOrFail($request->id);
+        $subcategory->status = $request->status;
+        if($subcategory->save()){
+            return 1;
+        }
+        return 0;
+    }
 }
