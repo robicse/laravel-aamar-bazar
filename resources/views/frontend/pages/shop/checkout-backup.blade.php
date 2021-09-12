@@ -96,7 +96,7 @@
                                                                                 @method('DELETE')
                                                                                 <button class="btn btn-lg"><a class="dropdown-item"> Delete </a></button>
                                                                             </form>
-{{--                                                                            <a class="dropdown-item" href="#" data-toggle="modal" data-target="#exampleModal-2">Edit</a>--}}
+                                                                            {{--                                                                            <a class="dropdown-item" href="#" data-toggle="modal" data-target="#exampleModal-2">Edit</a>--}}
                                                                         </div>
                                                                     </div>
                                                                 </div>
@@ -112,16 +112,16 @@
                                                     </div>
                                                 @endforeach
                                             @endif
-                                                <div class="col-md-6 col-12">
-                                                    <div class="card" style="width: 30rem; height: 12rem;">
-                                                        <div class="card-body">
-                                                            <h3 class="text-center">
-                                                                <a data-toggle="modal" data-target="#exampleModal"> <i class="fa fa-plus"></i></a>
-                                                                <p>Add new Address</p>
-                                                            </h3>
-                                                        </div>
+                                            <div class="col-md-6 col-12">
+                                                <div class="card" style="width: 30rem; height: 12rem;">
+                                                    <div class="card-body">
+                                                        <h3 class="text-center">
+                                                            <a data-toggle="modal" data-target="#exampleModal"> <i class="fa fa-plus"></i></a>
+                                                            <p>Add new Address</p>
+                                                        </h3>
                                                     </div>
                                                 </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -208,32 +208,23 @@
                 <form class="ps-form--account-setting" id="bk_address" action="{{route('user.address.store')}}" method="POST" enctype="multipart/form-data">
                     @csrf
                     <div class="modal-body">
-{{--                        <div class="ps-form__content" >--}}
-{{--                            <div class="form-group m-2" style="margin-bottom: 0;">--}}
-{{--                                <label for="bksearch" class="">Area</label>--}}
-{{--                                <input type="text" onkeyup="getAddress3()" placeholder="Search Your Area" class="form-control form_height form-control-sm address3" autocomplete="off">--}}
-{{--                            </div>--}}
-{{--                        </div>--}}
-                        @php
-                        $districts = \App\Model\District::all();
-                        @endphp
-                        <div class="form-group m-2">
-                            <label for="district_id" class="">District</label>
-                            <select name="district_id" id="district_id" class="form_height form-control select2" required>
-                                <option value="">Select District</option>
-                                @foreach($districts as $district)
-                                    <option value="{{$district->id}}">{{$district->name}}</option>
-                                @endforeach
-
-                            </select>
+                        <div class="ps-form__content" >
+                            <div class="form-group m-2" style="margin-bottom: 0;">
+                                <label for="bksearch" class="">Area</label>
+                                <input type="text" onkeyup="getAddress3()" placeholder="Search Your Area" class="form-control form_height form-control-sm address3" autocomplete="off">
+                            </div>
                         </div>
-                        <div class="form-group m-2">
-                            <label for="area" class="">Area</label>
-                            <select name="area" id="area" class="form_height form-control" required>
-                                <option value="">Select Area</option>
+                        <ul class="list-group addList3" style="padding: 0;">
 
-                            </select>
+                        </ul>
+                        <div class="form-group">
+                            <input type="hidden" name="city">
+                            <input type="hidden" name="area">
+                            <input type="hidden" name="postal_code">
+                            <input type="hidden" name="latitude">
+                            <input type="hidden" name="longitude">
                         </div>
+
                         <div class="form-group m-2">
                             <label for="phone" class="">Phone</label>
                             <input type="text" class="form-control form_height form-control-sm" name="phone" placeholder="Your phone">
