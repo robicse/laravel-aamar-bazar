@@ -54,4 +54,8 @@ class DistrictController extends Controller
     {
         //
     }
+    public function createArea($id){
+        $district = District::find($id);
+        return view('backend.admin.district.create_area',compact('district'));
+    }
 }

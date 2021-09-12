@@ -53,7 +53,7 @@
 
                                     <td>
 
-                                        <a class="btn btn-success waves-effect" href="{{route('admin.districts-areas.create')}}">
+                                        <a class="btn btn-success waves-effect" href="{{route('admin.districts-areas.create',$district->id)}}">
                                             <i class="fa fa-map-marker-alt"></i> Add Area
                                         </a>
                                         <a class="btn btn-info waves-effect" href="{{route('admin.categories.edit',$district->id)}}">

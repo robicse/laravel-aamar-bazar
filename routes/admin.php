@@ -107,7 +107,7 @@ Route::group(['as'=>'admin.','prefix' =>'admin','namespace'=>'Admin', 'middlewar
 
     //Shipping Address Infos
     Route::resource('districts','DistrictController');
-    Route::get('districts-areas','DistrictController@create')->name('districts-areas');
+    Route::get('districts-areas/create/{id}','DistrictController@createArea')->name('districts-areas.create');
 
     //Admin Excel Export
     Route::get('/seller-product-export','ExportExcelController@exportSellerProducts')->name('seller-product-excel.export');

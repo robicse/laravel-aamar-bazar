@@ -45,6 +45,15 @@
                                 <label for="name">Name</label>
                                 <input type="text" class="form-control" name="name" id="name" placeholder="Enter Name" required>
                             </div>
+                            <table>
+                            <tr>
+                                <td><input type="text" name="phone[]" placeholder="Enter your phone number" class="form-control name_list" /></td>
+                                <td><button type="button" name="add" id="add" class="btn btn-success">Add More</button></td>
+                            </tr>
+                                <tr id="dynamic_field">
+
+                                </tr>
+                            </table>
                         </div>
                         <!-- /.card-body -->
                         <div class="card-footer">
@@ -58,5 +67,20 @@
 
 @stop
 @push('js')
+<script>
+    $(document).ready(function(){
+        var i=1;
+        $('#add').click(function(){
+            console.log('hi')
+            i++;
+            $('#dynamic_field').append('<tr id="row'+i+'"><td><input type="text" name="phone[]" placeholder="Enter your phone number" class="form-control name_list" /></td><td><button type="button" name="remove" id="'+i+'" class="btn btn-danger btn_remove">X</button></td></tr>');
+        });
 
+        $(document).on('click', '.btn_remove', function(){
+            var button_id = $(this).attr("id");
+            $('#row'+button_id+'').remove();
+        });
+
+    });
+</script>
 @endpush
