@@ -6837,7 +6837,7 @@ textarea.form-control {
     position: relative;
     text-align: center;
     padding: 15px 20px;
-    background-color: #fcb800;
+    background-color: #000000;
 }
 
 .ps-panel--sidebar .ps-panel__header h3 {
@@ -16260,11 +16260,11 @@ html:not([dir="rtl"]) .noUi-horizontal .noUi-handle {
 }
 
 .navigation--list .navigation__item.active i {
-    color: #fff87a;
+    color: #000000;
 }
 
 .navigation--list .navigation__item.active span {
-    color: #fff87a;
+    color: #000000;
 }
 
 .navigation--list .navigation__content {

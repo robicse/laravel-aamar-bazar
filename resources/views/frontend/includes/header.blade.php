@@ -118,7 +118,7 @@
             <div class="navigation__right">
 </header>
 <header class="header header--mobile" data-sticky="true">
-    <div class="navigation--mobile" style="background: #fcb800;">
+    <div class="navigation--mobile" style="background: #000000;">
         <div class="navigation__left"><a class="ps-logo" href="{{url('/')}}"><img src="{{asset('frontend/img/logo-mudi-hat-final.png')}}" alt="" width="156" height="45"></a></div>
         <div class="navigation__right">
             <div class="header__actions" style="margin-left: -100px;">
