@@ -245,7 +245,7 @@
                         </ul>
                     </li>
 
-                    <li class="nav-item has-treeview {{(Request::is('admin/profile*') ) ? 'menu-open' : '' || (Request::is('admin/payment*') ) ? 'menu-open' : '' }}">
+                    <li class="nav-item has-treeview {{(Request::is('admin/profile*')) || (Request::is('admin/payment*') ) ? 'menu-open' : '' }}">
                         <a href="#" class="nav-link">
                             <i class="nav-icon fas fa-user-circle"></i>
                             <p>
@@ -362,7 +362,7 @@
                             </li>
                         </ul>
                     </li>
-                    <li class="nav-item has-treeview {{(Request::is('admin/districts*') ) ? 'menu-open' : ''}}">
+                    <li class="nav-item has-treeview {{(Request::is('admin/districts*') ) || (Request::is('admin/areas*') ) ? 'menu-open' : ''}}">
                         <a href="#" class="nav-link">
                             <i class="nav-icon fas fa-map-marker-alt"></i>
                             <p>
@@ -381,11 +381,11 @@
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a href="{{route('admin.customers.index')}}"
-                                   class="nav-link {{Request::is('admin/customer*') ? 'active' :''}}">
-                                    <i class="fa fa-{{Request::is('admin/customer*') ? 'folder-open':'folder'}} nav-icon"></i>
+                                <a href="{{route('admin.areas.index')}}"
+                                   class="nav-link {{Request::is('admin/areas*') ? 'active' :''}}">
+                                    <i class="fa fa-{{Request::is('admin/areas*') ? 'folder-open':'folder'}} nav-icon"></i>
                                     <p>
-                                        Area
+                                        Area List
                                     </p>
                                 </a>
                             </li>

@@ -41,13 +41,19 @@ class DistrictController extends Controller
 
     public function edit($id)
     {
-        //
+        $district = District::find($id);
+        return view('backend.admin.district.edit',compact('district'));
     }
 
 
     public function update(Request $request, $id)
     {
-        //
+        $district = District::find($id);
+        $district->name = $request->name;
+        $district->save();
+
+        Toastr::success('Area Updated successfully');
+        return redirect()->route('admin.districts.index');
     }
 
     public function destroy($id)
@@ -57,5 +63,17 @@ class DistrictController extends Controller
     public function createArea($id){
         $district = District::find($id);
         return view('backend.admin.district.create_area',compact('district'));
+    }
+    public function storeArea(Request $request, $id){
+
+        foreach ($request->name as $name){
+            $area = new Area();
+            $area->name = $name;
+            $area->district_id = $id;
+            $area->save();
+        }
+        Toastr::success('Area created successfully');
+        return redirect()->route('admin.areas.index');
+
     }
 }

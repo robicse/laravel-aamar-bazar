@@ -105,9 +105,15 @@ Route::group(['as'=>'admin.','prefix' =>'admin','namespace'=>'Admin', 'middlewar
     Route::get('order/search/area', 'OrderManagementController@search_area');
     Route::get('/orders/{area}','OrderManagementController@areaWiseOrder');
 
+
+
+
+
     //Shipping Address Infos
     Route::resource('districts','DistrictController');
-    Route::get('districts-areas/create/{id}','DistrictController@createArea')->name('districts-areas.create');
+    Route::get('district-areas/create/{id}','DistrictController@createArea')->name('districts-areas.create');
+    Route::post('district-areas/store/{id}','DistrictController@storeArea')->name('district-areas.store');
+    Route::resource('areas','AreaController');
 
     //Admin Excel Export
     Route::get('/seller-product-export','ExportExcelController@exportSellerProducts')->name('seller-product-excel.export');

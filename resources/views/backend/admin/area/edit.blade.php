@@ -1,5 +1,5 @@
 @extends('backend.layouts.master')
-@section("title","Add Area")
+@section("title","Edit Area")
 @push('css')
 
 @endpush
@@ -8,12 +8,12 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>Add Area</h1>
+                    <h1>Edit Area</h1>
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
                         <li class="breadcrumb-item"><a href="{{route('admin.dashboard')}}">Home</a></li>
-                        <li class="breadcrumb-item active">Add Area</li>
+                        <li class="breadcrumb-item active">Edit Area</li>
                     </ol>
                 </div>
             </div>
@@ -26,9 +26,9 @@
                 <!-- general form elements -->
                 <div class="card card-info card-outline">
                     <div class="card-header">
-                        <h3 class="card-title float-left">Add Area</h3>
+                        <h3 class="card-title float-left">Edit Area</h3>
                         <div class="float-right">
-                            <a href="{{route('admin.districts.index')}}">
+                            <a href="{{route('admin.areas.index')}}">
                                 <button class="btn btn-success">
                                     <i class="fa fa-backward"> </i>
                                     Back
@@ -38,22 +38,18 @@
                     </div>
                     <!-- /.card-header -->
                     <!-- form start -->
-                    <form role="form" action="{{route('admin.district-areas.store',$district->id)}}" method="post" enctype="multipart/form-data">
+                    <form role="form" action="{{route('admin.areas.update',$area->id)}}" method="post">
                         @csrf
+                        @method('PUT')
                         <div class="card-body">
-                            <table>
-                            <tr >
-                                <td><input type="text" name="name[]" placeholder="Enter Area Name" class="form-control name_list" /></td>
-                                <td><button type="button" name="add" id="add" class="btn btn-success">Add More</button></td>
-                            </tr>
-                                <tr id="dynamic_field" style="padding-bottom: 10px;">
-
-                                </tr>
-                            </table>
+                            <div class="form-group">
+                                <label for="name">Name</label>
+                                <input type="text" class="form-control" name="name" id="name" value="{{$area->name}}">
+                            </div>
                         </div>
                         <!-- /.card-body -->
                         <div class="card-footer">
-                            <button type="submit" class="btn btn-primary">Submit</button>
+                            <button type="submit" class="btn btn-primary">Update</button>
                         </div>
                     </form>
                 </div>
@@ -63,19 +59,5 @@
 
 @stop
 @push('js')
-<script>
-    $(document).ready(function(){
-        var i=1;
-        $('#add').click(function(){
-            i++;
-            $('#dynamic_field').append('<tr id="row'+i+'"><td><input type="text" name="name[]" placeholder="Enter Area Name" class="form-control name_list" /></td><td><button type="button" name="remove" id="'+i+'" class="btn btn-danger btn_remove">X</button></td></tr>');
-        });
 
-        $(document).on('click', '.btn_remove', function(){
-            var button_id = $(this).attr("id");
-            $('#row'+button_id+'').remove();
-        });
-
-    });
-</script>
 @endpush

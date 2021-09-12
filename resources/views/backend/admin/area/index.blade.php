@@ -1,5 +1,5 @@
 @extends('backend.layouts.master')
-@section("title","District List")
+@section("title","Area List")
 @push('css')
     <link rel="stylesheet" href="{{asset('backend/plugins/datatables/dataTables.bootstrap4.css')}}">
 @endpush
@@ -8,12 +8,12 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>District List</h1>
+                    <h1>Area List</h1>
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
                         <li class="breadcrumb-item"><a href="{{route('admin.dashboard')}}">Home</a></li>
-                        <li class="breadcrumb-item active">District List</li>
+                        <li class="breadcrumb-item active">Area List</li>
                     </ol>
                 </div>
             </div>
@@ -25,15 +25,15 @@
             <div class="col-12">
                 <div class="card card-info card-outline">
                     <div class="card-header">
-                        <h3 class="card-title float-left">District Lists</h3>
-                        <div class="float-right">
-                            <a href="{{route('admin.districts.create')}}">
-                                <button class="btn btn-success">
-                                    <i class="fa fa-plus-circle"></i>
-                                    Add
-                                </button>
-                            </a>
-                        </div>
+                        <h3 class="card-title float-left">Area Lists</h3>
+{{--                        <div class="float-right">--}}
+{{--                            <a href="{{route('admin.districts.create')}}">--}}
+{{--                                <button class="btn btn-success">--}}
+{{--                                    <i class="fa fa-plus-circle"></i>--}}
+{{--                                    Add--}}
+{{--                                </button>--}}
+{{--                            </a>--}}
+{{--                        </div>--}}
                     </div>
                     <!-- /.card-header -->
                     <div class="card-body table-responsive">
@@ -41,23 +41,20 @@
                             <thead>
                             <tr>
                                 <th>#ID</th>
-                                <th>Name</th>
+                                <th>Area Name</th>
+                                <th>District Name</th>
                                 <th>Action</th>
                             </tr>
                             </thead>
                             <tbody>
-                            @foreach($districts as $key => $district)
+                            @foreach($areas as $key => $area)
                                 <tr>
                                     <td>{{$key + 1}}</td>
-                                    <td>{{$district->name}}</td>
-
+                                    <td>{{$area->name}}</td>
+                                    <td>{{$area->district->name}}</td>
                                     <td>
-
-                                        <a class="btn btn-success waves-effect" href="{{route('admin.districts-areas.create',$district->id)}}">
-                                            <i class="fa fa-map-marker-alt"></i> Add Area
-                                        </a>
-                                        <a class="btn btn-info waves-effect" href="{{route('admin.districts.edit',$district->id)}}">
-                                            <i class="fa fa-edit"></i> Edit District
+                                        <a class="btn btn-info waves-effect" href="{{route('admin.areas.edit',$area->id)}}">
+                                            <i class="fa fa-edit"></i>
                                         </a>
                                     </td>
                                 </tr>
@@ -66,7 +63,8 @@
                             <tfoot>
                             <tr>
                                 <th>#ID</th>
-                                <th>Name</th>
+                                <th>Area Name</th>
+                                <th>District Name</th>
                                 <th>Action</th>
                             </tr>
                             </tfoot>
