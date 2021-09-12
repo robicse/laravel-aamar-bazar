@@ -362,6 +362,35 @@
                             </li>
                         </ul>
                     </li>
+                    <li class="nav-item has-treeview {{(Request::is('admin/districts*') ) ? 'menu-open' : ''}}">
+                        <a href="#" class="nav-link">
+                            <i class="nav-icon fas fa-map-marker-alt"></i>
+                            <p>
+                                Shipping Address
+                                <i class="right fa fa-angle-left"></i>
+                            </p>
+                        </a>
+                        <ul class="nav nav-treeview">
+                            <li class="nav-item">
+                                <a href="{{route('admin.districts.index')}}"
+                                   class="nav-link {{Request::is('admin/districts*') ? 'active' :''}}">
+                                    <i class="fa fa-{{Request::is('admin/districts*') ? 'folder-open':'folder'}} nav-icon"></i>
+                                    <p>
+                                        District
+                                    </p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{{route('admin.customers.index')}}"
+                                   class="nav-link {{Request::is('admin/customer*') ? 'active' :''}}">
+                                    <i class="fa fa-{{Request::is('admin/customer*') ? 'folder-open':'folder'}} nav-icon"></i>
+                                    <p>
+                                        Area
+                                    </p>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
                     @php
                         $reviews = \App\Model\Review::where('viewed',0)->count();
                     @endphp

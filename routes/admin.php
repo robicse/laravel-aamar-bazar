@@ -29,7 +29,8 @@ Route::group(['as'=>'admin.','prefix' =>'admin','namespace'=>'Admin', 'middlewar
     Route::post('subsubcategories/status-update', 'SubSubcategoryController@updateStatus')->name('subsubcategories.status-update');
     Route::resource('products','ProductController');
     Route::resource('offers','OfferController');
-//flash sales start
+
+    //flash sales start
     Route::resource('flash_deals','FlashDealController');
     Route::get('/flash_deals/products/add/{flush_id}', 'FlashDealController@productsAdd')->name('flash_deals.products.add');
     Route::get('/flash_deals/products/edit/{flush_id}', 'FlashDealController@productsEdit')->name('flash_deals.products.edit');
@@ -41,7 +42,8 @@ Route::group(['as'=>'admin.','prefix' =>'admin','namespace'=>'Admin', 'middlewar
     Route::post('/flash_deals/product_discount', 'FlashDealController@product_discount')->name('flash_deals.product_discount');
     Route::post('/flash_deals/product_discount_edit', 'FlashDealController@product_discount_edit')->name('flash_deals.product_discount_edit');
     Route::post('/flash_deals/shop/wise/update', 'FlashDealController@flashDealProductsUpdate')->name('flash_deals.shop.wise.products.update');
-//flash sales end
+    //flash sales end
+
     Route::post('products/update2/{id}','ProductController@update2')->name('products.update2');
     Route::get('products/slug/{name}','ProductController@ajaxSlugMake')->name('products.slug');
     Route::post('products/get-subcategories-by-category','ProductController@ajaxSubCat')->name('products.get_subcategories_by_category');
@@ -103,6 +105,9 @@ Route::group(['as'=>'admin.','prefix' =>'admin','namespace'=>'Admin', 'middlewar
     Route::get('order/search/area', 'OrderManagementController@search_area');
     Route::get('/orders/{area}','OrderManagementController@areaWiseOrder');
 
+    //Shipping Address Infos
+    Route::resource('districts','DistrictController');
+    Route::get('districts-areas','DistrictController@create')->name('districts-areas');
 
     //Admin Excel Export
     Route::get('/seller-product-export','ExportExcelController@exportSellerProducts')->name('seller-product-excel.export');
