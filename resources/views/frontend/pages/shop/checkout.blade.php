@@ -97,21 +97,12 @@
                                                                         <label class="form-check-label" for="{{$address->id}}" style="background: #f3f3f3; color: #f3f3f3;">
                                                                         </label>
                                                                     </div>
-{{--                                                                    <div class="col-2">--}}
-{{--                                                                        <button class="btn bg-black" type="button" id="dropdownMenuButton" data-toggle="dropdown" style="">--}}
-{{--                                                                            <i class="fa fa-ellipsis-v"></i>--}}
-{{--                                                                        </button>--}}
-{{--                                                                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" style="font-size: 14px;">--}}
-{{--                                                                            <a class="dropdown-item" href="#" data-toggle="modal" data-target="#exampleModal-2">Edit</a>--}}
-{{--                                                                        </div>--}}
-{{--                                                                    </div>--}}
                                                                 </div>
                                                                 <div class="card-text">Area: <strong>{{$address->Area->name}}</strong></div>
                                                                 <div class="card-text">Address: <strong>{{$address->address}}</strong></div>
                                                                 <div class="card-text">City: <strong>{{$address->district->name}}</strong></div>
-                                                                <div class="card-text">Phone: <strong>{{$address->phone}}</strong>  </div>
-                                                                <div class="card-text">Address Type: <strong>{{$address->type}}</strong>
-                                                                </div>
+                                                                <div class="card-text">Phone: <strong>{{$address->phone}}</strong> </div>
+                                                                <div class="card-text">Address Type: <strong>{{$address->type}}</strong></div>
                                                                 <div class="float-right">
                                                                 <a class="btn btn-info" href="#" onclick="edit_address('{{$address->id}}');" data-toggle="modal" data-target="#exampleModal-2">Edit</a>
                                                                 </div>

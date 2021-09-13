@@ -23,7 +23,8 @@ class AuthController extends Controller
     public $failStatus = 401;
     public function login(Request $request)
     {
-        //dd($request->all());
+
+//        return $request->all();
         $credentials = [
             'phone' => $request->phone,
             'password' => $request->password,
@@ -31,10 +32,14 @@ class AuthController extends Controller
         ];
         if(Auth::attempt($credentials))
         {
+
             $user = Auth::user();
+
             $success['token'] = $user->createToken('mudihat')-> accessToken;
             $success['user'] = $user;
+
             if ($user->user_type == 'seller'){
+
                 $seller = Seller::where('user_id',$user->id)->first();
                 $shop = Shop::where('user_id',$user->id)->first();
                 $success['seller_id'] = $seller->id;
