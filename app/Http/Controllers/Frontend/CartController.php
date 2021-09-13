@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
 use App\Model\Address;
+use App\Model\Area;
 use App\Model\BusinessSetting;
 use App\Model\Color;
 use App\Model\FlashDeal;
@@ -24,6 +25,10 @@ class CartController extends Controller
 {
     public function viewCart() {
         return view('frontend.pages.shop.shopping_cart');
+    }
+    public function getAreas(Request $request){
+        $areas = Area::where('district_id',$request->district_id)->get();
+        return $areas;
     }
 
     public function productAddToCartNew(Request $request){
@@ -305,11 +310,7 @@ class CartController extends Controller
             Toastr::error('Please select an address.','Please Select');
             return back();
         }
-        //dd($request->all());
         $this->validate($request,[
-//            'name' => 'required',
-//            'address' => 'required',
-//            'phone' => 'required',
             'pay' => 'required',
         ]);
         if($request->pay == 'cod'){
@@ -320,12 +321,13 @@ class CartController extends Controller
         }
         $address = Address::where('user_id',Auth::id())->where('id',$request->address_id)->first();
         $data['name'] = $request->name;
+        $data['phone'] = $address->phone;
         $data['email'] = Auth::User()->email;
+        $data['area'] = $address->Area->name;
+        $data['city'] = $address->district->name;
         $data['address'] = $address->address;
         $data['country'] = $address->country;
-        $data['city'] = $address->city;
-        $data['postal_code'] = $address->postal_code;
-        $data['phone'] = $address->phone;
+
         $shipping_info = json_encode($data);
 
         foreach (Cart::content() as $content) {
@@ -597,6 +599,7 @@ class CartController extends Controller
         $data['options']['shop_id'] =  $shop->id;
         $data['options']['shop_userid'] =  $product->user_id;
         $data['options']['labour_cost'] = $product->labour_cost;
+        $data['options']['discount'] = $product->discount;
         if($product->discount != 0){
             $Price = home_discounted_base_price($product->id);
         }else{

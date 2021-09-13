@@ -37,6 +37,8 @@ Route::get('/add/favorite-shop/{id}', 'User\FavoriteShopController@favoriteShop'
 Route::get('/remove/favorite-shop/{id}', 'User\FavoriteShopController@removeFavoriteShop')->name('remove.favorite-shop');
 Route::get('/shops','Frontend\ShopController@index')->name('all.shops');
 
+Route::post('get-areas','Frontend\CartController@getAreas')->name('get-areas');
+
 //Search
 Route::get('/search/product', 'Frontend\VendorController@search_product');
 Route::get('/search/category/product', 'Frontend\VendorController@search_category_product');
@@ -128,6 +130,7 @@ Route::group(['middleware' => ['auth', 'user']], function () {
     //this route only for resource controller
     Route::group(['as' => 'user.', 'prefix' => 'user', 'namespace' => 'User',], function () {
         Route::resource('address', 'AddressController');
+        Route::post('/edit-address','AddressController@editModal')->name('address-edit.modal');
     });
     Route::post('/user/address-status/update/{id}', 'User\AddressController@updateStatus')->name('user.update.status');
 });
