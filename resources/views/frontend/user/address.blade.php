@@ -90,7 +90,7 @@
                                                             <div class="card-text">City: <strong>{{$address->district->name}}</strong></div>
                                                             <div class="card-text">Phone: <strong>{{$address->phone}}</strong>  </div>
                                                             <div class="card-text">Address Type: <strong>{{$address->type}}</strong> </div>
-                                                            <div class="card-text">Type: <strong>{{$address->type}}</strong> </div>
+
                                                             <div class="row mt-3">
                                                                 <div class="col-4">
                                                                 @if($address->set_default == 1)

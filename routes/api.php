@@ -19,11 +19,14 @@ Route::group(['middleware' => ['auth:api']], function () {
     Route::get('/user/profile/info','Api\CustomerController@profileInfo');
     Route::post('/user/profile/update', 'Api\CustomerController@profileUpdate');
     Route::post('/user/password/update', 'Api\CustomerController@passwordUpdate');
+
+
+
     Route::get('/user/address', 'Api\AddressController@index');
     Route::post('/user/address/add', 'Api\AddressController@store');
     Route::post('/user/address/set-default/{id}', 'Api\AddressController@setDefault');
     Route::delete('/user/address/delete/{id}', 'Api\AddressController@destroy');
-    Route::post('/user/address/update', 'Api\CustomerController@addressUpdate');
+    Route::post('/user/address/update', 'Api\AddressController@addressUpdate');
     Route::get('/user/wishlist', 'Api\CustomerController@wishlist');
     Route::post('/add/wishlist/{id}', 'Api\CustomerController@wishlistAdd' );
     Route::delete('/remove/wishlist/{id}', 'Api\CustomerController@wishlistRemove' );
@@ -79,6 +82,10 @@ Route::group(['middleware' => ['auth:api']], function () {
 
 
 });
+
+Route::get('/districts','Api\AddressController@getDistrict');
+Route::get('/areas/{id}','Api\AddressController@getArea');
+
 
 
 Route::get('/brands','Api\BrandController@getBrands');

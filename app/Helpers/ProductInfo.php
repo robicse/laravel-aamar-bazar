@@ -13,162 +13,6 @@ use App\Model\Review;
 use App\Model\Shop;
 
 
-function homeDiscountedPrice($id)
-    {
-        $product = Product::findOrFail($id);
-        $lowest_price = $product->unit_price;
-        $highest_price = $product->unit_price;
-
-        if ($product->variant_product) {
-            foreach ($product->stocks as $key => $stock) {
-                if($lowest_price > $stock->price){
-                    $lowest_price = $stock->price;
-                }
-                if($highest_price < $stock->price){
-                    $highest_price = $stock->price;
-                }
-            }
-        }
-
-        $flash_deals = FlashDeal::where('status', 1)->get();
-        $inFlashDeal = false;
-        foreach ($flash_deals as $flash_deal) {
-            if ($flash_deal != null && $flash_deal->status == 1 && strtotime(date('d-m-Y')) >= $flash_deal->start_date && strtotime(date('d-m-Y')) <= $flash_deal->end_date && FlashDealProduct::where('flash_deal_id', $flash_deal->id)->where('product_id', $id)->first() != null) {
-                $flash_deal_product = FlashDealProduct::where('flash_deal_id', $flash_deal->id)->where('product_id', $id)->first();
-                if($flash_deal_product->discount_type == 'percent'){
-                    $lowest_price -= ($lowest_price*$flash_deal_product->discount)/100;
-                    $highest_price -= ($highest_price*$flash_deal_product->discount)/100;
-                }
-                elseif($flash_deal_product->discount_type == 'amount'){
-                    $lowest_price -= $flash_deal_product->discount;
-                    $highest_price -= $flash_deal_product->discount;
-                }
-                $inFlashDeal = true;
-                break;
-            }
-        }
-
-        if (!$inFlashDeal) {
-            if($product->discount_type == 'percent'){
-                $lowest_price -= ($lowest_price*$product->discount)/100;
-                $highest_price -= ($highest_price*$product->discount)/100;
-            }
-            elseif($product->discount_type == 'amount'){
-                $lowest_price -= $product->discount;
-                $highest_price -= $product->discount;
-            }
-        }
-
-        return $lowest_price.' - '.$highest_price;
-    }
-
-if (! function_exists('home_price')) {
-    function home_price($id)
-    {
-        $product = Product::findOrFail($id);
-        $lowest_price = $product->unit_price;
-        $highest_price = $product->unit_price;
-
-        if ($product->variant_product) {
-            foreach ($product->stocks as $key => $stock) {
-                if($lowest_price > $stock->price){
-                    $lowest_price = $stock->price;
-                }
-                if($highest_price < $stock->price){
-                    $highest_price = $stock->price;
-                }
-            }
-        }
-
-        if($product->vat_type == 'percent'){
-            $lowest_price += ($lowest_price*$product->vat)/100;
-            $highest_price += ($highest_price*$product->vat)/100;
-        }
-        elseif($product->vat_type == 'amount'){
-            $lowest_price += $product->vat;
-            $highest_price += $product->vat;
-        }
-
-        $lowest_price = $lowest_price;
-        $highest_price = $highest_price;
-
-        if($lowest_price == $highest_price){
-            return $lowest_price;
-        }
-        else{
-            return $lowest_price.' - '.'৳'.$highest_price;
-        }
-    }
-}
-
-if (! function_exists('home_discounted_price')) {
-    function home_discounted_price($id)
-    {
-        $product = Product::findOrFail($id);
-        $lowest_price = $product->unit_price;
-        $highest_price = $product->unit_price;
-
-        if ($product->variant_product) {
-            foreach ($product->stocks as $key => $stock) {
-                if($lowest_price > $stock->price){
-                    $lowest_price = $stock->price;
-                }
-                if($highest_price < $stock->price){
-                    $highest_price = $stock->price;
-                }
-            }
-        }
-
-        $flash_deals = FlashDeal::where('status', 1)->get();
-        $inFlashDeal = false;
-        foreach ($flash_deals as $flash_deal) {
-            if ($flash_deal != null && $flash_deal->status == 1 && strtotime(date('d-m-Y')) >= $flash_deal->start_date && strtotime(date('d-m-Y')) <= $flash_deal->end_date && FlashDealProduct::where('flash_deal_id', $flash_deal->id)->where('product_id', $id)->first() != null) {
-                $flash_deal_product = FlashDealProduct::where('flash_deal_id', $flash_deal->id)->where('product_id', $id)->first();
-                if($flash_deal_product->discount_type == 'percent'){
-                    $lowest_price -= ($lowest_price*$flash_deal_product->discount)/100;
-                    $highest_price -= ($highest_price*$flash_deal_product->discount)/100;
-                }
-                elseif($flash_deal_product->discount_type == 'amount'){
-                    $lowest_price -= $flash_deal_product->discount;
-                    $highest_price -= $flash_deal_product->discount;
-                }
-                $inFlashDeal = true;
-                break;
-            }
-        }
-
-        if (!$inFlashDeal) {
-            if($product->discount_type == 'percent'){
-                $lowest_price -= ($lowest_price*$product->discount)/100;
-                $highest_price -= ($highest_price*$product->discount)/100;
-            }
-            elseif($product->discount_type == 'amount'){
-                $lowest_price -= $product->discount;
-                $highest_price -= $product->discount;
-            }
-        }
-
-        if($product->vat_type == 'percent'){
-            $lowest_price += ($lowest_price*$product->vat)/100;
-            $highest_price += ($highest_price*$product->vat)/100;
-        }
-        elseif($product->vat_type == 'amount'){
-            $lowest_price += $product->vat;
-            $highest_price += $product->vat;
-        }
-
-        $lowest_price = $lowest_price;
-        $highest_price = $highest_price;
-
-        if($lowest_price == $highest_price){
-            return $lowest_price;
-        }
-        else{
-            return $lowest_price.' - '.'৳'.$highest_price;
-        }
-    }
-}
-
 
     function home_base_price($id)
     {
@@ -284,4 +128,32 @@ function CarouselProductComponent($product){
         return $price;
 
     }
+
+    function DiscountType($id){
+        $product = Product::findOrFail($id);
+
+        $flash_deals = FlashDeal::where('status', 1)->get();
+        $inFlashDeal = false;
+        foreach ($flash_deals as $flash_deal) {
+            if ($flash_deal != null && $flash_deal->status == 1 && strtotime(date('d-m-Y')) >= $flash_deal->start_date && strtotime(date('d-m-Y')) <= $flash_deal->end_date && FlashDealProduct::where('flash_deal_id', $flash_deal->id)->where('product_id', $id)->first() != null) {
+                $flash_deal_product = FlashDealProduct::where('flash_deal_id', $flash_deal->id)->where('product_id', $id)->first();
+                if($flash_deal_product->discount_type == 'percent'){
+                    $type = 'percent';
+                }
+                elseif($flash_deal_product->discount_type == 'amount'){
+                    $type = 'amount';
+                }
+                $inFlashDeal = true;
+                break;
+            }
+        }
+
+        if ($inFlashDeal != true) {
+            $type = $product->discount_type;
+        }
+        //dd($price);
+        return $type;
+    }
+
+
 

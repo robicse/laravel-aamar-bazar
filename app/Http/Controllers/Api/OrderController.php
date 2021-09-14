@@ -40,20 +40,6 @@ class OrderController extends Controller
     public function order_details_get($id)
     {
         return new OrderDetailsCollection(OrderDetails::where('order_id', $id)->latest()->get());
-//        $order_details = DB::table('order_details')
-//            ->join('orders','order_details.order_id','=','orders.id')
-//            ->join('shops','orders.shop_id','=','shops.id')
-//            ->join('products','order_details.product_id','=','products.id')
-//            ->where('orders.id','=',$id)
-//            ->select('products.thumbnail_img as product_image','order_details.*','orders.grand_total as Subtotal','orders.delivery_cost as delivery_cost','shops.logo')
-//            ->get();
-//        if (!empty($order_details))
-//        {
-//            return response()->json(['success'=>true,'response'=> $order_details], 200);
-//        }
-//        else{
-//            return response()->json(['success'=>false,'response'=> 'Order is empty'], 404);
-//        }
     }
 
 
@@ -65,14 +51,14 @@ class OrderController extends Controller
             $payment_status = 'Paid';
         }
         $address = Address::where('user_id',Auth::id())->where('set_default',1)->first();
-        //dd($request->all());
-        $data['name'] = Auth::User()->name;
+        $data['name'] = $request->name;
+        $data['phone'] = $address->phone;
         $data['email'] = Auth::User()->email;
+        $data['area'] = $address->Area->name;
+        $data['city'] = $address->district->name;
         $data['address'] = $address->address;
         $data['country'] = $address->country;
-        $data['city'] = $address->city;
-        $data['postal_code'] = $address->postal_code;
-        $data['phone'] = $address->phone;
+
         $shipping_info = json_encode($data);
 
         $shop_id = $request->shop_id;

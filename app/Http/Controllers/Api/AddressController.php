@@ -3,60 +3,58 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Http\Resources\AreaCollection;
+use App\Http\Resources\ShippingAddressCollection;
 use App\Model\Address;
+use App\Model\Area;
+use App\Model\District;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class AddressController extends Controller
 {
-    public function index(){
-        $address = Address::where('user_id',Auth::id())->get();
-        if (!empty($address))
+    public function getDistrict(){
+        $districts = District::all();
+        if (!empty($districts))
         {
-            return response()->json(['success'=>true,'response'=> $address], 200);
+            return response()->json(['success'=>true,'response'=> $districts], 200);
         }
         else{
-            return response()->json(['success'=>false,'response'=> 'No Address Added yet!'], 404);
+            return response()->json(['success'=>false,'response'=> 'Something went wrong'], 404);
         }
+    }
+    public function getArea($id){
+       $areas = Area::where('district_id',$id)->get();
+       return new AreaCollection($areas);
+    }
+    public function index(){
+        $address = Address::where('user_id',Auth::id())->get();
+        return new ShippingAddressCollection($address);
+//        if (!empty($address))
+//        {
+//            return response()->json(['success'=>true,'response'=> $address], 200);
+//        }
+//        else{
+//            return response()->json(['success'=>false,'response'=> 'No Address Added yet!'], 404);
+//        }
     }
     public function store(Request $request)
     {
         $check = Address::where('user_id',Auth::id())->first();
-        if (empty($check)){
-            $new_address = new Address();
-            $new_address->user_id = Auth::id();
-            $new_address->country = 'Bangladesh';
-            $new_address->address = $request->address;
-            $new_address->city = $request->city;
-            $new_address->area = $request->area;
-            $new_address->latitude = $request->latitude;
-            $new_address->longitude = $request->longitude;
-            $new_address->postal_code = $request->postal_code;
-            $new_address->phone = $request->phone;
-            $new_address->type = $request->type;
-            $new_address->set_default = 1;
-            $new_address->save();
-            if (!empty($new_address))
-            {
-                return response()->json(['success'=>true,'response'=> $new_address], 200);
-            }
-            else{
-                return response()->json(['success'=>false,'response'=> 'Something went wrong!'], 404);
-            }
-        }
         $address = new Address();
         $address->user_id = Auth::id();
+        $address->district_id = $request->district_id;
+        $address->area_id = $request->area_id;
         $address->country = 'Bangladesh';
         $address->address = $request->address;
-        $address->city = $request->city;
-        $address->area = $request->area;
-        $address->latitude = $request->latitude;
-        $address->longitude = $request->longitude;
-        $address->postal_code = $request->postal_code;
         $address->phone = $request->phone;
         $address->type = $request->type;
-        $address->set_default = 0;
+        if (empty($check)){
+            $address->set_default = 1;
+        }else{
+            $address->set_default = 0;
+        }
         $address->save();
         if (!empty($address))
         {
@@ -66,6 +64,26 @@ class AddressController extends Controller
             return response()->json(['success'=>false,'response'=> 'Something went wrong!'], 404);
         }
     }
+
+    public function addressUpdate(Request $request){
+        $address = Address::find($request->id);
+        $address->address = $request->address;
+        $address->district_id = $request->district_id;
+        $address->area_id = $request->area_id;
+        $address->phone = $request->phone;
+        $address->type = $request->type;
+        $address->save();
+        if (!empty($address))
+        {
+            return response()->json(['success'=>true,'response'=> 'Address Updated Successfully'], 200);
+        }
+        else{
+            return response()->json(['success'=>false,'response'=> 'Something went wrong!'], 404);
+        }
+
+    }
+
+
     public function setDefault($id){
         $addresses = Address::where('user_id',Auth::id())->get();
         foreach ($addresses as $key => $address) {
