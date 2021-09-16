@@ -1,4 +1,4 @@
-
+<link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
 <style>
     .bk-autocomplete-items{
         margin-top: 50px;
@@ -20,7 +20,7 @@
                     @else
                         <input class="form-control bksearch input-search-map m-0" type="text" placeholder="Enter your full address" id="input-search" style="border-radius: 4px;" autocomplete="off" value="">
                     @endif
-                    <button class="ml-2 mr-1" data-toggle="tooltip" title="Current Location Nearest Shops" style="border-radius: 4px;" onclick="geoLocationInit()"><i class="fa fa-crosshairs" aria-hidden="true"></i></button>
+                    <button class="ml-2 mr-1" data-toggle="tooltip" title="Current Location Nearest Shops" style="border-radius: 4px;" onclick="geoLocationInit()"><i class="fas fa-location" aria-hidden="true"></i></button>
                     {{--<button class="mx-1 find" style="border-radius: 4px;" id="find">Find</button>--}}
                     <button class="mx-1" data-toggle="tooltip" title="Shops Search In Map"  style="border-radius: 4px;"  title="Find in map" onclick="mapModalClick()"><i class="fa fa-map"></i></button>
                     <div class="ps-panel--search-result bklist ">

@@ -137,7 +137,7 @@ class ProductController extends Controller
     }
     public function getRelatedProducts($id){
         $product = Product::find($id);
-        return new ProductsListCollection(Product::where('category_id',$product->category_id)->where('user_id',$product->user_id)->where('featured', 1)->where('published',1)->latest()->get());
+        return new ProductsListCollection(Product::where('category_id',$product->category_id)->where('user_id',$product->user_id)->where('published',1)->latest()->get());
     }
     public function search_product(Request $request) {
 

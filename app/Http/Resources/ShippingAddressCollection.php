@@ -17,6 +17,7 @@ class ShippingAddressCollection extends ResourceCollection
                     'address' => $data->address,
                     'phone' => $data->phone,
                     'address_type' => $data->type,
+                    'set_default' =>(integer) $data->set_default,
                 ];
             })
         ];
