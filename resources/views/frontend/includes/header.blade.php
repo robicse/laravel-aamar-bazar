@@ -14,18 +14,18 @@
             <div class="header__center">
                 <div class="ps-form--quick-search" >
 
-                @if(Request::is('/'))
-                    @if(Request::is('be-a-seller'))
-                        <input class="form-control m-0" type="text" placeholder="Enter your full address" id="input-search" style="border-radius: 4px;" autocomplete="off" value="">
-                    @else
-                        <input class="form-control bksearch input-search-map m-0" type="text" placeholder="Enter your full address" id="input-search" style="border-radius: 4px;" autocomplete="off" value="">
+                    @if(Request::is('/'))
+                        @if(Request::is('be-a-seller'))
+                            <input class="form-control m-0" type="text" placeholder="Enter your full address" id="input-search" style="border-radius: 4px;" autocomplete="off" value="">
+                        @else
+                            <input class="form-control bksearch input-search-map m-0" type="text" placeholder="Enter your full address" id="input-search" style="border-radius: 4px;" autocomplete="off" value="">
+                        @endif
+                        <button class="ml-2 mr-1" data-toggle="tooltip" title="Current Location Nearest Shops" style="border-radius: 4px;" onclick="geoLocationInit()"><i class="fas fa-location" aria-hidden="true" style="font-size: 24px;"></i></button>
+                        {{--<button class="mx-1 find" style="border-radius: 4px;" id="find">Find</button>--}}
+                        <button class="mx-1" data-toggle="tooltip" title="Shops Search In Map"  style="border-radius: 4px;"  title="Find in map" onclick="mapModalClick()"><i class="fa fa-map" style="font-size: 24px;"></i></button>
+                        <div class="ps-panel--search-result bklist ">
+                        </div>
                     @endif
-                    <button class="ml-2 mr-1" data-toggle="tooltip" title="Current Location Nearest Shops" style="border-radius: 4px;" onclick="geoLocationInit()"><i class="fas fa-location" aria-hidden="true"></i></button>
-                    {{--<button class="mx-1 find" style="border-radius: 4px;" id="find">Find</button>--}}
-                    <button class="mx-1" data-toggle="tooltip" title="Shops Search In Map"  style="border-radius: 4px;"  title="Find in map" onclick="mapModalClick()"><i class="fa fa-map"></i></button>
-                    <div class="ps-panel--search-result bklist ">
-                    </div>
-                @endif
                 </div>
             </div>
             <div class="header__right">
@@ -62,16 +62,16 @@
                                 <div class="ps-widget__header">
                                     <div class="ps-block__left">
                                         @if(is_null(Auth::user()->avatar_original))
-                                          <a href="{{route('user.dashboard')}}">  <img src="{{asset('uploads/profile/default.png')}}" alt="" class="ps-widget-img rounded-circle" width="50" height="50"></a>
+                                            <a href="{{route('user.dashboard')}}">  <img src="{{asset('uploads/profile/default.png')}}" alt="" class="ps-widget-img rounded-circle" width="50" height="50"></a>
                                         @else
-                                           <a href="{{route('user.dashboard')}}"> <img src="{{url(Auth::user()->avatar_original)}}" alt="" class="ps-widget-img rounded-circle" width="50" height="50"></a>
+                                            <a href="{{route('user.dashboard')}}"> <img src="{{url(Auth::user()->avatar_original)}}" alt="" class="ps-widget-img rounded-circle" width="50" height="50"></a>
                                         @endif
-                                            <div class="ps-block__right"><a href="{{route('user.dashboard')}}" data-toggle="tooltip" title="{{Auth::user()->name}}">{!! Str::limit(Auth::user()->name,7) !!}</a>
-                                                <form action = "{{route('logout')}}" method="post" >
-                                                    @csrf
-                                                    <button type="submit" class="btn btn-lg p-0" style="background: #7B0F17!important; font-size: 1.5rem;">Logout</button>
-                                                </form>
-                                            </div>
+                                        <div class="ps-block__right"><a href="{{route('user.dashboard')}}" data-toggle="tooltip" title="{{Auth::user()->name}}">{!! Str::limit(Auth::user()->name,7) !!}</a>
+                                            <form action = "{{route('logout')}}" method="post" >
+                                                @csrf
+                                                <button type="submit" class="btn btn-lg p-0" style="background: #7B0F17!important; font-size: 1.5rem;">Logout</button>
+                                            </form>
+                                        </div>
 
                                     </div>
                                 </div>
@@ -116,17 +116,17 @@
     <div class="ps-search--mobile" style="background: #000000;">
         <div class="ps-form--quick-search" >
             @if(Request::is('/'))
-            <button class="mx-1" style=""  data-toggle="tooltip" title="Current Location Nearest Shops." onclick="mapModalClick()"><i class="fa fa-map"></i></button>
-            @if(Request::is('be-a-seller'))
-                <input class="form-control m-0" type="text" placeholder="Enter your full address" id="input-search" style="border-radius: 4px;" autocomplete="off" value="">
-            @else
-                {{--<input class="form-control bksearch m-0" type="text" placeholder="Enter your full address" id="input-search" style="border-radius: 4px;" autocomplete="off" value="">--}}
-                <input type="text" onkeyup="getAddress()" id="mobile_search" placeholder="Search Your Area" class="form-control form_height form-control-sm address input-search-map" autocomplete="off">
-            @endif
-            <button data-toggle="tooltip" title="Search Shops In Map." class="ml-2 mr-1"  style="border-radius: 4px;" onclick="geoLocationInit()"><i class="fa fa-map-marker" aria-hidden="true"></i></button>
+                <button class="mx-1" style=""  data-toggle="tooltip" title="Current Location Nearest Shops." onclick="mapModalClick()"><i class="fa fa-map"></i></button>
+                @if(Request::is('be-a-seller'))
+                    <input class="form-control m-0" type="text" placeholder="Enter your full address" id="input-search" style="border-radius: 4px;" autocomplete="off" value="">
+                @else
+                    {{--<input class="form-control bksearch m-0" type="text" placeholder="Enter your full address" id="input-search" style="border-radius: 4px;" autocomplete="off" value="">--}}
+                    <input type="text" onkeyup="getAddress()" id="mobile_search" placeholder="Search Your Area" class="form-control form_height form-control-sm address input-search-map" autocomplete="off">
+                @endif
+                <button data-toggle="tooltip" title="Search Shops In Map." class="ml-2 mr-1"  style="border-radius: 4px;" onclick="geoLocationInit()"><i class="fa fa-map-marker" aria-hidden="true"></i></button>
 
-            <div class="ps-panel--search-result bklist ">
-            </div>
+                <div class="ps-panel--search-result bklist ">
+                </div>
             @endif
         </div>
         <ul class="list-group addList" style="padding: 0;">
@@ -172,8 +172,8 @@
     <div class="ps-panel__content">
         <ul class="menu--mobile">
             @foreach($shops as $shop)
-            <li class="current-menu-item "><a href="{{route('shop.details',$shop->slug)}}"><img src="{{url($shop->logo)}}" alt="" width="60" height="60"> {{$shop->name}}</a>
-            </li>
+                <li class="current-menu-item "><a href="{{route('shop.details',$shop->slug)}}"><img src="{{url($shop->logo)}}" alt="" width="60" height="60"> {{$shop->name}}</a>
+                </li>
             @endforeach
         </ul>
     </div>
@@ -183,9 +183,9 @@
         <a class="navigation__item ps-toggle--sidebar" href="#menu-mobile">
             <i class="icon-menu"></i><span> Menu</span>
         </a>
-       {{-- <a class="navigation__item ps-toggle--sidebar" href="#navigation-mobile"><i class="icon-list4">
-            </i><span> Shops</span>
-        </a>--}}
+        {{-- <a class="navigation__item ps-toggle--sidebar" href="#navigation-mobile"><i class="icon-list4">
+             </i><span> Shops</span>
+         </a>--}}
         <a class="navigation__item ps-toggle--sidebar" href="#cart-mobile">
             <i class="icon-bag2"></i><span> Cart</span>
         </a>
@@ -195,8 +195,8 @@
     <div class="ps-panel__header" style="padding-bottom: 50px;">
         <div class="float-left">
             @if(Auth::guest())
-            <img class="" src="{{asset('uploads/profile/default.png')}}" alt="" width="40" height="40">
-            <a href="{{route('login')}}"><strong>Login</strong></a> | <a href="{{route('register')}}"><strong>Register</strong></a>
+                <img class="" src="{{asset('uploads/profile/default.png')}}" alt="" width="40" height="40">
+                <a href="{{route('login')}}"><strong>Login</strong></a> | <a href="{{route('register')}}"><strong>Register</strong></a>
             @else
                 @if(is_null(Auth::user()->avatar_original))
                     <a href="{{route('user.dashboard')}}">  <img src="{{asset('uploads/profile/default.png')}}" alt="" class="ps-widget-img rounded-circle" width="40" height="40"> {{Auth::user()->name}}</a>
@@ -214,37 +214,37 @@
             @if(Auth::guest())
                 <li class="menu-item-has-children"><a href="{{url('/')}}"><i class="icon-home"></i> Home </a>
                 </li>
-{{--                <li class="menu-item-has-children"><a href="{{url('/')}}"><i class="icon-user"></i> Login </a>--}}
-{{--                </li>--}}
-{{--                <li class="menu-item-has-children"><a href="{{url('/')}}"><i class="icon-home"></i> Register </a>--}}
-{{--                </li>--}}
+                {{--                <li class="menu-item-has-children"><a href="{{url('/')}}"><i class="icon-user"></i> Login </a>--}}
+                {{--                </li>--}}
+                {{--                <li class="menu-item-has-children"><a href="{{url('/')}}"><i class="icon-home"></i> Register </a>--}}
+                {{--                </li>--}}
             @else
                 @if(Auth::user()->referral_code !=null)
                     <li class="menu-item-has-children">
-                    <div class="input-group mb-3">
-                        <input type="text" class="form-control" placeholder="" value="{{route('registration.refer.code',Auth::user()->referral_code)}}" data-toggle="tooltip" title="Click here to copy link!" aria-label="Recipient's username" aria-describedby="basic-addon2" style="height: 35px; padding: 0 10px">
-                        <div class="input-group-append">
-                            <span class="input-group-text bg-info" style="color: #ffffff"><a href="{{route('registration.refer.code',Auth::user()->referral_code)}}">Copy</a></span>
+                        <div class="input-group mb-3">
+                            <input type="text" class="form-control" placeholder="" value="{{route('registration.refer.code',Auth::user()->referral_code)}}" data-toggle="tooltip" title="Click here to copy link!" aria-label="Recipient's username" aria-describedby="basic-addon2" style="height: 35px; padding: 0 10px">
+                            <div class="input-group-append">
+                                <span class="input-group-text bg-info" style="color: #ffffff"><a href="{{route('registration.refer.code',Auth::user()->referral_code)}}">Copy</a></span>
+                            </div>
                         </div>
-                    </div>
                     </li>
                 @endif
-                    <li class="menu-item-has-children"><a href="{{url('/')}}"><i class="icon-home"></i> Home </a>
-                    </li>
-                    <li class="menu-item-has-children"><a href="{{route('user.dashboard')}}"><i class="icon-list"></i> User Dashboard </a>
-                    </li>
-                    <li class="menu-item-has-children"><a href="{{route('user.edit-profile')}}"><i class="icon-user"></i> Edit Profile </a>
-                    </li>
-                    <li class="menu-item-has-children"><a href="{{route('user.edit-password')}}"><i class="icon-alarm-ringing"></i> Edit Password </a>
-                    </li>
-                    <li class="menu-item-has-children"><a href="{{route('user.order.history')}}"><i class="icon-list"></i> Order History </a>
-                    </li>
-                    <li class="menu-item-has-children"><a href="{{route('user.wishlist')}}"><i class="icon-heart"></i> Wishlist </a>
-                    </li>
-                    <li class="menu-item-has-children"><a href="{{route('user.address.index')}}"><i class="icon-map-marker"></i> Address </a>
-                    </li>
-                    <li class="menu-item-has-children"><a href="{{route('user.favorite.shop')}}"><i class="icon-store"></i>Favorite Shop</a>
-                    </li>
+                <li class="menu-item-has-children"><a href="{{url('/')}}"><i class="icon-home"></i> Home </a>
+                </li>
+                <li class="menu-item-has-children"><a href="{{route('user.dashboard')}}"><i class="icon-list"></i> User Dashboard </a>
+                </li>
+                <li class="menu-item-has-children"><a href="{{route('user.edit-profile')}}"><i class="icon-user"></i> Edit Profile </a>
+                </li>
+                <li class="menu-item-has-children"><a href="{{route('user.edit-password')}}"><i class="icon-alarm-ringing"></i> Edit Password </a>
+                </li>
+                <li class="menu-item-has-children"><a href="{{route('user.order.history')}}"><i class="icon-list"></i> Order History </a>
+                </li>
+                <li class="menu-item-has-children"><a href="{{route('user.wishlist')}}"><i class="icon-heart"></i> Wishlist </a>
+                </li>
+                <li class="menu-item-has-children"><a href="{{route('user.address.index')}}"><i class="icon-map-marker"></i> Address </a>
+                </li>
+                <li class="menu-item-has-children"><a href="{{route('user.favorite.shop')}}"><i class="icon-store"></i>Favorite Shop</a>
+                </li>
                 <li class="menu-item-has-children">
                     <form action = "{{route('logout')}}" method="post">
                         @csrf

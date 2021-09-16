@@ -215,6 +215,22 @@
     </script>
 
     <script>
+        $('#district_id').change(function (){
+            var district_id = $('#district_id').val();
+            console.log(district_id)
+            $.post('{{ route('get-areas') }}', {
+                _token: '{{ csrf_token() }}',
+                district_id: district_id
+            }, function (data) {
+                $('#area').html(null);
+                for (var i = 0; i < data.length; i++) {
+                    $('#area').append($('<option>', {
+                        value: data[i].id,
+                        text: data[i].name
+                    }));
+                }
+            });
+        });
         function edit_address(id){
             $.post('{{ route('user.address-edit.modal') }}',{_token:'{{ @csrf_token() }}', id:id}, function(data){
                 $('#edit_address_modal #modal-content').html(data);
