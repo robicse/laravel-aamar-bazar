@@ -161,7 +161,7 @@
                                             <label for="purchase_price">Purchase price</label>
                                             <input type="number" min="0" value="{{$product->purchase_price}}" step="0.01"
                                                    placeholder="Purchase price" name="purchase_price"
-                                                   class="form-control" required="">
+                                                   class="form-control">
                                         </div>
                                     </div>
                                     <div class="row">

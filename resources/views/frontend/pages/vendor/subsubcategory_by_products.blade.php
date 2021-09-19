@@ -64,6 +64,7 @@
                                 </div><span class="ps-block__divider"></span>
                                 <div class="ps-block__content">
                                     <p><strong>{{$shop->name}}</strong>, {{$shop->about}}</p><span class="ps-block__divider"></span>
+                                    <p><strong>Address</strong> {{$shop->address}}</p>
                                 </div>
 
                             </div>

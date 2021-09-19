@@ -340,7 +340,7 @@ class CartController extends Controller
         $order->invoice_code = date('Ymd-his');
         $order->user_id = Auth::user()->id;
         $order->shop_id = $shop_id;
-        $order->area = $address->area;
+        $order->area = $address->Area->name;
         $order->latitude = $address->latitude;
         $order->longitude = $address->longitude;
         $order->shipping_address = $shipping_info;
@@ -439,6 +439,7 @@ class CartController extends Controller
         $address = Address::where('user_id',Auth::id())->where('id',$request->address_id)->first();
         $data['name'] = Auth::User()->name;
         $data['email'] = Auth::User()->email;
+        $data['area'] = $address->Area->name;
         $data['address'] = $address->address;
         $data['country'] = $address->country;
         $data['city'] = $address->city;
@@ -455,7 +456,7 @@ class CartController extends Controller
         $order->invoice_code = date('Ymd-his');
         $order->user_id = Auth::user()->id;
         $order->shop_id = $shop_id;
-        $order->area = $address->area;
+        $order->area = $address->Area->name;
         $order->latitude = $address->latitude;
         $order->longitude = $address->longitude;
         $order->shipping_address = $shipping_info;

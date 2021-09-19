@@ -161,7 +161,7 @@
                                             <label for="purchase_price">Purchase price</label>
                                             <input type="number" min="0" value="{{$product->purchase_price}}" step="0.01"
                                                    placeholder="Purchase price" name="purchase_price"
-                                                   class="form-control" required="">
+                                                   class="form-control">
                                         </div>
                                     </div>
                                     <div class="row">
@@ -461,7 +461,7 @@
                 groupClassName: 'col-md-4 col-sm-4 col-xs-6',
                 maxFileSize: '150000',
                 dropFileLabel: "Drop Here",
-                allowedExt: 'webp|jpeg',
+                allowedExt: 'webp|jpeg|png',
                 onExtensionErr: function (index, file) {
                     console.log(index, file, 'extension err');
                     alert('Please only input png or jpg type file')
@@ -489,7 +489,7 @@
                 groupClassName: 'col-md-4 col-sm-4 col-xs-6',
                 maxFileSize: '150000',
                 dropFileLabel: "Drop Here",
-                allowedExt: 'webp|jpeg',
+                allowedExt: 'webp|jpeg|png',
                 onExtensionErr: function (index, file) {
                     console.log(index, file, 'extension err');
                     alert('Please only input png or jpg type file')

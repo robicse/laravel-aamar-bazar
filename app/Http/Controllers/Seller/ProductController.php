@@ -133,23 +133,24 @@ class ProductController extends Controller
             $shopCategoryData->category_id = $request->category_id;
             $shopCategoryData->save();
         }
-        $shopSubcategory = ShopSubcategory::where('shop_id',$shopId->id)->where('subcategory_id',$request->subcategory_id)->where('category_id',$request->category_id)->first();
-        if(empty($shopSubcategory)){
+        $checkShopSubcategory = ShopSubcategory::where('shop_id',$shopId->id)->where('subcategory_id',$request->subcategory_id)->where('category_id',$request->category_id)->first();
+        if(empty($checkShopSubcategory)){
             $shopSubcategoryData = new ShopSubcategory();
             $shopSubcategoryData->shop_id = $shopId->id;
             $shopSubcategoryData->subcategory_id = $request->subcategory_id;
             $shopSubcategoryData->category_id = $request->category_id;
             $shopSubcategoryData->save();
         }
-
-        $checkShopSubSubCategory = ShopSubSubcategory::where('shop_id',$shopId->id)->where('subsubcategory_id',$request->subsubcategory_id)->where('subcategory_id',$request->subcategory_id)->where('category_id',$request->category_id)->first();
-        if (empty($checkShopSubSubCategory)) {
-            $shopSub_SubcategoryData = new ShopSubSubcategory();
-            $shopSub_SubcategoryData->shop_id = $shopId->id;
-            $shopSub_SubcategoryData->subsubcategory_id = $request->subsubcategory_id;
-            $shopSub_SubcategoryData->subcategory_id = $request->subcategory_id;
-            $shopSub_SubcategoryData->category_id = $request->category_id;
-            $shopSub_SubcategoryData->save();
+        if ($request->subsubcategory_id != null){
+            $checkShopSubSubCategory = ShopSubSubcategory::where('shop_id',$shopId->id)->where('subsubcategory_id',$request->subsubcategory_id)->where('subcategory_id',$request->subcategory_id)->where('category_id',$request->category_id)->first();
+            if (empty($checkShopSubSubCategory)) {
+                $shopSub_SubcategoryData = new ShopSubSubcategory();
+                $shopSub_SubcategoryData->shop_id = $shopId->id;
+                $shopSub_SubcategoryData->subsubcategory_id = $request->subsubcategory_id;
+                $shopSub_SubcategoryData->subcategory_id = $request->subcategory_id;
+                $shopSub_SubcategoryData->category_id = $request->category_id;
+                $shopSub_SubcategoryData->save();
+            }
         }
 
         $shopBrand = ShopBrand::where('shop_id',$shopId->id)->where('brand_id',$request->brand_id)->first();
@@ -517,14 +518,14 @@ class ProductController extends Controller
         $check2 = array();
         foreach ($products as $product){
             $data = $sellerP->contains('aPId_to_seller', $product->id);
-           if (!$data){
+            if (!$data){
                 $check2['id'] = $product->id;
                 $check2['image'] = $product->thumbnail_img;
                 $check2['name'] = $product->name;
                 $check2['unit'] = $product->unit;
                 $check2['unit_price'] = $product->unit_price;
                 array_push($arr, $check2);
-           }
+            }
         }
 //        return $arr;
         $alldata = array();

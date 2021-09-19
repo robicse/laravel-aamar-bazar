@@ -45,7 +45,7 @@ class SellerController extends Controller
     }
     public function search_area(Request $request){
         $name = $request->get('q');
-        $area = Shop::where('area', 'LIKE', '%'. $name. '%')->limit(5)->get();
+        $area = Shop::select('area')->where('area', 'LIKE', '%'. $name. '%')->limit(5)->groupBy('area')->get();
         return $area;
     }
     public function areaWiseSeller($area){

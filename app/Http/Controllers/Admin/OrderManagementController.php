@@ -38,7 +38,7 @@ class OrderManagementController extends Controller
     }
     public function search_area(Request $request){
         $name = $request->get('q');
-        $area = Order::where('area', 'LIKE', '%'. $name. '%')->limit(5)->get();
+        $area = Order::select('area')->where('area', 'LIKE', '%'. $name. '%')->limit(5)->groupBy('area')->get();
         return $area;
     }
     public function areaWiseOrder($area){

@@ -106,8 +106,14 @@
                                                 </strong>
                                             </div>
                                         </div>
+
                                     </div>
-                                    <div class="ps-product__desc" style="margin-top: -25px;">
+                                    @if($productDetails->variant_product == 0 || $productDetails->colors != null)
+                                        <div class="" style="margin-top: -20px;">
+                                            <div class="text-bold">Unit: {{$productDetails->unit}}</div>
+                                        </div>
+                                    @endif
+                                    <div class="ps-product__desc" style="margin-top: -5px;">
                                         <p>Sold By:<a href="{{route('shop.details',$shop->slug)}}"><strong> {{ $shop->name }}</strong></a></p>
                                     </div>
                                     <input type="hidden" name="id" value="{{ $productDetails->id }}">
