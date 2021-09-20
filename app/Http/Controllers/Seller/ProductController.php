@@ -513,7 +513,7 @@ class ProductController extends Controller
     public function getAdminProductAjax()
     {
         $sellerP = Product::where('added_by','seller')->where('user_id',Auth::id())->select('aPId_to_seller')->get();
-        $products = Product::where('added_by','admin')->latest()->select('id','name','unit','unit_price','thumbnail_img')->latest()->get();
+        $products = Product::where('added_by','admin')->latest()->select('id','name','category_id','unit','unit_price','thumbnail_img')->latest()->get();
         $arr = array();
         $check2 = array();
         foreach ($products as $product){
@@ -522,6 +522,7 @@ class ProductController extends Controller
                 $check2['id'] = $product->id;
                 $check2['image'] = $product->thumbnail_img;
                 $check2['name'] = $product->name;
+                $check2['category_name'] = $product->category->name;
                 $check2['unit'] = $product->unit;
                 $check2['unit_price'] = $product->unit_price;
                 array_push($arr, $check2);
@@ -534,6 +535,7 @@ class ProductController extends Controller
                 (string)$single['id'],
                 '<img src="'.url($single['image']).'" alt="Girl in a jacket" width="50" height="40">',
                 $single['name'],
+                $single['category_name'],
                 $single['unit'],
                 (string)$single['unit_price'],
 
@@ -574,7 +576,7 @@ class ProductController extends Controller
                 $shopCategoryData->category_id = $product_new->category_id;
                 $shopCategoryData->save();
             }
-            $shopSubcategory = ShopSubcategory::where('shop_id',$shopId->id)->where('subcategory_id',$product_new->subcategory_id)->where('category_id',$product_new->subcategory_id)->first();
+            $shopSubcategory = ShopSubcategory::where('shop_id',$shopId->id)->where('subcategory_id',$product_new->subcategory_id)->where('category_id',$product_new->category_id)->first();
 //            $shopCategory = ShopCategory::where('shop_id',$shopId->id)->where('category_id',$product_new->category_id)->first();
             if (empty($shopSubcategory)) {
                 $shopSubcategoryData = new ShopSubcategory();
@@ -584,17 +586,17 @@ class ProductController extends Controller
                 $shopSubcategoryData->save();
             }
 
-            //check shop sub sub_categories
-            $checkShopSubSubCategory = ShopSubSubcategory::where('shop_id',$shopId->id)->where('subsubcategory_id',$product_new->subsubcategory_id)->where('subcategory_id',$product_new->subcategory_id)->where('category_id',$product_new->category_id)->first();
-            if (empty($checkShopSubSubCategory)) {
-                $shopSub_SubcategoryData = new ShopSubSubcategory();
-                $shopSub_SubcategoryData->shop_id = $shopId->id;
-                $shopSub_SubcategoryData->subsubcategory_id = $product_new->subsubcategory_id;
-                $shopSub_SubcategoryData->subcategory_id = $product_new->subcategory_id;
-                $shopSub_SubcategoryData->category_id = $product_new->category_id;
-                $shopSub_SubcategoryData->save();
-            }
-
+       if ($product_new->subsubcategory_id != null){
+           $checkShopSubSubCategory = ShopSubSubcategory::where('shop_id',$shopId->id)->where('subsubcategory_id',$product_new->subsubcategory_id)->where('subcategory_id',$product_new->subcategory_id)->where('category_id',$product_new->category_id)->first();
+           if (empty($checkShopSubSubCategory)) {
+               $shopSub_SubcategoryData = new ShopSubSubcategory();
+               $shopSub_SubcategoryData->shop_id = $shopId->id;
+               $shopSub_SubcategoryData->subsubcategory_id = $product_new->subsubcategory_id;
+               $shopSub_SubcategoryData->subcategory_id = $product_new->subcategory_id;
+               $shopSub_SubcategoryData->category_id = $product_new->category_id;
+               $shopSub_SubcategoryData->save();
+           }
+       }
             $shopBrand = ShopBrand::where('shop_id',$shopId->id)->where('brand_id',$product_new->brand_id)->first();
             if(empty($shopBrand)){
                 $shopBrandData = new ShopBrand();

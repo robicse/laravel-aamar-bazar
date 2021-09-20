@@ -57,15 +57,26 @@
                                 <div class="ps-block__left"><i class="icon-user"></i></div>
                                 <div class="ps-block__right"><a href="{{ route('login') }}">Login</a><a href="{{ route('register') }}">Register</a></div>
                             </div>
-                        @else
+                        @elseif(Auth::User()->user_type == 'seller')
                             <div class="ps-block--user-header">
                                 <div class="ps-widget__header">
                                     <div class="ps-block__left">
-                                        @if(is_null(Auth::user()->avatar_original))
-                                            <a href="{{route('user.dashboard')}}">  <img src="{{asset('uploads/profile/default.png')}}" alt="" class="ps-widget-img rounded-circle" width="50" height="50"></a>
-                                        @else
-                                            <a href="{{route('user.dashboard')}}"> <img src="{{url(Auth::user()->avatar_original)}}" alt="" class="ps-widget-img rounded-circle" width="50" height="50"></a>
-                                        @endif
+                                        <a href="{{route('seller.dashboard')}}"> <img src="{{url(Auth::user()->avatar_original)}}" alt="" class="ps-widget-img rounded-circle" width="50" height="50"></a>
+                                        <div class="ps-block__right"><a href="{{route('seller.dashboard')}}" data-toggle="tooltip" title="{{Auth::user()->name}}">{!! Str::limit(Auth::user()->name,7) !!}</a>
+                                            <form action = "{{route('logout')}}" method="post" >
+                                                @csrf
+                                                <button type="submit" class="btn btn-lg p-0" style="background: #7B0F17!important; font-size: 1.5rem;">Logout</button>
+                                            </form>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        @elseif(Auth::User()->user_type == 'customer')
+                            <div class="ps-block--user-header">
+                                <div class="ps-widget__header">
+                                    <div class="ps-block__left">
+                                        <a href="{{route('user.dashboard')}}"> <img src="{{url(Auth::user()->avatar_original)}}" alt="" class="ps-widget-img rounded-circle" width="50" height="50"></a>
                                         <div class="ps-block__right"><a href="{{route('user.dashboard')}}" data-toggle="tooltip" title="{{Auth::user()->name}}">{!! Str::limit(Auth::user()->name,7) !!}</a>
                                             <form action = "{{route('logout')}}" method="post" >
                                                 @csrf

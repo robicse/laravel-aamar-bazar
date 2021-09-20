@@ -124,12 +124,11 @@
                                     <div class="row">
                                         <div class="form-group col-md-6">
                                             <label for="unit_price">Unit price</label>
-                                            <input type="number" min="0" value="0" step="0.01" placeholder="Unit price" name="unit_price" class="form-control" required="">
+                                            <input type="number" value="0" name="unit_price" class="form-control" required="">
                                         </div>
                                         <div class="form-group col-md-6">
                                             <label for="purchase_price">Purchase price</label>
-                                            <input type="number" min="0" value="0" step="0.01"
-                                                   placeholder="Purchase price" name="purchase_price"
+                                            <input type="number" value="0" name="purchase_price"
                                                    class="form-control">
                                         </div>
                                     </div>
@@ -147,8 +146,7 @@
                                         </div>
                                         <div class="form-group col-md-5">
                                             <label for="discount">Discount</label>
-                                            <input type="number" min="0" value="0" step="0.01" placeholder="Discount"
-                                                   name="discount" class="form-control" required="">
+                                            <input type="number" value="0" class="form-control" required="">
                                         </div>
                                         <div class="form-group col-md-3">
                                             <label for="discount">Discount Type</label>
@@ -160,8 +158,7 @@
                                         </div>
                                         <div class="form-group col-md-3">
                                             <label for="discount">VAT</label>
-                                            <input type="number" min="0" value="0" step="0.01" placeholder="Vat"
-                                                   name="vat" class="form-control" required="">
+                                            <input type="number" value="0" name="vat" class="form-control" required="">
                                         </div>
                                         <div class="form-group col-md-5">
                                             <label for="discount">VAT Type</label>
@@ -173,8 +170,7 @@
                                         </div>
                                         <div class="form-group col-md-4">
                                             <label for="labour_cost">Labour Cost</label>
-                                            <input type="number" min="0" value="0" step="0.01" placeholder="Labour Cost"
-                                                   name="labour_cost" class="form-control" required="">
+                                            <input type="number" value="0" name="labour_cost" class="form-control" required="">
                                         </div>
                                     </div>
                                 </div>

@@ -155,13 +155,11 @@
                                     <div class="row">
                                         <div class="form-group col-md-6">
                                             <label for="unit_price">Unit price</label>
-                                            <input type="number" min="0" value="{{$product->unit_price}}" step="0.01" placeholder="Unit price" name="unit_price" class="form-control" required="">
+                                            <input type="number" value="{{$product->unit_price}}" name="unit_price" class="form-control" required="">
                                         </div>
                                         <div class="form-group col-md-6">
                                             <label for="purchase_price">Purchase price</label>
-                                            <input type="number" min="0" value="{{$product->purchase_price}}" step="0.01"
-                                                   placeholder="Purchase price" name="purchase_price"
-                                                   class="form-control">
+                                            <input type="number" value="{{$product->purchase_price}}" name="purchase_price" class="form-control">
                                         </div>
                                     </div>
                                     <div class="row">
@@ -176,7 +174,7 @@
                                         </div>
                                         <div class="form-group col-md-5">
                                             <label for="discount">Discount</label>
-                                            <input type="number" min="0" value="{{$product->discount}}" step="0.01" placeholder="Discount"
+                                            <input type="number" value="{{$product->discount}}"
                                                    name="discount" class="form-control" required="">
                                         </div>
                                         <div class="form-group col-md-3">
@@ -189,8 +187,7 @@
                                         </div>
                                         <div class="form-group col-md-3">
                                             <label for="vat">VAT</label>
-                                            <input type="number" min="0" value="{{$product->vat}}" step="0.01" placeholder="VAT"
-                                                   name="vat" class="form-control" required="">
+                                            <input type="number" value="{{$product->vat}}" name="vat" class="form-control" required="">
                                         </div>
                                         <div class="form-group col-md-5">
                                             <label for="discount">VAT Type</label>
@@ -202,7 +199,7 @@
                                         </div>
                                         <div class="form-group col-md-4">
                                             <label for="vat">Labour cost</label>
-                                            <input type="number" min="0" value="{{$product->labour_cost}}" step="0.01" placeholder="Labour cost"
+                                            <input type="number" value="{{$product->labour_cost}}"
                                                    name="labour_cost" class="form-control" required="">
                                         </div>
                                     </div>
@@ -213,15 +210,15 @@
                                         <div class="form-group col-md-10">
                                             <label for="colors">Colors</label>
                                             @php
-                                              $colors =  \App\Model\Color::orderBy('name', 'asc')->get();
-                                                $pColors = json_decode($product->colors);
-                                                $pColorArr = [];
-                                                foreach ($pColors as $pColor){
-                                                    $data = $pColor->code;
-                                                    array_push($pColorArr, $data);
-                                                }
+                                                $colors =  \App\Model\Color::orderBy('name', 'asc')->get();
+                                                  $pColors = json_decode($product->colors);
+                                                  $pColorArr = [];
+                                                  foreach ($pColors as $pColor){
+                                                      $data = $pColor->code;
+                                                      array_push($pColorArr, $data);
+                                                  }
                                             @endphp
-                                           {{-- {{dd($pColorArr)}}--}}
+                                            {{-- {{dd($pColorArr)}}--}}
                                             <select class="form-control color-var-select" name="colors[]" id="colors" multiple>
                                                 @foreach ($colors as $key => $color)
                                                     <option value="{{ $color->code }}" <?php if(in_array($color->code, $pColorArr)) echo 'selected'?> >{{ $color->name }}</option>

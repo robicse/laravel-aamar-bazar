@@ -63,7 +63,7 @@
 					else{
 						echo $unit_price;
 					}
-                @endphp" min="0" step="0.01" class="form-control" required>
+                @endphp" class="form-control" required>
 			</td>
 			<td>
 				<input type="text" name="sku_{{ $str }}" value="{{ $sku }}" class="form-control" required>
@@ -76,7 +76,7 @@
                     else{
                         echo '100000';
                     }
-                @endphp" min="0" step="1" class="form-control" required readonly>
+                @endphp" class="form-control" required readonly>
 			</td>
 		</tr>
 	@endif
