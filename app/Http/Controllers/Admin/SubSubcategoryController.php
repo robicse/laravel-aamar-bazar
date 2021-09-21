@@ -52,13 +52,14 @@ class SubSubcategoryController extends Controller
             'name'=> 'required|unique:sub_subcategories,name',
         ]);
 
-        $subcategory = new SubSubcategory();
-        $subcategory->name = $request->name;
-        $subcategory->sub_category_id = $request->sub_category_id;
-        $subcategory->slug = Str::slug($request->name);
-        $subcategory->meta_title = $request->meta_title;
-        $subcategory->meta_description = $request->meta_description;
-        $subcategory->save();
+        $subSubCategory = new SubSubcategory();
+        $subSubCategory->name = $request->name;
+        $subSubCategory->sub_category_id = $request->sub_category_id;
+        $subSubCategory->slug = Str::slug($request->name);
+        $subSubCategory->status = 1;
+        $subSubCategory->meta_title = $request->meta_title;
+        $subSubCategory->meta_description = $request->meta_description;
+        $subSubCategory->save();
         Toastr::success('Sub SubCategories Created Successfully');
         return back();
     }
@@ -100,13 +101,13 @@ class SubSubcategoryController extends Controller
             'name'=> 'required|unique:sub_subcategories,name,'.$id,
         ]);
 
-        $subcategory = SubSubcategory::find($id);
-        $subcategory->name = $request->name;
-        $subcategory->sub_category_id = $request->sub_category_id;
-        $subcategory->slug = Str::slug($request->name);
-        $subcategory->meta_title = $request->meta_title;
-        $subcategory->meta_description = $request->meta_description;
-        $subcategory->save();
+        $subSubCategory = SubSubcategory::find($id);
+        $subSubCategory->name = $request->name;
+        $subSubCategory->sub_category_id = $request->sub_category_id;
+        $subSubCategory->slug = Str::slug($request->name);
+        $subSubCategory->meta_title = $request->meta_title;
+        $subSubCategory->meta_description = $request->meta_description;
+        $subSubCategory->save();
         Toastr::success('Sub SubCategories Updated Successfully');
         return back();
     }

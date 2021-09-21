@@ -60,6 +60,7 @@ class SubcategoryController extends Controller
         $subcategory->name = $request->name;
         $subcategory->category_id = $request->category_id;
         $subcategory->slug = Str::slug($request->name);
+        $subcategory->status = 1;
         $subcategory->meta_title = $request->meta_title;
         $subcategory->meta_description = $request->meta_description;
         $subcategory->save();

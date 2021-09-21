@@ -42,6 +42,7 @@ class BrandController extends Controller
         $brand = new Brand;
         $brand->name = $request->name;
         $brand->slug = Str::slug($request->name);
+        $brand->status = 1;
         $brand->meta_title = $request->meta_title;
         $brand->meta_description = $request->meta_description;
         $image = $request->file('logo');
