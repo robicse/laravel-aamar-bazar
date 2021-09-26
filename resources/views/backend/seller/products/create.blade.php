@@ -63,7 +63,7 @@
                             <div class="form-group">
                                 <label for="">Sub Subcategory</label>
                                 <select name="subsubcategory_id" id="subsubcategory_id"
-                                        class="form-control demo-select2" required>
+                                        class="form-control demo-select2">
 
                                 </select>
                             </div>

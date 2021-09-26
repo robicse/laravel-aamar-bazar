@@ -12,7 +12,7 @@ class AreaController extends Controller
 
     public function index()
     {
-        $areas = Area::all();
+        $areas = Area::orderBy('name','ASC')->get();
         return view('backend.admin.area.index',compact('areas'));
     }
 
@@ -41,6 +41,9 @@ class AreaController extends Controller
 
     public function update(Request $request, $id)
     {
+        $this->validate($request, [
+            'name'=> 'required|unique:areas,name',$id,
+        ]);
         $area = Area::find($id);
         $area->name = $request->name;
         $area->save();

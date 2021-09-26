@@ -27,7 +27,7 @@ class CartController extends Controller
         return view('frontend.pages.shop.shopping_cart');
     }
     public function getAreas(Request $request){
-        $areas = Area::where('district_id',$request->district_id)->get();
+        $areas = Area::where('district_id',$request->district_id)->orderBy('name','ASC')->get();
         return $areas;
     }
 

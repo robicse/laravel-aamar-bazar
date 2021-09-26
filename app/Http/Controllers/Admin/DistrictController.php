@@ -65,7 +65,9 @@ class DistrictController extends Controller
         return view('backend.admin.district.create_area',compact('district'));
     }
     public function storeArea(Request $request, $id){
-
+        $this->validate($request, [
+            'name'=> 'required|unique:areas,name',
+        ]);
         foreach ($request->name as $name){
             $area = new Area();
             $area->name = $name;

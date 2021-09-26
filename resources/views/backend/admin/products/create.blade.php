@@ -4,7 +4,13 @@
     <link rel="stylesheet" href="{{asset('backend/plugins/select2/select2.min.css')}}">
     <link rel="stylesheet" href="{{asset('backend/plugins/bootstrap-tagsinput/bootstrap-tagsinput.css')}}">
     <link rel="stylesheet" href="{{asset('backend/dist/css/spectrum.css')}}">
-
+    <style>
+        input[type=number]::-webkit-inner-spin-button,
+        input[type=number]::-webkit-outer-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+    </style>
 @endpush
 @section('content')
     <section class="content-header">
@@ -283,6 +289,8 @@
         $(document).ready(function () {
             // get_subcategories_by_category();
             //title to slug make
+            $('.demo-select2').select2();
+
             $("#name").keyup(function () {
                 var name = $("#name").val();
                 console.log(name);

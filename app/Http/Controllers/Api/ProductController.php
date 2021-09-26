@@ -172,7 +172,8 @@ class ProductController extends Controller
         $str = '';
         $tax = 0;
 
-        if ($request->has('color')) {
+        //if ($request->has('color')) {
+        if ($request->color != null) {
             $data['color'] = $request['color'];
             $str = Color::where('code', $request['color'])->first()->name;
         }
