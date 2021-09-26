@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Http\Resources\OrderDetailsCollection;
+use App\Http\Resources\ShopCollection;
 use App\Model\Attribute;
 use App\Model\Brand;
 use App\Model\Category;
@@ -193,14 +194,15 @@ class SellerController extends Controller
         }
     }
     public function shopInfo(){
-        $shop = Shop::where('user_id',Auth::id())->first();
-        if (!empty($shop))
-        {
-            return response()->json(['success'=>true,'response'=> $shop], 200);
-        }
-        else{
-            return response()->json(['success'=>false,'response'=> 'Something went wrong!'], 404);
-        }
+        $shop = Shop::where('user_id',Auth::id())->get();
+        return new ShopCollection($shop);
+//        if (!empty($shop))
+//        {
+//            return response()->json(['success'=>true,'response'=> $shop], 200);
+//        }
+//        else{
+//            return response()->json(['success'=>false,'response'=> 'Something went wrong!'], 404);
+//        }
     }
     public function shopInfoUpdate(Request $request){
         $shop = Shop::where('user_id',Auth::id())->first();

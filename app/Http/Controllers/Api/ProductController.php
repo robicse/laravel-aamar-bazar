@@ -101,7 +101,6 @@ class ProductController extends Controller
                             $nested_data['todays_deal'] = (integer) $data->todays_deal;
                             $nested_data['featured'] =(integer) $data->featured;
                             $nested_data['unit'] = $data->unit;
-                            //'discount' => (double) $data->discount;
                             $nested_data['discount'] = (double) $data->flash_deal_discount;
                             $nested_data['discount_type'] = DiscountType($data->id);
                             $nested_data['rating'] = (double) $data->rating;
