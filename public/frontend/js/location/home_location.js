@@ -119,6 +119,7 @@ function searchShops(lat,lng){
             $('.shop_list').empty();
             if (data.response.length==0){
                 $('.shop_list').empty();
+                $('.nearest_shop').empty();
                 $('.shop_list').html(`<div class="col-md-12 py-2 px-4 text-center">
                     <h1 class="mt-5 text-danger">No Shop Found!</h1>
                     <img src = "https://icon-library.com/images/found-icon/found-icon-20.jpg" alt = "">
@@ -138,8 +139,8 @@ function searchShops(lat,lng){
                     //     .then(response => response.json())
                     //     .catch(error => console.error('Error:', error))
                     //     .then(response => console.log('Success:', response))
-                    //$('.nearest').html(`<div class="text-center mt-5"><h3>Nearest Shop!!</h3></div>`)
-                    $('.shop_list').append(`<div class="text-center mt-5 col-md-12"><h2 class="text-success">Nearest Shop!!</h2></div><div class="col-md-3 p-2">
+                    $('.nearest_shop').html(`<div class="text-center mt-5"><h3>Nearest Shop!!</h3></div>`)
+                    $('.shop_list').append(`<div class="col-md-3 p-2">
                     <figure>
                         <a class="city-tile" data-gtm-cta="findRestaurant_dhaka" href="/shop/${slug}"><picture>
                                 <div class="city-picture b-lazy b-loaded" data-src="https://images.deliveryhero.io/image/fd-bd/city-title/city-title-Dhaka.jpg?width=720" style="background-image: url(&quot;${imgPath}">
@@ -151,6 +152,10 @@ function searchShops(lat,lng){
                     //For list
                 }
             }
+
+
+
+
         },
         complete:function(){
             $("#loader").hide();
