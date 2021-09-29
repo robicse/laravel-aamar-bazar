@@ -31,7 +31,7 @@
                         <div class="inner text-center">
                             <h4>{{Auth::user()->referral_code}}</h4>
 
-                            <p>Refferal Code</p>
+                            <p>Referral Code</p>
                         </div>
 
                         <div class="input-group mb-3">

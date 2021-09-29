@@ -5,6 +5,7 @@
         a:hover {
             color: #fff;
         }
+
         @media only screen and (max-width: 700px) {
             .mobile_view{
                 display: none;
@@ -29,46 +30,44 @@
         </div>
         <div class="ps-vendor-store">
             <div class="container">
-                <div class="ps-section__container">
+{{--                    <div class="ps-section__left mobile_view" style="margin-left: -50px;">--}}
+{{--                        <div class="ps-block--vendor">--}}
+{{--                            <div class="ps-block__thumbnail"><img src="{{asset($shop->logo)}}" alt="" width="300" height="225"></div>--}}
+{{--                            <div class="ps-block__container">--}}
+{{--                                <div class="ps-block__header">--}}
+{{--                                    <div class="row">--}}
+{{--                                        <div class="col-md-6">--}}
+{{--                                            <h4><a href="{{route('shop.details',$shop->slug)}}">{{$shop->name}} </a></h4>--}}
+{{--                                        </div>--}}
+{{--                                        @if(empty($favoriteShop))--}}
+{{--                                            <div class="col-md-6 pull-right">--}}
+{{--                                                <button class="ps-btn" style="padding: 7px 20px 7px 20px; font-size: 14px;"><a href="{{route('add.favorite-shop',$shop->id)}}">Follow</a></button>--}}
+{{--                                            </div>--}}
+{{--                                        @else--}}
+{{--                                            <div class="col-md-6 pull-right">--}}
+{{--                                                <button class="ps-btn" style="padding: 7px 20px 7px 20px; font-size: 14px;"><a href="{{route('remove.favorite-shop',$shop->id)}}">Unfollow</a></button>--}}
+{{--                                            </div>--}}
+{{--                                        @endif--}}
+{{--                                    </div>--}}
+{{--                                    <div class="mt-4">--}}
+{{--                                        <p class="float-left pr-2">Rating: <strong style="font-size: 30px;">{{$totalRatingCount}}</strong></p>--}}
+{{--                                        <div class="">--}}
+{{--                                            <select class="ps-rating" data-read-only="true" style="margin-top: 7px;">--}}
+{{--                                                @for ($i=0; $i < round($totalRatingCount); $i++)--}}
+{{--                                                    <option value="1">{{$i}}</option>--}}
+{{--                                                @endfor--}}
+{{--                                            </select>--}}
+{{--                                        </div>--}}
+{{--                                    </div>--}}
 
-                    <div class="ps-section__left mobile_view">
-                        <div class="ps-block--vendor">
-                            <div class="ps-block__thumbnail"><img src="{{asset($shop->logo)}}" alt="" width="300" height="225"></div>
-                            <div class="ps-block__container">
-                                <div class="ps-block__header">
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <h4><a href="{{route('shop.details',$shop->slug)}}">{{$shop->name}} </a></h4>
-                                        </div>
-                                        @if(empty($favoriteShop))
-                                            <div class="col-md-6 pull-right">
-                                                <button class="ps-btn" style="padding: 7px 20px 7px 20px; font-size: 14px;"><a href="{{route('add.favorite-shop',$shop->id)}}">Follow</a></button>
-                                            </div>
-                                        @else
-                                            <div class="col-md-6 pull-right">
-                                                <button class="ps-btn" style="padding: 7px 20px 7px 20px; font-size: 14px;"><a href="{{route('remove.favorite-shop',$shop->id)}}">Unfollow</a></button>
-                                            </div>
-                                        @endif
-                                    </div>
-                                    <div class="mt-4">
-                                        <p class="float-left pr-2">Rating: <strong style="font-size: 30px;">{{$totalRatingCount}}</strong></p>
-                                        <div class="">
-                                            <select class="ps-rating" data-read-only="true" style="margin-top: 7px;">
-                                                @for ($i=0; $i < round($totalRatingCount); $i++)
-                                                    <option value="1">{{$i}}</option>
-                                                @endfor
-                                            </select>
-                                        </div>
-                                    </div>
-
-                                </div><span class="ps-block__divider"></span>
-                                <div class="ps-block__content">
-                                    <p><strong>{{$shop->name}}</strong>, {{$shop->about}}</p><span class="ps-block__divider"></span>
-                                    <p><strong>Address</strong> {{$shop->address}}</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+{{--                                </div><span class="ps-block__divider"></span>--}}
+{{--                                <div class="ps-block__content">--}}
+{{--                                    <p><strong>{{$shop->name}}</strong>, {{$shop->about}}</p><span class="ps-block__divider"></span>--}}
+{{--                                    <p><strong>Address</strong> {{$shop->address}}</p>--}}
+{{--                                </div>--}}
+{{--                            </div>--}}
+{{--                        </div>--}}
+{{--                    </div>--}}
                     <div class="ps-section__right">
                         <div class="ps-block--vendor-filter">
                             <div class="ps-block__left">
@@ -99,15 +98,16 @@
                                     <div class="ps-carousel--nav owl-slider" data-owl-auto="false" data-owl-loop="false" data-owl-speed="10000" data-owl-gap="30" data-owl-nav="true" data-owl-dots="true" data-owl-item="7" data-owl-item-xs="2" data-owl-item-sm="3" data-owl-item-md="4" data-owl-item-lg="5" data-owl-item-xl="6" data-owl-duration="1000" data-owl-mousedrag="on">
                                         @foreach($shopSubcategories as $shopSubcategory)
                                             @if($shopSubcategory->subcategory->status !=0)
-                                                <div class="ps-product--inner" style=" margin-bottom: 40px;">
-                                                    <div class="card rounded-circle" style=" width:100px; height:100px; background: #fcb800;">
-                                                        <div class="card-body text-center">
-                                                            <h5 class="card-title text-center" style="margin-top: 30px" data-toggle="tooltip" title="{{$shopSubcategory->subcategory->name}}">
-                                                                <a href="{{url('/shop'.'/'.$shop->slug.'/'.$category->slug.'/'.$shopSubcategory->subcategory->slug)}}"> {!! Str::limit($shopSubcategory->subcategory->name,9) !!}</a>
-                                                            </h5>
-                                                        </div>
-                                                    </div>
-                                                </div>
+                                                <button class="btn btn-lg btn-info" style="border-radius: 0.50rem">{{$shopSubcategory->subcategory->name}}</button>
+{{--                                                <div class="ps-product--inner" style=" margin-bottom: 40px;">--}}
+{{--                                                    <div class="card rounded-circle" style=" width:100px; height:100px; background: #fcb800;">--}}
+{{--                                                        <div class="card-body text-center">--}}
+{{--                                                            <h5 class="card-title text-center" style="margin-top: 30px" data-toggle="tooltip" title="{{$shopSubcategory->subcategory->name}}">--}}
+{{--                                                                <a href="{{url('/shop'.'/'.$shop->slug.'/'.$category->slug.'/'.$shopSubcategory->subcategory->slug)}}"> {!! Str::limit($shopSubcategory->subcategory->name,9) !!}</a>--}}
+{{--                                                            </h5>--}}
+{{--                                                        </div>--}}
+{{--                                                    </div>--}}
+{{--                                                </div>--}}
                                             @endif
                                         @endforeach
                                     </div>
@@ -148,45 +148,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="ps-section__left web_view" style="padding-top: 20px;">
-                        <div class="ps-block--vendor">
-                            <div class="ps-block__thumbnail"><img src="{{asset($shop->logo)}}" alt="" width="300" height="225"></div>
-                            <div class="ps-block__container">
-                                <div class="ps-block__header">
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <h4><a href="{{route('shop.details',$shop->slug)}}">{{$shop->name}} </a></h4>
-                                        </div>
-                                        @if(empty($favoriteShop))
-                                            <div class="col-md-6 pull-right">
-                                                <button class="ps-btn" style="padding: 7px 20px 7px 20px; font-size: 14px;"><a href="{{route('add.favorite-shop',$shop->id)}}">Follow</a></button>
-                                            </div>
-                                        @else
-                                            <div class="col-md-6 pull-right">
-                                                <button class="ps-btn" style="padding: 7px 20px 7px 20px; font-size: 14px;"><a href="{{route('remove.favorite-shop',$shop->id)}}">Unfollow</a></button>
-                                            </div>
-                                        @endif
-                                    </div>
-                                    <div class="mt-4">
-                                        <p class="float-left pr-2">Rating: <strong style="font-size: 30px;">{{$totalRatingCount}}</strong></p>
-                                        <div class="">
-                                            <select class="ps-rating" data-read-only="true" style="margin-top: 7px;">
-                                                @for ($i=0; $i < round($totalRatingCount); $i++)
-                                                    <option value="1">{{$i}}</option>
-                                                @endfor
-                                            </select>
-                                        </div>
-                                    </div>
-
-                                </div><span class="ps-block__divider"></span>
-                                <div class="ps-block__content">
-                                    <p><strong>{{$shop->name}}</strong>, {{$shop->about}}</p><span class="ps-block__divider"></span>
-                                    <p><strong>Address</strong> {{$shop->address}}</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                @include('frontend.includes.shop_details')
             </div>
         </div>
     </div>

@@ -11,13 +11,13 @@ class ShopCollection extends ResourceCollection
         return [
             'data' => $this->collection->map(function($data) {
                 return [
-                    'id' => $data->id,
-                    'user_id' => $data->user_id,
-                    'seller_id' => $data->seller_id,
+                    'id' =>(integer) $data->id,
+                    'user_id' =>(integer) $data->user_id,
+                    'seller_id' =>(integer) $data->seller_id,
+                    'status' =>(integer) $data->seller->verification_status,
                     'about' => $data->about,
                     'name' => $data->name,
                     'logo' => $data->logo,
-                    'sliders' => json_decode($data->sliders),
                     'address' => $data->address,
                     'area' => $data->area,
                     'city' => $data->city,
@@ -27,8 +27,8 @@ class ShopCollection extends ResourceCollection
 
                     'shipping_time' => $data->shipping_time,
                     'pick_up_point_id' => $data->pick_up_point_id,
-                    'shipping_cost' => $data->shipping_cost,
-                    'rating' => getShopRatings($data->id),
+                    'shipping_cost' =>(double) $data->shipping_cost,
+                    'rating' =>(float) getShopRatings($data->id),
 
                 ];
             })

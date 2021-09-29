@@ -35,7 +35,7 @@
                 <ul class="ps-list--link">
                     <li><a href="{{route('checkout')}}">Checkout</a></li>
                     <li><a href="{{route('login')}}">My account</a></li>
-                    <li><a href="{{route('all.shops')}}">Shops</a></li>
+{{--                    <li><a href="{{route('all.shops')}}">Shops</a></li>--}}
                 </ul>
                 <div class="widget widget_footer">
                     <h4 class="" style="color: #cacacc!important;">BE A SELLER</h4>

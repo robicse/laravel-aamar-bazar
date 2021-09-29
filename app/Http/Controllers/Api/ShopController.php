@@ -13,24 +13,12 @@ class ShopController extends Controller
     public  function getShop()
     {
         $shops= Shop::all();
-
-        if (!empty($shops))
-        {
-            return new ShopCollection($shops);
-            //return response()->json(['success'=>true,'response'=> $shops], 200);
-        }
-        else{
-            return response()->json(['success'=>false,'response'=> 'Something went wrong!'], 404);
-        }
+        return new ShopCollection($shops);
     }
     public function getShopByLatLng($lat, $lng)
     {
         $shops=Shop::whereBetween('latitude',[$lat-0.01,$lat+0.01])->whereBetween('longitude',[$lng-0.01,$lng+0.01])->get();
-        if (!empty($shops)){
-            return response()->json(['success'=> true, 'response'=>$shops],200);
-        }else{
-            return response()->json(['success'=>false,'response'=> 'Something went wrong!'], 404);
-        }
+        return new ShopCollection($shops);
     }
     public function getShopRatings($id){
         $shop = Shop::find($id);

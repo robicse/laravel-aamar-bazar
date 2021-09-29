@@ -4,6 +4,7 @@
         margin-top: 50px;
         border: 0px;
     }
+
 </style>
 <header class="header header--1" data-sticky="true" style="height: 100px;">
     <div class="header__top">
@@ -18,7 +19,7 @@
                         @if(Request::is('be-a-seller'))
                             <input class="form-control m-0" type="text" placeholder="Enter your full address" id="input-search" style="border-radius: 4px;" autocomplete="off" value="">
                         @else
-                            <input class="form-control bksearch input-search-map m-0" type="text" placeholder="Enter your full address" id="input-search" style="border-radius: 4px;" autocomplete="off" value="">
+                            <input class="form-control address_web input-search-map " onkeyup="getAddressWeb()" type="text" placeholder="Enter your full address" id="web_search" style="border-radius: 4px;" autocomplete="off" value="">
                         @endif
                         <button class="ml-2 mr-1" data-toggle="tooltip" title="Current Location Nearest Shops" style="border-radius: 4px;" onclick="geoLocationInit()"><i class="fas fa-location" aria-hidden="true" style="font-size: 24px;"></i></button>
                         {{--<button class="mx-1 find" style="border-radius: 4px;" id="find">Find</button>--}}
@@ -26,8 +27,30 @@
                         <div class="ps-panel--search-result bklist ">
                         </div>
                     @endif
+
                 </div>
+                <ul class="list-group addListWeb" style="padding: 0;">
+
+                </ul>
             </div>
+{{--            <div class="ps-form--quick-search" >--}}
+{{--                @if(Request::is('/'))--}}
+{{--                    <button class="mx-1" style=""  data-toggle="tooltip" title="Current Location Nearest Shops." onclick="mapModalClick()"><i class="fa fa-map"></i></button>--}}
+{{--                    @if(Request::is('be-a-seller'))--}}
+{{--                        <input class="form-control m-0" type="text" placeholder="Enter your full address" id="input-search" style="border-radius: 4px;" autocomplete="off" value="">--}}
+{{--                    @else--}}
+{{--                        --}}{{--<input class="form-control bksearch m-0" type="text" placeholder="Enter your full address" id="input-search" style="border-radius: 4px;" autocomplete="off" value="">--}}
+{{--                        <input type="text" onkeyup="getAddress()" id="mobile_search" placeholder="Search Your Area" class="form-control form_height form-control-sm address input-search-map" autocomplete="off">--}}
+{{--                    @endif--}}
+{{--                    <button data-toggle="tooltip" title="Search Shops In Map." class="ml-2 mr-1"  style="border-radius: 4px;" onclick="geoLocationInit()"><i class="fas fa-location" aria-hidden="true"></i></button>--}}
+
+{{--                    <div class="ps-panel--search-result bklist ">--}}
+{{--                    </div>--}}
+{{--                @endif--}}
+{{--            </div>--}}
+{{--            <ul class="list-group addList" style="padding: 0;">--}}
+
+{{--            </ul>--}}
             <div class="header__right">
                 <div class="header__actions"><a class="header__extra" href="#">
                         <div class="ps-cart--mini"><a class="header__extra" href="#"><i class="icon-bag2"></i><span><i class="cart_count">{{Cart::count()}}</i></span></a>
@@ -63,6 +86,21 @@
                                     <div class="ps-block__left">
                                         <a href="{{route('seller.dashboard')}}"> <img src="{{url(Auth::user()->avatar_original)}}" alt="" class="ps-widget-img rounded-circle" width="50" height="50"></a>
                                         <div class="ps-block__right"><a href="{{route('seller.dashboard')}}" data-toggle="tooltip" title="{{Auth::user()->name}}">{!! Str::limit(Auth::user()->name,7) !!}</a>
+                                            <form action = "{{route('logout')}}" method="post" >
+                                                @csrf
+                                                <button type="submit" class="btn btn-lg p-0" style="background: #7B0F17!important; font-size: 1.5rem;">Logout</button>
+                                            </form>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        @elseif(Auth::User()->user_type == 'admin')
+                            <div class="ps-block--user-header">
+                                <div class="ps-widget__header">
+                                    <div class="ps-block__left">
+                                        <a href="{{route('admin.dashboard')}}"> <img src="{{url(Auth::user()->avatar_original)}}" alt="" class="ps-widget-img rounded-circle" width="50" height="50"></a>
+                                        <div class="ps-block__right"><a href="{{route('admin.dashboard')}}" data-toggle="tooltip" title="{{Auth::user()->name}}">{!! Str::limit(Auth::user()->name,7) !!}</a>
                                             <form action = "{{route('logout')}}" method="post" >
                                                 @csrf
                                                 <button type="submit" class="btn btn-lg p-0" style="background: #7B0F17!important; font-size: 1.5rem;">Logout</button>
@@ -134,7 +172,7 @@
                     {{--<input class="form-control bksearch m-0" type="text" placeholder="Enter your full address" id="input-search" style="border-radius: 4px;" autocomplete="off" value="">--}}
                     <input type="text" onkeyup="getAddress()" id="mobile_search" placeholder="Search Your Area" class="form-control form_height form-control-sm address input-search-map" autocomplete="off">
                 @endif
-                <button data-toggle="tooltip" title="Search Shops In Map." class="ml-2 mr-1"  style="border-radius: 4px;" onclick="geoLocationInit()"><i class="fa fa-map-marker" aria-hidden="true"></i></button>
+                <button data-toggle="tooltip" title="Search Shops In Map." class="ml-2 mr-1"  style="border-radius: 4px;" onclick="geoLocationInit()"><i class="fas fa-location" aria-hidden="true"></i></button>
 
                 <div class="ps-panel--search-result bklist ">
                 </div>
@@ -318,23 +356,40 @@
                     response.places.forEach(result)
                 })
         }
+        function getAddressWeb() {
+
+            let places=[];
+            let location=null;
+            let add=$('.address_web').val();
+            $('.addListWeb').empty();
+            fetch("https://barikoi.xyz/v1/api/search/autocomplete/MjMzNTpTWlBLSkRHUTRZ/place?q="+add)
+                .then(response => response.json())
+                .catch(error => console.error('Error:', error))
+                .then(response => {
+                    response.places.forEach(resultWeb)
+                })
+        }
         function result(item, index){
             var $li = $("<li class='list-group-item'><a href='#' class='list-group-item bg-light'>" + item.address + "</a></li>");
             $(".addList").append($li);
             $li.on('click', getPlacesDetails.bind(this, item));
+        }
+        function resultWeb(item, index){
+            var $li = $("<li class='list-group-item'><a href='#' class='list-group-item bg-light'>" + item.address + "</a></li>");
+            $(".addListWeb").append($li);
+            $li.on('click', getPlacesDetailsWeb.bind(this, item));
         }
         function getPlacesDetails(mapData)
         {
             searchShops(mapData.latitude,mapData.longitude)
             $("#mobile_search").val(mapData.address)
             $(".addList").empty();
-
-            /*$( "input[name='city']" ).val(mapData.city)
-            $( "input[name='area']" ).val(mapData.area)
-            $( "input[name='latitude']" ).val(mapData.latitude)
-            $( "input[name='longitude']" ).val(mapData.longitude)
-            $( "input[name='postal_code']" ).val(mapData.postCode)*/
-            //console.log(mapData)
+        }
+        function getPlacesDetailsWeb(mapData)
+        {
+            searchShops(mapData.latitude,mapData.longitude)
+            $("#web_search").val(mapData.address)
+            $(".addListWeb").empty();
         }
 
     </script>

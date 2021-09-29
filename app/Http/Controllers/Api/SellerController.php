@@ -54,6 +54,7 @@ class SellerController extends Controller
         $adminCommission = Seller::where('user_id',Auth::id())->pluck('seller_will_pay_admin')->first();
         $totalEarning = Order::where('shop_id',$shop->id)->where('payment_status','paid')->where('delivery_status','Completed')->sum('grand_total');
         $data = [
+            'Referral Code'=>Auth::user()->referral_code,
             'Total Products'=>$totalProducts,
             'Total Sales'=>$totalSales,
             'Total Earning'=>$totalEarning,
@@ -354,7 +355,7 @@ class SellerController extends Controller
     public function productAddToMyShop($sellerId)
     {
         $sellerP = Product::where('added_by','seller')->where('user_id',$sellerId)->select('aPId_to_seller')->get();
-        $products = Product::where('added_by','admin')->latest()->select('id','name','unit_price','thumbnail_img')->latest()->get();
+        $products = Product::where('added_by','admin')->latest()->select('id','name','unit','unit_price','thumbnail_img')->latest()->get();
         $arr = array();
         $check2 = array();
         foreach ($products as $product){
@@ -363,6 +364,7 @@ class SellerController extends Controller
                 $check2['id'] = $product->id;
                 $check2['image'] = $product->thumbnail_img;
                 $check2['name'] = $product->name;
+                $check2['unit'] = $product->unit;
                 $check2['unit_price'] = $product->unit_price;
                 array_push($arr, $check2);
             }
