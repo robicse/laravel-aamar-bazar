@@ -12,23 +12,14 @@
                 flex-basis: 25%;
             }
         }
-
-
-            /*.ps-shopping .row .col-xl-2 {*/
-            /*    max-width: 20%;*/
-            /*    flex-basis: 25%;*/
-            /*}*/
-
-        @media only screen and (max-width: 700px) {
-            .mobile_view{
-                display: none;
+        @media (min-width: 1200px){
+            .col-xl-2 {
+                max-width: 20%;
+                flex-basis: 25%;
             }
         }
-        @media only screen and (min-width: 600px) {
-            .web_view{
-                display: none;
-            }
-        }
+
+
     </style>
 @endpush
 @section('content')
@@ -106,7 +97,7 @@
                                         </div><a href="{{route('view.all.categories',$shop->slug)}}">View all</a>
                                     </div>
                                     <div class="ps-section__content mb-5">
-                                        <div class="ps-carousel--nav owl-slider" data-owl-auto="false" data-owl-loop="false" data-owl-speed="8000" data-owl-gap="30" data-owl-nav="true" data-owl-dots="true" data-owl-item="5" data-owl-item-xs="2" data-owl-item-sm="3" data-owl-item-md="4" data-owl-item-lg="5" data-owl-item-xl="5" data-owl-duration="1000" data-owl-mousedrag="on" style="margin-top: -40px; margin-bottom: -20px;">
+                                        <div class="ps-carousel--nav owl-slider" data-owl-auto="false" data-owl-loop="false" data-owl-speed="8000" data-owl-gap="30" data-owl-nav="true" data-owl-dots="true" data-owl-item="5" data-owl-item-xs="2" data-owl-item-sm="3" data-owl-item-md="6" data-owl-item-lg="6" data-owl-item-xl="5" data-owl-duration="1000" data-owl-mousedrag="on" style="margin-top: -40px; margin-bottom: -20px;">
                                             @foreach($shopCat as $cat)
                                                 @if($cat->category->status !=0)
                                                     {{--                                                    <div class="ps-product--inner" style="margin-left: 10px;">--}}
@@ -117,9 +108,9 @@
                                                     {{--                                                        </div>--}}
                                                     {{--                                                    </div>--}}
                                                     <div class="card shadow p-3 mb-5 bg-white rounded" style="height: 182px; width: 18rem; border-radius: 0.75rem!important;" >
-                                                        <div class="card-body text-center" >
+                                                        <div class="card-body text-center" style="text-align: center!important;">
                                                             <p style="color: black; font-weight: bold; font-size: 14px;">{{$cat->category->name}}</p>
-                                                            <a href="{{url('/shop/'.$shop->slug.'/'.$cat->category->slug)}}"><img src="{{asset('uploads/categories/'.$cat->category->icon)}}" alt="" width="120" height="100"></a>
+                                                            <a href="{{url('/shop/'.$shop->slug.'/'.$cat->category->slug)}}"> <img src="{{asset('uploads/categories/'.$cat->category->icon)}}" alt="" width="120" height="100"></a>
                                                         </div>
                                                     </div>
                                                 @endif

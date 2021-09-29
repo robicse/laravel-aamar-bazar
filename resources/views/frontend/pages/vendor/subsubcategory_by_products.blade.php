@@ -5,6 +5,12 @@
         a:hover {
             color: #fff;
         }
+        @media (max-width: 1440px) and (min-width: 1200px){
+            .ps-shopping .row .col-xl-2 {
+                max-width: 20%;
+                flex-basis: 25%;
+            }
+        }
         @media only screen and (max-width: 700px) {
             .mobile_view{
                 display: none;
@@ -29,47 +35,6 @@
         </div>
         <div class="ps-vendor-store">
             <div class="container">
-                <div class="ps-section__container">
-
-                    <div class="ps-section__left mobile_view">
-                        <div class="ps-block--vendor">
-                            <div class="ps-block__thumbnail"><img src="{{asset($shop->logo)}}" alt="" width="300" height="225"></div>
-                            <div class="ps-block__container">
-                                <div class="ps-block__header">
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <h4><a href="{{route('shop.details',$shop->slug)}}">{{$shop->name}} </a></h4>
-                                        </div>
-                                        @if(empty($favoriteShop))
-                                            <div class="col-md-6 pull-right">
-                                                <button class="ps-btn" style="padding: 7px 20px 7px 20px; font-size: 14px;"><a href="{{route('add.favorite-shop',$shop->id)}}">Follow</a></button>
-                                            </div>
-                                        @else
-                                            <div class="col-md-6 pull-right">
-                                                <button class="ps-btn" style="padding: 7px 20px 7px 20px; font-size: 14px;"><a href="{{route('remove.favorite-shop',$shop->id)}}">Unfollow</a></button>
-                                            </div>
-                                        @endif
-                                    </div>
-                                    <div class="mt-4">
-                                        <p class="float-left pr-2">Rating: <strong style="font-size: 30px;">{{$totalRatingCount}}</strong></p>
-                                        <div class="">
-                                            <select class="ps-rating" data-read-only="true" style="margin-top: 7px;">
-                                                @for ($i=0; $i < round($totalRatingCount); $i++)
-                                                    <option value="1">{{$i}}</option>
-                                                @endfor
-                                            </select>
-                                        </div>
-                                    </div>
-
-                                </div><span class="ps-block__divider"></span>
-                                <div class="ps-block__content">
-                                    <p><strong>{{$shop->name}}</strong>, {{$shop->about}}</p><span class="ps-block__divider"></span>
-                                    <p><strong>Address</strong> {{$shop->address}}</p>
-                                </div>
-
-                            </div>
-                        </div>
-                    </div>
                     <div class="ps-section__right">
                         <div class="ps-block--vendor-filter">
                             <div class="ps-block__left">
@@ -115,46 +80,8 @@
                             </div>
                         </div>
                     </div>
-                    <div class="ps-section__left web_view" style="padding-top: 20px;">
-                        <div class="ps-block--vendor">
-                            <div class="ps-block__thumbnail"><img src="{{asset($shop->logo)}}" alt="" width="300" height="225"></div>
-                            <div class="ps-block__container">
-                                <div class="ps-block__header">
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <h4><a href="{{route('shop.details',$shop->slug)}}">{{$shop->name}} </a></h4>
-                                        </div>
-                                        @if(empty($favoriteShop))
-                                            <div class="col-md-6 pull-right">
-                                                <button class="ps-btn" style="padding: 7px 20px 7px 20px; font-size: 14px;"><a href="{{route('add.favorite-shop',$shop->id)}}">Follow</a></button>
-                                            </div>
-                                        @else
-                                            <div class="col-md-6 pull-right">
-                                                <button class="ps-btn" style="padding: 7px 20px 7px 20px; font-size: 14px;"><a href="{{route('remove.favorite-shop',$shop->id)}}">Unfollow</a></button>
-                                            </div>
-                                        @endif
-                                    </div>
-                                    <div class="mt-4">
-                                        <p class="float-left pr-2">Rating: <strong style="font-size: 30px;">{{$totalRatingCount}}</strong></p>
-                                        <div class="">
-                                            <select class="ps-rating" data-read-only="true" style="margin-top: 7px;">
-                                                @for ($i=0; $i < round($totalRatingCount); $i++)
-                                                    <option value="1">{{$i}}</option>
-                                                @endfor
-                                            </select>
-                                        </div>
-                                    </div>
 
-                                </div><span class="ps-block__divider"></span>
-                                <div class="ps-block__content">
-                                    <p><strong>{{$shop->name}}</strong>, {{$shop->about}}</p><span class="ps-block__divider"></span>
-                                    <p><strong>Address</strong> {{$shop->address}}</p>
-                                </div>
-
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                @include('frontend.includes.shop_details')
             </div>
         </div>
     </div>

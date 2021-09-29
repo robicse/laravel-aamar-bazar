@@ -5,6 +5,24 @@
         a:hover {
             color: #fff;
         }
+        .btn-new{
+            border-radius: 2.50rem;
+            padding: 10px 20px;
+            font-size: 1.50rem;
+            background: #A61E22;
+            border-color: #A61E22;
+            color: white;
+        }
+        /*.owl-item {*/
+        /*    width: 110px!important;*/
+        /*    margin-right: 0!important;*/
+        /*}*/
+        @media (max-width: 1440px) and (min-width: 1200px){
+            .ps-shopping .row .col-xl-2 {
+                max-width: 20%;
+                flex-basis: 25%;
+            }
+        }
 
         @media only screen and (max-width: 700px) {
             .mobile_view{
@@ -30,124 +48,86 @@
         </div>
         <div class="ps-vendor-store">
             <div class="container">
-{{--                    <div class="ps-section__left mobile_view" style="margin-left: -50px;">--}}
-{{--                        <div class="ps-block--vendor">--}}
-{{--                            <div class="ps-block__thumbnail"><img src="{{asset($shop->logo)}}" alt="" width="300" height="225"></div>--}}
-{{--                            <div class="ps-block__container">--}}
-{{--                                <div class="ps-block__header">--}}
-{{--                                    <div class="row">--}}
-{{--                                        <div class="col-md-6">--}}
-{{--                                            <h4><a href="{{route('shop.details',$shop->slug)}}">{{$shop->name}} </a></h4>--}}
-{{--                                        </div>--}}
-{{--                                        @if(empty($favoriteShop))--}}
-{{--                                            <div class="col-md-6 pull-right">--}}
-{{--                                                <button class="ps-btn" style="padding: 7px 20px 7px 20px; font-size: 14px;"><a href="{{route('add.favorite-shop',$shop->id)}}">Follow</a></button>--}}
-{{--                                            </div>--}}
-{{--                                        @else--}}
-{{--                                            <div class="col-md-6 pull-right">--}}
-{{--                                                <button class="ps-btn" style="padding: 7px 20px 7px 20px; font-size: 14px;"><a href="{{route('remove.favorite-shop',$shop->id)}}">Unfollow</a></button>--}}
-{{--                                            </div>--}}
-{{--                                        @endif--}}
-{{--                                    </div>--}}
-{{--                                    <div class="mt-4">--}}
-{{--                                        <p class="float-left pr-2">Rating: <strong style="font-size: 30px;">{{$totalRatingCount}}</strong></p>--}}
-{{--                                        <div class="">--}}
-{{--                                            <select class="ps-rating" data-read-only="true" style="margin-top: 7px;">--}}
-{{--                                                @for ($i=0; $i < round($totalRatingCount); $i++)--}}
-{{--                                                    <option value="1">{{$i}}</option>--}}
-{{--                                                @endfor--}}
-{{--                                            </select>--}}
-{{--                                        </div>--}}
-{{--                                    </div>--}}
-
-{{--                                </div><span class="ps-block__divider"></span>--}}
-{{--                                <div class="ps-block__content">--}}
-{{--                                    <p><strong>{{$shop->name}}</strong>, {{$shop->about}}</p><span class="ps-block__divider"></span>--}}
-{{--                                    <p><strong>Address</strong> {{$shop->address}}</p>--}}
-{{--                                </div>--}}
-{{--                            </div>--}}
-{{--                        </div>--}}
-{{--                    </div>--}}
-                    <div class="ps-section__right">
-                        <div class="ps-block--vendor-filter">
-                            <div class="ps-block__left">
-                                <ul>
-                                    <li class="active"><a href="#">{{$category->name}} Products</a></li>
-                                </ul>
-                            </div>
-                            <div class="ps-block__right">
-                                <form class="ps-form--search text-right" action="" method="get">
-                                    <input type="hidden" name="shop_id" value="{{ $shop->id }}">
-                                    <input type="hidden" name="category_id" value="{{ $category->id }}">
-                                    <input  class="form-control" id="searchMain" name="searchName" type="search" placeholder="Search in this shop" autocomplete="off">
-                                </form>
-                            </div>
+                <div class="ps-section__right">
+                    <div class="ps-block--vendor-filter">
+                        <div class="ps-block__left">
+                            <ul>
+                                <li class="active"><a href="#">{{$category->name}} Products</a></li>
+                            </ul>
                         </div>
-                        <div class="ps-deal-of-day">
-                            <div class="ps-container">
-                                <div class="ps-section__header">
-                                    <div class="ps-block--countdown-deal">
-                                        <div class="ps-block__left">
-                                            <h4>Featured SubCategory</h4>
-                                        </div>
-                                        <div class="ps-block__right">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="ps-section__content mb-5" style="margin-top: -30px">
-                                    <div class="ps-carousel--nav owl-slider" data-owl-auto="false" data-owl-loop="false" data-owl-speed="10000" data-owl-gap="30" data-owl-nav="true" data-owl-dots="true" data-owl-item="7" data-owl-item-xs="2" data-owl-item-sm="3" data-owl-item-md="4" data-owl-item-lg="5" data-owl-item-xl="6" data-owl-duration="1000" data-owl-mousedrag="on">
-                                        @foreach($shopSubcategories as $shopSubcategory)
-                                            @if($shopSubcategory->subcategory->status !=0)
-                                                <button class="btn btn-lg btn-info" style="border-radius: 0.50rem">{{$shopSubcategory->subcategory->name}}</button>
-{{--                                                <div class="ps-product--inner" style=" margin-bottom: 40px;">--}}
-{{--                                                    <div class="card rounded-circle" style=" width:100px; height:100px; background: #fcb800;">--}}
-{{--                                                        <div class="card-body text-center">--}}
-{{--                                                            <h5 class="card-title text-center" style="margin-top: 30px" data-toggle="tooltip" title="{{$shopSubcategory->subcategory->name}}">--}}
-{{--                                                                <a href="{{url('/shop'.'/'.$shop->slug.'/'.$category->slug.'/'.$shopSubcategory->subcategory->slug)}}"> {!! Str::limit($shopSubcategory->subcategory->name,9) !!}</a>--}}
-{{--                                                            </h5>--}}
-{{--                                                        </div>--}}
-{{--                                                    </div>--}}
-{{--                                                </div>--}}
-                                            @endif
-                                        @endforeach
-                                    </div>
-                                </div>
-                            </div>
+                        <div class="ps-block__right">
+                            <form class="ps-form--search text-right" action="" method="get">
+                                <input type="hidden" name="shop_id" value="{{ $shop->id }}">
+                                <input type="hidden" name="category_id" value="{{ $category->id }}">
+                                <input  class="form-control" id="searchMain" name="searchName" type="search" placeholder="Search in this shop" autocomplete="off">
+                            </form>
                         </div>
-
-                        @if($featuredProducts->count() > 1)
-                            <div class="ps-vendor-best-seller">
-                                <div class="ps-section__header">
-                                    <h3>Featured Products</h3>
-                                    <div class="ps-section__nav"><a class="ps-carousel__prev" href="#vendor-bestseller"><i class="icon-chevron-left"></i></a><a class="ps-carousel__next" href="#vendor-bestseller"><i class="icon-chevron-right"></i></a></div>
-                                </div>
-                                <div class="ps-section__content" style="">
-                                    <div class="owl-slider" id="vendor-bestseller" data-owl-auto="true" data-owl-loop="true" data-owl-speed="5000" data-owl-gap="0" data-owl-nav="false" data-owl-dots="false" data-owl-item="4" data-owl-item-xs="2" data-owl-item-sm="3" data-owl-item-md="3" data-owl-item-lg="4" data-owl-duration="1000" data-owl-mousedrag="on">
-                                        @foreach($featuredProducts as $featuredProduct)
-                                            {{CarouselProductComponent($featuredProduct)}}
-                                        @endforeach
+                    </div>
+                    <div class="ps-deal-of-day">
+                        <div class="ps-container">
+                            <div class="ps-section__header">
+                                <div class="ps-block--countdown-deal">
+                                    <div class="ps-block__left">
+                                        <h4>Featured SubCategory</h4>
+                                    </div>
+                                    <div class="ps-block__right">
                                     </div>
                                 </div>
                             </div>
-                        @endif
-
-                        <div class="ps-shopping ps-tab-root">
-                            <div class="ps-shopping__header">
-                                <p>All Products</p>
-                                <div class="ps-shopping__actions">
-                                </div>
-                            </div>
-                            <div class="ps-tabs">
-                                <div class="ps-tab active" id="tab-1">
-                                    <div class="row">
-                                        @foreach($products as $product)
-                                            {{ProductComponent($product)}}
-                                        @endforeach
-                                    </div>
+                            <div class="ps-section__content mb-5" style="margin-top: -30px">
+                                <div class="ps-carousel--nav owl-slider" data-owl-auto="false" data-owl-loop="false" data-owl-speed="10000" data-owl-gap="30" data-owl-nav="true" data-owl-dots="true" data-owl-item="6" data-owl-item-xs="2" data-owl-item-sm="3" data-owl-item-md="8" data-owl-item-lg="8" data-owl-item-xl="9" data-owl-duration="5000" data-owl-mousedrag="on" >
+                                    @foreach($shopSubcategories as $shopSubcategory)
+                                        @if($shopSubcategory->subcategory->status !=0)
+                                            <button class="btn btn-lg btn-new"><a href="{{url('/shop'.'/'.$shop->slug.'/'.$category->slug.'/'.$shopSubcategory->subcategory->slug)}}">{{$shopSubcategory->subcategory->name}}</a></button>
+                                            {{--                                                <div class="ps-product--inner" style=" margin-bottom: 40px;">--}}
+                                            {{--                                                    <div class="card rounded-circle" style=" width:100px; height:100px; background: #fcb800;">--}}
+                                            {{--                                                        <div class="card-body text-center">--}}
+                                            {{--                                                            <h5 class="card-title text-center" style="margin-top: 30px" data-toggle="tooltip" title="{{$shopSubcategory->subcategory->name}}">--}}
+                                            {{--                                                                <a href="{{url('/shop'.'/'.$shop->slug.'/'.$category->slug.'/'.$shopSubcategory->subcategory->slug)}}"> {!! Str::limit($shopSubcategory->subcategory->name,9) !!}</a>--}}
+                                            {{--                                                            </h5>--}}
+                                            {{--                                                        </div>--}}
+                                            {{--                                                    </div>--}}
+                                            {{--                                                </div>--}}
+                                        @endif
+                                    @endforeach
                                 </div>
                             </div>
                         </div>
                     </div>
+
+                    @if($featuredProducts->count() > 1)
+                        <div class="ps-vendor-best-seller">
+                            <div class="ps-section__header">
+                                <h3>Featured Products</h3>
+                                <div class="ps-section__nav"><a class="ps-carousel__prev" href="#vendor-bestseller"><i class="icon-chevron-left"></i></a><a class="ps-carousel__next" href="#vendor-bestseller"><i class="icon-chevron-right"></i></a></div>
+                            </div>
+                            <div class="ps-section__content" style="">
+                                <div class="owl-slider" id="vendor-bestseller" data-owl-auto="true" data-owl-loop="true" data-owl-speed="5000" data-owl-gap="0" data-owl-nav="false" data-owl-dots="false" data-owl-item="5" data-owl-item-xs="2" data-owl-item-sm="3" data-owl-item-md="3" data-owl-item-lg="4" data-owl-duration="5000" data-owl-mousedrag="on">
+                                    @foreach($featuredProducts as $featuredProduct)
+                                        {{CarouselProductComponent($featuredProduct)}}
+                                    @endforeach
+                                </div>
+                            </div>
+                        </div>
+                    @endif
+
+                    <div class="ps-shopping ps-tab-root">
+                        <div class="ps-shopping__header">
+                            <p>All Products</p>
+                            <div class="ps-shopping__actions">
+                            </div>
+                        </div>
+                        <div class="ps-tabs">
+                            <div class="ps-tab active" id="tab-1">
+                                <div class="row">
+                                    @foreach($products as $product)
+                                        {{ProductComponent($product)}}
+                                    @endforeach
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 @include('frontend.includes.shop_details')
             </div>
         </div>

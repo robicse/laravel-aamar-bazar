@@ -1,5 +1,5 @@
 @if($product->category->status !=0 || $product->subCategory->status !=0 || $product->subSubCategory->status !=0 || $product->brand->status !=0)
-<div class="col-xl-2 col-lg-2 col-md-2 col-sm-6 col-2">
+<div class="col-xl-2 col-lg-2 col-md-2 col-sm-6 col-6">
     <div class="ps-product">
         <div class="ps-product__thumbnail"><a href="{{route('product-details',$product->slug)}}"><img src="{{asset($product->thumbnail_img)}}" alt="" width="153" height="171"></a>
             <ul class="ps-product__actions">
