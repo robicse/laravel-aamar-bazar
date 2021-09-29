@@ -5,6 +5,14 @@
         border: 0px;
     }
 
+    .addListWeb::-webkit-scrollbar {
+      display: none;
+    }
+    .addListWeb {
+      -ms-overflow-style: none;  / IE and Edge /
+      scrollbar-width: none;  / Firefox */
+    }
+
 </style>
 <header class="header header--1" data-sticky="true" style="height: 100px;">
     <div class="header__top">
@@ -29,7 +37,7 @@
                     @endif
 
                 </div>
-                <ul class="list-group addListWeb" style="padding: 0;">
+                <ul class="list-group addListWeb" style="padding: 0; position: absolute; z-index: 999;width: 460px; ">
 
                 </ul>
             </div>
@@ -366,6 +374,11 @@
                 .then(response => response.json())
                 .catch(error => console.error('Error:', error))
                 .then(response => {
+                    console.log(response.places != undefined)
+                    if ( response.places.length != undefined) {
+                        $('.addListWeb').css({"height": "450px", "overflow-y": "scroll"})
+                    }
+
                     response.places.forEach(resultWeb)
                 })
         }
@@ -375,7 +388,7 @@
             $li.on('click', getPlacesDetails.bind(this, item));
         }
         function resultWeb(item, index){
-            var $li = $("<li class='list-group-item'><a href='#' class='list-group-item bg-light'>" + item.address + "</a></li>");
+            var $li = $("<li class='list-group-item listD'><a href='#' class='list-group-item bg-light'>" + item.address + "</a></li>");
             $(".addListWeb").append($li);
             $li.on('click', getPlacesDetailsWeb.bind(this, item));
         }
