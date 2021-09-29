@@ -5,6 +5,14 @@
         border: 0px;
     }
 
+    .addListWeb::-webkit-scrollbar {
+      display: none;
+    }
+    .addListWeb {
+      -ms-overflow-style: none;  / IE and Edge /
+      scrollbar-width: none;  / Firefox */
+    }
+
 </style>
 <header class="header header--1" data-sticky="true" style="height: 100px;">
     <div class="header__top">
@@ -19,7 +27,7 @@
                         @if(Request::is('be-a-seller'))
                             <input class="form-control m-0" type="text" placeholder="Enter your full address" id="input-search" style="border-radius: 4px;" autocomplete="off" value="">
                         @else
-                            <input class="form-control address_web input-search-map " onkeyup="getAddressWeb()" type="text" placeholder="Enter your full address" id="web_search" style="border-radius: 4px;" autocomplete="off" value="">
+                            <input class="form-control address_web input-search-map myWebSearch"  type="text" placeholder="Enter your full address" id="web_search" style="border-radius: 4px;" autocomplete="off" value="">
                         @endif
                         <button class="ml-2 mr-1" data-toggle="tooltip" title="Current Location Nearest Shops" style="border-radius: 4px;" onclick="geoLocationInit()"><i class="fas fa-location" aria-hidden="true" style="font-size: 24px;"></i></button>
                         {{--<button class="mx-1 find" style="border-radius: 4px;" id="find">Find</button>--}}
@@ -29,7 +37,7 @@
                     @endif
 
                 </div>
-                <ul class="list-group addListWeb" style="padding: 0;">
+                <ul class="list-group addListWeb" style="padding: 0; position: absolute; z-index: 999;width: 460px; ">
 
                 </ul>
             </div>
@@ -356,26 +364,31 @@
                     response.places.forEach(result)
                 })
         }
-        function getAddressWeb() {
-
+        $('.myWebSearch').keyup(debounce(function(){
             let places=[];
             let location=null;
-            let add=$('.address_web').val();
+            let add = $('.address_web').val();
             $('.addListWeb').empty();
             fetch("https://barikoi.xyz/v1/api/search/autocomplete/MjMzNTpTWlBLSkRHUTRZ/place?q="+add)
                 .then(response => response.json())
                 .catch(error => console.error('Error:', error))
                 .then(response => {
+                    console.log(response.places)
+                    if ( response.places.length != undefined) {
+                        $('.addListWeb').css({"height": "450px", "overflow-y": "scroll"})
+                    }
                     response.places.forEach(resultWeb)
                 })
-        }
+
+        },500));
+
         function result(item, index){
             var $li = $("<li class='list-group-item'><a href='#' class='list-group-item bg-light'>" + item.address + "</a></li>");
             $(".addList").append($li);
             $li.on('click', getPlacesDetails.bind(this, item));
         }
         function resultWeb(item, index){
-            var $li = $("<li class='list-group-item'><a href='#' class='list-group-item bg-light'>" + item.address + "</a></li>");
+            var $li = $("<li class='list-group-item listD'><a href='#' class='list-group-item bg-light'>" + item.address + "</a></li>");
             $(".addListWeb").append($li);
             $li.on('click', getPlacesDetailsWeb.bind(this, item));
         }
@@ -391,6 +404,21 @@
             $("#web_search").val(mapData.address)
             $(".addListWeb").empty();
         }
+
+        function debounce(func, wait, immediate) {
+            var timeout;
+            return function() {
+                var context = this, args = arguments;
+                var later = function() {
+                    timeout = null;
+                    if (!immediate) func.apply(context, args);
+                };
+                var callNow = immediate && !timeout;
+                clearTimeout(timeout);
+                timeout = setTimeout(later, wait);
+                if (callNow) func.apply(context, args);
+            };
+        };
 
     </script>
 @endpush

@@ -9,7 +9,7 @@
     <div id="homepage-1">
 
 @include('frontend.includes.sliders')
-        <div class="container ">
+        <div class="container nearest">
             <div class="city-list row shop_list">
                 <div class="col-md-12 text-center my-5" id="loader">
                     <img  src="{{asset('frontend/img/shop/loader.gif')}}"  class="img-fluid ">
