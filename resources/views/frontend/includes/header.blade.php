@@ -402,7 +402,7 @@
         {
             searchShops(mapData.latitude,mapData.longitude)
             $("#web_search").val(mapData.address)
-            $(".addListWeb").empty();
+            $(".addListWeb").empty().css({"height": "0px", "overflow-y": "scroll"});
         }
 
         function debounce(func, wait, immediate) {

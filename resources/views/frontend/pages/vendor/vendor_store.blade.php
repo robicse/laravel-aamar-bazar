@@ -35,6 +35,7 @@
         <div class="ps-vendor-store">
             <div class="container-fluid">
 
+
                 {{--                    <div class="ps-section__left mobile_view" style="margin-left: -50px;">--}}
                 {{--                        <div class="ps-block--vendor">--}}
                 {{--                            <div class="ps-block__thumbnail"><img src="{{asset($shop->logo)}}" alt="" width="300" height="225"></div>--}}
@@ -230,45 +231,6 @@
                 @endif
                 @include('frontend.includes.shop_details')
 
-
-{{--                <div class="ps-section__left web_view" style="padding-top: 20px;">--}}
-{{--                    <div class="ps-block--vendor">--}}
-{{--                        <div class="ps-block__thumbnail"><img src="{{asset($shop->logo)}}" alt="" width="300" height="225"></div>--}}
-{{--                        <div class="ps-block__container">--}}
-{{--                            <div class="ps-block__header">--}}
-{{--                                <div class="row">--}}
-{{--                                    <div class="col-md-6">--}}
-{{--                                        <h4><a href="{{route('shop.details',$shop->slug)}}">{{$shop->name}} </a></h4>--}}
-{{--                                    </div>--}}
-{{--                                    @if(empty($favoriteShop))--}}
-{{--                                        <div class="col-md-6 pull-right">--}}
-{{--                                            <button class="ps-btn" style="padding: 7px 20px 7px 20px; font-size: 14px;"><a href="{{route('add.favorite-shop',$shop->id)}}">Follow</a></button>--}}
-{{--                                        </div>--}}
-{{--                                    @else--}}
-{{--                                        <div class="col-md-6 pull-right">--}}
-{{--                                            <button class="ps-btn" style="padding: 7px 20px 7px 20px; font-size: 14px;"><a href="{{route('remove.favorite-shop',$shop->id)}}">Unfollow</a></button>--}}
-{{--                                        </div>--}}
-{{--                                    @endif--}}
-{{--                                </div>--}}
-{{--                                <div class="mt-4">--}}
-{{--                                    <p class="float-left pr-2">Rating: <strong style="font-size: 30px;">{{$totalRatingCount}}</strong></p>--}}
-{{--                                    <div class="">--}}
-{{--                                        <select class="ps-rating" data-read-only="true" style="margin-top: 7px;">--}}
-{{--                                            @for ($i=0; $i < round($totalRatingCount); $i++)--}}
-{{--                                                <option value="1">{{$i}}</option>--}}
-{{--                                            @endfor--}}
-{{--                                        </select>--}}
-{{--                                    </div>--}}
-{{--                                </div>--}}
-
-{{--                            </div><span class="ps-block__divider"></span>--}}
-{{--                            <div class="ps-block__content">--}}
-{{--                                <p><strong>{{$shop->name}}</strong>, {{$shop->about}}</p><span class="ps-block__divider"></span>--}}
-{{--                                <p><strong>Address</strong> {{$shop->address}}</p>--}}
-{{--                            </div>--}}
-{{--                        </div>--}}
-{{--                    </div>--}}
-{{--                </div>--}}
             </div>
         </div>
     </div>

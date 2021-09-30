@@ -86,26 +86,26 @@
                                 <label for="shipping_time">Shipping Time </label>
                                 <input type="text" class="form-control" name="shipping_time" value="{{ $shop_set->shipping_time }}" id="shipping_time">
                             </div>
-                            <div class="form-group">
-                                <label for="facebook">Facebook Url</label>
-                                <input type="text" class="form-control" name="facebook" id="facebook"
-                                       value="{{ $shop_set->facebook }}">
-                            </div>
-                            <div class="form-group">
-                                <label for="google">Google Url</label>
-                                <input type="text" class="form-control" name="google" id="google"
-                                       value="{{ $shop_set->google }}">
-                            </div>
-                            <div class="form-group">
-                                <label for="twitter">Twitter Url</label>
-                                <input type="text" class="form-control" name="twitter" id="twitter"
-                                       value="{{ $shop_set->twitter }}">
-                            </div>
-                            <div class="form-group">
-                                <label for="youtube">YouTube Url</label>
-                                <input type="text" class="form-control" name="youtube" id="youtube"
-                                      value="{{ $shop_set->youtube }}">
-                            </div>
+{{--                            <div class="form-group">--}}
+{{--                                <label for="facebook">Facebook Url</label>--}}
+{{--                                <input type="text" class="form-control" name="facebook" id="facebook"--}}
+{{--                                       value="{{ $shop_set->facebook }}">--}}
+{{--                            </div>--}}
+{{--                            <div class="form-group">--}}
+{{--                                <label for="google">Google Url</label>--}}
+{{--                                <input type="text" class="form-control" name="google" id="google"--}}
+{{--                                       value="{{ $shop_set->google }}">--}}
+{{--                            </div>--}}
+{{--                            <div class="form-group">--}}
+{{--                                <label for="twitter">Twitter Url</label>--}}
+{{--                                <input type="text" class="form-control" name="twitter" id="twitter"--}}
+{{--                                       value="{{ $shop_set->twitter }}">--}}
+{{--                            </div>--}}
+{{--                            <div class="form-group">--}}
+{{--                                <label for="youtube">YouTube Url</label>--}}
+{{--                                <input type="text" class="form-control" name="youtube" id="youtube"--}}
+{{--                                      value="{{ $shop_set->youtube }}">--}}
+{{--                            </div>--}}
                         </div>
                     </div>
                 </div>

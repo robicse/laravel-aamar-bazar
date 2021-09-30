@@ -287,7 +287,7 @@
         }
 
         $(document).ready(function () {
-            // get_subcategories_by_category();
+            get_subcategories_by_category();
             //title to slug make
             $('.demo-select2').select2();
 

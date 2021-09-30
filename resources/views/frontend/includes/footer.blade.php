@@ -43,7 +43,7 @@
                 </div>
             </aside>
         </div>
-        <div class="ps-footer__right" style="padding-bottom: 0px;">
+        <div class="ps-footer__right" style="padding-bottom: 20px;">
             <aside>
                 <ul class="ps-list--social text-center my-3 my-md-0" style="padding-bottom: 40px;">
                     <li><a class="facebook" href="https://www.facebook.com/mudihatbd/" target="_blank" data-toggle="tooltip" data-original-title="Facebook" style="background: #3b579d;"><i class="fab fa-facebook-f" style="color: white"></i></a></li>
