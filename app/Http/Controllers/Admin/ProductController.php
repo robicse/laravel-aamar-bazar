@@ -148,12 +148,9 @@ class ProductController extends Controller
         //$product->min_qty = $request->min_qty;
         //$product->tags = implode('|',$request->tags);
         $product->description = $request->description;
-        //$product->video_provider = $request->video_provider;
         $product->video_link = $request->video_link;
         $product->unit_price = $request->unit_price;
         $product->purchase_price = $request->purchase_price;
-        //$product->tax = $request->tax;
-        //$product->tax_type = $request->tax_type;
         $product->discount = $request->discount;
         $product->discount_type = $request->discount_type;
         $product->vat = $request->vat;

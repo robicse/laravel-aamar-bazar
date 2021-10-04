@@ -168,10 +168,13 @@
                             </div>
                         </div>
                         <div class="ps-product__content ps-tab-root">
-                            <ul class="ps-tab-list">
+                            <ul class="ps-tab-list" style="margin-top: -20px;">
                                 <li class="active"><a href="#tab-1">Description</a></li>
                                 <li><a href="#tab-3">Shop</a></li>
                                 <li><a href="#tab-4">Reviews</a></li>
+                                @if($productDetails->video_link != null)
+                                    <li><a href="#tab-5">Video</a></li>
+                                @endif
                             </ul>
                             <div class="ps-tabs">
                                 <div class="ps-tab active" id="tab-1">
@@ -256,6 +259,11 @@
                                         </div>
                                     </div>
                                 </div>
+                                <div class="ps-tab" id="tab-5">
+                                    @if ( $productDetails->video_link != null)
+                                    <iframe width="560" height="315" src="https://www.youtube.com/embed/{{ explode('/', $productDetails->video_link)[3] }}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                                    @endif
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -267,7 +275,7 @@
                     <aside class="widget widget_same-brand">
                         <h3>Same Brand</h3>
                         @php
-                            $related_brands_products = \App\Model\Product::where('brand_id', $productDetails->brand_id)->where('user_id',$productDetails->user_id)->where('added_by','seller')->latest()->take(3)->where('published',1)->get();
+                            $related_brands_products = \App\Model\Product::where('brand_id', $productDetails->brand_id)->where('user_id',$productDetails->user_id)->where('added_by','seller')->where('id','!=',$productDetails->id)->latest()->take(2)->where('published',1)->get();
                         @endphp
                         <div class="widget__content">
                             @foreach($related_brands_products as $product)

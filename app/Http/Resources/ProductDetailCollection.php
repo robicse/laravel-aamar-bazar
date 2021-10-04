@@ -45,7 +45,8 @@ class ProductDetailCollection extends ResourceCollection
                     'base_discounted_price' => (double) home_discounted_base_price($data->id),
                     'photos' => json_decode($data->photos),
                     'thumbnail_image' => $data->thumbnail_img,
-                    //'tags' => explode(',', $data->tags),
+                    'video_link' => $data->video_link,
+
                     'choice_options' => $this->convertToChoiceOptions(json_decode($data->choice_options)),
                     'colors' => json_decode($data->colors),
                     'todays_deal' => (integer) $data->todays_deal,

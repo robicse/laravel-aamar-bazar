@@ -32,12 +32,12 @@ class VendorController extends Controller
         $shop=Shop::where('slug',$slug)->first();
         $seller = Seller::where('user_id',$shop->user_id)->first();
         $user = User::where('id',$shop->user_id)->first();
-        $products=Product::where('added_by','seller')->where('user_id',$shop->user_id)->where('published',1)->where('featured',1)->latest()->take(8)->get();
-        $best_sales_products=Product::where('added_by','seller')->where('user_id',$shop->user_id)->where('published',1)->where('num_of_sale', '>',0)->orderBy('num_of_sale', 'DESC')->limit(8)->get();
-        $todaysDeal = Product::where('added_by','seller')->where('user_id',$shop->user_id)->where('published',1)->where('todays_deal',1)->latest()->take(8)->get();
+        $products=Product::where('added_by','seller')->where('user_id',$shop->user_id)->where('published',1)->where('featured',1)->latest()->take(10)->get();
+        $best_sales_products=Product::where('added_by','seller')->where('user_id',$shop->user_id)->where('published',1)->limit(10)->latest()->get();
+        $todaysDeal = Product::where('added_by','seller')->where('user_id',$shop->user_id)->where('published',1)->where('todays_deal',1)->latest()->take(10)->get();
         $flashDeal = FlashDeal::where('status',1)->where('user_type','admin')->where('featured',1)->first();
         if(!empty($flashDeal)){
-            $flashDealProducts = FlashDealProduct::where('user_id',$shop->user_id)->where('flash_deal_id',$flashDeal->id)->latest()->take(7)->get();
+            $flashDealProducts = FlashDealProduct::where('user_id',$shop->user_id)->where('flash_deal_id',$flashDeal->id)->latest()->take(10)->get();
         }else{
             $flashDealProducts = null;
         }

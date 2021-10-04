@@ -34,46 +34,6 @@
         </div>
         <div class="ps-vendor-store">
             <div class="container-fluid">
-
-
-                {{--                    <div class="ps-section__left mobile_view" style="margin-left: -50px;">--}}
-                {{--                        <div class="ps-block--vendor">--}}
-                {{--                            <div class="ps-block__thumbnail"><img src="{{asset($shop->logo)}}" alt="" width="300" height="225"></div>--}}
-                {{--                            <div class="ps-block__container">--}}
-                {{--                                <div class="ps-block__header">--}}
-                {{--                                    <div class="row">--}}
-                {{--                                        <div class="col-md-6">--}}
-                {{--                                            <h4><a href="{{route('shop.details',$shop->slug)}}">{{$shop->name}} </a></h4>--}}
-                {{--                                        </div>--}}
-                {{--                                        @if(empty($favoriteShop))--}}
-                {{--                                        <div class="col-md-6 pull-right">--}}
-                {{--                                            <button class="ps-btn" style="padding: 7px 20px 7px 20px; font-size: 14px;"><a href="{{route('add.favorite-shop',$shop->id)}}">Follow</a></button>--}}
-                {{--                                        </div>--}}
-                {{--                                        @else--}}
-                {{--                                            <div class="col-md-6 pull-right">--}}
-                {{--                                                <button class="ps-btn" style="padding: 7px 20px 7px 20px; font-size: 14px;"><a href="{{route('remove.favorite-shop',$shop->id)}}">Unfollow</a></button>--}}
-                {{--                                            </div>--}}
-                {{--                                        @endif--}}
-                {{--                                    </div>--}}
-                {{--                                    <div class="mt-4">--}}
-                {{--                                         <p class="float-left pr-2">Rating: <strong style="font-size: 30px;">{{$totalRatingCount}}</strong></p>--}}
-                {{--                                        <div class="">--}}
-                {{--                                            <select class="ps-rating" data-read-only="true" style="margin-top: 7px;">--}}
-                {{--                                                @for ($i=0; $i < round($totalRatingCount); $i++)--}}
-                {{--                                                    <option value="1">{{$i}}</option>--}}
-                {{--                                                @endfor--}}
-                {{--                                            </select>--}}
-                {{--                                        </div>--}}
-                {{--                                    </div>--}}
-
-                {{--                                </div><span class="ps-block__divider"></span>--}}
-                {{--                                <div class="ps-block__content">--}}
-                {{--                                    <p><strong>{{$shop->name}}</strong>, {{$shop->about}}</p><span class="ps-block__divider"></span>--}}
-                {{--                                    <p><strong>Address</strong> {{$shop->address}}</p>--}}
-                {{--                                </div>--}}
-                {{--                            </div>--}}
-                {{--                        </div>--}}
-                {{--                    </div>--}}
                 @if($seller->verification_status == 1)
                     <div class="" style="width: 100%">
                         <div class="ps-block--vendor-filter">
@@ -101,13 +61,6 @@
                                         <div class="ps-carousel--nav owl-slider" data-owl-auto="false" data-owl-loop="false" data-owl-speed="8000" data-owl-gap="30" data-owl-nav="true" data-owl-dots="true" data-owl-item="5" data-owl-item-xs="2" data-owl-item-sm="3" data-owl-item-md="6" data-owl-item-lg="6" data-owl-item-xl="5" data-owl-duration="1000" data-owl-mousedrag="on" style="margin-top: -40px; margin-bottom: -20px;">
                                             @foreach($shopCat as $cat)
                                                 @if($cat->category->status !=0)
-                                                    {{--                                                    <div class="ps-product--inner" style="margin-left: 10px;">--}}
-                                                    {{--                                                        <div class="text-center"><a href="{{url('/shop/'.$shop->slug.'/'.$cat->category->slug)}}"><img src="{{asset('uploads/categories/'.$cat->category->icon)}}" alt="" width="120" height="100"></a>--}}
-                                                    {{--                                                            <div class="item-content text-center" style="padding-top: 5px;">--}}
-                                                    {{--                                                                <h4 class="item-title" style="font-size: 16px;"><a href="{{url('/shop/'.$shop->slug.'/'.$cat->category->slug)}}" style="color: #06c; margin-left: -10px;" data-toggle="tooltip" title="{{$cat->category->name}}">{{$cat->category->name}}</a></h4>--}}
-                                                    {{--                                                            </div>--}}
-                                                    {{--                                                        </div>--}}
-                                                    {{--                                                    </div>--}}
                                                     <div class="card shadow p-3 mb-5 bg-white rounded" style="height: 182px; width: 18rem; border-radius: 0.75rem!important;" >
                                                         <div class="card-body text-center" style="text-align: center!important;">
                                                             <p style="color: black; font-weight: bold; font-size: 14px;">{{$cat->category->name}}</p>
@@ -202,7 +155,7 @@
                         @if($best_sales_products->count() > 0)
                             <div class="ps-shopping ps-tab-root">
                                 <div class="ps-shopping__header">
-                                    <p>Best Selling</p>
+                                    <p>All Products</p>
                                     <div class="ps-shopping__actions">
                                         <div class="ps-shopping__view">
                                             <div><a href="{{route('best-selling-products',$shop->slug)}}">View All</a></div>
