@@ -31,11 +31,11 @@
                                         <img  src="{{asset('frontend/img/loader/loding3.gif')}}"  class="img-fluid " width="10%">
                                     </div>
                                 </div>
-                                <div class="ps-pagination" style="padding-left: 300px;">
-                                    <ul class="ps-content-pagination ps-theme">
-                                        {{$products->links()}}
-                                    </ul>
-                                </div>
+{{--                                <div class="ps-pagination" style="padding-left: 300px;">--}}
+{{--                                    <ul class="ps-content-pagination ps-theme">--}}
+{{--                                        {{$products->links()}}--}}
+{{--                                    </ul>--}}
+{{--                                </div>--}}
                             </div>
                         </div>
                     </div>

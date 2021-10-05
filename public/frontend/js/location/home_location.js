@@ -28,6 +28,7 @@ $(document).ready(function(){
 });*/
 
 function geoLocationInit() {
+
     var check_session = sessionStorage.getItem("latitude");
     if(check_session==null){
         if (navigator.geolocation) {
@@ -48,6 +49,8 @@ function geoLocationInit() {
     }
 }
 
+
+
 function success(position) {
     //console.log("in succ");
     sessionStorage.setItem("latitude", position.coords.latitude);
@@ -59,7 +62,7 @@ function success(position) {
     fetch(`https://barikoi.xyz/v1/api/search/reverse/MjMzNTpTWlBLSkRHUTRZ/geocode?longitude=${lngval}&latitude=${latval}&district=true&post_code=true&country=true&sub_district=true&union=false&pauroshova=false&location_type=true&division=true`)
         .then(response => response.json())
         .catch(error => console.error('Error:', error))
-        .then(response => $('#input-search').val(response.place.address))
+        .then(response => $('#web_search').val(response.place.address))
 
     fetch(`https://barikoi.xyz/v1/api/search/reverse/MjMzNTpTWlBLSkRHUTRZ/geocode?longitude=${lngval}&latitude=${latval}&district=true&post_code=true&country=true&sub_district=true&union=false&pauroshova=false&location_type=true&division=true`)
         .then(response => response.json())

@@ -533,7 +533,7 @@ class ProductController extends Controller
         foreach($arr as $single){
             $alldata[] = array(
                 (string)$single['id'],
-                '<img src="'.url($single['image']).'" alt="Girl in a jacket" width="50" height="40">',
+                '<img src="'.url($single['image']).'" alt="Product Image" width="50" height="50">',
                 $single['name'],
                 $single['category_name'],
                 $single['unit'],

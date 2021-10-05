@@ -41,7 +41,7 @@
                             <thead>
                             <tr>
                                 <th>#Id</th>
-                                <th>Icon</th>
+                                <th>Image</th>
                                 <th>Name</th>
                                 <th>Variant</th>
                                 <th>Stock</th>
@@ -59,7 +59,7 @@
                                 <tr>
                                     <td>{{$key + 1}}</td>
                                     <td>
-                                        <img src="{{url($product->thumbnail_img)}}" width="32" height="32" alt="">
+                                        <img src="{{url($product->thumbnail_img)}}" width="50" height="50" alt="">
                                     </td>
                                     <td>{{$product->name}}</td>
                                     <td class="{{$product->variant_product == 0 ? 'badge badge-danger' : 'badge badge-success'}}" id="{{$product->id}}">
@@ -113,14 +113,7 @@
                                                 <a class="bg-info dropdown-item" href="{{route('seller.products.edit',encrypt($product->id))}}">
                                                     <i class="fa fa-edit"></i> Edit
                                                 </a>
-                                               {{-- <button class="bg-danger dropdown-item" type="button"
-                                                        onclick="deleteProduct({{$product->id}})">
-                                                    <i class="fa fa-trash"></i> Delete
-                                                </button>--}}
-                                                <form id="delete-form-{{$product->id}}" action="{{route('seller.products.destroy',$product->id)}}" method="POST" style="display: none;">
-                                                    @csrf
-                                                    @method('DELETE')
-                                                </form>
+
                                             </div>
                                         </div>
                                     </td>
@@ -130,7 +123,7 @@
                             <tfoot>
                             <tr>
                                 <th>#Id</th>
-                                <th>Icon</th>
+                                <th>Image</th>
                                 <th>Name</th>
                                 <th>Variant</th>
                                 <th>Stock</th>
@@ -169,36 +162,6 @@
             });
         });
 
-        //sweet alert
-        function deleteProduct(id) {
-            swal({
-                title: 'Are you sure?',
-                text: "You won't be able to revert this!",
-                type: 'warning',
-                showCancelButton: true,
-                confirmButtonColor: '#3085d6',
-                cancelButtonColor: '#d33',
-                confirmButtonText: 'Yes, delete it!',
-                cancelButtonText: 'No, cancel!',
-                confirmButtonClass: 'btn btn-success',
-                cancelButtonClass: 'btn btn-danger',
-                buttonsStyling: false,
-                reverseButtons: true
-            }).then((result) => {
-                if (result.value) {
-                    document.getElementById('delete-form-'+id).submit();
-                } else if (
-                    // Read more about handling dismissals
-                    result.dismiss === swal.DismissReason.cancel
-                ) {
-                    swal(
-                        'Cancelled',
-                        'Your Data is save :)',
-                        'error'
-                    )
-                }
-            })
-        }
         //today's deals
         function update_todays_deal(el){
             if(el.checked){

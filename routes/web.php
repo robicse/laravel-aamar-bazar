@@ -69,7 +69,7 @@ Route::get('popup-destroy','Frontend\FrontendController@popupDataDestroy')->name
 Route::get('/product/{slug}', 'Frontend\ProductController@ProductDetails')->name('product-details');
 //Route::post('/products/get/variant/price', 'Frontend\ProductController@ProductVariantPrice')->name('product.variant.price');
 Route::get('/featured-products/{slug}', 'Frontend\ProductController@featuredProductList')->name('featured-product.list');
-Route::get('/products/{name}/{slug}/{sub}', 'Frontend\ProductController@productSubCategory')->name('product.by.subcategory');
+Route::get('/products/{shop}/{cat}/{sub}', 'Frontend\ProductController@productSubCategory')->name('product.by.subcategory');
 Route::get('/products/{name}/{slug}', 'Frontend\ProductController@productByBrand')->name('product.by.brand');
 Route::post('/products/ajax/addtocart', 'Frontend\CartController@ProductAddCart')->name('product.add.cart');
 Route::post('/product/add-to-cart/new', 'Frontend\CartController@productAddToCartNew')->name('product.add-to-cart-new');
@@ -97,7 +97,7 @@ Route::get('/best-seller-shop/list', 'Frontend\ShopController@bestSellerShopList
 Route::get('/flash-deals/{slug}', 'Frontend\VendorController@flashdeal')->name('flash-deals');
 Route::get('/todays-deal/{slug}', 'Frontend\VendorController@todaysDeal')->name('todays-deal-products');
 Route::get('/todays-deal/{name}/{slug}/{sub}', 'Frontend\VendorController@todaysDealSubCategory');
-Route::get('/best-selling/{slug}', 'Frontend\VendorController@bestSelling')->name('best-selling-products');
+Route::get('/all-products/{slug}', 'Frontend\VendorController@bestSelling')->name('best-selling-products');
 Route::get('/best-selling/{name}/{slug}/{sub}', 'Frontend\VendorController@bestSellingSubCategory');
 
 

@@ -175,7 +175,7 @@
                                         <div class="form-group col-md-5">
                                             <label for="discount">Discount</label>
                                             <input type="number" value="{{$product->discount}}"
-                                                   name="discount" class="form-control" required="">
+                                                   name="discount" class="form-control">
                                         </div>
                                         <div class="form-group col-md-3">
                                             <label for="discount">Discount Type</label>

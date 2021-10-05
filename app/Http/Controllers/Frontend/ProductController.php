@@ -70,12 +70,14 @@ class ProductController extends Controller
         return view('frontend.pages.shop.featured_product_list',compact('shop','shopCategories','shopBrands','products'));
     }
     public function productSubCategory($name,$slug,$sub) {
+
         $shop = Shop::where('slug',$name)->first();
         $category= Category::where('slug',$slug)->first();
         $subcategory = Subcategory::where('slug',$sub)->first();
         $shopCategories = ShopCategory::where('shop_id',$shop->id)->latest()->get();
         $shopBrands = ShopBrand::where('shop_id',$shop->id)->latest()->get();
-        $products = Product::where('category_id',$category->id)->where('subcategory_id',$subcategory->id)->where('user_id',$shop->user_id)->where('published',1)->where('featured',1)->latest()->paginate(24);
+        $products = Product::where('category_id',$category->id)->where('subcategory_id',$subcategory->id)->where('user_id',$shop->user_id)->where('published',1)->latest()->get();
+
         return view('frontend.pages.shop.products_by_subcategory',compact('shop','category','subcategory','shopBrands','shopCategories','products'));
     }
     public function productByBrand($name,$slug) {

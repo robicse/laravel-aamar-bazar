@@ -8,7 +8,9 @@
                         @php
                             $subcategories = \App\Model\ShopSubcategory::where('category_id',$Cat->category_id)->where('shop_id',$shop->id)->latest()->get();
                         @endphp
-                        <ul class="sub-menu">
+{{--                        @dd('/products/'.$shop->slug.'/'.$Cat->category->slug.'*')--}}
+                        <ul class="sub-menu" style="display: {{(Request::is('/products/'.$shop->slug.'/'.$Cat->category->slug.'*'))
+                        ? 'block' : ''}}">
                             @foreach($subcategories as $subCat)
                                 <li class="current-menu-item "><a href="{{url('/products/'.$shop->slug.'/'.$Cat->category->slug.'/'.$subCat->subcategory->slug)}}">{{$subCat->subcategory->name}}</a>
                                 </li>
