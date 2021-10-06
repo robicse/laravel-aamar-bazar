@@ -1,5 +1,5 @@
 @extends('frontend.layouts.master')
-@section('title','Best Selling Product List')
+@section('title','All Products')
 @section('content')
     <div class="ps-breadcrumb">
         <div class="ps-container">
