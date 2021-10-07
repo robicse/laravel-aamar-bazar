@@ -58,7 +58,7 @@
                                 <tr>
                                     <td>{{$key + 1}}</td>
                                     <td>
-                                        <img src="{{url($product->thumbnail_img)}}" width="32" height="32" alt="">
+                                        <img src="{{url($product->thumbnail_img)}}" width="50" height="50" alt="">
                                     </td>
                                     <td>{{$product->name}}</td>
                                     <td>{{$product->current_stock}}</td>
