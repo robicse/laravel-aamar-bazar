@@ -58,7 +58,7 @@
                                         </div><a href="{{route('view.all.categories',$shop->slug)}}">View all</a>
                                     </div>
                                     <div class="ps-section__content mb-5">
-                                        <div class="ps-carousel--nav owl-slider" data-owl-auto="false" data-owl-loop="false" data-owl-speed="8000" data-owl-gap="30" data-owl-nav="true" data-owl-dots="true" data-owl-item="5" data-owl-item-xs="2" data-owl-item-sm="3" data-owl-item-md="6" data-owl-item-lg="6" data-owl-item-xl="5" data-owl-duration="1000" data-owl-mousedrag="on" style="margin-top: -40px; margin-bottom: -20px;">
+                                        <div class="ps-carousel--nav owl-slider" data-owl-auto="true" data-owl-loop="false" data-owl-speed="5000" data-owl-gap="30" data-owl-nav="true" data-owl-dots="true" data-owl-item="5" data-owl-item-xs="2" data-owl-item-sm="3" data-owl-item-md="6" data-owl-item-lg="6" data-owl-item-xl="5" data-owl-duration="1000" data-owl-mousedrag="on" style="margin-top: -40px; margin-bottom: -20px;">
                                             @foreach($shopCat as $cat)
                                                 @if($cat->category->status !=0)
                                                     <div class="card shadow p-3 mb-5 bg-white rounded" style="height: 182px; width: 18rem; border-radius: 0.75rem!important;" >
