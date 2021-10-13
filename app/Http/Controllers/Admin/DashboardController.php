@@ -23,7 +23,7 @@ class DashboardController extends Controller
         $totalSubSubCategories = SubSubcategory::count();
         $totalBrands = Brand::count();
         $totalAttributes = Attribute::count();
-        $totalProducts =  Product::count();
+        $totalProducts =  Product::where('added_by','admin')->count();
         $totalReqProducts =  Product::where('added_by','seller')->where('admin_permission',0)->count();
         //dd($totalBrands);
         return view('backend.admin.dashboard',

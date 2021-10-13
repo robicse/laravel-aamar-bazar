@@ -187,7 +187,7 @@
                                         </div>
                                         <div class="form-group col-md-3">
                                             <label for="vat">VAT</label>
-                                            <input type="number" value="{{$product->vat}}" name="vat" class="form-control" required="">
+                                            <input type="number" value="{{$product->vat}}" name="vat" class="form-control" >
                                         </div>
                                         <div class="form-group col-md-5">
                                             <label for="discount">VAT Type</label>

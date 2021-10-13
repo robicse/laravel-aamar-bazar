@@ -112,8 +112,8 @@ function CarouselProductComponent($product){
 }
     function ProductUnit($id){
     $product = Product::find($id);
-    if ($product->variant_product != 0){
         $productVariant = ProductStock::where('product_id',$id)->first();
+    if ($product->variant_product == 1 && !empty($productVariant)){
         $unit = $productVariant->variant;
 
     }else{

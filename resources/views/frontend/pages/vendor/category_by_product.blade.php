@@ -3,20 +3,17 @@
 @push('css')
     <style>
         a:hover {
-            color: #fff;
+            color: #F8EF18;
         }
         .btn-new{
             border-radius: 2.50rem;
-            padding: 10px 20px;
+            /*padding: 10px 20px;*/
             font-size: 1.50rem;
             background: #A61E22;
             border-color: #A61E22;
             color: white;
         }
-        /*.owl-item {*/
-        /*    width: 110px!important;*/
-        /*    margin-right: 0!important;*/
-        /*}*/
+
         @media (max-width: 1440px) and (min-width: 1200px){
             .ps-shopping .row .col-xl-2 {
                 max-width: 20%;
@@ -24,16 +21,6 @@
             }
         }
 
-        @media only screen and (max-width: 700px) {
-            .mobile_view{
-                display: none;
-            }
-        }
-        @media only screen and (min-width: 600px) {
-            .web_view{
-                display: none;
-            }
-        }
     </style>
 @endpush
 @section('content')
@@ -56,10 +43,12 @@
                             </ul>
                         </div>
                         <div class="ps-block__right">
-                            <form class="ps-form--search text-right" action="" method="get">
+                            <form class="ps-form--search text-right" action="{{route('category.product.search')}}" method="get">
+{{--                            <form class="ps-form--search text-right" onclick="getCategoryProducts()" method="get">--}}
                                 <input type="hidden" name="shop_id" value="{{ $shop->id }}">
                                 <input type="hidden" name="category_id" value="{{ $category->id }}">
                                 <input  class="form-control" id="searchMain" name="searchName" type="search" placeholder="Search in this shop" autocomplete="off">
+                                <button class="submit"><i class="fa fa-search"></i></button>
                             </form>
                         </div>
                     </div>
@@ -75,19 +64,10 @@
                                 </div>
                             </div>
                             <div class="ps-section__content mb-5" style="margin-top: -30px">
-                                <div class="ps-carousel--nav owl-slider" data-owl-auto="false" data-owl-loop="false" data-owl-speed="10000" data-owl-gap="30" data-owl-nav="true" data-owl-dots="true" data-owl-item="6" data-owl-item-xs="2" data-owl-item-sm="3" data-owl-item-md="8" data-owl-item-lg="8" data-owl-item-xl="9" data-owl-duration="5000" data-owl-mousedrag="on" >
+                                <div class="ps-carousel--nav owl-slider" data-owl-auto="true" data-owl-loop="false" data-owl-speed="5000" data-owl-gap="30" data-owl-nav="true" data-owl-dots="true" data-owl-item="6" data-owl-item-xs="2" data-owl-item-sm="3" data-owl-item-md="6" data-owl-item-lg="6" data-owl-item-xl="6" data-owl-duration="5000" data-owl-mousedrag="on" >
                                     @foreach($shopSubcategories as $shopSubcategory)
                                         @if($shopSubcategory->subcategory->status !=0)
-                                            <button class="btn btn-lg btn-new"><a href="{{url('/shop'.'/'.$shop->slug.'/'.$category->slug.'/'.$shopSubcategory->subcategory->slug)}}">{{$shopSubcategory->subcategory->name}}</a></button>
-                                            {{--                                                <div class="ps-product--inner" style=" margin-bottom: 40px;">--}}
-                                            {{--                                                    <div class="card rounded-circle" style=" width:100px; height:100px; background: #fcb800;">--}}
-                                            {{--                                                        <div class="card-body text-center">--}}
-                                            {{--                                                            <h5 class="card-title text-center" style="margin-top: 30px" data-toggle="tooltip" title="{{$shopSubcategory->subcategory->name}}">--}}
-                                            {{--                                                                <a href="{{url('/shop'.'/'.$shop->slug.'/'.$category->slug.'/'.$shopSubcategory->subcategory->slug)}}"> {!! Str::limit($shopSubcategory->subcategory->name,9) !!}</a>--}}
-                                            {{--                                                            </h5>--}}
-                                            {{--                                                        </div>--}}
-                                            {{--                                                    </div>--}}
-                                            {{--                                                </div>--}}
+                                          <a class="btn btn-new" href="{{url('/shop'.'/'.$shop->slug.'/'.$category->slug.'/'.$shopSubcategory->subcategory->slug)}}">{{$shopSubcategory->subcategory->name}}</a>
                                         @endif
                                     @endforeach
                                 </div>
@@ -95,21 +75,21 @@
                         </div>
                     </div>
 
-                    @if($featuredProducts->count() > 1)
-                        <div class="ps-vendor-best-seller">
-                            <div class="ps-section__header">
-                                <h3>Featured Products</h3>
-                                <div class="ps-section__nav"><a class="ps-carousel__prev" href="#vendor-bestseller"><i class="icon-chevron-left"></i></a><a class="ps-carousel__next" href="#vendor-bestseller"><i class="icon-chevron-right"></i></a></div>
-                            </div>
-                            <div class="ps-section__content" style="">
-                                <div class="owl-slider" id="vendor-bestseller" data-owl-auto="true" data-owl-loop="true" data-owl-speed="5000" data-owl-gap="0" data-owl-nav="false" data-owl-dots="false" data-owl-item="5" data-owl-item-xs="2" data-owl-item-sm="3" data-owl-item-md="3" data-owl-item-lg="4" data-owl-duration="5000" data-owl-mousedrag="on">
-                                    @foreach($featuredProducts as $featuredProduct)
-                                        {{CarouselProductComponent($featuredProduct)}}
-                                    @endforeach
-                                </div>
-                            </div>
-                        </div>
-                    @endif
+{{--                    @if($featuredProducts->count() > 1)--}}
+{{--                        <div class="ps-vendor-best-seller">--}}
+{{--                            <div class="ps-section__header">--}}
+{{--                                <h3>Featured Products</h3>--}}
+{{--                                <div class="ps-section__nav"><a class="ps-carousel__prev" href="#vendor-bestseller"><i class="icon-chevron-left"></i></a><a class="ps-carousel__next" href="#vendor-bestseller"><i class="icon-chevron-right"></i></a></div>--}}
+{{--                            </div>--}}
+{{--                            <div class="ps-section__content" style="">--}}
+{{--                                <div class="owl-slider" id="vendor-bestseller" data-owl-auto="true" data-owl-loop="true" data-owl-speed="5000" data-owl-gap="0" data-owl-nav="false" data-owl-dots="false" data-owl-item="5" data-owl-item-xs="2" data-owl-item-sm="3" data-owl-item-md="3" data-owl-item-lg="4" data-owl-duration="5000" data-owl-mousedrag="on">--}}
+{{--                                    @foreach($featuredProducts as $featuredProduct)--}}
+{{--                                        {{CarouselProductComponent($featuredProduct)}}--}}
+{{--                                    @endforeach--}}
+{{--                                </div>--}}
+{{--                            </div>--}}
+{{--                        </div>--}}
+{{--                    @endif--}}
 
                     <div class="ps-shopping ps-tab-root">
                         <div class="ps-shopping__header">
@@ -119,7 +99,7 @@
                         </div>
                         <div class="ps-tabs">
                             <div class="ps-tab active" id="tab-1">
-                                <div class="row">
+                                <div class="row" >
                                     @foreach($products as $product)
                                         {{ProductComponent($product)}}
                                     @endforeach
@@ -158,7 +138,7 @@
                     // the key from the array we want to display (name,id,email,etc...)
                     templates: {
                         empty: [
-                            '<div class="list-group search-results-dropdown"><div class="list-group-item">Sorry,We could not find any Product.</div></div>'
+                            '<div class="list-group search-results-dropdown"><div class="list-group-item">Products not found, please try another search.</div></div>'
                         ],
                         header: [
                             // '<div class="list-group search-results-dropdown"><div class="list-group-item custom-header">Product</div>'
@@ -170,5 +150,22 @@
                 },
             );
         });
+
+        function getCategoryProducts(){
+            var shop_id = $('#shop_id').val()
+            var category_id = $('#category_id').val()
+            var q = $('#searchMain').val()
+            $('#result_product').empty();
+            {{--$.get('{{ route('category.product.search') }}',{ shop_id:shop_id, category_id:category_id, q:q}, function(data){--}}
+            {{--    $('#result_product ').html(data);--}}
+            {{--});--}}
+        }
+
+
+        $(document).ready(function() {
+            $(".owl-item").css("width", "");
+        });
     </script>
+
+
 @endpush

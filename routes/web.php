@@ -51,6 +51,8 @@ Route::get('/best-selling/product/filter/{data}/shopId/{shopId}', 'Frontend\Vend
 Route::get('/best-selling/subcategories/filter/{data}/sellerId/{id}/sub/{subId}', 'Frontend\VendorController@bestSellingSubFilter');
 Route::get('/brand/product/filter/{data}/shopId/{id}/brand/{brndId}', 'Frontend\VendorController@brandFilter');
 
+Route::get('/search/category/products', 'Frontend\SearchController@search_product')->name('category.product.search');
+
 
 
 Route::post('/registration','Frontend\FrontendController@register')->name('user.register');

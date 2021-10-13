@@ -1,9 +1,14 @@
-@if($product->category->status !=0 || $product->subCategory->status !=0 || $product->subSubCategory->status !=0 || $product->brand->status !=0)
+{{--@if($product->category->status !=0 || $product->subCategory->status !=0 || $product->subSubCategory->status !=0 || $product->brand->status !=0)--}}
+
+
 <div class="col-xl-2 col-lg-2 col-md-2 col-sm-6 col-6">
     <div class="ps-product">
         <div class="ps-product__thumbnail"><a href="{{route('product-details',$product->slug)}}"><img src="{{asset($product->thumbnail_img)}}" alt="" width="153" height="171"></a>
             <ul class="ps-product__actions">
-                @if($product->variant_product != 0)
+                @php
+                    $productVariant = \App\Model\ProductStock::where('product_id',$product->id)->first();
+                @endphp
+                @if($product->variant_product == 1 && !empty($productVariant))
                     <li><a href="{{route('product-details',$product->slug)}}" data-toggle="tooltip" data-placement="top" title="Add To Cart"><i class="icon-bag2"></i></a></li>
                 @else
                     <li><a data-toggle="tooltip" data-placement="top" title="Add To Cart" onclick="addToCart('{{$product->id}}',0)"><i class="icon-bag2"></i></a></li>
@@ -19,7 +24,7 @@
                 <div>
                     Unit: {{ProductUnit($product->id)}}
                 </div>
-                @if($product->variant_product != 0)
+                @if($product->variant_product == 1 && !empty($productVariant))
                     Price:৳ {{VariantPrice($product->id)}}
                 @else
                     Price: ৳ {{home_discounted_base_price($product->id)}}
@@ -33,7 +38,7 @@
                 <div>
                     Unit: {{ProductUnit($product->id)}}
                 </div>
-                @if($product->variant_product != 0)
+                @if($product->variant_product == 1 && !empty($productVariant))
                     Price:৳ {{VariantPrice($product->id)}}
                 @else
                     Price: ৳ {{home_discounted_base_price($product->id)}}
@@ -45,4 +50,4 @@
         </div>
     </div>
 </div>
-@endif
+{{--@endif--}}

@@ -43,7 +43,6 @@
                                 <th>#Id</th>
                                 <th>Icon</th>
                                 <th>Name</th>
-                                <th>Total Stock</th>
                                 <th>Unit</th>
                                 <th>Base Price (Tk)</th>
                                 <th>Discount (Tk)</th>
@@ -61,7 +60,6 @@
                                         <img src="{{url($product->thumbnail_img)}}" width="50" height="50" alt="">
                                     </td>
                                     <td>{{$product->name}}</td>
-                                    <td>{{$product->current_stock}}</td>
                                     <td>{{$product->unit}}</td>
                                     <td>{{$product->unit_price}}</td>
                                     <td>{{$product->discount}}</td>
@@ -97,7 +95,6 @@
                                 <th>#Id</th>
                                 <th>Icon</th>
                                 <th>Name</th>
-                                <th>Total Stock</th>
                                 <th>Unit</th>
                                 <th>Base Price (Tk)</th>
                                 <th>Discount (Tk)</th>

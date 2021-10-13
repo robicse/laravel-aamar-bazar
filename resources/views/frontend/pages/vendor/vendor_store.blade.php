@@ -206,6 +206,7 @@
                     highlight: true,
                     minLength: 3
                 }, {
+
                     source: product.ttAdapter(),
                     // This will be appended to "tt-dataset-" to form the class name of the suggestion menu.
                     name: 'serviceList',
@@ -213,7 +214,7 @@
                     // the key from the array we want to display (name,id,email,etc...)
                     templates: {
                         empty: [
-                            '<div class="list-group search-results-dropdown"><div class="list-group-item">Sorry,We could not find any Product.</div></div>'
+                            '<div class="list-group search-results-dropdown"><div class="list-group-item">Products not found, please try another search.</div></div>'
                         ],
                         header: [
                             // '<div class="list-group search-results-dropdown"><div class="list-group-item custom-header">Product</div>'

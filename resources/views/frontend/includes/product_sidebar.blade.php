@@ -4,7 +4,7 @@
         <ul class="ps-list--categories">
             @foreach($shopCategories as $Cat)
                 @if($Cat->category->status != 0)
-                    <li class="current-menu-item menu-item-has-children"><a href="#"> {{$Cat->category->name}} </a><span class="sub-toggle {{(Request::is('/products/'.$shop->slug.'/'.$Cat->category->slug.'*'))
+                    <li class="current-menu-item menu-item-has-children"><a href="#"> {{$Cat->category->name}} </a><span class="sub-toggle {{(Request::is('products/'.$shop->slug.'/'.$Cat->category->slug.'*'))
                         ? 'active' : ''}}"><i class="fa fa-angle-down"></i></span>
                         @php
                             $subcategories = \App\Model\ShopSubcategory::where('category_id',$Cat->category_id)->where('shop_id',$shop->id)->latest()->get();

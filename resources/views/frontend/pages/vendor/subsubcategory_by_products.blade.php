@@ -3,7 +3,7 @@
 @push('css')
     <style>
         a:hover {
-            color: #fff;
+            color: #F8EF18;
         }
         @media (max-width: 1440px) and (min-width: 1200px){
             .ps-shopping .row .col-xl-2 {
@@ -111,7 +111,7 @@
                     // the key from the array we want to display (name,id,email,etc...)
                     templates: {
                         empty: [
-                            '<div class="list-group search-results-dropdown"><div class="list-group-item">Sorry,We could not find any Product.</div></div>'
+                            '<div class="list-group search-results-dropdown"><div class="list-group-item">Products not found, please try another search.</div></div>'
                         ],
                         header: [
                             // '<div class="list-group search-results-dropdown"><div class="list-group-item custom-header">Product</div>'

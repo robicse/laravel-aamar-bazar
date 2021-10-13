@@ -17,7 +17,7 @@
             <div class="col-7">
                 <h4 style="color:#fff;"><a href="{{route('shop.details',$shop->slug)}}">{{$shop->name}} </a></h4>
                 <div>
-                <p class="float-left pt-3 pr-2" style="font-size: 14px;">Rating: <strong style="font-size: 16px; ">{{$totalRatingCount}}/5</strong></p><br>
+                <p class="float-left pt-3 pr-2" style="font-size: 14px;">Rating: <strong style="font-size: 16px; ">{{getShopRatings($shop->id)}}/5</strong></p><br>
                 </div>
 
             </div>
@@ -26,6 +26,9 @@
                     <div class="col-6">
 
                     </div>
+                    @php
+                        $favoriteShop = \App\Model\FavoriteShop::where('user_id', Auth::id())->where('shop_id', $shop->id)->first();
+                    @endphp
                     @if(empty($favoriteShop))
                         <div class="col-md-6 pull-right">
                             <button class="ps-btn" style="padding: 10px 30px 10px 30px; font-size: 18px;"><a href="{{route('add.favorite-shop',$shop->id)}}">Follow</a></button>

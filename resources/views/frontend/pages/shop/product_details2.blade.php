@@ -20,6 +20,7 @@
             color: #212121;
         }
     </style>
+    <link rel="stylesheet" type="text/css" href="https://unpkg.com/xzoom/dist/xzoom.css" media="all" />
 @endpush
 @section('content')
 
@@ -44,17 +45,18 @@
                                 @if(count($photos)!=0)
                                     <figure>
                                         <div class="ps-wrapper">
-                                            <div class="ps-product__gallery" data-arrow="true">
+                                            <div class="ps-product__gallery">
                                                 @foreach($photos as $key => $photo)
-                                                    <div class="item"><a href="{{url($photo)}}"><img src="{{url($photo)}}" alt=""></a></div>
+                                                    <div class="item"><a href="{{url($photo)}}"> <img class="xzoom" src="{{url($photo)}}" xoriginal="{{url($photo)}}" /></a></div>
+{{--                                                    <div class="item"><a href="{{url($photo)}}"><img src="{{url($photo)}}" alt=""></a></div>--}}
                                                 @endforeach
                                             </div>
                                         </div>
                                     </figure>
                                 @endif
-                                <div class="ps-product__variants" data-item="4" data-md="4" data-sm="4" data-arrow="false">
+                                <div class="ps-product__variants" data-item="4" data-md="4" data-sm="4" >
                                     @foreach($photos as $pht)
-                                        <div class="item"><img src="{{url($pht)}}" alt=""></div>
+                                        <div class="item"><img class="xzoom" src="{{url($pht)}}" xoriginal="{{url($photo)}}" alt=""></div>
                                     @endforeach
                                 </div>
                             </div>
@@ -424,5 +426,15 @@
             }
         }
 
+    </script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script type="text/javascript" src="https://unpkg.com/xzoom/dist/xzoom.min.js"></script>
+    <script>
+        jQuery(function($) {
+            $(".xzoom").xzoom({
+                position: 'right',
+                Xoffset: 15
+            });
+        });
     </script>
 @endpush

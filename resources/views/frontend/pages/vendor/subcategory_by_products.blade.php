@@ -3,11 +3,10 @@
 @push('css')
     <style>
         a:hover {
-            color: #fff;
+            color: #F8EF18;
         }
         .btn-new{
             border-radius: 2.50rem;
-            padding: 10px 20px;
             font-size: 1.50rem;
             background: #A61E22;
             border-color: #A61E22;
@@ -76,20 +75,10 @@
 
                                 </div>
                                 <div class="ps-section__content mb-5" style="margin-top: -30px">
-                                    <div class="ps-carousel--nav owl-slider" data-owl-auto="false" data-owl-loop="false" data-owl-speed="10000" data-owl-gap="30" data-owl-nav="true" data-owl-dots="true" data-owl-item="7" data-owl-item-xs="2" data-owl-item-sm="3" data-owl-item-md="4" data-owl-item-lg="5" data-owl-item-xl="6" data-owl-duration="1000" data-owl-mousedrag="on">
+                                    <div class="ps-carousel--nav owl-slider" data-owl-auto="false" data-owl-loop="false" data-owl-speed="10000" data-owl-gap="30" data-owl-nav="true" data-owl-dots="true" data-owl-item="7" data-owl-item-xs="2" data-owl-item-sm="3" data-owl-item-md="4" data-owl-item-lg="5" data-owl-item-xl="6" data-owl-duration="5000" data-owl-mousedrag="on">
                                         @foreach($subSubCategories as $subSubCategory)
                                             @if($subSubCategory->subsubcategory->status !=0)
-                                                <button class="btn btn-lg btn-new"><a href="{{url('/shop'.'/'.$shop->slug.'/'.$category->slug.'/'.$subCategory->slug.'/'.$subSubCategory->subsubcategory->slug)}}">{{$subSubCategory->subsubcategory->name}}</a></button>
-{{--                                            <div class="ps-product--inner" style=" margin-bottom: 40px;">--}}
-{{--                                                <div class="card rounded-circle" style=" width:100px; height:100px; background: #fcb800;">--}}
-{{--                                                    <div class="card-body text-center">--}}
-{{--                                                        <h5 class="card-title text-center" style="margin-top: 20px" data-toggle="tooltip" title="{{$subSubCategory->subsubcategory->name}}">--}}
-{{--                                                            <a href="{{url('/shop'.'/'.$shop->slug.'/'.$category->slug.'/'.$subCategory->slug.'/'.$subSubCategory->subsubcategory->slug)}}"> {{$subSubCategory->subsubcategory->name}}</a>--}}
-{{--                                                            --}}{{--                                                           <a href="{{route('subcategory.products/'.$shop->slug.'/'.$category->slug.'/'.$shopSubcategory->subcategory->slug)}}"> {!! Str::limit($shopSubcategory->subcategory->name,9) !!}</a>--}}
-{{--                                                        </h5>--}}
-{{--                                                    </div>--}}
-{{--                                                </div>--}}
-{{--                                            </div>--}}
+                                        <a class="btn btn-new" href="{{url('/shop'.'/'.$shop->slug.'/'.$category->slug.'/'.$subCategory->slug.'/'.$subSubCategory->subsubcategory->slug)}}">{{$subSubCategory->subsubcategory->name}}</a>
                                             @endif
                                         @endforeach
                                     </div>
@@ -169,7 +158,7 @@
                     // the key from the array we want to display (name,id,email,etc...)
                     templates: {
                         empty: [
-                            '<div class="list-group search-results-dropdown"><div class="list-group-item">Sorry,We could not find any Product.</div></div>'
+                            '<div class="list-group search-results-dropdown"><div class="list-group-item">Products not found, please try another search.</div></div>'
                         ],
                         header: [
                             // '<div class="list-group search-results-dropdown"><div class="list-group-item custom-header">Product</div>'
@@ -180,6 +169,10 @@
                     }
                 },
             );
+        });
+
+        $(document).ready(function() {
+            $(".owl-item").css("width", "");
         });
     </script>
 @endpush

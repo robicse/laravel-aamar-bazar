@@ -50,7 +50,6 @@
                                 <th>Shop Name</th>
                                 <th>Name</th>
                                 <th>Variant</th>
-                                <th>Total Stock</th>
                                 <th>Unit</th>
                                 <th>Base Price (Tk)</th>
                                 <th>Discount (Tk)</th>
@@ -79,13 +78,6 @@
                                     <td>{{$product->name}}</td>
                                     <td class="{{$product->variant_product == 0 ? 'badge badge-danger' : 'badge badge-success'}}" id="{{$product->id}}">
                                         {{$product->variant_product == 0 ? 'No': 'Yes'}}
-                                    </td>
-                                    <td>
-                                        @if($product->current_stock == 0)
-                                            <span class="badge badge-danger">Not Available</span>
-                                        @else
-                                            <span class="badge badge-success">Available</span>
-                                        @endif
                                     </td>
                                     <td>{{$product->unit}}</td>
                                     <td>{{$product->unit_price}}</td>
@@ -136,7 +128,6 @@
                                 <th>Shop Name</th>
                                 <th>Name</th>
                                 <th>Variant</th>
-                                <th>Total Stock</th>
                                 <th>Unit</th>
                                 <th>Base Price (Tk)</th>
                                 <th>Discount (Tk)</th>
