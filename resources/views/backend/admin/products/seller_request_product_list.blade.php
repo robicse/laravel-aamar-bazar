@@ -49,7 +49,6 @@
                                 <th>Today's Deal</th>
                                 <th>Published</th>
                                 <th>Featured</th>
-                                {{--<th>Action</th>--}}
                             </tr>
                             </thead>
                             <tbody>
@@ -101,7 +100,6 @@
                                 <th>Today's Deal</th>
                                 <th>Published</th>
                                 <th>Featured</th>
-                                {{--<th>Action</th>--}}
                             </tr>
                             </tfoot>
                         </table>

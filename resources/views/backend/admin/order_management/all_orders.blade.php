@@ -155,6 +155,7 @@
                                 <th>#ID</th>
                                 <th>Date</th>
                                 <th>Invoice ID</th>
+                                <th>Area</th>
                                 <th>Payment Method</th>
                                 <th>Grand Total</th>
                                 <th>Discount</th>
