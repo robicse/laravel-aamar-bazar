@@ -43,6 +43,7 @@ Route::post('get-areas','Frontend\CartController@getAreas')->name('get-areas');
 Route::get('/search/product', 'Frontend\VendorController@search_product');
 Route::get('/search/category/product', 'Frontend\VendorController@search_category_product');
 Route::get('/search/subcategory/product', 'Frontend\VendorController@search_subcategory_product');
+Route::get('/search/sub_subcategory/product', 'Frontend\VendorController@search_sub_subcategory_product');
 Route::get('/product/filter/{data}/shopId/{shopId}', 'Frontend\VendorController@productFilter');
 Route::get('/featured-product/subcategories/filter/{data}/sellerId/{id}/sub/{subId}', 'Frontend\VendorController@FeaturedSubFilter');
 Route::get('/todays-deal/product/filter/{data}/shopId/{shopId}', 'Frontend\VendorController@todaysDealFilter');
@@ -51,7 +52,10 @@ Route::get('/best-selling/product/filter/{data}/shopId/{shopId}', 'Frontend\Vend
 Route::get('/best-selling/subcategories/filter/{data}/sellerId/{id}/sub/{subId}', 'Frontend\VendorController@bestSellingSubFilter');
 Route::get('/brand/product/filter/{data}/shopId/{id}/brand/{brndId}', 'Frontend\VendorController@brandFilter');
 
-Route::get('/search/category/products', 'Frontend\SearchController@search_product')->name('category.product.search');
+Route::get('/search/products', 'Frontend\SearchController@search_shop_product')->name('shop.product.search');
+Route::get('/search/category/products', 'Frontend\SearchController@search_category_product')->name('category.product.search');
+Route::get('/search/subcategory/products', 'Frontend\SearchController@search_subcategory_product')->name('subcategory.product.search');
+Route::get('/search/sub_subcategory/products', 'Frontend\SearchController@search_sub_subcategory_product')->name('sub_subcategory.product.search');
 
 
 

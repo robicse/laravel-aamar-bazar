@@ -32,40 +32,21 @@ class VendorController extends Controller
         $shop=Shop::where('slug',$slug)->first();
         $seller = Seller::where('user_id',$shop->user_id)->first();
         $user = User::where('id',$shop->user_id)->first();
-        $products=Product::where('added_by','seller')->where('user_id',$shop->user_id)->where('published',1)->where('featured',1)->latest()->take(10)->get();
-        $best_sales_products=Product::where('added_by','seller')->where('user_id',$shop->user_id)->where('published',1)->limit(10)->latest()->get();
-        $todaysDeal = Product::where('added_by','seller')->where('user_id',$shop->user_id)->where('published',1)->where('todays_deal',1)->latest()->take(10)->get();
+//        $products=Product::where('added_by','seller')->where('user_id',$shop->user_id)->where('published',1)->where('featured',1)->latest()->take(10)->get();
+        $products=Product::where('added_by','seller')->where('user_id',$shop->user_id)->where('published',1)->limit(30)->latest()->get();
+//        $todaysDeal = Product::where('added_by','seller')->where('user_id',$shop->user_id)->where('published',1)->where('todays_deal',1)->latest()->take(10)->get();
         $flashDeal = FlashDeal::where('status',1)->where('user_type','admin')->where('featured',1)->first();
         if(!empty($flashDeal)){
             $flashDealProducts = FlashDealProduct::where('user_id',$shop->user_id)->where('flash_deal_id',$flashDeal->id)->latest()->take(10)->get();
         }else{
             $flashDealProducts = null;
         }
-        $favoriteShop = FavoriteShop::where('user_id', Auth::id())->where('shop_id', $shop->id)->first();
 
-        //dd($flashDealProducts);
         $shopCat=ShopCategory::where('shop_id',$shop->id)->latest()->get();
-//        dd($products);
-        $fiveStarRev = Review::where('shop_id',$shop->id)->where('rating',5)->where('status',1)->sum('rating');
-        $fourStarRev = Review::where('shop_id',$shop->id)->where('rating',4)->where('status',1)->sum('rating');
-        $threeStarRev = Review::where('shop_id',$shop->id)->where('rating',3)->where('status',1)->sum('rating');
-        $twoStarRev = Review::where('shop_id',$shop->id)->where('rating',2)->where('status',1)->sum('rating');
-        $oneStarRev = Review::where('shop_id',$shop->id)->where('rating',1)->where('status',1)->sum('rating');
-        $totalRating = Review::where('shop_id',$shop->id)->sum('rating');
 
-        //dd($fiveStarRev);
-        if ($totalRating > 0){
-            $rating = (5*$fiveStarRev + 4*$fourStarRev + 3*$threeStarRev + 2*$twoStarRev + 1*$oneStarRev) / ($totalRating);
-            $totalRatingCount = number_format((float)$rating, 1, '.', '');
-        }else{
-            $totalRatingCount =number_format((float)0, 1, '.', '');
-        }
-        //dd($totalRatingCount);
-
-        //dd($totalRatingCount);
         return view('frontend.pages.vendor.vendor_store',
             compact('shop','user','products','todaysDeal','shopCat',
-                'best_sales_products','seller','flashDeal','flashDealProducts','favoriteShop','totalRatingCount'
+                'best_sales_products','seller','flashDeal','flashDealProducts'
             )
         );
     }
@@ -122,23 +103,10 @@ class VendorController extends Controller
         $subCategory = Subcategory::where('slug',$sub)->first();
         $subSubCategories = ShopSubSubcategory::where('shop_id',$shop->id)->where('subcategory_id',$subCategory->id)->latest()->get();
 
-        $featuredProducts = Product::where('subcategory_id',$subCategory->id)->where('user_id',$shop->user_id)->where('featured',1)->where('published',1)->latest()->take(8)->get();
-        $products = Product::where('subcategory_id',$subCategory->id)->where('user_id',$shop->user_id)->where('published',1)->latest()->paginate(36);
-        $fiveStarRev = Review::where('shop_id',$shop->id)->where('rating',5)->where('status',1)->sum('rating');
-        $fourStarRev = Review::where('shop_id',$shop->id)->where('rating',4)->where('status',1)->sum('rating');
-        $threeStarRev = Review::where('shop_id',$shop->id)->where('rating',3)->where('status',1)->sum('rating');
-        $twoStarRev = Review::where('shop_id',$shop->id)->where('rating',2)->where('status',1)->sum('rating');
-        $oneStarRev = Review::where('shop_id',$shop->id)->where('rating',1)->where('status',1)->sum('rating');
-        $totalRating = Review::where('shop_id',$shop->id)->sum('rating');
-        if ($totalRating > 0){
-            $rating = (5*$fiveStarRev + 4*$fourStarRev + 3*$threeStarRev + 2*$twoStarRev + 1*$oneStarRev) / ($totalRating);
-            $totalRatingCount = number_format((float)$rating, 1, '.', '');
-        }else{
-            $totalRatingCount =number_format((float)0, 1, '.', '');
-        }
+//        $featuredProducts = Product::where('subcategory_id',$subCategory->id)->where('user_id',$shop->user_id)->where('featured',1)->where('published',1)->latest()->take(8)->get();
+        $products = Product::where('subcategory_id',$subCategory->id)->where('user_id',$shop->user_id)->where('published',1)->latest()->get();
 
-        $favoriteShop = FavoriteShop::where('user_id', Auth::id())->where('shop_id', $shop->id)->first();
-        return view('frontend.pages.vendor.subcategory_by_products',compact('shop','user','category','subCategory','subSubCategories','featuredProducts','products','totalRatingCount','favoriteShop'));
+        return view('frontend.pages.vendor.subcategory_by_products',compact('shop','user','category','subCategory','subSubCategories','products'));
 
     }
     public function subSubCategoryProducts($shop, $cat, $sub, $subsub ){
@@ -149,23 +117,9 @@ class VendorController extends Controller
         $subsubCategory = SubSubcategory::where('slug',$subsub)->first();
 //        $subSubCategories = ShopSubSubcategory::where('shop_id',$shop->id)->where('subcategory_id',$subCategory->id)->latest()->get();
 
-        $featuredProducts = Product::where('subsubcategory_id',$subsubCategory->id)->where('subcategory_id',$subCategory->id)->where('user_id',$shop->user_id)->where('featured',1)->where('published',1)->latest()->take(8)->get();
-        $products = Product::where('subsubcategory_id',$subsubCategory->id)->where('subcategory_id',$subCategory->id)->where('user_id',$shop->user_id)->where('published',1)->latest()->paginate(36);
-        $fiveStarRev = Review::where('shop_id',$shop->id)->where('rating',5)->where('status',1)->sum('rating');
-        $fourStarRev = Review::where('shop_id',$shop->id)->where('rating',4)->where('status',1)->sum('rating');
-        $threeStarRev = Review::where('shop_id',$shop->id)->where('rating',3)->where('status',1)->sum('rating');
-        $twoStarRev = Review::where('shop_id',$shop->id)->where('rating',2)->where('status',1)->sum('rating');
-        $oneStarRev = Review::where('shop_id',$shop->id)->where('rating',1)->where('status',1)->sum('rating');
-        $totalRating = Review::where('shop_id',$shop->id)->sum('rating');
-        if ($totalRating > 0){
-            $rating = (5*$fiveStarRev + 4*$fourStarRev + 3*$threeStarRev + 2*$twoStarRev + 1*$oneStarRev) / ($totalRating);
-            $totalRatingCount = number_format((float)$rating, 1, '.', '');
-        }else{
-            $totalRatingCount =number_format((float)0, 1, '.', '');
-        }
-
-        $favoriteShop = FavoriteShop::where('user_id', Auth::id())->where('shop_id', $shop->id)->first();
-        return view('frontend.pages.vendor.subsubcategory_by_products',compact('shop','user','category','subCategory','subsubCategory','featuredProducts','products','totalRatingCount','favoriteShop'));
+//        $featuredProducts = Product::where('subsubcategory_id',$subsubCategory->id)->where('subcategory_id',$subCategory->id)->where('user_id',$shop->user_id)->where('featured',1)->where('published',1)->latest()->take(8)->get();
+        $products = Product::where('subsubcategory_id',$subsubCategory->id)->where('subcategory_id',$subCategory->id)->where('user_id',$shop->user_id)->where('published',1)->latest()->get();
+        return view('frontend.pages.vendor.subsubcategory_by_products',compact('shop','user','category','subCategory','subsubCategory','featuredProducts','products'));
     }
     public function search_product(Request $request){
         $storeId =  $request->get('storeId');
@@ -213,6 +167,25 @@ class VendorController extends Controller
             ->where('added_by','seller')
             ->where('category_id',$category->id)
             ->where('subcategory_id',$subcategory->id)
+            ->where('published',1)
+            ->where(function ($query) use ($name) {
+                $query->where('name', 'LIKE', '%'. $name. '%')->orWhere('tags', 'like', '%'.$name.'%');
+            })->get();
+        return $products;
+    }
+    public function search_sub_subcategory_product(Request $request){
+        $shop = Shop::find($request->storeId);
+        $name = $request->get('q');
+        $category = Category::find($request->CatId);
+        $subcategory = Subcategory::find($request->subCatId);
+        $subsubcategory = SubSubcategory::find($request->subsubCatId);
+//        $product = Product::where('name', 'LIKE', '%'. $name. '%')->where('user_id',$shop->user_id)->where('category_id',$category->id)->where('subcategory_id',$subcategory->id)->where('added_by','seller')->where('published',1)->orWhere('tags', 'like', '%'.$name.'%')->limit(5)->get();
+        $products = DB::table('products')
+            ->where('user_id',$shop->user_id)
+            ->where('added_by','seller')
+            ->where('category_id',$category->id)
+            ->where('subcategory_id',$subcategory->id)
+            ->where('subsubcategory_id',$subsubcategory->id)
             ->where('published',1)
             ->where(function ($query) use ($name) {
                 $query->where('name', 'LIKE', '%'. $name. '%')->orWhere('tags', 'like', '%'.$name.'%');

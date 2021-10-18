@@ -43,19 +43,21 @@
                                 </ul>
                             </div>
                             <div class="ps-block__right">
-                                <form class="ps-form--search text-right" action="" method="get">
+                                <form class="ps-form--search text-right" action="{{route('sub_subcategory.product.search')}}" method="get">
                                     {{--                                    <input class="form-control" type="text" placeholder="Search in this shop">--}}
                                     <input type="hidden" name="shop_id" value="{{ $shop->id }}">
                                     <input type="hidden" name="category_id" value="{{ $category->id }}">
                                     <input type="hidden" name="subcategory_id" value="{{ $subCategory->id }}">
+                                    <input type="hidden" name="sub_subcategory_id" value="{{ $subsubCategory->id }}">
                                     <input  class="form-control" id="searchMain" name="searchName" type="search" placeholder="Search in this shop" autocomplete="off">
+                                    <button class="submit"><i class="fa fa-search"></i></button>
                                 </form>
                             </div>
                         </div>
 
-                        @if($featuredProducts->count() > 1)
-                            {{CarouselProductComponent($featuredProduct)}}
-                        @endif
+{{--                        @if($featuredProducts->count() > 1)--}}
+{{--                            {{CarouselProductComponent($featuredProduct)}}--}}
+{{--                        @endif--}}
 
                         <div class="ps-shopping ps-tab-root">
                             <div class="ps-shopping__header">
@@ -92,7 +94,7 @@
         jQuery(document).ready(function($) {
             var product = new Bloodhound({
                 remote: {
-                    url: '/search/subcategory/product?q=%QUERY%&storeId={{$shop->id}}&CatId={{$category->id}}&subCatId={{$subCategory->id}}',
+                    url: '/search/sub_subcategory/product?q=%QUERY%&storeId={{$shop->id}}&CatId={{$category->id}}&subCatId={{$subCategory->id}}&subsubCatId={{$subsubCategory->id}}',
                     wildcard: '%QUERY%'
                 },
                 datumTokenizer: Bloodhound.tokenizers.whitespace('searchName'),

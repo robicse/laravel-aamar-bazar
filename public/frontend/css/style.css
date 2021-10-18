@@ -5942,7 +5942,7 @@ textarea.form-control {
 }
 
 .ps-block--vendor-filter ul li a {
-    font-size: 16px;
+    font-size: 18px;
     color: #666;
 }
 
@@ -5952,7 +5952,7 @@ textarea.form-control {
 
 .ps-block--vendor-filter ul li.active a {
     font-weight: 500;
-    color: #000;
+    color: #fff;
 }
 
 .ps-block--vendor-filter ul li:last-child {

@@ -37,10 +37,16 @@
                 @if($seller->verification_status == 1)
                     <div class="" style="width: 100%">
                         <div class="ps-block--vendor-filter">
-                            <div class="">
-                                <form class="ps-form--search text-right" action="" method="get">
+                            <div class="ps-block__left">
+                                <ul>
+                                    <li class="active"><a href="#">Products</a></li>
+                                </ul>
+                            </div>
+                            <div class="ps-block__right">
+                                <form class="ps-form--search text-right" action="{{route('shop.product.search')}}" method="get">
                                     <input type="hidden" name="shop_id" value="{{ $shop->id }}">
                                     <input  class="form-control" id="searchMain" name="searchName" type="search" placeholder="Search products in this shop" autocomplete="off">
+                                    <button class="submit"><i class="fa fa-search"></i></button>
 
                                 </form>
                             </div>
@@ -110,49 +116,49 @@
                             </div>
                         @endif
 
+{{--                        @if($products->count() > 0)--}}
+{{--                            <div class="ps-shopping ps-tab-root" style="padding-top: 20px;">--}}
+{{--                                <div class="ps-shopping__header">--}}
+{{--                                    <p>Featured Products</p>--}}
+{{--                                    <div class="ps-shopping__actions">--}}
+{{--                                        <div class="ps-shopping__view">--}}
+{{--                                            <div><a href="{{route('featured-product.list', $shop->slug)}}">View All</a></div>--}}
+{{--                                        </div>--}}
+{{--                                    </div>--}}
+{{--                                </div>--}}
+{{--                                <div class="ps-tabs">--}}
+{{--                                    <div class="ps-tab active" id="tab-1">--}}
+{{--                                        <div class="row">--}}
+{{--                                            @foreach($products as $product)--}}
+{{--                                                {{ProductComponent($product)}}--}}
+{{--                                            @endforeach--}}
+{{--                                        </div>--}}
+{{--                                    </div>--}}
+{{--                                </div>--}}
+{{--                            </div>--}}
+{{--                        @endif--}}
+{{--                        @if($todaysDeal->count() > 0)--}}
+{{--                            <div class="ps-shopping ps-tab-root mb-5" style="padding-top: 10px;">--}}
+{{--                                <div class="ps-shopping__header">--}}
+{{--                                    <p>Todays Deal</p>--}}
+{{--                                    <div class="ps-shopping__actions">--}}
+{{--                                        <div class="ps-shopping__view">--}}
+{{--                                            <div><a href="{{route('todays-deal-products',$shop->slug)}}">View All</a></div>--}}
+{{--                                        </div>--}}
+{{--                                    </div>--}}
+{{--                                </div>--}}
+{{--                                <div class="ps-tabs">--}}
+{{--                                    <div class="ps-tab active" id="tab-1">--}}
+{{--                                        <div class="row">--}}
+{{--                                            @foreach($todaysDeal as $product)--}}
+{{--                                                {{ProductComponent($product)}}--}}
+{{--                                            @endforeach--}}
+{{--                                        </div>--}}
+{{--                                    </div>--}}
+{{--                                </div>--}}
+{{--                            </div>--}}
+{{--                        @endif--}}
                         @if($products->count() > 0)
-                            <div class="ps-shopping ps-tab-root" style="padding-top: 20px;">
-                                <div class="ps-shopping__header">
-                                    <p>Featured Products</p>
-                                    <div class="ps-shopping__actions">
-                                        <div class="ps-shopping__view">
-                                            <div><a href="{{route('featured-product.list', $shop->slug)}}">View All</a></div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="ps-tabs">
-                                    <div class="ps-tab active" id="tab-1">
-                                        <div class="row">
-                                            @foreach($products as $product)
-                                                {{ProductComponent($product)}}
-                                            @endforeach
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        @endif
-                        @if($todaysDeal->count() > 0)
-                            <div class="ps-shopping ps-tab-root mb-5" style="padding-top: 10px;">
-                                <div class="ps-shopping__header">
-                                    <p>Todays Deal</p>
-                                    <div class="ps-shopping__actions">
-                                        <div class="ps-shopping__view">
-                                            <div><a href="{{route('todays-deal-products',$shop->slug)}}">View All</a></div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="ps-tabs">
-                                    <div class="ps-tab active" id="tab-1">
-                                        <div class="row">
-                                            @foreach($todaysDeal as $product)
-                                                {{ProductComponent($product)}}
-                                            @endforeach
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        @endif
-                        @if($best_sales_products->count() > 0)
                             <div class="ps-shopping ps-tab-root">
                                 <div class="ps-shopping__header">
                                     <p>All Products</p>
@@ -165,7 +171,7 @@
                                 <div class="ps-tabs">
                                     <div class="ps-tab active" id="tab-1">
                                         <div class="row">
-                                            @foreach($best_sales_products as $product)
+                                            @foreach($products as $product)
                                                 {{ProductComponent($product)}}
                                             @endforeach
                                         </div>

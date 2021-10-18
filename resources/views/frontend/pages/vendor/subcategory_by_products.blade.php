@@ -52,12 +52,13 @@
                                 </ul>
                             </div>
                             <div class="ps-block__right">
-                                <form class="ps-form--search text-right" action="" method="get">
+                                <form class="ps-form--search text-right" action="{{route('subcategory.product.search')}}" method="get">
 {{--                                    <input class="form-control" type="text" placeholder="Search in this shop">--}}
                                     <input type="hidden" name="shop_id" value="{{ $shop->id }}">
                                     <input type="hidden" name="category_id" value="{{ $category->id }}">
                                     <input type="hidden" name="subcategory_id" value="{{ $subCategory->id }}">
                                     <input  class="form-control" id="searchMain" name="searchName" type="search" placeholder="Search in this shop" autocomplete="off">
+                                    <button class="submit"><i class="fa fa-search"></i></button>
                                 </form>
                             </div>
                         </div>
@@ -86,21 +87,21 @@
                             </div>
                         </div>
                         @endif
-                        @if($featuredProducts->count() > 1)
-                            <div class="ps-vendor-best-seller">
-                                <div class="ps-section__header">
-                                    <h3>Featured Products</h3>
-                                    <div class="ps-section__nav"><a class="ps-carousel__prev" href="#vendor-bestseller"><i class="icon-chevron-left"></i></a><a class="ps-carousel__next" href="#vendor-bestseller"><i class="icon-chevron-right"></i></a></div>
-                                </div>
-                                <div class="ps-section__content">
-                                    <div class="owl-slider" id="vendor-bestseller" data-owl-auto="true" data-owl-loop="true" data-owl-speed="5000" data-owl-gap="0" data-owl-nav="false" data-owl-dots="false" data-owl-item="4" data-owl-item-xs="2" data-owl-item-sm="3" data-owl-item-md="3" data-owl-item-lg="4" data-owl-duration="1000" data-owl-mousedrag="on">
-                                        @foreach($featuredProducts as $featuredProduct)
-                                            {{CarouselProductComponent($featuredProduct)}}
-                                        @endforeach
-                                    </div>
-                                </div>
-                            </div>
-                        @endif
+{{--                        @if($featuredProducts->count() > 1)--}}
+{{--                            <div class="ps-vendor-best-seller">--}}
+{{--                                <div class="ps-section__header">--}}
+{{--                                    <h3>Featured Products</h3>--}}
+{{--                                    <div class="ps-section__nav"><a class="ps-carousel__prev" href="#vendor-bestseller"><i class="icon-chevron-left"></i></a><a class="ps-carousel__next" href="#vendor-bestseller"><i class="icon-chevron-right"></i></a></div>--}}
+{{--                                </div>--}}
+{{--                                <div class="ps-section__content">--}}
+{{--                                    <div class="owl-slider" id="vendor-bestseller" data-owl-auto="true" data-owl-loop="true" data-owl-speed="5000" data-owl-gap="0" data-owl-nav="false" data-owl-dots="false" data-owl-item="4" data-owl-item-xs="2" data-owl-item-sm="3" data-owl-item-md="3" data-owl-item-lg="4" data-owl-duration="1000" data-owl-mousedrag="on">--}}
+{{--                                        @foreach($featuredProducts as $featuredProduct)--}}
+{{--                                            {{CarouselProductComponent($featuredProduct)}}--}}
+{{--                                        @endforeach--}}
+{{--                                    </div>--}}
+{{--                                </div>--}}
+{{--                            </div>--}}
+{{--                        @endif--}}
 
                         <div class="ps-shopping ps-tab-root">
                             <div class="ps-shopping__header">
