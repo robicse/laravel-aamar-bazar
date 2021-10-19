@@ -24,14 +24,14 @@
 @endpush
 @section('content')
     <div class="ps-page--single">
-        <div class="ps-breadcrumb">
-            <div class="container">
-                <ul class="breadcrumb">
-                    <li><a href="{{url('/')}}">Home</a></li>
-                    <li>{{$shop->name}}</li>
-                </ul>
-            </div>
-        </div>
+{{--        <div class="ps-breadcrumb">--}}
+{{--            <div class="container">--}}
+{{--                <ul class="breadcrumb">--}}
+{{--                    <li><a href="{{url('/')}}">Home</a></li>--}}
+{{--                    <li>{{$shop->name}}</li>--}}
+{{--                </ul>--}}
+{{--            </div>--}}
+{{--        </div>--}}
         <div class="ps-vendor-store">
             <div class="container-fluid">
                 @if($seller->verification_status == 1)
@@ -45,7 +45,7 @@
                             <div class="ps-block__right">
                                 <form class="ps-form--search text-right" action="{{route('shop.product.search')}}" method="get">
                                     <input type="hidden" name="shop_id" value="{{ $shop->id }}">
-                                    <input  class="form-control" id="searchMain" name="searchName" type="search" placeholder="Search products in this shop" autocomplete="off">
+                                    <input  class="form-control" id="searchMain" name="searchName" value="{{$q}}" type="search" placeholder="Search products in this shop" autocomplete="off">
                                     <button class="submit"><i class="fa fa-search"></i></button>
 
                                 </form>
@@ -226,7 +226,7 @@
                             // '<div class="list-group search-results-dropdown"><div class="list-group-item custom-header">Product</div>'
                         ],
                         suggestion: function (data) {
-                            return '<a href="/product/'+data.slug+'" class="list-group-item custom-list-group-item">'+data.name+'</a>'
+                            return '<a href="/product/'+data.slug+'" class="list-group-item custom-list-group-item">'+data.name+'</a><div><a>View All</a></div>'
                         }
                     }
                 },

@@ -73,6 +73,7 @@ class CartController extends Controller
         $data['options']['vat'] = $vPrice;
         Cart::add($data);
         $data['countCart'] = Cart::count();
+        $data['subtotal'] = Cart::subtotal();
         return response()->json(['success'=> true, 'response'=>$data]);
     }
 

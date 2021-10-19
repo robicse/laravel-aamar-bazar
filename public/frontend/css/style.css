@@ -16479,8 +16479,8 @@ html:not([dir="rtl"]) .noUi-horizontal .noUi-handle {
 
 @media (max-width: 479px) {
     .ps-footer__widgets > * {
-        max-width: 50%;
-        flex-basis: 50%;
+        /*max-width: 100%;*/
+        /*flex-basis: 100%;*/
     }
     .ps-footer__copyright {
         flex-flow: row wrap;

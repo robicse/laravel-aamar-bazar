@@ -43,12 +43,9 @@
                                 </ul>
                             </div>
                             <div class="ps-block__right">
-                                <form class="ps-form--search text-right" action="{{route('sub_subcategory.product.search')}}" method="get">
+                                <form class="ps-form--search text-right" action="{{route('shop.product.search')}}" method="get">
                                     {{--                                    <input class="form-control" type="text" placeholder="Search in this shop">--}}
                                     <input type="hidden" name="shop_id" value="{{ $shop->id }}">
-                                    <input type="hidden" name="category_id" value="{{ $category->id }}">
-                                    <input type="hidden" name="subcategory_id" value="{{ $subCategory->id }}">
-                                    <input type="hidden" name="sub_subcategory_id" value="{{ $subsubCategory->id }}">
                                     <input  class="form-control" id="searchMain" name="searchName" type="search" placeholder="Search in this shop" autocomplete="off">
                                     <button class="submit"><i class="fa fa-search"></i></button>
                                 </form>
@@ -94,7 +91,7 @@
         jQuery(document).ready(function($) {
             var product = new Bloodhound({
                 remote: {
-                    url: '/search/sub_subcategory/product?q=%QUERY%&storeId={{$shop->id}}&CatId={{$category->id}}&subCatId={{$subCategory->id}}&subsubCatId={{$subsubCategory->id}}',
+                    url: '/search/product?q=%QUERY%&storeId={{$shop->id}}',
                     wildcard: '%QUERY%'
                 },
                 datumTokenizer: Bloodhound.tokenizers.whitespace('searchName'),

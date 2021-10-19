@@ -1,6 +1,7 @@
+
 <footer class="ps-footer" style="background: #26262F!important;">
     <div class="ps-container">
-        <div class="ps-footer__widgets">
+        <div class="ps-footer__widgets" style="margin-top: -40px;">
             <aside class="widget widget_footer widget_contact-us">
                 <div class="widget-title">
                 <a class="ps-logo" href="{{url('/')}}"><img src="{{asset('frontend/img/logo-mudi-hat-final.png')}}" alt=""></a>
@@ -44,14 +45,14 @@
             </aside>
         </div>
         <div class="ps-footer__right" style="padding-bottom: 20px;">
-            <aside>
+            <aside style="margin-top: -20px; margin-bottom: 20px;">
                 <ul class="ps-list--social text-center my-3 my-md-0" style="padding-bottom: 40px;">
                     <li><a class="facebook" href="https://www.facebook.com/mudihatbd/" target="_blank" data-toggle="tooltip" data-original-title="Facebook" style="background: #3b579d;"><i class="fab fa-facebook-f" style="color: white"></i></a></li>
                     <li><a class="twitter" href="#" target="_blank" data-toggle="tooltip" data-original-title="Twitter" style="background: #50ABF1;"><i class="fab fa-twitter" style="color: white"></i></a></li>
                     <li><a class="youtube" href="https://youtube.com/channel/UCO8rNaLfnnEE7Ya_0oGeVVg" target="_blank" data-toggle="tooltip" data-original-title="YouTube" style="background: #E62117;"><i class="fab fa-youtube" style="color: white"></i></a></li>
                     <li><a class="instagram" href="#" target="_blank" data-toggle="tooltip" data-original-title="Instagram" style="background: #e1306c"><i class="fab fa-instagram" style="color: white"></i></a></li>
                     <li><a class="linkedin" href="https://www.linkedin.com/in/mudi-hat-62886821b" target="_blank" data-toggle="tooltip" data-original-title="Linked In" style="background: #0278B0;"><i class="fab fa-linkedin" style="color: white"></i></a></li>
-                   <a href="https://play.google.com/store/apps/details?id=com.starit.mudihat"><img src="{{asset('frontend/img/google-play.png')}}" alt="" ></a>
+                   <a href="https://play.google.com/store/apps/details?id=com.starit.mudihat" target="_blank"><img src="{{asset('frontend/img/google-play.png')}}" alt="" style="margin-top: 5px;"></a>
                 </ul>
             </aside>
         </div>

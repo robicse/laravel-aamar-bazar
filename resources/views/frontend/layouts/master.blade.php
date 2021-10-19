@@ -114,7 +114,7 @@
                                                 <p><small>${data.response.qty} x ${data.response.price}</small>
                                             </div>
                                         </div>`);
-            $('.subTotal').html(data.response.subtotal);
+            $('.subTotal').html(`<strong class="subTotal">${data.response.subtotal}</strong>`);
             toastr.success('success', 'Product added to your cart.');
         });
     }

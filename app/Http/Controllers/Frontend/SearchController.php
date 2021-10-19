@@ -41,7 +41,8 @@ class SearchController extends Controller
         }else{
             $flashDealProducts = null;
         }
-        return view('frontend.pages.vendor.vendor_store',compact('shop','seller','products','shopCat','flashDeal','flashDealProducts'));
+        $q = $name;
+        return view('frontend.pages.vendor.vendor_store',compact('q','shop','seller','products','shopCat','flashDeal','flashDealProducts'));
     }
     public function search_category_product(Request $request){
 
@@ -52,7 +53,6 @@ class SearchController extends Controller
         $products = DB::table('products')
             ->where('user_id',$shop->user_id)
             ->where('added_by','seller')
-            ->where('category_id',$category->id)
             ->where('published',1)
             ->where(function ($query) use ($name) {
                 $query->where('name', 'LIKE', '%'. $name. '%')->orWhere('tags', 'like', '%'.$name.'%');
@@ -71,8 +71,6 @@ class SearchController extends Controller
         $products = DB::table('products')
             ->where('user_id',$shop->user_id)
             ->where('added_by','seller')
-            ->where('category_id',$category->id)
-            ->where('subcategory_id',$subCategory->id)
             ->where('published',1)
             ->where(function ($query) use ($name) {
                 $query->where('name', 'LIKE', '%'. $name. '%')->orWhere('tags', 'like', '%'.$name.'%');
@@ -90,9 +88,6 @@ class SearchController extends Controller
         $products = DB::table('products')
             ->where('user_id',$shop->user_id)
             ->where('added_by','seller')
-            ->where('category_id',$category->id)
-            ->where('subcategory_id',$subCategory->id)
-            ->where('subsubcategory_id',$subsubCategory->id)
             ->where('published',1)
             ->where(function ($query) use ($name) {
                 $query->where('name', 'LIKE', '%'. $name. '%')->orWhere('tags', 'like', '%'.$name.'%');

@@ -6,11 +6,11 @@
     }
 
     .addListWeb::-webkit-scrollbar {
-      display: none;
+        display: none;
     }
     .addListWeb {
-      -ms-overflow-style: none;  / IE and Edge /
-      scrollbar-width: none;  / Firefox */
+        -ms-overflow-style: none;  / IE and Edge /
+    scrollbar-width: none;  / Firefox */
     }
 
 </style>
@@ -41,46 +41,59 @@
 
                 </ul>
             </div>
-{{--            <div class="ps-form--quick-search" >--}}
-{{--                @if(Request::is('/'))--}}
-{{--                    <button class="mx-1" style=""  data-toggle="tooltip" title="Current Location Nearest Shops." onclick="mapModalClick()"><i class="fa fa-map"></i></button>--}}
-{{--                    @if(Request::is('be-a-seller'))--}}
-{{--                        <input class="form-control m-0" type="text" placeholder="Enter your full address" id="input-search" style="border-radius: 4px;" autocomplete="off" value="">--}}
-{{--                    @else--}}
-{{--                        --}}{{--<input class="form-control bksearch m-0" type="text" placeholder="Enter your full address" id="input-search" style="border-radius: 4px;" autocomplete="off" value="">--}}
-{{--                        <input type="text" onkeyup="getAddress()" id="mobile_search" placeholder="Search Your Area" class="form-control form_height form-control-sm address input-search-map" autocomplete="off">--}}
-{{--                    @endif--}}
-{{--                    <button data-toggle="tooltip" title="Search Shops In Map." class="ml-2 mr-1"  style="border-radius: 4px;" onclick="geoLocationInit()"><i class="fas fa-location" aria-hidden="true"></i></button>--}}
+            {{--            <div class="ps-form--quick-search" >--}}
+            {{--                @if(Request::is('/'))--}}
+            {{--                    <button class="mx-1" style=""  data-toggle="tooltip" title="Current Location Nearest Shops." onclick="mapModalClick()"><i class="fa fa-map"></i></button>--}}
+            {{--                    @if(Request::is('be-a-seller'))--}}
+            {{--                        <input class="form-control m-0" type="text" placeholder="Enter your full address" id="input-search" style="border-radius: 4px;" autocomplete="off" value="">--}}
+            {{--                    @else--}}
+            {{--                        --}}{{--<input class="form-control bksearch m-0" type="text" placeholder="Enter your full address" id="input-search" style="border-radius: 4px;" autocomplete="off" value="">--}}
+            {{--                        <input type="text" onkeyup="getAddress()" id="mobile_search" placeholder="Search Your Area" class="form-control form_height form-control-sm address input-search-map" autocomplete="off">--}}
+            {{--                    @endif--}}
+            {{--                    <button data-toggle="tooltip" title="Search Shops In Map." class="ml-2 mr-1"  style="border-radius: 4px;" onclick="geoLocationInit()"><i class="fas fa-location" aria-hidden="true"></i></button>--}}
 
-{{--                    <div class="ps-panel--search-result bklist ">--}}
-{{--                    </div>--}}
-{{--                @endif--}}
-{{--            </div>--}}
-{{--            <ul class="list-group addList" style="padding: 0;">--}}
+            {{--                    <div class="ps-panel--search-result bklist ">--}}
+            {{--                    </div>--}}
+            {{--                @endif--}}
+            {{--            </div>--}}
+            {{--            <ul class="list-group addList" style="padding: 0;">--}}
 
-{{--            </ul>--}}
+            {{--            </ul>--}}
             <div class="header__right">
                 <div class="header__actions"><a class="header__extra" href="#">
                         <div class="ps-cart--mini"><a class="header__extra" href="#"><i class="icon-bag2"></i><span><i class="cart_count">{{Cart::count()}}</i></span></a>
-                            <div class="ps-cart__content">
-                                <div class="ps-cart__items cart_item">
-                                    @foreach(Cart::content() as $product)
-                                        <div class="ps-product--cart-mobile">
-                                            <div class="ps-product__thumbnail"><a href="#"><img src="{{url($product->options->image)}}" alt=""></a></div>
-                                            <div class="ps-product__content"><a class="ps-product__remove" href="{{route('product.cart.remove',$product->rowId)}}"><i class="icon-cross"></i></a><a href="#">{{$product->name}}</a>
-                                                <p><small>{{$product->qty}} x ৳{{$product->price}}</small>
+
+                            <div class="ps-cart__content" style="min-height: 300px; height: 300px; overflow-y: scroll;">
+{{--                                @if(Cart::content()->count() != 0 )--}}
+                                    <div class="ps-cart__items cart_item">
+                                        @foreach(Cart::content() as $product)
+                                            <div class="ps-product--cart-mobile">
+                                                <div class="ps-product__thumbnail"><a href="#"><img src="{{url($product->options->image)}}" alt=""></a></div>
+                                                <div class="ps-product__content"><a class="ps-product__remove" href="{{route('product.cart.remove',$product->rowId)}}"><i class="icon-cross"></i></a><a href="#">{{$product->name}}</a>
+                                                    <p><small>{{$product->qty}} x ৳{{$product->price}}</small>
+                                                </div>
+                                                <p>Sold By:<strong> {{$product->options->shop_name}}</strong></p>
                                             </div>
-                                            <p>Sold By:<strong> {{$product->options->shop_name}}</strong></p>
-                                        </div>
-                                    @endforeach
-                                </div>
+                                        @endforeach
+                                    </div>
 
-                                <div class="ps-cart__footer">
-                                    <h3>Sub Total:<strong class="subTotal">{{Cart::subtotal()}}</strong></h3>
-                                    <figure><a class="ps-btn" href="{{route('shopping-cart')}}">Cart</a><a class="ps-btn" href="{{route('checkout')}}">Checkout</a><a class="ps-btn" href="{{route('product.clear.cart')}}">Clear</a></figure>
-                                </div>
+                                    <div class="ps-cart__footer">
+                                        <h3>Sub Total:<strong class="subTotal">{{Cart::subtotal()}}</strong></h3>
+                                        <figure><a class="ps-btn" href="{{route('shopping-cart')}}">Cart</a><a class="ps-btn" href="{{route('checkout')}}">Checkout</a><a class="ps-btn" href="{{route('product.clear.cart')}}">Clear</a></figure>
+                                    </div>
+{{--                                @else--}}
+{{--                                    <div class="" style="background-color: white">--}}
+{{--                                    <div class="text-center">--}}
+{{--                                        <img src="{{asset('frontend/img/list.jpg')}}" height="150" width="200">--}}
 
+{{--                                    </div>--}}
+{{--                                        <div class="text-center">--}}
+{{--                                        <span>Cart is empty!!</span>--}}
+{{--                                        </div>--}}
+{{--                                    </div>--}}
+{{--                                @endif--}}
                             </div>
+
                         </div>
 
                         @if(Auth::guest())
@@ -141,6 +154,9 @@
     <nav class="navigation">
         <div class="ps-container">
             <div class="navigation__right">
+            </div>
+        </div>
+    </nav>
 </header>
 <header class="header header--mobile" data-sticky="true">
     <div class="navigation--mobile" style="background: #000000;">

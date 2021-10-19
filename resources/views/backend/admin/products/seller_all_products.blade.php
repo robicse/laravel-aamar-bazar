@@ -68,7 +68,7 @@
                                 <tr>
                                     <td>{{$key + 1}}</td>
                                     <td>
-                                        <img src="{{url($product->thumbnail_img)}}" width="50" height="50" alt="">
+                                        <img src="{{url($product->thumbnail_img)}}" width="80" height="80" alt="">
                                     </td>
                                     <td>
                                         <a target="_blank" href="{{route('shop.details',$shop->slug)}}">

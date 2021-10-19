@@ -14,7 +14,6 @@
                     <li><a data-toggle="tooltip" data-placement="top" title="Add To Cart" onclick="addToCart('{{$product->id}}',0)"><i class="icon-bag2"></i></a></li>
                 @endif
 
-
                 <li><a href="{{route('product-details',$product->slug)}}" data-placement="top" title="Quick View"><i class="icon-eye"></i></a></li>
                 <li><a href="{{route('add.wishlist',$product->id)}}" data-toggle="tooltip" data-placement="top" title="Add to Whishlist"><i class="icon-heart"></i></a></li>
             </ul>

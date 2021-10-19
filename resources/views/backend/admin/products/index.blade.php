@@ -58,7 +58,7 @@
                             <tr>
                                 <td>{{$key + 1}}</td>
                                 <td>
-                                    <img src="{{url($product->thumbnail_img)}}" width="50" height="50" alt="">
+                                    <img src="{{url($product->thumbnail_img)}}" width="80" height="80" alt="">
                                 </td>
                                 <td>{{$product->name}}</td>
                                 <td class="{{$product->variant_product == 0 ? 'badge badge-danger' : 'badge badge-success'}}" id="{{$product->id}}">

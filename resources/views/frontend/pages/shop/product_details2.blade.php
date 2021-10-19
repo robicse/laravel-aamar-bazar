@@ -47,8 +47,8 @@
                                         <div class="ps-wrapper">
                                             <div class="ps-product__gallery">
                                                 @foreach($photos as $key => $photo)
-                                                    <div class="item"><a href="{{url($photo)}}"> <img class="xzoom" src="{{url($photo)}}" xoriginal="{{url($photo)}}" /></a></div>
-{{--                                                    <div class="item"><a href="{{url($photo)}}"><img src="{{url($photo)}}" alt=""></a></div>--}}
+{{--                                                    <div class="item"><a href="{{url($photo)}}"> <img class="xzoom" src="{{url($photo)}}" xoriginal="{{url($photo)}}" /></a></div>--}}
+                                                    <div class="item"><a href="{{url($photo)}}"><img src="{{url($photo)}}" alt=""></a></div>
                                                 @endforeach
                                             </div>
                                         </div>
@@ -56,7 +56,7 @@
                                 @endif
                                 <div class="ps-product__variants" data-item="4" data-md="4" data-sm="4" >
                                     @foreach($photos as $pht)
-                                        <div class="item"><img class="xzoom" src="{{url($pht)}}" xoriginal="{{url($photo)}}" alt=""></div>
+                                        <div class="item"><img src="{{url($pht)}}" alt=""></div>
                                     @endforeach
                                 </div>
                             </div>
@@ -64,7 +64,7 @@
                             <div class="ps-product__info">
                                 <h1>{{ $productDetails->name }}</h1>
                                 <div class="ps-product__meta">
-                                    <p>Brand:<a href="{{url('/products/'.$shop->slug.'/'.$productDetails->brand->slug)}}">{{ $productDetails->brand->name }}</a></p>
+                                    <p>Brand: <a href="{{url('/products/'.$shop->slug.'/'.$productDetails->brand->slug)}}">{{ $productDetails->brand->name }}</a></p>
                                     <p class="categories">
                                         <strong> Categories:</strong>
                                         <a href="{{url('/shop/'.$shop->slug.'/'.$productDetails->category->slug)}}">{{$productDetails->category->name}}</a>
