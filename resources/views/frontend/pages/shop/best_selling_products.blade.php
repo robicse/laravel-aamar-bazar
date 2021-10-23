@@ -17,21 +17,35 @@
                     <div class="ps-shopping ps-tab-root">
                         <div class="ps-shopping__header">
                             <p>Products found</p>
+                            <div class="ps-shopping__actions">
+                                {{--                                <form class="ps-form--search text-right" action="{{route('shop.product.search')}}" method="get">--}}
+                                {{--                                    <input type="hidden" name="shop_id" value="{{ $shop->id }}">--}}
+                                {{--                                    <input  class="form-control" id="searchMain" name="searchName" value="{{$q}}" type="search" placeholder="Search products in this shop" autocomplete="off">--}}
+                                {{--                                    <button class="submit"><i class="fa fa-search"></i></button>--}}
+
+                                {{--                                </form>--}}
+                                <form id="search_form">
+                                    <input type="search" id="name" name="searchName" placeholder="Search your products ">
+                                    <input type="hidden" id="shop_id" name="shop_id" value="{{ $shop->id }}">
+                                    <button type="submit" class="submit" style="border-color: #F5F5F5"><i class="fa fa-search"></i></button>
+                                </form>
+
+                            </div>
                         </div>
                         <div class="ps-tabs">
                             <div class="ps-tab active" id="tab-1">
                                 <div class="ps-shopping-product">
                                     <div class="row found_product">
-                                        @foreach($products as $product)
-                                            {{ProductComponentTwo($product)}}
-                                        @endforeach
-                                            <div class="filter_result" id="products"></div>
+{{--                                        @foreach($products as $product)--}}
+{{--                                            {{ProductComponentTwo($product)}}--}}
+{{--                                        @endforeach--}}
+                                        <div class="filter_result" id="products"></div>
                                     </div>
                                     <div class="col-md-12 text-center" id="loader" style="display: none;">
                                         <img  src="{{asset('frontend/img/loader/loding3.gif')}}"  class="img-fluid " width="10%">
                                     </div>
                                 </div>
-                                <div class="ps-pagination" style="margin-left: 300px;">
+                                <div class="ps-pagination" style="margin-top: 40px; margin-left: 150px;">
                                     <ul class="ps-content-pagination ps-theme">
                                         {{$products->links()}}
                                     </ul>
@@ -113,5 +127,15 @@
                 });
             }
         }
+
+        $("#search_form").submit(function(event){
+            event.preventDefault();
+            var shop_id = $('#shop_id').val();
+            var name = $('#name').val();
+            $('.found_product').empty();
+            $.get("{{url('/search/all-products/')}}/"+shop_id+'/'+name, function(data){
+                $('.found_product').html(data);
+            });
+        });
     </script>
 @endpush

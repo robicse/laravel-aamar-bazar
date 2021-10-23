@@ -43,9 +43,9 @@
             </div>
             <div class="col-12">
                 <p><i class="icon-map-marker"></i> {{$shop->address}}</p>
-                @if($shop->about != null)
-                    <p><i class="icon-store"></i> {{$shop->about}}</p>
-                @endif
+{{--                @if($shop->about != null)--}}
+{{--                    <p><i class="icon-store"></i> {{$shop->about}}</p>--}}
+{{--                @endif--}}
             </div>
 
         </div>

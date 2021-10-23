@@ -44,6 +44,21 @@ class SearchController extends Controller
         $q = $name;
         return view('frontend.pages.vendor.vendor_store',compact('q','shop','seller','products','shopCat','flashDeal','flashDealProducts'));
     }
+    public function search_all_product($shopId, $name){
+
+//        return 'shop: '.$shopId. 'name: '.$name;
+        $shop = Shop::find($shopId);
+        $searchName = $name;
+        $products = DB::table('products')
+            ->where('user_id',$shop->user_id)
+            ->where('added_by','seller')
+            ->where('published',1)
+            ->where(function ($query) use ($searchName) {
+                $query->where('name', 'LIKE', '%'. $searchName. '%')->orWhere('tags', 'like', '%'.$searchName.'%');
+            })->get();
+        $q = $name;
+        return view('frontend.pages.shop.products_filter_dataset',compact('q','shop','products'));
+    }
     public function search_category_product(Request $request){
 
         $shop = Shop::find($request->shop_id);

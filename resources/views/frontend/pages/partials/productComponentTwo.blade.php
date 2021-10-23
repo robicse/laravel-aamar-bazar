@@ -18,7 +18,10 @@
                 <div>
                     Unit: {{ProductUnit($product->id)}}
                 </div>
-                @if($product->variant_product != 0)
+                @php
+                    $productVariant = \App\Model\ProductStock::where('product_id',$product->id)->first();
+                @endphp
+                @if($product->variant_product == 1 && !empty($productVariant))
                     Price: ৳ {{VariantPrice($product->id)}}
                 @else
                     Price: ৳ {{home_discounted_base_price($product->id)}}

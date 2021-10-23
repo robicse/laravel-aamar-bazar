@@ -170,6 +170,7 @@
                                 </div>
                                 <div class="ps-tabs">
                                     <div class="ps-tab active" id="tab-1">
+
                                         <div class="row">
                                             @foreach($products as $product)
                                                 {{ProductComponent($product)}}
@@ -177,6 +178,11 @@
                                         </div>
                                     </div>
                                 </div>
+                            </div>
+                        @else
+                            <div class="col-md-12 text-center" >
+                                <img src="{{asset('frontend/img/loader/product-not-found.jpg')}}"  class="img-fluid p-0 m-0" width="200" height="200">
+                                <h4 class="">Product not found!!</h4>
                             </div>
                         @endif
                     </div>
