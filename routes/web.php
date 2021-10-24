@@ -54,6 +54,8 @@ Route::get('/brand/product/filter/{data}/shopId/{id}/brand/{brndId}', 'Frontend\
 
 Route::get('/search/products', 'Frontend\SearchController@search_shop_product')->name('shop.product.search');
 Route::get('/search/all-products/{shopId}/{name}', 'Frontend\SearchController@search_all_product')->name('all-product.search');
+
+Route::post('/search-ajax', 'Frontend\SearchController@ajax_search')->name('search.ajax');
 //Route::get('/search/category/products', 'Frontend\SearchController@search_category_product')->name('category.product.search');
 //Route::get('/search/subcategory/products', 'Frontend\SearchController@search_subcategory_product')->name('subcategory.product.search');
 //Route::get('/search/sub_subcategory/products', 'Frontend\SearchController@search_sub_subcategory_product')->name('sub_subcategory.product.search');

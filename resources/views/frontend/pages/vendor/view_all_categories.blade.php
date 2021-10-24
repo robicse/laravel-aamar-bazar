@@ -18,14 +18,14 @@
 @endpush
 @section('content')
     <div class="ps-page--single">
-        <div class="ps-breadcrumb">
-            <div class="container">
-                <ul class="breadcrumb">
-                    <li><a href="{{url('/')}}">Home</a></li>
-                    <li>{{$shop->name}}</li>
-                </ul>
-            </div>
-        </div>
+{{--        <div class="ps-breadcrumb">--}}
+{{--            <div class="container">--}}
+{{--                <ul class="breadcrumb">--}}
+{{--                    <li><a href="{{url('/')}}">Home</a></li>--}}
+{{--                    <li>{{$shop->name}}</li>--}}
+{{--                </ul>--}}
+{{--            </div>--}}
+{{--        </div>--}}
         <div class="ps-vendor-store">
             <div class="container">
                     <div class="ps-section__right">

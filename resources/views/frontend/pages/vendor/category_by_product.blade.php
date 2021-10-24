@@ -105,6 +105,11 @@
                                 </div>
                             </div>
                         </div>
+                        <div class="ps-pagination" style="margin-top: 40px; margin-left: 150px;">
+                            <ul class="ps-content-pagination ps-theme">
+                                {{$products->links()}}
+                            </ul>
+                        </div>
                     </div>
                 </div>
                 @include('frontend.includes.shop_details')

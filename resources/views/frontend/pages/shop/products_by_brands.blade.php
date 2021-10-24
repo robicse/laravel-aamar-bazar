@@ -17,6 +17,14 @@
                     <div class="ps-shopping ps-tab-root">
                         <div class="ps-shopping__header">
                             <p>Products found</p>
+                            <div class="ps-shopping__actions">
+                                <form id="search_form">
+                                    <input type="search" id="name" name="searchName" placeholder="Search your products ">
+                                    <input type="hidden" id="shop_id" name="shop_id" value="{{ $shop->id }}">
+                                    <button type="submit" class="submit" style="border-color: #F5F5F5"><i class="fa fa-search"></i></button>
+                                </form>
+
+                            </div>
                         </div>
                         <div class="ps-tabs">
                             <div class="ps-tab active" id="tab-1">
@@ -31,11 +39,11 @@
                                         <img  src="{{asset('frontend/img/loader/loding3.gif')}}"  class="img-fluid " width="10%">
                                     </div>
                                 </div>
-{{--                                <div class="ps-pagination" style="padding-left: 300px;">--}}
-{{--                                    <ul class="ps-content-pagination ps-theme">--}}
-{{--                                        {{$products->links()}}--}}
-{{--                                    </ul>--}}
-{{--                                </div>--}}
+                                <div class="ps-pagination" style="margin-top: 40px;">
+                                    <ul class="ps-content-pagination ps-theme">
+                                        {{$products->links()}}
+                                    </ul>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -116,5 +124,14 @@
                 });
             }
         }
+        $("#search_form").submit(function(event){
+            event.preventDefault();
+            var shop_id = $('#shop_id').val();
+            var name = $('#name').val();
+            $('.found_product').empty();
+            $.get("{{url('/search/all-products/')}}/"+shop_id+'/'+name, function(data){
+                $('.found_product').html(data);
+            });
+        });
     </script>
 @endpush

@@ -18,12 +18,6 @@
                         <div class="ps-shopping__header">
                             <p>Products found</p>
                             <div class="ps-shopping__actions">
-                                {{--                                <form class="ps-form--search text-right" action="{{route('shop.product.search')}}" method="get">--}}
-                                {{--                                    <input type="hidden" name="shop_id" value="{{ $shop->id }}">--}}
-                                {{--                                    <input  class="form-control" id="searchMain" name="searchName" value="{{$q}}" type="search" placeholder="Search products in this shop" autocomplete="off">--}}
-                                {{--                                    <button class="submit"><i class="fa fa-search"></i></button>--}}
-
-                                {{--                                </form>--}}
                                 <form id="search_form">
                                     <input type="search" id="name" name="searchName" placeholder="Search your products ">
                                     <input type="hidden" id="shop_id" name="shop_id" value="{{ $shop->id }}">
@@ -36,9 +30,9 @@
                             <div class="ps-tab active" id="tab-1">
                                 <div class="ps-shopping-product">
                                     <div class="row found_product">
-{{--                                        @foreach($products as $product)--}}
-{{--                                            {{ProductComponentTwo($product)}}--}}
-{{--                                        @endforeach--}}
+                                        @foreach($products as $product)
+                                            {{ProductComponentTwo($product)}}
+                                        @endforeach
                                         <div class="filter_result" id="products"></div>
                                     </div>
                                     <div class="col-md-12 text-center" id="loader" style="display: none;">
@@ -85,16 +79,16 @@
                     start: [0, 100000],
                     range: {
                         min: 0,
-                        '10%': 10000,
-                        '20%': 20000,
-                        '30%': 30000,
-                        '40%': 40000,
-                        '50%': 50000,
-                        '60%': 60000,
-                        '70%': 70000,
-                        '80%': 80000,
-                        '90%': 90000,
-                        max: 100000,
+                        '10%': 100,
+                        '20%': 200,
+                        '30%': 300,
+                        '40%': 400,
+                        '50%': 500,
+                        '60%': 600,
+                        '70%': 700,
+                        '80%': 800,
+                        '90%': 900,
+                        max: 1000,
                     },
                 });
                 var nodes = [
@@ -120,10 +114,7 @@
                             }
                         });
                     }, 5000);*/
-
                     update(values);
-
-
                 });
             }
         }

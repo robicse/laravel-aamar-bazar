@@ -110,4 +110,23 @@ class SearchController extends Controller
 
         return view('frontend.pages.vendor.subsubcategory_by_products',compact('shop','products','category','subCategory','subsubCategory'));
     }
+
+    public function ajax_search(Request $request){
+        $storeId =  $request->get('shopId');
+        $name = $request->get('search');
+        $shop = Shop::find($storeId);
+        //dd($shops);
+        //$product = Product::where('user_id',$shops->user_id)->where('added_by','seller')->where('name', 'LIKE', '%'. $name. '%')->where('published',1)->orWhere('tags', 'like', '%'.$name.'%')->limit(5)->get();
+        $products = DB::table('products')
+            ->where('user_id',$shop->user_id)
+            ->where('added_by','seller')
+            ->where('published',1)
+            ->where(function ($query) use ($name) {
+                $query->where('name', 'LIKE', '%'. $name. '%')->orWhere('tags', 'like', '%'.$name.'%');
+            })->get();
+        if(sizeof($products)>0 ){
+            return view('frontend.pages.partials.search_content', compact('products'));
+        }
+        return '0';
+    }
 }

@@ -44,12 +44,16 @@
                             </div>
                             <div class="ps-block__right">
                                 <form class="ps-form--search text-right" action="{{route('shop.product.search')}}" method="get">
-                                    <input type="hidden" name="shop_id" value="{{ $shop->id }}">
-                                    <input  class="form-control" id="searchMain" name="searchName" value="{{$q}}" type="search" placeholder="Search products in this shop" autocomplete="off">
+                                    <input type="hidden" id="shop_id" name="shop_id" value="{{ $shop->id }}">
+                                    <input  class="form-control" id="searchMain" minlength="3" name="searchName" value="{{$q}}" type="search" placeholder="Search products in this shop" autocomplete="off">
                                     <button class="submit"><i class="fa fa-search"></i></button>
 
                                 </form>
+
                             </div>
+                        </div>
+                        <div id="search-content">
+
                         </div>
                         @if($shopCat->count() > 0)
                             <div class="ps-deal-of-day">
@@ -203,40 +207,56 @@
 @push('js')
     <script src="https://cdnjs.cloudflare.com/ajax/libs/typeahead.js/0.11.1/typeahead.bundle.min.js"></script>
     <script !src = "">
-        jQuery(document).ready(function($) {
-            var product = new Bloodhound({
-                remote: {
-                    url: '/search/product?q=%QUERY%&storeId={{$shop->id}}',
-                    wildcard: '%QUERY%'
-                },
-                datumTokenizer: Bloodhound.tokenizers.whitespace('searchName'),
-                queryTokenizer: Bloodhound.tokenizers.whitespace
+
+        $("#searchMain").keyup(function search(){
+            var search = $('#searchMain').val();
+            var shopId = $('#shop_id').val();
+            $.post('{{ route('search.ajax') }}', { _token: '{{ @csrf_token() }}', search:search, shopId:shopId}, function(data){
+                if(data == '0'){
+                    $('.typed-search-box .search-nothing').removeClass('d-none').html('Sorry, nothing found for <strong>"'+search+'"</strong>');
+                }
+                else{
+                    $('.typed-search-box .search-nothing').addClass('d-none').html(null);
+                    $('#search-content').html(data);
+                    //$('#search-content2').html(data);
+                    $('.search-preloader').addClass('d-none');
+                }
             });
-
-            $("#searchMain").typeahead({
-                    hint: true,
-                    highlight: true,
-                    minLength: 3
-                }, {
-
-                    source: product.ttAdapter(),
-                    // This will be appended to "tt-dataset-" to form the class name of the suggestion menu.
-                    name: 'serviceList',
-                    display: 'name',
-                    // the key from the array we want to display (name,id,email,etc...)
-                    templates: {
-                        empty: [
-                            '<div class="list-group search-results-dropdown"><div class="list-group-item">Products not found, please try another search.</div></div>'
-                        ],
-                        header: [
-                            // '<div class="list-group search-results-dropdown"><div class="list-group-item custom-header">Product</div>'
-                        ],
-                        suggestion: function (data) {
-                            return '<a href="/product/'+data.slug+'" class="list-group-item custom-list-group-item">'+data.name+'</a><div><a>View All</a></div>'
-                        }
-                    }
-                },
-            );
         });
+        {{--jQuery(document).ready(function($) {--}}
+        {{--    var product = new Bloodhound({--}}
+        {{--        remote: {--}}
+        {{--            url: '/search/product?q=%QUERY%&storeId={{$shop->id}}',--}}
+        {{--            wildcard: '%QUERY%'--}}
+        {{--        },--}}
+        {{--        datumTokenizer: Bloodhound.tokenizers.whitespace('searchName'),--}}
+        {{--        queryTokenizer: Bloodhound.tokenizers.whitespace--}}
+        {{--    });--}}
+
+        {{--    $("#searchMain").typeahead({--}}
+        {{--            hint: true,--}}
+        {{--            highlight: true,--}}
+        {{--            minLength: 3--}}
+        {{--        }, {--}}
+
+        {{--            source: product.ttAdapter(),--}}
+        {{--            // This will be appended to "tt-dataset-" to form the class name of the suggestion menu.--}}
+        {{--            name: 'serviceList',--}}
+        {{--            display: 'name',--}}
+        {{--            // the key from the array we want to display (name,id,email,etc...)--}}
+        {{--            templates: {--}}
+        {{--                empty: [--}}
+        {{--                    '<div class="list-group search-results-dropdown"><div class="list-group-item">Products not found, please try another search.</div></div>'--}}
+        {{--                ],--}}
+        {{--                header: [--}}
+        {{--                    // '<div class="list-group search-results-dropdown"><div class="list-group-item custom-header">Product</div>'--}}
+        {{--                ],--}}
+        {{--                suggestion: function (data) {--}}
+        {{--                    return '<a href="/product/'+data.slug+'" class="list-group-item custom-list-group-item">'+data.image+'</a><div><a>View All</a></div>'--}}
+        {{--                }--}}
+        {{--            }--}}
+        {{--        },--}}
+        {{--    );--}}
+        {{--});--}}
     </script>
 @endpush

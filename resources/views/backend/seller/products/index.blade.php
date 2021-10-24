@@ -43,13 +43,14 @@
                                 <th>#Id</th>
                                 <th>Image</th>
                                 <th>Name</th>
+                                <th>Category Name</th>
                                 <th>Variant</th>
                                 <th>Unit</th>
                                 <th>Base Price (Tk)</th>
                                 <th>Discount (Tk)</th>
-                                <th>Today's Deal</th>
+{{--                                <th>Today's Deal</th>--}}
                                 <th>Published</th>
-                                <th>Featured</th>
+{{--                                <th>Featured</th>--}}
                                 <th>Action</th>
                             </tr>
                             </thead>
@@ -61,6 +62,7 @@
                                         <img src="{{url($product->thumbnail_img)}}" width="80" height="80" alt="">
                                     </td>
                                     <td>{{$product->name}}</td>
+                                    <td>{{$product->category->name}}</td>
                                     <td class="{{$product->variant_product == 0 ? 'badge badge-danger' : 'badge badge-success'}}" id="{{$product->id}}">
                                         {{$product->variant_product == 0 ? 'No': 'Yes'}}
                                     </td>
@@ -69,14 +71,14 @@
                                     <td>{{$product->unit}}</td>
                                     <td>{{$product->unit_price}}</td>
                                     <td>{{$product->discount}}</td>
-                                    <td>
-                                        <div class="form-group col-md-2">
-                                            <label class="switch" style="margin-top:40px;">
-                                                <input onchange="update_todays_deal(this)" value="{{ $product->id }}" {{$product->todays_deal == 1? 'checked':''}} type="checkbox" >
-                                                <span class="slider round"></span>
-                                            </label>
-                                        </div>
-                                    </td>
+{{--                                    <td>--}}
+{{--                                        <div class="form-group col-md-2">--}}
+{{--                                            <label class="switch" style="margin-top:40px;">--}}
+{{--                                                <input onchange="update_todays_deal(this)" value="{{ $product->id }}" {{$product->todays_deal == 1? 'checked':''}} type="checkbox" >--}}
+{{--                                                <span class="slider round"></span>--}}
+{{--                                            </label>--}}
+{{--                                        </div>--}}
+{{--                                    </td>--}}
                                     <td>
                                         @if($product->admin_permission == 1)
                                         <div class="form-group col-md-2">
@@ -89,14 +91,14 @@
                                             <span class="badge badge-danger">Not Yet Approved</span>
                                         @endif
                                     </td>
-                                    <td>
-                                        <div class="form-group col-md-2">
-                                            <label class="switch" style="margin-top:40px;">
-                                                <input onchange="update_featured(this)"  value="{{ $product->id }}" {{$product->featured == 1 ? 'checked':''}} type="checkbox" >
-                                                <span class="slider round"></span>
-                                            </label>
-                                        </div>
-                                    </td>
+{{--                                    <td>--}}
+{{--                                        <div class="form-group col-md-2">--}}
+{{--                                            <label class="switch" style="margin-top:40px;">--}}
+{{--                                                <input onchange="update_featured(this)"  value="{{ $product->id }}" {{$product->featured == 1 ? 'checked':''}} type="checkbox" >--}}
+{{--                                                <span class="slider round"></span>--}}
+{{--                                            </label>--}}
+{{--                                        </div>--}}
+{{--                                    </td>--}}
                                     <td>
                                         <div class="dropdown">
                                             <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -118,13 +120,14 @@
                                 <th>#Id</th>
                                 <th>Image</th>
                                 <th>Name</th>
+                                <th>Category Name</th>
                                 <th>Variant</th>
                                 <th>Unit</th>
                                 <th>Base Price (Tk)</th>
                                 <th>Discount (Tk)</th>
-                                <th>Today's Deal</th>
+{{--                                <th>Today's Deal</th>--}}
                                 <th>Published</th>
-                                <th>Featured</th>
+{{--                                <th>Featured</th>--}}
                                 <th>Action</th>
                             </tr>
                             </tfoot>

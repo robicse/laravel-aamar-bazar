@@ -74,7 +74,7 @@
 
                                 </div>
                                 <div class="ps-section__content mb-5" style="margin-top: -30px">
-                                    <div class="ps-carousel--nav owl-slider" data-owl-auto="false" data-owl-loop="false" data-owl-speed="10000" data-owl-gap="30" data-owl-nav="true" data-owl-dots="true" data-owl-item="7" data-owl-item-xs="2" data-owl-item-sm="3" data-owl-item-md="4" data-owl-item-lg="5" data-owl-item-xl="6" data-owl-duration="5000" data-owl-mousedrag="on">
+                                    <div class="ps-carousel--nav owl-slider" data-owl-auto="true" data-owl-loop="false" data-owl-speed="5000" data-owl-gap="30" data-owl-nav="true" data-owl-dots="true" data-owl-item="7" data-owl-item-xs="2" data-owl-item-sm="3" data-owl-item-md="4" data-owl-item-lg="5" data-owl-item-xl="6" data-owl-duration="5000" data-owl-mousedrag="on">
                                         @foreach($subSubCategories as $subSubCategory)
                                             @if($subSubCategory->subsubcategory->status !=0)
                                         <a class="btn btn-new" href="{{url('/shop'.'/'.$shop->slug.'/'.$category->slug.'/'.$subCategory->slug.'/'.$subSubCategory->subsubcategory->slug)}}">{{$subSubCategory->subsubcategory->name}}</a>
@@ -114,14 +114,11 @@
                                             {{ProductComponent($product)}}
                                         @endforeach
                                     </div>
-                                    {{--                                    <div class="ps-pagination">--}}
-                                    {{--                                        <ul class="pagination">--}}
-                                    {{--                                            <li class="active"><a href="#">1</a></li>--}}
-                                    {{--                                            <li><a href="#">2</a></li>--}}
-                                    {{--                                            <li><a href="#">3</a></li>--}}
-                                    {{--                                            <li><a href="#">Next Page<i class="icon-chevron-right"></i></a></li>--}}
-                                    {{--                                        </ul>--}}
-                                    {{--                                    </div>--}}
+                                </div>
+                                <div class="ps-pagination" style="margin-top: 40px; margin-left: 150px;">
+                                    <ul class="ps-content-pagination ps-theme">
+                                        {{$products->links()}}
+                                    </ul>
                                 </div>
                             </div>
                         </div>

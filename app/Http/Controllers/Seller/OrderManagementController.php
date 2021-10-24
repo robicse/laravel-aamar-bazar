@@ -46,6 +46,10 @@ class OrderManagementController extends Controller
     }
     public function orderDetails($id) {
         $order = Order::find(decrypt($id));
+        if($order->view == 0){
+            $order->view = 1;
+            $order->save();
+        }
         $orderDetails = OrderDetails::where('order_id',$order->id)->get();
         return view('backend.seller.order_management.order_details',compact('order','orderDetails'));
     }

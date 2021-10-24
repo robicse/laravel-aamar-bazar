@@ -34,7 +34,7 @@
                 <div>
                     Unit: {{ProductUnit($product->id)}}
                 </div>
-                @if($product->variant_product != 0)
+                @if($product->variant_product == 1 && !empty($productVariant))
                     Price:৳ {{VariantPrice($product->id)}}
                 @else
                     Price: ৳ {{home_discounted_base_price($product->id)}}

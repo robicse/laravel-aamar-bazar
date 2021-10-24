@@ -17,6 +17,13 @@
                     <div class="ps-shopping ps-tab-root">
                         <div class="ps-shopping__header">
                             <p>Products Found</p>
+                            <div class="ps-shopping__actions">
+                                <form id="search_form">
+                                    <input type="search" id="name" name="searchName" placeholder="Search your products ">
+                                    <input type="hidden" id="shop_id" name="shop_id" value="{{ $shop->id }}">
+                                    <button type="submit" class="submit" style="border-color: #F5F5F5"><i class="fa fa-search"></i></button>
+                                </form>
+                            </div>
                         </div>
                         <div class="ps-tabs">
                             <div class="ps-tab active" id="tab-1">
@@ -31,11 +38,11 @@
                                         <img  src="{{asset('frontend/img/loader/loding3.gif')}}"  class="img-fluid " width="10%">
                                     </div>
                                 </div>
-{{--                                <div class="ps-pagination" style="padding-left: 300px;">--}}
-{{--                                    <ul class="ps-content-pagination ps-theme">--}}
-{{--                                        {{$products->links()}}--}}
-{{--                                    </ul>--}}
-{{--                                </div>--}}
+                                <div class="ps-pagination" style="margin-top: 40px;">
+                                    <ul class="ps-content-pagination ps-theme">
+                                        {{$products->links()}}
+                                    </ul>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -60,46 +67,6 @@
                         $('.found_product').html(data);
 
                     });
-                {{--$.ajax({--}}
-                {{--    type: 'GET', //THIS NEEDS TO BE GET--}}
-                {{--    url: '/featured-product/subcategories/filter/'+values+'/sellerId/'+'{{$shop->id}}'+'/sub/'+{{$subcategory->id}},--}}
-                {{--    dataType: 'json',--}}
-                {{--    success: function (data) {--}}
-                {{--        console.log(data);--}}
-                {{--        $('.found_product').empty();--}}
-                {{--        if(data.length==0){--}}
-                {{--            $('.found_product').append('<h3 class="ml-5">Nothing Found</h3>');--}}
-                {{--            $('.found_product_length').html(data.length);--}}
-                {{--        }else{--}}
-                {{--            $('.found_product_length').html(data.length);--}}
-                {{--            var i=0;--}}
-                {{--            for(i=0;i<data.length;i++){--}}
-                {{--                $('.found_product').append(`<div class="col-xl-3 col-lg-4 col-md-4 col-sm-6 col-6 ">--}}
-                {{--                                <div class="ps-product">--}}
-                {{--                                    <div class="ps-product__thumbnail"><a href="/product/${data[i].slug}"><img src="{{url('/')}}/${data[i].thumbnail_img}" alt="" width="153" height="171"></a>--}}
-                {{--                                        <ul class="ps-product__actions">--}}
-                {{--                                            <li><a href="/product/${data[i].slug}" data-toggle="tooltip" data-placement="top" title="Add To Cart"><i class="icon-bag2"></i></a></li>--}}
-                {{--                                            <li><a href="/product/${data[i].slug}" data-placement="top" title="Quick View" data-toggle="modal" data-target="#product-quickview"><i class="icon-eye"></i></a></li>--}}
-                {{--                                            <li><a href="/add/wishlist/${data[i].id}" data-toggle="tooltip" data-placement="top" title="Add to Whishlist"><i class="icon-heart"></i></a></li>--}}
-                {{--                                                                                                    <li><a href="#" data-toggle="tooltip" data-placement="top" title="Compare"><i class="icon-chart-bars"></i></a></li>--}}
-                {{--                </ul>--}}
-                {{--            </div>--}}
-                {{--            <div class="ps-product__container">--}}
-                {{--                                        <div class="ps-product__content"><a class="ps-product__title" href="/product/${data[i].slug}">${data[i].name}</a>--}}
-                {{--                                            <p class="ps-product__price">৳ ${data[i].unit_price}</p>--}}
-                {{--                                        </div>--}}
-                {{--                                        <div class="ps-product__content hover"><a class="ps-product__title" href="/product/${data[i].slug}">${data[i].name}</a>--}}
-                {{--                                            <p class="ps-product__price">৳ ${data[i].unit_price}</p>--}}
-                {{--                                        </div>--}}
-                {{--                                    </div>--}}
-                {{--                                </div>--}}
-                {{--                            </div>`);--}}
-                {{--            }--}}
-                {{--        }--}}
-                {{--    },error:function(){--}}
-                {{--        console.log(data);--}}
-                {{--    }--}}
-                {{--});--}}
             }, 1000);
         };
         function filterSlider() {
@@ -151,8 +118,14 @@
                 });
             }
         }
-        function subcatId(id){
-
-        }
+        $("#search_form").submit(function(event){
+            event.preventDefault();
+            var shop_id = $('#shop_id').val();
+            var name = $('#name').val();
+            $('.found_product').empty();
+            $.get("{{url('/search/all-products/')}}/"+shop_id+'/'+name, function(data){
+                $('.found_product').html(data);
+            });
+        });
     </script>
 @endpush
